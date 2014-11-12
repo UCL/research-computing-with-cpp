@@ -92,7 +92,10 @@ Setup
 -----
 
 You are required to bring your own laptop to the course as the classrooms we are
- using do not have desktop computers. You must be familiar with installing your own compiler.
+ using do not have desktop computers.
+
+We will be working on our own computers, but also on the UCL training Linux server Aristotle and on the UCL
+supercomputer Legion.
 
 We have provided [setup](installation) instructions for installing the software needed for the course on
-your computer.
+your computer, including the software you will use to access these servers.

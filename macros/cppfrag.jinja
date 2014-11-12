@@ -1,0 +1,9 @@
+{% macro cppfrag(session, file, segment=False %}
+``` cpp
+{% if segment %}
+{{d['session'+session+'/cpp/'+file+'|idio|t'][segment]}}
+{% else %}
+{{d['session'+session+'/cpp/'+file]}}
+{% endif %}
+```
+{% endmacro %}

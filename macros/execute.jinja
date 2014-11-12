@@ -1,0 +1,9 @@
+{% macro execute(session, file) %}
+``` cpp
+{% if segment %}
+{{d['session'+session+'/cpp/'+file+'|idio'][segment]}}
+{% else %}
+{{d['session'+session+'/cpp/'+file]}}
+{% endif %}
+```
+{% endmacro %}
