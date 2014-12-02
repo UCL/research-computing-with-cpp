@@ -1,5 +1,5 @@
 ---
-title: Research Software Development with Python
+title: Research Computing With C++
 ---
 
 {{d['intro.md']}}
