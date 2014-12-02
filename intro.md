@@ -70,18 +70,20 @@ Synopsis
 * Parallel storage
 * Lustre
 * MPI-IO
+
+##Lesson 8
 * Parallel algorithms and design
 * Overlapping communication and calculation
 * Minimising communication
 
-## Lession 8
+## Lesson 9
 
 * Introduction to accelerators
 * CUDA with Thrust
 * OpenACC
 * OpenCL?
 
-## Lesson 9
+## Lesson 10  
 
 * Cloud computing and big data
 * Getting started with EC2
