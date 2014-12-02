@@ -1,6 +1,6 @@
 ---
-title: Research Software Engineering with Python
-author: James Hetherington and Matt Clarkson
+title: Research Computing with C++
+author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt Clarkson
 ---
 
 \chapter{Introduction}
