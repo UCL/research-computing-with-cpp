@@ -11,6 +11,7 @@ http://development.rc.ucl.ac.uk/training/rcwithcpp
 
 To build and test:
 
+``` bash
 cd <development area>
 git clone https://github.com/jamespjh/indigo
 cd indigo
@@ -26,3 +27,4 @@ make
 cd ..
 dexy
 dexy serve
+```
