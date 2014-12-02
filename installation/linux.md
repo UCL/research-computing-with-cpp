@@ -8,7 +8,7 @@ Mac
 Mac install notes go here.
 
 C++
----
+----
 
 For local programming, we'll be using the C++ language, with the CMake build tool and the Google unit testing framework.
 
@@ -19,7 +19,7 @@ Googletest
 ---------
 
 Git
----
+----
 
 For version control, we'll be using *Git* and the *Github* website.
 

@@ -53,12 +53,20 @@ assets:
     - .svg
     - .pdf
     - .js
-
+  
 cpps:
     - .cc|idio|t
-    - .cc
-    - .h
     - .h|idio|t
+
+cmakes:
+    - '**/CMakeLists.txt'
+    - '**/CMakeLists.txt|idio|t'
+
+exes:
+    - .x|execute
+    - .exe|execute
+    - .x|execute|idio|t
+    - .exe|execute|idio|t
 
 data:
     - .csv
@@ -100,3 +108,5 @@ inputs:
     - report.latex
     - uml
     - jinjas
+    - cmakes
+    - exes

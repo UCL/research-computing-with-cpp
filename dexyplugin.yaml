@@ -1,6 +1,6 @@
 reporter:supplementary:
     supplementary-location: ../../indigo
-    site_title: 'Research Software Development With Python'
+    site_title: 'Research Computing with C++'
     crumbs:
         - [ISD, 'http://ucl.ac.uk/isd']
         - [RITS, 'http://www.ucl.ac.uk/isd/staff/research_services/']
@@ -8,3 +8,11 @@ reporter:supplementary:
         - [Training, 'http://development.rc.ucl.ac.uk/training']
     include_leftnav: True
     default: True
+
+execute:
+    help: "Runs an arbitrary executable with arguments"
+    class: SubprocessStdoutFilter
+    executable: bash
+    command-string: "chmod u+x %(script_file)s; ./%(script_file)s %(args)s"
+    input-extensions: [.x, .exe, '']
+    output-extensions: [.txt]
