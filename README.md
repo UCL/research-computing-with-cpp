@@ -28,3 +28,14 @@ cd ..
 dexy
 dexy serve
 ```
+
+See https://github.com/UCL-RITS/research-computing-with-cpp/blob/master/session01/index.md for an example of how to reference a C file, CMake file, and run an executable
+
+And https://github.com/UCL-RITS/research-computing-with-cpp/tree/master/session01/cpp/hello
+for the corresponding code
+
+Dexy helper macros are defined at https://github.com/UCL-RITS/research-computing-with-cpp/tree/master/macros
+
+You can also do `{{cppfrag('01','hello/hello.cc','constructor')}}` to link to a particular part of a file
+Labelled in the code with ` \\\constructor `
+(Triple comment symbol tells dexy this starts a section)
