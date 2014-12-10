@@ -15,7 +15,7 @@ public: // access control
   int denominator() const;
 
   // What you can do
-  Fraction& operator+(const Fraction& another);
+  const Fraction operator+(const Fraction& another);
 
 private: // access control
 

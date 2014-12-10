@@ -14,8 +14,7 @@ title: Introduction
 
 Detailed prior knowledge of C++ is assumed. Please see the course organisers to discuss if you meet the prerequisites.
 
-Synopsis
---------
+# Synopsis
 
 ## Lesson 1
 
@@ -89,13 +88,11 @@ Synopsis
 * Getting started with EC2
 * Map/Reduce and HDFS
 
-Exercises
----------
+# Exercises
 
 Examples and exercises for this course will be provided in C++.  
 
-Setup
------
+# Setup
 
 You are required to bring your own laptop to the course as the classrooms we are
  using do not have desktop computers.

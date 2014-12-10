@@ -26,12 +26,12 @@ int Fraction::denominator() const
   return m_Denominator;
 }
 
-Fraction& Fraction::operator+(const Fraction& another)
+const Fraction Fraction::operator+(const Fraction& another)
 {
   // Should be simplified.
   int denominator = m_Denominator*another.m_Denominator;
   int numerator = m_Numerator*another.denominator() + another.numerator()*m_Denominator;
   m_Denominator = denominator;
   m_Numerator = numerator;
-  return *this;
+  return Fraction(numerator, denominator);
 }

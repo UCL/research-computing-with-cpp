@@ -2,18 +2,19 @@
 title: C++ Recap
 ---
 
-## Aim for Today
+## Aim
 
 * Reminder of 
     * C++ concepts ([MPHYGB24][MPHYGB24])
-    * Reminder CMake usage ([MPHYGB24][MPHYGB24])
+    * CMake usage ([MPHYGB24][MPHYGB24])
 * Get started with some scaffold code
 * Unit Testing concepts
 * Unit Testing in practice
   
 From the outset we encourage Test Driven Design (TDD).
+We want good (reliable, reproducible) code.
   
-## Topics covered in MPHYGB24
+## MPHYGB24
 
 * Lecture 4: Compiling a library, testing debugging
 * Lecture 5: Arrays
@@ -30,7 +31,7 @@ From the outset we encourage Test Driven Design (TDD).
     * Can't easily control access to data
 * Object oriented programming: describe types and how they interact
 
-## Classes - Abstraction
+## Abstraction
 
 * Enables you to define a type
     * Class defines concept or "blueprint"
@@ -38,7 +39,7 @@ From the outset we encourage Test Driven Design (TDD).
 * Example: Fraction data type
 {{cppfrag('01','fraction/fraction.h')}}
 
-## Classes - Encapsulation
+## Encapsulation
 
 * Encapsulation is:
     * Bundling together methods and data
@@ -48,7 +49,7 @@ From the outset we encourage Test Driven Design (TDD).
     * `protected`: available in this class and derived classes
     * `public`: available to anyone with access to the object
     
-## Classes - Inheritance
+## Inheritance
 
 * Used for:
     * Defining new types based on a common type
@@ -61,7 +62,7 @@ From the outset we encourage Test Driven Design (TDD).
 {{cppfrag('01','shape/shape.h')}}
 
 
-## Classes - Polymorphism
+## Polymorphism
 
 * Several types:
     * "subtype": via inheritance
@@ -88,24 +89,80 @@ From the outset we encourage Test Driven Design (TDD).
 * Pragmatic tips as how to do this in practice
     * In a scientific research sense
 
-## Basic coding tips
-## Basic C++ tips
-## Basic Object Oriented tips
-## Basic Scientific Computing tips
-       
-### Hello World
+## Coding tips
+* Follow coding conventions for your project 
+* Compile often
+* Version control
+    * Commit often
+    * Useful commit messages - don't state what can be diff'd, explain why.
+    * Short running branches
+    * Covered on [MPHYG001][MPHYG001]    
+* Class: "does exactly what it says on the tin"
+* Class: build once, build properly, testing is key.
 
-This code:
+## C++ tips
+Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
-{{cppfrag('01','hello/hello.cc')}}
+* Declare data members private (22)
+* Initialise objects properly. Throw exceptions from constructors. (4) 
+* Use `const` whenever possible (3) 
+* Make interfaces easy to use correctly and hard to use incorrectly (18) 
+* Prefer non-member non-friend functions to member functions (better encapsulation) (23) 
+* Avoid returning "handles" to object internals (28) 
+* Never throw exceptions from destructors
 
-When built with this CMake file:
+## OO tips
+* Make sure public inheritance really models "is-a" (32) 
+* Learn alternatives to polymorphism (Template Method, Strategy) (35) 
+* Model "has-a" through composition (38) 
+* Understand [Dependency Injection][DependencyInjection].
+* i.e. most people overuse inheritance
 
-{{cmakefrag('01','hello')}}
+## Scientific Computing tips
+* Papers require numerical results, graphs, figures, concepts
+* Optimise late
+    * Correctly identify tools to use
+    * Implement your algorithm of choice
+    * Provide flexible design, so you can adapt it and manage it
+    * Only optimise the bits that are slowing down the production of interesting results
+* So, this course will provide you with an array of tools
 
-Produces this output when run:
+## CMake
+* This is a practical course
+* We need to run code
+* Use CMake as a build tool
+* CMake produces
+    * Windows: Visual Studio project files
+    * Linux: Make files
+    * Mac: XCode projects, Make files
+* Our code will provide CMake code and boiler plate code
 
-{{execute('01','hello/hello')}}
+## CMake Usage
+Typically, to do an "out-of-source" build
+```
+cd ~/myprojects
+git clone http://github.com/somecode
+mkdir somecode-build
+cd somecode-build
+cmake ../somecode
+make
+```
+    
+# Unit Testing
+
+## Hello World
+#This code:
+#
+#{{cppfrag('01','hello/hello.cc')}}
+#
+#When built with this CMake file:
+#{{cmakefrag('01','hello')}}
+#
+#Produces this output when run:
+#
+#{{execute('01','hello/hello')}}
 
 [MPHYGB24]: https://moodle.ucl.ac.uk/course/view.php?id=5395
 [Meyers]: http://www.aristeia.com/books.html
+[MPHYG001]: https://moodle.ucl.ac.uk/course/view.php?id=28759
+[DependencyInjection]: http://en.wikipedia.org/wiki/Dependency_injection
