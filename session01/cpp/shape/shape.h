@@ -1,6 +1,7 @@
 class Shape {
   public:
     Shape();
+    void setVisible(const bool& isVisible) { m_IsVisible = isVisible; }
     virtual void rotate(const double& degrees) = 0;
     virtual void scale(const double& factor) = 0;
     // + other methods
