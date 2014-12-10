@@ -87,7 +87,11 @@ From the outset we encourage Test Driven Design (TDD).
     * Feeling that you're digging a hole
 * Pragmatic tips as how to do this in practice
     * In a scientific research sense
-    
+
+## Basic coding tips
+## Basic C++ tips
+## Basic Object Oriented tips
+## Basic Scientific Computing tips
        
 ### Hello World
 
