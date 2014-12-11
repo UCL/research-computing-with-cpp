@@ -5,4 +5,5 @@ Add_subdirectory(
   session01/cpp
 )
 
+add_subdirectory(session02/cpp)
 
