@@ -2,29 +2,48 @@
 title: C++ Templates
 ---
 
-## Why Python?
+## Why Templates?
 
-### Why teach Python?
+### What Are Templates?
 
-* In this first session, we will introduce [Python](http://www.python.org).
-* This course is about good programming for research.
-* It's not mainly about Python.
-* But we have to use some language.
+* The broader concept is [Generic Programming](http://en.wikipedia.org/wiki/Generic_programming).
+    * Write code, where 'type' is defined later
+    * Types defined at compile time, as they are needed
+    * C++ strongly typed
+* You have probably already used them
+```c++
+std::vector<int> myVectorInts;
+```
+* Example algorithm: [C++ sort](http://www.cplusplus.com/reference/algorithm/sort/)
+```c++
+std::sort(myVectorInts.begin(), myVectorInts.end());
+```
+* Aim: Write functions, classes, in terms of future types.
 
-### Why Python?
+### Why Are Templates Useful?
 
-* Python is quick to program in
-* Python is popular in research, and has lots of libraries for science
-* Python interfaces well with faster languages
+* Generic, without macro
+* Generic, maintaining type safety
+* Generic, separate algorithm from implementation
 
-### Why write programs for research?
+### Why Are Templates Useful in Research?
 
-* Not just labour saving
-* Scripted research can be tested and reproduced
-* Avoid the biggest problem in computational science...
+* Generalise 2D, 3D, n-dimensions
+* Test numerical code with simple types, apply to complex types
 
-### SIRO
+### Are Templates Difficult?
 
-* ~~Garbage in Garbage out~~
-* Sensible input
-* Reasonable output
+* Notation is ugly
+    * We will teach ways to cope/simplify notation
+* Verbose, confusing error messages
+    * Nothing intrinsically difficult
+    * Take small steps, compile regularly
+    * Think like a compiler
+    
+### Why Teach Templates
+
+* More common in research code, than business code
+* More likely to 'code for the unknown'
+* Standard Template Library uses them
+* Boost, Qt, uses them
+* Benchmark of "intermediate" programmer

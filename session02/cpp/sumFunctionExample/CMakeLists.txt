@@ -1,0 +1,1 @@
+add_executable(sumFunctionExample.x sumFunctionExample.cc)

@@ -2,9 +2,21 @@
 title: Templates
 ---
 
+## Templates
 
-## Introduction
+### Example Function
 
+Credit [here](http://www.cplusplus.com/doc/tutorial/functions2/).
+
+{{cppfrag('02','sumFunctionExample/sumFunctionExample.cc')}}
+* Produces this output when run:
+{{execute('02','sumFunctionExample/sumFunctionExample')}}
+
+### Language Definition
+
+See also [this](http://en.cppreference.com/w/cpp/language/function_template).
+```
+```
 ### Usage with STL
 
 * This lecture gives an introduction to C++ Templates.
@@ -36,7 +48,7 @@ In this lesson:
 * When/Why to use one
 * Meta-programming
 
-## Title level 2
+### Title Level 3
 
 Hello in Templates level 2
 

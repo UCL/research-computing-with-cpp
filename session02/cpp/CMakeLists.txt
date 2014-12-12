@@ -1,1 +1,3 @@
 add_subdirectory(vectorExample)
+add_subdirectory(sumFunctionExample)
+

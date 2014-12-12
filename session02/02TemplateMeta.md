@@ -2,8 +2,7 @@
 title: Template Meta-Programming
 ---
 
-
-## Title level 2
+## Template Meta-Programming
 
 Hello in Meta-Programming 2
 
