@@ -6,7 +6,7 @@ title: Function Templates
 
 ### Example
 
-Credit to [this](http://www.cplusplus.com/doc/tutorial/functions2/).
+Taken from [here][OverloadedFunctions].
 
 {{cppfrag('02','sumFunctionExample/sumFunctionExample.cc')}}
 
@@ -16,7 +16,7 @@ Credit to [this](http://www.cplusplus.com/doc/tutorial/functions2/).
 
 ### Why
 
-See also [this](http://www.codeproject.com/Articles/257589/An-Idiots-Guide-to-Cplusplus-Templates-Part).
+[Additional tutorial][TemplatesTutorial].
 
 * Reduce your code duplication
 
@@ -30,7 +30,7 @@ double Add(double a, double b);
 
 ### Language Definition
 
-See also [this](http://en.cppreference.com/w/cpp/language/function_template).
+[Language reference](http://en.cppreference.com/w/cpp/language/function_template).
 
 Given
 ```
@@ -124,23 +124,49 @@ The compiler will generate 3 different max functions.
     * .h file and separate .cxx/.txx file
 * Object Code is only really generated if code is used
 * If
-    * Compilation Unit A defines function
-    * Compilation Unit B uses function
+    * Compilation Unit A defines function (provider)
+    * Compilation Unit B uses function (user/client)
     * What about 3 scenarios above?
 * In general
     * Most prefer header only implementations
     
-### Explicit Instantiation
-See also [this](http://en.cppreference.com/w/cpp/language/function_template).
+### Explicit Instantiation Example
+Language Reference [here][FunctionTemplate]
 
-* The using class (B) explicitly instantiates the function at the end of file.
-* Instantiation must only occur once (use Header Guard)
+[Microsoft Example][ExplicitInstantiationMicrosoft]
 
+Given (library) header:
+{{cppfrag('02','explicitInstantiation/explicitInstantiation.h')}}
+
+Given (library) implementation:
+{{cppfrag('02','explicitInstantiation/explicitInstantiation.cc')}}
+
+Given client code:
+{{cppfrag('02','explicitInstantiation/explicitInstantiationMain.cc')}}
+
+We get:
+{{execute('02','explicitInstantiation/explicitInstantiationMain')}}
+
+### Explicit Instantiation 
+
+* Mainly used by library providers
+* Forces instantiation of the function
+* Must appear after the definition
+* Must appear only once for given argument list
+* Stops implicit instantiation
+```
+Linking CXX executable explicitInstantiationMain.x
+Undefined symbols for architecture x86_64:
+  "void f<float>(float)", referenced from:
+```
 
 ### Implicit Instantiation
 
 * Instantiated as they are used
 * via ```#include```
 
-
-
+[OverloadedFunctions]: http://www.cplusplus.com/doc/tutorial/functions2 'Overloaded Functions and Template Functions'
+[FunctionTemplate]: http://en.cppreference.com/w/cpp/language/function_template 'Function Template Reference'
+[TemplatesTutorial]: http://www.codeproject.com/Articles/257589/An-Idiots-Guide-to-Cplusplus-Templates-Part 'Templates Tutorial'
+[ExplicitInstantiationDisc]: http://stackoverflow.com/questions/2351148/explicit-instantiation-when-is-it-used 'Explicit Instantiation Discussion'
+[ExplicitInstantiationMicrosoft]: http://msdn.microsoft.com/en-us/library/by56e477%28VS.80%29.aspx 'Microsoft Explicit Instantiation Example'
