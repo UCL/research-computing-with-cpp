@@ -163,7 +163,17 @@ Undefined symbols for architecture x86_64:
 ### Implicit Instantiation
 
 * Instantiated as they are used
-* via ```#include```
+* Normally via ```#include``` header files. 
+
+Given (library) header, that containts implementation:
+{{cppfrag('02','implicitInstantiation/implicitInstantiation.h')}}
+
+Given client code:
+{{cppfrag('02','implicitInstantiation/implicitInstantiation.cc')}}
+
+We get:
+{{execute('02','implicitInstantiation/implicitInstantiation')}}
+
 
 [OverloadedFunctions]: http://www.cplusplus.com/doc/tutorial/functions2 'Overloaded Functions and Template Functions'
 [FunctionTemplate]: http://en.cppreference.com/w/cpp/language/function_template 'Function Template Reference'
