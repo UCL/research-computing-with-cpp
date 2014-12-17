@@ -93,7 +93,11 @@ double result = GetAverage<double>(myIntegers);
 ```
 i.e. name the template parameter explicitly.
 
-### Code Bloat
+Cases for Explicit Template Argument Specification
+* Call a specific version (eg. int as above)
+* Also if method parameters do not allow compiler to deduce anything eg. ```PrintSize()``` method.
+
+### Beware of Code Bloat
 Given (a rather stupid example)
 ```
 double GetMax<typename T1, typename T2>(const &T1, const &T2);
@@ -173,7 +177,6 @@ Given client code:
 
 We get:
 {{execute('02','implicitInstantiation/implicitInstantiation')}}
-
 
 [OverloadedFunctions]: http://www.cplusplus.com/doc/tutorial/functions2 'Overloaded Functions and Template Functions'
 [FunctionTemplate]: http://en.cppreference.com/w/cpp/language/function_template 'Function Template Reference'
