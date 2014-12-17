@@ -1,61 +1,28 @@
 ---
-title: Templates
+title: Class Templates
 ---
 
-## Templates
+## Class Templates
 
-### Function Template
+If you understand template functions, then template classes are easy!
 
-Credit [here](http://www.cplusplus.com/doc/tutorial/functions2/).
+### Example
 
-{{cppfrag('02','sumFunctionExample/sumFunctionExample.cc')}}
-* Produces this output when run:
-{{execute('02','sumFunctionExample/sumFunctionExample')}}
+Refering to [this tutorial][TemplateClassTutorial], an example: 
 
-### Language Definition
+Header:
+{{cppfrag('02','pairClassExample/pairClassExample.h')}}
 
-See also [this](http://en.cppreference.com/w/cpp/language/function_template).
-```
-```
-### Usage with STL
+Implementation:
+{{cppfrag('02','pairClassExample/pairClassExample.cc')}}
 
-* This lecture gives an introduction to C++ Templates.
-* This code:
-{{cppfrag('02','vectorExample/vector.cc')}}
-* Produces this output when run:
-{{execute('02','vectorExample/vector')}}
+Usage:
+{{cppfrag('02','pairClassExample/pairClassMain.cc')}}
 
-### Declaring a Templated Type
+### Quick Comments
 
-* Define a vector containing integers
-```c++
-std::vector<int> myVectorInts;
-```
-* Define a vector containing doubles
-```c++
-std::vector<double> myVectorDoubles;
-```
-* Example of Standard Template Library (STL) container class
-* You may have been using them already
-* Programming paradigm called 'generic' programming
+* Implementation, 3 uses of parameter T
+* Same Implicit/Explicit instantiation rules
+* Note implicit requirements, eg. operator >
 
-### Aim
-
-In this lesson:
-
-* Use a templated class
-* Write your own
-* When/Why to use one
-* Meta-programming
-
-### Title Level 3
-
-Hello in Templates level 2
-
-### 1st Title Level 3
-
-Hello in Templates level 3
-
-### 2nd Title Level 3
-
-Hello in Templates level 3
+[TemplateClassTutorial]: http://www.cplusplus.com/doc/tutorial/templates/ 'Template Class Tutorial'
