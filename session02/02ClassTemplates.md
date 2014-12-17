@@ -4,7 +4,7 @@ title: Templates
 
 ## Templates
 
-### Example Function
+### Function Template
 
 Credit [here](http://www.cplusplus.com/doc/tutorial/functions2/).
 
