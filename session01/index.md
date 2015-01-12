@@ -4,6 +4,20 @@ title: C++ Recap
 
 ## Introduction
 
+### Assumed Knowledge 
+
+On MPHYGB24 you learnt:
+
+* Lecture 4: Compiling a library, testing debugging
+* Lecture 5: Arrays
+* Lecture 6: Structures, dynamically allocated arrays
+* Lecture 7: Classes
+* Lecture 8: Operator overloads, inheritance
+* Lecture 9: Polymorphism
+
+You should have equivalent knowledge as a pre-requisite.
+
+
 ### Aim for Today
 
 * Provide a reminder of 
@@ -16,18 +30,8 @@ From the start of this course we encourage Test/Behaviour driven development.
 
 Scientific software should be as rigorous as sterile lab techniques.
   
-  
-### On MPHYGB24 you learnt:
 
-* Lecture 4: Compiling a library, testing debugging
-* Lecture 5: Arrays
-* Lecture 6: Structures, dynamically allocated arrays
-* Lecture 7: Classes
-* Lecture 8: Operator overloads, inheritance
-* Lecture 9: Polymorphism
-
-You should have equivalent knowledge as a pre-requisite.
-
+## Basic C++ features
 
 ### Classes
  
@@ -92,7 +96,10 @@ You should have equivalent knowledge as a pre-requisite.
     * Design Patterns (1994), Gamma, Help, Johnson and Vlassides
 
 
+## Various Tips
+
 ### Practical Tips
+
 * If you feel like:
     * More coding, more things go wrong
     * Everything gets messy
@@ -103,6 +110,7 @@ You should have equivalent knowledge as a pre-requisite.
 
 
 ### Coding tips
+
 * Follow coding conventions for your project 
 * Compile often
 * Version control
@@ -115,6 +123,7 @@ You should have equivalent knowledge as a pre-requisite.
 
 
 ### C++ tips
+
 Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
 * Declare data members private (22)
@@ -127,6 +136,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
 
 ### OO tips
+
 * Make sure public inheritance really models "is-a" (32) 
 * Learn alternatives to polymorphism (Template Method, Strategy) (35) 
 * Model "has-a" through composition (38) 
@@ -135,6 +145,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
 
 ### Scientific Computing tips
+
 * Papers require numerical results, graphs, figures, concepts
 * Optimise late
     * Correctly identify tools to use
@@ -156,6 +167,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
 
 ### CMake Usage
+
 Typically, to do an "out-of-source" build
 ```
 cd ~/myprojects
@@ -210,7 +222,9 @@ Generally, very similar
     * Ways of looking at results.
         * Java/Eclipse: Integrated with IDE
         * Log file or standard output
-        
+
+
+## Unit Testing Example
         
 ### How To Start Unit Testing
 
@@ -222,7 +236,7 @@ We discuss
 Then its down to the developer/artist.
 
 
-### C++ Unit Testing Framework
+### C++ Frameworks
 
 To Consider:
 
@@ -264,6 +278,7 @@ So, typically we have
 
 
 ### Catch / GoogleTest
+
 For example, in [Catch][Catch]:
 
     // TEST_CASE(<unique test name>, <test case name>)
@@ -335,6 +350,7 @@ Others:
     REQUIRE_NOTHROW( expression )
     CHECK_NOTHROW( expression )
     
+    
 ### Testing for Failure
     
 To re-iterate:
@@ -348,6 +364,7 @@ To re-iterate:
     * Saving to invalid file name
     * Negative numbers passed into double arguments
     * Invalid Physical quantities (e.g.  -300 Kelvin)
+
     
 ### Setup/Tear down
   
@@ -356,8 +373,9 @@ To re-iterate:
     * For each test
     * for a group of tests
 * Frameworks do differ in this regards
+
     
-### Setup/Tear down Example
+### Example
     
 Refering to the [Catch Tutorial][CatchTutorial]:
  
@@ -397,13 +415,14 @@ Refering to the [Catch Tutorial][CatchTutorial]:
 So, Setup/Tear down is done before/after each section.    
     
     
-### Quick Tips
+## Quick Tips
 
 * Stuff from above applies to Classes / Functions
 * Think about arguments:
     * Code should be hard to use incorrectly.
     * Use `const`, `unsigned` etc.
     * Testing forces you to sort these out.
+
 
 ### BDD vs TDD
 
@@ -413,6 +432,7 @@ So, Setup/Tear down is done before/after each section.
     * Test/Design based on behaviour
     
 subtly different.
+
 
 ### Anti-Pattern 1: Setters/Getters
 
@@ -447,6 +467,7 @@ and tests like:
 * This often puts people off testing.
 * It also produces "brittle", where 1 change brakes many things.
 
+
 ### Anti-Pattern 1: Suggestion.
 
 * Focus on behaviour.
@@ -469,6 +490,7 @@ and tests like:
 * Or one class genuinely Has-A contained class.
 * But the contained class is expensive, or could be changed in future
 
+
 ### Anti-Pattern 2: Suggestion
 
 * Read up on [Dependency Injection][DependencyInjection]
@@ -484,9 +506,10 @@ Aim to write:
 * Smallest amount of code to pass tests.
 * ... i.e. based on behaviour
 
-### The End
 
-* Any questions?
+## The End
+
+### Any questions?
 
 [MPHYGB24]: https://moodle.ucl.ac.uk/course/view.php?id=5395
 [Meyers]: http://www.aristeia.com/books.html
