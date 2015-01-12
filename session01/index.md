@@ -2,7 +2,9 @@
 title: C++ Recap
 ---
 
-## Aim for Today
+## Introduction
+
+### Aim for Today
 
 * Provide a reminder of 
     * C++ concepts ([MPHYGB24][MPHYGB24])
@@ -15,7 +17,7 @@ From the start of this course we encourage Test/Behaviour driven development.
 Scientific software should be as rigorous as sterile lab techniques.
   
   
-## On MPHYGB24 you learnt:
+### On MPHYGB24 you learnt:
 
 * Lecture 4: Compiling a library, testing debugging
 * Lecture 5: Arrays
@@ -27,7 +29,7 @@ Scientific software should be as rigorous as sterile lab techniques.
 You should have equivalent knowledge as a pre-requisite.
 
 
-## Classes
+### Classes
  
 * Procedural programming: pass data to functions
     * Can get out of hand as program size increases
@@ -36,7 +38,7 @@ You should have equivalent knowledge as a pre-requisite.
 * Object oriented programming: describe types and how they interact
 
 
-## Abstraction
+### Abstraction
 
 * Enables you to define a type
     * Class defines concept or "blueprint"
@@ -45,7 +47,7 @@ You should have equivalent knowledge as a pre-requisite.
 {{cppfrag('01','fraction/fraction.h')}}
 
 
-## Encapsulation
+### Encapsulation
 
 * Encapsulation is:
     * Bundling together methods and data
@@ -56,7 +58,7 @@ You should have equivalent knowledge as a pre-requisite.
     * `public`: available to anyone with access to the object
     
     
-## Inheritance
+### Inheritance
 
 * Used for:
     * Defining new types based on a common type
@@ -69,7 +71,7 @@ You should have equivalent knowledge as a pre-requisite.
 {{cppfrag('01','shape/shape.h')}}
 
 
-## Polymorphism
+### Polymorphism
 
 * Several types:
     * "subtype": via inheritance
@@ -81,7 +83,7 @@ You should have equivalent knowledge as a pre-requisite.
 {{cppfrag('01','shape/shapeTest.cc')}}
 
 
-## Further Reading
+### Further Reading
 
 * Every C++ developer should keep reading
     * [Effective C++][Meyers], Meyers
@@ -90,7 +92,7 @@ You should have equivalent knowledge as a pre-requisite.
     * Design Patterns (1994), Gamma, Help, Johnson and Vlassides
 
 
-## Practical Tips
+### Practical Tips
 * If you feel like:
     * More coding, more things go wrong
     * Everything gets messy
@@ -100,7 +102,7 @@ You should have equivalent knowledge as a pre-requisite.
     * In a scientific research sense
 
 
-## Coding tips
+### Coding tips
 * Follow coding conventions for your project 
 * Compile often
 * Version control
@@ -112,7 +114,7 @@ You should have equivalent knowledge as a pre-requisite.
 * Class: build once, build properly, so testing is key.
 
 
-## C++ tips
+### C++ tips
 Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
 * Declare data members private (22)
@@ -124,7 +126,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 * Never throw exceptions from destructors
 
 
-## OO tips
+### OO tips
 * Make sure public inheritance really models "is-a" (32) 
 * Learn alternatives to polymorphism (Template Method, Strategy) (35) 
 * Model "has-a" through composition (38) 
@@ -132,7 +134,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 * i.e. most people overuse inheritance
 
 
-## Scientific Computing tips
+### Scientific Computing tips
 * Papers require numerical results, graphs, figures, concepts
 * Optimise late
     * Correctly identify tools to use
@@ -153,7 +155,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 * This course will provide CMake code and boiler plate code
 
 
-## CMake Usage
+### CMake Usage
 Typically, to do an "out-of-source" build
 ```
 cd ~/myprojects
@@ -164,9 +166,9 @@ cmake ../somecode
 make
 ```
     
-# Unit Testing
+## Unit Testing
 
-## What is Unit Testing?
+### What is Unit Testing?
 
 At a high level
 
@@ -180,7 +182,7 @@ At a high level
     * User Acceptance Testing
     
     
-## Benefits of Unit Testing?
+### Benefits of Unit Testing?
 
 * Certainty of correctness
 * Influences and improves design
@@ -188,7 +190,7 @@ At a high level
 * Continuous improvement, development
 
 
-## Drawbacks for Unit Testing?
+### Drawbacks for Unit Testing?
 
 * Takes too much time
     * Really?
@@ -197,7 +199,7 @@ At a high level
 * IT WILL SAVE TIME in the long run
 
 
-## Unit Testing Frameworks
+### Unit Testing Frameworks
 
 Generally, very similar
 
@@ -210,7 +212,7 @@ Generally, very similar
         * Log file or standard output
         
         
-## How To Start Unit Testing
+### How To Start Unit Testing
 
 We discuss
 
@@ -220,7 +222,7 @@ We discuss
 Then its down to the developer/artist.
 
 
-## C++ Unit Testing Framework
+### C++ Unit Testing Framework
 
 To Consider:
 
@@ -232,7 +234,7 @@ To Consider:
 * [CppUnit][CppUnit]
 
 
-## Unit Test Example
+### Unit Test Example
 
 * Borrowed from
     * [Catch Tutorial][CatchTutorial]
@@ -241,18 +243,18 @@ To Consider:
 * But the concepts are the same
 
 
-## Testing a Function
+### Testing a Function
 
 To keep it simple for now we do this in one file:
 
-#{{cppfrag('01','factorial/factorial1.cc')}}
+{{cppfrag('01','factorial/factorial1.cc')}}
 
 Produces this output when run:
 
-#{{execute('01','factorial/factorial1')}}
+{{execute('01','factorial/factorial1')}}
 
 
-## Testing a Function
+### Testing a Function
 
 So, typically we have
 
@@ -261,7 +263,7 @@ So, typically we have
 * Make some assertions
 
 
-## Catch / GoogleTest
+### Catch / GoogleTest
 For example, in [Catch][Catch]:
 
     // TEST_CASE(<unique test name>, <test case name>)
@@ -281,7 +283,7 @@ In [GoogleTest][GoogleTest]:
 all done via C++ macros.
 
 
-## Tests That Fail
+### Tests That Fail
 
 What about Factorial of zero?
 Adding
@@ -296,18 +298,18 @@ Produces something like:
     0 == 1
 
 
-## Fix the Failing Test
+### Fix the Failing Test
 
 Leading to:
 
-#{{cppfrag('01','factorial/factorial2.cc')}}
+{{cppfrag('01','factorial/factorial2.cc')}}
 
 Which passes:
 
-#{{execute('01','factorial/factorial2')}}
+{{execute('01','factorial/factorial2')}}
 
 
-## Test Macros
+### Test Macros
 
 Each framework has a variety of macros to test for failure. [Check][Check] has:
 
@@ -333,7 +335,7 @@ Others:
     REQUIRE_NOTHROW( expression )
     CHECK_NOTHROW( expression )
     
-## Testing for Failure
+### Testing for Failure
     
 To re-iterate:
     
@@ -347,7 +349,7 @@ To re-iterate:
     * Negative numbers passed into double arguments
     * Invalid Physical quantities (e.g.  -300 Kelvin)
     
-## Setup/Tear down
+### Setup/Tear down
   
 * Some tests require objects to exist in memory
 * These should be set up
@@ -355,7 +357,7 @@ To re-iterate:
     * for a group of tests
 * Frameworks do differ in this regards
     
-## Setup/Tear down Example
+### Setup/Tear down Example
     
 Refering to the [Catch Tutorial][CatchTutorial]:
  
@@ -395,7 +397,7 @@ Refering to the [Catch Tutorial][CatchTutorial]:
 So, Setup/Tear down is done before/after each section.    
     
     
-## Quick Tips
+### Quick Tips
 
 * Stuff from above applies to Classes / Functions
 * Think about arguments:
@@ -403,7 +405,7 @@ So, Setup/Tear down is done before/after each section.
     * Use `const`, `unsigned` etc.
     * Testing forces you to sort these out.
 
-## BDD vs TDD
+### BDD vs TDD
 
 * Test Driven Development
     * Test/Design based on methods available
@@ -412,7 +414,7 @@ So, Setup/Tear down is done before/after each section.
     
 subtly different.
 
-## Anti-Pattern 1: Setters/Getters
+### Anti-Pattern 1: Setters/Getters
 
 * Testing every Setter/Getter. Consider:
 
@@ -445,7 +447,7 @@ and tests like:
 * This often puts people off testing.
 * It also produces "brittle", where 1 change brakes many things.
 
-## Anti-Pattern 1: Suggestion.
+### Anti-Pattern 1: Suggestion.
 
 * Focus on behaviour.
     * What would end-user expect to see. 
@@ -461,20 +463,20 @@ and tests like:
     * Less to test. Use documentation to describe why.
     
         
-## Anti-Pattern 2: Constructing Dependent Classes
+### Anti-Pattern 2: Constructing Dependent Classes
 
 * Sometimes, by necessity we test groups of classes.
 * Or one class genuinely Has-A contained class.
 * But the contained class is expensive, or could be changed in future
 
-## Anti-Pattern 2: Suggestion
+### Anti-Pattern 2: Suggestion
 
 * Read up on [Dependency Injection][DependencyInjection]
 * Enables you to create and inject dummy test classes
 * So, testing again used to break down design, and increase flexibility.
 
 
-## Summary BDD Vs TDD
+### Summary BDD Vs TDD
 
 Aim to write:
 
@@ -482,7 +484,7 @@ Aim to write:
 * Smallest amount of code to pass tests.
 * ... i.e. based on behaviour
 
-## The End
+### The End
 
 * Any questions?
 
