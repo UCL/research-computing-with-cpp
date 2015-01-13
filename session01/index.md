@@ -27,25 +27,32 @@ You should have equivalent knowledge as a pre-requisite.
 * Unit Testing concepts
 * Unit Testing in practice
 
-Scientific software should be as rigorous and reproducible as sterile lab techniques.
+Scientific software should be as rigorous \
+and reproducible as sterile lab techniques.
   
 
 ## Basic C++ features
 
 ### Classes
  
-* Procedural programming: pass data to functions
-    * Can get out of hand as program size increases
-    * Can't easily describe relationships between bits of data
-    * Can't easily control access to data
-* Object oriented programming: describe types and how they interact
-* Once defined: Use types as if native to the language 
+* Procedural programming
+    * pass data to functions
+    * can get out of hand as program size increases
+    * can't easily describe relationships between bits of data
+    * can't easily control access to data
+* Object oriented programming
+    * describe types and how they interact
+* Once defined 
+    * use types as if native to the language 
+
 
 ### Abstraction
 
-* Enables you to define a type
+* C++ Class mechanism enables you to define a type
+    * independent of its data 
+    * independent of its implementation
     * Class defines concept or "blueprint"
-    * We "instantiate" to create a specific object 
+    * "instantiation" creates object 
 * Example: Fraction data type
 {{cppfrag('01','fraction/fraction.h')}}
 
@@ -77,11 +84,11 @@ Scientific software should be as rigorous and reproducible as sterile lab techni
 ### Polymorphism
 
 * Several types:
-    * "subtype": via inheritance
+    * (normally) "subtype": via inheritance
     * "parametric": via templates
     * "ad hoc": via function overloading
-* In C++, normally we refer to "subtype" polymorphism
-* Is the provision of a common interface to entities of different types
+* Common interface to entities of different types
+* Same method, different behaviour
 * Example: Shape
 {{cppfrag('01','shape/shapeTest.cc')}}
 
@@ -114,7 +121,9 @@ Scientific software should be as rigorous and reproducible as sterile lab techni
 * Compile often
 * Version control
     * Commit often
-    * Useful commit messages - don't state what can be diff'd, explain why.
+    * Useful commit messages
+        * don't state what can be diff'd
+        * explain why
     * Short running branches
     * Covered on [MPHYG001][MPHYG001]    
 * Class: "does exactly what it says on the tin"
@@ -167,7 +176,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 * This course will provide CMake code and boiler plate code
 
 
-### CMake Usage
+### CMake Usage 1
 
 Typically, to do an "out-of-source" build
 
@@ -179,9 +188,14 @@ cd somecode-build
 ccmake ../somecode
 make
 ```
-Set flags and repeatedly cmake.
-Then once set, hit compile.
-    
+
+### CMake Usage 2
+
+* Set flags and repeatedly cmake
+* Then once set, hit compile
+* Best to demo this
+
+  
 ## Unit Testing
 
 ### What is Unit Testing?
@@ -204,7 +218,7 @@ At a high level
 * Influences and improves design
 * Confidence to refactor, improve
 * Continuous improvement, development
-
+* i.e. Your code-base should grow in a controlled manner
 
 ### Drawbacks for Unit Testing?
 
@@ -257,7 +271,7 @@ To Consider:
 * Borrowed from
     * [Catch Tutorial][CatchTutorial]
     * and [Googletest Primer][GoogleTestPrimer]
-* We use [Catch], so notes are compilable.
+* We use [Catch], so notes are compilable
 * But the concepts are the same
 
 
@@ -366,7 +380,8 @@ Others:
     REQUIRE_NOTHROW( expression )
     CHECK_NOTHROW( expression )
 ```    
-    
+
+
 ### Testing for Failure
     
 To re-iterate:
@@ -445,14 +460,35 @@ So, Setup/Tear down is done before/after each section.
     * Testing forces you to sort these out.
 
 
+### Test Driven Development (TDD)
+
+* Methodology
+    1. Write a test
+    1. Run test, should fail
+    1. Implement/Debug functionality
+    1. Run test
+        1. if succeed finish
+        1. else goto  3
+        
+
+### TDD in practice
+
+* Aim to get good coverage
+* Some people quote 70% or more
+* What are the downsides?
+
+
 ### BDD vs TDD
 
-* Test Driven Development
+* Behaviour Driven Development (BDD)
+    * Less pre-occupied on testing a known class
+    * Think about end-user perspective
+* TDD
     * Test/Design based on methods available
-* Behaviour Driven Development
-    * Test/Design based on behaviour
-    
-subtly different.
+* BDD
+    * Test/Design based on behaviour    
+* Subtly different
+* Aim for BDD
 
 
 ### Anti-Pattern 1: Setters/Getters
@@ -497,23 +533,23 @@ and tests like:
 ### Anti-Pattern 1: Suggestion.
 
 * Focus on behaviour.
-    * What would end-user expect to see. 
-    * How would end-user be using this class.
-    * Write tests that follow the use-case.
-    * Gives a more logical grouping.
-    * One test can cover > 1 function.
-    * i.e. move away from slavishly testing each function.
+    * What would end-user expect to see?
+    * How would end-user be using this class?
+    * Write tests that follow the use-case
+    * Gives a more logical grouping
+    * One test can cover > 1 function
+    * i.e. move away from slavishly testing each function
 * Minimise interface.
-    * Provide the bare number of methods.
-    * Don't provide setters if you dont want them.
-    * Don't provide getters unless the user needs something.
-    * Less to test. Use documentation to describe why.
+    * Provide the bare number of methods
+    * Don't provide setters if you dont want them
+    * Don't provide getters unless the user needs something
+    * Less to test. Use documentation to describe why
     
         
 ### Anti-Pattern 2: Constructing Dependent Classes
 
-* Sometimes, by necessity we test groups of classes.
-* Or one class genuinely Has-A contained class.
+* Sometimes, by necessity we test groups of classes
+* Or one class genuinely Has-A contained class
 * But the contained class is expensive, or could be changed in future
 
 
@@ -521,19 +557,19 @@ and tests like:
 
 * Read up on [Dependency Injection][DependencyInjection]
 * Enables you to create and inject dummy test classes
-* So, testing again used to break down design, and increase flexibility.
+* So, testing again used to break down design, and increase flexibility
 
 
 ### Summary BDD Vs TDD
 
 Aim to write:
 
-* Most concise description of requirements as unit tests.
-* Smallest amount of code to pass tests.
+* Most concise description of requirements as unit tests
+* Smallest amount of code to pass tests
 * ... i.e. based on behaviour
 
 
-## The End
+## Any Questions?
 
 ### Any questions?
 
