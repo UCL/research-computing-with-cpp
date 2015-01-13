@@ -156,6 +156,9 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
 
 ## CMake
+
+### CMake Introduction
+
 * This is a practical course
 * We need to run code
 * Use CMake as a build tool
@@ -169,6 +172,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 ### CMake Usage
 
 Typically, to do an "out-of-source" build
+
 ```
 cd ~/myprojects
 git clone http://github.com/somecode
@@ -177,6 +181,7 @@ cd somecode-build
 cmake ../somecode
 make
 ```
+
     
 ## Unit Testing
 
@@ -226,7 +231,7 @@ Generally, very similar
 
 ## Unit Testing Example
         
-### How To Start Unit Testing
+### How To Start 
 
 We discuss
 
@@ -248,7 +253,7 @@ To Consider:
 * [CppUnit][CppUnit]
 
 
-### Unit Test Example
+### Worked Example
 
 * Borrowed from
     * [Catch Tutorial][CatchTutorial]
@@ -257,7 +262,7 @@ To Consider:
 * But the concepts are the same
 
 
-### Testing a Function
+### Code
 
 To keep it simple for now we do this in one file:
 
@@ -268,32 +273,36 @@ Produces this output when run:
 {{execute('01','factorial/factorial1')}}
 
 
-### Testing a Function
+### Principles
 
 So, typically we have
 
-* Some `#include`
+* Some `#include` to get test framework
 * Our code that we want to test
-* Make some assertions
+* Then make some assertions
 
 
 ### Catch / GoogleTest
 
 For example, in [Catch][Catch]:
 
+```
     // TEST_CASE(<unique test name>, <test case name>)
     TEST_CASE( "Factorials are computed", "[factorial]" ) {
         REQUIRE( Factorial(2) == 2 );
         REQUIRE( Factorial(3) == 6 );
     }
+```
 
 In [GoogleTest][GoogleTest]:
 
+```
     // TEST(<test case name>, <unique test name>)
     TEST(FactorialTest, HandlesPositiveInput) {
       EXPECT_EQ(2, Factorial(2));
       EXPECT_EQ(6, Factorial(3));
     }
+```
 
 all done via C++ macros.
 
@@ -303,15 +312,18 @@ all done via C++ macros.
 What about Factorial of zero?
 Adding
  
+ ```
     REQUIRE( Factorial(0) == 1 );
+```
 
 Produces something like:
 
+```
     factorial2.cc:9: FAILED:
     REQUIRE( Factorial(0) == 1 )
     with expansion:
     0 == 1
-
+```
 
 ### Fix the Failing Test
 
@@ -328,19 +340,24 @@ Which passes:
 
 Each framework has a variety of macros to test for failure. [Check][Check] has:
 
+```
     REQUIRE(expression); // stop if fail
     CHECK(expression);   // doesn't stop if fails
-   
+```
+
 if an exception is throw, its caught, reported and counts as a failure.
 
 Examples:
 
+```
     CHECK( str == "string value" );
     CHECK( thisReturnsTrue() );
     REQUIRE( i == 42 );
+```
 
 Others:
 
+```
     REQUIRE_FALSE( expression )
     CHECK_FALSE( expression )
     REQUIRE_THROWS( expression ) # Must throw an exception
@@ -349,7 +366,7 @@ Others:
     CHECK_THROWS_AS( expression, exception type )
     REQUIRE_NOTHROW( expression )
     CHECK_NOTHROW( expression )
-    
+```    
     
 ### Testing for Failure
     
@@ -377,45 +394,50 @@ To re-iterate:
     
 ### Example
     
-Refering to the [Catch Tutorial][CatchTutorial]:
+Referring to the [Catch Tutorial][CatchTutorial]:
  
-    TEST_CASE( "vectors can be sized and resized", "[vector]" ) {
-    
-        std::vector<int> v( 5 );
-    
+``` 
+TEST_CASE( "vectors can be sized and resized", "[vector]" ) {
+
+    std::vector<int> v( 5 );
+
+    REQUIRE( v.size() == 5 );
+    REQUIRE( v.capacity() >= 5 );
+
+    SECTION( "resizing bigger changes size and capacity" ) {
+        v.resize( 10 );
+
+        REQUIRE( v.size() == 10 );
+        REQUIRE( v.capacity() >= 10 );
+    }
+    SECTION( "resizing smaller changes size but not capacity" ) {
+        v.resize( 0 );
+
+        REQUIRE( v.size() == 0 );
+        REQUIRE( v.capacity() >= 5 );
+    }
+    SECTION( "reserving bigger changes capacity but not size" ) {
+        v.reserve( 10 );
+
+        REQUIRE( v.size() == 5 );
+        REQUIRE( v.capacity() >= 10 );
+    }
+    SECTION( "reserving smaller does not change size or capacity" ) {
+        v.reserve( 0 );
+
         REQUIRE( v.size() == 5 );
         REQUIRE( v.capacity() >= 5 );
-    
-        SECTION( "resizing bigger changes size and capacity" ) {
-            v.resize( 10 );
-    
-            REQUIRE( v.size() == 10 );
-            REQUIRE( v.capacity() >= 10 );
-        }
-        SECTION( "resizing smaller changes size but not capacity" ) {
-            v.resize( 0 );
-    
-            REQUIRE( v.size() == 0 );
-            REQUIRE( v.capacity() >= 5 );
-        }
-        SECTION( "reserving bigger changes capacity but not size" ) {
-            v.reserve( 10 );
-    
-            REQUIRE( v.size() == 5 );
-            REQUIRE( v.capacity() >= 10 );
-        }
-        SECTION( "reserving smaller does not change size or capacity" ) {
-            v.reserve( 0 );
-    
-            REQUIRE( v.size() == 5 );
-            REQUIRE( v.capacity() >= 5 );
-        }
     }
+}
+
+```
  
 So, Setup/Tear down is done before/after each section.    
     
     
 ## Quick Tips
+
+### C++ design
 
 * Stuff from above applies to Classes / Functions
 * Think about arguments:
@@ -436,9 +458,11 @@ subtly different.
 
 ### Anti-Pattern 1: Setters/Getters
 
-* Testing every Setter/Getter. Consider:
+Testing every Setter/Getter. 
 
-   // Abbreviated for simplicity
+Consider:
+
+```
    class Atom {
      
      public:
@@ -450,9 +474,11 @@ subtly different.
        int m_AtomicNumber;
        std::string m_Name;
    };
+```
 
 and tests like:
 
+```
     TEST_CASE( "Testing Setters/Getters", "[Atom]" ) {
     
         Atom a;
@@ -461,6 +487,7 @@ and tests like:
         REQUIRE( a.GetAtomicNumber() == 1);
         a.SetName("Hydrogen");
         REQUIRE( a.GetName() == "Hydrogen");
+```
 
 * It feels tedious.
 * But you want good coverage.
