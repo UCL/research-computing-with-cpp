@@ -6,7 +6,7 @@ title: C++ Recap
 
 ### Assumed Knowledge 
 
-On MPHYGB24 you learnt:
+On [MPHYGB24][MPHYGB24] ([Gary][Gary], [Dean][Dean]) you learnt:
 
 * Lecture 4: Compiling a library, testing debugging
 * Lecture 5: Arrays
@@ -21,14 +21,13 @@ You should have equivalent knowledge as a pre-requisite.
 ### Aim for Today
 
 * Provide a reminder of 
-    * C++ concepts ([MPHYGB24][MPHYGB24])
-    * CMake usage ([MPHYGB24][MPHYGB24])
+    * C++ concepts 
+    * CMake usage 
+    * Both covered on [MPHYGB24][MPHYGB24]
 * Unit Testing concepts
 * Unit Testing in practice
-  
-From the start of this course we encourage Test/Behaviour driven development.
 
-Scientific software should be as rigorous as sterile lab techniques.
+Scientific software should be as rigorous and reproducible as sterile lab techniques.
   
 
 ## Basic C++ features
@@ -40,7 +39,7 @@ Scientific software should be as rigorous as sterile lab techniques.
     * Can't easily describe relationships between bits of data
     * Can't easily control access to data
 * Object oriented programming: describe types and how they interact
-
+* Once defined: Use types as if native to the language 
 
 ### Abstraction
 
@@ -89,24 +88,24 @@ Scientific software should be as rigorous as sterile lab techniques.
 
 ### Further Reading
 
-* Every C++ developer should keep reading
+* Every C++ developer should keep repeatedly reading at least:
     * [Effective C++][Meyers], Meyers
     * [More Effective C++][Meyers], Meyers
     * [Effective STL][Meyers], Meyers
     * Design Patterns (1994), Gamma, Help, Johnson and Vlassides
-
+    
 
 ## Various Tips
 
 ### Practical Tips
 
 * If you feel like:
-    * More coding, more things go wrong
+    * With more coding, more things go wrong
     * Everything gets messy
     * Feeling that you're digging a hole
 * Then we provide:
     * Pragmatic tips as how to do this in practice
-    * In a scientific research sense
+    * Adapted for scientific research
 
 
 ### Coding tips
@@ -160,8 +159,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 ### CMake Introduction
 
 * This is a practical course
-* We need to run code
-* Use CMake as a build tool
+* We will use CMake as a build tool
 * CMake produces
     * Windows: Visual Studio project files
     * Linux: Make files
@@ -178,10 +176,11 @@ cd ~/myprojects
 git clone http://github.com/somecode
 mkdir somecode-build
 cd somecode-build
-cmake ../somecode
+ccmake ../somecode
 make
 ```
-
+Set flags and repeatedly cmake.
+Then once set, hit compile.
     
 ## Unit Testing
 
@@ -192,7 +191,7 @@ At a high level
 * Way of testing code. 
 * Unit
     * Smallest 'atomic' chunk of code
-    * i.e. Function, Class
+    * i.e. Function, could be a Class
 * See also:
     * Integration Testing
     * System Testing
@@ -209,16 +208,16 @@ At a high level
 
 ### Drawbacks for Unit Testing?
 
-* Takes too much time
-    * Really?
 * Don't know how
     * This course will help
-* IT WILL SAVE TIME in the long run
+* Takes too much time
+    * Really?
+    * IT SAVES TIME in the long run
 
 
 ### Unit Testing Frameworks
 
-Generally, very similar
+Generally, all very similar
 
 * JUnit (Java), NUnit, CppUnit, phpUnit, 
 * Basically
@@ -551,3 +550,5 @@ Aim to write:
 [GoogleTestPrimer]: https://code.google.com/p/googletest/wiki/V1_7_Primer
 [CatchTutorial]: https://github.com/philsquared/Catch/blob/master/docs/tutorial.md
 [DependencyInjection]: http://martinfowler.com/articles/injection.html
+[Gary]: http://www.mattclarkson.co.uk
+[Dean]: http://www.mattclarkson.co.uk

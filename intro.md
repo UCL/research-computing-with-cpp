@@ -2,19 +2,21 @@
 title: Introduction
 ---
 
-## Introduction
-
-### Purpose
+## Purpose of this Course
 
 * Enable you to choose the right tools
 * More advanced than basic C++ course
 * Manage complexity, write fast GOOD code
 
-### Pre-requisites
+## Pre-requisites
 
-Detailed prior knowledge of C++ is assumed. Please see the course organisers to discuss if you meet the prerequisites.
+* Detailed prior knowledge of C++ is assumed. 
+* Please see the course organisers to discuss.
 
 ## Synopsis
+
+The following lessons have been scheduled, but are 
+subject to change as the course progresses.
 
 ### Lesson 1
 
