@@ -550,5 +550,5 @@ Aim to write:
 [GoogleTestPrimer]: https://code.google.com/p/googletest/wiki/V1_7_Primer
 [CatchTutorial]: https://github.com/philsquared/Catch/blob/master/docs/tutorial.md
 [DependencyInjection]: http://martinfowler.com/articles/injection.html
-[Gary]: http://www.mattclarkson.co.uk
-[Dean]: http://www.mattclarkson.co.uk
+[Gary]: http://mig.cs.ucl.ac.uk/index.php?n=People.GHZhang
+[Dean]: http://cmic.cs.ucl.ac.uk/staff/dean_barratt/
