@@ -7,7 +7,7 @@ title: Research Computing With C++
 Dates
 -----
 
-Tuesdays 1300 - 1700pm
+Tuesdays 1400 - 1700pm
 
 Versions
 --------
