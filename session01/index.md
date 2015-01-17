@@ -35,12 +35,12 @@ and reproducible as sterile lab techniques.
 
 ### Classes
  
-* Procedural programming
+* With procedural programming
     * pass data to functions
     * can get out of hand as program size increases
     * can't easily describe relationships between bits of data
     * can't easily control access to data
-* Object oriented programming
+* With object oriented programming
     * describe types and how they interact
 * Once defined 
     * use types as if native to the language 
@@ -48,11 +48,11 @@ and reproducible as sterile lab techniques.
 
 ### Abstraction
 
-* C++ Class mechanism enables you to define a type
+* C++ class mechanism enables you to define a type
     * independent of its data 
     * independent of its implementation
-    * Class defines concept or "blueprint"
-    * "instantiation" creates object 
+    * class defines concept or blueprint
+    * instantiation creates object 
 * Example: Fraction data type
 {{cppfrag('01','fraction/fraction.h')}}
 
@@ -127,20 +127,22 @@ and reproducible as sterile lab techniques.
     * Short running branches
     * Covered on [MPHYG001][MPHYG001]    
 * Class: "does exactly what it says on the tin"
-* Class: build once, build properly, so testing is key.
+* Class: "build once, build properly", so testing is key.
 
 
 ### C++ tips
 
 Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
+These are some of my favourites.
+
 * Declare data members private (22)
-* Initialise objects properly. Throw exceptions from constructors. (4) 
 * Use `const` whenever possible (3) 
-* Make interfaces easy to use correctly and hard to use incorrectly (18) 
-* Prefer non-member non-friend functions to member functions (better encapsulation) (23) 
+* Make interfaces easy to use correctly and hard to use incorrectly (18)
 * Avoid returning "handles" to object internals (28) 
+* Initialise objects properly. Throw exceptions from constructors. Fail early. (4)
 * Never throw exceptions from destructors
+* Prefer non-member non-friend functions to member functions (better encapsulation) (23) 
 
 
 ### OO tips
@@ -148,7 +150,7 @@ Numbers in brackets refer to Scott Meyers "Effective C++" book.
 * Make sure public inheritance really models "is-a" (32) 
 * Learn alternatives to polymorphism (Template Method, Strategy) (35) 
 * Model "has-a" through composition (38) 
-* Understand [Dependency Injection][DependencyInjection].
+* Understand [Dependency Injection][DependencyInjection]
 * i.e. most people overuse inheritance
 
 
@@ -344,7 +346,7 @@ Leading to:
 
 {{cppfrag('01','factorial/factorial2.cc')}}
 
-Which passes:
+which passes:
 
 {{execute('01','factorial/factorial2')}}
 
@@ -401,7 +403,7 @@ To re-iterate:
   
 * Some tests require objects to exist in memory
 * These should be set up
-    * For each test
+    * for each test
     * for a group of tests
 * Frameworks do differ in this regards
 
@@ -524,16 +526,16 @@ and tests like:
         REQUIRE( a.GetName() == "Hydrogen");
 ```
 
-* It feels tedious.
-* But you want good coverage.
-* This often puts people off testing.
-* It also produces "brittle", where 1 change brakes many things.
+* It feels tedious
+* But you want good coverage
+* This often puts people off testing
+* It also produces "brittle", where 1 change brakes many things
 
 
 ### Anti-Pattern 1: Suggestion.
 
 * Focus on behaviour.
-    * What would end-user expect to see?
+    * What would end-user expect to be doing?
     * How would end-user be using this class?
     * Write tests that follow the use-case
     * Gives a more logical grouping
@@ -541,7 +543,7 @@ and tests like:
     * i.e. move away from slavishly testing each function
 * Minimise interface.
     * Provide the bare number of methods
-    * Don't provide setters if you dont want them
+    * Don't provide setters if you don't want them
     * Don't provide getters unless the user needs something
     * Less to test. Use documentation to describe why
     
