@@ -22,7 +22,6 @@ subject to change as the course progresses.
 
 * Some C++ reminders
 * CMake quick-start
-* A program scaffold
 * Design for testability
 * C++ unit testing framework
 
