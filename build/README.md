@@ -1,1 +1,0 @@
-Build folder for CMake
