@@ -259,6 +259,10 @@ which may be unrolled by compiler.
 * And of course, keep reading [Meyers][Meyers]
 
 
+## Any Questions?
+
+### Any questions?
+
 [TMPWikipedia]: http://en.wikipedia.org/wiki/Template_metaprogramming
 [TMPWikibooks]: http://en.wikibooks.org/wiki/C%2B%2B_Programming/Templates/Template_Meta-Programming
 [TMPKeithSchwarz]: http://www.keithschwarz.com/talks/slides/tmp-cs242.pdf
