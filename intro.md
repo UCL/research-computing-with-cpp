@@ -25,9 +25,8 @@ subject to change as the course progresses.
 
 * Some C++ reminders
 * CMake quick-start
-* Design for testability
 * C++ unit testing framework
-
+* Design for testability
 
 ### Lesson 2
 

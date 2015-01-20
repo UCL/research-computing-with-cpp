@@ -1,5 +1,5 @@
 ---
-title: C++ Templates
+title: Templates
 ---
 
 ## Why Templates?
