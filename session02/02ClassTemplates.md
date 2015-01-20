@@ -32,6 +32,7 @@ Usage:
 * Note implicit requirements, eg. operator >
     * Remember the 2 stage compilation
     * Remember code not instantiated until its used
+    * Take Unit Testing Seriously!
 
 
 ### Template Specialisation
@@ -63,7 +64,7 @@ In libraries such as [ITK][ITK], we see:
 
 * typedef is just an alias
 * using nested typedef, must be qualified by class name 
-* can also refer to a real variable, so not just an alias
+* can also refer to a real variable
 
 [TemplateClassTutorial]: http://www.cplusplus.com/doc/tutorial/templates/ 'Template Class Tutorial'
 [ITK]: http://www.itk.org

@@ -33,7 +33,7 @@ Aim: Write functions, classes, in terms of future types.
 
 * Generic programming:
     * without pre-processor macros
-    * maintaining type safety
+    * so, maintaining type safety
     * separate algorithm from implementation
     * extensible, optimisable via Template Meta-Programming (TMP)
 
@@ -41,7 +41,7 @@ Aim: Write functions, classes, in terms of future types.
 ### Why Templates in Research?
 
 * Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
-* Test numerical code with simple types, apply to complex types
+* Test numerical code with simple types, apply to complex/other types
 * Several useful libraries for research
 
 
@@ -53,9 +53,9 @@ Aim: Write functions, classes, in terms of future types.
 * Some say: verbose, confusing error messages
     * Nothing intrinsically difficult
     * Take small steps, compile regularly
-    * Think like a compiler
+    * Learn to think like a compiler
 * Code infiltration
-    * Use sparingly
+    * So, use sparingly
     
     
 ### Why Teach Templates?
