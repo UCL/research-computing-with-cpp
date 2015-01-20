@@ -22,4 +22,16 @@ title: Class Templates
 * Same Implicit/Explicit instantiation rules
 * Note implicit requirements, eg. operator >
 
+### Template Specialisation
+
+* If template defined for type T
+* Full specialisation - special case for a specific type eg. char
+* Partial specialisation - special case for a type that still templates, e.g. T* 
+
+```
+template <typename T> class MyVector {
+template <> class MyVector<char> {  // full specialisation
+template <typename T> MyVector<T*> { // partial specialisation
+```
+
 [TemplateClassTutorial]: http://www.cplusplus.com/doc/tutorial/templates/ 'Template Class Tutorial'
