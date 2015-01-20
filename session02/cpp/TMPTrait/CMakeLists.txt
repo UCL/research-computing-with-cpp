@@ -1,0 +1,1 @@
+add_executable(TMPTrait.x TMPTrait.cc)

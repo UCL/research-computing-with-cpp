@@ -1,0 +1,1 @@
+add_executable(implicitInstantiation.x implicitInstantiation.cc)

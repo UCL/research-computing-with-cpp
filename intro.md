@@ -8,15 +8,18 @@ title: Introduction
 * More advanced than basic C++ course
 * Manage complexity, write fast GOOD code
 
+
 ## Pre-requisites
 
 * Detailed prior knowledge of C++ is assumed. 
 * Please see the course organisers to discuss.
 
+
 ## Synopsis
 
 The following lessons have been scheduled, but are 
 subject to change as the course progresses.
+
 
 ### Lesson 1
 
@@ -25,11 +28,12 @@ subject to change as the course progresses.
 * Design for testability
 * C++ unit testing framework
 
+
 ### Lesson 2
 
 * Templates
 * Template meta-programming
-* Examples
+
 
 ### Lesson 3
 
@@ -38,6 +42,7 @@ subject to change as the course progresses.
 * Linear algebra
 * ITK (image processing)
 * VTK (visualiation)
+
 
 ### Lesson 4
 
@@ -49,6 +54,7 @@ subject to change as the course progresses.
 * Amdahl's law
 * Schedulers and job submission 
 
+
 ### Lesson 5
 
 * Shared memory parallelism
@@ -58,6 +64,7 @@ subject to change as the course progresses.
 * Task-oriented parallelism
 * Load balancing
 
+
 ### Lesson 6
 
 * Message passing
@@ -65,16 +72,19 @@ subject to change as the course progresses.
 * Send, receive
 * Broadcast, gather, reduce
 
+
 ### Lesson 7
 
 * Parallel storage
 * Lustre
 * MPI-IO
 
+
 ### Lesson 8
 * Parallel algorithms and design
 * Overlapping communication and calculation
 * Minimising communication
+
 
 ### Lesson 9
 
@@ -83,15 +93,18 @@ subject to change as the course progresses.
 * OpenACC
 * OpenCL?
 
+
 ### Lesson 10  
 
 * Cloud computing and big data
 * Getting started with EC2
 * Map/Reduce and HDFS
 
+
 ## Exercises
 
 Examples and exercises for this course will be provided in C++.  
+
 
 ## Setup
 
