@@ -232,10 +232,10 @@ which may be unrolled by compiler.
 * [ITK][ITK]
     * uses [```itk::NumericTraits<>```][ITKNumericTraits] adding mathematical operators like multiplicative identity, additive identity
     * uses traits to describe features of meshes, ```like numeric_limits```, but more generalised
-
 * [MITK][MITK] (requires coffee and a quiet room)
     * uses [mitkPixelTypeList.h][MITKPixelType] for multi-plexing across templated image to non-templated image type
     * uses [mitkGetClassHierarchy.h][MITKClassHierarchy] to extract a list of class names in the inheritance hierarchy
+* [TMP in B-spline based registration][BSplinePaper]:
 
 
 ### Further Reading Traits
@@ -285,3 +285,4 @@ which may be unrolled by compiler.
 [MITKPixelType]: http://docs.mitk.org/2014.03/mitkPixelTypeList_8h.html
 [MITKClassHierarchy]: http://docs.mitk.org/nightly-qt4/mitkGetClassHierarchy_8h.html
 [Meyers]: http://www.aristeia.com/books.html
+[BSplinePaper]: http://link.springer.com/chapter/10.1007%2F978-3-319-08554-8_2

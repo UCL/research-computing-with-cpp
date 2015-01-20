@@ -7,14 +7,14 @@ title: C++ Templates
 ### What Are Templates?
 
 * The broader concept is [Generic Programming](http://en.wikipedia.org/wiki/Generic_programming).
-    * Write code, where 'type' is defined later
-    * Types defined at compile time, as they are needed
+    * Write code, where 'type' is provided later
+    * Types instantiated at compile time, as they are needed
     * (Remember, C++ is strongly typed)
     
     
 ### Example
     
-Example type (class):
+You probably use them already. Example type (class):
 
 ```c++
 std::vector<int> myVectorInts;
@@ -31,15 +31,17 @@ Aim: Write functions, classes, in terms of future types.
 
 ### Why Are Templates Useful?
 
-* Generic, without pre-processor macros
-* Generic, maintaining type safety
-* Generic, separate algorithm from implementation
-* Optimisation via Template Meta-Programming (advanced)
+Generic programming:
+
+* without pre-processor macros
+* maintaining type safety
+* separate algorithm from implementation
+* extensible, optimisable via Template Meta-Programming (TMP)
 
 
 ### Why Are Templates Useful in Research?
 
-* Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org)
+* Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
 * Test numerical code with simple types, apply to complex types
 * Several useful libraries for research
 
@@ -47,7 +49,8 @@ Aim: Write functions, classes, in terms of future types.
 ### Are Templates Difficult?
 
 * Some say: notation is ugly
-    * We will teach ways to cope/simplify notation
+    * Does take getting used to
+    * Use ```typedef``` to simplify
 * Some say: verbose, confusing error messages
     * Nothing intrinsically difficult
     * Take small steps, compile regularly
@@ -59,7 +62,7 @@ Aim: Write functions, classes, in terms of future types.
 ### Why Teach Templates
 
 * More common in research code, than business code
-* More likely to 'code for the unknown'
+* In research, more likely to 'code for the unknown'
 * Standard Template Library uses them
 * Boost, Qt, EIGEN uses them
 * Benchmark of "intermediate" programmer?
