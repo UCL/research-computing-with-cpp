@@ -239,7 +239,7 @@ which may be unrolled by compiler.
 * [TMP in B-spline based registration][BSplinePaper]:
 
 
-### Further Reading Traits
+### Further Reading For Traits
 
 * [Keith Schwarz][TMPKeithSchwarz]
 * [Nathan Meyers][NathanMeyers]
@@ -253,7 +253,7 @@ which may be unrolled by compiler.
 * [C++11 has many traits][C++11traits]
 
 
-### Further Reading
+### Further Reading In General
 
 * [Andrei Alexandrescu's Book][AndreiAlexandrescuBook]
 * [Herb Sutter][Sutter]'s [Guru of The Week][GOTW], especially [71][GOTW71] and [this][GOTWInheritanceVsTraits] article

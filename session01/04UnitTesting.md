@@ -203,7 +203,7 @@ To re-iterate:
     * Invalid Physical quantities (e.g.  -300 Kelvin)
 
     
-### Setup/Tear down
+### Setup/Tear Down
   
 * Some tests require objects to exist in memory
 * These should be set up
@@ -212,7 +212,7 @@ To re-iterate:
 * Frameworks do differ in this regards
 
     
-### Example
+### Setup/Tear Down in Catch
     
 Referring to the [Catch Tutorial][CatchTutorial]:
  
@@ -284,11 +284,15 @@ So, Setup/Tear down is done before/after each section.
 * What are the downsides?
 
 
-### BDD vs TDD
+### Behaviour Driven Development (BDD)
 
 * Behaviour Driven Development (BDD)
     * Less pre-occupied on testing a known class
     * Think about end-user perspective
+    
+    
+### TDD Vs BDD
+    
 * TDD
     * Test/Design based on methods available
 * BDD
@@ -377,7 +381,7 @@ Aim to write:
 
 ## Any Questions?
 
-### Any questions?
+### End of Lecture?
 
 [DependencyInjection]: http://en.wikipedia.org/wiki/Dependency_injection
 [GoogleTest]: https://code.google.com/p/googletest/

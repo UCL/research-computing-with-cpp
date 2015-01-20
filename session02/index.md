@@ -12,7 +12,7 @@ title: Templates
     * (Remember, C++ is strongly typed)
     
     
-### Example
+### You Already Use Them!
     
 You probably use them already. Example type (class):
 
@@ -26,7 +26,7 @@ Example algorithm: [C++ sort](http://www.cplusplus.com/reference/algorithm/sort/
 std::sort(myVectorInts.begin(), myVectorInts.end());
 ```
 
-Aim: Write functions, classes, in terms of future types.
+Aim: Write functions, classes, in terms of future/other/generic types.
 
 
 ### Why Are Templates Useful?
@@ -36,13 +36,6 @@ Aim: Write functions, classes, in terms of future types.
     * so, maintaining type safety
     * separate algorithm from implementation
     * extensible, optimisable via Template Meta-Programming (TMP)
-
-
-### Why Templates in Research?
-
-* Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
-* Test numerical code with simple types, apply to complex/other types
-* Several useful libraries for research
 
 
 ### Are Templates Difficult?
@@ -57,7 +50,14 @@ Aim: Write functions, classes, in terms of future types.
 * Code infiltration
     * So, use sparingly
     
-    
+
+### Why Templates in Research?
+
+* Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
+* Test numerical code with simple types, apply to complex/other types
+* Several useful libraries for research
+
+
 ### Why Teach Templates?
 
 * More common in research code, than business code

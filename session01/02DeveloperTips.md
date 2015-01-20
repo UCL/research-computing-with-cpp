@@ -6,7 +6,7 @@ title: Developer Tips
 
 ### Practical Tips
 
-(This section is more of an open-ended discussion to guage
+(This section is more of an open-ended discussion to gauge
 where the class is at in terms of experience.)
 
 * If you feel like:
