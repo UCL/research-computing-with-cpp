@@ -29,6 +29,7 @@ title: Template Meta-Programming
 * Interesting that compiler can generate such theoretically powerful code.    
 * But when, where, why, how to use TMP?    
 * (side-note: Its not just a C++ pre-processor macro)    
+
     
 ### Why Use It?
 
@@ -165,7 +166,7 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 * Remember
     * Scientist = few use-cases
     * Library designer = coding for the unknown, and potentially limitless use-cases
-
+        * More likely of interest to library designers
 
 ### TMP Use in Medical Imaging - 1
 
@@ -238,7 +239,7 @@ which may be unrolled by compiler.
 * [TMP in B-spline based registration][BSplinePaper]:
 
 
-### Further Reading Traits
+### Further Reading For Traits
 
 * [Keith Schwarz][TMPKeithSchwarz]
 * [Nathan Meyers][NathanMeyers]
@@ -252,16 +253,25 @@ which may be unrolled by compiler.
 * [C++11 has many traits][C++11traits]
 
 
-### Further Reading
+### Further Reading In General
 
 * [Andrei Alexandrescu's Book][AndreiAlexandrescuBook]
 * [Herb Sutter][Sutter]'s [Guru of The Week][GOTW], especially [71][GOTW71] and [this][GOTWInheritanceVsTraits] article
 * And of course, keep reading [Meyers][Meyers]
 
 
-## Any Questions?
+## Summary
 
-### Any questions?
+### Summary
+
+* Learnt
+    * Notation for template function/class/meta-programming
+    * Uses and limitations of template function/class
+    * Template Meta-Programming
+        * Optimisation, loop unrolling
+        * Policy classes
+        * Traits
+
 
 [TMPWikipedia]: http://en.wikipedia.org/wiki/Template_metaprogramming
 [TMPWikibooks]: http://en.wikibooks.org/wiki/C%2B%2B_Programming/Templates/Template_Meta-Programming

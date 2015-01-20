@@ -95,25 +95,27 @@ So, if function parameters can inform the compiler uniquely as to which function
 However, given:
 
 ```
-double GetAverage<typename T>(const std::vector<T>& someNumbers);
+double GetAverage<typename T>(const T& a, const T& b);
 ```
 
 and:
 
 ```
-std::vector<int> myIntegers;
-double result = GetAverage(myIntegers);
+int a, b;
+int result = GetAverage(a, b);
 ```
 
-But you don't want the int version called, you can:
+But you don't want the int version called (due to integer division perhaps), you can:
 
 ```
-double result = GetAverage<double>(myIntegers);
+double result = GetAverage<double>(a, b);
 ```
 
-* i.e. name the template parameter explicitly.
+* equivalent to ```GetAverage<double>(static_cast<double>(a), static_cast<double>(b));```
+* i.e. name the template function parameter explicitly.
+
 * Cases for Explicit Template Argument Specification
-    * Call a specific version (eg. int as above)
+    * Force compilation of a specific version (eg. int as above)
     * Also if method parameters do not allow compiler to deduce anything eg. ```PrintSize()``` method.
 
 
@@ -142,17 +144,17 @@ double r3 = GetMax(1.0,2.0);
     
 ### Two Stage Compilation
 
-* Basic syntax checking (eg. brackets, semi-colon, etc)
-* Further checks when function is instantiated (eg. existence of + operator).
+* Basic syntax checking (eg. brackets, semi-colon, etc), when ```#include```'d 
+* But only compiled when instantiated (eg. check existence of + operator).
 
 
 ### Instantiation
 
+* Object Code is only really generated if code is used
 * Template functions can be
     * .h file only
-    * .h file that includes .cxx/.txx file (e.g. ITK)
-    * .h file and separate .cxx/.txx file (by convention a .hpp file)
-* Object Code is only really generated if code is used
+    * .h file that includes separate .cxx/.txx/.hxx file (e.g. ITK)
+    * .h file and separate .cxx/.txx file (sometimes by convention a .hpp file)
 * In general
     * Most libraries/people prefer header only implementations
 
@@ -181,11 +183,13 @@ We get:
 
 ### Explicit Instantiation - 3
 
-* Mainly used by compiled library providers
-* Forces instantiation of the function
-* Must appear after the definition
-* Must appear only once for given argument list
-* Stops implicit instantiation, errors like
+* Explicit Instantiation:
+    * Forces instantiation of the function
+    * Must appear after the definition
+    * Must appear only once for given argument list
+    * Stops implicit instantiation
+* So, mainly used by compiled library providers
+* Clients then ```#include``` header and link to library
 
 ```
 Linking CXX executable explicitInstantiationMain.x
