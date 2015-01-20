@@ -31,15 +31,14 @@ Aim: Write functions, classes, in terms of future types.
 
 ### Why Are Templates Useful?
 
-Generic programming:
+* Generic programming:
+    * without pre-processor macros
+    * maintaining type safety
+    * separate algorithm from implementation
+    * extensible, optimisable via Template Meta-Programming (TMP)
 
-* without pre-processor macros
-* maintaining type safety
-* separate algorithm from implementation
-* extensible, optimisable via Template Meta-Programming (TMP)
 
-
-### Why Are Templates Useful in Research?
+### Why Templates in Research?
 
 * Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
 * Test numerical code with simple types, apply to complex types
@@ -59,7 +58,7 @@ Generic programming:
     * Use sparingly
     
     
-### Why Teach Templates
+### Why Teach Templates?
 
 * More common in research code, than business code
 * In research, more likely to 'code for the unknown'

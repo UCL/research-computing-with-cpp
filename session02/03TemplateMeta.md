@@ -255,7 +255,7 @@ which may be unrolled by compiler.
 ### Further Reading
 
 * [Andrei Alexandrescu's Book][AndreiAlexandrescuBook]
-* [Herb Sutter][Sutter]'s [Guru of The Week][GOTW], especially [71][[GOTW71]] and [this][GOTWInheritanceVsTraits] article
+* [Herb Sutter][Sutter]'s [Guru of The Week][GOTW], especially [71][GOTW71] and [this][GOTWInheritanceVsTraits] article
 * And of course, keep reading [Meyers][Meyers]
 
 
