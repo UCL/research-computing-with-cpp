@@ -18,3 +18,6 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session02/01FunctionTemplates.md']}}
 {{d['session02/02ClassTemplates.md']}}
 {{d['session02/03TemplateMeta.md']}}
+\chapter{Libraries}
+{{d['session03/index.md']}}
+{{d['session03/01Libraries.md']}}
