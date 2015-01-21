@@ -383,7 +383,6 @@ Aim to write:
 
 ### End of Lecture?
 
-[DependencyInjection]: http://en.wikipedia.org/wiki/Dependency_injection
 [GoogleTest]: https://code.google.com/p/googletest/
 [QTestLib]: http://qt-project.org/doc/qt-4.8/qtestlib-manual.html
 [CppUnit]: http://sourceforge.net/projects/cppunit/

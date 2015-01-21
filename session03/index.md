@@ -22,6 +22,6 @@ Our job as [Craftsperson and Scholar][Craftsperson] necessitates knowledge of so
 * How to choose a library
     * Licensing, longevity, developer community, technical implementation, feature list
 * Working with libraries
-    * TBC
+    * Illustrating C++ concepts, not exhaustive, product specific tutorial
     
 [Craftsperson]: http://www.software.ac.uk/blog/2012-11-09-craftsperson-and-scholar
