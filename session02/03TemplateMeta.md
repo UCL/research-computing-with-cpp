@@ -293,10 +293,8 @@ which may be unrolled by compiler.
 [GOTW71]: http://www.gotw.ca/gotw/071.htm
 [GOTWInheritanceVsTraits]: http://www.gotw.ca/publications/mxc++-item-4.htm
 [Sutter]: http://herbsutter.com
-[ITK]: http://www.itk.org
 [ITKNumericTraits]: http://www.itk.org/Doxygen/html/classitk_1_1NumericTraits.html
 [MITK]: http://www.mitk.org
 [MITKPixelType]: http://docs.mitk.org/2014.03/mitkPixelTypeList_8h.html
 [MITKClassHierarchy]: http://docs.mitk.org/nightly-qt4/mitkGetClassHierarchy_8h.html
-[Meyers]: http://www.aristeia.com/books.html
 [BSplinePaper]: http://link.springer.com/chapter/10.1007%2F978-3-319-08554-8_2
