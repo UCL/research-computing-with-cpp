@@ -145,11 +145,23 @@ endif()
 
 ### Boost odeint - 1
 
-This:
-{{cppfrag('03','Boost/BoostHarmonicOscillator.cc')}}
+First define a functor for the function to integrate:
+{{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "harm_osc")}}
 
 
 ### Boost odeint - 2
+
+Define an observer to collect graph-points:
+{{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "observer")}}
+
+
+### Boost odeint - 3
+
+The run it:
+{{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "main")}}
+
+
+### Boost odeint - 4
 
 Produces:
 {{execute('03','Boost/BoostHarmonicOscillator')}}
@@ -168,6 +180,8 @@ Produces:
         
         
 ### Further Reading
+
+* [http://www.boost.org][BoostHome]
 
 [BoostHome]: http://www.boost.org/
 [BoostDoc]: http://www.boost.org/doc/libs/1_57_0/

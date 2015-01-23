@@ -5,6 +5,7 @@ const double gam = 0.15;
 typedef std::vector< double > state_type;
 
 // This is functor class
+/// "harm_osc"
 class harm_osc {
     double m_gam; // class can have member variables, state etc.
 public:
@@ -19,6 +20,7 @@ public:
 };
 
 // This is observer to record output, and is also a functor class
+/// "observer"
 struct push_back_state_and_time
 {
     std::vector< state_type >& m_states;
@@ -34,6 +36,7 @@ struct push_back_state_and_time
     }
 };
 
+/// "main"
 int main(void) {
 
   state_type x(2);
