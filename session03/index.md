@@ -10,7 +10,7 @@ title: Libraries
 * As a scientist you want:
     * Run experiments, demonstrate new concepts
     * Don't want to spend too much time writing code, if its readily available.
-    * But code MUST be CORRECT for good science
+    * But code MUST be CORRECT for good science, so you need a good library.
 * As a developer:
     * You need to write some code yourself (as you're doing novel science)
     * But do you write all of it?

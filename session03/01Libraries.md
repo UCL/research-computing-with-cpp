@@ -16,8 +16,8 @@ A great set of libraries allows for a very powerful programming style:
 * Plug them together
 * Create impressive results
 
-Not only is this efficient with your programming time, it's also more efficient with computer
-time.
+Not only is this efficient with your programming time, 
+it's also more efficient with computer time.
 
 The chances are any algorithm you might want to use has already been programmed better by someone else.
 
@@ -54,10 +54,10 @@ that version of the code.
 * On [MPHYG001][PythonCourse], we encouraged
     * Share your code, collaborate, take pride.
     * This improves your code and your science. (See [this][NatureArticle]).
-    * Software should accumulate, reliably, and be extensible.
+    * Your software should accumulate, reliably, and be extensible.
 * So, take care in your choice of library
     * Don't want to redo work later, at the end of PhD.
-    * Don't want to rely to heavily on non-distributable code.
+    * Don't want to rely too heavily on non-distributable code.
     * But if you do, understand what that means.
     
     
@@ -123,8 +123,9 @@ that version of the code.
 * In comparison with languages such as Python
     * In C++ prefer few well chosen libraries
     * Be aware of their licenses for future distribution
-    * Keep a log of any changes, patches etc.
-    * Be able to compile all your own code, including libraries, so need common build environment. (eg. CMake, Make, Visual Studio).
+    * Keep a log of any changes, patches etc. that you make
+    * Be able to compile all your own code, including libraries
+        * so need common build environment. (eg. CMake, Make, Visual Studio).
     
 [PythonCourse]: http://development.rc.ucl.ac.uk/training/engineering
 [Python04Intro]: http://development.rc.ucl.ac.uk/training/engineering/session04/

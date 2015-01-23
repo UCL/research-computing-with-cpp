@@ -37,10 +37,9 @@ subject to change as the course progresses.
 ### Lesson 3
 
 * Using libraries
+* Linear algebra (Eigen)
 * Boost
-* Linear algebra
 * ITK (image processing)
-* VTK (visualiation)
 
 
 ### Lesson 4
