@@ -177,11 +177,6 @@ Produces:
         * MPI
         * etc
 * You just focus on your bit
-        
-        
-### Further Reading
-
-* [http://www.boost.org][BoostHome]
 
 [BoostHome]: http://www.boost.org/
 [BoostDoc]: http://www.boost.org/doc/libs/1_57_0/
