@@ -280,10 +280,6 @@ pcl::registration::TransformationEstimationSVD<PointSource, PointTarget, Scalar>
 * Advise not to mix with GUI code
 * Consider static linking as using templates anyway
 
-### Further Reading
-
-* [Short Tutorial][EigenShort]
-* [Longer Tutorial][EigenLong]
 
 [EigenHome]: http://eigen.tuxfamily.org
 [EigenManual]: http://eigen.tuxfamily.org/dox/index.html

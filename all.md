@@ -24,4 +24,5 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session03/02EIGEN.md']}}
 {{d['session03/03Boost.md']}}
 {{d['session03/04ITK.md']}}
+{{d['session03/10Summary.md']}}
 

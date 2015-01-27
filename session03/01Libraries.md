@@ -16,6 +16,9 @@ A great set of libraries allows for a very powerful programming style:
 * Plug them together
 * Create impressive results
 
+
+### Libraries for Efficiency
+
 Not only is this efficient with your programming time, 
 it's also more efficient with computer time.
 
@@ -31,7 +34,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     * i.e. if 3rd party library wasn't for use, then it wouldn't be available.
     
     
-### Licensing - For Distributing A 3rd Party Library
+### Licensing - Chosing Yours
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
@@ -39,6 +42,10 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     * Read [this book][LicensingBook], and/or [GitHub's advice][Chooselicense], and [OSI][OSI] for choosing your own license.
     * Don't write your own, unless you use legal advice.
     * Try to pick one of the standard ones if you can, so your software is "compatible", and people understand the restrictions.
+    
+    
+### Licensing - Redistribution 
+    
 * But the licenses of 3rd party libraries take effect:
     * [MIT][MITLicense] and [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
     * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
