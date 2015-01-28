@@ -20,8 +20,9 @@ int main(int argc, char** argv)
   AddFilterType::Pointer addFilter = AddFilterType::New();
   ImageWriterType::Pointer writer = ImageWriterType::New();
 
-  // eg.
-  //itk::ImageFileWriter< itk::Image<int, 2> >::Pointer writer = itk::ImageFileWriter< itk::Image<int, 2> >::New();
+  // eg. if not using typedefs
+  //itk::ImageFileWriter< itk::Image<int, 2> >::Pointer writer
+  //  = itk::ImageFileWriter< itk::Image<int, 2> >::New();
 
   /// "pipeline"
   reader1->SetFileName("inputFileName1.nii");

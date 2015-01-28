@@ -13,3 +13,5 @@ target_link_libraries(ITKAdd.x ${ITK_LIBRARIES} ${OpenCV_LIBS})
 
 add_executable(ITKThreshold.x ITKThreshold.cc)
 target_link_libraries(ITKThreshold.x ${ITK_LIBRARIES} ${OpenCV_LIBS})
+
+add_executable(ITKTest.x ITKTest.cc)

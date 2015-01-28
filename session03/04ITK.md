@@ -16,8 +16,8 @@ title: ITK
 
 * Heavy use of Generic Programming 
 * Use of Template Meta-Programming
-* Often perceived by "scientific programmers" as difficult
-* Demonstrate here, that we can now use it
+* Often perceived by "scientific programmers" (Matlab) as difficult
+* Aim: demonstrate here, that we can now use it!
 * Of particular interest
     * typedefs - make life easier
     * SmartPointers - reduce leaking memory
@@ -61,13 +61,13 @@ More information on ITK Pipeline can be found in the
 Lets look at some interesting features.
 
 * Smart Pointer
-    * Class, like a pointer, but more clever
+    * Class, like a pointer, but 'Smarter' (clever)
     * Typically, once allocated will automatically destroy the pointed to object
     * Implementations vary, STL, ITK, VTK, Qt, so read the docs
 * So, in each class e.g. itkAddImageFilter
 ```
-typedef Self AddImageFilter
-typedef Pointer SmartPointer<Self>
+typedef AddImageFilter     Self 
+typedef SmartPointer<Self> Pointer 
 ```
 and so, its used like
 ```
@@ -121,10 +121,58 @@ private:
 * ITK keeps reference count in itk::LightObject base class
 * So, it can only be used by sub-classes of itk::LightObject
 * Reference is held in the object
-* Same method used in MITK
-* [VTK][VTKSmartPointers] has a SmartPointer that requires calling Delete explicitly
+* Same method used in MITK, as MITK uses ITK concepts
+* [VTK][VTKSmartPointers] has a SmartPointer that requires calling Delete explicitly (!!)
 * STL has much clearer definition of different types of smart pointer
 * Read [THIS][SmartPointerTutorial] tutorial
+
+
+### Implementing a Filter
+
+* ITK provides many image processing filters.
+* But you can write your own easily
+    * Single Threaded - override GenerateData()
+    * Multi-Threaded - override ThreadedGenerateData()
+* Now we see an example - thresholding, as we want to study the C++ not the image processing.
+
+
+### Filter Impl - 1
+
+Basic filter: 
+{{cppfrag('03','ITK/ITKThreshold.cc', "intro")}}
+
+
+### Filter Impl - 2
+
+Boilerplate nested typedefs : 
+{{cppfrag('03','ITK/ITKThreshold.cc', "boilerplate")}}
+
+
+### Filter Impl - 3
+
+Look at ITK Macros : 
+{{cppfrag('03','ITK/ITKThreshold.cc', "macro")}}
+
+
+### Filter Impl - 4
+
+The main method : 
+{{cppfrag('03','ITK/ITKThreshold.cc', "method")}}
+
+
+### Iterators
+
+* ITK provides many iterators
+* Generic Programming means:
+    * Suitable for n-dimensions
+    * Suitable for all types of data
+* Also, different image access concepts
+    * Region of Interest
+    * Random subsampling
+    * No change in code
+* So iterators enable you to traverse image and encapsulate the traversal mechanism in an iterator    
+* Similar concept to STL ```.begin()```, ```.end()```
+* See [ITK Software Guide][ITKSoftwareGuide]
 
 
 ### Private Constructors?
@@ -260,51 +308,6 @@ will return an itkPNGImageIO, and instantiates a function object that calls the 
 * Why is above example not an infinite loop? 
 
 
-### Implementing a Filter
-
-* ITK provides many image processing filters.
-* But you can write your own easily
-    * Single Threaded - override GenerateData()
-    * Multi-Threaded - override ThreadedGenerateData()
-* Now we see an example - thresholding, as we want to study the C++ not the image processing.
-
-
-### Filter Impl - 1
-
-Basic filter : 
-{{cppfrag('03','ITK/ITKThreshold.cc', "intro")}}
-
-
-### Filter Impl - 2
-
-Boilerplate nested typedefs : 
-{{cppfrag('03','ITK/ITKThreshold.cc', "boilerplate")}}
-
-
-### Filter Impl - 3
-
-Look at ITK Macros : 
-{{cppfrag('03','ITK/ITKThreshold.cc', "macro")}}
-
-
-### Filter Impl - 4
-
-The main method : 
-{{cppfrag('03','ITK/ITKThreshold.cc', "method")}}
-
-
-### Iterators
-
-* ITK provides many iterators
-* Generic Programming means:
-    * Suitable for n-dimensions
-    * Suitable for all types of data
-* Also, different image access concepts
-    * Region of Interest
-    * Random subsampling
-    * No change in code
-* similar concept to STL ```.begin()```, ```.end()```
-* See [ITK Software Guide][ITKSoftwareGuide]
 
     
 ### ITK Summary

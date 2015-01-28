@@ -15,7 +15,7 @@ title: Libraries
     * You need to write some code yourself (as you're doing novel science)
     * But do you write all of it?
     
-Our job as [Craftsperson and Scholar][Craftsperson] necessitates knowledge of software engineering, and science and to balance our usage of time.
+Our job as [Crafts Person and Scholar][Craftsperson] necessitates knowledge of software engineering, and science and to balance our usage of time.
 
 
 ### Aim for Today
