@@ -22,19 +22,22 @@ A great set of libraries allows for a very powerful programming style:
 Not only is this efficient with your programming time, 
 it's also more efficient with computer time.
 
-The chances are any algorithm you might want to use has already been programmed better by someone else.
+The chances are any general algorithm you might want to use 
+has already been programmed better by someone else.
 
 
-### Licensing - For When Including A 3rd Party Library
+### Licensing - Just Including A 3rd Party Library
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
 * If you use your code for internal use and you don't distribute it
     * then you are ok.
     * i.e. if 3rd party library wasn't for use, then it wouldn't be available.
+    * you can publish results using open-source code
+    * however, increasingly you are asked to share code ... read on.
+     
     
-    
-### Licensing - Chosing Yours
+### Licensing - Choosing Yours
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
@@ -46,7 +49,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     
 ### Licensing - Redistribution 
     
-* But the licenses of 3rd party libraries take effect:
+* If you distribute your code, the licenses of any 3rd party libraries take effect:
     * [MIT][MITLicense] and [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
     * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
     * [GPL][GPLLicense] requires you to open-source your code, including changes to the library you imported, and your work is considered a "derivative work", so must be shared. 
@@ -62,7 +65,7 @@ that version of the code.
     * Share your code, collaborate, take pride.
     * This improves your code and your science. (See [this][NatureArticle]).
     * Your software should accumulate, reliably, and be extensible.
-* So, take care in your choice of library
+* So, take care in your choice of 3rd party library
     * Don't want to redo work later, at the end of PhD.
     * Don't want to rely too heavily on non-distributable code.
     * But if you do, understand what that means.

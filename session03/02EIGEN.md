@@ -57,7 +57,7 @@ class Matrix
   : public PlainObjectBase<Matrix<_Scalar, _Rows, _Cols, _Options, _MaxRows, _MaxCols> >
 {
 ```
-So, its templates, [review last weeks lecture][Lecture2].
+So, its templates, [so review last weeks lecture][Lecture2].
 
 
 ### Matrix Class Construction
@@ -278,7 +278,7 @@ pcl::registration::TransformationEstimationSVD<PointSource, PointTarget, Scalar>
 * Templated, so its compiled in, no link or run-time dependencies
 * Simple to use linear algebra library
 * Advise not to mix with GUI code
-* Consider static linking as using templates anyway
+* Consider static linking as using templates anyway - ease of distribution
 
 
 [EigenHome]: http://eigen.tuxfamily.org

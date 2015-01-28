@@ -1,6 +1,7 @@
 #include <boost/numeric/odeint.hpp>
 #include <vector>
 
+/// "global"
 const double gam = 0.15;
 typedef std::vector< double > state_type;
 

@@ -35,7 +35,7 @@ title: Boost
     * ```sudo apt-get install boost```
     * ```sudo apt-get install libboost1.53-dev```
 * Mac
-    * brew or Macports
+    * Homebrew (brew) or Macports (port)
 * Windows
     * Precompiled binaries? Probably you need to build from source.
 
@@ -85,7 +85,7 @@ Produces:
 ### C Function Pointers - 3
 
 * Function pointers 
-    * used for callbacks, cost functions in optimisation etc.
+    * often used for callbacks, cost functions in optimisation etc.
     * called by name, or dereference pointer
     * are generally stateless
     
@@ -145,17 +145,23 @@ endif()
 
 ### Boost odeint - 1
 
-First define a functor for the function to integrate:
+Given these global definitions:
 {{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "harm_osc")}}
 
 
 ### Boost odeint - 2
 
+First define a functor for the function to integrate:
+{{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "harm_osc")}}
+
+
+### Boost odeint - 3
+
 Define an observer to collect graph-points:
 {{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "observer")}}
 
 
-### Boost odeint - 3
+### Boost odeint - 4
 
 The run it:
 {{cppfrag('03','Boost/BoostHarmonicOscillator.cc', "main")}}
@@ -165,6 +171,7 @@ The run it:
 
 Produces:
 {{execute('03','Boost/BoostHarmonicOscillator')}}
+
 
 ### Why Boost for Numerics
 
