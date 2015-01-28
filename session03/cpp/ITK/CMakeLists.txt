@@ -1,4 +1,4 @@
-find_package(ITK COMPONENTS ITKCommon ITKIOImageBase REQUIRED)
+find_package(ITK COMPONENTS ITKCommon ITKIOImageBase ITKImageIntensity REQUIRED)
 include(${ITK_USE_FILE})
 
 find_package(GDCM)
