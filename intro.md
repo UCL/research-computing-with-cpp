@@ -44,12 +44,11 @@ subject to change as the course progresses.
 
 ### Lesson 4
 
-* High performance programming
 * Memory, processors, cores and caches
-* Single-core optimisation
+* Amdahl's law
 * How parallel computers work
 * Shared and distributed memory 
-* Amdahl's law
+* High performance programming
 * Schedulers and job submission 
 
 
