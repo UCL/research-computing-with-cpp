@@ -16,10 +16,6 @@ title: Background
 
 ### Algorithm Development
  
-* For interested readers
-    * [Harvard Architecture][WikipediaHarvardArch]
-    * [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
-    * [Multi-level Cache's][WikipediaCache]
 * Consider the case of the Research Programmer:
     * Learns a few languages
     * Spends time developing 'the algorithm'
@@ -35,14 +31,6 @@ title: Background
 ![Pictures from wikipedia](session04/figures/TransistorCount)
 
 
-### Research Can't Wait
-
-* Some problems are genuinely too big
-* Can't wait for Moore's Law to work 
-
-![Picture from M.Jones](session04/figures/GravitationalProblem)
-
-   
 ### Physical Limitations
 
 * [Herb Sutter's, The Free Lunch Is Over][HerbFreeLunch]
@@ -54,9 +42,28 @@ title: Background
 * Manufacturers are turning to multi-core.
 
 
+### More Cache's?
+
+* It might be tempting to think that cache's solve everything
+* For interested readers
+    * [Harvard Architecture][WikipediaHarvardArch]
+    * [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
+    * [Multi-level Cache's][WikipediaCache]
+
+![Picture from M.Jones](session04/figures/CacheHierarchy)
+
+
+### Research Can't Wait
+
+* Some problems are genuinely too big
+* Can't wait for Moore's Law to work 
+
+![Picture from M.Jones](session04/figures/GravitationalProblem)
+
+ 
 ### World Is Parallel
 
-* Lots of things that we might want simulate are naturally parallel
+* Lots of things that we might want to simulate are naturally parallel
 
 ![Picture from M.Jones](session04/figures/realWorldCollage1)
 ![Picture from M.Jones](session04/figures/realWorldCollage2)
@@ -70,6 +77,7 @@ title: Background
 * We must start to learn parallel processing
 
 ![Picture from M.Jones](session04/figures/noaaforcast)
+
 
 ### History of HPC
 

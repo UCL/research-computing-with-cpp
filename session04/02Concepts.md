@@ -14,6 +14,15 @@ title: Parallel Programming
 ![Pictures from LLNL Tutorial](session04/figures/parallelProblem)
 
 
+### Profiling
+
+* This is not a course on profiling ... but ...
+* Before hastily optimising
+    * Measure sections of your code
+    * Obtain evidence on how long each piece takes
+    * Consider your deadlines/objectives and how to achieve them
+    
+    
 ### Amdahl's Law
 
 * Before we start trying to parallelise everything, consider [Amdahl's Law][WikipediaAmdahlsLaw] (Gene Amdahl 1967).
@@ -130,6 +139,7 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
     * CC-NUMA if cache coherency on
     * See [MOSIX][WikipediaMOSIX] for example
 
+
 ### Distributed Memory - Message Passing
 
 * When we say distributed, we normally mean
@@ -139,8 +149,12 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 ### Distributed Memory - Cost
 
-* Programmers must write code to determine how machines are accessed
-* Beware cost of transmitting messages across network
+* Advantages
+    * Memory scales with processors (i.e. interconnect SMPs)
+    * Rapid local access to memory without maintaining global CC
+* Disadvantages
+    * Programmers must write code to determine how machines are accessed
+    * Beware cost of transmitting messages across network
 
 ![Pictures from Legion Tutorial](session04/figures/interconnect)
 
@@ -151,49 +165,139 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 ![Pictures from Legion Tutorial](session04/figures/hybrid_mem2)
 
+* Increased scalability is important advantage
+* Increased programmer complexity is an important disadvantage
+
+
+### GPU Accelerator Model
+
+* For completeness
+* With GPU processing
+    * Cost of copying to/from memory
+    * SIMD on GPU
+    * MIMD on multi-core CPU
+    
+![Pictures from Legion Tutorial](session04/figures/gpu)
+
 
 ### Programming Models
 
-
-
+* We have now considered
+    * Hardware 
+    * Memory Architectures
+* Programming Models somewhat independent to both!
+* People have tried many combinations
+* We will now explain common terms/scenarios
+    
 ### Shared Memory No Threads
+
+* Separate Processes, Shared Memory
+* Stand-alone
+    * [POSIX standard for shared memory][POSIXShared]
+* Advantages:
+    * No message passing
+* Disadvantages: 
+    * No concept of ownership
+
 
 ### Shared Memory With Threads
 
+* [Thread][WikipediaThread]: "of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler"
+* Process can contain many threads
+* Threads exist as part of a process
+* Threads share instructions and execution context
+* eg. Web-browser could be a single process (e.g. Firefox)
+    * But separate threads download data and refresh the screen
+* POSIX Threads, pthreads, 1995
+* OpenMP, C/C++, 1998
+    
+    
 ### Distributed Memory Message Passing
 
-### Data Parallel
+* We saw distributed architectures above
+* The programming model is normally defined by Message Passing
 
-### SPMD
+![Pictures from LLNL Tutorial](session04/figures/msg_pass_model)
 
-### MPMD
 
-### Caching
+### Hybrid Memory Models
 
-### Cache Coherency
+* Or course, there are combinations
+* Its largely down to the developer to write specific code
+* Also throw GPU into the mix
 
-### Understand The Problem
+![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
 
-### Patitioning
 
-### Synchronisation
+### SPMD Vs MPMD
 
-### Data
+* You will also see:
+    * Single Program Multiple Data
+    * Multiple Program Multiple Data
+* High level concepts, built using the above programming models
+    * SPMD: Running the same program on many images (e.g. FreeSurfer)
+    * MPMD: Batch processing a whole workflow of different programs (e.g. LONI Pipeline)
+    
 
-### Load Balancing
+### Understand Your Task
 
-### Granularity
+
+![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
+
+* Profile (see above)
+* Are (sub-)tasks parallelisable?
+* Identify hotspots and bottlenecks?
+* Use optimised libraries
+
 
 ### Input Output
 
+![Pictures from LLNL Tutorial](session04/figures/memoryAccessTimes)
+
+* Reduce I/O as far as possible
+* Use parallel FS if possible
+* Use SSD discs if possible
+
+
+### Partitioning
+
+* Partition by:
+    * data
+        * ITK, chop image into 8ths, 8 threads
+        * GPU same operation on each pixel
+    * task
+        * Sub-divide tasks
+        * Which run in parallel
+        * How to re-join, synchronise?
+        
+
+### Load Balancing / Granularity
+
+* Granularity = size of each task
+* Consider how to keep ALL CPU's busy ALL the time
+* Depends
+    * Hardware model
+    * memory model
+    * programming model 
+    * communication model
+    
+
 ### Other Limits/Costs
 
+* Specificity - develop a specific customised version for a specific task
 * Complexity - design, coding, testing, understandability
 * Portability - see standardisation, OpenMP, MPI, Posix Threads.
-* Resource Requirements - CPU/Disk/Network
+* Resource Requirements - CPU/Memory/Network/Disk
 * Scalability - related to Amdahl's law, memory overhead, communications overhead, synchronisation cost.
 
 ### Choice Of Technology
+
+* Need to consider all above factors
+* Rest of course
+    * OpenMP - SIMD, shared memory, multi-threading, compiler directive
+    * MPI - MIMD, distributed memory, multi-process, programmatic
+    * GPU - SIMD, GPU memory, multi-threading, custom kernel
+* Gives reasonable overview
 
 
 [LLNLTutorial]: https://computing.llnl.gov/tutorials/parallel_comp/
@@ -201,3 +305,5 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 [WikipediaSMP]: http://en.wikipedia.org/wiki/Symmetric_multiprocessing
 [WikipediaDSM]: http://en.wikipedia.org/wiki/Distributed_shared_memory
 [WikipediaMOSIX]: http://en.wikipedia.org/wiki/MOSIX
+[POSIXShared]: http://man7.org/linux/man-pages/man7/shm_overview.7.html
+[WikipediaThread]: http://en.wikipedia.org/wiki/Thread_%28computing%29
