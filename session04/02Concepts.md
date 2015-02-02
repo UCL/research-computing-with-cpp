@@ -53,18 +53,40 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 * So, we decide its worth parallelising something.
 * What type of parallisation?
 * Michael Flynn 1966 proposed the following:
-    * Single Instruction Single Data (SISD): single core PC
-    * Single Instruction Multiple Data (SIMD): GPU
-    * Multiple Instruction Single Data (MISD): Fault tolerance, space shuttle
-    * Multiple Instruction Multiple Data (MIMD): Distributed system
+    * Single Instruction Single Data (SISD)
+    * Single Instruction Multiple Data (SIMD)
+    * Multiple Instruction Single Data (MISD)
+    * Multiple Instruction Multiple Data (MIMD)
 
 ### SISD
 
+* Single Instruction Single Data
+* e.g. Old mainframes, old PC.
+
+![Pictures from LLNL Tutorial](session04/figures/sisd)
+
+
 ### SIMD
+
+* Single Instruction Multiple Data
+* e.g. GPU
+
+![Pictures from LLNL Tutorial](session04/figures/simd2)
+
 
 ### MISD
 
+* Multiple Instruction Single Data
+* e.g. for fault tolerance
+
+![Pictures from LLNL Tutorial](session04/figures/misd)
+
+
 ### MIMD
+
+* Multiple Instruction Multiple Data
+* e.g. distributed computing
+
 
 ### Terminology Summary
 
@@ -75,6 +97,7 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
     * now you get multi-core CPU
     * Single unit, fitting single 'socket'
 * Task = logically discrete set of instructions
+
     
 ### Scalability
 
