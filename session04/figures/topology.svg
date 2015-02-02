@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="648px" height="432px" viewBox="-26.5 23 648 432" enable-background="new -26.5 23 648 432" xml:space="preserve">
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="297.5" y1="77" x2="297.5" y2="95"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="531.5" y1="194" x2="333.5" y2="194"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="333.5" y1="203" x2="531.5" y2="203"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="333.5" y1="212" x2="531.5" y2="212"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="297.5" y1="239" x2="297.5" y2="293"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="297.5" y1="293" x2="252.5" y2="293"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="297.5" y1="131" x2="297.5" y2="167"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="315.5" y1="167" x2="315.5" y2="77"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="306.5" y1="239" x2="306.5" y2="302"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="306.5" y1="302" x2="261.5" y2="302"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="288.5" y1="239" x2="288.5" y2="284"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="288.5" y1="284" x2="243.5" y2="284"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="315.5" y1="239" x2="315.5" y2="311"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="315.5" y1="311" x2="270.5" y2="311"/>
+<g>
+	<g>
+		<path fill="#98D6EF" stroke="#808080" d="M162.5,356v72c0,4.971-32.239,9-72,9c-39.76,0-72-4.029-72-9v-72H162.5z"/>
+		<ellipse fill="#98D6EF" stroke="#808080" cx="90.5" cy="356" rx="72" ry="9"/>
+	</g>
+	<text transform="matrix(1 0 0 1 53.3284 410)" font-family="'Trebuchet MS'" font-size="24">$HOME</text>
+</g>
+<g>
+	<path fill="#B4D492" stroke="#808080" d="M324.5,356v72c0,4.971-32.24,9-72,9c-39.76,0-72-4.029-72-9v-72H324.5z"/>
+	<ellipse fill="#B4D492" stroke="#808080" cx="252.5" cy="356" rx="72" ry="9"/>
+</g>
+<text transform="matrix(1 0 0 1 199.9763 410)" font-family="'Trebuchet MS'" font-size="24">~/Scratch</text>
+<path fill="#FBCCAA" stroke="#808080" d="M468.5,360.636c0,2.411-4.133,4.364-9.23,4.364H387.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V360.636z"/>
+<path fill="#E7B6D5" stroke="#808080" d="M126.5,126.636c0,2.411-4.959,4.364-11.077,4.364H29.577
+	c-6.118,0-11.077-1.953-11.077-4.364V99.365C18.5,96.953,23.459,95,29.577,95h85.846c6.118,0,11.077,1.953,11.077,4.365V126.636z"/>
+<path fill="#E7B6D5" stroke="#808080" d="M126.5,162.636c0,2.411-4.959,4.364-11.077,4.364H29.577
+	c-6.118,0-11.077-1.953-11.077-4.364v-27.271c0-2.411,4.959-4.364,11.077-4.364h85.846c6.118,0,11.077,1.953,11.077,4.364V162.636z"
+	/>
+<path fill="#E7B6D5" stroke="#808080" d="M126.5,198.636c0,2.411-4.959,4.364-11.077,4.364H29.577
+	c-6.118,0-11.077-1.953-11.077-4.364v-27.271c0-2.411,4.959-4.364,11.077-4.364h85.846c6.118,0,11.077,1.953,11.077,4.364V198.636z"
+	/>
+<path fill="#E7B6D5" stroke="#808080" d="M126.5,234.636c0,2.411-4.959,4.364-11.077,4.364H29.577
+	c-6.118,0-11.077-1.953-11.077-4.364v-27.271c0-2.411,4.959-4.364,11.077-4.364h85.846c6.118,0,11.077,1.953,11.077,4.364V234.636z"
+	/>
+<path fill="#FBCCAA" stroke="#808080" d="M468.5,396.636c0,2.411-4.133,4.364-9.23,4.364H387.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V396.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M468.5,324.636c0,2.411-4.133,4.364-9.23,4.364H387.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V324.636z"/>
+<rect x="261.5" y="167" fill="#A88812" stroke="#808080" width="72" height="72"/>
+<path fill="#E7B6D5" stroke="#808080" d="M306.5,126.635c0,2.412-4.959,4.365-11.077,4.365h-85.846
+	c-6.118,0-11.077-1.953-11.077-4.365V99.365c0-2.412,4.959-4.365,11.077-4.365h85.846c6.118,0,11.077,1.953,11.077,4.365V126.635z"
+	/>
+<rect x="531.5" y="185" fill="#9F8515" stroke="#808080" width="36" height="36"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="567.5" y1="203" x2="612.5" y2="203"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="612.5" y1="203" x2="612.5" y2="419"/>
+<path fill="#FBCCAA" stroke="#808080" d="M468.5,288.636c0,2.411-4.133,4.364-9.23,4.364H387.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V288.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M468.5,432.636c0,2.411-4.133,4.364-9.23,4.364H387.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V432.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M594.5,360.636c0,2.411-4.133,4.364-9.23,4.364H513.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V360.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M594.5,396.636c0,2.411-4.133,4.364-9.23,4.364H513.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V396.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M594.5,324.636c0,2.411-4.133,4.364-9.23,4.364H513.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V324.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M594.5,288.636c0,2.411-4.133,4.364-9.23,4.364H513.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V288.636z"/>
+<path fill="#FBCCAA" stroke="#808080" d="M594.5,432.636c0,2.411-4.133,4.364-9.23,4.364H513.73c-5.097,0-9.23-1.953-9.23-4.364
+	v-27.272c0-2.41,4.134-4.363,9.23-4.363h71.539c5.098,0,9.23,1.953,9.23,4.363V432.636z"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="594.5" y1="275" x2="612.5" y2="275"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="594.5" y1="311" x2="612.5" y2="311"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="594.5" y1="347" x2="612.5" y2="347"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="594.5" y1="383" x2="612.5" y2="383"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="594.5" y1="419" x2="612.5" y2="419"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="360.5" y1="419" x2="378.5" y2="419"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="360.5" y1="383" x2="378.5" y2="383"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="360.5" y1="347" x2="378.5" y2="347"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="360.5" y1="311" x2="378.5" y2="311"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="360.5" y1="275" x2="378.5" y2="275"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="360.5" y1="221" x2="360.5" y2="419"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="333.5" y1="221" x2="360.5" y2="221"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="252.5" y1="293" x2="252.5" y2="356"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="90.5" y1="275" x2="90.5" y2="356"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="90.5" y1="275" x2="279.5" y2="275"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="279.5" y1="239" x2="279.5" y2="275"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="126.5" y1="113" x2="180.5" y2="113"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="180.5" y1="113" x2="180.5" y2="185"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="180.5" y1="185" x2="261.5" y2="185"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="126.5" y1="149" x2="162.5" y2="149"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="162.5" y1="149" x2="162.5" y2="194"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="261.5" y1="194" x2="162.5" y2="194"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="261.5" y1="212" x2="144.5" y2="212"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="144.5" y1="212" x2="144.5" y2="185"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="144.5" y1="185" x2="126.5" y2="185"/>
+<line fill="none" stroke="#808080" stroke-width="2" x1="126.5" y1="221" x2="261.5" y2="221"/>
+<g>
+	<path opacity="0.6" fill="#B0B0B0" d="M531.5,362c0,6.627-5.373,12-12,12h-66c-6.627,0-12-5.373-12-12v-39c0-6.627,5.373-12,12-12
+		h66c6.627,0,12,5.373,12,12V362z"/>
+	<text transform="matrix(1 0 0 1 450.408 338)"><tspan x="0" y="0" font-family="'Trebuchet MS'" font-size="18">Compute</tspan><tspan x="11.953" y="21.6" font-family="'Trebuchet MS'" font-size="18">Nodes</tspan></text>
+</g>
+<g>
+	<path opacity="0.6" fill="#B0B0B0" d="M117.5,173c0,6.627-5.373,12-12,12h-66c-6.627,0-12-5.373-12-12v-39c0-6.627,5.373-12,12-12
+		h66c6.627,0,12,5.373,12,12V173z"/>
+	<text transform="matrix(1 0 0 1 51.1111 149)"><tspan x="0" y="0" font-family="'Trebuchet MS'" font-size="18">Login</tspan><tspan x="-2.75" y="21.6" font-family="'Trebuchet MS'" font-size="18">Nodes</tspan></text>
+</g>
+<text transform="matrix(1 0 0 1 201.8748 118)" font-family="'Trebuchet MS'" font-size="16">Transfer Node</text>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="261.5" y1="302" x2="261.5" y2="356"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="243.5" y1="284" x2="243.5" y2="356"/>
+<line fill="none" stroke="#FFB01E" stroke-width="3" x1="270.5" y1="311" x2="270.5" y2="356"/>
+<g>
+	<path opacity="0.6" fill="#B0B0B0" d="M378.5,69.5c0,7.5,0,7.5-8.4,7.5H260.9c-8.4,0-8.4,0-8.4-7.5v-30c0-7.5,0-7.5,8.4-7.5
+		h109.199c8.4,0,8.4,0,8.4,7.5V69.5z"/>
+	<text transform="matrix(1 0 0 1 263.2263 59)" font-family="'Trebuchet MS'" font-size="18">UCL Network</text>
+</g>
+</svg>

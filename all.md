@@ -30,7 +30,6 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session04/01Background.md']}}
 {{d['session04/02Concepts.md']}}
 {{d['session04/03JobScheduling.md']}}
-{{d['session04/04ConcurrencyIssues.md']}}
 {{d['session04/05FurtherReading.md']}}
 
 
