@@ -4,7 +4,31 @@ title: Parallel Programming
 
 ## Parallel Programming Concepts
 
+### Single Threaded Execution
+
+### Multiple Threaded Execution
+
 ### Amdahl's Law
+
+* Before we start trying to parallelise everything, consider:
+
+### Flynn's Taxonomy
+
+* Michael Flynn 1966 proposed the following:
+    * Single Instruction Single Data (SISD): single core PC
+    * Single Instruction Multiple Data (SIMD): GPU
+    * Multiple Instruction Single Data (MISD): Fault tolerance, space shuttle
+    * Multiple Instruction Multiple Data (MIMD): Distributed system
+
+### SISD
+
+### SIMD
+
+### MISD
+
+### MIMD
+
+### Terminology Summary
 
 ### Scalability
 
