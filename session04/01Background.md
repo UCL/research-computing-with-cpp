@@ -49,8 +49,7 @@ title: Background
     * [Harvard Architecture][WikipediaHarvardArch]
     * [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
     * [Multi-level Cache's][WikipediaCache]
-
-![Picture from M.Jones](session04/figures/CacheHierarchy)
+* But still limited by heat/power/cooling
 
 
 ### Research Can't Wait
