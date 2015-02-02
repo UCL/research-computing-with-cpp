@@ -4,16 +4,54 @@ title: Parallel Programming
 
 ## Parallel Programming Concepts
 
-### Single Threaded Execution
+### Serial Execution
 
-### Multiple Threaded Execution
+![Pictures from LLNL Tutorial](session04/figures/serialProblem)
+
+
+### Parallel Execution
+
+![Pictures from LLNL Tutorial](session04/figures/parallelProblem)
+
 
 ### Amdahl's Law
 
-* Before we start trying to parallelise everything, consider:
+* Before we start trying to parallelise everything, consider [Amdahl's Law][WikipediaAmdahlsLaw] (Gene Amdahl 1967).
+
+![Pictures from Wikipedia](session04/figures/AmdahlSpeedup)
+
+where N is number of processors, P is proportion [0-1] that can be parallelised.
+Note, as N tends to infinity, Speedup tends to 1/(1-P).
+
+
+### Amdahl's Law - Graph
+
+For example, if 95% can be parallelised, P = 0.95, S = 20.
+
+![Pictures from Wikipedia](session04/figures/AmdahlGraph)
+
+
+### Amdahl's Law - Example 1
+
+* If P is proportion of code = 0.3, and S = speedup = 2 = twice as fast.
+
+![Pictures from Wikipedia](session04/figures/AmdahlSpeedupUsingS)
+
+
+### Amdahl's Law - Example 2
+
+* If P1=11%, P2=18%, P3=23%, P4=48%
+* P2 sped up by 5
+* P3 sped up by 20
+* P4 sped up by 1.6
+
+![Pictures from Wikipedia](session04/figures/Amdahl4Components)
+
 
 ### Flynn's Taxonomy
 
+* So, we decide its worth parallelising something.
+* What type of parallisation?
 * Michael Flynn 1966 proposed the following:
     * Single Instruction Single Data (SISD): single core PC
     * Single Instruction Multiple Data (SIMD): GPU
@@ -30,6 +68,14 @@ title: Parallel Programming
 
 ### Terminology Summary
 
+* Node = "computer in a box"
+* core = single processing unit, one instruction at a time
+* CPU
+    * previously synonymous with core
+    * now you get multi-core CPU
+    * Single unit, fitting single 'socket'
+* Task = logically discrete set of instructions
+    
 ### Scalability
 
 ### Shared Memory
@@ -71,3 +117,7 @@ title: Parallel Programming
 ### Input Output
 
 ### Choice Of Technology
+
+
+[LLNLTutorial]: https://computing.llnl.gov/tutorials/parallel_comp/
+[WikipediaAmdahlsLaw]: http://en.wikipedia.org/wiki/Amdahl%27s_law
