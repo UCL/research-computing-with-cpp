@@ -75,7 +75,7 @@ title: Background
 * Inherent limits in single-core processing
 * We must start to learn parallel processing
 
-![Picture from M.Jones](session04/figures/noaaforcast)
+![Picture from Legion Tutorial](session04/figures/noaaforcast)
 
 
 ### History of HPC
