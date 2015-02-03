@@ -4,6 +4,15 @@ title: Background
 
 ## Overview of HPC
 
+### Algorithm Development
+ 
+* Consider the case of the Research Programmer:
+    * Learns a few languages
+    * Spends time developing 'the algorithm'
+    * Normally assumes single-threaded
+    * Normally assuming von Neumann model of hardware
+
+
 ### Von Neumann Architecture
 
 ![Pictures from wikipedia](session04/figures/VonNeumannCombined)
@@ -12,15 +21,6 @@ title: Background
 * Based on Turing's work in 1936.
 * Instructions and Data in same memory.
 * Memory bus, causes so called Von Neuman bottleneck.
-
-
-### Algorithm Development
- 
-* Consider the case of the Research Programmer:
-    * Learns a few languages
-    * Spends time developing 'the algorithm'
-    * Normally assumes single-threaded
-    * Normally assuming von Neumann model of hardware
 
 
 ### Moore's Law
@@ -55,7 +55,7 @@ title: Background
 ### Research Can't Wait
 
 * Some problems are genuinely too big
-* Can't wait for Moore's Law to work 
+* Can't ever wait for Moore's Law to work 
 
 ![Picture from M.Jones](session04/figures/GravitationalProblem)
 
@@ -65,6 +65,7 @@ title: Background
 * Lots of things that we might want to simulate are naturally parallel
 
 ![Picture from M.Jones](session04/figures/realWorldCollage1)
+
 ![Picture from M.Jones](session04/figures/realWorldCollage2)
 
 
@@ -75,7 +76,7 @@ title: Background
 * Inherent limits in single-core processing
 * We must start to learn parallel processing
 
-![Picture from M.Jones](session04/figures/noaaforcast)
+![Picture from Legion Tutorial](session04/figures/noaaforcast)
 
 
 ### History of HPC
@@ -96,7 +97,7 @@ title: Background
 
 ### Its Relative
 
-* From [Wikipedia][WikiPediaSuperComputer], ![Picture from wikipedia](session04/figures/440px-Cray-1-deutsches-museum)
+![Picture from wikipedia](session04/figures/440px-Cray-1-deutsches-museum)
     
 * Cray-1, 1976, 2400kg, $8M, 160MFlops ([M.Jones][MJonesTutorial]).
 * Desktop PC, 2010, 5kg, $1k, 48GFlops ([M.Jones][MJonesTutorial]).
@@ -129,7 +130,7 @@ title: Background
     * Legion: 7500 CPU cores + 7168 CUDA cores, 32 cores per job
     * Iridis: 12,000 cores, 900 nodes, 100 nodes (1200 cores) per job
     * Emerald: 372 NVIDIA Tesla, 114TFlop/s
-    * Archer: 25th, 1.6PFlop/s, 
+    * Archer: 25th, 1.6PFlop/s, but requires a grant
     
 [MJonesTutorial]: http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf
 [WikipediaHarvardArch]: http://en.wikipedia.org/wiki/Harvard_architecture
@@ -137,7 +138,3 @@ title: Background
 [WikipediaCache]: http://en.wikipedia.org/wiki/CPU_cache
 [HerbFreeLunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
 [WikipediaHistory]: http://en.wikipedia.org/wiki/History_of_supercomputing
-
-
-
-

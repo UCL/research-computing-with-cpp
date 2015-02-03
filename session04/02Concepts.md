@@ -1,5 +1,5 @@
 ---
-title: Parallel Programming
+title: Concepts
 ---
 
 ## Parallel Programming Concepts
@@ -14,14 +14,26 @@ title: Parallel Programming
 ![Pictures from LLNL Tutorial](session04/figures/parallelProblem)
 
 
-### Profiling
+### Some Terminology
 
-* This is not a course on profiling ... but ...
-* Before hastily optimising
+* Task = logically discrete set of instructions
+* Core = single processing unit, one instruction at a time
+* CPU
+    * previously synonymous with core
+    * now you get multi-core CPU
+    * Single unit, fitting single 'socket', single chip (2,4,6,8 core)
+* Node = "computer in a box"
+* eg. 1000 Nodes, 4 quad core CPU = 16,000 cores.
+    
+    
+### Use Profiling
+
+* WARNING: Before hastily optimising/parallelising
     * Measure sections of your code
     * Obtain evidence on how long each piece takes
     * Consider your deadlines/objectives and how to achieve them
-    
+    * Don't over-eagerly parallelise
+
     
 ### Amdahl's Law
 
@@ -42,7 +54,7 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 ### Amdahl's Law - Example 1
 
-* If P is proportion of code = 0.3, and S = speedup = 2 = twice as fast.
+* If P is proportion of code = 0.3, and S = speedup factor = 2 = twice as fast (analagous to 2 processors)
 
 ![Pictures from Wikipedia](session04/figures/AmdahlSpeedupUsingS)
 
@@ -60,23 +72,12 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 ### Flynn's Taxonomy
 
 * So, we decide its worth parallelising something.
-* What type of parallisation?
-* Michael Flynn 1966 proposed the following:
-    * Single Instruction Single Data (SISD)
-    * Single Instruction Multiple Data (SIMD), "data parallel"
-    * Multiple Instruction Single Data (MISD)
-    * Multiple Instruction Multiple Data (MIMD), "task parallel"
-
-
-### Some Terminology
-
-* Node = "computer in a box"
-* core = single processing unit, one instruction at a time
-* CPU
-    * previously synonymous with core
-    * now you get multi-core CPU
-    * Single unit, fitting single 'socket'
-* Task = logically discrete set of instructions
+* First take a view on your hardware
+    * Michael Flynn 1966 proposed the following:
+        * Single Instruction Single Data (SISD)
+        * Single Instruction Multiple Data (SIMD), "data parallel"
+        * Multiple Instruction Single Data (MISD)
+        * Multiple Instruction Multiple Data (MIMD), "task parallel"
 
 
 ### SISD
@@ -111,17 +112,17 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 ![Pictures from LLNL Tutorial](session04/figures/mimd)
 
 
-### Memory Models
+### Memory Layout
 
 * In addition to considering processing hardware, need to consider memory
-* Various models exist, choice determined by coherency/correctness
+* Various architectures exist, choice determined by coherency/correctness/location
 
     
 ### Shared Memory - SMP
 
-* Address all memory in global address space
 * Symmetric Multi-Processing ([SMP][WikipediaSMP])
     * Homogeneous processing cores
+    * Address all memory in global address space
     * Uniform Memory Access (UMA) (time)
     * Cache coherency (CC) maintained at hardware level
 * Requires code to be multi-threaded
@@ -132,12 +133,13 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 ### Distributed Memory - DSM
 
-* Distributed Shared Memory ([DSM][WikipediaDSM]) exists
+* Truely Distributed Shared Memory ([DSM][WikipediaDSM]) exists
     * Hidden by OS or hardware
-    * Allows a single addressable memory space
+    * Allows a single global addressable memory space over networked machines
     * Non-Uniform Memory Access (NUMA)
     * CC-NUMA if cache coherency on
     * See [MOSIX][WikipediaMOSIX] for example
+    * Doesn't require code change
 
 
 ### Distributed Memory - Message Passing
@@ -147,15 +149,16 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 ![Pictures from Legion Tutorial](session04/figures/cluster)
 
 
-### Distributed Memory - Cost
+### Distributed Memory
 
 * Advantages
-    * Memory scales with processors (i.e. interconnect SMPs)
-    * Rapid local access to memory without maintaining global CC
+    * Memory scales with processors (i.e. interconnect many SMPs)
+    * Rapid local access to memory 
 * Disadvantages
     * Programmers must write code to determine how machines are accessed
     * Beware cost of transmitting messages across network
-
+    * Normally no cache coherency across network nodes
+    
 ![Pictures from Legion Tutorial](session04/figures/interconnect)
 
 
@@ -165,7 +168,7 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 ![Pictures from Legion Tutorial](session04/figures/hybrid_mem2)
 
-* Increased scalability is important advantage
+* Increased (easy) scalability is important advantage
 * Increased programmer complexity is an important disadvantage
 
 
@@ -173,10 +176,10 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 * For completeness
 * With GPU processing
-    * Cost of copying to/from memory
     * SIMD on GPU
     * MIMD on multi-core CPU
-    
+    * Cost of copying to/from memory
+        
 ![Pictures from Legion Tutorial](session04/figures/gpu)
 
 
@@ -187,7 +190,8 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
     * Memory Architectures
 * Programming Models somewhat independent to both!
 * People have tried many combinations
-* We will now explain common terms/scenarios
+* We will now explain most common terms/scenarios
+
     
 ### Shared Memory No Threads
 
@@ -203,13 +207,14 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 ### Shared Memory With Threads
 
 * [Thread][WikipediaThread]: "of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler"
-* Process can contain many threads
 * Threads exist as part of a process
-* Threads share instructions and execution context
+* Process can contain many threads
+* Threads share instructions, execution context and memory
 * eg. Web-browser could be a single process (e.g. Firefox)
     * But separate threads download data and refresh the screen
-* POSIX Threads, pthreads, 1995
-* OpenMP, C/C++, 1998
+* Implementation:
+    * Library: POSIX Threads, pthreads, 1995
+    * Compiler: OpenMP for C/C++, 1998
     
     
 ### Distributed Memory Message Passing
@@ -223,8 +228,8 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 ### Hybrid Memory Models
 
 * Or course, there are combinations
+    * (Also throw GPU into the mix)
 * Its largely down to the developer to write specific code
-* Also throw GPU into the mix
 
 ![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
 
@@ -235,70 +240,9 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
     * Single Program Multiple Data
     * Multiple Program Multiple Data
 * High level concepts, built using the above programming models
-    * SPMD: Running the same program on many images (e.g. FreeSurfer)
-    * MPMD: Batch processing a whole workflow of different programs (e.g. LONI Pipeline)
+    * SPMD: Running the same program on many images (e.g. NiftyReg for atlas registration)
+    * MPMD: Batch processing a whole workflow of different programs (e.g. LONI Pipeline, FreeSurfer)
     
-
-### Understand Your Task
-
-
-![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
-
-* Profile (see above)
-* Are (sub-)tasks parallelisable?
-* Identify hotspots and bottlenecks?
-* Use optimised libraries
-
-
-### Input Output
-
-![Pictures from LLNL Tutorial](session04/figures/memoryAccessTimes)
-
-* Reduce I/O as far as possible
-* Use parallel FS if possible
-* Use SSD discs if possible
-
-
-### Partitioning
-
-* Partition by:
-    * data
-        * ITK, chop image into 8ths, 8 threads
-        * GPU same operation on each pixel
-    * task
-        * Sub-divide tasks
-        * Which run in parallel
-        * How to re-join, synchronise?
-        
-
-### Load Balancing / Granularity
-
-* Granularity = size of each task
-* Consider how to keep ALL CPU's busy ALL the time
-* Depends
-    * Hardware model
-    * memory model
-    * programming model 
-    * communication model
-    
-
-### Other Limits/Costs
-
-* Specificity - develop a specific customised version for a specific task
-* Complexity - design, coding, testing, understandability
-* Portability - see standardisation, OpenMP, MPI, Posix Threads.
-* Resource Requirements - CPU/Memory/Network/Disk
-* Scalability - related to Amdahl's law, memory overhead, communications overhead, synchronisation cost.
-
-### Choice Of Technology
-
-* Need to consider all above factors
-* Rest of course
-    * OpenMP - SIMD, shared memory, multi-threading, compiler directive
-    * MPI - MIMD, distributed memory, multi-process, programmatic
-    * GPU - SIMD, GPU memory, multi-threading, custom kernel
-* Gives reasonable overview
-
 
 [LLNLTutorial]: https://computing.llnl.gov/tutorials/parallel_comp/
 [WikipediaAmdahlsLaw]: http://en.wikipedia.org/wiki/Amdahl%27s_law
