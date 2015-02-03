@@ -6,10 +6,9 @@ title: Job Scheduling
 
 ### High Throughput Computing
 
-* Heard of HTC?
 * High Throughput Computing (HTC)
 * See [RITS][RITS]/[RSDT][RSDT] course "[HPC and HTC using Legion][HPTCLegion]"
-* Also, see [Unix Shell Tutorial[[UnixShell]
+* Also, see [Unix Shell Tutorial][UnixShell]
 
 
 ### What is it?
@@ -25,15 +24,17 @@ title: Job Scheduling
 * In imaging
     * Freesurfer job takes 24h
     * ADNI dataset, > 1000 images
-    * Don't want to wait 1000 days (over 3 years)
+    * Don't want to wait 1000 days (about 3 years)
     * Run all in parallel
-    * Depends on number of nodes 
+    * Depends on number of nodes available
 * No change to code as such
-    * Need to compile correctly and set LD_LIBRARY_PATH
+    * Need to compile on cluster 
+    * Maybe set LD_LIBRARY_PATH at runtime
     
 ### What disadvantages?
 
-* None
+* Clusters normally Linux
+    * (Disadvantage if you are not using Linux)
 
 
 ### How Do I Start?
@@ -42,10 +43,12 @@ title: Job Scheduling
 1. Make sure you know [Unix Shell][UnixShell]
 1. Read [Legion Course][HPTCLegion]
 1. Read [Legion Wiki][LegionWiki]
-1. Write [submission script][LegionScript]
 1. Refer to [Legion Cheat Sheet][LegionCheats]
+1. Write [submission script][LegionScript]
+1. Run Jobs!
 
-### Calculate Pi
+
+### Example - Calculate Pi
 
 (Same example as on [Legion course][HPTCLegion])
 
@@ -62,6 +65,7 @@ make
 
 (we can run standalone, but don't run huge jobs like this, see [policies][LegionPolicies])
 
+
 ### Submission Script
 
 In file submit.sh
@@ -71,11 +75,14 @@ In file submit.sh
 #$ -S /bin/bash
 #$ -l h_rt=0:10:00
 #$ -l mem=1M
-#$ -N projtest
+#$ -N <job name>
+#$ -P <project name>
 #$ -wd /home/skgtmjc/Scratch/calculate_pi_dir
 
 ./calculate_pi
 ```
+replacing things between angled brackets.
+
 
 ### Run via qsub
 
@@ -83,17 +90,19 @@ In file submit.sh
 qsub submit.sh
 ```
 
-### qsub commands
+
+### Basic qsub commands
 
 ```
 qsub <script>  # submit to queue according to scheduler options
 qstat          # show status of queued jobs
 qdel <pid>     # delete my job with ID <pid>
 ```
+
 See also [Legion cheat sheet][LegionCheats], and [example submission scripts][LegionScript].
 
 
-### Run multiple
+### Run multiple jobs
 
 * For repeated use:
     * e.g. same program, many different images
