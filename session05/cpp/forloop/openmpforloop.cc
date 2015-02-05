@@ -8,7 +8,7 @@ int main(int argc, char ** argv)
 
     pi = 0.0;
     sum = 0.0;
-    #pragma omp parallel private(x), firstprivate(sum)
+    #pragma omp parallel private(x), firstprivate(sum), shared(pi)
     {
         #pragma omp for
         for (int i = 0; i < N; ++i)

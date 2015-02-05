@@ -9,7 +9,7 @@ title: Introduction to OpenMP
 * Shared memory only parallelization
 * UMA or NUMA architecture
 * Useful for parallelization on one cluster node
-* Will see MPI next week for across node parallelization
+* MPI next week for inter node parallelization
 * Can write hybrid code with both OpenMP and MPI
 
 ### About OpenMP
@@ -20,39 +20,58 @@ title: Introduction to OpenMP
 * Fortran is slightly different
 
 
-### How it works
+### How it works
 
 * Thread based parallelization
-* A master thread executes all the code
+* A master thread starts executing the code.
 * Sections of the code is marked as parallel
-    - A set of threads are forked and used along the master thread
+    - A set of threads are forked and used together with the master thread
     - When the parallel block ends the threads are killed.
-* Typical parallelization.
-    - A loop in the code needs to run many independent 
+* Typical simple use case:
+    - A loop with independent iterations.
+    - A significant part of the execution time. Remember Amdahl's law
+    - More complicated if an iteration depends on the previous. 
 
-
-
-
-### Some more
+### OpenMP basic syntax
 * Annotate code with `#pragma omp ...`
     - This instruct the compiler in how to parallize the code
-    - `#pragma` is a general way of providing instructions to the compiler
-    - I.e. `#pragma once` etc.
-    - All OpenMP Pragmas start with `#pragma omp`
-* In addition there is omp library.
-    - It provides utility functions 
+    - `#pragma`s are a instructions to the compiler, not part of the language.
+    - I.e. `#pragma once` alternative to include guards.
+    - Compiler will usually ignore pragmas that it doesn't understand. 
+    - All OpenMP pragmas start with `#pragma omp`
+* OpenMP must typically be activated for the compiler.
+
+### OpenMP library
+
+* OpenMP library.
+    - It provides utility functions.
+    - `omp_get_num_threads()` ...
     - Use with `#include <omp.h>`
+
+### Compiler support
+
+OpenMP is supported by most compilers, except LLVM/Clang(++)
+
+* OpenMP must typically be activated with a command line flags at compile time. Different for different compilers. Examples:
+    - Intel, Linux, Mac  `-openmp`
+    - Intel, Windows `/Qopenmp`
+    - GCC/G++, `-fopenmp`
+
+A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mainline eventually.
 
 ### Hello World
 
-Simple example.
 {{cppfrag('05','hello/HelloOpenMP.cc')}}
 
 * `#pragma omp parallel` marks a block is to be run in parallel.
 * In this case all threads do the same.
+* No real work sharing.
+
+### Issues with this example
+
 * `std::cout` is not thread safe. Output from different threads may be mixed
-    - Try running the code.
-    - Mixed output? 
+    - Try running the code
+    - Mixed output?
 * All threads call omp_get_num_threds() with the same result.
     - Might be wasteful if this was a slow function.
     - Everybody stores a copy of numthreads
@@ -62,28 +81,28 @@ Simple example.
 
 {{cppfrag('05','hello/HelloOpenMPSafe.cc')}}
 
-### Improvements:
+### Improvements:
 
 * Use `#pragma omp critical` to only allow one thread to write at a time.
     - Comes with a performance penalty since only one thread is running this code at a time.
-* Use Preprocessor `#ifdef _OPENMP` to only compile code if OpenMP is enabled. 
-    - Code works both with and without OpenMP 
+* Use Preprocessor `#ifdef _OPENMP` to only include code if OpenMP is enabled. 
+    - Code works both with and without OpenMP.
 * Variables defined outside parallel regions.
     - Must be careful to tell OpenMP how to handle them.
-    - `shared`, `private`, `first private` etc.
+    - `shared`, `private`, `first private`
+    - More about this later.
 * `#pragma omp single`
-    - Only one thread calls `get_num_threds()`  
+    - Only one thread calls `get_num_threds()`
 
 
 ### References
 
 [OpenMP homepage][OpenMPhomepage]
-
 [OpenMP cheat sheet][OpenMPcheatsheet]
-
 
 
 
 
 [OpenMPhomepage]: http://openmp.org/ 
 [OpenMPcheatsheet]: http://openmp.org/mp-documents/OpenMP-4.0-C.pdf
+[ClangOpenMP]: http://clang-omp.github.io/
