@@ -10,10 +10,10 @@ title: Races, Locks and Critical regions
 In the best of worlds our calculations can be done independently. 
 However, even in our simplest examples we saw issues.
 
-* `std::cout` is not thread safe. Garbage mixed output.
-* Needs to use `critical` to merge output.
-* Real world examples may be more complicated.
-* Incorrectly shared variable leads to random and typically wrong results.
+* `std::cout` is not thread safe. Garbage mixed output
+* Needs to use `critical` to merge output
+* Real world examples may be more complicated
+* Incorrectly shared variable leads to random and typically wrong results
 
 ### Race condition
 
@@ -30,21 +30,21 @@ When the result of a calculation depends on the timing between threads.
 Typically it is necessary to synchronize threads. Make sure that all threads are 
 done with a piece of work before moving on. Barriers synchronizes threads.
 
-* Parallel regions such as `omp for` have an implicit barrier at the end.
+* Parallel regions such as `omp for` have an implicit barrier at the end
     - Threads wait for the last to finish before moving on
     - May waste significant amount of time
     - We will return to look at load balancing later
-    - Sometime there is no need to wait. 
+    - Sometime there is no need to wait
     - Disable implicit barrier with `nowait`
 * Sometimes you need a barrier where there is no implicit barrier
     - `#pragma omp barrier` inserts a barrier
     - Don't overuse this. Performance drop
 
-### Protecting code and variables.
+### Protecting code and variables
 
 * `#pragma omp critical`
     - Only one task can execute at a time
-    - Protect non thread safe code
+    - Protect non thread-safe code
 * `#pragma omp single`
     - Only one tread executes this block
     - The first thread that arrives will execute the code
@@ -57,6 +57,7 @@ done with a piece of work before moving on. Barriers synchronizes threads.
 
 Sometimes the critical regions are not flexible enough to implement your algorithm.
 
+Examples:
 * Need to prevent two different pieces of code from running at the same time. 
 * Need to lock only a fraction of a large array.
 
@@ -70,20 +71,20 @@ OpenMP locks is a general way to manage resources in threads.
 * Important to remember to unset the lock when done.
 * Might otherwise result in a deadlock. Program hangs. 
 
-### Locks
-
-Sometimes it is useful to lock multiple resources with different locks.
-
-* Use multiple locks protecting different resources. 
-* Can result in deadlocks if two threads needs both needs the same locks. 
-* One thread holds one lock and the other one holds the other. 
-* Both are waiting for a lock to be free. 
-
 ### Example
 
 Replace the critical region with a lock. 
 In this case there is no real gain from using a lock.
 {{cppfrag('05','locks/simplelock.cc')}} 
+
+### Multiple locks
+
+Sometimes it is useful to lock multiple resources with different locks.
+
+* Use multiple locks protecting different resources
+* Can result in deadlocks if two threads needs both needs the same locks
+* One thread holds one lock and the other one holds the other
+* Both are waiting for a lock to be free
 
 
 ### Notes 

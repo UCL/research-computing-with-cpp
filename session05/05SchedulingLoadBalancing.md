@@ -39,9 +39,9 @@ load balancing set by the following key words.
 The default is static with one chunk per thread. 
 
 * `static: Iterations are divided into chunks of size `chunk_size` and assigned to threads in round-robin order
-* `dynamic`: Each thread executes a chunk of iterations then requests another chunk until none remain.
-* `guided`: Like dynamic but the chunk size depends on the number of remaining iterations.
-* `auto`: The decision regarding scheduling is delegated to the compiler and/or runtime system.
+* `dynamic`: Each thread executes a chunk of iterations then requests another chunk until none remain
+* `guided`: Like dynamic but the chunk size depends on the number of remaining iterations
+* `auto`: The decision regarding scheduling is delegated to the compiler and/or runtime system
 * `runtime`: The schedule and chunk size are controlled by runtime variables
 
 
@@ -50,6 +50,6 @@ The default is static with one chunk per thread.
 It is hard to give general advice on the strategy to use. Depends on the problem and platform. Typically needs benchmarking and 
 experimentation. 
 
-* If there is little variation in the runtime of iteration static with a large chunk size minimizes overhead.
-* In other cases it might make sense to reduce the chunk size or use dynamic or guided.
-* Note that both dynamic and guided comes with additional overhead to schedule the distribution of work. 
+* If there is little variation in the runtime of iteration static with a large chunk size minimizes overhead
+* In other cases it might make sense to reduce the chunk size or use dynamic or guided
+* Note that both dynamic and guided comes with additional overhead to schedule the distribution of work

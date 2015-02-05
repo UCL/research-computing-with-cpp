@@ -21,24 +21,24 @@ Don't do this in production code. Use a standard library function to integrate f
 * Shared: Only one shared variable
 * Firstprivate: Private variable but initialized with serial value
 
-### Details of example.
+### Details of example
 
-* Important that `x` and `sum` are private. 
-    - Try making them shared and see what happens.
-* Note that the default is shared.
-    - Can be controlled with the default clause. 
-    - `default(none)` is safer.
-    - "Explicit is better that implicit".
-* We use a critical region to add safely without a race condition.
+* Important that `x` and `sum` are private
+    - Try making them shared and see what happens
+* Note that the default is shared
+    - Can be controlled with the default clause
+    - `default(none)` is safer
+    - "Explicit is better that implicit"
+* We use a critical region to add safely without a race condition
 
 ### Reduction
 
-* Aggregating a result from multiple threads with a single mathematical operation.
-* Is a very common pattern.
-* OpenMP has build in support for doing this. 
-* Simplifies the code and avoids the explicit critical region.
-* Easier to write and may perform better. 
+* Aggregating a result from multiple threads with a single mathematical operation
+* Is a very common pattern
+* OpenMP has build in support for doing this
+* Simplifies the code and avoids the explicit critical region
+* Easier to write and may perform better    
 
-### Reduction example.
+### Reduction example
 
 {{cppfrag('05','forloop/openmpforloopreduction.cc')}}

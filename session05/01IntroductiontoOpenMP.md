@@ -26,27 +26,29 @@ title: Introduction to OpenMP
 * A master thread starts executing the code.
 * Sections of the code is marked as parallel
     - A set of threads are forked and used together with the master thread
-    - When the parallel block ends the threads are killed or put to sleep.
+    - When the parallel block ends the threads are killed or put to sleep
 
 ### Typical use cases
 
-* A loop with independent iterations.
-* A significant part of the execution time. Remember Amdahl's law
-* More complicated if an iteration depends on the previous. 
+* A loop with independent iterations
+* Hopefully a significant part of the execution time
+* Remember Amdahl's law
+* More complicated if an iterations have dependencies
 
 ### OpenMP basic syntax
+
 * Annotate code with `#pragma omp ...`
     - This instruct the compiler in how to parallize the code
-    - `#pragma`s are a instructions to the compiler. 
-    - Not part of the language.
-    - I.e. `#pragma once` alternative to include guards.
-    - Compiler will usually ignore pragmas that it doesn't understand. 
+    - `#pragma`s are a instructions to the compiler 
+    - Not part of the language
+    - I.e. `#pragma once` alternative to include guards
+    - Compiler will usually ignore pragmas that it doesn't understand
     - All OpenMP pragmas start with `#pragma omp`
-* OpenMP must typically be activated when compiling code.
+* OpenMP must typically be activated when compiling code
 
 ### OpenMP library
 
-* OpenMP library.
+* OpenMP library:
     - It provides utility functions.
     - `omp_get_num_threads()` ...
     - Use with `#include <omp.h>`
@@ -66,17 +68,17 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 {{cppfrag('05','hello/HelloOpenMP.cc')}}
 
-* `#pragma omp parallel` marks a block is to be run in parallel.
-* In this case all threads do the same.
-* No real work sharing.
+* `#pragma omp parallel` marks a block is to be run in parallel
+* In this case all threads do the same
+* No real work sharing
 
 ### Issues with this example
 
 * `std::cout` is not thread safe. Output from different threads may be mixed
     - Try running the code
     - Mixed output?
-* All threads call omp_get_num_threds() with the same result.
-    - Might be wasteful if this was a slow function.
+* All threads call `omp_get_num_threds()` with the same result
+    - Might be wasteful if this was a slow function
     - Everybody stores a copy of numthreads
     - Waste of memory
 
@@ -86,23 +88,23 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 ### Improvements:
 
-* Use `#pragma omp critical` to only allow one thread to write at a time.
-    - Comes with a performance penalty since only one thread is running this code at a time.
-* Use Preprocessor `#ifdef _OPENMP` to only include code if OpenMP is enabled. 
-    - Code works both with and without OpenMP.
-* Variables defined outside parallel regions.
-    - Must be careful to tell OpenMP how to handle them.
+* Use `#pragma omp critical` to only allow one thread to write at a time
+    - Comes with a performance penalty since only one thread is running this code at a time
+* Use Preprocessor `#ifdef _OPENMP` to only include code if OpenMP is enabled
+    - Code works both with and without OpenMP
+* Variables defined outside parallel regions
+    - Must be careful to tell OpenMP how to handle them
     - `shared`, `private`, `first private`
-    - More about this later.
+    - More about this later
 * `#pragma omp single`
     - Only one thread calls `get_num_threds()`
 
 
 ### References
 
-[OpenMP homepage][OpenMPhomepage]
-[OpenMP cheat sheet][OpenMPcheatsheet]
-[OpenMP specifications][OpenMPSpecs]
+* [OpenMP homepage][OpenMPhomepage]
+* [OpenMP cheat sheet][OpenMPcheatsheet]
+* [OpenMP specifications][OpenMPSpecs]
 
 
 
