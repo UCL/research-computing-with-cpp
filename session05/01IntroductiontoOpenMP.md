@@ -105,4 +105,5 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 [OpenMPhomepage]: http://openmp.org/ 
 [OpenMPcheatsheet]: http://openmp.org/mp-documents/OpenMP-4.0-C.pdf
+[OpenMPSpecs]: http://www.openmp.org/mp-documents/OpenMP4.0.0.pdf
 [ClangOpenMP]: http://clang-omp.github.io/

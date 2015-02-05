@@ -10,11 +10,11 @@ int fib(int n)
     int x;
     int y;
     const int tune = 40;
-    #pragma omp task firstprivate(n) shared(x) if( n > tune)
+    #pragma omp task firstprivate(n) shared(x)
     {
         x = fib(n-1);
     }
-    #pragma omp task firstprivate(n) shared(y) if( n > tune)
+    #pragma omp task firstprivate(n) shared(y)
     {
        y = fib(n-2);
     }
@@ -28,7 +28,7 @@ int main(int argc, char ** argv)
     #ifdef _OPENMP
     omp_set_dynamic(0);
     #endif
-    const int num = 45;
+    const int num = 20;
     int a;
     #pragma omp parallel shared(a)
     {
