@@ -7,18 +7,18 @@ title: Introduction to OpenMP
 ### OpenMP
 
 * Shared memory only parallelization
-* UMA or NUMA architecture
-* Useful for parallelization on one cluster node
-* MPI next week for inter node parallelization
+* UMA or NUMA architectures
+* Useful for parallelization on a single cluster node
+* MPI next week for inter-node parallelization
 * Can write hybrid code with both OpenMP and MPI
 
 ### About OpenMP
 
-* Extensions of existing programming languages. 
+* Extensions of existing programming languages.
+* Standardized by international [committee][OpenMPhomepage]
 * Support for Fortran, C and C++
 * C/C++ uses the same syntax
 * Fortran is slightly different
-
 
 ### How it works
 
@@ -26,20 +26,23 @@ title: Introduction to OpenMP
 * A master thread starts executing the code.
 * Sections of the code is marked as parallel
     - A set of threads are forked and used together with the master thread
-    - When the parallel block ends the threads are killed.
-* Typical simple use case:
-    - A loop with independent iterations.
-    - A significant part of the execution time. Remember Amdahl's law
-    - More complicated if an iteration depends on the previous. 
+    - When the parallel block ends the threads are killed or put to sleep.
+
+### Typical use cases
+
+* A loop with independent iterations.
+* A significant part of the execution time. Remember Amdahl's law
+* More complicated if an iteration depends on the previous. 
 
 ### OpenMP basic syntax
 * Annotate code with `#pragma omp ...`
     - This instruct the compiler in how to parallize the code
-    - `#pragma`s are a instructions to the compiler, not part of the language.
+    - `#pragma`s are a instructions to the compiler. 
+    - Not part of the language.
     - I.e. `#pragma once` alternative to include guards.
     - Compiler will usually ignore pragmas that it doesn't understand. 
     - All OpenMP pragmas start with `#pragma omp`
-* OpenMP must typically be activated for the compiler.
+* OpenMP must typically be activated when compiling code.
 
 ### OpenMP library
 
@@ -99,7 +102,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 [OpenMP homepage][OpenMPhomepage]
 [OpenMP cheat sheet][OpenMPcheatsheet]
-
+[OpenMP specifications][OpenMPSpecs]
 
 
 

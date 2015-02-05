@@ -11,3 +11,4 @@ title: Shared memory parallelism
 * Safety, locks and races
 * Task-oriented parallelism
 * Load balancing
+* OpenMP alternatives

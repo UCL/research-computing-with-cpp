@@ -9,6 +9,7 @@ int main(int argc, char ** argv)
         int numthreads = 0;
         threadnum = omp_get_thread_num();
         numthreads = omp_get_num_threads();
-        std::cout << "Hello World, I am " << threadnum << " of " << numthreads << std::endl;
+        std::cout << "Hello World, I am " << threadnum 
+            << " of " << numthreads << std::endl;
     }
 }

@@ -1,3 +1,5 @@
+/// "fibfunction"
+
 #include <iostream>
 #ifdef _OPENMP
 #include <omp.h>
@@ -22,6 +24,8 @@ int fib(int n)
     
     return x + y;
 }
+
+/// "mainfunction"
 
 int main(int argc, char ** argv)
 {

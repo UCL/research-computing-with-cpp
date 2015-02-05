@@ -9,12 +9,19 @@ title: Parallelizing loops with OpenMP
 
 
 Integrate: 
-$\pi = \int_0^1 \frac{4}{1+x^2} \mathrm{d}x$
+$\int_0^1 \frac{4}{1+x^2} \mathrm{d}x=\pi$
 
 Don't do this in production code. Use a standard library function to integrate functions.
 {{cppfrag('05','forloop/openmpforloop.cc')}}
 
-### Details
+
+### Variable scope
+
+* Private: Each thread has it's own copy
+* Shared: Only one shared variable
+* Firstprivate: Private variable but initialized with serial value
+
+### Details of example.
 
 * Important that `x` and `sum` are private. 
     - Try making them shared and see what happens.
