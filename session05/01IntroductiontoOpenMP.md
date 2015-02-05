@@ -6,6 +6,34 @@ title: Introduction to OpenMP
 
 ### OpenMP
 
+* Shared memory only parallelization
+* UMA or NUMA architecture
+* Useful for parallelization on one cluster node
+* Will see MPI next week for across node parallelization
+* Can write hybrid code with both OpenMP and MPI
+
+### About OpenMP
+
+* Extensions of existing programming languages. 
+* Support for Fortran, C and C++
+* C/C++ uses the same syntax
+* Fortran is slightly different
+
+
+### How it works
+
+* Thread based parallelization
+* A master thread executes all the code
+* Sections of the code is marked as parallel
+    - A set of threads are forked and used along the master thread
+    - When the parallel block ends the threads are killed.
+* Typical parallelization.
+    - A loop in the code needs to run many independent 
+
+
+
+
+### Some more
 * Annotate code with `#pragma omp ...`
     - This instruct the compiler in how to parallize the code
     - `#pragma` is a general way of providing instructions to the compiler
@@ -34,7 +62,7 @@ Simple example.
 
 {{cppfrag('05','hello/HelloOpenMPSafe.cc')}}
 
-Improvements:
+### Improvements:
 
 * Use `#pragma omp critical` to only allow one thread to write at a time.
     - Comes with a performance penalty since only one thread is running this code at a time.
@@ -44,12 +72,13 @@ Improvements:
     - Must be careful to tell OpenMP how to handle them.
     - `shared`, `private`, `first private` etc.
 * `#pragma omp single`
-    - Only one thread calls `get_num_threds()`
+    - Only one thread calls `get_num_threds()`  
 
 
 ### References
 
 [OpenMP homepage][OpenMPhomepage]
+
 [OpenMP cheat sheet][OpenMPcheatsheet]
 
 
