@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# dexy output
+output
+output-site
+.dexy
+.trash

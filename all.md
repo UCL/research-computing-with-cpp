@@ -32,5 +32,11 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session04/03Usage.md']}}
 {{d['session04/04JobScheduling.md']}}
 {{d['session04/05FurtherReading.md']}}
-
-
+\chapter{Shared memory parallelism}
+{{d['session05/index.md']}}
+{{d['session05/01IntroductiontoOpenMP.md']}}
+{{d['session05/02Loops.md']}}
+{{d['session05/03CriticalLocksRaces.md']}}
+{{d['session05/04Tasks.md']}}
+{{d['session05/05SchedulingLoadBalancing.md']}}
+{{d['session05/06OpenMPAlternatives.md']}}
