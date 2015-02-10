@@ -99,6 +99,16 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 * `#pragma omp single`
     - Only one thread calls `get_num_threds()`
 
+### Running OpenMP code for the course
+
+If you have a multicore computer with GCC or other suitable compiler you can run it locally.
+
+Otherwise you can use the Intel compilers on Legion:
+
+* `ssh username@legion.rc.ucl.ac.uk`
+* `module load compilers/intel/13.0`
+* `icpc -openmp -O3 mycode.cc`
+
 
 ### References
 
