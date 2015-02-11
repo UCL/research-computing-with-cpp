@@ -103,11 +103,11 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 If you have a multicore computer with GCC or other suitable compiler you can run it locally.
 
-Otherwise you can use the Intel compilers on Legion:
+Otherwise you can use GCC on aristotle
 
-* `ssh username@legion.rc.ucl.ac.uk`
-* `module load compilers/intel/13.0`
-* `icpc -openmp -O3 mycode.cc`
+* `ssh username@aristotle.rc.ucl.ac.uk`
+* `module load GCC/4.7.2`
+* `g++ -fopenmp -O3 mycode.cc`
 
 
 ### References
