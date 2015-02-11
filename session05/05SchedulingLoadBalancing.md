@@ -38,7 +38,7 @@ OpenMP offers a number of different strategies for
 load balancing set by the following key words. 
 The default is static with one chunk per thread. 
 
-* `static: Iterations are divided into chunks of size `chunk_size` and assigned to threads in round-robin order
+* `static:` Iterations are divided into chunks of size `chunk_size` and assigned to threads in round-robin order
 * `dynamic`: Each thread executes a chunk of iterations then requests another chunk until none remain
 * `guided`: Like dynamic but the chunk size depends on the number of remaining iterations
 * `auto`: The decision regarding scheduling is delegated to the compiler and/or runtime system

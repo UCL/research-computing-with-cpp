@@ -21,6 +21,8 @@ title: Alternatives to OpenMP
 Simple example: 
 {{cppfrag('05','cppthreads/cppthreadsdemo.cc')}}
 
+### Details
+
 * Same problem as first OpenMP example. `std::cout` is not thread safe 
     - Use mutex and locks
 * Queues
