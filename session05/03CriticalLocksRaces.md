@@ -58,6 +58,7 @@ done with a piece of work before moving on. Barriers synchronizes threads.
 Sometimes the critical regions are not flexible enough to implement your algorithm.
 
 Examples:
+
 * Need to prevent two different pieces of code from running at the same time. 
 * Need to lock only a fraction of a large array.
 
