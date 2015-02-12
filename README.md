@@ -13,7 +13,7 @@ To build and test:
 
 ``` bash
 cd <development area>
-git clone https://github.com/UCL-RITS/indigo-dexy.git
+git clone https://github.com/UCL-RITS/indigo-dexy.git indigo
 cd indigo
 git checkout dexy
 cd ..
