@@ -40,6 +40,9 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session05/04Tasks.md']}}
 {{d['session05/05SchedulingLoadBalancing.md']}}
 {{d['session05/06OpenMPAlternatives.md']}}
-
 \chapter{Distributed memory parallellism}
 {{d['session06/index.md']}}
+{{d['session06/01practical.md']}}
+{{d['session06/02PointToPoint.md']}}
+{{d['session06/03collective.md']}}
+{{d['session06/04advanced.md']}}

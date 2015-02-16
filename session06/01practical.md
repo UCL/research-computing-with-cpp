@@ -43,12 +43,34 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
   Wrappers point to header file location and link to right libraries.
   MPI program can be (easily) compiled by substituting ``(g++|icc) -> mpiCC``
 
-* in cmake
+### Hello, world!: hello.cc
 
-~~~{.cmake}
-find_package(MPI REQUIRED)
+{{cppfrag('06','hello.cc')}}
 
-include_directories(${MPI_INCLUDE_PATH})
-target_library(some_mpi_target ${MPI_C_LIBRARIES})
-~~~
+### Hello, world!: CMakeLists.txt
 
+``` CMake
+{{d['session06/cpp/CMakeLists.txt|idio|t']}}
+```
+
+### Hello, world!: compiling and running
+
+On aristotle.rc.ucl.ac.uk:
+
+- load modules:
+  ``module load GCC/4.7.2 OpenMPI/1.6.4-GCC-4.7.2``
+  ``module load cmake/2.8.10.2``
+- create files "hello.cc" and "CMakeLists.txt" in some directory
+- create build directory ``mkdir build && cd build``
+- run cmake and make ``cmake .. && make``
+- run the code ``mpiexec -n 4 hello``
+
+### Hello, world! dissected
+
+- MPI calls *must* appear beween ``MPI_Init`` and ``MPI_Finalize``
+- Groups of processes are handled by a communicator. `MPI_COMM_WORLD` handles
+    the group of all processes.
+    ![](session06/figures/world.png)
+
+- Size of group and rank (order) of process in group
+- By *convention*, process of rank 0 is *special* and called *root*
