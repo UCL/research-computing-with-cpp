@@ -13,21 +13,19 @@ int main(int argc, char * argv[]) {
     bool is_apple = rank % 3 == 1;
     MPI_Comm_split(MPI_COMM_WORLD, is_apple ? 0: 1, rank, &apple_orange);
 
-    int new_rank, new_size;
-    MPI_Comm_rank(apple_orange, &new_rank);
-    MPI_Comm_size(apple_orange, &new_size);
+    int nrank, nsize;
+    MPI_Comm_rank(apple_orange, &nrank);
+    MPI_Comm_size(apple_orange, &nsize);
 
     if(is_apple)
        std::cout << "I am an apple, says process "
-           << new_rank << "/" << new_size
-           << " (" << rank << "/" << size << ")\n";
+           << nrank << "/" << nsize << " (" << rank << "/" << size << ")\n";
 
     MPI_Barrier(MPI_COMM_WORLD);
 
     if(not is_apple)
        std::cout << "I am an orange, says process "
-           << new_rank << "/" << new_size
-           << " (" << rank << "/" << size << ")\n";
+           << nrank << "/" << nsize << " (" << rank << "/" << size << ")\n";
 
     /// "dummy"
     MPI_Finalize();
