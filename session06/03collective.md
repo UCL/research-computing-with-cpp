@@ -147,10 +147,9 @@ Exercise:
 
 ### Splitting the communicators
 
-Groups of processes can be split, to make it easier to work with parallel
-tasks:
+Groups of processes can be split according to *color*:
 
-![]("session06/figures/split.png")
+![](session06/figures/split)
 
 ``` cpp
 int MPI_Comm_split(MPI_Comm comm, int color, int key, MPI_Comm *newcomm)
@@ -172,10 +171,15 @@ The following splits processes into two groups with ratio 1:2.
 Any of the previously seen operations can be carried out within a single group.
 
 
+### Splitting communicators: Exercise
+
+Exercise:
+
+- use "-rank" as the key: what happens?
+- split into three groups with ratios 1:1:2
+
+
 ### All to all operation solution
 
 {{cppfrag("06", "all2all.cc", segment="functions")}}
 {{cppfrag("06", "all2all.cc", segment="main")}}
-
-
-

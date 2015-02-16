@@ -44,7 +44,7 @@ d. message received by 1        ![](session06/figures/ssyncA)
 ### Non-blocking send
 
 -------------------------------  -----------------------------
-a. 0, 1, and MPI stand ready:    ![](session06/figures/sync0) 
+a. 0, 1, and MPI stand ready:    ![](session06/figures/async0) 
 b. 0 leaves message in safebox   ![](session06/figures/async1)
 c. transit                       ![](session06/figures/asyncT)
 d. message received by 1         ![](session06/figures/asyncA)

@@ -49,9 +49,7 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 
 ### Hello, world!: CMakeLists.txt
 
-``` CMake
-{{d['session06/cpp/CMakeLists.txt|idio|t']}}
-```
+{{cmakefrag('06', '', segment="hello")}}
 
 ### Hello, world!: compiling and running
 
