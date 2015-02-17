@@ -49,7 +49,17 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 
 ### Hello, world!: CMakeLists.txt
 
-{{cmakefrag('06', '', segment="hello")}}
+``` CMake
+cmake_minimum_required(VERSION 2.8)
+
+find_package(MPI REQUIRED)
+
+include_directories(${MPI_C_INCLUDE_PATH})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${MPI_C_COMPILE_FLAGS}")
+
+add_executable(hello hello.cc)
+target_link_libraries(hello ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+```
 
 ### Hello, world!: compiling and running
 
