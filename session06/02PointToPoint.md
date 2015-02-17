@@ -109,14 +109,11 @@ return        Error tag
 
 ### Example: Blocking synchronous example
 
-Insert into the hello world example:
+Inside a new section in the test framework:
 
-{{cppfrag("06", "point2point.cc", segment="Sends")}}
-{{cppfrag("06", "point2point.cc", segment="Receive")}}
+{{cppfrag("06", "point2point.cc", segment="send")}}
 
-and
-
-{{cppfrag("06", "point2point.cc", segment="sendAndReceive")}}
+Common bug: Set both sender and receiver to 0. What happens?
 
 ### Example: Causing a dead-lock
 

@@ -72,3 +72,10 @@ On aristotle.rc.ucl.ac.uk:
 
 - Size of group and rank (order) of process in group
 - By *convention*, process of rank 0 is *special* and called *root*
+
+### MPI with CATCH
+
+Running MPI unit-tests requires MPI_Init and MPI_Failure before and after the
+test framework (*not* inside the tests).
+
+{{cppfrag("06", "helloCatch.cc")}}

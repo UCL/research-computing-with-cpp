@@ -168,8 +168,6 @@ The following splits processes into two groups with ratio 1:2.
 
 {{cppfrag("06", "split.cc", "main")}}
 
-Any of the previously seen operations can be carried out within a single group.
-
 
 ### Splitting communicators: Exercise
 
@@ -177,6 +175,7 @@ Exercise:
 
 - use "-rank" as the key: what happens?
 - split into three groups with ratios 1:1:2
+- use one of the collective operation on a single group
 
 
 ### All to all operation solution
