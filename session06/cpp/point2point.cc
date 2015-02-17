@@ -13,7 +13,7 @@ TEST_CASE("Point to point communications") {
       std::string const peace = "I come in peace!";
       if(rank == 0) {
          int const error = MPI_Ssend(
-           (void*) peace.c_str(), peace.size(), MPI_CHAR, 1, 42, MPI_COMM_WORLD);
+           (void*) peace.c_str(), peace.size() + 1, MPI_CHAR, 1, 42, MPI_COMM_WORLD);
          REQUIRE(error ==  MPI_SUCCESS);
       }
       if(rank == 1) {

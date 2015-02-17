@@ -82,15 +82,15 @@ return        Error tag
 
 ### Example of collective operation (1)
 
-insert at top of the hello world example:
+Insert into a new CATCH section the following commands
 
-{{cppfrag("06", "collective.cc", segment="functions")}}
+{{cppfrag("06", "collective.cc", segment="broadcast")}}
 
 ### Example of collective operations (2)
 
-And, insert this somewhere between ``MPI_Init`` and ``MPI_Finalize``
+And then insert the following right after it
 
-{{cppfrag("06", "collective.cc", segment="main")}}
+{{cppfrag("06", "collective.cc", segment="tests")}}
 
 ### Causing deadlocks
 
@@ -99,18 +99,18 @@ Explain why the following two codes fail.
 1. Replace the loop in the last fragment with:
 
 ``` Cpp
-for(int i(2); i < size; ++i) ...
+for(int i(1); i < size; ++i) ...
 ```
 
-2. Replace the whole fragment with:
+2. Refactor and put everything inside the loop
 
 ``` Cpp
+std::string const peace = "I come in peace!";
+std::string message;
 for(int i(0); i < size; ++i) {
-    if(i == 0 and rank == 0)
-        root_broadcasts("Listen up folks.");
-    else if(rank == i)
-        std::cout << "I am " << rank
-            << ", and I approve this message: " << others_get_it() << "\n";
+    if(i == 0 and rank == 0) { /* broadcast */ }
+    else if(rank == i) { /* broadcast */ }
+    if(rank == i) { /* testing bit */ }
     MPI_Barrier(MPI_COMM_WORLD);
 }
 ```
@@ -178,7 +178,7 @@ Exercise:
 - use one of the collective operation on a single group
 
 
-### All to all operation solution
+### Scatter operation solution
 
-{{cppfrag("06", "all2all.cc", segment="functions")}}
-{{cppfrag("06", "all2all.cc", segment="main")}}
+{{cppfrag("06", "scatter.cc", segment="scatter")}}
+

@@ -115,6 +115,21 @@ Inside a new section in the test framework:
 
 Common bug: Set both sender and receiver to 0. What happens?
 
+### Example: Do you know your C vs C++ strings?
+
+Why the ``+1``?
+
+``` cpp
+int const error = MPI_Ssend(
+  (void*) peace.c_str(), peace.size() + 1, MPI_CHAR, 1, 42, MPI_COMM_WORLD);
+```
+
+. . .
+
+Because C and C++ ``char const*`` strings are null-terminated to indicate the
+string is finished, which adds an extra character. However, ``std::string``
+abstracts it away. And so its lenght does *not* include the null-termination.
+
 ### Example: Causing a dead-lock
 
 Watch out for order of send and receive!

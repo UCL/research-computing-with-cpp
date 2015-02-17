@@ -19,8 +19,8 @@ target_link_libraries(point2point ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
 add_executable(collective collective.cc)
 target_link_libraries(collective ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
 
-add_executable(all2all all2all.cc)
-target_link_libraries(all2all ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+add_executable(scatter scatter.cc)
+target_link_libraries(scatter ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
 
 add_executable(split split.cc)
 target_link_libraries(split ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
