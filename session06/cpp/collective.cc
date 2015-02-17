@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
-TEST_CASE("Collective communications") {
+TEST_CASE("Point to point communications") {
 
     int rank, size;
     MPI_Comm_rank (MPI_COMM_WORLD, &rank);
@@ -19,7 +19,7 @@ TEST_CASE("Collective communications") {
              (void*) peace.c_str(), peace.size() + 1, MPI_CHAR, 0, MPI_COMM_WORLD);
       } else {
           char buffer[256];
-          int const error = MPI_Bcast(buffer, 256, MPI_CHAR, 0, MPI_COMM_WORLD);
+          error = MPI_Bcast(buffer, 256, MPI_CHAR, 0, MPI_COMM_WORLD);
           message = std::string(buffer);
       }
 

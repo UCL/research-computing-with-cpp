@@ -28,6 +28,13 @@ data in 0, 1, 2           ![](session06/figures/collective)
 data from 1, 2 sent to 0  ![](session06/figures/gather1)
 ------------------------- ---------------------------------
 
+### Scatter: one to many
+
+------------------------- ---------------------------------
+data in 0                 ![](session06/figures/gather1)
+data from 0 in 0, 1, 2    ![](session06/figures/collective)
+------------------------- ---------------------------------
+
 ### All to All: many to many
 
 ------------------  -------------------------------
