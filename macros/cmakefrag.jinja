@@ -1,7 +1,11 @@
 {% macro cmakefrag(session, file, segment=False) %}
-``` cpp
-{% if segment %}
+``` CMake
+{% if segment and file != '' %}
 {{d['session'+session+'/cpp/'+file+'/CMakeLists.txt|idio|t'][segment]}}
+{% elif segment and file == '' %}
+{{d['session'+session+'/cpp/CMakeLists.txt|idio|t'][segment]}}
+{% elif (not segment) and file == '' %}
+{{d['session'+session+'/cpp/CMakeLists.txt|idio|t']}}
 {% else %}
 {{d['session'+session+'/cpp/'+file+'/CMakeLists.txt|idio|t']}}
 {% endif %}
