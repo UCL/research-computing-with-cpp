@@ -58,6 +58,12 @@ cpps:
     - .cc|idio|t
     - .h|idio|t
 
+cs:
+    - .c|idio|t
+
+cus:
+    - .cu|idio|t
+
 cmakes:
     - '**/CMakeLists.txt'
     - '**/CMakeLists.txt|idio|t'
@@ -101,6 +107,8 @@ graphs:
 inputs:
     - sources
     - cpps
+    - cs
+    - cus
     - assets
     - data
     - sequence_charts
