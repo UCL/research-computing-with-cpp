@@ -6,30 +6,32 @@
 #define ITERATIONS 1000
 
 int main(int argc, char * argv[]) {
-    int n, incx = 1, incy = 1;
+    int n = 10000, incx = 1, incy = 1;
 
-    if (argc < 2 || argc > 4) {
-        fprintf(stderr, "Usage: %s n [incx=1] [incy=1]\n", argv[0]);
+    if (argc < 1 || argc > 4) {
+        fprintf(stderr, "Usage: %s [n=10000 [incx=1 [incy=1]]]\n", argv[0]);
         return -1;
     }
 
-    if (sscanf(argv[1], "%d", &n) != 1) {
-        fprintf(stderr, "Failed to parse n from '%s'\n", argv[1]);
-        return -2;
-    }
+    if (argc > 1) {
+		if (sscanf(argv[1], "%d", &n) != 1) {
+			fprintf(stderr, "Failed to parse n from '%s'\n", argv[1]);
+			return -2;
+		}
 
-    if (argc > 2) {
-        if (sscanf(argv[2], "%d", &incx) != 1) {
-            fprintf(stderr, "Failed to parse incx from '%s'\n", argv[2]);
-            return -2;
-        }
+		if (argc > 2) {
+			if (sscanf(argv[2], "%d", &incx) != 1) {
+				fprintf(stderr, "Failed to parse incx from '%s'\n", argv[2]);
+				return -2;
+			}
 
-        if (argc > 3) {
-            if (sscanf(argv[3], "%d", &incy) != 1) {
-                fprintf(stderr, "Failed to parse incy from '%s'\n", argv[3]);
-                return -3;
-            }
-        }
+			if (argc > 3) {
+				if (sscanf(argv[3], "%d", &incy) != 1) {
+					fprintf(stderr, "Failed to parse incy from '%s'\n", argv[3]);
+					return -3;
+				}
+			}
+		}
     }
 
     printf("n = %d, incx = %d, incy = %d\n", n, incx, incy);

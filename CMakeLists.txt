@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.8)
 project(ResearchComputingWithCPP)
 add_subdirectory(session01/cpp)
 add_subdirectory(session02/cpp)

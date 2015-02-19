@@ -1,6 +1,8 @@
 #include "saxpy.h"
 
-int saxpy_fast(int n, float a, const float * x, int incx, float * y, int incy) {
+/// "saxpy_fast"
+int saxpy_fast(int n, float a, const float * restrict x, int incx,
+		       float * restrict y, int incy) {
     if (n < 0)
         return 1;
 
