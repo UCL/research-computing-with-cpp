@@ -49,6 +49,7 @@ int Smooth::Size(){
   return sizex*sizey;
 }
 
+/// "Disk_Smoothing"
 double Smooth::Disk(distance radius) const {
   if (radius>inner+smoothing/2) {
     return 0.0;
@@ -59,6 +60,7 @@ double Smooth::Disk(distance radius) const {
   return (inner+smoothing/2-radius)/smoothing;
 }
 
+/// "Ring_Smoothing"
 double Smooth::Ring(distance radius) const {
   if (radius<inner-smoothing/2) {
     return 0.0;
@@ -89,6 +91,7 @@ const std::vector<std::vector<density> > & Smooth::Field() const {
   return *field;
 };
 
+/// "Torus_Difference"
 int Smooth::TorusDifference(int x1, int x2, int size) const {
     int straight=std::abs(x2-x1);
     int wrapleft=std::abs(x2-x1+size);
@@ -100,6 +103,7 @@ int Smooth::TorusDifference(int x1, int x2, int size) const {
     }
 }
 
+/// "Radius"
 double Smooth::Radius(int x1,int y1,int x2,int y2) const {
   int xdiff=TorusDifference(x1,x2,sizex);
   int ydiff=TorusDifference(y1,y2,sizey);

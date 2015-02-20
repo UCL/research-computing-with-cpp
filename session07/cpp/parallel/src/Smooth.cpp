@@ -34,6 +34,7 @@ Smooth::Smooth(int sizex,
     outer(inner*3),
     smoothing(1.0),
     frame(0),
+    /// "Halo_Definitions"
     range(outer+smoothing/2),
     local_x_size(sizex/mpi_size),
     local_x_size_with_halo(local_x_size+2*range),
@@ -43,6 +44,7 @@ Smooth::Smooth(int sizex,
     local_x_max_needed_left(2*range),
     local_x_max_calculate(range+local_x_size),
     local_x_min_needed_right(local_x_size),
+    /// "Field_Initialisations"
     field1(new density[local_x_size_with_halo*sizey]),
     field2(new density[local_x_size_with_halo*sizey]),
     field(&field1),
@@ -127,6 +129,7 @@ density Smooth::transition(filling disk, filling ring) const {
   return Sigmoid(ring,t1,smoothing_ring)*(1.0-Sigmoid(ring,t2,smoothing_ring));
 }
 
+/// "Wrap_Access"
 density Smooth::Field(int x,int y) const {
   return (*field)[sizey*x+y];
 };
@@ -146,6 +149,7 @@ void Smooth::SeedField(int x, int y, density value){
   }
 }
 
+/// "Torus_Difference"
 int Smooth::TorusDifference(int x1, int x2, int size) {
     int straight=std::abs(x2-x1);
     int wrapleft=std::abs(x2-x1+size);
@@ -226,7 +230,7 @@ void Smooth::QuickUpdate(){
   QuickUpdateStripe(local_x_min_calculate,local_x_max_calculate);
   SwapFields();
 }
-
+/// "Main_Loop"
 void Smooth::QuickUpdateStripe(int from_x,int to_x) {
   for (int x=from_x;x<to_x;x++) {
     for (int y=0;y<sizey;y++) {
@@ -252,7 +256,7 @@ void Smooth::QuickUpdateStripe(int from_x,int to_x) {
   }
 }
 
-/// "Swap_fields"
+/// "Swap_Fields"
 void Smooth::SwapFields(){
   t_field * fieldTemp;
   fieldTemp=field;
@@ -307,6 +311,7 @@ int Smooth::Frame() const {
   return frame;
 }
 
+/// "Buffer_Left"
 void Smooth::BufferLeftHaloForSend(){
   for (int x=local_x_min_calculate; x<local_x_min_calculate+range;x++){
     for (int y=0; y<sizey;y++){
@@ -314,7 +319,7 @@ void Smooth::BufferLeftHaloForSend(){
     }
   }
 }
-
+/// "Buffer_Right"
 void Smooth::BufferRightHaloForSend(){
   for (int x=local_x_max_calculate-range; x<local_x_max_calculate;x++){
     for (int y=0; y<sizey;y++){
@@ -322,7 +327,7 @@ void Smooth::BufferRightHaloForSend(){
     }
   }
 }
-
+/// "Unpack_Left"
 void Smooth::UnpackLeftHaloFromReceive(){
   for (int x=0; x<range;x++){
     for (int y=0; y<sizey;y++){
@@ -330,7 +335,7 @@ void Smooth::UnpackLeftHaloFromReceive(){
     }
   }
 }
-
+/// "Unpack_Right"
 void Smooth::UnpackRightHaloFromReceive(){
   for (int x=local_x_max_calculate; x<local_x_size_with_halo;x++){
     for (int y=0; y<sizey;y++){
@@ -339,6 +344,7 @@ void Smooth::UnpackRightHaloFromReceive(){
   }
 }
 
+/// "Communicate_Local"
 void Smooth::CommunicateLocal(Smooth &left, Smooth &right){
   BufferLeftHaloForSend();
   std::memcpy(left.receive_transport_buffer,send_transport_buffer,sizeof(density)*range*sizey);
@@ -348,6 +354,8 @@ void Smooth::CommunicateLocal(Smooth &left, Smooth &right){
   right.UnpackLeftHaloFromReceive();
 }
 
+
+/// "Buffered_Send"
 void Smooth::CommunicateMPI(){
   BufferLeftHaloForSend();
   MPI_Sendrecv(send_transport_buffer,range*sizey,MPI_DOUBLE,left,rank,
@@ -361,6 +369,7 @@ void Smooth::CommunicateMPI(){
   UnpackLeftHaloFromReceive();
 }
 
+/// "Unbuffered_Send"
 void Smooth::CommunicateMPIUnbuffered(){
   MPI_Sendrecv((*field)+sizey*range,range*sizey,MPI_DOUBLE,left,rank,
       (*field)+sizey*local_x_max_calculate, range*sizey,MPI_DOUBLE,right,right,
@@ -370,43 +379,48 @@ void Smooth::CommunicateMPIUnbuffered(){
       MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 }
 
+/// "Define_Datatype"
 void Smooth::DefineHaloDatatype(){
   MPI_Type_contiguous(sizey*range,MPI_DOUBLE,&halo_type);
   MPI_Type_commit(&halo_type);
 }
 
+/// "Use_Datatype"
 void Smooth::CommunicateMPIDerivedDatatype(){
-  MPI_Sendrecv(                       *field+sizey*local_x_min_calculate,1,halo_type,left,rank,
-               *field+sizey*local_x_max_calculate,1,halo_type,right,right,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+  MPI_Sendrecv(*field+sizey*local_x_min_calculate,1,halo_type,left,rank,
+               *field+sizey*local_x_max_calculate,1,halo_type,right,right,
+               MPI_COMM_WORLD,MPI_STATUS_IGNORE);
   MPI_Sendrecv(*field+sizey*local_x_min_needed_right,1,halo_type,right,mpi_size+rank,
-                                      *field,1,halo_type,left,mpi_size+left,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+                                              *field,1,halo_type,left,mpi_size+left,
+                                              MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 }
 
+/// "Start_Asynchronous_Left"
 void Smooth::InitiateLeftComms(){
   MPI_Isend(*field+sizey*local_x_min_calculate,1,halo_type,left,rank,MPI_COMM_WORLD,&request_left);
   MPI_Irecv(*field+sizey*local_x_max_calculate,1,halo_type,right,right,MPI_COMM_WORLD,&request_left);
 }
-
+/// "Start_Asynchronous_Right"
 void Smooth::InitiateRightComms(){
   MPI_Isend(*field+sizey*local_x_min_needed_right,1,halo_type,right,mpi_size+rank,MPI_COMM_WORLD,&request_right);
   MPI_Irecv(*field,1,halo_type,left,mpi_size+left,MPI_COMM_WORLD,&request_right);
 }
-
+/// "Resolve_Asynchronous_Left"
 void Smooth::ResolveLeftComms(){
   MPI_Wait(&request_left,MPI_STATUS_IGNORE);
 }
-
+/// "Resolve_Asynchronous_Right"
 void Smooth::ResolveRightComms(){
   MPI_Wait(&request_right,MPI_STATUS_IGNORE);
 }
-
+/// "Communicate_Asynchronously"
 void Smooth::CommunicateAsynchronously(){
   InitiateLeftComms();
   ResolveLeftComms();
   InitiateRightComms();
   ResolveRightComms();
 }
-
+/// "Update_Asynchronously"
 void Smooth::UpdateAndCommunicateAsynchronously(){
 
   InitiateLeftComms();

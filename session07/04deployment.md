@@ -45,7 +45,7 @@ recurses upward to look for this file, (Just like `git` looks for the `.git` fol
 
 If you know Python, writing fabric tasks is easy:
 
-fabfile.py:
+[fabfile.py](https://github.com/UCL/SmoothLifeExample/blob/parallel/deploy/legion.py):
 
 ``` python
 @task
@@ -72,6 +72,12 @@ generate the jobscript:
 
 the templating tool fills in anything in ${} from a variable in the fabric code.
 
+### Mako Template for Smooth Life
+
+```mako
+d['session07/cpp/parallel/deploy/legion.sh.mko']
+```
+
 ### Configuration files
 
 Avoid using lots of command line arguments to configure your program.
@@ -89,6 +95,7 @@ width: 200
 height: 100
 range: 5
 ```
+
 
 ### Results
 

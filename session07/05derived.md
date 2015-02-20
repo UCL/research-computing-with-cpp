@@ -12,9 +12,15 @@ arising from our use of `vector<vector< double > >`
 We can get around that by changing to a flat 1-d array of memory, and storing the
 $(x,y)$ element at `Field[`$Mx+y$`]`. This works fine, especially if we refactor
 all access to get and update from the field into accessors, so we only need make
-the change in one place:
+the change in one place.
 
-\\ fragment
+### Wrap Access to the Field
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Wrap_Access')}}
+
+### Copy Directly without Buffers
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Unbuffered_Send')}}
 
 ### Defining a Halo Datatype
 
@@ -26,7 +32,13 @@ than as a series of `double`s.
 
 We can do this using an MPI Derived Datatype:
 
-\\ fragments
+### Declare Datatype 
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Define_Datatype')}}
+
+### Use Datatype 
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Use_Datatype')}}
 
 ### Strided datatypes
 

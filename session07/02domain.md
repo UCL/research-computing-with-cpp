@@ -62,7 +62,3 @@ perfect *weak* scaling (until network congestion or IO problems dominate).
 Any NONLOCAL communication, where the total amount of time for communication to take place grows
 as the number of processes does (such as a gather, which takes $p$, a reduction, like $ln(p)$,
 or an all-to-all, like $p^2$, means that perfect weak scaling can't be achieved.)
-
-### Scaling graphs for Smooth Life
-
-// Scaling graphs (weak and strong) go here.

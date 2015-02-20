@@ -92,3 +92,10 @@ Four levels deep:
 
 {{cppfrag('07','parallel/test/catch.cpp','Sigmoid_Test')}}
 
+###Distances wrap around a torus
+
+{{cppfrag('07','serial/src/Smooth.cpp','Torus_Difference')}}
+
+###Smoothed edge of ring and disk.
+
+{{cppfrag('07','serial/src/Smooth.cpp','Disk_Smoothing')}}

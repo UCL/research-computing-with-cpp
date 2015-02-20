@@ -35,8 +35,9 @@ To do this, we need to use asynchronous communication.
 
 ### Asyncronous MPI
 
-// Fragment
+{{cppfrag('07','parallel/src/Smooth.cpp','Start_Asynchronous_Left')}}
+{{cppfrag('07','parallel/src/Smooth.cpp','Resolve_Asynchronous_Left')}}
 
-### Observed Speedup
+### Implementation of Asynchronous Communication
 
-// Figure
+{{cppfrag('07','parallel/src/Smooth.cpp','Update_Asynchronously')}}

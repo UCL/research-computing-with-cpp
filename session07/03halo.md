@@ -24,12 +24,20 @@ Thus, each process now holds $N+2r$ cells:
 * $N \le x < N+r$, data which we calculate, which will form our **right neighbour's left halo**
 * $N+r \le x < N+2r$, the right halo.
 
+### Domains with a halo
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Halo_Definitions')}}
+
 ### Coding with a halo
 
 We will thus **update** the field only from $r$ to $N+r$, but we will **access** the field
 from $0$ to $N+2r$:
 
-// Fragment here.
+```cpp
+int from_x=0; int to_x=local_x_size_with_halo
+```
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Main_Loop')}}
 
 ### Transferring the halo
 
@@ -42,7 +50,9 @@ Fortunately, MPI provides `Sendrecv`: expressing that we want to do a blocking `
 one process while we simultaneously do a blocking `Recv` from another. Exactly what we need
 for pass-the-parcel.
 
-// Fragment here
+### Transferring the halo
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Buffered_Send')}}
 
 ### Noncontiguous memory
 
@@ -65,6 +75,25 @@ We'll look in a later section how this can be avoided.
 
 ### Buffering
 
-// Fragment here
+{{cppfrag('07','parallel/src/Smooth.cpp','Buffer_Left')}}
+{{cppfrag('07','parallel/src/Smooth.cpp','Unpack_Right')}}
 
+### Testing Communications
 
+We implement a copy of our buffers which doesn't use MPI:
+
+{{cppfrag('07','parallel/src/Smooth.cpp','Communicate_Local')}}
+
+which allows us to check our halos are all set up correctly.
+
+### Testing Communications
+
+We test that our copy works as expected:
+
+{{cppfrag('07','parallel/test/catch.cpp','Buffering')}}
+
+### Testing Communications
+
+We test that the MPI comms results are the same as serial
+
+{{cppfrag('07','parallel/test/catch_mpi.cpp','Check_Result_Parallel_Test')}}

@@ -121,7 +121,7 @@ TEST_CASE ("FillingFieldHasRangeofValues") {
   REQUIRE(min<0.2);
   REQUIRE(max>0.4);
 }
-
+/// "Buffering"
 TEST_CASE ("CommunicationBufferingFunctionsCorrectly") {
   Smooth smooth(200,100,5,0,2);
   Smooth smooth2(200,100,5,1,2);
