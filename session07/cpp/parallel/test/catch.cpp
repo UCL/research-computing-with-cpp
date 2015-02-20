@@ -63,7 +63,7 @@ TEST_CASE( "Smooth mathematical functions are correct","[Smooth]") {
     REQUIRE(Smooth::Sigmoid(10000,1.0,4.0) == 1.0);
     REQUIRE(std::abs(Smooth::Sigmoid(0.0,1.0,0.1)) < 0.001);
   }
-  // "Transition_test"
+  /// "Transition_test"
   SECTION ("Transition function is correct") {
     REQUIRE(std::abs(smooth.transition(1.0,0.3) - 1.0) <0.1);
     REQUIRE(smooth.transition(1.0,1.0)==0.0);
