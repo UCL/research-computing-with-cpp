@@ -57,6 +57,7 @@ assets:
   
 cpps:
     - .cc|idio|t
+    - .cpp|idio|t
     - .h|idio|t
 
 cmakes:

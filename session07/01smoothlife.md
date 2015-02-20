@@ -34,6 +34,8 @@ Smooth Life, proposed by Stephan Rafler, extends this to continuous variables:
 (The ring has outer radius 3*inner radius, so that the area ratio of 1:8 matches
 the grid version.)
 
+###Smooth Life
+
 * A point has some degree of aliveness.
 * Next timestep, a point's aliveness depends on these two integrals. ($F_{r}$ and $F_{d}$)
 * The new aliveness $S(F_{r},F{d})$ is a smoothly varying function such that:
@@ -73,4 +75,20 @@ step takes $MNr^2$ calculations: if we take all of these proportional as we "fin
 discretisation (a square domain, and a constant interaction distance in absolute units), the problem grows
 like $N^4$!
 
-So, let's parallelise it using MPI, and see how we get on...
+To make this faster, we'll need to parallelise with MPI. But let's look at a few interesting things
+about the serial implementation.
+
+###Main loop
+
+Four levels deep:
+
+{{cppfrag('07','serial/src/Smooth.cpp','Main_Loop')}}
+
+###Swapped Before/After Fields
+
+{{cppfrag('07','serial/src/Smooth.cpp','Swap_Fields')}}
+
+###Automated tests for mathematics
+
+{{cppfrag('07','parallel/test/catch.cpp','Sigmoid_Test')}}
+

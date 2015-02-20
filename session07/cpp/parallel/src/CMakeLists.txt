@@ -1,0 +1,7 @@
+add_executable(smooth main.cpp)
+add_executable(smooth_mpi parallel_main.cpp )
+add_executable(timings timer_main.cpp)
+add_library(smooth_library Smooth.cpp)
+target_link_libraries(smooth smooth_library  ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+target_link_libraries(timings smooth_library ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+target_link_libraries(smooth_mpi smooth_library  ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})

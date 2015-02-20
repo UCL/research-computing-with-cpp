@@ -23,6 +23,8 @@ We'll go for a 1-d spatial decomposition for smooth life, dividing the domain in
 If we have an $N$ by $M$ domain, and $p$, processes, each process will be responsible for
 $NM/p$ cells, and $NMr^2/p$ calculations.
 
+### Static and dynamic balance
+
 This will achieve perfect **static** load balance: the average work done by each process
 is the same. If we were not solving in a rectangular grid, this would have been harder.
 
@@ -42,7 +44,7 @@ The amount of communication to take place each time step is proportional to $rMp
 an appropriate network topology exists, each pair of neighbours can look after their communication
 at the same time, so communication will take time proportional to $rMp/p$=$rM$.
 
-### Weak and strong scaling
+### Strong scaling
 
 We therefore expect the time taken for a simulation to vary like: $Mr(k+Nr/p)$. (Where $k$ is a 
 parameter describing the relative time to communicate one cell's state compared to the time
@@ -50,6 +52,8 @@ for calculating one cell )
 
 Thus, we see that for a FIXED problem size, the benefit of parallelism will disappear
 and communication will dominate: this is Amdahl's law again.
+
+### Weak scaling
 
 However, if we consider larger and larger problems, growing $N$ as $p$ grows,
 then we can stop communication overtaking us. This is a common outcome: *local* problems provide

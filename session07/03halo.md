@@ -44,7 +44,7 @@ for pass-the-parcel.
 
 // Fragment here
 
-### Buffering
+### Noncontiguous memory
 
 Our serial solution uses a C++ `vector<vector<double> >` to store our field.
 
@@ -54,6 +54,8 @@ inner vector.
 
 This means we can't just transmit $Mr$ `doubles` in one go by sending from the address of
 `&field1[0][0]`.
+
+### Buffering
 
 We'll get around this by copying all the data into a send buffer, and unpacking from a
 receive buffer. This adds to our communication overhead, but doesn't change its scaling behaviour,
