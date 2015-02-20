@@ -50,6 +50,7 @@ all.md|jinja|hd|jinja|pandoc|p:
 assets:
     - .css
     - .png
+    - .gif
     - .svg
     - .pdf
     - .js

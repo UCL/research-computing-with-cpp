@@ -1,13 +1,14 @@
 ---
-title: Distributed memory parallelism
+title: MPI Design Example
 ---
 
-## Distributed Memory Parallelism
+## MPI Design Example
 
 ### Overview
 
-* Concepts
-* Point to point communication
-* Collective communication
-* Groups and communicators
-* Advanced communications concepts
+* SmoothLife: An example parallel computing problem
+* Domain Decomposition
+* Local Communication with Sendrecv
+* Scripting Job Submission
+* Simplifying communication with derived datatypes
+* Overlapping Computation and Communication
