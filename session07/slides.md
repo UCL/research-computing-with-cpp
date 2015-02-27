@@ -1,3 +1,4 @@
+{{d['session07/index.md']}}
 {{d['session07/01smoothlife.md']}}
 {{d['session07/02domain.md']}}
 {{d['session07/03halo.md']}}

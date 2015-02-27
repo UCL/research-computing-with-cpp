@@ -1,5 +1,5 @@
 reporter:supplementary:
-    supplementary-location: ../../indigo
+    supplementary-location: ../../indigo-dexy
     site_title: 'Research Computing with C++'
     crumbs:
         - [ISD, 'http://ucl.ac.uk/isd']

@@ -60,6 +60,13 @@ cpps:
     - .cpp|idio|t
     - .h|idio|t
 
+pythons:
+    - .py|idio|t
+
+shells:
+    - .sh|idio|t
+    - .sh.mko|idio|t
+
 cmakes:
     - '**/CMakeLists.txt'
     - '**/CMakeLists.txt|idio|t'
@@ -110,5 +117,7 @@ inputs:
     - report.latex
     - uml
     - jinjas
+    - shells
     - cmakes
     - exes
+    - pythons

@@ -46,3 +46,19 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session06/02PointToPoint.md']}}
 {{d['session06/03collective.md']}}
 {{d['session06/04advanced.md']}}
+\chapter{MPI example}
+{{d['session07/index.md']}}
+{{d['session07/01smoothlife.md']}}
+{{d['session07/02domain.md']}}
+{{d['session07/03halo.md']}}
+{{d['session07/04deployment.md']}}
+{{d['session07/05derived.md']}}
+{{d['session07/06overlap.md']}}
+\chapter{Parallel IO}
+{{d['session08/index.md']}}
+{{d['session08/01visualise.md']}}
+{{d['session08/02text.md']}}
+{{d['session08/03binary.md']}}
+{{d['session08/04endian.md']}}
+{{d['session08/05single.md']}}
+{{d['session08/06mpiio.md']}}

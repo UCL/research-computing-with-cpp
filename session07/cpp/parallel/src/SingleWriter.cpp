@@ -1,6 +1,6 @@
 #include <mpi.h>
 #include "SingleWriter.h"
-
+/// "Write"
 void SingleWriter::Write() {
 
   double * receive_buffer;
@@ -17,21 +17,22 @@ void SingleWriter::Write() {
          total_element_count,sizeof(double),reinterpret_cast<xdrproc_t>(xdr_double));
   }
 }
-
+/// "Destroy"
 SingleWriter::~SingleWriter(){
 }
-
+/// "Create"
 SingleWriter::SingleWriter(Smooth & smooth, int rank, int size)
     :SmoothWriter(smooth,rank,size)
 {
      if (rank!=0) {
        return;
      }
+/// "MoreCreate"
      std::string mode("w");
      std::FILE * myFile = std::fopen(fname.str().c_str(),mode.c_str());
      xdrstdio_create(&xdrfile, myFile, XDR_ENCODE);
 }
-
+/// "Header"
 void SingleWriter::Header(int frames){
   if (rank!=0) {
     return;

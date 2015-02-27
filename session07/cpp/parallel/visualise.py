@@ -1,9 +1,10 @@
 import sys,os
 import numpy
-import matplotlib.animation
-import matplotlib.pyplot
 from StringIO import StringIO
 
+### "Animation"
+import matplotlib.animation
+import matplotlib.pyplot
 def plot(frames,outpath):
     figure = matplotlib.pyplot.figure()
     def _animate(frame_id):
@@ -13,22 +14,31 @@ def plot(frames,outpath):
     anim = matplotlib.animation.FuncAnimation(figure, _animate, len(frames), interval=100)
     anim.save(outpath)
 
+### "Suffix"
 def append_process_suffix(prefix, process):
     return prefix + '.' + str(process)
 
 def process_many_files(folder, prefix, size, header_type, bulk_type):
+    ### "EachFile"
     process_frames=[]
     for process in range(size):
         path=os.path.join(folder,append_process_suffix(prefix,process))
+        ### "Open"
         with open(path) as data:
             header=read_header(data, header_type)
             width, height, size, frame_count = header
             if header_type=='text':
+                ### "TextRead"
                 buffer=numpy.genfromtxt(data,delimiter=",")[:,:-1]
+                ### "EndTextRead"
             else:
+                ### "BinaryRead"
                 buffer = numpy.fromfile(data, bulk_type, frame_count*height*width/size)
+            ### "Reshape"
             frames_data=buffer.reshape([frame_count, width/size, height])
+            ### "EndReshape"
             process_frames.append(frames_data)
+    ### "Concatenate"
     return numpy.concatenate(process_frames, 1)
 
 def process_single_file(folder, name, header_type, bulk_type):
