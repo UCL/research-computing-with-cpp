@@ -22,13 +22,13 @@ int main(int argc, char * argv[]) {
 		if (argc > 2) {
 			if (sscanf(argv[2], "%d", &incx) != 1) {
 				fprintf(stderr, "Failed to parse incx from '%s'\n", argv[2]);
-				return -2;
+				return -3;
 			}
 
 			if (argc > 3) {
 				if (sscanf(argv[3], "%d", &incy) != 1) {
 					fprintf(stderr, "Failed to parse incy from '%s'\n", argv[3]);
-					return -3;
+					return -4;
 				}
 			}
 		}

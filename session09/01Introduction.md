@@ -4,34 +4,37 @@ title: Introduction to Accelerators
 
 ## Introduction to Accelerators
 
+
 ### What is an accelerator?
 
-* Seperate, dedicated computing device specialised for a particular type of computation:
-    - Intel 80387 (Floating Point Math Accelerator for 80386)
-    - FPGA (various applications)
-    - GPU (accelerating 3D graphics operations)
-    - Cryptographic accelerators
-* Attached to, and controlled by, a "host" computer.
+* An accelerator is a piece of computing hardware that performs some function faster than is possible in software running on a general purpose CPU
+    - an example is the Floating Point Unit inside a CPU that performs calculations on real numbers faster than the Arithmetic and Logic Unit
+    - better performance is achieved through concurrency - the ability to perform several operations at once, in parallel
+* When an accelerator is separate from the CPU it is referred to as a "hardware accelerator"
+
 
 ### Why would I want to use one?
 
-* Can perform certain types of computation faster than a general purpose CPU
-* Often with lower power requirements
-* Cheaper to buy than a general purpose CPU
-    - less applicable and harder to program
+* Accelerators are designed to execute domain-specific computationally intensive software code faster than a CPU
+    - 3D graphics
+    - MPEG decoding
+    - cryptography
 
-### Vectorisation
+
+### Using an accelerator within the CPU
 
 * Consider the following code which performs ```y = a*x + y``` on vectors ```x``` and ```y```:
 {{cppfrag('09','saxpy/saxpy.c','saxpy')}}
 * Assuming single precision floating point multiply-add is implemented as one CPU instruction the ```for``` loop executes ```n``` instructions (plus integer arithmetic for the loop counter, etc.).
 
 
-### CPUs as vector processors
+### CPUs as multicore vector processors
 
 * In the mid-1990s, Intel were investigating ways of increasing the multimedia performance of their CPUs without being able to increase the clock speed
-* Their solution was to implement a set of wide registers capable of executing the same operation on multiple elements of an array in a single instruction
+* Their solution was to implement a set of registers capable of executing the same operation on multiple elements of an array in a single instruction
     - known as SIMD (Single Instruction, Multiple Data)
+    - branded as MMX (64-bit, integer only), SSE (128-bit, integer + floating point) and AVX (256-bit)
+
 
 ### Compiler Autovectorisation
 
@@ -40,11 +43,14 @@ title: Introduction to Accelerators
     - arrays are not aliased
 {{cppfrag('09','saxpy/saxpy_fast.c','saxpy_fast')}}
 
+
 ### Autovectorisation results
 
 * Running this and timing the invocations produces the following output:
 {{execute('09','saxpy/saxpy')}}
-* Since Intel's SIMD registers operate on 4 single precision floats at once the first loop executes approximately ```n/4``` instructions.
+* Since Intel's SIMD registers operate on 4 single precision floats at once the first loop executes approximately ```n/4``` instructions
+    - resulting in a (near) 4x speedup (Amdahl's Law)
+* Can be combined with OpenMP directives (lecture 5) to use SIMD units on multiple cores of the CPU
 
 
 ### Support for Autovectorisation
@@ -57,6 +63,7 @@ title: Introduction to Accelerators
     - use ```-vec``` (Linux/OSX) or ```/Qvec``` (Windows) to activate
     - use ```-vec-report=n```/```/Qvec-report:n``` to check whether loops are vectorised (```n > 0```)
     - automatically performed with ```-O2```/```/O2``` and higher
+
 
 ### Support for Autovectorisation
 

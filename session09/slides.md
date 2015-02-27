@@ -4,4 +4,4 @@
 {{d['session09/03CUDALibraries.md']}}
 {{d['session09/04CUDAThrust.md']}}
 {{d['session09/05OpenACC.md']}}
-{{d['session09/06OpenCL.md']}}
+{{d['session09/06CUDA.md']}}

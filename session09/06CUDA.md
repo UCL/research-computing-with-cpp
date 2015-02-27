@@ -1,0 +1,1 @@
+http://www.dmi.unict.it/~bilotta/gpgpu/notes/11-opencl.html

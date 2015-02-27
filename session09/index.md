@@ -8,7 +8,7 @@ title: Accelerators
 
 * Introduction to Accelerators
 * Using a GPU as an Accelerator
-* Using accelerated libraries
+* Using GPU-accelerated libraries
 * Using CUDA with Thrust
 * OpenACC
-* OpenCL
+* Writing your own GPU code using CUDA-C
