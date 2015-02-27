@@ -64,6 +64,8 @@ Smooth::Smooth(int sizex,
     right=0;
   }
   DefineHaloDatatype();
+  assert(range<local_x_size); // OTHERWISE THE CALCULATED ZONE
+  // CAN'T FILL THE HALO; WOULD NEED NEXT-TO-NEAREST COMMS
 }
 
 Smooth::~Smooth(){
@@ -73,6 +75,10 @@ Smooth::~Smooth(){
 
 int Smooth::Range(){
   return range;
+}
+
+int Smooth::Rank(){
+  return rank;
 }
 
 int Smooth::LocalXSize(){
@@ -297,16 +303,6 @@ void Smooth::SeedRandomDisk() {
   SeedDisk(x,y);
 }
 
-void Smooth::Write(std::ostream &out) {
-   for (int x=local_x_min_calculate;x<local_x_max_calculate;x++) {
-     for (int y=0;y<sizey;y++) {
-        out << Field(x,y) << " , ";
-     }
-     out << std::endl;
-   }
-   out << std::endl;
-}
-
 int Smooth::Frame() const {
   return frame;
 }
@@ -432,4 +428,8 @@ void Smooth::UpdateAndCommunicateAsynchronously(){
   ResolveRightComms();
   QuickUpdateStripe(local_x_min_calculate,local_x_max_needed_left);
   SwapFields();
+}
+
+density * Smooth::StartOfWritingBlock(){
+   return &(*field)[local_x_min_calculate*sizey];
 }

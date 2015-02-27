@@ -23,17 +23,17 @@ TEST_CASE ("MPI Tests"){
        Smooth smooth(200,100,5,rank,size);
        smooth.SeedDisk(); // Half the Seeded Disk falls in smooth2's domain, so total filling will be half a disk.
        if (rank==0) {
-         REQUIRE(abs(smooth.FillingDisk(15,0)-0.5)<0.1);
+         REQUIRE(std::abs(smooth.FillingDisk(15,0)-0.5)<0.1);
        }
        if (rank==1) {
-         REQUIRE(smooth.FillingDisk(84,0)==0.0);
+         REQUIRE(std::abs(smooth.FillingDisk(115,0)-0.5)<0.1);
        }
        smooth.CommunicateMPI();
        if (rank==0) {
-         REQUIRE(abs(smooth.FillingDisk(0,0)-0.5)<0.1);
+         REQUIRE(std::abs(smooth.FillingDisk(15,0)-1.0)<0.1);
        }
        if (rank==1) {
-         REQUIRE(abs(smooth.FillingDisk(84,0)-0.5)<0.1);
+         REQUIRE(std::abs(smooth.FillingDisk(115,0)-1.0)<0.1);
        }
     }
 /// "Setup_Parallel_Test"
