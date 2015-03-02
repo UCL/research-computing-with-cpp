@@ -19,28 +19,29 @@ def append_process_suffix(prefix, process):
     return prefix + '.' + str(process)
 
 def process_many_files(folder, prefix, size, header_type, bulk_type):
-    ### "EachFile"
+### "EachFile"
     process_frames=[]
     for process in range(size):
         path=os.path.join(folder,append_process_suffix(prefix,process))
-        ### "Open"
+### "Open"
         with open(path) as data:
             header=read_header(data, header_type)
             width, height, size, frame_count = header
             if header_type=='text':
-                ### "TextRead"
+### "TextRead"
                 buffer=numpy.genfromtxt(data,delimiter=",")[:,:-1]
-                ### "EndTextRead"
+### "EndTextRead"
             else:
-                ### "BinaryRead"
+### "BinaryRead"
                 buffer = numpy.fromfile(data, bulk_type, frame_count*height*width/size)
-            ### "Reshape"
+### "Reshape"
             frames_data=buffer.reshape([frame_count, width/size, height])
-            ### "EndReshape"
+### "EndReshape"
             process_frames.append(frames_data)
-    ### "Concatenate"
+### "Concatenate"
     return numpy.concatenate(process_frames, 1)
 
+### "Single"
 def process_single_file(folder, name, header_type, bulk_type):
     path=os.path.join(folder,prefix)
     with open(path) as data:
