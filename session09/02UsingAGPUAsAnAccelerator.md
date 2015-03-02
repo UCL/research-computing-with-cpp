@@ -17,7 +17,6 @@ title: Using a GPU as an Accelerator
 
 ### GPUs as multicore vector processors
 
-* In order to meet the performance needs of high resolution realtime 3D graphics GPUs were developed to be high-throughput parallel processors
 * GPUs are  multicore vector processors similar to CPUs but with much faster memory access
 +-----------------+---------+---------+
 |                 |   CPU   |   GPU   |
@@ -26,21 +25,52 @@ title: Using a GPU as an Accelerator
 +-----------------+---------+---------+
 |SIMD width       | 256 bits|1024 bits|
 +-----------------+---------+---------+
-|Memory bandwidth | ~25 GB/s|~500 GB/s|
+|Memory bandwidth | <25 GB/s|<500 GB/s|
 +-----------------+---------+---------+
+
+### GPU Hardware
+
+* Each core (multiprocessor - often abbreviated as "SM" or "MP") has:
+    - 128 Single Precision Floating Point Units
+    - 32 Double Precision FPUs (that also perform single precision transcendental functions)
+    - 16384 32-bit registers (very fast access)
+    - 64KB of "shared" cache memory (fast access)
+    - 10KB of "constant" cache memory (writable by the CPU, fast, read-only access by the CPU)
+* GPUs also have "global" memory which is the figure quoted by graphics card manufacturers (2GB, etc.)
+    - accessed by the CPU across the PCI-Express bus
+    - high latency, slow access by the GPU (but still up to 20x faster than CPU RAM access)
 
 ### General Purpose Programming for GPUs
 
-* With the introduction of programmable vertex shaders for 3D graphics it became possible to "trick" GPUs into performing other types of computation
-    - such as matrix multiply
-* This involved uploading data as an image into GPU memory, running a custom vertex program and reading the results back
-* Several frameworks were developed to simplify this
-    - BrookGPU
-    - Accelerator
-* Nvidia CUDA provides a software toolkit that allows programmers to use GPUs as parallel computing devices rather than graphics processors
-    - compiler for GPU code written in CUDA-C
-    - runtime library to load code and data onto GPU and run it
+* GPU threads are run in 3-dimensional groups called "blocks"
+* Each block runs on one SM
+    - threads within a block can communicate via shared memory and use barrier synchronisation
+* Threads have their own registers for local variables
+* Each SM executes blocks of threads in groups of 32 called a "warp"
 
-### Matrix Multiply on a GPU
+### SIMT
 
-* Given the differences in numbers of cores and SIMD width a GPU should outperform a CPU
+* Multiple thread blocks are arranged in a 3-dimensional "grid"
+* No communication/synchronisation primitives across blocks/SMs
+    - can use atomic operations on variables in global memory (slow)
+* This type of programming is a hybrid between threaded programming and SIMD and hence is called SIMT by Nvidia
+
+### Executing code on the GPU
+
+* Functions executed on the GPU and called from the CPU are called "kernels"
+    - kernel execution is asynchronous to the CPU
+    - CPU must call a function which blocks until the GPU has finished executing the current kernel before attempting to download results
+    - there is an implicit synchronisation barrier on the GPU at the start of each kernel
+* Common programming pattern:
+    - upload data from CPU RAM to GPU global memory (slow)
+    - execute kernel(s) on GPU (fast)
+    - synchronise
+    - download results (slow)
+
+### GPU-accelerating your code
+
+* Four options to GPU accelerate code:
+    - replace existing libraries with GPU-accelerated ones
+    - use compiler directives to automatically generate GPU-accelerated portions of code
+    - use CUDA::Thrust C++ template library to build your own kernels
+    - write your own kernels in CUDA-C
