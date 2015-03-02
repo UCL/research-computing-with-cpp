@@ -1,3 +1,6 @@
+#ifndef ONCE_SMOOTH_H
+#define ONCE_SMOOTH_H
+
 #include <vector>
 #include <string>
 #include <mpi.h>
@@ -28,6 +31,8 @@ class Smooth {
     int LocalXSize();
     int Sizey();
     int Range();
+    int Rank();
+    density * StartOfWritingBlock();
     density Field(int x, int y) const;
     void SetNewField(int x, int y, density value);
     void SeedField(int x, int y, density value);
@@ -50,7 +55,6 @@ class Smooth {
     void Update();
     void QuickUpdateStripe(int from_x, int to_x);
     void QuickUpdate();
-    void Write(std::ostream &out);
     int Frame() const;
     void CommunicateLocal(Smooth &left_neighbour, Smooth &right_neighbour);
     void CommunicateMPI();
@@ -107,3 +111,4 @@ class Smooth {
     MPI_Request request_right;
 };
 
+#endif // ONCE_SMOOTH_H

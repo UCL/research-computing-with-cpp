@@ -4,6 +4,11 @@
 #include <cassert>
 #include <ctime>
 #include "Smooth.h"
+#include "ParallelWriter.h"
+#include "SingleWriter.h"
+#include "TextWriter.h"
+#include "BinaryWriter.h"
+#include "XdrWriter.h"
 #include <mpi.h>
 
 
@@ -20,14 +25,6 @@ int main(int argc, char **argv){
   std::string config_path = argv[1];
   std::ifstream config_file(config_path.c_str());
   
-  std::ostringstream report_name;
-  report_name << "report" << rank << ".yml" << std::flush;
-  std::ofstream report(report_name.str().c_str());
-  
-  std::ostringstream fname;
-  fname << "frames" << rank << ".dat" << std::flush;
-  std::ofstream outfile(fname.str().c_str());
-
   int width;
   int height;
   int range;
@@ -46,7 +43,9 @@ int main(int argc, char **argv){
   config_file >> label >> spots ;
   assert(label=="spots:");
   
-  
+  std::ostringstream report_name;
+  report_name << "report" << rank << ".yml" << std::flush;
+  std::ofstream report(report_name.str().c_str());  
   
   report << "rank: " << rank << std::endl;
   report << "range: " << range << std::endl;
@@ -63,15 +62,16 @@ int main(int argc, char **argv){
     smooth.SeedRandomDisk();
   }
   std::clock_t seed=std::clock();
+  ParallelWriter writer(smooth, rank, size);
+  writer.Header(frames);
   
-  outfile << smooth.LocalXSize() << ", " << smooth.Sizey() << ", " << rank << ", " << size << std::endl;
   std::cout << "Rank " << rank << "ready" << std::endl;
   
   std::vector<std::clock_t> frame_times(frames+1);
   
   for (unsigned int frame=0; frame<frames; frame++) {
     frame_times[frame]=std::clock();
-    smooth.Write(outfile);
+    writer.Write();
     smooth.UpdateAndCommunicateAsynchronously();
     std::cout << "Rank " << rank << " completed frame: " << smooth.Frame() << std::endl;
   }
@@ -86,6 +86,6 @@ int main(int argc, char **argv){
   for (unsigned int frame=0; frame<frames; frame++) {
     report_time(report, "    -", frame_times[frame+1], frame_times[frame]);
   }
-
+  writer.Close();
   MPI_Finalize();
 }

@@ -75,7 +75,7 @@ the templating tool fills in anything in ${} from a variable in the fabric code.
 ### Mako Template for Smooth Life
 
 ```mako
-d['session07/cpp/parallel/deploy/legion.sh.mko']
+{{d['session07/cpp/parallel/deploy/legion.sh.mko']}}
 ```
 
 ### Configuration files
