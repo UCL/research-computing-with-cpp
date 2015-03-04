@@ -24,4 +24,24 @@ title: GPU-accelerated Libraries
 
 ### SAXPY from cuBLAS
 
+* The following code snippet replaces the ```saxpy_fast``` function with the equivalent ```cublasSaxpy```:
+{{cppfrag('09','saxpy/cublas.c','cublas_saxpy')}}
+{{execute('09','saxpy/cublas')}}
+
+### Why isn't it faster?
+
+* GPUs have about 100x the computing power of a CPU
+    - but only 20x the memory bandwidth
+* SAXPY performs one floating point operation for each element in memory
+    - the performance is bound by the memory bandwidth
+* Matrix Multiply (SGEMM), however, performs ```2k``` operations per element
+    - matrix multiply: ```C = a*A*B + b*C```
+    - ```A``` is ```m``` by ```k```
+    - ```B``` is ```k``` by ```n```
+    - ```C``` is ```m``` by ```n```
+
 ### SGEMM from cuBLAS
+
+* CUBLAS contains an SGEMM function:
+{{cppfrag('09','sgemm/cublas.c','cublas_sgemm')}}
+{{execute('09','sgemm/cublas')}}

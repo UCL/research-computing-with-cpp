@@ -16,7 +16,7 @@ title: Using Compiler Directives
     - doesn't modify existing code
     - is ignored by compilers that don't support it
 * Requires compiler support
-    - pgic (non-free)
+    - pgic (non-free, activate with ```-acc``` flag)
     - gcc support coming
 
 ### OpenACC Pragmas
@@ -60,3 +60,16 @@ title: Using Compiler Directives
     - also available as ```present_or_copy```, ```present_or_create```, ```present_or_copyin```, ```present_or_copyout```
 * ```private(var1,var2,...)```
     - variable is copied to each thread (similarly to OpenMP's ```private```)
+
+### OpenACC SAXPY
+
+* The following code snippet implements a SAXPY kernel using OpenACC:
+{{cppfrag('09','saxpy/openacc.c','saxpy')}}
+* The only pragma required is the ```kernels``` pragma which turns the ```for``` loop into a GPU kernel
+{{execute('09','saxpy/openacc')}}
+
+### OpenACC SGEMM
+
+* OpenACC can also be used to implement an SGEMM kernel:
+{{cppfrag('09','sgemm/openacc.c','sgemm')}}
+{{execute('09','sgemm/openacc')}}
