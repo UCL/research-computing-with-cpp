@@ -33,13 +33,10 @@ title: Background
 
 ### Physical Limitations
 
-* [Herb Sutter's, The Free Lunch Is Over][HerbFreeLunch]
+![Pictures from Sutter](session04/figures/CPUPerf)
 
-![Picture from Sutter](session04/figures/CPUPerf)
-
-* Due to clockspeed, power requirements, cooling, not getting much more processing power per CPU.
-* Wire delays, memory access times hard to improve.
-* Manufacturers are turning to multi-core.
+* Due to clockspeed, power requirements, cooling, wire delays, memory access times
+    * Manufacturers are turning to multi-core. [Sutter][HerbFreeLunch]
 
 
 ### More Cache's?
@@ -56,17 +53,23 @@ title: Background
 
 * Some problems are genuinely too big
 * Can't ever wait for Moore's Law to work 
+* [FreeSurfer][FreeSurfer] typically takes 24 hours
+    * ADNI dataset about 1000
+    * Take approx 3 years on 1 computer!
+    * So use batch processing on a cluster
+* Gravitational N-body (example from [M.Jones][MJonesTutorial])
+    * $N$ bodies, takes $N^2$ force calculations
+    * Best algorithm takes $Nlog_2N$ calculations
+    * For $10^{12}$ bodies, have $10^{12}ln(10^{12})/ln(2)$ calculations
+    * So, at $1 \mu sec$, thats $4 x 10^7$ seconds = 1.3 years per step
+    * So use parallel processing
 
-![Picture from M.Jones](session04/figures/GravitationalProblem)
 
- 
 ### World Is Parallel
 
 * Lots of things that we might want to simulate are naturally parallel
 
-![Picture from M.Jones](session04/figures/realWorldCollage1)
-
-![Picture from M.Jones](session04/figures/realWorldCollage2)
+![Pictures from wikipedia](session04/figures/ParallelComputingExamples)
 
 
 ### Research Computing, Parallel Computing
@@ -138,3 +141,4 @@ title: Background
 [WikipediaCache]: http://en.wikipedia.org/wiki/CPU_cache
 [HerbFreeLunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
 [WikipediaHistory]: http://en.wikipedia.org/wiki/History_of_supercomputing
+[FreeSurfer]: http://freesurfer.net/

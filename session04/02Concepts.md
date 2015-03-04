@@ -120,13 +120,12 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
     
 ### Shared Memory - SMP
 
-* Symmetric Multi-Processing ([SMP][WikipediaSMP])
+* Symmetric Multi-Processing ([SMP][WikipediaSMP]),  eg. x86 multi-core
     * Homogeneous processing cores
     * Address all memory in global address space
     * Uniform Memory Access (UMA) (time)
     * Cache coherency (CC) maintained at hardware level
 * Requires code to be multi-threaded
-* Examples: x86 multi-core
 
 ![Pictures from Legion Tutorial](session04/figures/smp2)
 
@@ -155,7 +154,7 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
     * Memory scales with processors (i.e. interconnect many SMPs)
     * Rapid local access to memory 
 * Disadvantages
-    * Programmers must write code to determine how machines are accessed
+    * You must write code to determine how machines are accessed
     * Beware cost of transmitting messages across network
     * Normally no cache coherency across network nodes
     
@@ -166,7 +165,7 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 * Most of the fastest systems are in reality using a hybrid
 
-![Pictures from Legion Tutorial](session04/figures/hybrid_mem2)
+![Pictures from LLNL Tutorial](session04/figures/hybrid_mem2)
 
 * Increased (easy) scalability is important advantage
 * Increased programmer complexity is an important disadvantage
@@ -174,7 +173,6 @@ For example, if 95% can be parallelised, P = 0.95, S = 20.
 
 ### GPU Accelerator Model
 
-* For completeness
 * With GPU processing
     * SIMD on GPU
     * MIMD on multi-core CPU
