@@ -1,6 +1,8 @@
 research-computing-with-cpp
 ===========================
 
+[![Join the chat at https://gitter.im/UCL-RITS/research-computing-with-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/UCL-RITS/research-computing-with-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Deployed to staging at:
 
 http://staging.development.rc.ucl.ac.uk/training/rcwithcpp
