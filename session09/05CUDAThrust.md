@@ -37,13 +37,17 @@ title: CUDA Thrust
 
 * There are four copy constructors for both ```device_vector``` and ```host_vector```
     - copy from a vector of the same template type
-    {{cppfrag('09','thrust/vector_copy_constructors.cu,'copy')}}
+    {{cppfrag('09','thrust/vector_copy.cu','copy')}}
+
     - copy from a vector of a different template type
-    {{cppfrag('09','thrust/vector_copy_constructors.cu,'template_copy')}}
+    {{cppfrag('09','thrust/vector_copy.cu','template_copy')}}
+
     - copy a device_vector from a host_vector (or vice versa)
-    {{cppfrag('09','thrust/vector_copy_constructors.cu,'transfer_copy')}}
+    {{cppfrag('09','thrust/vector_copy.cu','transfer_copy')}}
+
     - create a copy of an STL vector
-    {{cppfrag('09','thrust/vector_copy_constructors.cu,'stl_copy')}}
+    {{cppfrag('09','thrust/vector_copy.cu','stl_copy')}}
+
 * Each copy constructor also has a corresponding assignment operator
 
 ### Vector types: Accessors
@@ -85,13 +89,21 @@ title: CUDA Thrust
 
 * We can use the ```transform``` algorithm from Thrust to implement our SAXPY kernel
 {{cppfrag('09','saxpy/thrust.cu','saxpy')}}
-{{execute('09','saxpy/thrust')}}
+
+```
+Bandwidth: 15.7344GB/s
+Throughput: 7.86722GFlops/s
+```
 
 ### Thrust SGEMM
 
 * Likewise we can use the ```transform_reduce``` algorithm to implement an SGEMM kernel
 {{cppfrag('09','sgemm/thrust.cu','sgemm')}}
-{{execute('09','sgemm/thrust')}}
+
+```
+Bandwidth: 18.0532GB/s
+Throughput: 9.02659GFlops/s
+```
 
 ### Further Information
 

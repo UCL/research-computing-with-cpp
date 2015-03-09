@@ -20,7 +20,6 @@ title: CUDA-C
     - run multiple times in parallel on the GPU
     - must return ```void```
 * Callable from CPU code
-    - 
 
 ### CUDA Function attributes
 
@@ -50,3 +49,13 @@ title: CUDA-C
     - ```blockIdx``` gives the index of the current block in the grid
     - ```blockDim``` gives the size of the thread blocks
     - ```threadIdx``` gives the index of the current thread in the block
+
+### Cuda Examples SAXPY
+
+{{cppfrag('09','cuda/saxpy.cu','saxpy')}}
+
+```
+n = 10000, incx = 1, incy = 1
+saxpy: 0.010384ms
+```
+
