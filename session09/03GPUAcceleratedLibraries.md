@@ -26,7 +26,12 @@ title: GPU-accelerated Libraries
 
 * The following code snippet replaces the ```saxpy_fast``` function with the equivalent ```cublasSaxpy```:
 {{cppfrag('09','saxpy/cublas.c','cublas_saxpy')}}
-{{execute('09','saxpy/cublas_main')}}
+
+```
+n = 10000, incx = 1, incy = 1
+saxpy: 0.010205ms
+saxpy_fast: 0.002530ms
+```
 
 ### Why isn't it faster?
 
@@ -44,4 +49,9 @@ title: GPU-accelerated Libraries
 
 * CUBLAS contains an SGEMM function:
 {{cppfrag('09','sgemm/cublas.c','cublas_sgemm')}}
-{{execute('09','sgemm/cublas')}}
+
+```
+m = 320, n = 640, k = 640
+Bandwidth: 977.532GB/s
+Throughput: 244.383GFlops/s
+```
