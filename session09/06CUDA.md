@@ -20,7 +20,6 @@ title: CUDA-C
     - run multiple times in parallel on the GPU
     - must return ```void```
 * Callable from CPU code
-    - 
 
 ### CUDA Function attributes
 
@@ -54,8 +53,9 @@ title: CUDA-C
 ### Cuda Examples SAXPY
 
 {{cppfrag('09','cuda/saxpy.cu','saxpy')}}
-{{execute('09','cuda/cusaxpy')}}
 
-### Cuda Example SGEMM
+```
+n = 10000, incx = 1, incy = 1
+saxpy: 0.010384ms
+```
 
-{{cppfrag('09','cuda/sgemm.cu','sgemm')}}
