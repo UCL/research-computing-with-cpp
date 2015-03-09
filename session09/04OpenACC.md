@@ -66,10 +66,8 @@ title: Using Compiler Directives
 * The following code snippet implements a SAXPY kernel using OpenACC:
 {{cppfrag('09','saxpy/openacc.c','saxpy')}}
 * The only pragma required is the ```kernels``` pragma which turns the ```for``` loop into a GPU kernel
-{{execute('09','saxpy/openacc')}}
 
 ### OpenACC SGEMM
 
 * OpenACC can also be used to implement an SGEMM kernel:
 {{cppfrag('09','sgemm/openacc.c','sgemm')}}
-{{execute('09','sgemm/openacc')}}

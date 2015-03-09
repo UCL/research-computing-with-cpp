@@ -50,3 +50,12 @@ title: CUDA-C
     - ```blockIdx``` gives the index of the current block in the grid
     - ```blockDim``` gives the size of the thread blocks
     - ```threadIdx``` gives the index of the current thread in the block
+
+### Cuda Examples SAXPY
+
+{{cppfrag('09','cuda/saxpy.cu','saxpy')}}
+{{execute('09','cuda/cusaxpy')}}
+
+### Cuda Example SGEMM
+
+{{cppfrag('09','cuda/sgemm.cu','sgemm')}}

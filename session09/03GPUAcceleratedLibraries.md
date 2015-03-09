@@ -26,7 +26,7 @@ title: GPU-accelerated Libraries
 
 * The following code snippet replaces the ```saxpy_fast``` function with the equivalent ```cublasSaxpy```:
 {{cppfrag('09','saxpy/cublas.c','cublas_saxpy')}}
-{{execute('09','saxpy/cublas')}}
+{{execute('09','saxpy/cublas_main')}}
 
 ### Why isn't it faster?
 
