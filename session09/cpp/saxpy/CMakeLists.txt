@@ -1,0 +1,18 @@
+add_library(saxpy_slow OBJECT saxpy.c)
+add_library(saxpy_fast OBJECT saxpy_fast.c)
+add_executable(saxpy.x main.c $<TARGET_OBJECTS:saxpy_slow> $<TARGET_OBJECTS:saxpy_fast>)
+
+set(CMAKE_C_FLAGS "-O2 -std=c99")
+if ("${CMAKE_C_COMPILER_ID}" MATCHES "Clang")
+    target_compile_options(saxpy_fast PRIVATE -fvectorize)
+elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+    target_compile_options(saxpy_fast PRIVATE -ftree-loop-vectorize -fopt-info-vec)
+elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "Intel")
+    target_compile_options(saxpy_fast PRIVATE -vec -vec-report:2)
+endif()
+
+if(CUDA_FOUND)
+cuda_add_executable(cublas_main.x cublas.c)
+cuda_add_cublas_to_target(cublas_main.x)
+cuda_add_executable(thrust_main.x thrust.cu)
+endif()
