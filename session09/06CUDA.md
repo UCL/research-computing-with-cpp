@@ -40,7 +40,7 @@ title: CUDA-C
 * ```__const__``` variables are ```const``` and are stored in GPU constant memory
     - they can be accessed directly by the host
 * ```__shared__``` variables are stored in shared memory
-    - one per thread block
+    - one per block
 
 ### Variables for thread indexing
 
@@ -80,3 +80,15 @@ saxpy: 0.010384ms
 ### More on CUDA
 
 [See NVidia CUDA tutorial](http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
+
+### Warp divergence:
+
+* Instructions are issued per 32 threads (warp)
+* When threads within a single warp take different paths (if-else etc.):
+    * Different execution paths within a warp are serialized!
+* But different warps can execute different code with no impact on performance
+    * Avoid diverging within a warp
+
+``` cuda
+if (threadIdx.x > 2) {...} else {...}
+```
