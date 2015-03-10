@@ -48,7 +48,7 @@ title: Using a GPU as an Accelerator
 
 ### General Purpose Programming for GPUs
 
-* GPU threads are run in 3-dimensional groups called "blocks"
+* GPU threads are run in (up to) 3-dimensional groups called "blocks"
 * Each block runs on one SM
     - threads within a block can communicate via shared memory and use barrier synchronisation
 * Threads have their own registers for local variables

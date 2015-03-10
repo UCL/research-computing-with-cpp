@@ -50,6 +50,8 @@ title: CUDA-C
     - ```blockDim``` gives the size of the thread blocks
     - ```threadIdx``` gives the index of the current thread in the block
 
+* These are structs, with e.g. `threadIdx.x` for the x-coordinate.
+
 ### Cuda Examples SAXPY
 
 {{cppfrag('09','cuda/saxpy.cu','saxpy')}}
@@ -60,3 +62,6 @@ n = 10000, incx = 1, incy = 1
 saxpy: 0.010384ms
 ```
 
+### More on CUDA
+
+[See NVidia CUDA tutorial](http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
