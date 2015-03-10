@@ -1,0 +1,5 @@
+if(CUDA_FOUND)
+cuda_add_executable(cublas.x cublas.c)
+cuda_add_cublas_to_target(cublas.x)
+cuda_add_executable(thrust.x thrust.cu)
+endif()

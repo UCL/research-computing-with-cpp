@@ -62,3 +62,11 @@ author: James Hetherington, Jens Nielsen, Owain Kenway, Gary Macindoe, and Matt 
 {{d['session08/04endian.md']}}
 {{d['session08/05single.md']}}
 {{d['session08/06mpiio.md']}}
+\chapter{Accelerators}
+{{d['session09/index.md']}}
+{{d['session09/01Introduction.md']}}
+{{d['session09/02UsingAGPUAsAnAccelerator.md']}}
+{{d['session09/03GPUAcceleratedLibraries.md']}}
+{{d['session09/04OpenACC.md']}}
+{{d['session09/05CUDAThrust.md']}}
+{{d['session09/06CUDA.md']}}
