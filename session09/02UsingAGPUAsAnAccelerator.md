@@ -17,7 +17,10 @@ title: Using a GPU as an Accelerator
 
 ### GPUs as multicore vector processors
 
-* GPUs are  multicore vector processors similar to CPUs but with much faster memory access
+* GPUs are  multicore vector processors.
+* They have much faster memory access to their own memory
+* And very slow transfer (more like 'download') to the main processor (~5GB/s)
+* They have *much* slower single-core performance (but you would never do this)
 
 +-----------------+---------+---------+
 |                 |   CPU   |   GPU   |
@@ -28,6 +31,8 @@ title: Using a GPU as an Accelerator
 +-----------------+---------+---------+
 |Memory bandwidth | <25 GB/s|<500 GB/s|
 +-----------------+---------+---------+
+
+
 
 ### GPU Hardware
 

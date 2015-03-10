@@ -37,6 +37,7 @@ saxpy_fast: 0.002530ms
 
 * GPUs have about 100x the computing power of a CPU
     - but only 20x the memory bandwidth
+    - and data transfer over the PCI bus is sloooow.
 * SAXPY performs one floating point operation for each element in memory
     - the performance is bound by the memory bandwidth
 * Matrix Multiply (SGEMM), however, performs ```2k``` operations per element
