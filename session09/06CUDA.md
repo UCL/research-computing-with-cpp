@@ -52,10 +52,25 @@ title: CUDA-C
 
 * These are structs, with e.g. `threadIdx.x` for the x-coordinate.
 
+### Calling CUDA
+
+{{cppfrag('09','cuda/saxpy.cu','CudaCall')}}
+
+The syntax gives first the gridDim, then the blockDim.
+
+When given as integers, 1-D is assumed.
+
+Otherwise, allocate a `dim3`:
+
+``` cuda
+dim3 block_dim(32,32,1);
+dim3 grid_dim(64,1,1);
+kernel<<<grid_dim,block_dim>>>(...);
+```
+
 ### Cuda Examples SAXPY
 
 {{cppfrag('09','cuda/saxpy.cu','saxpy')}}
-{{cppfrag('09','cuda/saxpy.cu','CudaCall')}}
 
 ```
 n = 10000, incx = 1, incy = 1
