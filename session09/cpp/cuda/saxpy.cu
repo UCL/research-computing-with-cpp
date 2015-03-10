@@ -73,7 +73,9 @@ int main(int argc, char * argv[]) {
     CUDA_ERROR_CHECK(cudaEventCreate(&end));
     for (int i = 0; i < ITERATIONS; i++) {
         CUDA_ERROR_CHECK(cudaEventRecord(start, NULL));
+/// "CudaCall"
         saxpy<<<n/64 + 1, 64>>>(n, a, dx, incx, dy, incy);
+/// "CudaCalled"
         CUDA_ERROR_CHECK(cudaEventRecord(end, NULL));
         CUDA_ERROR_CHECK(cudaEventSynchronize(end));
         float t;

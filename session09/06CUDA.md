@@ -53,6 +53,7 @@ title: CUDA-C
 ### Cuda Examples SAXPY
 
 {{cppfrag('09','cuda/saxpy.cu','saxpy')}}
+{{cppfrag('09','cuda/saxpy.cu','CudaCall')}}
 
 ```
 n = 10000, incx = 1, incy = 1
