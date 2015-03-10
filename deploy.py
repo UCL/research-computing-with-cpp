@@ -4,7 +4,7 @@ import yaml
 deployed_path = "/training/rcwithcpp"
 
 plugin = yaml.load(open('dexyplugin.yaml'))
-plugin['reporter:supplementary']['supplementary-location'] = '../indigo-dexy'
+plugin['reporter:supplementary']['supplementary-location'] = '../indigo'
 plugin['reporter:supplementary']['root'] = deployed_path
 yaml.dump(plugin, open('dexyplugin.yaml', 'w'))
 
