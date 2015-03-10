@@ -11,6 +11,13 @@ title: Another CUDA Example
 * Your darts are evenly distributed inside the square of side $2r$
 * The chance of a dart hitting the dartboard is $\pi r^2/4r^2$ = $\pi/4$
 
+###Monte Carlo Pi
+
+* On each core, generate a random x- and y- coordinate in $[0,1)$
+* Sum-square them, determine if $<1$
+* Reduce on mean
+* Result is pi
+
 ### CUDA with MPI
 
 * The [Emerald](http://www.cfi.ses.ac.uk/emerald/) supercomputer has a GPU on every node.
