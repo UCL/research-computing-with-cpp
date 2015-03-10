@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.8)
 project(ResearchComputingWithCPP)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 add_subdirectory(session01/cpp)
@@ -8,4 +8,5 @@ add_subdirectory(session04/cpp)
 add_subdirectory(session05/cpp)
 add_subdirectory(session06/cpp)
 add_subdirectory(session07/cpp)
+add_subdirectory(session09/cpp)
 
