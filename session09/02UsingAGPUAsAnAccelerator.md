@@ -54,6 +54,10 @@ title: Using a GPU as an Accelerator
 * Threads have their own registers for local variables
 * Each SM executes blocks of threads in groups of 32 called a "warp"
 
+### GPU Architecture
+
+![](https://www.pgroup.com/images/insider/pgi-nvidia-block-diagram.png)
+
 See [more](http://www.gris.informatik.tu-darmstadt.de/cuda-workshop/tutorial/Advanced_CUDA_01.pdf)
 
 ### SIMT
