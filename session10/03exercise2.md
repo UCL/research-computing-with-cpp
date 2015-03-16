@@ -7,7 +7,7 @@ title: Exercise 2 - Working in the cloud
 ### Again, from the command line...
 
 Install Amazon Web Services Command Line Interface: 
-http://docs.aws.amazon.com/cli/latest/userguide/installing.html
+[http://docs.aws.amazon.com/cli/latest/userguide/installing.html](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 
 ``` bash
 # install the tools with pip
@@ -18,7 +18,7 @@ aws ec2 help
 ### Configure the tools
 
 To use the command line tools, you'll need to register your AWS Access Keys and preferred region and output format:
-http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+[http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
 ``` bash
 $ aws configure

@@ -15,10 +15,10 @@ This example briefly run through the process of:
 
 A growing number of companies are offering cloud computing services, for example: 
 
-- Amazon Web Services: http://aws.amazon.com/
-- Cloudera: http://www.rackspace.co.uk/cloud
-- Google Cloud Platform: https://cloud.google.com/
-- Microsoft Azure: http://azure.microsoft.com/
+- Amazon Web Services: [http://aws.amazon.com](http://aws.amazon.com)
+- Cloudera: [http://www.rackspace.co.uk/cloud](http://www.rackspace.co.uk/cloud)
+- Google Cloud Platform: [https://cloud.google.com](https://cloud.google.com)
+- Microsoft Azure: [http://azure.microsoft.com](http://azure.microsoft.com)
 
 In this example we'll be using Amazon Web Services.
 

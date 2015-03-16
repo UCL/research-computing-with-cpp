@@ -6,12 +6,12 @@ title: Exercise 4 - MapReduce
 
 ### The 'Hello World' of Map/Reduce
 
-In this example, we'll demonstrate how the Map and Reduce functions can be applied on our local machines to count the number of times each word appears in a book.
+In this example, we'll demonstrate how the map and reduce functions can be applied on our local machines to count the number of times each word appears in a book.
 
 ### Choose a book
 
 We will be using a book of your choice for the exercise: 
-http://www.gutenberg.org/browse/scores/top
+[http://www.gutenberg.org/browse/scores/top](http://www.gutenberg.org/browse/scores/top)
 
 ``` bash
 # The Picture of Dorian Gray
@@ -32,7 +32,7 @@ things.
 ### Hadoop streaming
 
 Hadoop streaming provides functionality that enables Map/Reduce jobs to be run using any executable as the mapper and reducer:
-http://hadoop.apache.org/docs/r1.2.1/streaming.html
+[http://hadoop.apache.org/docs/r1.2.1/streaming.html](http://hadoop.apache.org/docs/r1.2.1/streaming.html)
 
 The mapper and reducer are written to take line-by-line input from stdin and emit the output to stdout.
 
@@ -72,9 +72,9 @@ Our reducer:
 #! /usr/bin/env python
 import sys
 
-def reducer(inputdata):
+def reducer(stream):
     mydict = {}
-    line = inputdata.readline()
+    line = stream.readline()
     while line:
         
         # Get the key/value pair
@@ -89,7 +89,7 @@ def reducer(inputdata):
             mydict[word] = 1
 
         # Get the next line
-        line = inputdata.readline()
+        line = stream.readline()
 
     # Print the aggregated key/value pairs
     # for word in sorted(mydict.keys()): # order by word
