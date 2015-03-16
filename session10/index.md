@@ -14,11 +14,3 @@ This session will review:
 - Distributed computing  
 
 Intended to be a practical session, learning the concepts by example.
-
-<!-- 
-
-Docker and Vagrant
-
-
-
--->

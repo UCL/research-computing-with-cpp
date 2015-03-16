@@ -23,11 +23,7 @@ Elastic MapReduce (EMR) provides a framework for:
 
 ### Create an S3 bucket
 
-Create an S3 bucket to hold the: 
-
-- input (the book and our map/reduce functions)
-- logs
-- output (results from our analysis)
+Create an S3 bucket to hold the input files (the book and our map/reduce functions); the processing logs; and the output (results from our analysis):
 
 1. Open the Amazon Web Services Console: http://aws.amazon.com/
 2. Select "Create Bucket" and enter a globally unique name
@@ -38,6 +34,15 @@ Create an S3 bucket to hold the:
 May need to do more from here: http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-cli-install.html
 -->
 
+### Copy data and code to S3
+
+``` bash
+# copy input code and data to the input folder
+$ aws s3 cp dorian.txt s3://my-bucket-ucl123/input/
+$ aws s3 cp mapper.py s3://my-bucket-ucl123/input/
+$ aws s3 cp reducer.py s3://my-bucket-ucl123/input/
+```
+
 ### Launch the compute cluster
 
 Create a compute cluster with one master instance and two core instances:
@@ -46,24 +51,37 @@ Create a compute cluster with one master instance and two core instances:
 # Start a EMR cluster
 # <ami-version>: version of the machine image to use
 # <instance-type>:  number and type of Amazon  EC2  instances
-$ aws emr create-cluster --ami-version 3.1.0  \
-    --auto-terminate \
+$ aws emr create-cluster --ami-version 3.1.0 \
     --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.xlarge InstanceGroupType=CORE,InstanceCount=2,InstanceType=m3.xlarge
 ```
 
+### Connect to the cluster
+
+Use the public ID to connect:
+
+``` bash
+# for Linux instances, the username is ec2-user
+# <public_ID>: 52.16.106.209
+# <key_file>: ~/.ssh/ec2
+$ ssh -i <key_file> ec2-user@<public_ID>
+```
+
+<!-- 
+--auto-terminate \
 list-clusters
 list-instances
-terminate-clusters
+terminate-clusters -->
 
-### Connect to the cluster and run the analysis
+
+### Run the analysis
 
 ``` bash
 hadoop \
    jar /opt/hadoop/contrib/streaming/hadoop-streaming-1.0.3.jar \
-   -mapper "python $PWD/mapper.py" \
-   -reducer "python $PWD/reducer.py" \
-   -input "wordcount/mobydick.txt"   \
-   -output "wordcount/output"
+   -mapper "python s3://my-bucket-ucl123/input/mapper.py" \
+   -reducer "python s3://my-bucket-ucl123/input/reducer.py" \
+   -input "s3://my-bucket-ucl123/input/dorian.txt" \
+   -output "s3://my-bucket-ucl123/output"
 ```
 
 ### View the results
