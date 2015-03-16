@@ -1,5 +1,5 @@
 ---
-title: Cloud computing
+title: Cloud computing and big data
 ---
 
 ## Cloud computing and big data
@@ -8,5 +8,16 @@ title: Cloud computing
 
 This session will review:
 - Cloud computing and big data
-- Getting started with EC2
-- Map/Reduce and HDFS
+- Starting a server
+- MapReduce 
+- Distributed computing
+
+Intended to be a practical session, learning the concepts by example.
+
+<!-- 
+
+Docker and Vagrant
+
+
+
+-->
