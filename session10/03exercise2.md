@@ -32,7 +32,7 @@ Default region name [eu-west-1a]: eu-west-1
 Default output format [json]: text
 ```
 
-# Test our connection to Amazon Web Services
+### Test our connection to Amazon Web Services
 
 ``` bash
 # Successful connection will return list of AWS regions
