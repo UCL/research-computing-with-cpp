@@ -101,7 +101,7 @@ reducer(sys.stdin)
 
 ### Demonstrate locally
 
-Download the book and the map and reduce functions:
+Download the map and reduce functions:
 
 ``` git
 $ git clone https://github.com/tompollard/dorian

@@ -60,18 +60,23 @@ $ aws emr create-cluster --ami-version 3.1.0 \
 Use the public ID to connect:
 
 ``` bash
+# Get the cluster-id of the cluster
+$ aws emr list-clusters
+
+# SSH into the master node
+# Our <clusterID>: j-3HGKJHEND0DX8
+# <key_file>: ~/.ssh/ec2
+$ aws emr ssh --cluster-id <clusterID> \
+    --key-pair-file <key_file>
+
+
+aws emr list-instances --cluster-id j-3HGKJHEND0DX8
+
 # for Linux instances, the username is ec2-user
 # <public_ID>: 52.16.106.209
 # <key_file>: ~/.ssh/ec2
 $ ssh -i <key_file> ec2-user@<public_ID>
 ```
-
-<!-- 
---auto-terminate \
-list-clusters
-list-instances
-terminate-clusters -->
-
 
 ### Run the analysis
 
