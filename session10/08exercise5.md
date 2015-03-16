@@ -52,7 +52,8 @@ Create a compute cluster with one master instance and two core instances:
 # <ami-version>: version of the machine image to use
 # <instance-type>:  number and type of Amazon  EC2  instances
 $ aws emr create-cluster --ami-version 3.1.0 \
-    --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.xlarge InstanceGroupType=CORE,InstanceCount=2,InstanceType=m3.xlarge
+    --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.xlarge \ 
+    InstanceGroupType=CORE,InstanceCount=2,InstanceType=m3.xlarge
 ```
 
 ### Connect to the cluster
