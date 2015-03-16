@@ -102,10 +102,15 @@ reducer(sys.stdin)
 
 ### Demonstrate locally
 
-Demonstrate the Map/Reduce functions locally:
+Download the book and the map and reduce functions:
+
+``` git
+$ git clone https://github.com/tompollard/dorian
+```
+
+Create a pipeline to process the book:
 
 ``` bash
-# pipe the book into our map reduce workflow
 # sort represents the Hadoop shuffle
 $ cat dorian.txt | ./mapper.py | sort | ./reducer.py | more
 
