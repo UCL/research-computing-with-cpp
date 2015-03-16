@@ -40,7 +40,7 @@ title: CUDA-C
 * ```__const__``` variables are ```const``` and are stored in GPU constant memory
     - they can be accessed directly by the host
 * ```__shared__``` variables are stored in shared memory
-    - one per thread block
+    - one per block
 
 ### Variables for thread indexing
 
@@ -52,10 +52,25 @@ title: CUDA-C
 
 * These are structs, with e.g. `threadIdx.x` for the x-coordinate.
 
+### Calling CUDA
+
+{{cppfrag('09','cuda/saxpy.cu','CudaCall')}}
+
+The syntax gives first the gridDim, then the blockDim.
+
+When given as integers, 1-D is assumed.
+
+Otherwise, allocate a `dim3`:
+
+``` cuda
+dim3 block_dim(32,32,1);
+dim3 grid_dim(64,1,1);
+kernel<<<grid_dim,block_dim>>>(...);
+```
+
 ### Cuda Examples SAXPY
 
 {{cppfrag('09','cuda/saxpy.cu','saxpy')}}
-{{cppfrag('09','cuda/saxpy.cu','CudaCall')}}
 
 ```
 n = 10000, incx = 1, incy = 1
@@ -65,3 +80,15 @@ saxpy: 0.010384ms
 ### More on CUDA
 
 [See NVidia CUDA tutorial](http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
+
+### Warp divergence:
+
+* Instructions are issued per 32 threads (warp)
+* When threads within a single warp take different paths (if-else etc.):
+    * Different execution paths within a warp are serialized!
+* But different warps can execute different code with no impact on performance
+    * Avoid diverging within a warp
+
+``` cuda
+if (threadIdx.x > 2) {...} else {...}
+```
