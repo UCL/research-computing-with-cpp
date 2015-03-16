@@ -46,7 +46,7 @@ Our mapper:
 
 ``` python
 
-#! /usr/bin/env python
+#!/usr/bin/env python
 import sys
 import re
 
@@ -69,7 +69,7 @@ Our reducer:
 
 ``` python
 
-#! /usr/bin/env python
+#!/usr/bin/env python
 import sys
 
 def reducer(stream):

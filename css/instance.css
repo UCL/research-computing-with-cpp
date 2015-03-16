@@ -1,6 +1,7 @@
 img[src*="figures/create_ec2_instance.png"],
 img[src*="figures/connect_to_instance.png"],
-img[src*="figures/terminate_instance.png"] {
-    max-width: 400px;
+img[src*="figures/terminate_instance.png"], 
+img[src*="figures/key_pair.png"] {
+    max-width: 600px;
     vertical-align: middle;
 }

@@ -29,7 +29,7 @@ $ aws configure
 AWS Access Key ID [****************VDLA]: EXXXXXAMPLE
 AWS Secret Access Key [****************pa8o]: EXXXXXAMPLE
 Default region name [eu-west-1]: eu-west-1
-Default output format [json]: text
+Default output format [json]: json
 ```
 
 ### Test our connection to Amazon Web Services

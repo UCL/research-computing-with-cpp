@@ -23,12 +23,12 @@ Elastic MapReduce (EMR) provides a framework for:
 
 ### Create an S3 bucket
 
-Create an S3 bucket to hold the input files (the book and our map/reduce functions); the processing logs; and the output (results from our analysis):
+Create an S3 bucket to hold the input (the book; our map/reduce functions) and log files:
 
 1. Open the Amazon Web Services Console: http://aws.amazon.com/
 2. Select "Create Bucket" and enter a globally unique name
 3. Ensure the S3 Bucket shares the same region as other instances in your cluster
-4. Create subfolders for the input, logs, and output (e.g. ```s3://my-bucket-ucl123/output```)
+4. Create subfolders for the input and logs (e.g. ```s3://my-bucket-ucl123/input```)
 
 <!-- 
 May need to do more from here: http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-cli-install.html
@@ -50,52 +50,94 @@ Create a compute cluster with one master instance and two core instances:
 ``` bash
 # Start a EMR cluster
 # <ami-version>: version of the machine image to use
-# <instance-type>:  number and type of Amazon  EC2  instances
+# <instance-type>:  number and type of Amazon EC2 instances
+# <key_name>: "mykeypair"
 $ aws emr create-cluster --ami-version 3.1.0 \
-    --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.xlarge \ 
+    --ec2-attributes KeyName=<key_name> \
+    --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.xlarge \
     InstanceGroupType=CORE,InstanceCount=2,InstanceType=m3.xlarge
+
+"ClusterId": "j-3HGKJHEND0DX8"
+```
+
+### Identify the cluster
+
+Get the cluster-id:
+
+``` bash
+# Get the cluster-id
+$ aws emr list-clusters
+    ...
+    "Id": "j-3HGKJHEND0DX8", 
+    "Name": "Development Cluster"
+```
+
+Once the cluster is up and running, get the public DNS name:
+
+``` bash
+# Get the DNS
+$ aws emr describe-cluster --cluster-id j-3HGKJHEND0DX8 \
+    | grep MasterPublicDnsName
+    ...
+    "MasterPublicDnsName": "ec2-52-16-235-144.eu-west-1.compute.amazonaws.com"
 ```
 
 ### Connect to the cluster
 
-Use the public ID to connect:
+SSH into the cluster using the username 'hadoop':
 
 ``` bash
-# Get the cluster-id of the cluster
-$ aws emr list-clusters
-
 # SSH into the master node
-# Our <clusterID>: j-3HGKJHEND0DX8
 # <key_file>: ~/.ssh/ec2
-$ aws emr ssh --cluster-id <clusterID> \
-    --key-pair-file <key_file>
+# <MasterPublicDnsName>: ec2-52-16-235-144.eu-west-1.compute.amazonaws.com
+$ ssh hadoop@<MasterPublicDnsName> -i <key_file> 
+```
 
+``` bash
+# Connected 
+       __|  __|_  )
+       _| \(     /   Amazon Linux AMI
+      ___|\\___|___|
 
-aws emr list-instances --cluster-id j-3HGKJHEND0DX8
-
-# for Linux instances, the username is ec2-user
-# <public_ID>: 52.16.106.209
-# <key_file>: ~/.ssh/ec2
-$ ssh -i <key_file> ec2-user@<public_ID>
+[hadoop@ip-x ~]$ 
 ```
 
 ### Run the analysis
 
 ``` bash
-hadoop \
-   jar /opt/hadoop/contrib/streaming/hadoop-streaming-1.0.3.jar \
-   -mapper "python s3://my-bucket-ucl123/input/mapper.py" \
-   -reducer "python s3://my-bucket-ucl123/input/reducer.py" \
-   -input "s3://my-bucket-ucl123/input/dorian.txt" \
-   -output "s3://my-bucket-ucl123/output"
+[hadoop@ip-x ~]$ hadoop \
+       jar ~/contrib/streaming/hadoop-streaming.jar \
+       -mapper 'python s3://my-bucket-ucl123/input/mapper.py' \
+       -reducer 'python s3://my-bucket-ucl123/input/reducer.py' \
+       -input s3://my-bucket-ucl123/input/dorian.txt \
+       -output s3://my-bucket-ucl123/output/
+```
+
+### Terminate the cluster
+
+Once the analysis is complete, terminate the cluster:
+
+``` bash
+$ aws emr terminate-clusters --cluster-id j-3HGKJHEND0DX8
 ```
 
 ### View the results
 
-Results can be viewed in the output folder:
+Results have been saved to the output folder:
 
 ``` bash
-"results"
+# List files in the output folder
+$ aws s3 ls s3://my-bucket-ucl123/output/
+```
+
+Download the output:
+
+``` bash
+# Copy the output file to our local folder
+$ aws s3 cp s3://my-bucket-ucl123/output/output.txt ./
+
+# View the file
+$ head output.txt
 ```
 
 

@@ -24,12 +24,16 @@ A growing number of companies are offering cloud computing services, for example
 
 In this exercise we'll be using Amazon Web Services. 
 
-Amazon uses public–key cryptography to authenticate users, so we'll create and register a key pair (a private and public key):
+Amazon uses public–key cryptography to authenticate users, so we'll create a key pair (a private and public key):
 
 ``` bash
 # Create a key pair
 $ ssh-keygen -t rsa -f ~/.ssh/ec2 -b 4096
 ```
+
+...and we'll register our public key with Amazon Web Services.
+
+![](session10/figures/key_pair.png)
 
 ### Create a single instance using the web interface
 
@@ -39,10 +43,11 @@ Navigate to the EC2 Dashboard and create a 'micro' instance (1 CPU, 2.5GHZ, 1GB 
 
 ### Connect to the instance with SSH
 
+For Linux instances, the username is 'ec2-user':
+
 ``` bash
-# for Linux instances, the username is ec2-user
-# specify the private key with <key_file>
-$ ssh -i <key_file> ec2-user@52.16.96.114
+# <key_file>: ~/.ssh/ec2
+$ ssh ec2-user@52.16.96.114 -i <key_file> 
 ```
 
 ![](session10/figures/connect_to_instance.png)
