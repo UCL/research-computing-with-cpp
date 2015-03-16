@@ -1,5 +1,5 @@
 ---
-title: Exercise 5: Distributed computing
+title: Exercise 5 - Distributed computing
 ---
 
 ## Exercise 5: Distributed computing

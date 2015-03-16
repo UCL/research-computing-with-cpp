@@ -1,5 +1,5 @@
 ---
-title: Exercise 3: Virtualisation
+title: Exercise 3 - Virtualisation
 ---
 
 ## Exercise 3: Virtualisation

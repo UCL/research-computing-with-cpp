@@ -1,5 +1,5 @@
 ---
-title: Exercise 1: Working in the cloud
+title: Exercise 1 - Working in the cloud
 ---
 
 ## Exercise 1: Working in the cloud

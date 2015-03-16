@@ -1,5 +1,5 @@
 ---
-title: Exercise 4: Map/Reduce
+title: Exercise 4 - MapReduce
 ---
 
 ## Exercise 4: Map/Reduce
