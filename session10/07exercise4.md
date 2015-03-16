@@ -50,14 +50,13 @@ Our mapper:
 import sys
 import re
 
-def mapper(argv): 
+def mapper(stream): 
     pattern = re.compile('[a-zA-Z][a-zA-Z0-9]*') 
-    for line in sys.stdin: 
+    for line in stream: 
         for word in pattern.findall(line): 
             print word.lower() + '\t' + '1' 
 
 mapper(sys.stdin)
-
 ```
 
 ### Reducer

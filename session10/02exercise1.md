@@ -10,7 +10,6 @@ This example briefly run through the process of:
 
 - creating an account with a provider of cloud services
 - spinning up a single cloud instance using a web interface
-- spinning up an instance from the command line
 
 ### Create an account
 
