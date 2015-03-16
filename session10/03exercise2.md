@@ -6,7 +6,7 @@ title: Exercise 2 - Working in the cloud
 
 ### Again, from the command line...
 
-Install Amazon Web Services Command Line Interface: 
+Install Amazon Web Services Command Line Interface:  
 [http://docs.aws.amazon.com/cli/latest/userguide/installing.html](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 
 ``` bash
@@ -17,7 +17,7 @@ aws ec2 help
 
 ### Configure the tools
 
-To use the command line tools, you'll need to register your AWS Access Keys and preferred region and output format:
+To use the command line tools, you'll need to register your AWS Access Keys and preferred region and output format:  
 [http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
 ``` bash
@@ -28,7 +28,7 @@ $ aws configure
 # On Windows: %UserProfile%\.aws\config
 AWS Access Key ID [****************VDLA]: EXXXXXAMPLE
 AWS Secret Access Key [****************pa8o]: EXXXXXAMPLE
-Default region name [eu-west-1a]: eu-west-1
+Default region name [eu-west-1]: eu-west-1
 Default output format [json]: text
 ```
 

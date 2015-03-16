@@ -20,9 +20,9 @@ A growing number of companies are offering cloud computing services, for example
 - Google Cloud Platform: [https://cloud.google.com](https://cloud.google.com)
 - Microsoft Azure: [http://azure.microsoft.com](http://azure.microsoft.com)
 
-In this example we'll be using Amazon Web Services.
+### Create a key pair
 
-### Create an EC2 keypair
+In this exercise we'll be using Amazon Web Services. 
 
 Amazon uses public–key cryptography to authenticate users, so we'll create and register a key pair (a private and public key):
 
