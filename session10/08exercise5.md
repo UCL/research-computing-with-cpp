@@ -148,6 +148,8 @@ lord    248
 Once the analysis is complete, terminate the cluster:
 
 ``` bash
-$ aws emr terminate-clusters --cluster-id j-3HGKJHEND0DX8
+# get cluster id: aws emr list-clusters
+# <cluster_ID>: j-3HGKJHEND0DX8
+$ aws emr terminate-clusters --cluster-id <cluster_ID>
 ```
 
