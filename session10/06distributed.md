@@ -17,6 +17,7 @@ Introduced by Google in 2004, MapReduce is a popular model that supports distrib
 MapReduce systems are built around the concepts of:
 
 - a map method, in which the master node takes an input, separates it into sub-problems, and distributes those to worker notes
+- a 'shuffle' method to distribute data from the map method
 - a reduce method which collates the answers to the sub-problems and combines them to solves the initial question.
 
 ### Distributed file systems
