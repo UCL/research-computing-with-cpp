@@ -30,7 +30,11 @@ Distributed file systems have developed to provide reliable data storage across 
 
 ### Hadoop
 
-Content to follow.
+Apache Hadoop:
+
+- framework for distributed processing of large data sets 
+- scales from single servers to many machines
+- includes MapReduce and a distributed file system
 
 <!-- 
 http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html#Reducer
