@@ -4,31 +4,32 @@ title: Virtualisation
 
 ## Virtualisation
 
+### Reproducible research
+
+The ability to reproduce the analyses of research studies is increasingly recognised as important.
+
+Several approaches have developed that help researchers to package up code so that their analyses can be distributed and run by others.
+
 ### Virtual machines
 
-Content to follow.
-<!-- Virtual machines 
+A popular method for creating a shareable environment is with the use of virtual machines. 
 
-Tools like Docker and Vagrant provide a system for controlling your development environment and allow it to be reproduced on other systems. 
--->
+The isolated system created by virtual machines can be beneficial, but criticisms include:
+
+- size: virtual machines can be bulky
+- performance: virtual machines may use significant system resources
+
+Tools such as Vagrant have helped to simplify the method for creating and using virtual machines, however: ![https://www.vagrantup.com](https://www.vagrantup.com/)
 
 ### Virtual environments
 
-Content to follow.
-<!-- 
-Docker provides a virtual environment, sitting on top of a system and... Benefit is... Vagrant is a tool for creating virtual machines. In both cases, this means that 'images' can be built by a developer and shared. Recreating a whole new machine vs modifying an existing set up to achieve (don't need to copy entire system) http://www.nextflow.io/blog/2014/nextflow-meets-docker.html
--->
+Virtual environments offer an alternative to virtual machines. Rather than constructing an entirely new system, virtual environments in general seek to 
+provide reproducible 'containers' which are layered on top of an existing environment.
 
-### Reproducible research
+Virtual environments enable controlled, reproducible environments to be shared, in theory with lower size and performance overheads than virtual machines
 
-Content to follow.
-
-<!--
-The ability to provide reproducible research is increasingly important:
-
-- A key benefit of this, in terms of research computing, is that software can be developed on one system and reproduced on another system.
-- 
--->
+A popular tool for creating virtual environments is Docker:
+![https://www.docker.com](https://www.docker.com/)
 
 <!-- 
 https://github.com/idekerlab/cyREST/wiki/Docker-and-Data-Analysis
