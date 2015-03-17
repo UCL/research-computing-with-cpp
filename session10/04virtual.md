@@ -19,7 +19,8 @@ The isolated system created by virtual machines can be beneficial, but criticism
 - size: virtual machines can be bulky
 - performance: virtual machines may use significant system resources
 
-Tools such as Vagrant have helped to simplify the method for creating and using virtual machines, however: ![https://www.vagrantup.com](https://www.vagrantup.com/)
+Tools such as Vagrant have helped to simplify the method for creating and using virtual machines however:  
+![https://www.vagrantup.com](https://www.vagrantup.com/)
 
 ### Virtual environments
 
@@ -28,7 +29,7 @@ provide reproducible 'containers' which are layered on top of an existing enviro
 
 Virtual environments enable controlled, reproducible environments to be shared, in theory with lower size and performance overheads than virtual machines.
 
-A popular tool for creating virtual environments is Docker:
+A popular tool for creating virtual environments is Docker:  
 ![https://www.docker.com](https://www.docker.com/)
 
 <!-- 
