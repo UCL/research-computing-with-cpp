@@ -22,11 +22,10 @@ MapReduce systems are built around the concepts of:
 
 ### Distributed file systems
 
-Content to follow.
+Distributed file systems
 
-<!-- 
-Distributed file systems have developed to provide reliable data storage across a distributed system.
--->
+- developed to provide reliable data storage across distributed systems
+- replicates data across multiple hosts to achieve reliability
 
 ### Hadoop
 
@@ -34,7 +33,7 @@ Apache Hadoop:
 
 - framework for distributed processing of large data sets 
 - scales from single servers to many machines
-- includes MapReduce and a distributed file system
+- includes Hadoop MapReduce and the Hadoop Distributed File System
 
 <!-- 
 http://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html#Reducer
