@@ -23,12 +23,12 @@ Elastic MapReduce (EMR) provides a framework for:
 
 ### Create an S3 bucket
 
-Create an S3 bucket to hold the input (the book; our map/reduce functions) and log files:
+Create an S3 bucket to hold the input data and our map/reduce functions:
 
 1. Open the Amazon Web Services Console: http://aws.amazon.com/
 2. Select "Create Bucket" and enter a globally unique name
 3. Ensure the S3 Bucket shares the same region as other instances in your cluster
-4. Create subfolders for the input and logs (e.g. ```s3://my-bucket-ucl123/input```)
+4. Create subfolders for the input and code (e.g. ```s3://my-bucket-ucl123/input```)
 
 <!-- 
 May need to do more from here: http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-cli-install.html
@@ -37,10 +37,11 @@ May need to do more from here: http://docs.aws.amazon.com/ElasticMapReduce/lates
 ### Copy data and code to S3
 
 ``` bash
-# copy input code and data to the input folder
+# Copy input code and data to S3
+# No support for unix-style wildcards
 $ aws s3 cp dorian.txt s3://my-bucket-ucl123/input/
-$ aws s3 cp mapper.py s3://my-bucket-ucl123/input/
-$ aws s3 cp reducer.py s3://my-bucket-ucl123/input/
+$ aws s3 cp mapper.py s3://my-bucket-ucl123/code/
+$ aws s3 cp reducer.py s3://my-bucket-ucl123/code/
 ```
 
 ### Launch the compute cluster
@@ -72,7 +73,7 @@ $ aws emr list-clusters
     "Name": "Development Cluster"
 ```
 
-Once the cluster is up and running, get the public DNS name:
+When the cluster is up and running, get the public DNS name:
 
 ``` bash
 # Get the DNS
@@ -105,25 +106,19 @@ $ ssh hadoop@<MasterPublicDnsName> -i <key_file>
 ### Run the analysis
 
 ``` bash
+# To process multiple input files, use a wildcard
 [hadoop@ip-x ~]$ hadoop \
-       jar ~/contrib/streaming/hadoop-streaming.jar \
-       -mapper 'python s3://my-bucket-ucl123/input/mapper.py' \
-       -reducer 'python s3://my-bucket-ucl123/input/reducer.py' \
-       -input s3://my-bucket-ucl123/input/dorian.txt \
-       -output s3://my-bucket-ucl123/output/
-```
-
-### Terminate the cluster
-
-Once the analysis is complete, terminate the cluster:
-
-``` bash
-$ aws emr terminate-clusters --cluster-id j-3HGKJHEND0DX8
+    jar contrib/streaming/hadoop-*streaming*.jar \
+    -files s3://my-bucket-ucl123/code/mapper.py,s3://my-bucket-ucl123/code/reducer.py \
+    -input s3://my-bucket-ucl123/input/* \
+    -output s3://my-bucket-ucl123/output/ \
+    -mapper mapper.py \
+    -reducer reducer.py
 ```
 
 ### View the results
 
-Results have been saved to the output folder:
+Results are saved to the output folder. Each reduce task writes its output to a separate file:
 
 ``` bash
 # List files in the output folder
@@ -133,11 +128,26 @@ $ aws s3 ls s3://my-bucket-ucl123/output/
 Download the output:
 
 ``` bash
-# Copy the output file to our local folder
-$ aws s3 cp s3://my-bucket-ucl123/output/output.txt ./
+# Copy the output files to our local folder
+# No support for unix-style wildcards, so use --recursive
+$ aws s3 cp s3://my-bucket-ucl123/output . --recursive
 
 # View the file
-$ head output.txt
+$ head part-00001
+
+the     3948
+and     2279
+in      1266
+his     996
+lord    248
+...
 ```
 
+### Terminate the cluster
+
+Once the analysis is complete, terminate the cluster:
+
+``` bash
+$ aws emr terminate-clusters --cluster-id j-3HGKJHEND0DX8
+```
 
