@@ -14,16 +14,10 @@ Introduced by Google in 2004, MapReduce is a popular model that supports distrib
 
 ### MapReduce
 
-Content to follow.
+MapReduce systems are built around the concepts of:
 
-<!-- 
-Processing occurs in two basic steps:
-
-Map step: master node takes the input, partitions it into smaller, sub-problems, and distributes those to worker notes. A worker node may do this again, leading to a tree structure. The worker node processes the smaller problem and passes the answer back to its master node.
-
-Reduce step: master node takes the answers to all of the sub problems and combines them in some way to get the output - the answer to the question it was originally trying to solve.
-
--->
+- a map method, in which the master node takes an input, separates it into sub-problems, and distributes those to worker notes
+- a reduce method which collates the answers to the sub-problems and combines them to solves the initial question.
 
 ### Distributed file systems
 
