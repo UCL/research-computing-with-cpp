@@ -22,16 +22,16 @@ A growing number of companies are offering cloud computing services, for example
 
 ### Create a key pair
 
-In this exercise we'll be using Amazon Web Services. 
+In this exercise we will be working with Amazon Web Services. 
 
-Amazon uses public–key cryptography to authenticate users, so we'll create a key pair (a private and public key):
+Amazon uses public–key cryptography to authenticate users, so we'll need to create a private/public key pair:
 
 ``` bash
 # Create a key pair
 $ ssh-keygen -t rsa -f ~/.ssh/ec2 -b 4096
 ```
 
-...and we'll register our public key with Amazon Web Services.
+We then need to register our public key with Amazon Web Services.
 
 ![](session10/figures/key_pair.png)
 

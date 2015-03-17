@@ -6,7 +6,9 @@ title: Cloud computing and big data
 
 ### Big data
 
-Some data requires special treatment for collection, storage, and analysis, for example due to 'the three vs':
+Some data requires special treatment for collection, storage, and analysis. 
+
+The 'three vs':
 
 - volume
 - velocity

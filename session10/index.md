@@ -8,9 +8,10 @@ title: Cloud computing and big data
 
 This session will review:
 
-- Cloud computing and big data  
-- Starting a server  
-- MapReduce   
-- Distributed computing  
+- 'Big data'
+- Working in the cloud
+- Virtualisation
+- Distributed computing 
+- Hadoop and MapReduce 
 
 Intended to be a practical session, learning the concepts by example.

@@ -17,7 +17,7 @@ aws ec2 help
 
 ### Configure the tools
 
-To use the command line tools, you'll need to register your AWS Access Keys and preferred region and output format:  
+To use the command line tools, you'll need to configure your AWS Access Keys, region, and output format:  
 [http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
 ``` bash
@@ -33,6 +33,8 @@ Default output format [json]: json
 ```
 
 ### Test our connection to Amazon Web Services
+
+If our connection has been set up correctly, 'describe-regions' will return a list of Amazon Web Service regions:
 
 ``` bash
 # Successful connection will return list of AWS regions
@@ -69,7 +71,7 @@ $ aws ec2 create-security-group \
   --description "SSH access from my local IP address"
 ```
 
-...and to allow inbound connections from our local IP address:
+...and allow inbound connections from our local IP address:
 
 ``` bash
 # create a rule to allow inbound connections on TCP port 22
@@ -89,7 +91,7 @@ An Amazon Machine Image contains the software configuration (operating system, s
 - the user community
 - AWS Marketplace
 
-We'll search for an Amazon Machine Image ID (AMI-ID) using the command line tools:
+We will search for an Amazon Machine Image ID (AMI-ID) using the command line tools:
 
 ``` bash
 # Use filter to locate a specific machine (ami-9d23aeea)
@@ -100,7 +102,7 @@ $ aws ec2 describe-images --owners amazon \
 
 ### Launch an instance
 
-Launch an instance using the Image ID:
+Launch an instance using the Amazon Machine Image ID:
 
 ``` bash
 # <AMI-ID>: ami-9d23aeea

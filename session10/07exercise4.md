@@ -2,15 +2,15 @@
 title: Exercise 4 - MapReduce
 ---
 
-## Exercise 4: Map/Reduce
+## Exercise 4: MapReduce
 
-### The 'Hello World' of Map/Reduce
+### The 'Hello World' of MapReduce
 
-In this example, we'll demonstrate how the map and reduce functions can be applied on our local machines to count the number of times each word appears in a book.
+In this example, we will demonstrate how the map and reduce functions can be applied on our local machines to count the number of times each word appears in a book.
 
 ### Choose a book
 
-We will be using a book of your choice for the exercise: 
+Find a good book on Project Gutenberg, and download it: 
 [http://www.gutenberg.org/browse/scores/top](http://www.gutenberg.org/browse/scores/top)
 
 ``` bash
@@ -31,10 +31,10 @@ things.
 
 ### Hadoop streaming
 
-Hadoop streaming provides functionality that enables Map/Reduce jobs to be run using any executable as the mapper and reducer:
+Hadoop streaming enables MapReduce jobs to be run using any executable as the mapper and reducer:
 [http://hadoop.apache.org/docs/r1.2.1/streaming.html](http://hadoop.apache.org/docs/r1.2.1/streaming.html)
 
-The mapper and reducer are written to take line-by-line input from stdin and emit the output to stdout.
+The mapper and reducer are written to take line-by-line inputs from stdin and emit the output to stdout.
 
 ### Mapper
 
