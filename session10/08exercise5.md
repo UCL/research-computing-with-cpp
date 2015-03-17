@@ -32,6 +32,15 @@ Create an S3 bucket to hold the input data and our map/reduce functions:
 
 ### Copy data and code to S3
 
+The sample map and reduce functions are available on GitHub:
+
+``` bash
+# clone the code from a remote repository
+$ git clone https://github.com/tompollard/dorian
+```
+
+Copy the data and code to S3:
+
 ``` bash
 # Copy input code and data to S3
 # No support for unix-style wildcards
