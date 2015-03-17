@@ -28,7 +28,11 @@ Create an S3 bucket to hold the input data and our map/reduce functions:
 1. Open the Amazon Web Services Console: http://aws.amazon.com/
 2. Select "Create Bucket" and enter a globally unique name
 3. Ensure the S3 Bucket shares the same region as other instances in your cluster
-4. Create subfolders for the input and code (e.g. ```s3://my-bucket-ucl123/input```)
+
+Or, through the CLI:
+```
+aws s3 mb s3://ucl-jh-books-example
+```
 
 ### Copy data and code to S3
 
@@ -160,3 +164,8 @@ Once our analysis is complete, terminate the cluster:
 $ aws emr terminate-clusters --cluster-id <cluster_ID>
 ```
 
+### Delete the bucket
+
+``` bash
+aws s3 rb s3://my-bucket-ucl123 --force
+```
