@@ -6,6 +6,6 @@ img[src*="figures/key_pair.png"] {
     vertical-align: middle;
 }
 
-article ul {
-    padding-left: 2em;
+article ul, article ol {
+    padding-left: 1em;
 }
