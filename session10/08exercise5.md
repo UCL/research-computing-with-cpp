@@ -36,7 +36,7 @@ aws s3 mb s3://ucl-jh-books-example
 
 ### Copy data and code to S3
 
-The sample map and reduce functions are available on GitHub:
+Sample map and reduce functions are available on GitHub:
 
 ``` bash
 # clone the code from a remote repository

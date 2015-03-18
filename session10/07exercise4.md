@@ -6,7 +6,7 @@ title: Exercise 4 - MapReduce
 
 ### The 'Hello World' of MapReduce
 
-In this example, we will demonstrate how the map and reduce functions can be applied on our local machines to count the number of times each word appears in a book.
+In this example, we will demonstrate how the mapper and reducer can be applied on our local machines to count the number of times each word appears in a book.
 
 ### Choose a book
 
@@ -101,7 +101,7 @@ reducer(sys.stdin)
 
 ### Demonstrate locally
 
-Download the map and reduce functions:
+Download the mapper and reducer:
 
 ``` git
 $ git clone https://github.com/tompollard/dorian
