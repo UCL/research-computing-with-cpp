@@ -29,7 +29,7 @@ Create an S3 bucket to hold the input data and our map/reduce functions:
 2. Select "Create Bucket" and enter a globally unique name
 3. Ensure the S3 Bucket shares the same region as other instances in your cluster
 
-Or, through the CLI:
+Or, through the command line interface:
 ```
 aws s3 mb s3://ucl-jh-books-example
 ```
