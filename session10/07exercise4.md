@@ -2,7 +2,7 @@
 title: Exercise 4 - MapReduce
 ---
 
-## Exercise 4: MapReduce
+## Exercise 4: MapReduce
 
 ### The 'Hello World' of MapReduce
 

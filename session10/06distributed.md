@@ -2,9 +2,9 @@
 title: Distributed computing
 ---
 
-## Distributed computing
+## Distributed computing
 
-### Distributed computing
+### Distributed computing
 
 Dividing a problem into many tasks means analysis can be shared across multiple computers, in a parallel fashion.
 

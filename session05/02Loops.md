@@ -5,7 +5,7 @@ title: Parallelizing loops with OpenMP
 ## Parallelizing loops with OpenMP
 
 
-### Simple example
+### Simple example
 
 
 Integrate: 

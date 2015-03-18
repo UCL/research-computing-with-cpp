@@ -2,7 +2,7 @@
 title: Virtualisation
 ---
 
-## Virtualisation
+## Virtualisation
 
 ### Reproducible research
 

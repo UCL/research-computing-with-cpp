@@ -5,7 +5,7 @@ title: Races, Locks and Critical regions
 ## Races, Locks and Critical regions
 
 
-### Introduction
+### Introduction
 
 In the best of worlds our calculations can be done independently. 
 However, even in our simplest examples we saw issues.
@@ -15,7 +15,7 @@ However, even in our simplest examples we saw issues.
 * Real world examples may be more complicated
 * Incorrectly shared variable leads to random and typically wrong results
 
-### Race condition
+### Race condition
 
 When the result of a calculation depends on the timing between threads. 
 
@@ -25,7 +25,7 @@ When the result of a calculation depends on the timing between threads.
 * May only happen on specific platforms
 * Or depend on system load from other applications
 
-### Barriers and synchronisation
+### Barriers and synchronisation
 
 Typically it is necessary to synchronize threads. Make sure that all threads are 
 done with a piece of work before moving on. Barriers synchronizes threads.
@@ -53,7 +53,7 @@ done with a piece of work before moving on. Barriers synchronizes threads.
 * `#pragma omp atomic`
     - Protect a variable by changing it in one step.
 
-### Mutex locks
+### Mutex locks
 
 Sometimes the critical regions are not flexible enough to implement your algorithm.
 
@@ -72,13 +72,13 @@ OpenMP locks is a general way to manage resources in threads.
 * Important to remember to unset the lock when done.
 * Might otherwise result in a deadlock. Program hangs. 
 
-### Example
+### Example
 
 Replace the critical region with a lock. 
 In this case there is no real gain from using a lock.
 {{cppfrag('05','locks/simplelock.cc')}} 
 
-### Multiple locks
+### Multiple locks
 
 Sometimes it is useful to lock multiple resources with different locks.
 

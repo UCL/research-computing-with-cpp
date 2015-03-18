@@ -2,9 +2,9 @@
 title: Shared memory parallelism
 ---
 
-## Shared memory parallelism
+## Shared memory parallelism
 
-### Overview
+### Overview
 
 * OpenMP
 * Parallel sections, reduction

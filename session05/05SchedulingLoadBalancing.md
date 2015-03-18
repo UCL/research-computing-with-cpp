@@ -13,7 +13,7 @@ code is determined by the environmental variable
 
 Normally `OMP_NUM_THREADS` should be equal to the number of CPU cores
 
-### Load balancing
+### Load balancing
 
 Consider our earlier example of a for loop. 10000000 iterations split on 4 cores
 
@@ -32,7 +32,7 @@ Two obvious strategies:
 The best solution is probably somewhere in between.
 
 
-### OpenMP strategies 
+### OpenMP strategies 
 
 OpenMP offers a number of different strategies for 
 load balancing set by the following key words. 
@@ -45,7 +45,7 @@ The default is static with one chunk per thread.
 * `runtime`: The schedule and chunk size are controlled by runtime variables
 
 
-### Which strategy to use
+### Which strategy to use
 
 It is hard to give general advice on the strategy to use. Depends on the problem and platform. Typically needs benchmarking and 
 experimentation. 

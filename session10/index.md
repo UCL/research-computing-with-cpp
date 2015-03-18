@@ -2,9 +2,9 @@
 title: Cloud computing and big data
 ---
 
-## Cloud computing and big data
+## Cloud computing and big data
 
-### Overview
+### Overview
 
 This session reviews:
 

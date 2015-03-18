@@ -2,7 +2,7 @@
 title: Exercise 2 - Working in the cloud
 ---
 
-## Exercise 2: Working in the cloud
+## Exercise 2: Working in the cloud
 
 ### Again, from the command line...
 

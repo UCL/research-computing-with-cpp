@@ -17,7 +17,7 @@ title: Alternatives to OpenMP
     - Somewhat more complicated. Requires good understanding of templated code
 * [Intel Cilk Plus][Cilkplus] C and C++, Intel and GCC >= 4.9 only
 
-### C++11
+### C++11
 Simple example: 
 {{cppfrag('05','cppthreads/cppthreadsdemo.cc')}}
 

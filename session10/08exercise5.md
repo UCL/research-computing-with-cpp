@@ -2,7 +2,7 @@
 title: Exercise 5 - Distributed computing
 ---
 
-## Exercise 5: Distributed computing
+## Exercise 5: Distributed computing
 
 ### Again, with Hadoop
 
