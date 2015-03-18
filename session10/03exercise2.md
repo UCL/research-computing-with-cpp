@@ -85,9 +85,7 @@ $ aws ec2 authorize-security-group-ingress \
   --protocol tcp
 ```
 
-Note: the /32 at the end of the IP address is the bit number of the [CIDR netmask](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). The /32 mask is equivalent to 255.255.255.255, so defines a single host. 
-
-Lower values broaden the range of allowed addresses. An IP of 0.0.0.0/0 would allow all inbound connections.
+Note: the /32 at the end of the IP address is the bit number of the [CIDR netmask](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). The /32 mask is equivalent to 255.255.255.255, so defines a single host. Lower values broaden the range of allowed addresses. An IP of 0.0.0.0/0 would allow all inbound connections.
 
 ### Locate an appropriate Machine Image
 

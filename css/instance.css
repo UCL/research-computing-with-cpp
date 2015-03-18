@@ -5,3 +5,7 @@ img[src*="figures/key_pair.png"] {
     max-width: 600px;
     vertical-align: middle;
 }
+
+article ul {
+    padding-left: 2em;
+}
