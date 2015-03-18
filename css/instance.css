@@ -1,41 +1,7 @@
 /*  lots of figures. update to general style  */
 
-img[src*="figures/create_ec2_instance.png"],
-img[src*="figures/connect_to_instance.png"],
-img[src*="figures/terminate_instance.png"], 
-img[src*="figures/mpi.png"], 
-img[src*="figures/split.png"], 
-img[src*="figures/gun.gif"],
-img[src*="figures/pgi-nvidia-block-diagram.png"],
-img[src*="figures/VonNeumannCombined.png"],
-img[src*="figures/TransistorCount.png"],
-img[src*="figures/CPUPerf.png"],
-img[src*="figures/noaaforcast.png"],
-img[src*="figures/ParallelComputingExamples.png"],
-img[src*="figures/CDC6000.png"],
-img[src*="figures/440px-Cray-1-deutsches-museum.png"],
-img[src*="figures/Cray2.png"],
-img[src*="figures/480px-IBM_Blue_Gene_P_supercomputer.png"],
-img[src*="figures/serialProblem.png"],
-img[src*="figures/parallelProblem.png"],
-img[src*="figures/AmdahlSpeedup.png"],
-img[src*="figures/AmdahlGraph.png"],
-img[src*="figures/AmdahlSpeedupUsingS.png"],
-img[src*="figures/Amdahl4Components.png"],
-img[src*="figures/sisd.png"],
-img[src*="figures/simd2.png"],
-img[src*="figures/misd.png"],
-img[src*="figures/mimd.png"],
-img[src*="figures/smp2.png"],
-img[src*="figures/cluster.png"],
-img[src*="figures/hybrid_mem2.png"],
-img[src*="figures/gpu.png"],
-img[src*="figures/hybrid_model.png"],
-img[src*="figures/msg_pass_model.png"],
-img[src*="figures/memoryAccessTimes.png"],
-img[src*="figures/hybrid_model.png"],
-img[src*="figures/memoryAccessTimes.png"],
-img[src*="figures/key_pair.png"] {
+img[src*="figures/*.png"],
+ {
     max-width: 700px;
     vertical-align: middle;
 }
@@ -44,6 +10,7 @@ article ul, article ol {
     padding-left: 1em;
 }
 
-ul ul, ol ul {
+article ul ul, article ol ul {
     padding-left: 1em;
 }
+
