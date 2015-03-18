@@ -43,3 +43,7 @@ img[src*="figures/key_pair.png"] {
 article ul, article ol {
     padding-left: 1em;
 }
+
+ul ul, ol ul {
+    padding-left: 1em;
+}
