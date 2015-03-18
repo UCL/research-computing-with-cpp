@@ -60,9 +60,9 @@ $ aws ec2 import-key-pair --key-name <key_name> \
   --public-key-material <key_blob>
 ```
 
-### Create and configure a security group
+### Create a security group
 
-We'll also need to create a security group:
+We'll also need to create a security group...
 
 ``` bash
 # creates security group named my-security-group
@@ -70,6 +70,8 @@ $ aws ec2 create-security-group \
   --group-name "My security group" \
   --description "SSH access from my local IP address"
 ```
+
+### Configure the security group
 
 ...and allow inbound connections from our local IP address:
 
@@ -82,6 +84,10 @@ $ aws ec2 authorize-security-group-ingress \
   --port 22 \
   --protocol tcp
 ```
+
+Note: the /32 at the end of the IP address is the bit number of the [CIDR netmask](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). The /32 mask is equivalent to 255.255.255.255, so defines a single host. 
+
+Lower values broaden the range of allowed addresses. An IP of 0.0.0.0/0 would allow all inbound connections.
 
 ### Locate an appropriate Machine Image
 

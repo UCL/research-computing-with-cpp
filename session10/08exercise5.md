@@ -25,7 +25,7 @@ Elastic MapReduce provides a framework for:
 
 Create an S3 bucket to hold the input data and our map/reduce functions:
 
-1. Open the Amazon Web Services Console: http://aws.amazon.com/
+1. Open the Amazon Web Services Console: [http://aws.amazon.com](http://aws.amazon.com/)
 2. Select "Create Bucket" and enter a globally unique name
 3. Ensure the S3 Bucket shares the same region as other instances in your cluster
 
