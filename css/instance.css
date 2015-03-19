@@ -1,6 +1,5 @@
-/*  lots of figures. update to general style  */
-
-img[src*="figures/*.png"],
+/*  resize pngs in the figures folder  */
+img[src*=".png"][src^="figures"]
  {
     max-width: 700px;
     vertical-align: middle;
