@@ -8,7 +8,7 @@ title: Exercise 5 - Distributed computing
 
 In the previous exercise, we demonstrated MapReduce on our local computer.
 
-In this exercise we will spin up multiple cloud instances, making use of Hadoop to carry out the MapReduce operation.
+In this exercise we will spin up multiple cloud instances, making use of Hadoop to carry out a distributed MapReduce operation.
 
 We could set up multiple instances in the cloud (for example with EC2), then configure Hadoop to run across the instances. This is not trivial and takes time. 
 
@@ -31,7 +31,7 @@ Create an S3 bucket to hold the input data and our map/reduce functions:
 
 Or, through the command line interface:
 ```
-aws s3 mb s3://ucl-jh-books-example
+$ aws s3 mb s3://ucl-jh-books-example
 ```
 
 ### Copy data and code to S3
@@ -111,14 +111,14 @@ $ ssh hadoop@<MasterPublicDnsName> -i <key_file>
        _| \(     /   Amazon Linux AMI
       ___|\\___|___|
 
-[hadoop@ip-x ~]$ 
+[hadoop@ip-xxx ~]$ 
 ```
 
 ### Run the analysis
 
 ``` bash
 # To process multiple input files, use a wildcard
-[hadoop@ip-x ~]$ hadoop \
+[hadoop@ip-xxx ~]$ hadoop \
     jar contrib/streaming/hadoop-*streaming*.jar \
     -files s3://my-bucket-ucl123/code/mapper.py,s3://my-bucket-ucl123/code/reducer.py \
     -input s3://my-bucket-ucl123/input/* \
@@ -167,5 +167,5 @@ $ aws emr terminate-clusters --cluster-id <cluster_ID>
 ### Delete the bucket
 
 ``` bash
-aws s3 rb s3://my-bucket-ucl123 --force
+$ aws s3 rb s3://my-bucket-ucl123 --force
 ```

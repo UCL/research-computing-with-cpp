@@ -130,13 +130,13 @@ $ aws ec2 describe-instances
 
 ### Connect to the instance
 
-Use the public ID to connect:
+Use the public IP to connect:
 
 ``` bash
 # for Linux instances, the username is ec2-user
-# <public_ID>: 52.16.106.209
+# <public_IP>: 52.16.106.209
 # <key_file>: ~/.ssh/ec2
-$ ssh -i <key_file> ec2-user@<public_ID>
+$ ssh -i <key_file> ec2-user@<public_IP>
 ```
 
 You should now be connected!:

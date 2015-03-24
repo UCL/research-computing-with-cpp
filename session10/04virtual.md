@@ -8,7 +8,7 @@ title: Virtualisation
 
 The ability to reproduce the analyses of research studies is increasingly recognised as important.
 
-Several approaches have developed that help researchers to package up code so that their analyses can be distributed and run by others.
+Several approaches have developed that help researchers to package up code so that their code and dependencies can be distributed and run by others.
 
 ### Virtual machines
 

@@ -47,7 +47,8 @@ For Linux instances, the username is 'ec2-user':
 
 ``` bash
 # <key_file>: ~/.ssh/ec2
-$ ssh ec2-user@52.16.96.114 -i <key_file> 
+# <public_ID>: 52.16.106.209
+$ ssh ec2-user@<public_ID> -i <key_file> 
 ```
 
 ![](session10/figures/connect_to_instance.png)
@@ -58,17 +59,17 @@ $ ssh ec2-user@52.16.96.114 -i <key_file>
        _| \(     /   Amazon Linux AMI
       ___|\\___|___|
 
-[ec2-user@ip-172-31-5-39 ~]$ 
+[ec2-user@ip-xxx ~]$ 
 ```
 
-### Upload and run a script from your local machine
+<!-- ### Upload and run a script from your local machine
 
 ``` bash
 # Add a hello world here
 
 # transfer the file from your local machine
 $ $ scp -i <key_file> <SampleFile> ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com:~
-```
+``` -->
 
 ### Terminate the server
 

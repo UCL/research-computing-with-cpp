@@ -10,7 +10,7 @@ In this example, we will demonstrate how the mapper and reducer can be applied o
 
 ### Choose a book
 
-Find a good book on Project Gutenberg, and download it: 
+Find a good book on Project Gutenberg and download it: 
 [http://www.gutenberg.org/browse/scores/top](http://www.gutenberg.org/browse/scores/top)
 
 ``` bash
