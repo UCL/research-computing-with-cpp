@@ -138,7 +138,7 @@ IPython Notebook is now running in the virtual environment and available to the 
 
 ### Connect to the IPython Notebook
 
-We can now connect to the IPython Notebook in a browser at the public IP of the Amazon Instance on port 8888 (i.e. http://<publicIP>:8888):
+We can now connect to the IPython Notebook in a browser at the public IP of the Amazon Instance on port 8888 (i.e. http://{publicIP}:8888):
 
 ![IPython Notebook](session10/figures/notebook.png)
 
