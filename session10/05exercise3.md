@@ -146,6 +146,8 @@ We can now connect to the IPython Notebook in a browser at the public IP of the 
 
 Using the IPython Notebook, we can reproduce the analysis on both existing and new datasets.
 
-![Common words in Dorian Gray](session10/figures/wordcount_plot.png)
+![Common words in Dorian Gray](session10/figures/dorian_wordcount.png)
+
+![Word dispersion](session10/figures/dorian_dispersion.png)
 
 
