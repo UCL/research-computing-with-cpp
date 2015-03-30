@@ -13,3 +13,7 @@ article ul ul, article ol ul {
     padding-left: 1em;
 }
 
+.figure .caption {
+    font-size: 90%;
+    font-style: italic;
+}
