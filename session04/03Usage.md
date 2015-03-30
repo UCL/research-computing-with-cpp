@@ -4,7 +4,7 @@ title: Usage
 
 ## Usage
 
-### Understand Your Task
+### Understand your task
 
 ![Pictures from LLNL Tutorial](session04/figures/memoryAccessTimes)
 
@@ -14,7 +14,7 @@ title: Usage
 * Use SSD discs if possible
 
 
-### Identify Candidates
+### Identify candidates
 
 * Identify hotspots and bottlenecks?
 * Use optimised libraries
@@ -33,7 +33,7 @@ title: Usage
         * How to re-join, synchronise?
         
         
-### Load Balancing / Granularity
+### Load balancing / granularity
 
 ![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
 
@@ -41,7 +41,7 @@ title: Usage
 * Consider how to keep ALL cores busy ALL the time
     
 
-### Other Limits/Costs
+### Other limits/costs
 
 * If you parallelise, be aware:
     * Specificity - you develop a specific customised version for a specific task
@@ -51,7 +51,7 @@ title: Usage
     * Scalability - related to Amdahl's law, memory overhead, communications overhead, synchronisation cost.
 
 
-### Choice Of Technology
+### Choice Of technology
 
 * Depends
     * Hardware architecture
