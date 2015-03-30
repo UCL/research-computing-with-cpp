@@ -3,6 +3,7 @@ img[src*=".png"][src^="figures"]
  {
     max-width: 700px;
     vertical-align: middle;
+    padding-left: 1em;
 }
 
 article ul, article ol {
@@ -16,4 +17,5 @@ article ul ul, article ol ul {
 .figure .caption {
     font-size: 90%;
     font-style: italic;
+    padding-left: 1em;
 }
