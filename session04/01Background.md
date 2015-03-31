@@ -2,9 +2,9 @@
 title: Background
 ---
 
-## Overview of HPC
+## Overview of high performance computing
 
-### Algorithm Development
+### Algorithm development
  
 * Consider the case of the Research Programmer:
     * Learns a few languages
@@ -15,7 +15,7 @@ title: Background
 
 ### Von Neumann Architecture
 
-![Pictures from wikipedia](session04/figures/VonNeumannCombined)
+![Picture from wikipedia](session04/figures/VonNeumannCombined)
 
 * John von Neumann (1903 - 1957) proposed in 1945.
 * Based on Turing's work in 1936.
@@ -31,17 +31,17 @@ title: Background
 ![Pictures from wikipedia](session04/figures/TransistorCount)
 
 
-### Physical Limitations
+### Physical limitations
 
-![Pictures from Sutter](session04/figures/CPUPerf)
+![Picture from Sutter](session04/figures/CPUPerf)
 
 * Due to clockspeed, power requirements, cooling, wire delays, memory access times
     * Manufacturers are turning to multi-core. [Sutter][HerbFreeLunch]
 
 
-### More Cache's?
+### More caches?
 
-* It might be tempting to think that cache's solve everything
+* It might be tempting to think that caches solve everything
 * For interested readers
     * [Harvard Architecture][WikipediaHarvardArch]
     * [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
@@ -49,7 +49,7 @@ title: Background
 * But still limited by heat/power/cooling
 
 
-### Research Can't Wait
+### Research can't wait
 
 * Some problems are genuinely too big
 * Can't ever wait for Moore's Law to work 
@@ -65,14 +65,14 @@ title: Background
     * So use parallel processing
 
 
-### World Is Parallel
+### World is parallel
 
 * Lots of things that we might want to simulate are naturally parallel
 
 ![Pictures from wikipedia](session04/figures/ParallelComputingExamples)
 
 
-### Research Computing, Parallel Computing
+### Research computing, parallel computing
 
 * [The Free Lunch Is Over][HerbFreeLunch]
 * So, no more relying on Moore's Law
@@ -98,7 +98,7 @@ title: Background
 ![Picture from wikipedia](session04/figures/CDC6000)
 
 
-### Its Relative
+### It's all relative
 
 ![Picture from wikipedia](session04/figures/440px-Cray-1-deutsches-museum)
     

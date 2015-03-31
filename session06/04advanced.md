@@ -1,5 +1,5 @@
 ---
-Title: More advanced MPI
+title: More advanced MPI
 ---
 
 ## More advanced MPI

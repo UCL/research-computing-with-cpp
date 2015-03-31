@@ -18,4 +18,14 @@ article ul ul, article ol ul {
     font-size: 90%;
     font-style: italic;
     padding-left: 1em;
+    padding-bottom: 2em;
+}
+
+article .credit {
+    background-color: lightgrey;
+    width: 90%;
+    padding: 25px;
+    margin: 25px;
+    font-style: italic;
+    border: 1px solid grey;
 }
