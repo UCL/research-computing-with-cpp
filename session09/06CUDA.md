@@ -31,7 +31,7 @@ title: CUDA-C
     - optional modifier
     - can be combined with ```__device__``` to generate code for both CPU and GPU
 * ```__global__``` specifies a function that is called from host code but executed on the GPU
-    - must return void
+    - must return ```void```
     - special calling syntax to specify number of threads, blocks and shared memory
 
 ### CUDA Data attributes
