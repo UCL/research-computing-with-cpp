@@ -68,8 +68,9 @@ dim3 grid_dim(64,1,1);
 kernel<<<grid_dim,block_dim>>>(...);
 ```
 
-### Cuda Examples SAXPY
+### CUDA SAXPY
 
+* The following code snippet implements ```saxpy``` in CUDA-C:
 {{cppfrag('09','cuda/saxpy.cu','saxpy')}}
 
 ```
@@ -77,18 +78,18 @@ n = 10000, incx = 1, incy = 1
 saxpy: 0.010384ms
 ```
 
+
+### CUDA SGEMM
+
+* See [github.com/garymacindoe/cuda-cholesky](https://github.com/garymacindoe/cuda-cholesky/blob/master/blas/sgemm.cu) for a CUDA SGEMM optimised for older GPUs
+
+```
+m = 320, n = 640, k = 640
+Bandwidth: 113.432GB/s
+Throughput: 28.358GFlops/s
+```
+
 ### More on CUDA
 
-[See NVidia CUDA tutorial](http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
-
-### Warp divergence:
-
-* Instructions are issued per 32 threads (warp)
-* When threads within a single warp take different paths (if-else etc.):
-    * Different execution paths within a warp are serialized!
-* But different warps can execute different code with no impact on performance
-    * Avoid diverging within a warp
-
-``` cuda
-if (threadIdx.x > 2) {...} else {...}
-```
+* [NVidia CUDA tutorial](http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
+* [NVidia CUDA Developer Zone](https://developer.nvidia.com/cuda-zone)
