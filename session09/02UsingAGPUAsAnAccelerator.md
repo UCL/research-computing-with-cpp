@@ -41,7 +41,7 @@ title: Using a GPU as an Accelerator
     - 32 Double Precision FPUs (that also perform single precision transcendental functions)
     - 16384 32-bit registers (very fast access)
     - 64KB of "shared" cache memory (fast access)
-    - 10KB of "constant" cache memory (writable by the CPU, fast, read-only access by the CPU)
+    - 10KB of "constant" cache memory (writable by the CPU, fast, read-only access by the GPU)
 * GPUs also have "global" memory which is the figure quoted by graphics card manufacturers (2GB, etc.)
     - accessed by the CPU across the PCI-Express bus
     - high latency, slow access by the GPU (but still up to 20x faster than CPU RAM access)
