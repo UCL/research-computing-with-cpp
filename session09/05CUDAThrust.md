@@ -107,6 +107,6 @@ Throughput: 9.02659GFlops/s
 
 ### Further Information
 
-* GitHub repository at https://github.com/thrust/thrust
-* Documentation at https://thrust.github.io
-* Tuturial at http://docs.nvidia.com/cuda/thrust/
+* GitHub repository at <https://github.com/thrust/thrust>
+* Documentation at <https://thrust.github.io>
+* Tutorial at <http://docs.nvidia.com/cuda/thrust/>
