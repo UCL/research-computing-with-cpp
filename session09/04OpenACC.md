@@ -71,3 +71,7 @@ title: Using Compiler Directives
 
 * OpenACC can also be used to implement an SGEMM kernel:
 {{cppfrag('09','sgemm/openacc.c','sgemm')}}
+
+### Further Information
+
+* Further information (documentation/tutorials) is available on the (OpenACC website)[http://www.openacc-standard.org/]
