@@ -61,9 +61,9 @@ int main(int argc, char * argv[]) {
     size_t ldb = ((unsigned int)k + 3u) & ~3u;
     size_t ldc = ((unsigned int)m + 3u) & ~3u;
 
-    CUDA_ERROR_CHECK(cudaMallocHost(&A, lda * k * sizeof(float)));
-    CUDA_ERROR_CHECK(cudaMallocHost(&B, ldb * n * sizeof(float)));
-    CUDA_ERROR_CHECK(cudaMallocHost(&C, ldc * n * sizeof(float)));
+    CUDA_ERROR_CHECK(cudaMallocHost((void **)&A, lda * k * sizeof(float)));
+    CUDA_ERROR_CHECK(cudaMallocHost((void **)&B, ldb * n * sizeof(float)));
+    CUDA_ERROR_CHECK(cudaMallocHost((void **)&C, ldc * n * sizeof(float)));
 
     // Initialise A, B and C ~U(0,1)
 	for (size_t j = 0; j < k; j++) {
@@ -83,9 +83,9 @@ int main(int argc, char * argv[]) {
 	// Allocate matrices on GPU
     float * dA, * dB, * dC;
     size_t dlda, dldb, dldc;
-    CUDA_ERROR_CHECK(cudaMallocPitch(&dA, &dlda, m * sizeof(float), k));
-    CUDA_ERROR_CHECK(cudaMallocPitch(&dB, &dldb, k * sizeof(float), n));
-    CUDA_ERROR_CHECK(cudaMallocPitch(&dC, &dldc, m * sizeof(float), n));
+    CUDA_ERROR_CHECK(cudaMallocPitch((void **)&dA, &dlda, m * sizeof(float), k));
+    CUDA_ERROR_CHECK(cudaMallocPitch((void **)&dB, &dldb, k * sizeof(float), n));
+    CUDA_ERROR_CHECK(cudaMallocPitch((void **)&dC, &dldc, m * sizeof(float), n));
 
     // cudaMallocPitch returns leading dimensions in bytes while CUBLAS expects
     // them as number of elements
