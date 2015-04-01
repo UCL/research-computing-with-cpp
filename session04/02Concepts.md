@@ -48,8 +48,7 @@ where $N$ is number of processors and $P$ is proportion [0-1] that can be parall
 
 For example, if 95% can be parallelised, $P$ = 0.95, $S$ = 20.
 
-![Pictures from Wikipedia](session04/figures/AmdahlGraph)
-
+!["AmdahlsLaw" by Daniels220 at English Wikipedia. Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/AmdahlGraph)
 
 ### Amdahl's Law - Example 1
 
