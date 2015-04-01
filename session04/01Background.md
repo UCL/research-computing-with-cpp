@@ -100,7 +100,7 @@ title: Background
 
 ### It's all relative
 
-![Picture from wikipedia](session04/figures/440px-Cray-1-deutsches-museum)
+!["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons](session04/figures/Cray1.png)
     
 * Cray-1, 1976, 2400kg, $8M, 160MFlops ([M.Jones][MJonesTutorial]).
 * Desktop PC, 2010, 5kg, $1k, 48GFlops ([M.Jones][MJonesTutorial]).
