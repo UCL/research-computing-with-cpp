@@ -22,7 +22,7 @@ On the next iteration:
 
 This simple set of rules produces beautiful, complex behaviours:
 
-![Glider Gun](session07/figures/gun.gif)
+!["Gospers glider gun" by Kieff. Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session07/figures/gun.gif)
 
 ###Smooth Life
 
