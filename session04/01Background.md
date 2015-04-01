@@ -15,7 +15,7 @@ title: Background
 
 ### Von Neumann Architecture
 
-![(a) "John von Neumann - Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/VonNeumannCombined)
+![(a) "John von Neumann, Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/VonNeumannCombined)
 
 * John von Neumann (1903 - 1957) proposed in 1945.
 * Based on Turing's work in 1936.
@@ -33,7 +33,7 @@ title: Background
 
 ### Physical limitations
 
-![CPU scaling showing transistor density, power consumption, and efficiency. Chart from [The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm). [Copyright Sutter, 2009](http://www.gotw.ca/copyright.htm)](session04/figures/CPUPerf)
+![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009](session04/figures/CPUPerf)
 
 * Due to clockspeed, power requirements, cooling, wire delays, memory access times
     * Manufacturers are turning to multi-core. [Sutter][HerbFreeLunch]
