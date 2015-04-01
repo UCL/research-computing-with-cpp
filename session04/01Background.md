@@ -6,11 +6,11 @@ title: Background
 
 ### Algorithm development
  
-* Consider the case of the Research Programmer:
-    * Learns a few languages
-    * Spends time developing 'the algorithm'
-    * Normally assumes single-threaded
-    * Normally assuming von Neumann model of hardware
+- Consider the case of the Research Programmer:
+    + Learns a few languages
+    + Spends time developing 'the algorithm'
+    + Normally assumes single-threaded
+    + Normally assuming von Neumann model of hardware
 
 ### Von Neumann architecture
 
@@ -23,8 +23,7 @@ title: Background
 
 ### Moore's Law
 
-* Gordon Moore, co-founder of Intel, 1964:
-    * "the number of transistors in a dense integrated circuit doubles approximately every two years"
+Gordon Moore, co-founder of Intel, 1964: "the number of transistors in a dense integrated circuit doubles approximately every two years"
 
 !["Transistor Count and Moore's Law 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/TransistorCount.png)
 
@@ -34,6 +33,7 @@ title: Background
 ![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009.](session04/figures/CPUPerf)
 
 Manufacturers are [turning to multi-core systems](http://www.gotw.ca/publications/concurrency-ddj.htm), for reasons including:
+
 - clockspeed
 - power requirements
 - cooling
@@ -55,17 +55,17 @@ But these systems are still limited by heat, power, and cooling.
 
 Some problems are genuinely too big for existing technology, and can't wait for Moore's Law.
 
-- [FreeSurfer][FreeSurfer] typically takes 24 hours
-    + ADNI dataset about 1000
-    + Take approx 3 years on 1 computer!
-    + So use batch processing on a cluster
+[FreeSurfer][http://freesurfer.net/], an open source software suite for processing and analysing brain MRI images, typically takes 24 hours
+- The Alzheimer's Disease Neuroimaging Initiative dataset about 1000 hours.
+- Take around 3 years on 1 computer!
+- So use batch processing on a cluster.
 
-- Gravitational N-body (example from [M.Jones][MJonesTutorial])
-    + $N$ bodies, takes $N^2$ force calculations
-    + Best algorithm takes $Nlog_2N$ calculations
-    + For $10^{12}$ bodies, have $10^{12}ln(10^{12})/ln(2)$ calculations
-    + So, at $1 \mu sec$, thats $4 x 10^7$ seconds = 1.3 years per step
-    + So use parallel processing
+Gravitational N-body (example from [M.Jones][MJonesTutorial])
+- $N$ bodies, takes $N^2$ force calculations
+- Best algorithm takes $Nlog_2N$ calculations
+- For $10^{12}$ bodies, have $10^{12}ln(10^{12})/ln(2)$ calculations
+- So, at $1 \mu sec$, thats $4 x 10^7$ seconds = 1.3 years per step
+- So use parallel processing
 
 ### World is parallel
 
@@ -85,6 +85,7 @@ Lots of research questions that we might want to simulate are naturally parallel
 ### History of high performance computing
 
 Recommend reading:
+
 - "[Introduction to high performance computing](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)" by [Matthew D. Jones][http://www.buffalo.edu/ccr/people/staff/jones.html] at the Center for Computational Research, University at Buffalo, New York.
 - The [history on supercomputing on Wikipedia][http://en.wikipedia.org/wiki/History_of_supercomputing]
     
