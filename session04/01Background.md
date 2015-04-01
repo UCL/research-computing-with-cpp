@@ -88,7 +88,7 @@ Recommend reading:
 - "[Introduction to high performance computing](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)" by [Matthew D. Jones][http://www.buffalo.edu/ccr/people/staff/jones.html] at the Center for Computational Research, University at Buffalo, New York.
 - The [history on supercomputing on Wikipedia][http://en.wikipedia.org/wiki/History_of_supercomputing]
     
-### Cray 1: the first supercomputer
+### The first supercomputer
     
 - 1964, Seymour Cray, Control Data Corporation (CDC) 6600
 - Factor 10 quicker than rivals, so considered first 'super computer'
@@ -105,8 +105,12 @@ Recommend reading:
     
 ### Cray 2
 
-- Cray 1, 1976 (see above)
-- Cray 2, 1985, 1.9Gflops, 8 processors, fastest until 1990.
+In 1985, around 10 years after Cray 1 was launched, came Cray 2: 
+
+- 1.9 Gflops
+- 8 processors
+
+Cray 2 remained the fastest supercomputer until 1990.
 
 !["Cray 2". Licensed under Public Domain via Wikimedia Commons.](session04/figures/Cray2.png)
 
