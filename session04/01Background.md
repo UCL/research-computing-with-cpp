@@ -85,9 +85,8 @@ Lots of research questions that we might want to simulate are naturally parallel
 ### History of high performance computing
 
 Recommend reading:
-- Notes by [M.Jones][MJonesTutorial]
-- [History page on Wikipedia][WikipediaHistory]
-- A few highlights to inspire you...
+- "[Introduction to high performance computing](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)" by [Matthew D. Jones][http://www.buffalo.edu/ccr/people/staff/jones.html] at the Center for Computational Research, University at Buffalo, New York.
+- The [history on supercomputing on Wikipedia][http://en.wikipedia.org/wiki/History_of_supercomputing]
     
 ### Cray 1: the first supercomputer
     
@@ -122,12 +121,12 @@ Recommend reading:
 
 ### The supercomputer league table
 
-[TOP500](http://top500.org) maintains a list of the fastest supercomputers. In November 2014, the fastest supercomputer was Tianhe-2 (MilkyWay-2), a supercomputer developed by China’s National University of Defense Technology.
+[TOP500](http://top500.org) maintains a list of the fastest supercomputers. In November 2014, the fastest supercomputer was Tianhe-2 (MilkyWay-2), a supercomputer developed by China's National University of Defense Technology.
 
 Tianhe-2 runs Linux and is reported to have:
 
 - 3,120,000 cores
-- 1,024,000 GB memory!
+- 1,024,000 GB of memory!
 - a performance of 33.86 petaflop/s (quadrillions of calculations per second)
 
 At UCL, you can get access to systems including:
