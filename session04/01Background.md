@@ -95,7 +95,7 @@ title: Background
 * 1964, Seymour Cray, Control Data Corporation (CDC) 6600
 * Factor 10 quicker than rivals, so considered first 'super computer'
 
-![Picture from wikipedia](session04/figures/CDC6000)
+!["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons](session04/figures/CDC6600.png)
 
 
 ### It's all relative
