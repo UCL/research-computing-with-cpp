@@ -15,7 +15,7 @@ title: Background
 
 ### Von Neumann Architecture
 
-![Picture from wikipedia](session04/figures/VonNeumannCombined)
+![(a) "John von Neumann - Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/VonNeumannCombined)
 
 * John von Neumann (1903 - 1957) proposed in 1945.
 * Based on Turing's work in 1936.
