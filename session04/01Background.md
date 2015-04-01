@@ -91,18 +91,29 @@ Recommend reading:
     
 ### The first supercomputer
     
-- 1964, Seymour Cray, Control Data Corporation (CDC) 6600
-- Factor 10 quicker than rivals, so considered first 'super computer'
+The Control Data Corporation 6600 (CDC 6600) is widely considered to be the first 'supercomputer':
+
+- released in 1964
+- designed by Seymour Cray
+- a factor of 10 quicker than rivals
 
 !["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons.](session04/figures/CDC6600.png)
 
-### Speed is relative
+### 'Super' is relative
 
 !["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.](session04/figures/Cray1.png)
     
-* Cray-1, 1976, 2400kg, $8M, 160MFlops ([M.Jones][MJonesTutorial]).
-* Desktop PC, 2010, 5kg, $1k, 48GFlops ([M.Jones][MJonesTutorial]).
-    * (quad core, 3Ghz, Intel i7 CPU)
+Cray-1, released in 1976 ([M.Jones][MJonesTutorial]): 
+
+- weighed 2400kg
+- cost ~$8M
+- 160MFlops
+
+Desktop PC in 2010 ([M.Jones][MJonesTutorial]):
+
+- weighed 5kg
+- cost ~$1k
+- 48GFlops (quad core, 3Ghz, Intel i7 CPU)
     
 ### Cray 2
 
