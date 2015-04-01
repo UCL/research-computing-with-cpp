@@ -12,20 +12,18 @@ title: Background
     * Normally assumes single-threaded
     * Normally assuming von Neumann model of hardware
 
-
-### Von Neumann Architecture
+### Von Neumann architecture
 
 ![(a) "John von Neumann, Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/VonNeumannCombined)
 
-* John von Neumann (1903 - 1957) proposed in 1945.
-* Based on Turing's work in 1936.
-* Instructions and Data in same memory.
-* Memory bus, causes so called Von Neuman bottleneck.
-
+* Proposed by John von Neumann (1903 - 1957) in 1945.
+* Based on Turing's work of 1936.
+* Instructions and data in same memory.
+* Memory bus, causes so called 'Von Neumann bottleneck'.
 
 ### Moore's Law
 
-* Gordon Moore, co-founder Intel, 1964:
+* Gordon Moore, co-founder of Intel, 1964:
     * "the number of transistors in a dense integrated circuit doubles approximately every two years"
 
 !["Transistor Count and Moore's Law 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/TransistorCount.png)
@@ -35,87 +33,85 @@ title: Background
 
 ![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009.](session04/figures/CPUPerf)
 
-* Due to clockspeed, power requirements, cooling, wire delays, memory access times
-    * Manufacturers are turning to multi-core. [Sutter][HerbFreeLunch]
-
+Manufacturers are [turning to multi-core systems](http://www.gotw.ca/publications/concurrency-ddj.htm), for reasons including:
+- clockspeed
+- power requirements
+- cooling
+- wire delays
+- memory access times
+ 
 
 ### More caches?
 
-* It might be tempting to think that caches solve everything
-* For interested readers
-    * [Harvard Architecture][WikipediaHarvardArch]
-    * [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
-    * [Multi-level Cache's][WikipediaCache]
-* But still limited by heat/power/cooling
+It might be tempting to think that caches solve everything. For interested readers:
 
+- [Harvard Architecture][WikipediaHarvardArch]
+- [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
+- [Multi-level Cache's][WikipediaCache]
 
-### Research can't wait
+But these systems are still limited by heat, power, and cooling.
 
-* Some problems are genuinely too big
-* Can't ever wait for Moore's Law to work 
-* [FreeSurfer][FreeSurfer] typically takes 24 hours
-    * ADNI dataset about 1000
-    * Take approx 3 years on 1 computer!
-    * So use batch processing on a cluster
-* Gravitational N-body (example from [M.Jones][MJonesTutorial])
-    * $N$ bodies, takes $N^2$ force calculations
-    * Best algorithm takes $Nlog_2N$ calculations
-    * For $10^{12}$ bodies, have $10^{12}ln(10^{12})/ln(2)$ calculations
-    * So, at $1 \mu sec$, thats $4 x 10^7$ seconds = 1.3 years per step
-    * So use parallel processing
+### Waiting for technology to catch up
 
+Some problems are genuinely too big for existing technology, and can't wait for Moore's Law.
+
+- [FreeSurfer][FreeSurfer] typically takes 24 hours
+    + ADNI dataset about 1000
+    + Take approx 3 years on 1 computer!
+    + So use batch processing on a cluster
+
+- Gravitational N-body (example from [M.Jones][MJonesTutorial])
+    + $N$ bodies, takes $N^2$ force calculations
+    + Best algorithm takes $Nlog_2N$ calculations
+    + For $10^{12}$ bodies, have $10^{12}ln(10^{12})/ln(2)$ calculations
+    + So, at $1 \mu sec$, thats $4 x 10^7$ seconds = 1.3 years per step
+    + So use parallel processing
 
 ### World is parallel
 
-* Lots of things that we might want to simulate are naturally parallel
+Lots of research questions that we might want to simulate are naturally parallel:
 
 ![Pictures from wikipedia](session04/figures/ParallelComputingExamples)
 
-
 ### Research computing, parallel computing
 
-* [The Free Lunch Is Over][HerbFreeLunch]
-* So, no more relying on Moore's Law
-* Inherent limits in single-core processing
-* We must start to learn parallel processing
+- [The Free Lunch Is Over][HerbFreeLunch]
+- So, no more relying on Moore's Law
+- Inherent limits in single-core processing
+- We must start to learn parallel processing
 
 ![Picture from Legion Tutorial](session04/figures/noaaforcast)
 
+### History of high performance computing
 
-### History of HPC
-
-* Recommend reading
-    * Notes by [M.Jones][MJonesTutorial]
-    * [History page on Wikipedia][WikipediaHistory]
-    * A few highlights to inspire you
+Recommend reading:
+- Notes by [M.Jones][MJonesTutorial]
+- [History page on Wikipedia][WikipediaHistory]
+- A few highlights to inspire you...
     
+### Cray 1: the first supercomputer
     
-### History - 1
-    
-* 1964, Seymour Cray, Control Data Corporation (CDC) 6600
-* Factor 10 quicker than rivals, so considered first 'super computer'
+- 1964, Seymour Cray, Control Data Corporation (CDC) 6600
+- Factor 10 quicker than rivals, so considered first 'super computer'
 
 !["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons.](session04/figures/CDC6600.png)
 
-
-### It's all relative
+### Speed is relative
 
 !["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.](session04/figures/Cray1.png)
     
 * Cray-1, 1976, 2400kg, $8M, 160MFlops ([M.Jones][MJonesTutorial]).
 * Desktop PC, 2010, 5kg, $1k, 48GFlops ([M.Jones][MJonesTutorial]).
     * (quad core, 3Ghz, Intel i7 CPU)
-
     
-### History - 2
+### Cray 2
 
-* Cray 1, 1976 (see above)
-* Cray 2, 1985, 1.9Gflops, 8 processors, fastest until 1990.
+- Cray 1, 1976 (see above)
+- Cray 2, 1985, 1.9Gflops, 8 processors, fastest until 1990.
 
 !["Cray 2". Licensed under Public Domain via Wikimedia Commons.](session04/figures/Cray2.png)
 
-
-### History - 3
+### The successors
 
 * 1990s - clusters
 * 1993 Beowulf Cluster - commodity PCs
@@ -124,16 +120,22 @@ title: Background
 
 !["IBM Blue Gene P Supercomputer" by Argonne National Laboratory. Licensed under CC BY-SA 2.0 via Wikimedia Commons.](session04/figures/IBM_Blue_Gene.png)
 
+### The supercomputer league table
 
-### Top500.org
+[TOP500](http://top500.org) maintains a list of the fastest supercomputers. In November 2014, the fastest supercomputer was Tianhe-2 (MilkyWay-2), a supercomputer developed by China’s National University of Defense Technology.
 
-* See top500.org for list
-* Number 1 = TIANHE-2, 3.1M Cores, 1,024,000 GB memory!, 33PFlop/s!
-* You can get access to:
-    * Legion: 7500 CPU cores + 7168 CUDA cores, 32 cores per job
-    * Iridis: 12,000 cores, 900 nodes, 100 nodes (1200 cores) per job
-    * Emerald: 372 NVIDIA Tesla, 114TFlop/s
-    * Archer: 25th, 1.6PFlop/s, but requires a grant
+Tianhe-2 runs Linux and is reported to have:
+
+- 3,120,000 cores
+- 1,024,000 GB memory!
+- a performance of 33.86 petaflop/s (quadrillions of calculations per second)
+
+At UCL, you can get access to systems including:
+
+- Legion: 7500 CPU cores + 7168 CUDA cores, 32 cores per job
+- Iridis: 12,000 cores, 900 nodes, 100 nodes (1200 cores) per job
+- Emerald: 372 NVIDIA Tesla, 114TFlop/s
+- Archer: 25th, 1.6PFlop/s (requires a grant)
     
 [MJonesTutorial]: http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf
 [WikipediaHarvardArch]: http://en.wikipedia.org/wiki/Harvard_architecture
