@@ -41,13 +41,12 @@ title: Concepts
 
 $S(N) = \frac{1}{(1-P) + \frac{P}{N}}$
 
-where N is number of processors, P is proportion [0-1] that can be parallelised.
-Note, as N tends to infinity, Speedup tends to 1/(1-P).
+where $N$ is number of processors and $P$ is proportion [0-1] that can be parallelised. As $N$ tends to infinity, speed-up tends to $1/(1-P)$.
 
 
 ### Amdahl's Law - Graph
 
-For example, if 95% can be parallelised, P = 0.95, S = 20.
+For example, if 95% can be parallelised, $P$ = 0.95, $S$ = 20.
 
 ![Pictures from Wikipedia](session04/figures/AmdahlGraph)
 
