@@ -31,7 +31,7 @@ Simple example:
 
 Likely more suited for multi threaded desktop applications than scientific software.
 
-### Cilk Plus
+### Cilk Plus
 
 {{cppfrag('05','cilk/fibdemocilk.cc')}}
 

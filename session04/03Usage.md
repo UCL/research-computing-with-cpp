@@ -33,7 +33,7 @@ title: Usage
         * How to re-join, synchronise?
         
         
-### Load balancing / granularity
+### Load balancing/granularity
 
 ![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
 
@@ -51,7 +51,7 @@ title: Usage
     * Scalability - related to Amdahl's law, memory overhead, communications overhead, synchronisation cost.
 
 
-### Choice Of technology
+### Choice of technology
 
 * Depends
     * Hardware architecture

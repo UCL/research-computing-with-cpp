@@ -64,7 +64,7 @@ OpenMP is supported by most compilers, except LLVM/Clang(++)
 
 A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mainline eventually.
 
-### Hello World
+### Hello world
 
 {{cppfrag('05','hello/HelloOpenMP.cc')}}
 
@@ -82,7 +82,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
     - Everybody stores a copy of numthreads
     - Waste of memory
 
-### Slightly improved Hello World
+### Slightly improved hello world
 
 {{cppfrag('05','hello/HelloOpenMPSafe.cc')}}
 

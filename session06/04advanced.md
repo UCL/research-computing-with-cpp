@@ -13,7 +13,7 @@ title: More advanced MPI
    - some data is shared (openMP)
 * MPI-3 allows for creating/destroying processes dynamically
 
-### Splitting Communicators
+### Splitting communicators
 
 ``MPI_Group_*`` specify operations to create sets of processes.
 In practice, it defines operations on sets:

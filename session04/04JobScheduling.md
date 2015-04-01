@@ -2,9 +2,9 @@
 title: Job Scheduling
 ---
 
-## Batch Computing
+## Batch computing
 
-### High Throughput Computing
+### High throughput computing
 
 * High Throughput Computing (HTC)
 * See [RITS][RITS]/[RSDT][RSDT] course "[HPC and HTC using Legion][HPTCLegion]"
@@ -37,7 +37,7 @@ title: Job Scheduling
     * (Disadvantage if you are not using Linux)
 
 
-### How Do I Start?
+### How do I start?
 
 1. Get Legion Account
 1. Make sure you know [Unix Shell][UnixShell]
@@ -48,7 +48,7 @@ title: Job Scheduling
 1. Run Jobs!
 
 
-### Example - Calculate Pi
+### Example - calculate Pi
 
 (Same example as on [Legion course][HPTCLegion])
 
@@ -66,7 +66,7 @@ make
 (we can run standalone, but don't run huge jobs like this, see [policies][LegionPolicies])
 
 
-### Submission Script
+### Submission script
 
 In file submit.sh
 

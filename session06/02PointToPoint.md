@@ -2,7 +2,7 @@
 title: Point to Point
 ---
 
-## Point to Point communication
+## Point to point communication
 
 ### Many point-2-point communication schemes
 

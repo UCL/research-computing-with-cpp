@@ -1,10 +1,10 @@
 ---
-title: Domain Decomposition
+title: Domain decomposition
 ---
 
-## Domain Decomposition
+## Domain decomposition
 
-### Domain Decomposition
+### Domain decomposition
 
 One of the most important problems in designing a parallel code is "Domain Decomposition":
 

@@ -2,19 +2,19 @@
 title: Concepts
 ---
 
-## Parallel Programming Concepts
+## Parallel programming concepts
 
-### Serial Execution
+### Serial execution
 
 ![Pictures from LLNL Tutorial](session04/figures/serialProblem)
 
 
-### Parallel Execution
+### Parallel execution
 
 ![Pictures from LLNL Tutorial](session04/figures/parallelProblem)
 
 
-### Some Terminology
+### Some terminology
 
 * Task = logically discrete set of instructions
 * Core = single processing unit, one instruction at a time
@@ -26,7 +26,7 @@ title: Concepts
 * eg. 1000 Nodes, 4 quad core CPU = 16,000 cores.
     
     
-### Use Profiling
+### Use profiling
 
 * WARNING: Before hastily optimising/parallelising
     * Measure sections of your code
@@ -35,29 +35,31 @@ title: Concepts
     * Don't over-eagerly parallelise
 
     
-### Amdahl's Law
+### Amdahl's law
 
 * Before we start trying to parallelise everything, consider [Amdahl's Law][WikipediaAmdahlsLaw] (Gene Amdahl 1967).
 
-$S(N) = \frac{1}{(1-P) + \frac{P}{N}}$
+<!-- $S(N) = \frac{1}{(1-P) + \frac{P}{N}}$ -->
+
+![Equation reproduced from Wikipedia](session04/figures/AmdahlSpeedup)
 
 where $N$ is number of processors and $P$ is proportion [0-1] that can be parallelised. As $N$ tends to infinity, speed-up tends to $1/(1-P)$.
 
 
-### Amdahl's Law - Graph
+### Amdahl's law - Graph
 
 For example, if 95% can be parallelised, $P$ = 0.95, $S$ = 20.
 
 !["AmdahlsLaw" by Daniels220 at English Wikipedia. Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/AmdahlGraph)
 
-### Amdahl's Law - Example 1
+### Amdahl's law - Example 1
 
 If $P$ is proportion of code = 0.3, and $S$ = speedup factor = 2 = twice as fast (analogous to 2 processors)
 
 ![Equation reproduced from Wikipedia](session04/figures/AmdahlSpeedupUsingS)
 
 
-### Amdahl's Law - Example 2
+### Amdahl's law - Example 2
 
 If $P$1 = 11%; $P$2 = 18%; $P$3 = 23%; $P$4 = 48%
 
@@ -68,7 +70,7 @@ If $P$1 = 11%; $P$2 = 18%; $P$3 = 23%; $P$4 = 48%
 ![Equation reproduced from Wikipedia](session04/figures/Amdahl4Components)
 
 
-### Flynn's Taxonomy
+### Flynn's taxonomy
 
 So, we decide whether it is worth parallelising something. First take a view on your hardware. Michael Flynn 1966 proposed the following:
 
@@ -110,25 +112,25 @@ So, we decide whether it is worth parallelising something. First take a view on 
 ![Pictures from LLNL Tutorial](session04/figures/mimd)
 
 
-### Memory Layout
+### Memory layout
 
 * In addition to considering processing hardware, need to consider memory
 * Various architectures exist, choice determined by coherency/correctness/location
 
     
-### Shared Memory - SMP
+### Shared memory - SMP
 
-* Symmetric Multi-Processing ([SMP][WikipediaSMP]),  eg. x86 multi-core
-    * Homogeneous processing cores
-    * Address all memory in global address space
-    * Uniform Memory Access (UMA) (time)
-    * Cache coherency (CC) maintained at hardware level
-* Requires code to be multi-threaded
+- Symmetric Multi-Processing ([SMP][WikipediaSMP]),  eg. x86 multi-core
+    + Homogeneous processing cores
+    + Address all memory in global address space
+    + Uniform Memory Access (UMA) (time)
+    + Cache coherency (CC) maintained at hardware level
+- Requires code to be multi-threaded
 
 ![Pictures from Legion Tutorial](session04/figures/smp2)
 
 
-### Distributed Memory - DSM
+### Distributed memory - DSM
 
 * Truely Distributed Shared Memory ([DSM][WikipediaDSM]) exists
     * Hidden by OS or hardware
@@ -139,14 +141,14 @@ So, we decide whether it is worth parallelising something. First take a view on 
     * Doesn't require code change
 
 
-### Distributed Memory - Message Passing
+### Distributed memory - message passing
 
 * When we say distributed, we normally mean
 
 ![Pictures from Legion Tutorial](session04/figures/cluster)
 
 
-### Distributed Memory
+### Distributed memory
 
 * Advantages
     * Memory scales with processors (i.e. interconnect many SMPs)
@@ -159,7 +161,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 ![Pictures from Legion Tutorial](session04/figures/interconnect)
 
 
-### Hybrid Distributed-Shared Memory
+### Hybrid distributed-shared memory
 
 * Most of the fastest systems are in reality using a hybrid
 
@@ -169,7 +171,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * Increased programmer complexity is an important disadvantage
 
 
-### GPU Accelerator Model
+### GPU accelerator model
 
 * With GPU processing
     * SIMD on GPU
@@ -179,7 +181,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 ![Pictures from Legion Tutorial](session04/figures/gpu)
 
 
-### Programming Models
+### Programming models
 
 * We have now considered
     * Hardware 
@@ -189,7 +191,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * We will now explain most common terms/scenarios
 
     
-### Shared Memory No Threads
+### Shared memory no threads
 
 * Separate Processes, Shared Memory
 * Stand-alone
@@ -200,7 +202,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
     * No concept of ownership
 
 
-### Shared Memory With Threads
+### Shared memory with threads
 
 * [Thread][WikipediaThread]: "of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler"
 * Threads exist as part of a process
@@ -213,7 +215,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
     * Compiler: OpenMP for C/C++, 1998
     
     
-### Distributed Memory Message Passing
+### Distributed memory message passing
 
 * We saw distributed architectures above
 * The programming model is normally defined by Message Passing
@@ -221,25 +223,24 @@ So, we decide whether it is worth parallelising something. First take a view on 
 ![Pictures from LLNL Tutorial](session04/figures/msg_pass_model)
 
 
-### Hybrid Memory Models
+### Hybrid memory models
 
-* Or course, there are combinations
-    * (Also throw GPU into the mix)
-* Its largely down to the developer to write specific code
+- Of course, there are combinations
+    + (Also throw GPU into the mix)
+- It is largely down to the developer to write specific code
 
 ![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
 
 
-### SPMD Vs MPMD
+### SPMD versus MPMD
 
-* You will also see:
-    * Single Program Multiple Data
-    * Multiple Program Multiple Data
-* High level concepts, built using the above programming models
-    * SPMD: Running the same program on many images (e.g. NiftyReg for atlas registration)
-    * MPMD: Batch processing a whole workflow of different programs (e.g. LONI Pipeline, FreeSurfer)
+- You will also see:
+    + Single Program Multiple Data
+    + Multiple Program Multiple Data
+- High level concepts, built using the above programming models
+    + SPMD: Running the same program on many images (e.g. NiftyReg for atlas registration)
+    + MPMD: Batch processing a whole workflow of different programs (e.g. LONI Pipeline, FreeSurfer)
     
-
 [LLNLTutorial]: https://computing.llnl.gov/tutorials/parallel_comp/
 [WikipediaAmdahlsLaw]: http://en.wikipedia.org/wiki/Amdahl%27s_law
 [WikipediaSMP]: http://en.wikipedia.org/wiki/Symmetric_multiprocessing

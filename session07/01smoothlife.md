@@ -18,7 +18,7 @@ On the next iteration:
        * becomes alive if it has exactly 3 alive neighbours
        * stays dead otherwise
 
-###Conway's game of life
+###Conway's Game of Life
 
 This simple set of rules produces beautiful, complex behaviours:
 
@@ -64,7 +64,7 @@ Smooth Life shows even more interesting behaviour:
 * Gliders moving any direction
 * "Tension tubes"
 
-###Serial smooth life
+###Serial Smooth Life
 
 Have a look at our [serial](https://github.com/UCL/SmoothLifeExample) implementation of SmoothLife.
 
@@ -84,7 +84,7 @@ Four levels deep:
 
 {{cppfrag('07','serial/src/Smooth.cpp','Main_Loop')}}
 
-###Swapped Before/After Fields
+###Swapped before/after fields
 
 {{cppfrag('07','serial/src/Smooth.cpp','Swap_Fields')}}
 

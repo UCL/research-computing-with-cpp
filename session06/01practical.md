@@ -14,7 +14,7 @@ title: MPI in practice
 * processes can send messages to one another
 
 
-### Specification and Implementation
+### Specification and implementation
 
 * in practice, we use MPI, the [Message Passing Interface](http://en.wikipedia.org/wiki/Message_Passing_Interface)
 * MPI is a *specification* for a *library*
@@ -27,7 +27,7 @@ title: MPI in practice
      - R: [Rmpi](http://cran.r-project.org/web/packages/Rmpi/index.html)
      - c++: [boost](http://www.boost.org/doc/libs/1_57_0/doc/html/mpi.html)
 
-### Programming and Running
+### Programming and running
 
 * an MPI program is executed with ``mpiexec -n N [options] nameOfProgram [args]``
 

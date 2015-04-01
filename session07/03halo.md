@@ -1,8 +1,8 @@
 ---
-title: Halo Swap
+title: Halo swap
 ---
 
-## Halo Swap
+## Halo swap
 
 ### Where do we put the communicated data?
 
@@ -78,7 +78,7 @@ We'll look in a later section how this can be avoided.
 {{cppfrag('07','parallel/src/Smooth.cpp','Buffer_Left')}}
 {{cppfrag('07','parallel/src/Smooth.cpp','Unpack_Right')}}
 
-### Testing Communications
+### Testing communications
 
 We implement a copy of our buffers which doesn't use MPI:
 
@@ -86,13 +86,13 @@ We implement a copy of our buffers which doesn't use MPI:
 
 which allows us to check our halos are all set up correctly.
 
-### Testing Communications
+### Testing communications
 
 We test that our copy works as expected:
 
 {{cppfrag('07','parallel/test/catch.cpp','Buffering')}}
 
-### Testing Communications
+### Testing communications
 
 We test that the MPI comms results are the same as serial
 
