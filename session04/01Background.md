@@ -71,7 +71,7 @@ Gravitational N-body (example from [M.Jones][MJonesTutorial])
 
 Lots of research questions that we might want to simulate are naturally parallel:
 
-![Pictures from wikipedia](session04/figures/ParallelComputingExamples)
+![(a) "NGC 4414, a spiral galaxy" by NASA. Licensed under Public Domain via Wikimedia Commons. (b) "Global Forecast System 850 mbar" by the National Weather Service, a branch of National Oceanic and Atmospheric Administration. Licensed under Public Domain via Wikimedia Commons. (c) "Plate tectonics" by the US Geological Survey. Licensed under Public Domain via Wikimedia Commons](session04/figures/galaxy_plate_forecast.png)
 
 ### Research computing, parallel computing
 
