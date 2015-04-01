@@ -33,7 +33,7 @@ title: Background
 
 ### Physical limitations
 
-![Picture from Sutter](session04/figures/CPUPerf)
+![CPU scaling showing transistor density, power consumption, and efficiency. Chart from [The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm). [Copyright Sutter, 2009](http://www.gotw.ca/copyright.htm)](session04/figures/CPUPerf)
 
 * Due to clockspeed, power requirements, cooling, wire delays, memory access times
     * Manufacturers are turning to multi-core. [Sutter][HerbFreeLunch]
