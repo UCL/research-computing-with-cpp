@@ -15,7 +15,7 @@ title: Background
 
 ### Von Neumann Architecture
 
-![(a) "John von Neumann, Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/VonNeumannCombined)
+![(a) "John von Neumann, Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/VonNeumannCombined)
 
 * John von Neumann (1903 - 1957) proposed in 1945.
 * Based on Turing's work in 1936.
@@ -28,12 +28,12 @@ title: Background
 * Gordon Moore, co-founder Intel, 1964:
     * "the number of transistors in a dense integrated circuit doubles approximately every two years"
 
-!["Transistor Count and Moore's Law 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/TransistorCount.png)
+!["Transistor Count and Moore's Law 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/TransistorCount.png)
 
 
 ### Physical limitations
 
-![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009](session04/figures/CPUPerf)
+![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009.](session04/figures/CPUPerf)
 
 * Due to clockspeed, power requirements, cooling, wire delays, memory access times
     * Manufacturers are turning to multi-core. [Sutter][HerbFreeLunch]
@@ -95,12 +95,12 @@ title: Background
 * 1964, Seymour Cray, Control Data Corporation (CDC) 6600
 * Factor 10 quicker than rivals, so considered first 'super computer'
 
-!["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons](session04/figures/CDC6600.png)
+!["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons.](session04/figures/CDC6600.png)
 
 
 ### It's all relative
 
-!["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons](session04/figures/Cray1.png)
+!["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.](session04/figures/Cray1.png)
     
 * Cray-1, 1976, 2400kg, $8M, 160MFlops ([M.Jones][MJonesTutorial]).
 * Desktop PC, 2010, 5kg, $1k, 48GFlops ([M.Jones][MJonesTutorial]).
@@ -112,13 +112,13 @@ title: Background
 * Cray 1, 1976 (see above)
 * Cray 2, 1985, 1.9Gflops, 8 processors, fastest until 1990.
 
-![Picture from wikipedia](session04/figures/Cray2)
+!["Cray 2". Licensed under Public Domain via Wikimedia Commons.](session04/figures/Cray2.png)
 
 
 ### History - 3
 
-* 1990's - clusters
-* 1993 Beowulf Cluster - commodity PC's
+* 1990s - clusters
+* 1993 Beowulf Cluster - commodity PCs
 * 1997, ASCI Red, first TFlop/s, 9000 nodes of Pentium Pro
 * 2004 - 2007, IBM Blue Gene, 70-472 TFlop/s, 60,000 processors
 
