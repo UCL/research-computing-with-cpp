@@ -4,7 +4,6 @@ title: Collective communication
 
 ## Collective Communication
 
-
 ### Many possible communication schemes
 
 Think of two possible forms of *collective* communications:

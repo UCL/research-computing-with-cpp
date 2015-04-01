@@ -1,5 +1,6 @@
 /*  resize pngs in the figures folder  */
-img[src*=".png"][src^="figures"]
+img[src*=".png"][src^="figures"],
+img[src*=".gif"][src^="figures"]
  {
     max-width: 700px;
     vertical-align: middle;
