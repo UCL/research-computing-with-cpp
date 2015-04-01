@@ -6,7 +6,7 @@ title: Point to Point
 
 ### Many point-2-point communication schemes
 
-Can you think of two behaviors for message passing?
+Can you think of two behaviours for message passing?
 
 ![](session06/figures/mpi.png)
 
@@ -18,12 +18,6 @@ Can you think of two behaviors for message passing?
 
 ### Blocking synchronous send
 
-<style>
-img {
-    position: relative;
-    bottom: -20px;
-}
-</style>
 ------------------------------   ----------------------------
 a. 0, 1, and MPI stand ready:    ![](session06/figures/sync0)
 b. message dropped off by 0:     ![](session06/figures/sync1)
