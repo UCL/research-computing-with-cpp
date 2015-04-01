@@ -45,9 +45,9 @@ Manufacturers are [turning to multi-core systems](http://www.gotw.ca/publication
 
 It might be tempting to think that caches solve everything. For interested readers:
 
-- [Harvard Architecture][http://en.wikipedia.org/wiki/Harvard_architecture]
-- [Modified Harvard Architecture][http://en.wikipedia.org/wiki/Harvard_architecture]
-- [Multi-level Cache's][http://en.wikipedia.org/wiki/CPU_cache]
+- [Harvard Architecture](http://en.wikipedia.org/wiki/Harvard_architecture)
+- [Modified Harvard Architecture](http://en.wikipedia.org/wiki/Harvard_architecture)
+- [Multi-level Cache's](http://en.wikipedia.org/wiki/CPU_cache)
 
 But these systems are still limited by heat, power, and cooling.
 
@@ -55,12 +55,12 @@ But these systems are still limited by heat, power, and cooling.
 
 Some problems are genuinely too big for existing technology, and can't wait for Moore's Law.
 
-[FreeSurfer][http://freesurfer.net/], an open source software suite for processing and analysing brain MRI images, typically takes 24 hours
+[FreeSurfer](http://freesurfer.net/), an open source software suite for processing and analysing brain MRI images, typically takes 24 hours
 - The Alzheimer's Disease Neuroimaging Initiative dataset about 1000 hours.
 - Take around 3 years on 1 computer!
 - So use batch processing on a cluster.
 
-Gravitational N-body (example from [M.Jones][MJonesTutorial])
+Gravitational N-body (example from [M.Jones](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf))
 - $N$ bodies, takes $N^2$ force calculations
 - Best algorithm takes $Nlog_2N$ calculations
 - For $10^{12}$ bodies, have $10^{12}ln(10^{12})/ln(2)$ calculations
@@ -75,7 +75,7 @@ Lots of research questions that we might want to simulate are naturally parallel
 
 ### Research computing, parallel computing
 
-- [The Free Lunch Is Over][http://www.gotw.ca/publications/concurrency-ddj.htm]
+- [The Free Lunch Is Over](http://www.gotw.ca/publications/concurrency-ddj.htm)
 - So, no more relying on Moore's Law
 - Inherent limits in single-core processing
 - We must start to learn parallel processing
@@ -86,8 +86,8 @@ Lots of research questions that we might want to simulate are naturally parallel
 
 Recommend reading:
 
-- "[Introduction to high performance computing](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)" by [Matthew D. Jones][http://www.buffalo.edu/ccr/people/staff/jones.html] at the Center for Computational Research, University at Buffalo, New York.
-- The [history on supercomputing on Wikipedia][http://en.wikipedia.org/wiki/History_of_supercomputing]
+- "[Introduction to high performance computing](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)" by [Matthew D. Jones](http://www.buffalo.edu/ccr/people/staff/jones.html) at the Center for Computational Research, University at Buffalo, New York.
+- The [history on supercomputing on Wikipedia](http://en.wikipedia.org/wiki/History_of_supercomputing)
     
 ### The first supercomputer
     
