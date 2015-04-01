@@ -52,30 +52,30 @@ For example, if 95% can be parallelised, $P$ = 0.95, $S$ = 20.
 
 ### Amdahl's Law - Example 1
 
-* If P is proportion of code = 0.3, and S = speedup factor = 2 = twice as fast (analagous to 2 processors)
+If $P$ is proportion of code = 0.3, and $S$ = speedup factor = 2 = twice as fast (analogous to 2 processors)
 
-![Pictures from Wikipedia](session04/figures/AmdahlSpeedupUsingS)
+![Equation reproduced from Wikipedia](session04/figures/AmdahlSpeedupUsingS)
 
 
 ### Amdahl's Law - Example 2
 
-* If P1=11%, P2=18%, P3=23%, P4=48%
-* P2 sped up by 5
-* P3 sped up by 20
-* P4 sped up by 1.6
+If $P$1 = 11%; $P$2 = 18%; $P$3 = 23%; $P$4 = 48%
 
-![Pictures from Wikipedia](session04/figures/Amdahl4Components)
+- $P$2 sped up by 5
+- $P$3 sped up by 20
+- $P$4 sped up by 1.6
+
+![Equation reproduced from Wikipedia](session04/figures/Amdahl4Components)
 
 
 ### Flynn's Taxonomy
 
-* So, we decide its worth parallelising something.
-* First take a view on your hardware
-    * Michael Flynn 1966 proposed the following:
-        * Single Instruction Single Data (SISD)
-        * Single Instruction Multiple Data (SIMD), "data parallel"
-        * Multiple Instruction Single Data (MISD)
-        * Multiple Instruction Multiple Data (MIMD), "task parallel"
+So, we decide whether it is worth parallelising something. First take a view on your hardware. Michael Flynn 1966 proposed the following:
+
+- Single Instruction Single Data (SISD)
+- Single Instruction Multiple Data (SIMD), "data parallel"
+- Multiple Instruction Single Data (MISD)
+- Multiple Instruction Multiple Data (MIMD), "task parallel"
 
 
 ### SISD
