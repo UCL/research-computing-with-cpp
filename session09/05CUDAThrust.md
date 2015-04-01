@@ -95,18 +95,8 @@ Bandwidth: 15.7344GB/s
 Throughput: 7.86722GFlops/s
 ```
 
-### Thrust SGEMM
-
-* Likewise we can use the ```transform_reduce``` algorithm to implement an SGEMM kernel
-{{cppfrag('09','sgemm/thrust.cu','sgemm')}}
-
-```
-Bandwidth: 18.0532GB/s
-Throughput: 9.02659GFlops/s
-```
-
 ### Further Information
 
-* GitHub repository at https://github.com/thrust/thrust
-* Documentation at https://thrust.github.io
-* Tuturial at http://docs.nvidia.com/cuda/thrust/
+* GitHub repository at <https://github.com/thrust/thrust>
+* Documentation at <https://thrust.github.io>
+* Tutorial at <http://docs.nvidia.com/cuda/thrust/>
