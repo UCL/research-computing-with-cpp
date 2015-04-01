@@ -28,7 +28,7 @@ title: Background
 * Gordon Moore, co-founder Intel, 1964:
     * "the number of transistors in a dense integrated circuit doubles approximately every two years"
 
-![Pictures from wikipedia](session04/figures/TransistorCount)
+!["Transistor Count and Moore's Law, 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/TransistorCount.png)
 
 
 ### Physical limitations
