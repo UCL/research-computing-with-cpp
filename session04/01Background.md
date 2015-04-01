@@ -45,9 +45,9 @@ Manufacturers are [turning to multi-core systems](http://www.gotw.ca/publication
 
 It might be tempting to think that caches solve everything. For interested readers:
 
-- [Harvard Architecture][WikipediaHarvardArch]
-- [Modified Harvard Architecture][WikipediaModifiedHarvardArch]
-- [Multi-level Cache's][WikipediaCache]
+- [Harvard Architecture][http://en.wikipedia.org/wiki/Harvard_architecture]
+- [Modified Harvard Architecture][http://en.wikipedia.org/wiki/Harvard_architecture]
+- [Multi-level Cache's][http://en.wikipedia.org/wiki/CPU_cache]
 
 But these systems are still limited by heat, power, and cooling.
 
@@ -75,7 +75,7 @@ Lots of research questions that we might want to simulate are naturally parallel
 
 ### Research computing, parallel computing
 
-- [The Free Lunch Is Over][HerbFreeLunch]
+- [The Free Lunch Is Over][http://www.gotw.ca/publications/concurrency-ddj.htm]
 - So, no more relying on Moore's Law
 - Inherent limits in single-core processing
 - We must start to learn parallel processing
@@ -103,21 +103,21 @@ The Control Data Corporation 6600 (CDC 6600) is widely considered to be the firs
 
 !["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.](session04/figures/Cray1.png)
     
-Cray-1, released in 1976 ([M.Jones][MJonesTutorial]): 
+Cray-1, released in 1976 ([M.Jones][http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf]): 
 
 - weighed 2400kg
 - cost ~$8M
-- 160MFlops
+- 160 MFlops
 
-Desktop PC in 2010 ([M.Jones][MJonesTutorial]):
+Desktop PC in 2010 ([M.Jones][http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf]):
 
 - weighed 5kg
 - cost ~$1k
-- 48GFlops (quad core, 3Ghz, Intel i7 CPU)
+- 48 **G**Flops (quad core, 3Ghz, Intel i7 CPU)
     
 ### Cray 2
 
-In 1985, around 10 years after Cray 1 was launched, came Cray 2: 
+The 1970s to 1980s have been described as the "Cray era". In 1985, around 10 years after Cray 1 was launched, came Cray 2: 
 
 - 1.9 Gflops
 - 8 processors
@@ -127,6 +127,8 @@ Cray 2 remained the fastest supercomputer until 1990.
 !["Cray 2". Licensed under Public Domain via Wikimedia Commons.](session04/figures/Cray2.png)
 
 ### The successors
+
+In the 1990s, supercomputers with thousands of processors emerged.
 
 * 1990s - clusters
 * 1993 Beowulf Cluster - commodity PCs
