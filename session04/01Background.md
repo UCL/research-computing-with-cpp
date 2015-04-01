@@ -122,7 +122,7 @@ title: Background
 * 1997, ASCI Red, first TFlop/s, 9000 nodes of Pentium Pro
 * 2004 - 2007, IBM Blue Gene, 70-472 TFlop/s, 60,000 processors
 
-![Picture from wikipedia](session04/figures/480px-IBM_Blue_Gene_P_supercomputer)
+!["IBM Blue Gene P Supercomputer" by Argonne National Laboratory. Licensed under CC BY-SA 2.0 via Wikimedia Commons.](session04/figures/IBM_Blue_Gene.png)
 
 
 ### Top500.org
