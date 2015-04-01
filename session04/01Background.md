@@ -80,7 +80,7 @@ Lots of research questions that we might want to simulate are naturally parallel
 - Inherent limits in single-core processing
 - We must start to learn parallel processing
 
-![Picture from Legion Tutorial](session04/figures/noaaforcast)
+!["Global Forecast System 850 mbar" by the National Weather Service, a branch of National Oceanic and Atmospheric Administration. Licensed under Public Domain via Wikimedia Commons.](session04/figures/Global_Forecast_850_slice.png)
 
 ### History of high performance computing
 
