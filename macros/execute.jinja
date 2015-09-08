@@ -1,9 +1,0 @@
-{% macro execute(session, file, segment=False) %}
-``` cpp
-{% if segment %}
-{{d['build/session'+session+'/cpp/'+file+'.x|execute|idio|t'][segment]}}
-{% else %}
-{{d['build/session'+session+'/cpp/'+file+'.x|execute|idio|t']}}
-{% endif %}
-```
-{% endmacro %}

@@ -2,4 +2,4 @@ cd build
 cmake ..
 make
 cd ..
-dexy
+make

@@ -33,10 +33,10 @@ title: MPI in practice
 
 * MPI programs call methods from the mpi library
 
-~~~{.c++}
+``` cpp
 int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
                MPI_Comm comm)
-~~~
+```
 
 
 * vendors provide wrappers (mpiCC, mpic++) around compilers.

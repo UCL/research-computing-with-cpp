@@ -8,11 +8,11 @@ title: Function Templates
 
 Credit to [www.cplusplus.com][OverloadedFunctions]:
 
-{{cppfrag('02','sumFunctionExample/sumFunctionExample.cc')}}
+{% code cpp/sumFunctionExample/sumFunctionExample.cc  %}
 
-Produces this output when run:
+And produces this output when run:
 
-{{execute('02','sumFunctionExample/sumFunctionExample')}}
+{% code ../build/sumFunctionExample/sumFunctionExample.out %}
 
 
 ### Why Use Function Templates?
@@ -166,19 +166,19 @@ Language Reference [here][FunctionTemplate]
 [Microsoft Example][ExplicitInstantiationMicrosoft]
 
 Given (library) header:
-{{cppfrag('02','explicitInstantiation/explicitInstantiation.h')}}
+{% code cpp/explicitInstantiation/explicitInstantiation.h %}
 
 Given (library) implementation:
-{{cppfrag('02','explicitInstantiation/explicitInstantiation.cc')}}
+{% code cpp/explicitInstantiation/explicitInstantiation.cc %}
 
 
 ### Explicit Instantiation - 2
 
 Given client code:
-{{cppfrag('02','explicitInstantiation/explicitInstantiationMain.cc')}}
+{% code cpp/explicitInstantiation/explicitInstantiationMain.cc %}
 
 We get:
-{{execute('02','explicitInstantiation/explicitInstantiationMain')}}
+{% code ../build/explicitInstantiation/explicitInstantiationMain.out %}
 
 
 ### Explicit Instantiation - 3
@@ -204,16 +204,16 @@ Undefined symbols for architecture x86_64:
 * Normally via ```#include``` header files. 
 
 Given (library) header, that containts implementation:
-{{cppfrag('02','implicitInstantiation/implicitInstantiation.h')}}
+{% code cpp/implicitInstantiation/implicitInstantiation.h %}
 
 
 ### Implicit Instantiation - 2
 
 Given client code:
-{{cppfrag('02','implicitInstantiation/implicitInstantiation.cc')}}
+{% code cpp/implicitInstantiation/implicitInstantiation.cc %}
 
 We get:
-{{execute('02','implicitInstantiation/implicitInstantiation')}}
+{% code ../build/implicitInstantiation/implicitInstantiation.out %}
 
 [OverloadedFunctions]: http://www.cplusplus.com/doc/tutorial/functions2 'Overloaded Functions and Template Functions'
 [FunctionTemplate]: http://en.cppreference.com/w/cpp/language/function_template 'Function Template Reference'

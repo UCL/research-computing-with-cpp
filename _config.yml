@@ -1,0 +1,33 @@
+contact: http://www.ucl.ac.uk/research-it-services/partner-with-us
+
+title: "MPHYG002: Research Computing with C++"
+includeleftnav: True
+short: MPHYG0002
+
+defaults:
+  - scope: {path: ""}
+    values: {layout: default}
+
+baseurl: /training/rcwithcpp
+
+crumbs:
+  - link: http://www.ucl.ac.uk/ISD
+    text: ISD
+  - link: http://www.ucl.ac.uk/isd/services
+    text: Our services
+  - link: http://www.ucl.ac.uk/isd/services/research-it
+    text: Research IT
+  - link: http://www.ucl.ac.uk/isd/services/research-it/training
+    text: Training
+
+markdown: redcarpet
+redcarpet:
+  extensions: ["strikethrough","tables"]
+
+idio:
+  fence: True
+
+include: [ _static, _sources]
+exclude: 
+  - combined.md
+  - build

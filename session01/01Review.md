@@ -2,6 +2,8 @@
 title: Object Oriented Review
 ---
 
+{% idio cpp %}
+
 ## Object Oriented Review
 
 ### Classes
@@ -25,7 +27,8 @@ title: Object Oriented Review
     * class defines concept or blueprint
     * instantiation creates object 
 * Example: Fraction data type
-{{cppfrag('01','fraction/fraction.h')}}
+
+{% code fraction/fraction.h %}
 
 
 ### Encapsulation
@@ -49,7 +52,8 @@ title: Object Oriented Review
     * Don't over-use this, just to save code duplication
     * There are other ways 
 * Example: Shapes
-{{cppfrag('01','shape/shape.h')}}
+
+{% fragment beginning, shape/shape.h %}
 
 
 ### Polymorphism
@@ -61,6 +65,7 @@ title: Object Oriented Review
 * Common interface to entities of different types
 * Same method, different behaviour
 * Example: Shape
-{{cppfrag('01','shape/shapeTest.cc')}}
 
+{% code shape/shapeTest.cc %}
 
+{% endidio %}

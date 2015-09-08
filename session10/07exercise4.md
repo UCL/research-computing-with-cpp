@@ -103,7 +103,7 @@ reducer(sys.stdin)
 
 Download the mapper and reducer:
 
-``` git
+``` bash
 $ git clone https://github.com/tompollard/dorian
 ```
 
