@@ -26,6 +26,7 @@
 *.exe
 *.out
 *.app
+*.x
 
 # dexy output
 output

@@ -8,11 +8,13 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
 
 MDS=$(wildcard session*/*.md))
 
-SLIDES=$(NOTEBOOKS:.md=.slide.html)
+SLIDES=$(MDS:.md=.slide.html)
 
-EXES=$(wildcard build/*.x)
+EXES=$(shell find build -name *.x)
 
-OUTS=$(OUTS:.x=.out)
+vpath %.x build
+
+OUTS=$(subst build/,,$(EXES:.x=.out))
 
 default: _site
 
@@ -37,8 +39,8 @@ default: _site
 notes.pdf: combined.ipynb Makefile
 	$(PANDOC) combined.md -o combined.tex
 
-combined.ipynb: $(EXECUTED)
-	python nbmerge.py $^ $@
+combined.md: $(MDS)
+	cat $^ $@
 
 notes.tex: combined.md Makefile
 	$(PANDOC) combined.md -o combined.tex
@@ -47,7 +49,7 @@ master.zip: Makefile
 	rm -f master.zip
 	wget https://github.com/UCL-RITS/indigo-jekyll/archive/master.zip
 
-ready: indigo
+ready: indigo $(OUTS)
 
 indigo-jekyll-master: Makefile master.zip
 	rm -rf indigo-jekyll-master

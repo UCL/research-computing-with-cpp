@@ -8,12 +8,15 @@ title: Function Templates
 
 Credit to [www.cplusplus.com][OverloadedFunctions]:
 
-{% code cpp/sumFunctionExample/sumFunctionExample.cc  %}
+{% idio cpp/sumFunctionExample %}
+
+{% code sumFunctionExample.cc  %}
 
 And produces this output when run:
 
-{% code ../build/sumFunctionExample/sumFunctionExample.out %}
+{% code sumFunctionExample.out %}
 
+{% endidio %}
 
 ### Why Use Function Templates?
 
@@ -165,21 +168,28 @@ Language Reference [here][FunctionTemplate]
 
 [Microsoft Example][ExplicitInstantiationMicrosoft]
 
+{% idio cpp/explicitInstantiation %}
+
 Given (library) header:
-{% code cpp/explicitInstantiation/explicitInstantiation.h %}
+
+{% code explicitInstantiation.h %}
 
 Given (library) implementation:
-{% code cpp/explicitInstantiation/explicitInstantiation.cc %}
+
+{% code explicitInstantiation.cc %}
 
 
 ### Explicit Instantiation - 2
 
 Given client code:
-{% code cpp/explicitInstantiation/explicitInstantiationMain.cc %}
+
+{% code explicitInstantiationMain.cc %}
 
 We get:
-{% code ../build/explicitInstantiation/explicitInstantiationMain.out %}
 
+{% code explicitInstantiationMain.out %}
+
+{% endidio %}
 
 ### Explicit Instantiation - 3
 
@@ -203,17 +213,24 @@ Undefined symbols for architecture x86_64:
 * Instantiated as they are used
 * Normally via ```#include``` header files. 
 
+{% idio cpp/implicitInstantiation %}
+
 Given (library) header, that containts implementation:
-{% code cpp/implicitInstantiation/implicitInstantiation.h %}
+
+{% code implicitInstantiation.h %}
 
 
 ### Implicit Instantiation - 2
 
 Given client code:
-{% code cpp/implicitInstantiation/implicitInstantiation.cc %}
+
+{% code implicitInstantiation.cc %}
 
 We get:
-{% code ../build/implicitInstantiation/implicitInstantiation.out %}
+
+{% code implicitInstantiation.out %}
+
+{% endidio %}
 
 [OverloadedFunctions]: http://www.cplusplus.com/doc/tutorial/functions2 'Overloaded Functions and Template Functions'
 [FunctionTemplate]: http://en.cppreference.com/w/cpp/language/function_template 'Function Template Reference'
