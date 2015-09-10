@@ -49,14 +49,14 @@ notes.pdf: combined.md Makefile
 combined.md: $(TEMPLATED)
 	cat $^ > $@
 
-notes.tex: combined.md Makefile
+notes.tex: combined.md Makefile $(OUTS)
 	$(PANDOC) --from markdown combined.md -o notes.tex
 
 master.zip: Makefile
 	rm -f master.zip
 	wget https://github.com/UCL-RITS/indigo-jekyll/archive/master.zip
 
-ready: indigo $(OUTS)
+ready: indigo $(OUTS) notes.pdf
 
 indigo-jekyll-master: Makefile master.zip
 	rm -rf indigo-jekyll-master

@@ -1,5 +1,5 @@
 add_executable(smooth.x main.cpp)
 add_executable(timings.x timer_main.cpp)
 add_library(smooth_library Smooth.cpp)
-target_link_libraries(smooth smooth_library)
-target_link_libraries(timings smooth_library)
+target_link_libraries(smooth.x smooth_library)
+target_link_libraries(timings.x smooth_library)
