@@ -7,16 +7,16 @@ title: Eigen
 ### Introduction
 
 * [Eigen][EigenHome] is:
-    * C++ template library, 
+    * C++ template library,
     * Linear algebra, matrices, vectors, numerical solvers, etc.
-    * ![Overview of features](session03/figures/eigenContents)
+    * ![Overview of features]({% figurepath %}eigenContents.png)
 
 
 ### Tutorials
-    
+
 Obviously, you can read:
 
-* the existing [manual pages][EigenManual] 
+* the existing [manual pages][EigenManual]
 * tutorials ([short][EigenShort], [long][EigenLong]).
 * the [Quick Reference][EigenRef]
 
@@ -24,39 +24,46 @@ Obviously, you can read:
 ### Getting started
 
 * Header only, just need ```#include```
-* Uses CMake, but that's just for 
+* Uses CMake, but that's just for
     * documentation
     * run unit tests
     * do installation.
 
-    
+
 ### C++ Principles
 
 (i.e. why introduce Eigen on this course)
- 
+
 * Eigen uses
     * Templates
     * Loop unrolling, traits, template meta programming
- 
- 
+
+
 ### Matrix Class
 
+{% idio cpp/Eigen %}
+
 * This:
-{{cppfrag('03','Eigen/HelloMatrix.cc')}}
+
+{% code HelloMatrix.cc %}
 
 * Produces:
-{{execute('03','Eigen/HelloMatrix')}}
+
+{% code HelloMatrix.out %}
+
+{% endidio %}
 
 
 ### Matrix Class Declaration
 
 Matrix Class
-```
+``` cpp
 template<typename _Scalar, int _Rows, int _Cols, int _Options, int _MaxRows, int _MaxCols>
 class Matrix
   : public PlainObjectBase<Matrix<_Scalar, _Rows, _Cols, _Options, _MaxRows, _MaxCols> >
 {
 ```
+
 So, its templates, [so review last weeks lecture][Lecture2].
 
 
@@ -64,24 +71,24 @@ So, its templates, [so review last weeks lecture][Lecture2].
 
 But in documentation:
 
-![Matrix construction](session03/figures/eigenMatrixDynamic)
+![Matrix construction]({% figurepath %}eigenMatrixDynamic.png)
 
 It took a while but I searched and found:
 
-```
+``` cpp
 src/Core/util/Constants.h:const int Dynamic = -1;
 ```
 
 and both fixed and dynamic Matrices come from same template class???
 
-How do they do that? 
+How do they do that?
 
 
 ### DenseStorage.h - 1
 
 In ```src/Core/DenseStorage.h```:
 
-```
+``` cpp
 template <typename T, int Size, int MatrixOrArrayOptions,
           int Alignment = (MatrixOrArrayOptions&DontAlign) ? 0
                         : (((Size*sizeof(T))%16)==0) ? 16
@@ -97,7 +104,8 @@ So, a ```plain_array``` structure containing a stack allocated array.
 ### DenseStorage.h - 2
 
 In ```src/Core/DenseStorage.h```:
-```
+
+``` cpp
 // purely fixed-size matrix
 template<typename T, int Size, int _Rows, int _Cols, int _Options> class DenseStorage
 {
@@ -105,11 +113,13 @@ template<typename T, int Size, int _Rows, int _Cols, int _Options> class DenseSt
 ```
 There is a default template class for DenseStorage, and specialisation for fixed arrays.
 
-    
+
 ### DenseStorage.h - 3
 
 In ```src/Core/DenseStorage.h```:
-```
+
+``` cpp
+
 // purely dynamic matrix.
 template<typename T, int _Options> class DenseStorage<T, Dynamic, Dynamic, Dynamic, _Options>
 {
@@ -133,7 +143,7 @@ There is a default template class for DenseStorage, and specialisation for Dynam
 * Need to set include path
 * You could download and 'install' eigen into your project, and commit it. e.g.
 
-```
+``` cmake
 include_directories(${CMAKE_SOURCE_DIR}/session03/cpp/Eigen/eigen-3.2.3/include/eigen3)
 ```
 
@@ -143,14 +153,14 @@ include_directories(${CMAKE_SOURCE_DIR}/session03/cpp/Eigen/eigen-3.2.3/include/
 * CMake (3.1) does not have a ```Find Module``` for eigen, but eigen provides one.
 * So, in your source tree
 
-```
+``` bash
 mkdir CMake
 cp <path_to_eigen>/cmake/FindEigen3.cmake ./CMake
 ```
 
 * Then in your CMakeLists.txt
 
-```
+``` cmake
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 find_package(Eigen)
 include_directories(${EIGEN_INCLUDE_DIRS})
@@ -161,7 +171,7 @@ include_directories(${EIGEN_INCLUDE_DIRS})
 
 * [NiftySeg][NiftySeg] uses
 
-```
+``` cmake
 option(USE_SYSTEM_EIGEN "Use an already installed version of the Eigen library" OFF)
 if(USE_SYSTEM_EIGEN)
   find_package(EIGEN REQUIRED)
@@ -201,7 +211,7 @@ Lets look at point based registration of two, same length, point sets.
 * Class to hold point lists
 * Callbacks (not shown here) to add points to list
 
-```
+``` cpp
 class ManualRegistration : public QMainWindow
 {
   protected:
@@ -218,17 +228,17 @@ class ManualRegistration : public QMainWindow
 * See paper [Arun et. al. 1987][Arun]
 * Its an example of the orthogonal procrustes problem
 
-```
+``` cpp
   pcl::registration::TransformationEstimationSVD<pcl::PointXYZ, pcl::PointXYZ> tfe;
   tfe.estimateRigidTransformation(src_pc_, dst_pc_, transform_);
 ```
 
 ### PCL - Correlation
 
-After subtracting each point from the mean point we have in 
+After subtracting each point from the mean point we have in
 ```registration/include/pcl/registration/impl/transformation_estimation_svd.hpp ```
 
-```
+``` cpp
 template <typename PointSource, typename PointTarget, typename Scalar> void
 pcl::registration::TransformationEstimationSVD<PointSource, PointTarget, Scalar>::getTransformationFromCorrelation (
     const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> &cloud_src_demean,

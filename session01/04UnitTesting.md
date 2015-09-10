@@ -8,7 +8,7 @@ title: Unit Testing
 
 At a high level
 
-* Way of testing code. 
+* Way of testing code.
 * Unit
     * Smallest 'atomic' chunk of code
     * i.e. Function, could be a Class
@@ -16,8 +16,8 @@ At a high level
     * Integration Testing
     * System Testing
     * User Acceptance Testing
-    
-    
+
+
 ### Benefits of Unit Testing?
 
 * Certainty of correctness
@@ -39,7 +39,7 @@ At a high level
 
 Generally, all very similar
 
-* JUnit (Java), NUnit, CppUnit, phpUnit, 
+* JUnit (Java), NUnit, CppUnit, phpUnit,
 * Basically
     * Macros (C++), methods (Java) to test conditions
     * Macros (C++), reflection (Java) to run/discover tests
@@ -49,8 +49,8 @@ Generally, all very similar
 
 
 ## Unit Testing Example
-        
-### How To Start 
+
+### How To Start
 
 We discuss
 
@@ -85,11 +85,13 @@ To Consider:
 
 To keep it simple for now we do this in one file:
 
-{{cppfrag('01','factorial/factorial1.cc')}}
+{% idio cpp/factorial %}
+
+{% code factorial1.cc %}
 
 Produces this output when run:
 
-{{execute('01','factorial/factorial1')}}
+{% code factorial1.out %}
 
 
 ### Principles
@@ -105,7 +107,7 @@ So, typically we have
 
 For example, in [Catch][Catch]:
 
-```
+``` cpp
     // TEST_CASE(<unique test name>, <test case name>)
     TEST_CASE( "Factorials are computed", "[factorial]" ) {
         REQUIRE( Factorial(2) == 2 );
@@ -115,7 +117,7 @@ For example, in [Catch][Catch]:
 
 In [GoogleTest][GoogleTest]:
 
-```
+``` cpp
     // TEST(<test case name>, <unique test name>)
     TEST(FactorialTest, HandlesPositiveInput) {
       EXPECT_EQ(2, Factorial(2));
@@ -130,14 +132,14 @@ all done via C++ macros.
 
 What about Factorial of zero?
 Adding
- 
- ```
+
+``` cpp
     REQUIRE( Factorial(0) == 1 );
 ```
 
 Produces something like:
 
-```
+``` cpp
     factorial2.cc:9: FAILED:
     REQUIRE( Factorial(0) == 1 )
     with expansion:
@@ -148,18 +150,20 @@ Produces something like:
 
 Leading to:
 
-{{cppfrag('01','factorial/factorial2.cc')}}
+{% code factorial2.cc %}
 
 which passes:
 
-{{execute('01','factorial/factorial2')}}
+{% code factorial2.out %}
+
+{% endidio %}
 
 
 ### Test Macros
 
 Each framework has a variety of macros to test for failure. [Check][Check] has:
 
-```
+``` cpp
     REQUIRE(expression); // stop if fail
     CHECK(expression);   // doesn't stop if fails
 ```
@@ -168,7 +172,7 @@ if an exception is throw, its caught, reported and counts as a failure.
 
 Examples:
 
-```
+``` cpp
     CHECK( str == "string value" );
     CHECK( thisReturnsTrue() );
     REQUIRE( i == 42 );
@@ -176,7 +180,7 @@ Examples:
 
 Others:
 
-```
+``` cpp
     REQUIRE_FALSE( expression )
     CHECK_FALSE( expression )
     REQUIRE_THROWS( expression ) # Must throw an exception
@@ -189,9 +193,9 @@ Others:
 
 
 ### Testing for Failure
-    
+
 To re-iterate:
-    
+
 * You should test failure cases
     * Force a failure
     * Check that exception is thrown
@@ -202,21 +206,21 @@ To re-iterate:
     * Negative numbers passed into double arguments
     * Invalid Physical quantities (e.g.  -300 Kelvin)
 
-    
+
 ### Setup/Tear Down
-  
+
 * Some tests require objects to exist in memory
 * These should be set up
     * for each test
     * for a group of tests
 * Frameworks do differ in this regards
 
-    
+
 ### Setup/Tear Down in Catch
-    
+
 Referring to the [Catch Tutorial][CatchTutorial]:
- 
-``` 
+
+``` cpp
 TEST_CASE( "vectors can be sized and resized", "[vector]" ) {
 
     std::vector<int> v( 5 );
@@ -251,10 +255,10 @@ TEST_CASE( "vectors can be sized and resized", "[vector]" ) {
 }
 
 ```
- 
+
 So, Setup/Tear down is done before/after each section.    
-    
-    
+
+
 ## Unit Testing Tips
 
 ### C++ design
@@ -275,7 +279,7 @@ So, Setup/Tear down is done before/after each section.
     1. Run test
         1. if succeed finish
         1. else goto  3
-        
+
 
 ### TDD in practice
 
@@ -289,10 +293,10 @@ So, Setup/Tear down is done before/after each section.
 * Behaviour Driven Development (BDD)
     * Less pre-occupied on testing a known class
     * Think about end-user perspective
-    
-    
+
+
 ### TDD Vs BDD
-    
+
 * TDD
     * Test/Design based on methods available
 * BDD
@@ -303,13 +307,13 @@ So, Setup/Tear down is done before/after each section.
 
 ### Anti-Pattern 1: Setters/Getters
 
-Testing every Setter/Getter. 
+Testing every Setter/Getter.
 
 Consider:
 
-```
+``` cpp
    class Atom {
-     
+
      public:
        void SetAtomicNumber(const int& number) { m_AtomicNumber = number; }
        int GetAtomicNumber() const { return m_AtomicNumber; }
@@ -323,11 +327,11 @@ Consider:
 
 and tests like:
 
-```
+``` cpp
     TEST_CASE( "Testing Setters/Getters", "[Atom]" ) {
-    
+
         Atom a;
-    
+
         a.SetAtomicNumber(1);
         REQUIRE( a.GetAtomicNumber() == 1);
         a.SetName("Hydrogen");
@@ -354,8 +358,8 @@ and tests like:
     * Don't provide setters if you don't want them
     * Don't provide getters unless the user needs something
     * Less to test. Use documentation to describe why
-    
-        
+
+
 ### Anti-Pattern 2: Constructing Dependent Classes
 
 * Sometimes, by necessity we test groups of classes

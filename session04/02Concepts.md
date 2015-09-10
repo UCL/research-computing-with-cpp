@@ -6,12 +6,12 @@ title: Concepts
 
 ### Serial execution
 
-![Pictures from LLNL Tutorial](session04/figures/serialProblem)
+![Pictures from LLNL Tutorial]({% figurepath %}serialProblem.png)
 
 
 ### Parallel execution
 
-![Pictures from LLNL Tutorial](session04/figures/parallelProblem)
+![Pictures from LLNL Tutorial]({% figurepath %}parallelProblem.png)
 
 
 ### Some terminology
@@ -24,8 +24,8 @@ title: Concepts
     * Single unit, fitting single 'socket', single chip (2,4,6,8 core)
 * Node = "computer in a box"
 * eg. 1000 Nodes, 4 quad core CPU = 16,000 cores.
-    
-    
+
+
 ### Use profiling
 
 * WARNING: Before hastily optimising/parallelising
@@ -34,14 +34,14 @@ title: Concepts
     * Consider your deadlines/objectives and how to achieve them
     * Don't over-eagerly parallelise
 
-    
+
 ### Amdahl's law
 
 * Before we start trying to parallelise everything, consider [Amdahl's Law][WikipediaAmdahlsLaw] (Gene Amdahl 1967).
 
 <!-- $S(N) = \frac{1}{(1-P) + \frac{P}{N}}$ -->
 
-![Equation reproduced from Wikipedia](session04/figures/AmdahlSpeedup)
+![Equation reproduced from Wikipedia]({% figurepath %}AmdahlSpeedup.png)
 
 where $N$ is number of processors and $P$ is proportion [0-1] that can be parallelised. As $N$ tends to infinity, speed-up tends to $1/(1-P)$.
 
@@ -50,13 +50,13 @@ where $N$ is number of processors and $P$ is proportion [0-1] that can be parall
 
 For example, if 95% can be parallelised, $P$ = 0.95, $S$ = 20.
 
-!["AmdahlsLaw" by Daniels220 at English Wikipedia. Licensed under CC BY-SA 3.0 via Wikimedia Commons](session04/figures/AmdahlGraph)
+!["AmdahlsLaw" by Daniels220 at English Wikipedia. Licensed under CC BY-SA 3.0 via Wikimedia Commons]({% figurepath %}AmdahlGraph.png)
 
 ### Amdahl's law - Example 1
 
 If $P$ is proportion of code = 0.3, and $S$ = speedup factor = 2 = twice as fast (analogous to 2 processors)
 
-![Equation reproduced from Wikipedia](session04/figures/AmdahlSpeedupUsingS)
+![Equation reproduced from Wikipedia]({% figurepath %}AmdahlSpeedupUsingS.png)
 
 
 ### Amdahl's law - Example 2
@@ -67,7 +67,7 @@ If $P$1 = 11%; $P$2 = 18%; $P$3 = 23%; $P$4 = 48%
 - $P$3 sped up by 20
 - $P$4 sped up by 1.6
 
-![Equation reproduced from Wikipedia](session04/figures/Amdahl4Components)
+![Equation reproduced from Wikipedia]({% figurepath %}Amdahl4Components.png)
 
 
 ### Flynn's taxonomy
@@ -85,7 +85,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * Single Instruction Single Data
 * e.g. Old mainframes, old PC.
 
-![Pictures from LLNL Tutorial](session04/figures/sisd)
+![Pictures from LLNL Tutorial]({% figurepath %}sisd.png)
 
 
 ### SIMD
@@ -93,7 +93,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * Single Instruction Multiple Data
 * e.g. GPU
 
-![Pictures from LLNL Tutorial](session04/figures/simd2)
+![Pictures from LLNL Tutorial]({% figurepath %}simd2.png)
 
 
 ### MISD
@@ -101,7 +101,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * Multiple Instruction Single Data
 * e.g. for fault tolerance
 
-![Pictures from LLNL Tutorial](session04/figures/misd)
+![Pictures from LLNL Tutorial]({% figurepath %}misd.png)
 
 
 ### MIMD
@@ -109,7 +109,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * Multiple Instruction Multiple Data
 * e.g. distributed computing
 
-![Pictures from LLNL Tutorial](session04/figures/mimd)
+![Pictures from LLNL Tutorial]({% figurepath %}mimd.png)
 
 
 ### Memory layout
@@ -117,7 +117,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * In addition to considering processing hardware, need to consider memory
 * Various architectures exist, choice determined by coherency/correctness/location
 
-    
+
 ### Shared memory - SMP
 
 - Symmetric Multi-Processing ([SMP][WikipediaSMP]),  eg. x86 multi-core
@@ -127,7 +127,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
     + Cache coherency (CC) maintained at hardware level
 - Requires code to be multi-threaded
 
-![Pictures from Legion Tutorial](session04/figures/smp2)
+![Pictures from Legion Tutorial]({% figurepath %}smp2.png)
 
 
 ### Distributed memory - DSM
@@ -145,27 +145,27 @@ So, we decide whether it is worth parallelising something. First take a view on 
 
 * When we say distributed, we normally mean
 
-![Pictures from Legion Tutorial](session04/figures/cluster)
+![Pictures from Legion Tutorial]({% figurepath %}cluster.png)
 
 
 ### Distributed memory
 
 * Advantages
     * Memory scales with processors (i.e. interconnect many SMPs)
-    * Rapid local access to memory 
+    * Rapid local access to memory
 * Disadvantages
     * You must write code to determine how machines are accessed
     * Beware cost of transmitting messages across network
     * Normally no cache coherency across network nodes
-    
-![Pictures from Legion Tutorial](session04/figures/interconnect)
+
+![Pictures from Legion Tutorial]({% figurepath %}interconnect.png)
 
 
 ### Hybrid distributed-shared memory
 
 * Most of the fastest systems are in reality using a hybrid
 
-![Pictures from LLNL Tutorial](session04/figures/hybrid_mem2)
+![Pictures from LLNL Tutorial]({% figurepath %}hybrid_mem2.png)
 
 * Increased (easy) scalability is important advantage
 * Increased programmer complexity is an important disadvantage
@@ -177,28 +177,28 @@ So, we decide whether it is worth parallelising something. First take a view on 
     * SIMD on GPU
     * MIMD on multi-core CPU
     * Cost of copying to/from memory
-        
-![Pictures from Legion Tutorial](session04/figures/gpu)
+
+![Pictures from Legion Tutorial]({% figurepath %}gpu.png)
 
 
 ### Programming models
 
 * We have now considered
-    * Hardware 
+    * Hardware
     * Memory Architectures
 * Programming Models somewhat independent to both!
 * People have tried many combinations
 * We will now explain most common terms/scenarios
 
-    
+
 ### Shared memory no threads
 
 * Separate Processes, Shared Memory
 * Stand-alone
-    * [POSIX standard for shared memory][POSIXShared]
+    * [POSIX standard for shared memory][POSIXShared.png]
 * Advantages:
     * No message passing
-* Disadvantages: 
+* Disadvantages:
     * No concept of ownership
 
 
@@ -213,14 +213,14 @@ So, we decide whether it is worth parallelising something. First take a view on 
 * Implementation:
     * Library: POSIX Threads, pthreads, 1995
     * Compiler: OpenMP for C/C++, 1998
-    
-    
+
+
 ### Distributed memory message passing
 
 * We saw distributed architectures above
 * The programming model is normally defined by Message Passing
 
-![Pictures from LLNL Tutorial](session04/figures/msg_pass_model)
+![Pictures from LLNL Tutorial]({% figurepath %}msg_pass_model.png)
 
 
 ### Hybrid memory models
@@ -229,7 +229,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
     + (Also throw GPU into the mix)
 - It is largely down to the developer to write specific code
 
-![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
+![Pictures from LLNL Tutorial]({% figurepath %}hybrid_model.png)
 
 
 ### SPMD versus MPMD
@@ -240,7 +240,7 @@ So, we decide whether it is worth parallelising something. First take a view on 
 - High level concepts, built using the above programming models
     + SPMD: Running the same program on many images (e.g. NiftyReg for atlas registration)
     + MPMD: Batch processing a whole workflow of different programs (e.g. LONI Pipeline, FreeSurfer)
-    
+
 [LLNLTutorial]: https://computing.llnl.gov/tutorials/parallel_comp/
 [WikipediaAmdahlsLaw]: http://en.wikipedia.org/wiki/Amdahl%27s_law
 [WikipediaSMP]: http://en.wikipedia.org/wiki/Symmetric_multiprocessing

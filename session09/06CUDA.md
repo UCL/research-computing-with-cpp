@@ -54,7 +54,7 @@ title: CUDA-C
 
 ### Calling CUDA
 
-{{cppfrag('09','cuda/saxpy.cu','CudaCall')}}
+{% fragment CudaCall, cpp/cuda/saxpy.cu %}
 
 The syntax gives first the gridDim, then the blockDim.
 
@@ -71,7 +71,8 @@ kernel<<<grid_dim,block_dim>>>(...);
 ### CUDA SAXPY
 
 * The following code snippet implements ```saxpy``` in CUDA-C:
-{{cppfrag('09','cuda/saxpy.cu','saxpy')}}
+
+{% fragment saxpy, cpp/cuda/saxpy.cu %}
 
 ```
 n = 10000, incx = 1, incy = 1

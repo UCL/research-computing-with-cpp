@@ -8,11 +8,13 @@ title: Parallelizing loops with OpenMP
 ### Simple example
 
 
-Integrate: 
+Integrate:
+
 $\int_0^1 \frac{4}{1+x^2} \mathrm{d}x=\pi$
 
 Don't do this in production code. Use a standard library function to integrate functions.
-{{cppfrag('05','forloop/openmpforloop.cc')}}
+
+{% code cpp/forloop/openmpforloop.cc %}
 
 
 ### Variable scope
@@ -41,4 +43,4 @@ Don't do this in production code. Use a standard library function to integrate f
 
 ### Reduction example
 
-{{cppfrag('05','forloop/openmpforloopreduction.cc')}}
+{% code cpp/forloop/openmpforloopreduction.cc %}

@@ -6,7 +6,7 @@ title: Usage
 
 ### Understand your task
 
-![Pictures from LLNL Tutorial](session04/figures/memoryAccessTimes)
+![Pictures from LLNL Tutorial]({% figurepath %}memoryAccessTimes.png)
 
 * Profile, gather timings on each task/code section
 * Reduce I/O as far as possible
@@ -31,15 +31,15 @@ title: Usage
         * Sub-divide tasks
         * Which tasks can run in parallel
         * How to re-join, synchronise?
-        
-        
+
+
 ### Load balancing/granularity
 
-![Pictures from LLNL Tutorial](session04/figures/hybrid_model)
+![Pictures from LLNL Tutorial]({% figurepath %}hybrid_model.png)
 
 * Granularity = size of each task
 * Consider how to keep ALL cores busy ALL the time
-    
+
 
 ### Other limits/costs
 
@@ -56,7 +56,7 @@ title: Usage
 * Depends
     * Hardware architecture
     * Memory architecture
-    * Programming model 
+    * Programming model
     * Communication model
 * Rest of course
     * OpenMP - SIMD, shared memory, multi-threading, compiler directive

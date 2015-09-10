@@ -4,6 +4,7 @@ require 'rubygems'
 
 require 'liquid'
 require_relative '_plugins/idio'
+require_relative '_plugins/figurepath'
 require 'ostruct'
 
 Liquid::Template.error_mode = :strict
@@ -14,7 +15,8 @@ site = OpenStruct.new
 site.config={
   "idio" => {
     "fence" => true
-  }
+  },
+  "absolute_figures" => true
 }
 
 page = {

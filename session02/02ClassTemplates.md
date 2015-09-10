@@ -7,23 +7,26 @@ title: Class Templates
 ### Class Templates Example - 1
 
 * If you understand template functions, then template classes are easy!
-* Refering to [this tutorial][TemplateClassTutorial], an example: 
+* Refering to [this tutorial][TemplateClassTutorial], an example:
+
+{% idio cpp/pairClassExample %}
 
 Header:
-{{cppfrag('02','pairClassExample/pairClassExample.h')}}
+
+{% code pairClassExample.h %}
 
 
 ### Class Templates Example - 2
 
 Implementation:
-{{cppfrag('02','pairClassExample/pairClassExample.cc')}}
+{% code pairClassExample.cc %}
 
 
 ### Class Templates Example - 3
 
 Usage:
-{{cppfrag('02','pairClassExample/pairClassMain.cc')}}
-
+{% code pairClassMain.cc %}
+{% endidio %}
 
 ### Quick Comments
 
@@ -39,7 +42,7 @@ Usage:
 
 * If template defined for type T
 * Full specialisation - special case for a specific type eg. char
-* Partial specialisation - special case for a type that still templates, e.g. T* 
+* Partial specialisation - special case for a type that still templates, e.g. T*
 
 ```
 template <typename T> class MyVector {
@@ -63,7 +66,7 @@ In libraries such as [ITK][ITK], we see:
 ```
 
 * typedef is just an alias
-* using nested typedef, must be qualified by class name 
+* using nested typedef, must be qualified by class name
 * can also refer to a real variable
 
 [TemplateClassTutorial]: http://www.cplusplus.com/doc/tutorial/templates/ 'Template Class Tutorial'

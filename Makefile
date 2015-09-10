@@ -6,7 +6,7 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
 					 --css=$(ROOT)/css/ucl_reveal.css --css=$(ROOT)/site-styles/reveal.css \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
-MDS=$(wildcard session*/*.md))
+MDS=$(wildcard session*/*.md )
 
 TEMPLATED=$(MDS:.md=.tmd)
 
@@ -19,6 +19,8 @@ vpath %.x build
 OUTS=$(subst build/,,$(EXES:.x=.out))
 
 default: _site
+
+.DELETE_ON_ERROR:
 
 %.out: %.x Makefile
 	$< > $@
@@ -39,16 +41,16 @@ default: _site
    java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
 notes.pdf: combined.md Makefile
-	$(PANDOC) --from markdown combined.md -o combined.pdf
+	$(PANDOC) --from markdown combined.md -o notes.pdf
 
-%.tmd: %.md liquify.rb
+%.tmd: %.md liquify.rb _plugins/idio.rb Makefile
 	ruby liquify.rb $< > $@
 
 combined.md: $(TEMPLATED)
 	cat $^ > $@
 
 notes.tex: combined.md Makefile
-	$(PANDOC) --from markdown combined.md -o combined.tex
+	$(PANDOC) --from markdown combined.md -o notes.tex
 
 master.zip: Makefile
 	rm -f master.zip
@@ -72,7 +74,7 @@ indigo: indigo-jekyll-master Makefile
 
 .PHONY: ready
 
-_site: ready
+_site: ready _plugins/idio.rb
 	jekyll build --verbose
 
 preview: ready
@@ -85,3 +87,9 @@ clean:
 	rm -f master.zip
 	rm -f notes.pdf
 	rm -rf _site
+	rm -f favicon *
+	rm -f combined*
+	rm -rf _includes
+	rm -rf _layouts
+	rm -rf js
+	rm -rf images

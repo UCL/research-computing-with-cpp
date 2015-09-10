@@ -5,7 +5,7 @@ title: Background
 ## Overview of high performance computing
 
 ### Algorithm development
- 
+
 - Consider the case of the Research Programmer:
     + Learns a few languages
     + Spends time developing 'the algorithm'
@@ -14,7 +14,7 @@ title: Background
 
 ### Von Neumann architecture
 
-![(a) "John von Neumann, Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/VonNeumannCombined)
+![(a) "John von Neumann, Los Alamos" by LANL. Licensed under Public Domain via Wikimedia Commons. (b) "Von Neumann architecture". Licensed under CC BY-SA 3.0 via Wikimedia Commons.]({% figurepath %}VonNeumannCombined.png)
 
 * Proposed by John von Neumann (1903 - 1957) in 1945.
 * Based on Turing's work of 1936.
@@ -25,12 +25,12 @@ title: Background
 
 Gordon Moore, co-founder of Intel, 1964: "the number of transistors in a dense integrated circuit doubles approximately every two years"
 
-!["Transistor Count and Moore's Law 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session04/figures/TransistorCount.png)
+!["Transistor Count and Moore's Law 2011" by Wgsimon. Licensed under CC BY-SA 3.0 via Wikimedia Commons.]({% figurepath %}TransistorCount.png)
 
 
 ### Physical limitations
 
-![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009.](session04/figures/CPUPerf)
+![CPU scaling showing transistor density, power consumption, and efficiency. Chart from The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software. Copyright Sutter, 2009.]({% figurepath %}CPUPerf.png)
 
 Manufacturers are [turning to multi-core systems](http://www.gotw.ca/publications/concurrency-ddj.htm), for reasons including:
 
@@ -39,7 +39,7 @@ Manufacturers are [turning to multi-core systems](http://www.gotw.ca/publication
 - cooling
 - wire delays
 - memory access times
- 
+
 
 ### More caches?
 
@@ -71,7 +71,7 @@ Gravitational N-body (example from [M.Jones](http://www.buffalo.edu/content/www/
 
 Lots of research questions that we might want to simulate are naturally parallel:
 
-![(a) "NGC 4414, a spiral galaxy" by NASA. Licensed under Public Domain via Wikimedia Commons. (b) "Global Forecast System 850 mbar" by the National Weather Service, a branch of National Oceanic and Atmospheric Administration. Licensed under Public Domain via Wikimedia Commons. (c) "Plate tectonics" by the US Geological Survey. Licensed under Public Domain via Wikimedia Commons](session04/figures/galaxy_plate_forecast.png)
+![(a) "NGC 4414, a spiral galaxy" by NASA. Licensed under Public Domain via Wikimedia Commons. (b) "Global Forecast System 850 mbar" by the National Weather Service, a branch of National Oceanic and Atmospheric Administration. Licensed under Public Domain via Wikimedia Commons. (c) "Plate tectonics" by the US Geological Survey. Licensed under Public Domain via Wikimedia Commons]({% figurepath %}galaxy_plate_forecast.png)
 
 ### Research computing, parallel computing
 
@@ -80,7 +80,7 @@ Lots of research questions that we might want to simulate are naturally parallel
 - Inherent limits in single-core processing
 - We must start to learn parallel processing
 
-!["Global Forecast System 850 mbar" by the National Weather Service, a branch of National Oceanic and Atmospheric Administration. Licensed under Public Domain via Wikimedia Commons.](session04/figures/Global_Forecast_850_slice.png)
+!["Global Forecast System 850 mbar" by the National Weather Service, a branch of National Oceanic and Atmospheric Administration. Licensed under Public Domain via Wikimedia Commons.]({% figurepath %}Global_Forecast_850_slice.png)
 
 ### History of high performance computing
 
@@ -88,22 +88,22 @@ Recommend reading:
 
 - "[Introduction to high performance computing](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)" by [Matthew D. Jones](http://www.buffalo.edu/ccr/people/staff/jones.html) at the Center for Computational Research, University at Buffalo, New York.
 - The [history on supercomputing on Wikipedia](http://en.wikipedia.org/wiki/History_of_supercomputing)
-    
+
 ### The first supercomputer
-    
+
 The Control Data Corporation 6600 (CDC 6600) is widely considered to be the first 'supercomputer':
 
 - released in 1964
 - designed by Seymour Cray
 - a factor of 10 quicker than rivals
 
-!["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons.](session04/figures/CDC6600.png)
+!["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons.]({% figurepath %}CDC6600.png)
 
 ### 'Super' is relative
 
-!["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.](session04/figures/Cray1.png)
-    
-Cray-1, released in 1976 ([M.Jones](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)): 
+!["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.]({% figurepath %}Cray1.png)
+
+Cray-1, released in 1976 ([M.Jones](http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf)):
 
 - weighed 2400kg
 - cost ~$8M
@@ -114,17 +114,17 @@ Desktop PC in 2010 ([M.Jones](http://www.buffalo.edu/content/www/ccr/support/tra
 - weighed 5kg
 - cost ~$1k
 - 48 **G**Flops (quad core, 3Ghz, Intel i7 CPU)
-    
+
 ### Cray 2
 
-The 1970s to 1980s have been described as the "Cray era". In 1985, around 10 years after Cray 1 was launched, came Cray 2: 
+The 1970s to 1980s have been described as the "Cray era". In 1985, around 10 years after Cray 1 was launched, came Cray 2:
 
 - 1.9 Gflops
 - 8 processors
 
 Cray 2 remained the fastest supercomputer until 1990.
 
-!["Cray 2". Licensed under Public Domain via Wikimedia Commons.](session04/figures/Cray2.png)
+!["Cray 2". Licensed under Public Domain via Wikimedia Commons.]({% figurepath %}Cray2.png)
 
 ### The successors
 
@@ -135,7 +135,7 @@ In the 1990s, supercomputers with thousands of processors emerged.
 * 1997, ASCI Red, first TFlop/s, 9000 nodes of Pentium Pro
 * 2004 - 2007, IBM Blue Gene, 70-472 TFlop/s, 60,000 processors
 
-!["IBM Blue Gene P Supercomputer" by Argonne National Laboratory. Licensed under CC BY-SA 2.0 via Wikimedia Commons.](session04/figures/IBM_Blue_Gene.png)
+!["IBM Blue Gene P Supercomputer" by Argonne National Laboratory. Licensed under CC BY-SA 2.0 via Wikimedia Commons.]({% figurepath %}IBM_Blue_Gene.png)
 
 ### The supercomputer league table
 
@@ -153,7 +153,7 @@ At UCL, you can get access to systems including:
 - Iridis: 12,000 cores, 900 nodes, 100 nodes (1200 cores) per job
 - Emerald: 372 NVIDIA Tesla, 114TFlop/s
 - Archer: 25th, 1.6PFlop/s (requires a grant)
-    
+
 [MJonesTutorial]: http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf
 [WikipediaHarvardArch]: http://en.wikipedia.org/wiki/Harvard_architecture
 [WikipediaModifiedHarvardArch]: http://en.wikipedia.org/wiki/Modified_Harvard_architecture

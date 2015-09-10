@@ -11,42 +11,42 @@ Think of two possible forms of *collective* communications:
 - give a beginning state
 - give an end state
 
-![](session06/figures/collective)
+![]({% figurepath %}collective.png)
 
 ### Broadcast: one to many
 
 --------------------------- ---------------------------------
-data in 0, no data in 1, 2  ![](session06/figures/broadcast0)
-data from 0 sent to 0, 1    ![](session06/figures/broadcast1)
+data in 0, no data in 1, 2  ![]({% figurepath %}broadcast0.png)
+data from 0 sent to 0, 1    ![]({% figurepath %}broadcast1.png)
 --------------------------- ---------------------------------
 
 ### Gather: many to one
 
 ------------------------- ---------------------------------
-data in 0, 1, 2           ![](session06/figures/collective)
-data from 1, 2 sent to 0  ![](session06/figures/gather1)
+data in 0, 1, 2           ![]({% figurepath %}collective.png)
+data from 1, 2 sent to 0  ![]({% figurepath %}gather1.png)
 ------------------------- ---------------------------------
 
 ### Scatter: one to many
 
 ------------------------- ---------------------------------
-data in 0                 ![](session06/figures/gather1)
-data from 0 in 0, 1, 2    ![](session06/figures/collective)
+data in 0                 ![]({% figurepath %}gather1.png)
+data from 0 in 0, 1, 2    ![]({% figurepath %}collective.png)
 ------------------------- ---------------------------------
 
 ### All to All: many to many
 
 ------------------  -------------------------------
-data in 0, 1, 2     ![](session06/figures/all2all0)
-from each to each   ![](session06/figures/all2all1)
+data in 0, 1, 2     ![]({% figurepath %}all2all0.png)
+from each to each   ![]({% figurepath %}all2all1.png)
 ------------------  -------------------------------
 
 
 ### Reduce operation
 
 ----------------- ---------------------------------
-data in 0, 1, 2   ![](session06/figures/collective)
-Baby Bunny!       ![](session06/figures/reduce1)
+data in 0, 1, 2   ![]({% figurepath %}collective.png)
+Baby Bunny!       ![]({% figurepath %}reduce1.png)
 ----------------- ---------------------------------
 
 Wherefrom the baby bunny?
@@ -55,7 +55,7 @@ Wherefrom the baby bunny?
 
 Sum, difference, or any other *binary* operator:
 
-![](session06/figures/BunnyOps)
+![]({% figurepath %}BunnyOps.png)
 
 ### Collective operation API
 
@@ -90,13 +90,13 @@ return        Error tag
 
 Insert into a new CATCH section the following commands
 
-{{cppfrag("06", "collective.cc", segment="broadcast")}}
+{% fragment broadcast, cpp/collective.cc %}
 
 ### Example of collective operations (2)
 
 And then insert the following right after it
 
-{{cppfrag("06", "collective.cc", segment="tests")}}
+{% fragment tests, cpp/collective.cc %}
 
 ### Causing deadlocks
 
@@ -104,13 +104,13 @@ Explain why the following two codes fail.
 
 1. Replace the loop in the last fragment with:
 
-``` Cpp
+``` cpp
 for(int i(1); i < size; ++i) ...
 ```
 
 2. Refactor and put everything inside the loop
 
-``` Cpp
+``` cpp
 std::string const peace = "I come in peace!";
 std::string message;
 for(int i(0); i < size; ++i) {
@@ -155,7 +155,7 @@ Exercise:
 
 Groups of processes can be split according to *color*:
 
-![](session06/figures/split)
+![]({% figurepath %}split.png)
 
 ``` cpp
 int MPI_Comm_split(MPI_Comm comm, int color, int key, MPI_Comm *newcomm)
@@ -172,7 +172,7 @@ newcomm       Output communicator
 
 The following splits processes into two groups with ratio 1:2.
 
-{{cppfrag("06", "split.cc", "main")}}
+{% fragment main, cpp/split.cc %}
 
 
 ### Splitting communicators: Exercise
@@ -186,5 +186,4 @@ Exercise:
 
 ### Scatter operation solution
 
-{{cppfrag("06", "scatter.cc", segment="scatter")}}
-
+{% fragment scatter, cpp/scatter.cc %}

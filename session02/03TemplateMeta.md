@@ -15,8 +15,8 @@ title: Template Meta-Programming
     * Typically, it generates code
 * Template Meta-Programme
     * C++ programme, uses Templates, generate C++ code at compile time
-    
-    
+
+
 ### TMP is Turing Complete
 
 * Given: A [Turing Machine][TuringMachine]
@@ -30,12 +30,12 @@ title: Template Meta-Programming
 * But when, where, why, how to use TMP?    
 * (side-note: Its not just a C++ pre-processor macro)    
 
-    
+
 ### Why Use It?
 
 * Use sparingly as code difficult to follow
 * Use for
-    * Optimisations 
+    * Optimisations
     * Represent Behaviour as a Type
     * Traits classes
 * But when you see it, you need to understand it!
@@ -45,12 +45,17 @@ title: Template Meta-Programming
 
 See [Wikipedia Factorial Example][TMPWikipedia]
 
+{% idio cpp/TMPFactorial %}
+
 * This:
-{{cppfrag('02','TMPFactorial/TMPFactorial.cc')}}
+
+{% code TMPFactorial.cc %}
 
 * Produces:
-{{execute('02','TMPFactorial/TMPFactorial')}}
 
+{% code TMPFactorial.out %}
+
+{% endidio %}
 
 ### Factorial Notes:
 
@@ -63,12 +68,15 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 * This simple example to illustrate "computation"
 * But when is TMP actually useful?
 * Notice that parameter was an integer value ... not just "int" type
-    
+
 
 ### Loop Example
 
+{% idio cpp/TMPLoopUnrolling %}
+
 * This:
-{{cppfrag('02','TMPLoopUnrolling/TMPLoop.cc')}}
+
+{% code TMPLoop.cc %}
 
 * Time: numberOfInts=3 took 37 seconds
 
@@ -76,7 +84,10 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 ### Loop Unrolled
 
 * This:
-{{cppfrag('02','TMPLoopUnrolling/TMPLoopUnrolled.cc')}}
+
+{% code TMPLoopUnrolled.cc %}
+
+{% endidio %}
 
 * Time: numberOfInts=3 took 10 seconds  
 
@@ -90,21 +101,26 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 
 ### Simple Policy Checking Example
 
+{% idio cpp/TMPPolicy %}
+
 * This:
-{{cppfrag('02','TMPPolicy/TMPPolicy.cc')}}
+
+{% code TMPPolicy.cc %}
 
 * Produces:
-{{execute('02','TMPPolicy/TMPPolicy')}}
 
+{% code TMPPolicy.out %}
+
+{% endidio %}
 
 ### Summary of Policy Checking Example
 
 * Define interface for behaviour
 * Parameterize over all behaviours
 * Use multiple-inheritance to import policies
-* e.g. logging / asserts 
- 
- 
+* e.g. logging / asserts
+
+
 ### Traits
 
 * From C++ standard 17.1.18
@@ -116,12 +132,17 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 
 ### Simple Traits Example
 
+{% idio cpp/TMPTrait %}
+
 * This:
-{{cppfrag('02','TMPTrait/TMPTrait.cc')}}
+
+{% code TMPTrait.cc %}
 
 * Produces:
-{{execute('02','TMPTrait/TMPTrait')}}
 
+{% code TMPTrait.out %}
+
+{% endidio %}
 
 ### Traits Principles
 
@@ -138,7 +159,7 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 
 ### Traits Examples
 
-* [Simple Tutorial from Aaron Ballman][AaronBallman] 
+* [Simple Tutorial from Aaron Ballman][AaronBallman]
 * [Boost meta-programming support][BoostMetaProg]
 * [Boost type_traits tutorial][BoostTutorial]
 * [C++11 has many traits][C++11traits]
@@ -162,7 +183,7 @@ See [Wikipedia Factorial Example][TMPWikipedia]
         * When you need type specific behaviour
             * traits probably better than template specialisation
             * traits better than inheritance based template hierarchies
-            
+
 * Remember
     * Scientist = few use-cases
     * Library designer = coding for the unknown, and potentially limitless use-cases
@@ -171,13 +192,17 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 ### TMP Use in Medical Imaging - 1
 
 Declare an [ITK][ITK] image
-```
+
+``` cpp
+
 template< typename TPixel, unsigned int VImageDimension = 2 >
 class Image:public ImageBase< VImageDimension >
 {
 public:
 // etc
+
 ```
+
 * TPixel, ```int```, ```float``` etc.
 * VImageDimension = number of dimensions
 
@@ -186,7 +211,7 @@ public:
 
 But what type is origin/spacing/dimensions?
 
-```
+``` cpp
 template< unsigned int VImageDimension = 2 >
 class ImageBase:public DataObject
 {
@@ -199,7 +224,7 @@ class ImageBase:public DataObject
 
 So now look at ```Vector```
 
-```
+``` cpp
 template< typename T, unsigned int NVectorDimension = 3 >
 class Vector:public FixedArray< T, NVectorDimension >
 {
@@ -211,7 +236,7 @@ public:
 
 Now we can see how fixed length arrays are used
 
-```
+``` cpp
 template< typename T, unsigned int TVectorDimension >
 const typename Vector< T, TVectorDimension >::Self &
 Vector< T, TVectorDimension >
@@ -245,7 +270,7 @@ which may be unrolled by compiler.
 * [Nathan Meyers][NathanMeyers]
 * [Todd Veldhuizen, traits scientific computing][TraitsScientificComputing]
 * [Thaddaaeus Frogley, ACCU, traits tutorial][ThaddaaeusFrogley]
-* [Aaron Ballman][AaronBallman] 
+* [Aaron Ballman][AaronBallman]
 * [Andrei Alexandrescu][AndreiAlexandrescuTraits]
 * [Andrei Alexandrescu traits with state][AndreiAlexandrescuTraitsWithState]
 * [Boost meta-mrogramming support][BoostMetaProg]

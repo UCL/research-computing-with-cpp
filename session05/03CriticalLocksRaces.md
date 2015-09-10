@@ -7,7 +7,7 @@ title: Races, Locks and Critical regions
 
 ### Introduction
 
-In the best of worlds our calculations can be done independently. 
+In the best of worlds our calculations can be done independently.
 However, even in our simplest examples we saw issues.
 
 * `std::cout` is not thread safe. Garbage mixed output
@@ -17,7 +17,7 @@ However, even in our simplest examples we saw issues.
 
 ### Race condition
 
-When the result of a calculation depends on the timing between threads. 
+When the result of a calculation depends on the timing between threads.
 
 * Example: threads writing to same variable
 * Can be hard to detect
@@ -27,7 +27,7 @@ When the result of a calculation depends on the timing between threads.
 
 ### Barriers and synchronisation
 
-Typically it is necessary to synchronize threads. Make sure that all threads are 
+Typically it is necessary to synchronize threads. Make sure that all threads are
 done with a piece of work before moving on. Barriers synchronizes threads.
 
 * Parallel regions such as `omp for` have an implicit barrier at the end
@@ -59,24 +59,25 @@ Sometimes the critical regions are not flexible enough to implement your algorit
 
 Examples:
 
-* Need to prevent two different pieces of code from running at the same time. 
+* Need to prevent two different pieces of code from running at the same time.
 * Need to lock only a fraction of a large array.
 
 ### OpenMP locks
- 
-OpenMP locks is a general way to manage resources in threads. 
 
-* A thread tries to set the lock. 
-* If the lock is not held by any other thread it is successful and free to carry on. 
-* If not it will wait until the lock becomes unset. 
+OpenMP locks is a general way to manage resources in threads.
+
+* A thread tries to set the lock.
+* If the lock is not held by any other thread it is successful and free to carry on.
+* If not it will wait until the lock becomes unset.
 * Important to remember to unset the lock when done.
-* Might otherwise result in a deadlock. Program hangs. 
+* Might otherwise result in a deadlock. Program hangs.
 
 ### Example
 
-Replace the critical region with a lock. 
+Replace the critical region with a lock.
 In this case there is no real gain from using a lock.
-{{cppfrag('05','locks/simplelock.cc')}} 
+
+{% code cpp/locks/simplelock.cc %}
 
 ### Multiple locks
 
@@ -88,7 +89,7 @@ Sometimes it is useful to lock multiple resources with different locks.
 * Both are waiting for a lock to be free
 
 
-### Notes 
+### Notes
 
-OpenMP implements two types of locks. We have only considered simple locks. 
+OpenMP implements two types of locks. We have only considered simple locks.
 Consult the [OpenMP specifications][OpenMPSpecs] for nested locks.

@@ -9,7 +9,7 @@ title: Tasks
 * Not all problems are easily expressed as for loops.
 * The task construction creates a number of tasks
 * The tasks are added to a queue
-* Threads take a task from the queue 
+* Threads take a task from the queue
 
 ### Example
 
@@ -23,11 +23,15 @@ Calculate Fibonacci numbers by recursion.
 
 ### Code
 
-{{cppfrag('05','openmptask/fibdemo.cc','fibfunction')}}
+{% idio cpp/openmptask/fibdemo.cc %}
+
+{% fragment fibfunction %}
 
 ### Main function
 
-{{cppfrag('05','openmptask/fibdemo.cc','mainfunction')}}
+{% fragment mainfunction %}
+
+{% endidio %}
 
 Note only one thread initially creates tasks. Tasks are still running in parallel.
 

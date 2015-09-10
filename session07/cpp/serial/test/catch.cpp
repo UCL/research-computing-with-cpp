@@ -45,6 +45,8 @@ TEST_CASE( "Smooth mathematical functions are correct","[Smooth]") {
       REQUIRE (smooth.Ring(62.4) == 1.0);
       REQUIRE (smooth.Ring(63.0) == 0.5);
   }
+
+  /// Sigmoid_Test
   SECTION ("Sigmoid function is correct") {
     double e=std::exp(1.0);
     REQUIRE(Smooth::Sigmoid(1.0,1.0,4.0) == 0.5);
@@ -52,6 +54,8 @@ TEST_CASE( "Smooth mathematical functions are correct","[Smooth]") {
     REQUIRE(Smooth::Sigmoid(10000,1.0,4.0) == 1.0);
     REQUIRE(std::abs(Smooth::Sigmoid(0.0,1.0,0.1)) < 0.001);
   }
+
+/// End
   SECTION ("Transition function is correct") {
     REQUIRE(abs(smooth.transition(1.0,0.3) - 1.0) <0.1);
     REQUIRE(smooth.transition(1.0,1.0)==0.0);
@@ -70,7 +74,7 @@ TEST_CASE( "Smooth mathematical functions are correct","[Smooth]") {
 TEST_CASE ("NormalisationsAreCorrect") {
   Smooth smooth(100,100,10);
   SECTION ("Disk Normalisation is correct") {
-    // Should be roughly pi*radius*radius, 
+    // Should be roughly pi*radius*radius,
     REQUIRE(std::abs(smooth.NormalisationDisk()-314.15)<1.0);
   }
   SECTION ("Ring Normalisation is correct") {

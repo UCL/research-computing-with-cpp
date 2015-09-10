@@ -24,7 +24,11 @@ title: Introduction to Accelerators
 ### Using an accelerator within the CPU
 
 * Consider the following code which performs ```y = a*x + y``` on vectors ```x``` and ```y```:
-{{cppfrag('09','saxpy/saxpy.c','saxpy')}}
+
+{% idio cpp/saxpy %}
+
+{% fragment saxpy, saxpy.c %}
+
 * Assuming single precision floating point multiply-add is implemented as one CPU instruction the ```for``` loop executes ```n``` instructions (plus integer arithmetic for the loop counter, etc.).
 
 
@@ -41,13 +45,18 @@ title: Introduction to Accelerators
 * Modern compilers are able to automatically recognise when SIMD instructions can be applied to certain loops
     - elements are known to be contiguous
     - arrays are not aliased
-{{cppfrag('09','saxpy/saxpy_fast.c','saxpy_fast')}}
+
+{% fragment saxpy_fast, saxpy_fast.c %}
 
 
 ### Autovectorisation results
 
 * Running this and timing the invocations produces the following output:
-{{execute('09','saxpy/saxpy')}}
+
+{% code saxpy.out %}
+
+{% endidio %}
+
 * Since Intel's SIMD registers operate on 4 single precision floats at once the first loop executes approximately ```n/4``` instructions
     - resulting in a (near) 4x speedup (Amdahl's Law)
 * Can be combined with OpenMP directives (lecture 5) to use SIMD units on multiple cores of the CPU

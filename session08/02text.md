@@ -43,17 +43,23 @@ Boost's [Spirit](http://boost-spirit.com/home/) library is good for this too.
 Nevertheless, in simple cases where text is of a known format, C++'s built in formatted IO
 is quick and easy:
 
-{{cppfrag('07','parallel/src/TextWriter.cpp','Header')}}
-{{cppfrag('07','parallel/src/TextWriter.cpp','Write')}}
+{% idio ../session07/cpp/parallel/src/TextWriter.cpp %}
+
+{% fragment Header %}
+{% fragment Write %}
+
+{% endidio %}
 
 ### Text Data and NumPy
 
 Parsing text data in NumPy is also very easy:
 
-```python
-{{d['session07/cpp/parallel/visualise.py|idio|t']['TextRead']}}
-{{d['session07/cpp/parallel/visualise.py|idio|t']['Reshape']}}
-```
+{% idio ../session07/cpp/parallel/visualise.py %}
+
+{% fragment TextRead %}
+{% fragment Reshape %}
+
+{% endidio %}
 
 this is how the animations you saw last lecture were created.
 

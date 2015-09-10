@@ -28,6 +28,15 @@ idio:
   fence: True
 
 include: [ _static, _sources]
-exclude: 
+exclude:
   - combined.md
   - build
+  - "*.tmd"
+  - "*.out"
+  - "*.cc"
+  - "*.cpp"
+  - "*.h"
+  - "*.x"
+  - "*.rb"
+  - Makefile
+  - CMakeLists.txt

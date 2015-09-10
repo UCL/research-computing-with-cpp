@@ -29,31 +29,49 @@ title: CUDA Thrust
 
 * The following code fragment shows the three constructors available for ```host_vector```
 
-{{cppfrag('09','thrust/vector_constructors.cu')}}
+{% idio cpp/thrust %}
+
+{% code vector_constructors.cu %}
+
 
 * ```device_vector```s have the same constructors but with storage allocated in GPU memory
 
 ### Vector types: Copy Constructors
 
 * There are four copy constructors for both ```device_vector``` and ```host_vector```
+
     - copy from a vector of the same template type
-    {{cppfrag('09','thrust/vector_copy.cu','copy')}}
+
+{% idio vector_copy.cu %}
+
+{% fragment copy %}
 
     - copy from a vector of a different template type
-    {{cppfrag('09','thrust/vector_copy.cu','template_copy')}}
+
+{% fragment template_copy %}
+
 
     - copy a device_vector from a host_vector (or vice versa)
-    {{cppfrag('09','thrust/vector_copy.cu','transfer_copy')}}
+
+{% fragment transfer_copy %}
+
+
 
     - create a copy of an STL vector
-    {{cppfrag('09','thrust/vector_copy.cu','stl_copy')}}
+
+{% fragment stl_copy %}
+
+{% endidio %}
+
 
 * Each copy constructor also has a corresponding assignment operator
 
 ### Vector types: Accessors
 
 * The ```[]``` operator has been overloaded for ```device_vector``` and ```host_vector```
-{{cppfrag('09','thrust/vector_assignment.cu')}}
+
+{% code vector_assignment.cu %}
+
 * Be careful when accessing the elements of a ```device_vector``` from host code as each one performs a transfer from GPU memory
 
 ### Algorithms
@@ -68,13 +86,17 @@ title: CUDA Thrust
 ### Algorithms: transform
 
 * The transform algorithm is declared in ```thrust/transform.h```
-{{cppfrag('09','thrust/transform.cu')}}
+
+{% code transform.cu %}
+
 * ```transform``` applies a unary_op functor to the elements between ```first``` and ```last``` and stores them in ```result```
 
 ### Algorithms: reduce
 
 * The reduction algorithm is declared in ```thrust/reduce.h```
-{{cppfrag('09','thrust/reduce.cu')}}
+
+{% code reduce.cu %}
+
 * ```reduce``` applies a ```binary_op``` functor to the elements between ```first``` and ```last``` starting with ```init``` and returns the result
 
 ### Algorithms: transform/reduce
@@ -83,12 +105,16 @@ title: CUDA Thrust
     - it combines the transform and reduce algorithms
     - first elements are transformed using ```unary_op```
     - then reduced using ```binary_op```
-{{cppfrag('09','thrust/transform_reduce.cu')}}
+
+{% code transform_reduce.cu %}
+
+{% endidio %}
 
 ### Thrust SAXPY
 
 * We can use the ```transform``` algorithm from Thrust to implement our SAXPY kernel
-{{cppfrag('09','saxpy/thrust.cu','saxpy')}}
+
+{% fragment saxpy, cpp/saxpy/thrust.cu %}
 
 ```
 Bandwidth: 15.7344GB/s

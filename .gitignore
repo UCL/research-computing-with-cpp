@@ -31,3 +31,10 @@
 # Liquid / Jekyll output
 _site
 *.tmd
+_includes
+_layouts
+combined.md
+combined.pdf
+js
+images
+favicon*

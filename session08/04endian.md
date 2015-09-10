@@ -26,7 +26,7 @@ like MPI, if you want your code to work on both your laptop, and your local supe
 
 ### Endianness
 
-Another problem is Endianness: a `double` is actually **almost** always 8 bytes, with 
+Another problem is Endianness: a `double` is actually **almost** always 8 bytes, with
 a 1 bit sign, 11 bit exponent, and 52 bit mantissa. (The IEEE standard).
 
 But there's still ambiguity in how these bytes are ordered.
@@ -52,11 +52,15 @@ If you're visualising with python you can set your datatype to be e.g. `<f8` for
 XDR, or 'extensible data representation' is a portability standard defined for binary IO. If you
 write through XDR, data will be converted to the XDR standard representation.
 
-XDR data is big endian, has everything in multiples of 4 bytes, and supports a rich library of 
+XDR data is big endian, has everything in multiples of 4 bytes, and supports a rich library of
 appropriate types.
 
 ### Writing with XDR
 
-{{cppfrag('07','parallel/src/XdrWriter.h','Includes')}}
-{{cppfrag('07','parallel/src/XdrWriter.cpp','Write')}}
-{{cppfrag('07','parallel/src/XdrWriter.cpp','Create')}}
+{% idio ../session07/cpp/parallel/src %}
+
+{% fragment Includes, XdrWriter.h %}
+{% fragment Write, XdrWriter.cpp %}
+{% fragment Create, XdrWriter.cpp %}
+
+{% endidio %}

@@ -13,7 +13,7 @@ This example briefly run through the process of:
 
 ### Create an account
 
-A growing number of companies are offering cloud computing services, for example: 
+A growing number of companies are offering cloud computing services, for example:
 
 - Amazon Web Services: [http://aws.amazon.com](http://aws.amazon.com)
 - Cloudera: [http://www.rackspace.co.uk/cloud](http://www.rackspace.co.uk/cloud)
@@ -22,7 +22,7 @@ A growing number of companies are offering cloud computing services, for example
 
 ### Create a key pair
 
-In this exercise we will be working with Amazon Web Services. 
+In this exercise we will be working with Amazon Web Services.
 
 Amazon uses public–key cryptography to authenticate users, so we'll need to create a private/public key pair:
 
@@ -33,13 +33,13 @@ $ ssh-keygen -t rsa -f ~/.ssh/ec2 -b 4096
 
 We then need to register our public key with Amazon Web Services.
 
-![](session10/figures/key_pair.png)
+![]({% figurepath %}key_pair.png)
 
 ### Create a single instance using the web interface
 
 Navigate to the EC2 Dashboard and create a 'micro' instance (1 CPU, 2.5GHZ, 1GB RAM):
 
-![](session10/figures/create_ec2_instance.png)
+![]({% figurepath %}create_ec2_instance.png)
 
 ### Connect to the instance with SSH
 
@@ -48,18 +48,18 @@ For Linux instances, the username is 'ec2-user':
 ``` bash
 # <key_file>: ~/.ssh/ec2
 # <public_ID>: 52.16.106.209
-$ ssh ec2-user@<public_ID> -i <key_file> 
+$ ssh ec2-user@<public_ID> -i <key_file>
 ```
 
-![](session10/figures/connect_to_instance.png)
+![]({% figurepath %}connect_to_instance.png)
 
 ``` bash
-# Connected 
+# Connected
        __|  __|_  )
        _| \(     /   Amazon Linux AMI
       ___|\\___|___|
 
-[ec2-user@ip-xxx ~]$ 
+[ec2-user@ip-xxx ~]$
 ```
 
 <!-- ### Upload and run a script from your local machine
@@ -75,4 +75,4 @@ $ $ scp -i <key_file> <SampleFile> ec2-user@ec2-198-51-100-1.compute-1.amazonaws
 
 When finished with the instance, remember to terminate it!
 
-![](session10/figures/terminate_instance.png)
+![]({% figurepath %}terminate_instance.png)

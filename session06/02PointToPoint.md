@@ -8,7 +8,7 @@ title: Point to Point
 
 Can you think of two behaviours for message passing?
 
-![](session06/figures/mpi.png)
+![]({% figurepath %}mpi.png)
 
 - Process 0 can (i) gives message, (ii) leave, and/or (iii) wait for
   acknowledgements
@@ -19,30 +19,30 @@ Can you think of two behaviours for message passing?
 ### Blocking synchronous send
 
 ------------------------------   ----------------------------
-a. 0, 1, and MPI stand ready:    ![](session06/figures/sync0)
-b. message dropped off by 0:     ![](session06/figures/sync1)
-c. transit:                      ![](session06/figures/syncT)
-d. message received by 1         ![](session06/figures/syncA)
-e. receipt received by 0         ![](session06/figures/syncR)
+a. 0, 1, and MPI stand ready:    ![]({% figurepath %}sync0.png)
+b. message dropped off by 0:     ![]({% figurepath %}sync1.png)
+c. transit:                      ![]({% figurepath %}syncT.png)
+d. message received by 1         ![]({% figurepath %}syncA.png)
+e. receipt received by 0         ![]({% figurepath %}syncR.png)
 ------------------------------   ----------------------------
 
 ### Blocking send
 
 ------------------------------  -----------------------------
-a. 0, 1, and MPI stand ready:   ![](session06/figures/sync0)
-b. message dropped off by 0:    ![](session06/figures/sync1)
-c. transit, 0 leaves            ![](session06/figures/ssyncT)
-d. message received by 1        ![](session06/figures/ssyncA)
+a. 0, 1, and MPI stand ready:   ![]({% figurepath %}sync0.png)
+b. message dropped off by 0:    ![]({% figurepath %}sync1.png)
+c. transit, 0 leaves            ![]({% figurepath %}ssyncT.png)
+d. message received by 1        ![]({% figurepath %}ssyncA.png)
 ------------------------------  -----------------------------
 
 ### Non-blocking send
 
 -------------------------------  -----------------------------
-a. 0, 1, and MPI stand ready:    ![](session06/figures/async0) 
-b. 0 leaves message in safebox   ![](session06/figures/async1)
-c. transit                       ![](session06/figures/asyncT)
-d. message received by 1         ![](session06/figures/asyncA)
-e. receipt placed in safebox     ![](session06/figures/asyncR)
+a. 0, 1, and MPI stand ready:    ![]({% figurepath %}async0.png)
+b. 0 leaves message in safebox   ![]({% figurepath %}async1.png)
+c. transit                       ![]({% figurepath %}asyncT.png)
+d. message received by 1         ![]({% figurepath %}asyncA.png)
+e. receipt placed in safebox     ![]({% figurepath %}asyncR.png)
 -------------------------------  -----------------------------
 
 
@@ -105,7 +105,7 @@ return        Error tag
 
 Inside a new section in the test framework:
 
-{{cppfrag("06", "point2point.cc", segment="send")}}
+{% fragment send, cpp/point2point.cc %}
 
 Common bug: Set both sender and receiver to 0. What happens?
 

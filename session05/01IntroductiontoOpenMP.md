@@ -39,7 +39,7 @@ title: Introduction to OpenMP
 
 * Annotate code with `#pragma omp ...`
     - This instruct the compiler in how to parallize the code
-    - `#pragma`s are a instructions to the compiler 
+    - `#pragma`s are a instructions to the compiler
     - Not part of the language
     - I.e. `#pragma once` alternative to include guards
     - Compiler will usually ignore pragmas that it doesn't understand
@@ -66,7 +66,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 ### Hello world
 
-{{cppfrag('05','hello/HelloOpenMP.cc')}}
+{% code cpp/hello/HelloOpenMP.cc %}
 
 * `#pragma omp parallel` marks a block is to be run in parallel
 * In this case all threads do the same
@@ -84,7 +84,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 
 ### Slightly improved hello world
 
-{{cppfrag('05','hello/HelloOpenMPSafe.cc')}}
+{% code cpp/hello/HelloOpenMPSafe.cc %}
 
 ### Improvements:
 
@@ -118,7 +118,7 @@ Otherwise you can use GCC on aristotle
 
 
 
-[OpenMPhomepage]: http://openmp.org/ 
+[OpenMPhomepage]: http://openmp.org/
 [OpenMPcheatsheet]: http://openmp.org/mp-documents/OpenMP-4.0-C.pdf
 [OpenMPSpecs]: http://www.openmp.org/mp-documents/OpenMP4.0.0.pdf
 [ClangOpenMP]: http://clang-omp.github.io/

@@ -13,14 +13,17 @@ We have to use `ostream::write()`, which is a low-level, C-style function.
 
 ### Binary IO in C++
 
-{{cppfrag('07','parallel/src/BinaryWriter.cpp','Header')}}
-{{cppfrag('07','parallel/src/BinaryWriter.cpp','Write')}}
+{% idio ../session07/cpp/parallel %}
+
+{% fragment Header, src/BinaryWriter.cpp %}
+
+{% fragment write, src/BinaryWriter.cpp %}
 
 
 ### Binary IO in NumPy
 
-```python
-{{d['session07/cpp/parallel/visualise.py|idio|t']['BinaryRead']}}
-```
+{% fragment BinaryRead, visualise.py %}
+
+{% endidio %}
 
 ... more on that 'bulk_type' parameter later.

@@ -16,11 +16,13 @@ the change in one place.
 
 ### Wrap Access to the Field
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Wrap_Access')}}
+{% idio cpp/parallel/src/Smooth.cpp %}
+
+{% fragment Wrap_Access %}
 
 ### Copy Directly without Buffers
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Unbuffered_Send')}}
+{% fragment Unbuffered_Send %}
 
 ### Defining a Halo Datatype
 
@@ -32,20 +34,22 @@ than as a series of `double`s.
 
 We can do this using an MPI Derived Datatype:
 
-### Declare Datatype 
+### Declare Datatype
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Define_Datatype')}}
+{% fragment Define_Datatype %}
 
-### Use Datatype 
+### Use Datatype
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Use_Datatype')}}
+{% fragment Use_Datatype %}
+
+{% endidio %}
 
 ### Strided datatypes
 
 Supposing we wanted to use a 2-d decomposition. Our y-direction halo's data would not be contiguous
 in memory.
 
-Let's imagine we used $Ny+x$ to index into the field instead of $Mx+y$: we can define a derived datatype 
+Let's imagine we used $Ny+x$ to index into the field instead of $Mx+y$: we can define a derived datatype
 which specifies data as a series of stretches, with gaps.
 
 `MPI_Type_Vector(`$M,r,N$`)` would define the relevant type for this: $M$ chunks, each $r$ `double`s

@@ -45,7 +45,7 @@ so:
 
 ```
 template < class T >  // note 'class'
-void MyFunction(T a, T b) 
+void MyFunction(T a, T b)
 {
   // do something
 }
@@ -55,7 +55,7 @@ or:
 
 ```
 template < typename T1, typename T2 >  // note 'typename'
-T1 MyFunctionTwoArgs(T1 a, T2 b) 
+T1 MyFunctionTwoArgs(T1 a, T2 b)
 {
   // do something
 }
@@ -90,7 +90,7 @@ will call:
 double GetAverage<double>(const std::vector<double>& someNumbers);
 ```
 
-So, if function parameters can inform the compiler uniquely as to which function to instantiate, its automatically compiled. 
+So, if function parameters can inform the compiler uniquely as to which function to instantiate, its automatically compiled.
 
 
 ### Explicit Argument Resolution
@@ -143,11 +143,11 @@ double r3 = GetMax(1.0,2.0);
     * Executables/libraries get larger
     * Compilation time will increase
     * Error messages get more verbose
-    
-    
+
+
 ### Two Stage Compilation
 
-* Basic syntax checking (eg. brackets, semi-colon, etc), when ```#include```'d 
+* Basic syntax checking (eg. brackets, semi-colon, etc), when ```#include```'d
 * But only compiled when instantiated (eg. check existence of + operator).
 
 
@@ -161,7 +161,7 @@ double r3 = GetMax(1.0,2.0);
 * In general
     * Most libraries/people prefer header only implementations
 
-    
+
 ### Explicit Instantiation - 1
 
 Language Reference [here][FunctionTemplate]
@@ -211,7 +211,7 @@ Undefined symbols for architecture x86_64:
 ### Implicit Instantiation - 1
 
 * Instantiated as they are used
-* Normally via ```#include``` header files. 
+* Normally via ```#include``` header files.
 
 {% idio cpp/implicitInstantiation %}
 

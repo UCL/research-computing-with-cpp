@@ -8,7 +8,7 @@ title: MPI in practice
 
 * many processes, each with their own data
 
-    ![](session06/figures/many.png)
+    ![]({% figurepath %}many.png)
 
 * each process is independent
 * processes can send messages to one another
@@ -45,7 +45,7 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 
 ### Hello, world!: hello.cc
 
-{{cppfrag('06','hello.cc')}}
+{% code cpp/hello.cc %}
 
 ### Hello, world!: CMakeLists.txt
 
@@ -78,7 +78,7 @@ On aristotle.rc.ucl.ac.uk:
 - MPI calls *must* appear beween ``MPI_Init`` and ``MPI_Finalize``
 - Groups of processes are handled by a communicator. `MPI_COMM_WORLD` handles
     the group of all processes.
-    ![](session06/figures/world.png)
+    ![]({% figurepath %}world.png)
 
 - Size of group and rank (order) of process in group
 - By *convention*, process of rank 0 is *special* and called *root*
@@ -88,4 +88,4 @@ On aristotle.rc.ucl.ac.uk:
 Running MPI unit-tests requires MPI_Init and MPI_Failure before and after the
 test framework (*not* inside the tests).
 
-{{cppfrag("06", "helloCatch.cc")}}
+{% code cpp/helloCatch.cc %}

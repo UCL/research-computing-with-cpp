@@ -22,7 +22,7 @@ On the next iteration:
 
 This simple set of rules produces beautiful, complex behaviours:
 
-!["Gospers glider gun" by Kieff. Licensed under CC BY-SA 3.0 via Wikimedia Commons.](session07/figures/gun.gif)
+!["Gospers glider gun" by Kieff. Licensed under CC BY-SA 3.0 via Wikimedia Commons.]({% figurepath %}gun.gif)
 
 ###Smooth Life
 
@@ -71,7 +71,7 @@ Have a look at our [serial](https://github.com/UCL/SmoothLifeExample) implementa
 We can see that this is pretty slow:
 
 If the overall grid is $M$ by $N$, and the range of interaction (3* the inner radius), is $r$, then each time
-step takes $MNr^2$ calculations: if we take all of these proportional as we "fine grain" our 
+step takes $MNr^2$ calculations: if we take all of these proportional as we "fine grain" our
 discretisation (a square domain, and a constant interaction distance in absolute units), the problem grows
 like $N^4$!
 
@@ -82,20 +82,26 @@ about the serial implementation.
 
 Four levels deep:
 
-{{cppfrag('07','serial/src/Smooth.cpp','Main_Loop')}}
+{% idio cpp/serial/src/Smooth.cpp %}
+
+{% fragment Main_Loop %}
 
 ###Swapped before/after fields
 
-{{cppfrag('07','serial/src/Smooth.cpp','Swap_Fields')}}
+{% fragment Swap_Fields %}
 
-###Automated tests for mathematics
 
-{{cppfrag('07','parallel/test/catch.cpp','Sigmoid_Test')}}
 
 ###Distances wrap around a torus
 
-{{cppfrag('07','serial/src/Smooth.cpp','Torus_Difference')}}
+{% fragment Torus_Difference %}
 
 ###Smoothed edge of ring and disk.
 
-{{cppfrag('07','serial/src/Smooth.cpp','Disk_Smoothing')}}
+{% fragment Disk_Smoothing %}
+
+{% endidio %}
+
+###Automated tests for mathematics
+
+{% fragment Sigmoid_Test, cpp/serial/test/catch.cpp %}

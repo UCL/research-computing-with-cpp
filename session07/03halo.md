@@ -26,7 +26,9 @@ Thus, each process now holds $N+2r$ cells:
 
 ### Domains with a halo
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Halo_Definitions')}}
+{% idio cpp/parallel/src/Smooth.cpp %}
+
+{% fragment Halo_Definitions %}
 
 ### Coding with a halo
 
@@ -37,7 +39,7 @@ from $0$ to $N+2r$:
 int from_x=0; int to_x=local_x_size_with_halo
 ```
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Main_Loop')}}
+{% fragment Main_Loop %}
 
 ### Transferring the halo
 
@@ -52,7 +54,7 @@ for pass-the-parcel.
 
 ### Transferring the halo
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Buffered_Send')}}
+{% fragment Buffered_Send %}
 
 ### Noncontiguous memory
 
@@ -75,25 +77,35 @@ We'll look in a later section how this can be avoided.
 
 ### Buffering
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Buffer_Left')}}
-{{cppfrag('07','parallel/src/Smooth.cpp','Unpack_Right')}}
+{% fragment Buffer_Left %}
+{% fragment Unpack_Right %}
 
 ### Testing communications
 
 We implement a copy of our buffers which doesn't use MPI:
 
-{{cppfrag('07','parallel/src/Smooth.cpp','Communicate_Local')}}
+{% fragment Communicate_Local %}
+
+{% endidio %}
 
 which allows us to check our halos are all set up correctly.
 
 ### Testing communications
 
+{% idio cpp/parallel/test/catch.cpp %}
+
 We test that our copy works as expected:
 
-{{cppfrag('07','parallel/test/catch.cpp','Buffering')}}
+{% fragment Buffering %}
+
+{% endidio %}
 
 ### Testing communications
 
 We test that the MPI comms results are the same as serial
 
-{{cppfrag('07','parallel/test/catch_mpi.cpp','Check_Result_Parallel_Test')}}
+{% idio cpp/parallel/test/catch_mpi.cpp %}
+
+{% fragment Check_Result_Parallel_Test %}
+
+{% endidio %}
