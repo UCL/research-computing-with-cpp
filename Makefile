@@ -8,6 +8,8 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
 
 MDS=$(wildcard session*/*.md))
 
+TEMPLATED=$(MDS:.md=.tmd)
+
 SLIDES=$(MDS:.md=.slide.html)
 
 EXES=$(shell find build -name *.x)
@@ -36,14 +38,17 @@ default: _site
 %.png: %.uml Makefile
    java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
-notes.pdf: combined.ipynb Makefile
-	$(PANDOC) combined.md -o combined.tex
+notes.pdf: combined.md Makefile
+	$(PANDOC) --from markdown combined.md -o combined.pdf
 
-combined.md: $(MDS)
-	cat $^ $@
+%.tmd: %.md liquify.rb
+	ruby liquify.rb $< > $@
+
+combined.md: $(TEMPLATED)
+	cat $^ > $@
 
 notes.tex: combined.md Makefile
-	$(PANDOC) combined.md -o combined.tex
+	$(PANDOC) --from markdown combined.md -o combined.tex
 
 master.zip: Makefile
 	rm -f master.zip

@@ -28,8 +28,6 @@
 *.app
 *.x
 
-# dexy output
-output
-output-site
-.dexy
-.trash
+# Liquid / Jekyll output
+_site
+*.tmd
