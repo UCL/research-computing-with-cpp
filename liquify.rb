@@ -7,7 +7,7 @@ require_relative '_plugins/idio'
 require_relative '_plugins/figurepath'
 require 'ostruct'
 
-Liquid::Template.error_mode = :strict
+# Liquid::Template.error_mode = :strict Removed for older liquid compatibility
 
 @template = Liquid::Template.parse(File.read(inpath))
 
