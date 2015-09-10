@@ -41,7 +41,7 @@ int from_x=0; int to_x=local_x_size_with_halo
 
 {% fragment Main_Loop %}
 
-### Transferring the halo
+### Transferring the halo
 
 We need to pass data left at the same time as we receive data from the right.
 
@@ -56,7 +56,7 @@ for pass-the-parcel.
 
 {% fragment Buffered_Send %}
 
-### Noncontiguous memory
+### Noncontiguous memory
 
 Our serial solution uses a C++ `vector<vector<double> >` to store our field.
 
@@ -100,7 +100,7 @@ We test that our copy works as expected:
 
 {% endidio %}
 
-### Testing communications
+### Testing communications
 
 We test that the MPI comms results are the same as serial
 

@@ -29,7 +29,7 @@ MPI-IO works by accessing files as data buffers like core MPI_Send and so on:
 
 {% fragment Write %}
 
-### Opening parallel file
+### Opening parallel file
 
 All processes work together to open and create the file:
 

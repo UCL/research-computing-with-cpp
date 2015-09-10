@@ -28,7 +28,7 @@ title: Introduction to OpenMP
     - A set of threads are forked and used together with the master thread
     - When the parallel block ends the threads are killed or put to sleep
 
-### Typical use cases
+### Typical use cases
 
 * A loop with independent iterations
 * Hopefully a significant part of the execution time

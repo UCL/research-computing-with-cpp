@@ -2,9 +2,9 @@
 title: Distributed memory parallelism
 ---
 
-## Distributed Memory Parallelism
+## Distributed Memory Parallelism
 
-### Overview
+### Overview
 
 * Concepts
 * Point to point communication

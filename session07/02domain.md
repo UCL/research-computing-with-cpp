@@ -15,7 +15,7 @@ Design objectives in decomposition are:
 * Minimise communication
 * Optimise load balance (Share out work evenly)
 
-### Decomposing Smooth Life
+### Decomposing Smooth Life
 
 We'll go for a 1-d spatial decomposition for smooth life, dividing the domain into
 "Stripes" along the x-axis.
@@ -23,7 +23,7 @@ We'll go for a 1-d spatial decomposition for smooth life, dividing the domain in
 If we have an $N$ by $M$ domain, and $p$, processes, each process will be responsible for
 $NM/p$ cells, and $NMr^2/p$ calculations.
 
-### Static and dynamic balance
+### Static and dynamic balance
 
 This will achieve perfect **static** load balance: the average work done by each process
 is the same. If we were not solving in a rectangular grid, this would have been harder.
@@ -46,7 +46,7 @@ at the same time, so communication will take time proportional to $rMp/p$=$rM$.
 
 ### Strong scaling
 
-We therefore expect the time taken for a simulation to vary like: $Mr(k+Nr/p)$. (Where $k$ is a 
+We therefore expect the time taken for a simulation to vary like: $Mr(k+Nr/p)$. (Where $k$ is a
 parameter describing the relative time to communicate one cell's state compared to the time
 for calculating one cell )
 

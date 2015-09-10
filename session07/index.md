@@ -2,9 +2,9 @@
 title: MPI Design Example
 ---
 
-## MPI Design Example
+## MPI Design Example
 
-### Overview
+### Overview
 
 * SmoothLife: An example parallel computing problem
 * Domain Decomposition

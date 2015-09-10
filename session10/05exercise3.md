@@ -2,7 +2,7 @@
 title: Exercise 3 - Virtualisation
 ---
 
-## Exercise 3: Virtualisation
+## Exercise 3: Virtualisation
 
 ### Reproducible research
 

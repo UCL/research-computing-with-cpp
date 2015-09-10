@@ -73,7 +73,7 @@ On aristotle.rc.ucl.ac.uk:
 - run cmake and make ``cmake .. && make``
 - run the code ``mpiexec -n 4 hello``
 
-### Hello, world! dissected
+### Hello, world! dissected
 
 - MPI calls *must* appear beween ``MPI_Init`` and ``MPI_Finalize``
 - Groups of processes are handled by a communicator. `MPI_COMM_WORLD` handles

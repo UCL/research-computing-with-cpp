@@ -24,7 +24,7 @@ A growing number of companies are offering cloud computing services, for example
 
 In this exercise we will be working with Amazon Web Services.
 
-Amazon uses public–key cryptography to authenticate users, so we'll need to create a private/public key pair:
+Amazon uses public key cryptography to authenticate users, so we'll need to create a private/public key pair:
 
 ``` bash
 # Create a key pair

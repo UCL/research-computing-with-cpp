@@ -44,7 +44,7 @@ We can do this using an MPI Derived Datatype:
 
 {% endidio %}
 
-### Strided datatypes
+### Strided datatypes
 
 Supposing we wanted to use a 2-d decomposition. Our y-direction halo's data would not be contiguous
 in memory.

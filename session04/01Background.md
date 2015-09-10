@@ -99,7 +99,7 @@ The Control Data Corporation 6600 (CDC 6600) is widely considered to be the firs
 
 !["CDC 6600 introduced in 1964" by Steve Jurvetson from Menlo Park, USA. Licensed under CC BY 2.0 via Wikimedia Commons.]({% figurepath %}CDC6600.png)
 
-### 'Super' is relative
+### Super' is relative
 
 !["Cray-1 Deutsches Museum" by Clemens Pfeiffer. Licensed under CC BY 2.5 via Wikimedia Commons.]({% figurepath %}Cray1.png)
 

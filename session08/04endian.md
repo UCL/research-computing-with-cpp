@@ -13,7 +13,7 @@ This is particularly problematic in HPC: the architecture of your laptop is unli
 to be the same as on ARCHER, so if when ship your output files back, your nice visualisation
 code will not work.
 
-### Length of datatypes
+### Length of datatypes
 
 The C++ standard **does not** specify how many bytes are used to represent a `double`: just that
 it is more than a `float`! (And similarly for other datatypes.)

@@ -63,7 +63,7 @@ Parsing text data in NumPy is also very easy:
 
 this is how the animations you saw last lecture were created.
 
-### Text File Bloat
+### Text File Bloat
 
 However, representing $1.3455188104 \cdot 10^{-10}$ in text:
 

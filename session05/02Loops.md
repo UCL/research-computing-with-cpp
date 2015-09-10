@@ -23,7 +23,7 @@ Don't do this in production code. Use a standard library function to integrate f
 * Shared: Only one shared variable
 * Firstprivate: Private variable but initialized with serial value
 
-### Details of example
+### Details of example
 
 * Important that `x` and `sum` are private
     - Try making them shared and see what happens
@@ -33,7 +33,7 @@ Don't do this in production code. Use a standard library function to integrate f
     - "Explicit is better that implicit"
 * We use a critical region to add safely without a race condition
 
-### Reduction
+### Reduction
 
 * Aggregating a result from multiple threads with a single mathematical operation
 * Is a very common pattern
@@ -41,6 +41,6 @@ Don't do this in production code. Use a standard library function to integrate f
 * Simplifies the code and avoids the explicit critical region
 * Easier to write and may perform better    
 
-### Reduction example
+### Reduction example
 
 {% code cpp/forloop/openmpforloopreduction.cc %}

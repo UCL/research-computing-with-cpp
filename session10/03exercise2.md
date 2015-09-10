@@ -24,7 +24,7 @@ To use the command line tools, you'll need to configure your AWS Access Keys, re
 $ aws configure
 
 # This configuration is stored locally in a home folder named .aws
-# On Unix systems: ~/.aws/config; 
+# On Unix systems: ~/.aws/config;
 # On Windows: %UserProfile%\.aws\config
 AWS Access Key ID [****************VDLA]: EXXXXXAMPLE
 AWS Secret Access Key [****************pa8o]: EXXXXXAMPLE
@@ -142,12 +142,12 @@ $ ssh -i <key_file> ec2-user@<public_IP>
 You should now be connected!:
 
 ``` bash
-# Connected 
+# Connected
        __|  __|_  )
        _| \(     /   Amazon Linux AMI
       ___|\\___|___|
 
-[ec2-user@ip-172-31-5-39 ~]$ 
+[ec2-user@ip-172-31-5-39 ~]$
 ```
 
 <!-- ### Download and run a script from the web
@@ -163,7 +163,7 @@ You should now be connected!:
 Don't forget to terminate the instance when you have finished:
 
 ``` bash
-# terminate the instance 
+# terminate the instance
 # <InstanceId>: i-87086760
 $ aws ec2 terminate-instances --instance-ids <InstanceId>
 
@@ -171,4 +171,3 @@ TERMINATINGINSTANCES    i-87086760
 CURRENTSTATE    32  shutting-down
 PREVIOUSSTATE   16  running
 ```
-

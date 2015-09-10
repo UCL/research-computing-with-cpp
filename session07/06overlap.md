@@ -23,7 +23,7 @@ To do this, we need to use asynchronous communication.
 * Wait until the communication is complete (hopefully instant, if it's already finished)
 * Do the part of the calculation that needs communicated data
 
-### Asynchronous communication for 2-d halo:
+### Asynchronous communication for 2-d halo:
 
 * Start clockwise send/receive
 * Calculate middle
@@ -33,7 +33,7 @@ To do this, we need to use asynchronous communication.
 * Finish anticlockwise send
 * Calculate left
 
-### Asyncronous MPI
+### Asyncronous MPI
 
 
 {% idio cpp/parallel/src/Smooth.cpp %}

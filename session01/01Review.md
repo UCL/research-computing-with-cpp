@@ -7,7 +7,7 @@ title: Object Oriented Review
 ## Object Oriented Review
 
 ### Classes
- 
+
 * With procedural programming
     * pass data to functions
     * can get out of hand as program size increases
@@ -15,17 +15,17 @@ title: Object Oriented Review
     * can't easily control access to data
 * With object oriented programming
     * describe types and how they interact
-* Once defined 
-    * use types as if native to the language 
+* Once defined
+    * use types as if native to the language
 
 
 ### Abstraction
 
 * C++ class mechanism enables you to define a type
-    * independent of its data 
+    * independent of its data
     * independent of its implementation
     * class defines concept or blueprint
-    * instantiation creates object 
+    * instantiation creates object
 * Example: Fraction data type
 
 {% code fraction/fraction.h %}
@@ -40,8 +40,8 @@ title: Object Oriented Review
     * `private`: only available in this class
     * `protected`: available in this class and derived classes
     * `public`: available to anyone with access to the object
-    
-    
+
+
 ### Inheritance
 
 * Used for:
@@ -50,7 +50,7 @@ title: Object Oriented Review
 * Careful:
     * Types in a hierarchy MUST be related
     * Don't over-use this, just to save code duplication
-    * There are other ways 
+    * There are other ways
 * Example: Shapes
 
 {% fragment beginning, shape/shape.h %}

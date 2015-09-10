@@ -52,7 +52,7 @@ subject to change as the course progresses.
 * Schedulers and job submission 
 
 
-### Lesson 5
+### Lesson 5
 
 * Shared memory parallelism
 * OpenMP
@@ -70,7 +70,7 @@ subject to change as the course progresses.
 * Broadcast, gather, reduce
 
 
-### Lesson 7
+### Lesson 7
 
 * Parallel storage
 * Lustre

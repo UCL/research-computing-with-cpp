@@ -19,10 +19,10 @@ A great set of libraries allows for a very powerful programming style:
 
 ### Libraries for Efficiency
 
-Not only is this efficient with your programming time, 
+Not only is this efficient with your programming time,
 it's also more efficient with computer time.
 
-The chances are any general algorithm you might want to use 
+The chances are any general algorithm you might want to use
 has already been programmed better by someone else.
 
 
@@ -35,8 +35,8 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     * i.e. if 3rd party library wasn't for use, then it wouldn't be available.
     * you can publish results using open-source code
     * however, increasingly you are asked to share code ... read on.
-     
-    
+
+
 ### Licensing - Choosing Yours
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
@@ -45,18 +45,18 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     * Read [this book][LicensingBook], and/or [GitHub's advice][Chooselicense], and [OSI][OSI] for choosing your own license.
     * Don't write your own, unless you use legal advice.
     * Try to pick one of the standard ones if you can, so your software is "compatible", and people understand the restrictions.
-    
-    
-### Licensing - Redistribution 
-    
+
+
+### Licensing - Redistribution
+
 * If you distribute your code, the licenses of any 3rd party libraries take effect:
     * [MIT][MITLicense] and [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
     * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
-    * [GPL][GPLLicense] requires you to open-source your code, including changes to the library you imported, and your work is considered a "derivative work", so must be shared. 
+    * [GPL][GPLLicense] requires you to open-source your code, including changes to the library you imported, and your work is considered a "derivative work", so must be shared.
     * [LGPL][LGPLLicense] for libraries, but use dynamic not static linkage. If you use static linking its basically as per [GPL][GPLLicense].
-        
-Note: Once a 3rd party has your code under a license agreement, their restrictions are determined by 
-that version of the code. 
+
+Note: Once a 3rd party has your code under a license agreement, their restrictions are determined by
+that version of the code.
 
 
 ### Licensing - So Think Long Term
@@ -69,8 +69,8 @@ that version of the code.
     * Don't want to redo work later, at the end of PhD.
     * Don't want to rely too heavily on non-distributable code.
     * But if you do, understand what that means.
-    
-    
+
+
 ### Developer Community
 
 * Code that is not developed, rots.
@@ -78,7 +78,7 @@ that version of the code.
 * How often are there commits?
 * Can you find the lead contributor on the internet?
 * Do they respond when approached?
-* Are there contributors other than the lead contributor? 
+* Are there contributors other than the lead contributor?
 * Is the code on an open version control tool like GitHub?
 * Are there many unit tests, do they run, do they pass?
 * Does the library depend on other libraries?
@@ -86,7 +86,7 @@ that version of the code.
 * Is there a sensible versioning scheme (e.g. [semantic versioning][semver]).
 * Is there a suitable release schedule?
 
-    
+
 ### Cross Platform? Really?
 
 * [NifTK][NifTK] written for Windows, Linux, Mac, signficant overhead.
@@ -112,7 +112,7 @@ that version of the code.
     * Data Structures? How to import/export image
     * Can you write a convenient wrapper?
     * Then look at features
-    
+
 
 ### Installation
 
@@ -136,7 +136,7 @@ that version of the code.
     * Keep a log of any changes, patches etc. that you make
     * Be able to compile all your own code, including libraries
         * so need common build environment. (eg. CMake, Make, Visual Studio).
-    
+
 [PythonCourse]: http://development.rc.ucl.ac.uk/training/engineering
 [Python04Intro]: http://development.rc.ucl.ac.uk/training/engineering/session04/
 [NatureArticle]: http://www.nature.com/news/2010/101013/full/467753a.html

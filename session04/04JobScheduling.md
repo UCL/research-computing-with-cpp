@@ -28,9 +28,9 @@ title: Job Scheduling
     * Run all in parallel
     * Depends on number of nodes available
 * No change to code as such
-    * Need to compile on cluster 
+    * Need to compile on cluster
     * Maybe set LD_LIBRARY_PATH at runtime
-    
+
 ### What disadvantages?
 
 * Clusters normally Linux
@@ -120,7 +120,7 @@ qsub submit.sh image1.nii
 qsub submit.sh image2.nii
 ```
 (or put in a loop)
-    
+
 [RITS]: http://www.ucl.ac.uk/research-it-services/homepage
 [RSDT]: http://www.ucl.ac.uk/research-it-services/our-work/research-software-development
 [HPTCLegion]: http://development.rc.ucl.ac.uk/training/hptclegion/

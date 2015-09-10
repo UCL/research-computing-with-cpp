@@ -2,9 +2,9 @@
 title: MPI File I/O
 ---
 
-## Input and Output for MPI Programs
+## Input and Output for MPI Programs
 
-### Overview
+### Overview
 
 * Write in C++, visualise dynamically
 * Problems with text output

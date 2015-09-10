@@ -10,7 +10,7 @@ The ability to reproduce the analyses of research studies is increasingly recogn
 
 Several approaches have developed that help researchers to package up code so that their code and dependencies can be distributed and run by others.
 
-### Virtual machines
+### Virtual machines
 
 A popular method for creating a shareable environment is with the use of virtual machines. 
 
@@ -22,7 +22,7 @@ The isolated system created by virtual machines can be beneficial, but criticism
 Tools such as Vagrant have helped to simplify the process of creating and using virtual machines:  
 [https://www.vagrantup.com](https://www.vagrantup.com/)
 
-### Virtual environments
+### Virtual environments
 
 Virtual environments offer an alternative to virtual machines. Rather than constructing an entirely new system, virtual environments in general seek to 
 provide reproducible 'containers' which are layered on top of an existing environment.

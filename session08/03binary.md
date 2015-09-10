@@ -20,7 +20,7 @@ We have to use `ostream::write()`, which is a low-level, C-style function.
 {% fragment write, src/BinaryWriter.cpp %}
 
 
-### Binary IO in NumPy
+### Binary IO in NumPy
 
 {% fragment BinaryRead, visualise.py %}
 

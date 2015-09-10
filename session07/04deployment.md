@@ -62,7 +62,7 @@ fab build
 ### Templating jobscripts
 
 Editing a jobscript every time you want to change the number of
-cores you want to run on is tedious. I use a templating tool 
+cores you want to run on is tedious. I use a templating tool
 [Mako](http://www.makotemplates.org) to
 generate the jobscript:
 

@@ -21,13 +21,13 @@ Calculate Fibonacci numbers by recursion.
     - Consider limiting the number of tasks. Why?
 * Use taskwait to ensure results are done before adding their results together
 
-### Code
+### Code
 
 {% idio cpp/openmptask/fibdemo.cc %}
 
 {% fragment fibfunction %}
 
-### Main function
+### Main function
 
 {% fragment mainfunction %}
 
@@ -46,7 +46,7 @@ Note only one thread initially creates tasks. Tasks are still running in paralle
 * `taskyield` Allows a task to be suspended in favour of a different task:
     - Could be useful together with locks
 
-### Controlling task generation
+### Controlling task generation
 
 * `if(expr)` `expr==false` create an undeferred task
     - Suspend the present task and execute the new task immediately on the same tread

@@ -22,7 +22,7 @@ We've then been reconciling them together in our visualiser code:
 
 {% fragment Concatenate, visualise.py %}
 
-### One process, one file
+### One process, one file
 
 This is necessary, because we **cannot** simply have multiple processes writing to the same file,
 without considerable care, as they will:
@@ -33,7 +33,7 @@ without considerable care, as they will:
 However, the one-process-one-file approach **does not scale** to large numbers of files: the file system can
 be overwhelmed once we're running at the thousands-of-processors level.
 
-### Writing from a single process
+### Writing from a single process
 
 An alternative approach is to share all the data to a master process. (Which can be done in $O(ln p)$ time),
 and then write from that file.

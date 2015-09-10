@@ -21,7 +21,7 @@ Cloud computing is an approach built around the concept of shared resources.
 - dynamically add and remove computing resources as you need them.
 - bring up large clusters of computing power, then shut it own just as quickly
 
-### *X* as a service
+### X* as a service
 
 Emergence of service oriented approaches:
 
