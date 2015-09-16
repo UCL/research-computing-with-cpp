@@ -29,9 +29,9 @@ Your C++ knowledge should include:
 * Inheritance and polymorphism
 
 This could be obtained via a variety of C++ courses in college, such as
-[MPHYGB24](https://moodle.ucl.ac.uk/course/view.php?id=5395) <!-- or the RITS introductory C++ course -->
+[MPHYGB24](https://moodle.ucl.ac.uk/course/view.php?id=5395)
 or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
- e.g. http://www.lynda.com/C-tutorials/C-Essential-Training/182674-2.html
+ e.g. [http://www.lynda.com/C-tutorials/C-Essential-Training/182674-2.html](http://www.lynda.com/C-tutorials/C-Essential-Training/182674-2.html)
 
 ##Registration
 
@@ -46,125 +46,125 @@ Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Im
   <tr>
    <td>
 
-### Effective C++
+<h3>Effective C++</h3><ul>
 
-* C++ concepts recap
-* Developer tips
-* Building with CMake
-* Unit Testing C++
+<li>C++ concepts recap</li>
+<li>Developer tips</li>
+<li>Building with CMake</li>
+<li>Unit Testing C++</li>
 
-   </td>
+   </ul></td>
    <td>
 
-### Distributed Memory Parallelism
+<h3>Distributed Memory Parallelism</h3><ul>
 
-   * Concepts
-   * Point to point communication
-   * Collective communication
-   * Groups and communicators
-   * Advanced communications concepts
+   <li>Concepts</li>
+   <li>Point to point communication</li>
+   <li>Collective communication</li>
+   <li>Groups and communicators</li>
+   <li>Advanced communications concepts</li>
 
-   </td>
+   </ul></td>
   </tr>
   <tr>
    <td>
 
-### Templates
+<h3>Templates</h3><ul>
 
-   * Introduction to templates
-   * Function templates
-   * Class templates
-   * Template metaprogramming
+   <li>Introduction to templates</li>
+   <li>Function templates</li>
+   <li>Class templates</li>
+   <li>Template metaprogramming</li>
 
-   </td>
+   </ul></td>
    <td>
 
-### MPI Design Example
+<h3>MPI Design Example</h3><ul>
 
-   * SmoothLife: An example parallel computing problem
-   * Domain Decomposition
-   * Local Communication with Sendrecv
-   * Scripting Job Submission
-   * Simplifying communication with derived datatypes
-   * Overlapping Computation and Communication
+   <li>SmoothLife: An example parallel computing problem</li>
+   <li>Domain Decomposition</li>
+   <li>Local Communication with Sendrecv</li>
+   <li>Scripting Job Submission</li>
+   <li>Simplifying communication with derived datatypes</li>
+   <li>Overlapping Computation and Communication</li>
 
-   </td>
+   </ul></td>
   </tr>
   <tr>
    <td>
 
-### libraries
+<h3>libraries</h3><ul>
 
-   * Working with Libraries
-   * EIGEN and Linear Algebra libraries
-   * Boost
-   * ITK
+   <li>Working with Libraries</li>
+   <li>EIGEN and Linear Algebra libraries</li>
+   <li>Boost</li>
+   <li>ITK</li>
 
-   </td>
+   </ul></td>
    <td>
 
-### Input and Output for MPI Programs
+<h3>Input and Output for MPI Programs</h3><ul>
 
-   * Write in C++, visualise dynamically
-   * Problems with text output
-   * Basic binary output
-   * Endianness and portability
-   * Problems with multiple output files
-   * Writing from rank zero
-   * Problems with serial IO
-   * MPI-IO
+   <li>Write in C++, visualise dynamically</li>
+   <li>Problems with text output</li>
+   <li>Basic binary output</li>
+   <li>Endianness and portability</li>
+   <li>Problems with multiple output files</li>
+   <li>Writing from rank zero</li>
+   <li>Problems with serial IO</li>
+   <li>MPI-IO</li>
 
-   </td>
+   </ul></td>
   </tr>
   <tr>
    <td>
 
-### High Performance computing
+<h3>High Performance computing</h3><ul>
 
-   * The story of HPC
-   * Parallel computing concepts
-   * How to use a supercomputer
+   <li>The story of HPC</li>
+   <li>Parallel computing concepts</li>
+   <li>How to use a supercomputer</li>
 
 
-   </td>
+   </ul></td>
    <td>
 
-### Accelerators
+<h3>Accelerators</h3><ul>
 
-   * Introduction to Accelerators
-   * Using a GPU as an Accelerator
-   * Using GPU-accelerated libraries
-   * Using CUDA with Thrust
-   * OpenACC
-   * Writing your own GPU code using CUDA-C
+   <li>Introduction to Accelerators</li>
+   <li>Using a GPU as an Accelerator</li>
+   <li>Using GPU-accelerated libraries</li>
+   <li>Using CUDA with Thrust</li>
+   <li>OpenACC</li>
+   <li>Writing your own GPU code using CUDA-C</li>
 
-   </td>
+   </ul></td>
   </tr>
 
   <tr>
    <td>
 
-### Shared memory parallelism
+<h3>Shared memory parallelism</h3><ul>
 
-      * OpenMP
-      * Parallel sections, reduction
-      * Safety, locks and races
-      * Task-oriented parallelism
-      * Load balancing
-      * OpenMP alternatives
+      <li>OpenMP</li>
+      <li>Parallel sections, reduction</li>
+      <li>Safety, locks and races</li>
+      <li>Task-oriented parallelism</li>
+      <li>Load balancing</li>
+      <li>OpenMP alternatives</li>
 
-   </td>
+   </ul></td>
    <td>
 
-### Cloud computing and big data
+<h3>Cloud computing and big data</h3><ul>
 
-   - 'Big data'
-   - Working in the cloud
-   - Virtualisation
-   - Distributed computing
-   - Hadoop and MapReduce
+   <li>'Big data'</li>
+   <li>Working in the cloud</li>
+   <li>Virtualisation</li>
+   <li>Distributed computing</li>
+   <li>Hadoop and MapReduce</li>
 
-   </td>
+   </ul></td>
   </tr>
 
  </tbody>
