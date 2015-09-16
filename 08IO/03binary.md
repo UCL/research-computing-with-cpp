@@ -13,7 +13,7 @@ We have to use `ostream::write()`, which is a low-level, C-style function.
 
 ### Binary IO in C++
 
-{% idio ../session07/cpp/parallel %}
+{% idio ../07MPIExample/cpp/parallel %}
 
 {% fragment Header, src/BinaryWriter.cpp %}
 

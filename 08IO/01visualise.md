@@ -8,7 +8,7 @@ title: Visualisation
 
 We've put a lot of emphasis onto using **Unit Tests** to verify your code.
 
-However, it's just as important to *visualise* your results. 
+However, it's just as important to *visualise* your results.
 
 "The graph looks OK" is not a good enough standard of truth.
 
@@ -48,7 +48,7 @@ Here's how we turn a NumPy Matrix view of our data, with axes (frames, width, he
 save it to disk as an mp4:
 
 ```python
-{{d['session07/cpp/parallel/visualise.py|idio|t']['Animation']}}
+{{d['07MPIExample/cpp/parallel/visualise.py|idio|t']['Animation']}}
 ```
 
 Try doing that with C++ libraries!

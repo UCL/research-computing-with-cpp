@@ -43,7 +43,7 @@ Boost's [Spirit](http://boost-spirit.com/home/) library is good for this too.
 Nevertheless, in simple cases where text is of a known format, C++'s built in formatted IO
 is quick and easy:
 
-{% idio ../session07/cpp/parallel/src/TextWriter.cpp %}
+{% idio ../07MPIExample/cpp/parallel/src/TextWriter.cpp %}
 
 {% fragment Header %}
 {% fragment Write %}
@@ -54,7 +54,7 @@ is quick and easy:
 
 Parsing text data in NumPy is also very easy:
 
-{% idio ../session07/cpp/parallel/visualise.py %}
+{% idio ../07MPIExample/cpp/parallel/visualise.py %}
 
 {% fragment TextRead %}
 {% fragment Reshape %}
