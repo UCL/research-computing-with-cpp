@@ -2,13 +2,10 @@
 title: MPI Design Example
 ---
 
-## MPI Design Example
+# MPI Design Example
 
-### Overview
+### Objectives for this chapter
 
-* SmoothLife: An example parallel computing problem
-* Domain Decomposition
-* Local Communication with Sendrecv
-* Scripting Job Submission
-* Simplifying communication with derived datatypes
-* Overlapping Computation and Communication
+In this chapter, we give an extended introduction to a particular parallel
+programming example, introducing some common programming patterns which
+occur in working with MPI.

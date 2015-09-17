@@ -1,5 +1,5 @@
 ---
-title: Exercise 2 - Working in the cloud
+title: Command line cloud
 ---
 
 ## Exercise 2: Working in the cloud

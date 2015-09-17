@@ -2,16 +2,29 @@
 title: Cloud computing and big data
 ---
 
-## Cloud computing and big data
+# Cloud computing and big data
 
-### Overview
+### Big data
 
-This session reviews:
+Some data requires special treatment for collection, storage, and analysis.
 
-- 'Big data'
-- Working in the cloud
-- Virtualisation
-- Distributed computing 
-- Hadoop and MapReduce 
+The 'three vs':
 
-Intended to be a practical session, demonstrating the concepts by example.
+- volume
+- velocity
+- variety
+
+### Cloud computing
+
+Cloud computing is an approach built around the concept of shared resources.
+
+- dynamically add and remove computing resources as you need them.
+- bring up large clusters of computing power, then shut it own just as quickly
+
+### X* as a service
+
+Emergence of service oriented approaches:
+
+- Platform as a service (PaaS)
+- Software as a service (SaaS)
+- Infrastructure as a service (SaaS)

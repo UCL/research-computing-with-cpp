@@ -11,12 +11,18 @@ require 'ostruct'
 
 @template = Liquid::Template.parse(File.read(inpath))
 
+if ARGV[1] == "rel"
+  absolute_figures = false
+else
+  absolute_figures = true
+end
+
 site = OpenStruct.new
 site.config={
   "idio" => {
     "fence" => true
   },
-  "absolute_figures" => true
+  "absolute_figures" => absolute_figures
 }
 
 page = {

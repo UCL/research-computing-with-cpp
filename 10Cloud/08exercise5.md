@@ -1,5 +1,5 @@
 ---
-title: Exercise 5 - Distributed computing
+title: Distributed computing
 ---
 
 ## Exercise 5: Distributed computing
@@ -10,7 +10,7 @@ In the previous exercise, we demonstrated MapReduce on our local computer.
 
 In this exercise we will spin up multiple cloud instances, making use of Hadoop to carry out a distributed MapReduce operation.
 
-We could set up multiple instances in the cloud (for example with EC2), then configure Hadoop to run across the instances. This is not trivial and takes time. 
+We could set up multiple instances in the cloud (for example with EC2), then configure Hadoop to run across the instances. This is not trivial and takes time.
 
 ### Hadoop in the cloud
 
@@ -78,7 +78,7 @@ Get the cluster-id:
 # Get the cluster-id
 $ aws emr list-clusters
     ...
-    "Id": "j-3HGKJHEND0DX8", 
+    "Id": "j-3HGKJHEND0DX8",
     "Name": "Development Cluster"
 ```
 
@@ -102,16 +102,16 @@ SSH into the cluster using the username 'hadoop':
 # SSH into the master node
 # <key_file>: ~/.ssh/ec2
 # <MasterPublicDnsName>: ec2-52-16-235-144.eu-west-1.compute.amazonaws.com
-$ ssh hadoop@<MasterPublicDnsName> -i <key_file> 
+$ ssh hadoop@<MasterPublicDnsName> -i <key_file>
 ```
 
 ``` bash
-# Connected 
+# Connected
        __|  __|_  )
        _| \(     /   Amazon Linux AMI
       ___|\\___|___|
 
-[hadoop@ip-xxx ~]$ 
+[hadoop@ip-xxx ~]$
 ```
 
 ### Run the analysis

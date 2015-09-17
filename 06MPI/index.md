@@ -2,12 +2,13 @@
 title: Distributed memory parallelism
 ---
 
-## Distributed Memory Parallelism
+# Distributed Memory Parallelism
 
-### Overview
+### Paradigm
 
-* Concepts
-* Point to point communication
-* Collective communication
-* Groups and communicators
-* Advanced communications concepts
+* many processes, each with their own data
+
+    ![]({% figurepath %}many.png)
+
+* each process is independent
+* processes can send messages to one another

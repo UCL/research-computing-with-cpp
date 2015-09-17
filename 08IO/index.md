@@ -2,15 +2,14 @@
 title: MPI File I/O
 ---
 
-## Input and Output for MPI Programs
+# Parallel Input and Output
 
-### Overview
+### Objectives for the Chapter
 
-* Write in C++, visualise dynamically
-* Problems with text output
-* Basic binary output
-* Endianness and portability
-* Problems with multiple output files
-* Writing from rank zero
-* Problems with serial IO
-* MPI-IO
+In this chapter, we discuss how to get information *out* of our parallel programs,
+and how to configure them.
+
+Because we need to reconcile the outputs from different processes, and
+distribute configuration amongst them, this can be quite complex.
+
+We will look at a few different choices of how to do this.

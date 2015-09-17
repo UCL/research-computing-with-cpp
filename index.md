@@ -21,9 +21,10 @@ your computer.
 
 Your C++ knowledge should include:
 
-* Compiling a library, testing debugging
-* Arrays
-* Structures, dynamically allocated arrays
+* Compiling a library
+* Testing and debugging
+* Arrays and structures
+* Containers
 * Classes
 * Operator overloading
 * Inheritance and polymorphism

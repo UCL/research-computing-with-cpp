@@ -6,7 +6,7 @@ short: MPHYG0002
 
 defaults:
   - scope: {path: ""}
-    values: {layout: default}
+    values: {layout: default, slidelink: true}
 
 baseurl: /training/rcwithcpp
 

@@ -1,5 +1,5 @@
 ---
-title: Exercise 4 - MapReduce
+title: MapReduce
 ---
 
 ## Exercise 4: MapReduce
@@ -10,7 +10,7 @@ In this example, we will demonstrate how the mapper and reducer can be applied o
 
 ### Choose a book
 
-Find a good book on Project Gutenberg and download it: 
+Find a good book on Project Gutenberg and download it:
 [http://www.gutenberg.org/browse/scores/top](http://www.gutenberg.org/browse/scores/top)
 
 ``` bash
@@ -50,11 +50,11 @@ Our mapper:
 import sys
 import re
 
-def mapper(stream): 
-    pattern = re.compile('[a-zA-Z][a-zA-Z0-9]*') 
-    for line in stream: 
-        for word in pattern.findall(line): 
-            print word.lower() + '\t' + '1' 
+def mapper(stream):
+    pattern = re.compile('[a-zA-Z][a-zA-Z0-9]*')
+    for line in stream:
+        for word in pattern.findall(line):
+            print word.lower() + '\t' + '1'
 
 mapper(sys.stdin)
 ```
@@ -76,7 +76,7 @@ def reducer(stream):
     mydict = {}
     line = stream.readline()
     while line:
-        
+
         # Get the key/value pair
         line = line.strip()
         word, count = line.split('\t')

@@ -1,5 +1,5 @@
 ---
-title: Exercise 3 - Virtualisation
+title: Containers in the Cloud
 ---
 
 ## Exercise 3: Virtualisation
@@ -10,7 +10,7 @@ In this example, we spin up a single EC2 instance and reproduce the analysis fro
 
 The simple analysis uses ```countwords```, a shell script, to count the occurrences of words in a book (in our case ```dorian.txt```, The Picture of Dorian Gray).
 
-We will be using Docker to manage our virtual environment: 
+We will be using Docker to manage our virtual environment:
 [https://docs.docker.com/userguide/dockerimages/](https://docs.docker.com/userguide/dockerimages/)
 
 ### Create a new security group
@@ -60,21 +60,21 @@ When the instance is running, a public IP will be available:
 ``` bash
 $ aws ec2 describe-instances
 
-"NetworkInterfaces": [ 
+"NetworkInterfaces": [
     {
     ...
     "Association": {
-        "PublicIp": "12.34.56.78", 
+        "PublicIp": "12.34.56.78",
         "PublicDnsName": "ec2-12-34-56-78.eu-west-1.compute.amazonaws.com"
      }
-     }] 
+     }]
 ```
 
 Use the public IP to connect over SSH:
 
 ``` bash
-# <key_file>: e.g. ~/.ssh/ec2 
-$ ssh ec2-user@<public_IP> -i <key_file> 
+# <key_file>: e.g. ~/.ssh/ec2
+$ ssh ec2-user@<public_IP> -i <key_file>
 ```
 
 ### Install and run Docker on the remote system
@@ -83,7 +83,7 @@ Docker needs to be installed on the Cloud instance:
 
 ``` bash
 [ec2-user@ip-xxx ~]$ sudo yum install -y docker
-[ec2-user@ip-xxx ~]$ sudo service docker start 
+[ec2-user@ip-xxx ~]$ sudo service docker start
 ```
 
 ### Docker environments are created by a set of commands
@@ -149,5 +149,3 @@ Using the IPython Notebook, we can reproduce the analysis on both existing and n
 ![Common words in Dorian Gray]({% figurepath %}dorian_wordcount.png)
 
 ![Word dispersion]({% figurepath %}dorian_dispersion.png)
-
-

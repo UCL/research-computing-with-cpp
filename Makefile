@@ -6,9 +6,11 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
 					 --css=$(ROOT)/css/ucl_reveal.css --css=$(ROOT)/site-styles/reveal.css \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
-MDS=$(wildcard */*.md )
+MDS=$(filter-out _site, $(wildcard */*.md ))
 
 TEMPLATED=$(MDS:.md=.tmd)
+
+RELATIVE=$(MDS:.md=.rmd)
 
 SLIDES=$(MDS:.md=.slide.html)
 
@@ -25,7 +27,7 @@ default: _site
 %.out: %.x Makefile
 	$< > $@
 
-%.slide.html: %.md Makefile
+%-reveal.html: %.rmd Makefile
 	cat $^ | $(PANDOC) $(PANDOCARGS) -o $@
 
 %.png: %.py Makefile
@@ -46,6 +48,9 @@ notes.pdf: combined.md Makefile
 %.tmd: %.md liquify.rb _plugins/idio.rb Makefile
 	ruby liquify.rb $< > $@
 
+%.rmd: %.md liquify.rb _plugins/idio.rb Makefile
+		ruby liquify.rb $< rel > $@
+
 combined.md: $(TEMPLATED)
 	cat $^ > $@
 
@@ -56,7 +61,7 @@ master.zip: Makefile
 	rm -f master.zip
 	wget https://github.com/UCL-RITS/indigo-jekyll/archive/master.zip
 
-ready: indigo $(OUTS) notes.pdf
+ready: indigo $(OUTS) notes.pdf $(SLIDES)
 
 indigo-jekyll-master: Makefile master.zip
 	rm -rf indigo-jekyll-master
@@ -93,3 +98,8 @@ clean:
 	rm -rf _layouts
 	rm -rf js
 	rm -rf images
+	rm -f */*.tmd
+	rm -f */*.rmd
+	rm -f */*.slide.html
+	rm -f */*-reveal.html
+	rm -rf css
