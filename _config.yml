@@ -32,6 +32,7 @@ exclude:
   - combined.md
   - build
   - "*.tmd"
+  - "*.rmd"
   - "*.out"
   - "*.cc"
   - "*.cpp"
