@@ -12,7 +12,7 @@ TEMPLATED=$(MDS:.md=.tmd)
 
 RELATIVE=$(MDS:.md=.rmd)
 
-SLIDES=$(MDS:.md=.slide.html)
+SLIDES=$(MDS:.md=-reveal.html)
 
 EXES=$(shell find build -name *.x)
 
