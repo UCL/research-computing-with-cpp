@@ -4,7 +4,7 @@ title: MPI File I/O
 
 # Parallel Input and Output
 
-### Objectives for the Chapter
+### Objectives for the Chapter
 
 In this chapter, we discuss how to get information *out* of our parallel programs,
 and how to configure them.
