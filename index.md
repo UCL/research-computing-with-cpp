@@ -1,6 +1,7 @@
 ---
 title: Research Software Engineering with C++
 layout: default
+slidelink: false
 ---
 
 ##Introduction
