@@ -37,9 +37,11 @@ or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
 
 ##Registration
 
-Members of doctoral training schools who offer this module as part of their programme should register through their course organisers. Other graduate students who wish to register should  send a 2-page CV to Rebecca Holmes ([rebecca.holmes@ucl.ac.uk](mailto:rebecca.holmes@ucl.ac.uk)), Centre for Doctoral Training in Medical Imaging Administrator.
+Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers. Other UCL graduate students or post-doctoral staff can register at [UCL Market Place](http://onlinestore.ucl.ac.uk/browse/extra_info.asp?compid=1&modid=5&deptid=126&catid=40&prodid=117).
 
 Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://medicalimaging-cdt.ucl.ac.uk/programmes).
+
+This course may not be audited.
 
 ##Synopsis
 
