@@ -39,7 +39,7 @@ or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
 
 Members of doctoral training schools who offer this module as part of their programme should register through their course organisers. Other graduate students who wish to register should  send a 2-page CV to Rebecca Holmes ([rebecca.holmes@ucl.ac.uk](mailto:rebecca.holmes@ucl.ac.uk)), Centre for Doctoral Training in Medical Imaging Administrator.
 
-Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://www.ucl.ac.uk/imaging-cdt/ProgrammeStructure/accordian/MPHYG001).
+Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://medicalimaging-cdt.ucl.ac.uk/programmes).
 
 ##Synopsis
 
