@@ -6,7 +6,7 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
 					 --css=$(ROOT)/css/ucl_reveal.css --css=$(ROOT)/site-styles/reveal.css \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
-MDS=$(filter-out _site, $(wildcard */*.md ))
+MDS=$(filter-out indigo-jekyll-master% _site%, $(wildcard */*.md ))
 
 TEMPLATED=$(MDS:.md=.tmd)
 
