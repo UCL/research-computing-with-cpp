@@ -6,6 +6,6 @@ title: Effective C++
 
 ### Objectives for this chapter
 
-We will begin the course with a recap of the C++ you should know,
-and then discuss how to work to build an effective C++ programme:
+After a brief introduction, we will begin the course with a recap of the C++ you should know,
+and then discuss how to work to build an effective C++ programme. This includes
 building your code with CMake and testing it with an automated testing framework.

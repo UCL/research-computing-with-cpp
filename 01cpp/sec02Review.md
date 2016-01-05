@@ -6,17 +6,29 @@ title: Object Oriented Review
 
 ## Object Oriented Review
 
-### Classes
+### C-style Programming
 
 * With procedural programming
     * pass data to functions
+
+{% code snippets/callFunction.cc }
+
+* But:
     * can get out of hand as program size increases
     * can't easily describe relationships between bits of data
     * can't easily control access to data
-* With object oriented programming
-    * describe types and how they interact
-* Once defined
-    * use types as if native to the language
+
+
+### Object Oriented Programming
+
+* So, in C, the struct was invented:
+
+{% code snippets/struct.cc }
+
+* Which can be considered a class without methods.
+
+* So, C++ provides the class to enhance the language with user defined types.
+* Once defined, use types as if native to the language
 
 
 ### Abstraction
