@@ -52,8 +52,8 @@ This course may not be audited.
 
 <h3>Effective C++</h3><ul>
 
+<li>C++ in research</li>
 <li>C++ concepts recap</li>
-<li>Developer tips</li>
 <li>Building with CMake</li>
 <li>Unit Testing C++</li>
 
