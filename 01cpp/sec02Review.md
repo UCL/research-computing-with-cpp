@@ -11,7 +11,7 @@ title: Object Oriented Review
 * With procedural programming
     * pass data to functions
 
-{% code snippets/callFunction.cc }
+{% code snippets/callFunction.cc %}
 
 * But:
     * can get out of hand as program size increases
@@ -23,7 +23,7 @@ title: Object Oriented Review
 
 * So, in C, the struct was invented:
 
-{% code snippets/struct.cc }
+{% code snippets/struct.cc %}
 
 * Which can be considered a class without methods.
 
