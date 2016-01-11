@@ -73,7 +73,7 @@ title: Object Oriented Review
 * (public, protected, private inheritance comes later)
 
 
-### C++ Class Example
+### Class Example
 
 {% code fraction/fraction.h %}
 
