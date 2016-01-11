@@ -11,6 +11,9 @@ title: Object Oriented Review
 * Procedural programming
 * Pass data to functions
 
+
+### Function-style Example
+
 {% code snippets/callFunction.cc %}
 
 
@@ -25,6 +28,9 @@ title: Object Oriented Review
 
 * So, in C, the struct was invented
 * Basically a class without methods
+
+
+### Struct Example
 
 {% code snippets/struct.cc %}
 
@@ -66,6 +72,10 @@ title: Object Oriented Review
 
 * (public, protected, private inheritance comes later)
 
+
+### C++ Class Example
+
+{% code fraction/fraction.h %}
 
 
 ### Inheritance
