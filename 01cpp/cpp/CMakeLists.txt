@@ -3,3 +3,5 @@ add_subdirectory(construction)
 add_subdirectory(fraction)
 add_subdirectory(shape)
 add_subdirectory(factorial)
+add_subdirectory(memory)
+
