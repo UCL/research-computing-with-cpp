@@ -46,7 +46,7 @@ title: Object Oriented Review
 
 ### Class Example
 
-{% code snippets/abstraction.cpp %}
+{% code snippets/abstraction.cc %}
 
 
 ### Encapsulation
