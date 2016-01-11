@@ -16,7 +16,7 @@ to understand and adapt.
 
 * Detailed prior knowledge of C++
 * You are required to bring your own laptop to the course as the classrooms we are using do not have desktop computers.
-* We have provided [setup](99installation) instructions for installing the software needed for the course on
+* We have provided [setup](99Installation) instructions for installing the software needed for the course on
 your computer.
 * Eligibility: This course is for UCL post-graduate students.
 
