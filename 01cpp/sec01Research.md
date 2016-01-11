@@ -54,9 +54,59 @@ title: C++ in Research
     * Platform/Framework
 
 
+### Maximise Your Value
+
+* Developer time is expensive
+* Your brain is your asset
+* Write as little code as possible
+* Focus tightly on your hypothesis
+
+(i.e. write the minimum that produces a paper)
+
+Don't fall into the trap "Hey, I'll write a framework for that".
+
+
+### Ask Advice
+
+Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
+
+* How to structure code
+* Libraries to use, and how easy to adopt?
+* Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course.
+* Best practices
+
+
+### Types of Code
+
+* Divide code:
+    * Your algorithm
+    * Testing code
+    * Data analysis
+    * User Interface
+    * Glue code
+    * Deployment code
+    * Paper production
+
+Question: Who has used [Model-View-Controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) Pattern?
+
+
 ### Classroom Exercise
 
-* Provide a diagram that describes the development you are doing.
+* Discuss suitable languages for each of the above.
+
+
+### Fame and Glory?
+
+As a researcher I need:
+
+* Reputation in a given field
+    * Open-source software, helps citations
+    * Smallest possible software package
+
+* Focus on the main algorithmic content of your papers
+* Usages/deployment scenarios/packaging/data-analysis all vary    
+
+Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matching paper](http://www.sciencedirect.com/science/article/pii/S0169260709002533), 300 citations in 5 years.
 
 
 ### What Isn't This Course?
@@ -75,18 +125,5 @@ We aim to:
 * Do High Performance Computing (HPC).
 * Apply it to research in a pragmatic fashion.
 * You need the right tool for the job.
-
-
-### Maximise Your Value
-
-* Developer time is expensive
-* Your brain is your asset
-* Write as little code as possible
-* Focus tightly on your hypothesis
-
-(i.e. write the minimum that produces a paper)
-
-Don't fall into the trap "Hey, I'll write a framework for that".
-
 
 
