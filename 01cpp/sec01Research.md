@@ -24,23 +24,23 @@ title: C++ in Research
     * Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
     * People: https://www.cs.utexas.edu/users/EWD/
 * Wide gap between theory and practice
-* Expensive even when you know the end product - and we don't.
+* Expensive even when you know what the end product is
 
 
 ### C++ Disadvantages
 
-* Compiled language.
-* Perceived as difficult, error prone, wordy.
+* Compiled language
+* Perceived as difficult, error prone, wordy
 * Result: It's more trouble than its worth?
 
 
 ### C++ Advantages
 
-* Fast, code compiled to machine code.
+* Fast, code compiled to machine code
 * Nice integration with CUDA, OpenACC, OpenCL, OpenMP, OpenMPI
 * Stable, evolving standard
 * Lots of libraries, Boost, Qt, VTK, ITK etc.
-* Result: Good reasons to use it, or you may *have* to use it.
+* Result: Good reasons to use it, or you may *have* to use it
 
 
 ### Classroom Discussion
@@ -63,7 +63,7 @@ title: C++ in Research
 
 (i.e. write the minimum that produces a paper)
 
-Don't fall into the trap "Hey, I'll write a framework for that".
+Don't fall into the trap "Hey, I'll write a framework for that"
 
 
 ### Ask Advice
@@ -72,7 +72,7 @@ Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
 
 * How to structure code
 * Libraries to use, and how easy to adopt?
-* Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course.
+* Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course
 * Best practices
 
 
@@ -102,13 +102,30 @@ As a researcher I need:
 * Reputation in a given field
     * Open-source software, helps citations
     * Smallest possible software package
-
 * Focus on the main algorithmic content of your papers
 * Usages/deployment scenarios/packaging/data-analysis all vary    
 
 Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matching paper](http://www.sciencedirect.com/science/article/pii/S0169260709002533), 300 citations in 5 years.
 
 
+### What about Methodology?
+
+* [Waterfall](https://en.wikipedia.org/wiki/Waterfall_model)
+* [Agile](https://en.wikipedia.org/wiki/Agile_software_development)
+
+
+### Approach to Software
+
+* Matt's Personal Take
+    * Long path between idea, prototype and product
+    * Algorithm developer, looking at maths
+    * Product developer, looking at delivery
+    * No right answer
+    * We tend to code to early, "just hacking"
+    * Understand where you are on the spectrum
+    * Understand where you want to get to (academic, industry)
+
+ 
 ### What Isn't This Course?
 
 We are NOT suggesting that:
