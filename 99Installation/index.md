@@ -9,19 +9,20 @@ Introduction
 ------------
 
 This document contains instructions for installation of the packages we'll be using during the
-course. You will be following the training on
-your own machines, so please complete these instructions.
+course. You will be following the training on your own machines, so please complete these instructions.
 
 What we're installing
 ---------------------
 
-For local programming, we'll be using the C++ language, with the CMake build tool and the Google unit testing framework.
-For version control, we'll be using *Git* and the *Github* website.
-For remote access to servers, we'll be using an SSH Client (Putty on Windows), and an X-Server (Exceed on Windows).
-You will need to have created and set up an "ssh keypair" for yourself.
-We'll also be using the Fabric remote server access scripting library for Python.
-There are instructions on how to set up all of these tools for your computer here.
-You'll also need a code editor.
+* [CMake](http://www.cmake.org) build tool.
+* [Catch](https://github.com/philsquared/Catch) unit testing framework.
+* [Git](https://git-scm.com/) and the [GitHub](https://github.com/) website.
+* An SSH Client for remote access.
+* Fabric remote server access scripting library for Python.
+
+Further instructions for [Windows](windows.md), [Linux](linux.md) and [Mac](mac.md) are available.
+
+You'll also need a code editor of your choice.
 
 Eduroam
 -------
