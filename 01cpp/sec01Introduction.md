@@ -40,4 +40,14 @@ title: Introduction
     * 1 due 3rd week March
     * 1 due last week April
 
+
+## Pre-requisites
+
+* You are already doing some C++
+* You are familiar with your compiler
+* You are happy with the concept of classes
+* C++ up to templates?
+* Version control 
+    * Git: [https://git-scm.com/](https://git-scm.com/)
+
   
