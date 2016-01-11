@@ -20,7 +20,7 @@ What we're installing
 * An SSH Client for remote access.
 * Fabric remote server access scripting library for Python.
 
-Further instructions for [Windows](windows.md), [Linux](linux.md) and [Mac](mac.md) are available.
+Further instructions for [Windows](windows), [Linux](linux) and [Mac](mac) are available.
 
 You'll also need a code editor of your choice.
 
