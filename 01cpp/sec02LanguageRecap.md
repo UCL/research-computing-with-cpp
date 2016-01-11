@@ -14,7 +14,7 @@ title: Object Oriented Review
 {% code snippets/callFunction.cc %}
 
 
-### C-style programming - disadvantages
+### Disadvantages
 
 * Can get out of hand as program size increases
 * Can't easily describe relationships between bits of data
@@ -85,7 +85,7 @@ title: Object Oriented Review
 
 ### Class Example
 
-{% fragment beginning, shape/shape.h %}
+{% code shape/shape.h %}
 
 
 ### Polymorphism

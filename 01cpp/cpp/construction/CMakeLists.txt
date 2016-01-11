@@ -1,2 +1,2 @@
-add_executable(factorial1.x factorial1.cc )
-add_executable(factorial2.x factorial2.cc )
+add_executable(construction1.x construction1.cc )
+add_executable(polymorphism1.x polymorphism1.cc )
