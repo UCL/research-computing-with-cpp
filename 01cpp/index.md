@@ -2,12 +2,12 @@
 title: Effective C++ 
 ---
 
-# Introduction
+## Introduction
 
 ### Course Overview
 
 * C++ recap
-* Templates, template meta-programming
+* C++ templates, template meta-programming
 * C++ libraries
 * HPC concepts
 
@@ -25,7 +25,7 @@ title: Effective C++
 * A taster for a lot of technologies
 * Teach how to do research with C++
 * Optimise your research output
-* Not just C++ syntax
+* Not just C++ syntax, Google/Compiler could tell you that!
 
 
 ### Course Admin
