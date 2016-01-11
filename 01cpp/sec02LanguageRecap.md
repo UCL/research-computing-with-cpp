@@ -66,6 +66,41 @@ title: Object Oriented Review
 
 * (public, protected, private inheritance comes later)
 
+### Class Example
+
+{% code fraction/fraction.h %}
+
+
+### Inheritance
+
+* Used for:
+    * Defining new types based on a common type
+* Careful:
+    * Beware - "Reduce code duplication, less maintenance"
+    * Types in a hierarchy MUST be related
+    * Don't over-use inheritance
+    * There are other ways
+
+
+### Class Example
+
+{% code shape/shape.h %}
+
+
+### Polymorphism
+
+* Several types:
+    * (normally) "subtype": via inheritance
+    * "parametric": via templates
+    * "ad hoc": via function overloading
+* Common interface to entities of different types
+* Same method, different behaviour
+
+
+### Class Example
+
+{% code shape/shapeTest.cc %}
+
 
 
 {% endidio %}
