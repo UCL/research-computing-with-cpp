@@ -82,25 +82,5 @@ title: Object Oriented Review
     * There are other ways
 
 
-### Class Example
-
-{% code shape/shape.h %}
-
-
-### Polymorphism
-
-* Several types:
-    * (normally) "subtype": via inheritance
-    * "parametric": via templates
-    * "ad hoc": via function overloading
-* Common interface to entities of different types
-* Same method, different behaviour
-
-
-### Class Example
-
-{% code shape/shapeTest.cc %}
-
-
 
 {% endidio %}
