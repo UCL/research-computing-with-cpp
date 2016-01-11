@@ -32,8 +32,6 @@ title: Effective C++
 
 * UCL Moodle: MPHYG002
 * Online notes: [http://development.rc.ucl.ac.uk/training/rcwithcpp](http://development.rc.ucl.ac.uk/training/rcwithcpp/)
-* UCL Research Programming Hub: [http://research-programming.ucl.ac.uk](http://research-programming.ucl.ac.uk/)
-* Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
 
 
 ### Course Assessment
@@ -42,6 +40,12 @@ title: Effective C++
 * 2 pieces coursework - 40 hours
     * 1 due 3rd week March
     * 1 due last week April
+
+
+### Course Community
+
+* UCL Research Programming Hub: [http://research-programming.ucl.ac.uk](http://research-programming.ucl.ac.uk/)
+* Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
 
 
 ### Pre-requisites
@@ -57,8 +61,8 @@ title: Effective C++
 ### Todays Lesson
 
 * Introduction, course overview, admin
-* Recap of basic C++
 * Using C++ in research
+* Recap of basic C++
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
  
