@@ -26,6 +26,7 @@ title: Next Steps
     * Mutable/Immutable/Encapsulation
     * Don't overuse inheritance
 
+
 ### Smart Pointers
 
 * ```new/delete``` not good enough
@@ -47,25 +48,25 @@ title: Next Steps
 ### Using Smart Pointers
 
 * Varying semantics
-    * [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr)
-    * [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr)
-    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr)
+    * [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - uniquely owns
+    * [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - shares
+    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary tracker
     * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
 
 
 ### Boost Vs Standard Library
 
-* Boost has become a `sandbox` for standard C++
+* Boost has become a sandbox for standard C++
 * So check your compiler version
 * Features may be in your standard compiler
 * So smart pointers from boost may be in your compiler
-    * C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
+    * For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
 
 
 ### Intrusive Vs Non-Intrusive
 
 * Intrusive - Base class maintains a reference count eg. [ITK](http://www.itk.org)
-* Non-intrusive - Reference count is in the pointer.
+* Non-intrusive - Reference count is in the pointer eg. [Boost](http://www.boost.org)
 
 Question what are the implications when passing to a function?
 
@@ -79,7 +80,7 @@ Question what are the implications when passing to a function?
 
 * Lots of other Smart Pointers
     * [Qt Smart Pointers](https://wiki.qt.io/Smart_Pointers)
-    * [VTK http://www.vtk.org/Wiki/VTK/Tutorials/SmartPointers]
+    * [VTK](http://www.vtk.org/Wiki/VTK/Tutorials/SmartPointers)
 * Always read the manual
 * Always consistently use it
 * Don't be tempted to write your own
@@ -119,8 +120,20 @@ Question what are the implications when passing to a function?
 * Create your own base class
 * Derive all your exceptions from that base class
 * Stick to a few obvious classes, not one class for every single error
+
+### More Practical Tips For Exception Handling
+
 * Look at [C++ standard classes](http://www.cplusplus.com/reference/exception/) and [tutorial](http://www.cplusplus.com/doc/tutorial/exceptions/)
-# An exception macro may be useful, e.g. [mitk::Exception](https://github.com/MITK/MITK/blob/master/Modules/Core/include/mitkException.h) and [mithThrow()](https://github.com/MITK/MITK/blob/master/Modules/Core/include/mitkExceptionMacro.h)
+* An exception macro may be useful, e.g. [mitk::Exception](https://github.com/MITK/MITK/blob/master/Modules/Core/include/mitkException.h) and [mithThrow()](https://github.com/MITK/MITK/blob/master/Modules/Core/include/mitkExceptionMacro.h)
+* Beware side-effects
+    * Perform validation before updating any member variables
+
+
+### Construction
+
+* What could be wrong with this:
+
+{% code construction/constructorDependency.cc %}
 
 
 
