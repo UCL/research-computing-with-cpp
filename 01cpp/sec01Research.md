@@ -22,7 +22,7 @@ title: C++ in Research
 
 * Lots of Computer Science Literature
     * Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
-    * People: https://www.cs.utexas.edu/users/EWD/
+    * People: [Edsger W. Dijkstra](https://www.cs.utexas.edu/users/EWD/)
 * Wide gap between theory and practice
 * Expensive even when you know what the end product is
 
@@ -121,7 +121,7 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
     * Algorithm developer, looking at maths
     * Product developer, looking at delivery
     * No right answer
-    * We tend to code to early, "just hacking"
+    * We tend to code too early, "just hacking"
     * Understand where you are on the spectrum
     * Understand where you want to get to (academic, industry)
 
