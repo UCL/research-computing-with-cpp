@@ -28,7 +28,7 @@ default: _site
 	$< > $@
 
 %-reveal.html: %.rmd Makefile
-	cat $^ | $(PANDOC) $(PANDOCARGS) -o $@
+	cat $< | $(PANDOC) $(PANDOCARGS) -o $@
 
 %.png: %.py Makefile
 	python $< $@
