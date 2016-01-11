@@ -15,7 +15,7 @@ title: Object Oriented Review
 ### Function-style Example
 
 {% code snippets/callFunction.cc %}
-
+{% fragment call_function %}
 
 ### Disadvantages
 
