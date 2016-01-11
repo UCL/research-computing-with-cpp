@@ -23,6 +23,7 @@ title: Introduction
 * A taster for a lot of technologies
 * Teach how to do research with C++
 * Optimise your research output
+* Not just C++ syntax
 
 
 ## Course Admin
@@ -46,7 +47,7 @@ title: Introduction
 * You are already doing some C++
 * You are familiar with your compiler
 * You are happy with the concept of classes
-* C++ up to templates?
+* You know C++ up to templates?
 * Version control 
     * Git: [https://git-scm.com/](https://git-scm.com/)
 
@@ -59,3 +60,11 @@ title: Introduction
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
  
+
+## Classroom Exercise
+
+* Take Yellow PostIt notes
+* 1 - where am I?
+* 2 - what most sparked my interest?
+* 3 - what field am I researching in?
+
