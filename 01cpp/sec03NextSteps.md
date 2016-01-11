@@ -133,7 +133,7 @@ Question what are the implications when passing to a function?
 
 * What could be wrong with this:
 
-{% code construction/constructorDependency.cc %}
+{% code snippets/constructorDependency.cc %}
 
 
 ### Unwanted Dependencies
@@ -147,7 +147,7 @@ Question what are the implications when passing to a function?
 * Read [Inversion of Control Containers and the Dependency Injection Pattern](http://www.martinfowler.com/articles/injection.html)
 * Type 2 - Constructor Injection
 
-{% code construction/constructorInjection.cc %}
+{% code snippets/constructorInjection.cc %}
 
 
 
