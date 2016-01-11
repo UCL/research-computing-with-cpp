@@ -1,3 +1,4 @@
+/// struct
 struct Fraction {
   double numerator;
   double denominator;
@@ -5,7 +6,8 @@ struct Fraction {
 
 double convertToDecimal(const Fraction& f)
 {
- // stuff
+  return numerator/denominator; 
 }
 
+/// main
 int main(){}

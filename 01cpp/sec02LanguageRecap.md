@@ -33,7 +33,7 @@ title: Object Oriented Review
 ### Struct Example
 
 {% code snippets/struct.cc %}
-
+{% fragment struct %}
 
 ### C++ Class
 

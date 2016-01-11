@@ -136,6 +136,21 @@ Question what are the implications when passing to a function?
 {% code construction/constructorDependency.cc %}
 
 
+### Unwanted Dependencies
+
+* If constructor instantiates class directly:
+    * Hard-coded class name
+    * Duplication of initialisation code
+
+### Dependency Injection
+
+* Read [Inversion of Control Containers and the Dependency Injection Pattern](http://www.martinfowler.com/articles/injection.html)
+* Type 2 - Constructor Injection
+
+{% code construction/constructorInjection.cc %}
+
+
+
 
 
 {% endidio %}
