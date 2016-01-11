@@ -21,7 +21,7 @@ title: Object Oriented Review
 * Can't easily control access to data
 
 
-### C - Struct
+### C Struct
 
 * So, in C, the struct was invented
 * Basically a class without methods
@@ -29,7 +29,7 @@ title: Object Oriented Review
 {% code snippets/struct.cc %}
 
 
-### C++ - Class
+### C++ Class
 
 * C++ provides the class to enhance the language with user defined types
 * Once defined, use types as if native to the language
@@ -69,7 +69,7 @@ title: Object Oriented Review
 
 ### Class Example
 
-{% code fraction/fraction.h}
+{% code fraction/fraction.h %}
 
 
 ### Inheritance
