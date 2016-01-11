@@ -1,8 +1,10 @@
 ---
-title: Introduction
+title: Effective C++ 
 ---
 
-## Course Overview
+# Introduction
+
+### Course Overview
 
 * C++ recap
 * Templates, template meta-programming
@@ -10,7 +12,7 @@ title: Introduction
 * HPC concepts
 
 
-## Course Overview
+### Course Overview
 
 * Shared memory parallelism - [OpenMP](http://www.openmp.org)
 * Distributed memory parallelism - [MPI](http://www.open-mpi.org)
@@ -18,7 +20,7 @@ title: Introduction
 * Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
 
-## Course Aims
+### Course Aims
 
 * A taster for a lot of technologies
 * Teach how to do research with C++
@@ -26,7 +28,7 @@ title: Introduction
 * Not just C++ syntax
 
 
-## Course Admin
+### Course Admin
 
 * UCL Moodle: MPHYG002
 * Online notes: [http://development.rc.ucl.ac.uk/training/rcwithcpp](http://development.rc.ucl.ac.uk/training/rcwithcpp/)
@@ -34,7 +36,7 @@ title: Introduction
 * Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
 
 
-## Course Assessment
+### Course Assessment
 
 * 3 hour exam
 * 2 pieces coursework - 40 hours
@@ -42,7 +44,7 @@ title: Introduction
     * 1 due last week April
 
 
-## Pre-requisites
+### Pre-requisites
 
 * You are already doing some C++
 * You are familiar with your compiler
@@ -52,7 +54,7 @@ title: Introduction
     * Git: [https://git-scm.com/](https://git-scm.com/)
 
 
-## Todays Lesson
+### Todays Lesson
 
 * Introduction, course overview, admin
 * Recap of basic C++
@@ -61,10 +63,10 @@ title: Introduction
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
  
 
-## Classroom Exercise
+### Classroom Exercise
 
 * Take Yellow PostIt notes
-* 1 - where am I?
-* 2 - what most sparked my interest?
-* 3 - what field am I researching in?
+* 1 - what field am I researching in?
+* 2 - where am I C++ wise?
+* 3 - what most sparked my interest?
 
