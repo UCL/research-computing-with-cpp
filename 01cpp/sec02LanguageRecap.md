@@ -77,7 +77,7 @@ title: Object Oriented Review
 * Used for:
     * Defining new types based on a common type
 * Careful:
-    * "Reduce code duplication, less maintenance"???
+    * Beware - "Reduce code duplication, less maintenance"
     * Types in a hierarchy MUST be related
     * Don't over-use inheritance
     * There are other ways
