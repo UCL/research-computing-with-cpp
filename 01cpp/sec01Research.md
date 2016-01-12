@@ -43,15 +43,13 @@ title: C++ in Research
 * Result: Good reasons to use it, or you may *have* to use it
 
 
-### Classroom Discussion
+### Ask Advice
 
-* Discuss types of development:
-    * Function
-    * Class
-    * Module
-    * Library
-    * Application
-    * Platform/Framework
+* Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
+* How to structure code
+* Libraries to use, and how easy to adopt?
+* Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course
+* Best practices
 
 
 ### Maximise Your Value
@@ -66,14 +64,15 @@ title: C++ in Research
 Don't fall into the trap "Hey, I'll write a framework for that"
 
 
-### Ask Advice
+### Classroom Discussion
 
-Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
-
-* How to structure code
-* Libraries to use, and how easy to adopt?
-* Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course
-* Best practices
+* Discuss types of development:
+    * Function
+    * Class
+    * Module
+    * Library
+    * Application
+    * Platform/Framework
 
 
 ### Types of Code
@@ -87,12 +86,11 @@ Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
     * Deployment code
     * Paper production
 
-Question: Who has used [Model-View-Controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) Pattern?
-
 
 ### Classroom Exercise
 
-* Discuss suitable languages for each of the above.
+* Discuss suitable languages for each of the above
+* No "one size fits all" solution
 
 
 ### Fame and Glory?
@@ -120,7 +118,7 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
     * Long path between idea, prototype and product
     * Algorithm developer, looking at maths
     * Product developer, looking at delivery
-    * No right answer
+    * No right answer for language, methodology etc.
     * We tend to code too early, "just hacking"
     * Understand where you are on the spectrum
     * Understand where you want to get to (academic, industry)
