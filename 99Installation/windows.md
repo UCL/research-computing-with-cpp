@@ -5,8 +5,6 @@ title: Windows
 Windows
 =======
 
-Windows install notes go here.
-
 C++
 ----
 

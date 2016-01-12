@@ -6,8 +6,6 @@ title: Mac OSX
 Mac
 =======
 
-Mac install notes go here.
-
 C++
 ----
 
