@@ -14,7 +14,7 @@ title: Object Oriented Review
 
 ### Function-style Example
 
-{% fragment call_function, cpp/snippets/callFunction.cc %}
+{% fragment call_function, snippets/callFunction.cc %}
 
 
 ### Disadvantages
@@ -34,7 +34,7 @@ title: Object Oriented Review
 
 ### Struct Example
 
-{% fragment struct, cpp/snippets/struct.cc %}
+{% fragment struct, snippets/struct.cc %}
 
 
 ### C++ Class
