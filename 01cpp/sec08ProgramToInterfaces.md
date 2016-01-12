@@ -1,29 +1,32 @@
 ---
-title: RAII Pattern
+title: Program To Interfaces
 ---
 
 {% idio cpp %}
 
-## RAII Pattern
+## Program To Interfaces
 
-### What is it?
+### Why?
 
-* Resource Allocation Is Initialisation (RAII)
-* Obtain all resources in constructor
-* Release them all in destructor
-* Scott Meyers ?
-
-
-### Why is it?
-
-* Guaranteed fully initialised object
-* Objects on stack are guaranteed to be destroyed when an exception is thrown and stack is unwound
-    * Including smart pointers to objects
-
+* In research code - "just start hacking"
+* You tend to mix interface and implementation
+* Results in client of a class having implicit dependency on the implementation
+* Aim: Define a pure virtual class 
 
 ### Example
 
+{% code snippets/pureVirtual.cc %}
 
 
+### Comments
+
+* Useful between sub-components of a system
+    * GUI front end, Web back end
+    * Logic and Database
+* Is useful in general to force loose connections between areas of code
+    * e.g. different libraries that have different dependencies
+    * e.g. camera calibration depends on OpenCV
+    * define an interface that just exports standard types
+    * stops the spread of dependencies
 
 {% endidio %}

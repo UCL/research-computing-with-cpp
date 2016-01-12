@@ -20,8 +20,7 @@ title: Error Handling
 ### What's the Point?
 
 * Have separated error handling logic from application logic
-* Previous example seems more verbose than return codes
-* Lets look at C
+* First, lets look at C-style return codes
 
 
 ### Error Handling C-Style
@@ -39,7 +38,7 @@ title: Error Handling
 
 ### Error Handling C++ Style
 
-{% code snippers/errorHandlingInCPP2.cc %}
+{% code snippets/errorHandlingInCPP2.cc %}
 
 
 ### Outcome
@@ -60,7 +59,8 @@ title: Error Handling
 ### Practical Tips For Exception Handling
 
 * Decide on error handling strategy at start
-* Create your own base class
+* Use it consistently
+* Create your own base class exception
 * Derive all your exceptions from that base class
 * Stick to a few obvious classes, not one class for every single error
 

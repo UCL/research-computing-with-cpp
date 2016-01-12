@@ -12,8 +12,8 @@ title: Memory Management
 * You will introduce bugs
 * So, use smart pointers
 * Class that looks like a pointer, but smarter
-    * sharing
-    * auto-deletion
+    * automatically delete pointed to object
+    * more control over sharing
     * depends on implementation
 
 
@@ -29,7 +29,7 @@ title: Memory Management
 * Varying semantics
     * [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - uniquely owns
     * [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - shares
-    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary tracker
+    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary tracker, breaks circular references
     * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
 
 
@@ -37,7 +37,7 @@ title: Memory Management
 
 * Boost has become a sandbox for standard C++
 * So check your compiler version
-* Features may be in your standard compiler
+* Boost features may already be in your standard compiler
 * So smart pointers from boost may be in your compiler under `std::`
     * For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
 

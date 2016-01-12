@@ -43,7 +43,7 @@ Question: Which is better?
 
 * Using Dependency Injection
     * Removes hard coding of `new ClassName`
-    * Creation is down outside class, so class has no knowledge of the thing its using.
+    * Creation is done outside class, so class only uses public API
     * Leads towards fewer assumptions in the code
 
 
@@ -54,7 +54,7 @@ Question: Which is better?
     * [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern)
     * [Abstract Factory Pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)
     * See [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) book
-* Also look up Registry Pattern and Service Locator
+* Also look up [Service Locator Pattern](https://en.wikipedia.org/wiki/Service_locator_pattern)
 * These all work well with dependency injection
 
 
