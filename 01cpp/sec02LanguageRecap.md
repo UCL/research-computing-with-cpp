@@ -21,13 +21,15 @@ title: Object Oriented Review
 
 * Can get out of hand as program size increases
 * Can't easily describe relationships between bits of data
-* Can't easily control access to data
+* Relies on  method documentation, functiona and variable names
+* Can't easily control/(enforce control of) access to data
 
 
 ### C Struct
 
 * So, in C, the struct was invented
 * Basically a class without methods
+* This at least provides a logical grouping
 
 
 ### Struct Example
@@ -86,7 +88,7 @@ title: Object Oriented Review
     * Beware - "Reduce code duplication, less maintenance"
     * Types in a hierarchy MUST be related
     * Don't over-use inheritance
-    * There are other ways
+    * We will cover other ways of object re-use
 
 
 ### Class Example

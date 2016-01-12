@@ -23,6 +23,12 @@ title: Next Steps
     * Memory, smart pointers
     * Exception handling
     * Construction, dependency injection
+    * Construction patterns (Further Reading)
+
+
+### More C++ Features (Next Week)
+
+* Also need to know:
     * Mutable/Immutable/Encapsulation
     * Don't overuse inheritance
 
@@ -59,7 +65,7 @@ title: Next Steps
 * Boost has become a sandbox for standard C++
 * So check your compiler version
 * Features may be in your standard compiler
-* So smart pointers from boost may be in your compiler
+* So smart pointers from boost may be in your compiler under `std::`
     * For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
 
 
@@ -142,15 +148,42 @@ Question what are the implications when passing to a function?
     * Hard-coded class name
     * Duplication of initialisation code
 
+
 ### Dependency Injection
 
-* Read [Inversion of Control Containers and the Dependency Injection Pattern](http://www.martinfowler.com/articles/injection.html)
+* Read Martin Fowler's [Inversion of Control Containers and the Dependency Injection Pattern](http://www.martinfowler.com/articles/injection.html)
 * Type 2 - Constructor Injection
+* Type 3 - Setter Injection
+
+
+### Constructor Injection Example
 
 {% code snippets/constructorInjection.cc %}
 
 
+### Setter Injection Example
 
+{% code snippets/setterInjection.cc %}
+
+Question: Which is better?
+
+
+### Advantages of Dependency Injection
+
+* Using Dependency Injection
+    * Removes hard coding of `new ClassName`
+    * Creation is down outside class, so class has no knowledge of the thing its using.
+    * Leads towards fewer assumptions in the code
+
+
+### Constructional Patterns
+
+* Other methods include
+    * [Builder Pattern](https://en.wikipedia.org/wiki/Builder_pattern)
+    * [Factory Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern)
+    * [Abstract Factory Pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)
+* See [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) book
+* These all work well with dependency injection
 
 
 {% endidio %}

@@ -1,36 +1,14 @@
 ---
-title: Developer Tips
+title: Further Reading
 ---
 
-## Developer Tips
+## Further Reading
 
-### Practical Tips
+### General Advice
 
-(This section is more of an open-ended discussion to gauge
-where the class is at in terms of experience.)
-
-* If you feel like:
-    * With more coding, more things go wrong
-    * Everything gets messy
-    * Feeling that you're digging a hole
-* Then we provide:
-    * Pragmatic tips as how to do this in practice
-    * Adapted for scientific research
-
-
-### Coding tips
-
-* Follow coding conventions for your project 
-* Compile often
-* Version control
-    * Commit often
-    * Useful commit messages
-        * don't state what can be diff'd
-        * explain why
-    * Short running branches
-    * Covered on [MPHYG001][MPHYG001]    
-* Class: "does exactly what it says on the tin"
-* Class: "build once, build properly", so testing is key.
+* Contribute to online open-source project
+* Pick a coding style, and stick to it
+* Do a version control course such as [Software Carpentry](https://www.ucl.ac.uk/isd/services/research-it/training/courses/software-carpentry-workshop), or [MPHYG001](http://development.rc.ucl.ac.uk/training/engineering/).
 
 
 ### C++ tips
@@ -44,17 +22,15 @@ These are some of my favourites.
 * Make interfaces easy to use correctly and hard to use incorrectly (18)
 * Avoid returning "handles" to object internals (28) 
 * Initialise objects properly. Throw exceptions from constructors. Fail early. (4)
-* Never throw exceptions from destructors
-* Prefer non-member non-friend functions to member functions (better encapsulation) (23) 
 
 
 ### OO tips
 
+* Never throw exceptions from destructors
+* Prefer non-member non-friend functions to member functions (better encapsulation) (23)
 * Make sure public inheritance really models "is-a" (32) 
 * Learn alternatives to polymorphism (Template Method, Strategy) (35) 
 * Model "has-a" through composition (38) 
-* Understand [Dependency Injection][DependencyInjection]
-* i.e. most people overuse inheritance
 
 
 ### Scientific Computing tips
