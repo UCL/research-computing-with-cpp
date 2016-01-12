@@ -15,8 +15,6 @@ title: Further Reading
 
 Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
-These are some of my favourites.
-
 * Declare data members private (22)
 * Use `const` whenever possible (3) 
 * Make interfaces easy to use correctly and hard to use incorrectly (18)
