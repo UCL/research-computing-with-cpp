@@ -32,6 +32,7 @@ title: Effective C++
 
 * UCL Moodle: MPHYG002
 * Online notes: [http://development.rc.ucl.ac.uk/training/rcwithcpp](http://development.rc.ucl.ac.uk/training/rcwithcpp/)
+* (updated as we go)
 
 
 ### Course Assessment
@@ -66,11 +67,4 @@ title: Effective C++
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
  
-
-### Classroom Exercise
-
-* Take Yellow PostIt notes
-* 1 - what field am I researching in?
-* 2 - where am I C++ wise?
-* 3 - what most sparked my interest?
 

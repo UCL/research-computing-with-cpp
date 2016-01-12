@@ -11,7 +11,7 @@ title: Program To Interfaces
 * In research code - "just start hacking"
 * You tend to mix interface and implementation
 * Results in client of a class having implicit dependency on the implementation
-* Aim: Define a pure virtual class 
+* So, define a pure virtual class, not for inheritance, but for clean API 
 
 ### Example
 

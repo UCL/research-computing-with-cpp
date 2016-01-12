@@ -111,5 +111,12 @@ title: Object Oriented Review
 {% code shape/shapeTest.cc %}
 
 
+### Classroom Exercise
+
+* Take Yellow PostIt notes
+* 1 - what field am I researching in?
+* 2 - where am I C++ wise?
+* 3 - what most sparked my interest?
+
 
 {% endidio %}

@@ -36,10 +36,11 @@ title: Memory Management
 ### Boost Vs Standard Library
 
 * Boost has become a sandbox for standard C++
-* So check your compiler version
-* Boost features may already be in your standard compiler
+* Boost features become part of standard C++, (different name space)
 * So smart pointers from boost may be in your compiler under `std::`
+* So check your compiler version
     * For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
+* Or fall back to boost ones
 
 
 ### Intrusive Vs Non-Intrusive
@@ -60,9 +61,10 @@ Question what are the implications when passing to a function?
 * Lots of other Smart Pointers
     * [Qt Smart Pointers](https://wiki.qt.io/Smart_Pointers)
     * [VTK](http://www.vtk.org/Wiki/VTK/Tutorials/SmartPointers)
+* Don't be tempted to write your own
 * Always read the manual
 * Always consistently use it
-* Don't be tempted to write your own
-* Still easier than raw pointers
+* Use the correct type for the correct framework
+* Still more robust than raw pointers
 
 {% endidio %}
