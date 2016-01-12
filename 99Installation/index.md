@@ -20,7 +20,7 @@ What we're installing
 * An SSH Client for remote access.
 * Fabric remote server access scripting library for Python.
 
-Further instructions for [Windows](windows), [Linux](linux) and [Mac](mac) are available.
+Further instructions for [Windows](windows.html), [Linux](linux.html) and [Mac](mac.html) are available.
 
 You'll also need a code editor of your choice.
 
@@ -31,4 +31,3 @@ We will be using UCL's [eduroam](http://www.ucl.ac.uk/isd/staff/wireless/eduroam
 to the internet for this work.
 
 So you should ensure you have eduroam installed and working.
-
