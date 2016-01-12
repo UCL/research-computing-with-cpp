@@ -15,22 +15,31 @@ title: CMake
 * This course will provide CMake code and boiler plate code
 
 
-### CMake Usage 1
+### CMake Usage Linux/Mac
 
-Typically, to do an "out-of-source" build
+Demo an "out-of-source" build
 
 ```
-cd ~/myprojects
-git clone http://github.com/somecode
-mkdir somecode-build
-cd somecode-build
-ccmake ../somecode
+cd ~/build
+git clone https://github.com/MattClarkson/CMakeHelloWorld
+mkdir CMakeHelloWorld-build
+cd CMakeHelloWorld-build
+ccmake ../CMakeHelloWorld
 make
 ```
 
-### CMake Usage 2
 
-* Set flags and repeatedly cmake
-* Then once set, hit compile
-* Best to demo this
+### CMake Usage Windows
+
+Demo an "out-of-source" build
+
+* git clone https://github.com/MattClarkson/CMakeHelloWorld
+* Run cmake-gui.exe
+* Select source folder (CMakeHelloWorld downloaded above)
+* Specify new build folder (CMakeHelloWorld-build next to, but not inside CMakeHelloWorld)
+* Hit *configure*
+* When asked, specify compiler
+* Set flags and repeatedly *configure*
+* When *generate* option is present, hit *generate*
+* Compile, normally using Visual Studio
 

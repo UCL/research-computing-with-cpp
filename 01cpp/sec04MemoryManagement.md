@@ -27,9 +27,9 @@ title: Memory Management
 ### Using Smart Pointers
 
 * Varying semantics
-    * [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - uniquely owns
-    * [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - shares
-    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary tracker, breaks circular references
+    * [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - models *has-a* but also unique ownership
+    * [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - models *has-a* but shared ownership
+    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary reference, breaks circular references
     * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
 
 

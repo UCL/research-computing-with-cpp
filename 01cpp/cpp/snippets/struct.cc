@@ -1,12 +1,12 @@
 /// struct
 struct Fraction {
-  double numerator;
-  double denominator;
+  int numerator;
+  int denominator;
 };
 
 double convertToDecimal(const Fraction& f)
 {
-  return numerator/denominator; 
+  return f.numerator/static_cast<double>(f.denominator); 
 }
 
 /// main

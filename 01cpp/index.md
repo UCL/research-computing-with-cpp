@@ -32,13 +32,12 @@ title: Effective C++
 
 * UCL Moodle: MPHYG002
 * Online notes: [http://development.rc.ucl.ac.uk/training/rcwithcpp](http://development.rc.ucl.ac.uk/training/rcwithcpp/)
-* (updated as we go)
 
 
 ### Course Assessment
 
 * 3 hour exam
-* 2 pieces coursework - 40 hours
+* 2 pieces coursework - 40 hours each
     * 1 due 3rd week March
     * 1 due last week April
 
@@ -55,7 +54,7 @@ title: Effective C++
 * You are familiar with your compiler
 * You are happy with the concept of classes
 * You know C++ up to templates?
-* Version control 
+* You are familiar with development eg. version control 
     * Git: [https://git-scm.com/](https://git-scm.com/)
 
 

@@ -45,11 +45,11 @@ title: C++ in Research
 
 ### Ask Advice
 
-* Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
-* How to structure code
-* Libraries to use, and how easy to adopt?
-* Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course
-* Best practices
+* Before contemplating a new piece of software
+    * Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
+    * Review libraries to use, and how easy to adopt?
+    * Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course
+    * Ask about best practices
 
 
 ### Maximise Your Value
@@ -66,7 +66,7 @@ Don't fall into the trap "Hey, I'll write a framework for that"
 
 ### Classroom Discussion
 
-* Discuss types of development:
+* Who has thought about different types of development?
     * Function
     * Class
     * Module
@@ -110,18 +110,18 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
 
 * [Waterfall](https://en.wikipedia.org/wiki/Waterfall_model)
 * [Agile](https://en.wikipedia.org/wiki/Agile_software_development)
+* At the 'concept discovery' stage, too early to talk about product development
 
 
 ### Approach to Software
 
 * Matt's Personal Take
     * Long path between idea, prototype and product
-    * Algorithm developer, looking at maths
-    * Product developer, looking at delivery
+    * Algorithm developer, probably looking at maths/method
+    * Product developer, looking at product/delivery
     * No right answer for language, methodology etc.
     * We tend to code too early, "just hacking"
-    * Understand where you are on the spectrum
-    * Understand where you want to get to (academic, industry)
+    * So: for each piece of coding, take time to investigate smallest, nicely structured, simple piece of code you can write
 
  
 ### What Isn't This Course?
