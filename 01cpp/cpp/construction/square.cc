@@ -1,4 +1,4 @@
-L
+#include <iostream>
 
 class Rectangle {
 public:
