@@ -4,33 +4,21 @@ title: C++ in Research
 
 ## C++ in Research
 
-### Why do Research?
+### Research Programming 
 
-* Interesting job
-* Contribute to knowledge
-* Develop new products
-
-
-### How to do Research?
-
-* Different methods in different fields
-* So we are focussing on software driven methods
-* Main point - we don't know what the end product is!
-
-
-### Software Is Expensive
-
-* Lots of Computer Science Literature
-    * Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
-    * People: [Edsger W. Dijkstra](https://www.cs.utexas.edu/users/EWD/)
-* Wide gap between theory and practice
-* Expensive even when you know what the end product is
+* Software is Expensive
+    * Famous Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
+    * Famous People: [Edsger W. Dijkstra](https://www.cs.utexas.edu/users/EWD/)
+* In research we don't know what the end product is
+* We need to test lots of ideas quickly
 
 
 ### C++ Disadvantages
 
-* Compiled language
-* Perceived as difficult, error prone, wordy
+Some people say:
+
+* Compiled language (compiler versions, libraries, platform specific etc)
+* Perceived as difficult, error prone, wordy, unfriendly syntax
 * Result: It's more trouble than its worth?
 
 
@@ -38,7 +26,7 @@ title: C++ in Research
 
 * Fast, code compiled to machine code
 * Nice integration with CUDA, OpenACC, OpenCL, OpenMP, OpenMPI
-* Stable, evolving standard
+* Stable, evolving standard, powerful notation, improving
 * Lots of libraries, Boost, Qt, VTK, ITK etc.
 * Result: Good reasons to use it, or you may *have* to use it
 
@@ -113,17 +101,6 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
 * At the 'concept discovery' stage, too early to talk about product development
 
 
-### Approach to Software
-
-* Matt's Personal Take
-    * Long path between idea, prototype and product
-    * Algorithm developer, probably looking at maths/method
-    * Product developer, looking at product/delivery
-    * No right answer for language, methodology etc.
-    * We tend to code too early, "just hacking"
-    * So: for each piece of coding, take time to investigate smallest, nicely structured, simple piece of code you can write
-
- 
 ### What Isn't This Course?
 
 We are NOT suggesting that:
