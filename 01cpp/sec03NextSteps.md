@@ -19,8 +19,8 @@ title: Next Steps
 
 * Need to know:
     * Memory, smart pointers
-    * Association, Aggregation, Composition
     * Don't overuse inheritance
+    * Association, Aggregation, Composition
 
 
 ### More C++ Features (Next Week)
