@@ -19,15 +19,16 @@ title: Next Steps
 
 * Need to know:
     * Memory, smart pointers
-    * Exception handling
-    * Construction, dependency injection
-    * Construction patterns (Further Reading)
+    * Association, Aggregation, Composition
+    * Don't overuse inheritance
 
 
 ### More C++ Features (Next Week)
 
 * Also need to know:
     * Mutable/Immutable/Encapsulation
-    * Don't overuse inheritance
-
+    * Exception handling
+    * Construction, dependency injection
+    * Construction patterns (Further Reading)
+ 
 {% endidio %}
