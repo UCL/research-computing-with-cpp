@@ -26,9 +26,9 @@ title: Next Steps
 ### More C++ Features (Next Week)
 
 * Also need to know:
-    * Mutable/Immutable/Encapsulation
     * Exception handling
     * Construction, dependency injection
     * Construction patterns (Further Reading)
+    * RAII: Resource Allocation Is Initialisation
  
 {% endidio %}
