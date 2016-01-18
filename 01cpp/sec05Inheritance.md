@@ -45,5 +45,28 @@ title: Object-Oriented Tips
 * Then you have probably got your inheritance wrong
 
 
+### Composition Vs Inheritance
+
+* Lots of Info online eg. [wikipedia](https://en.wikipedia.org/wiki/Composition_over_inheritance)
+* In basic OO Principals
+    * 'Has-a' means 'pointer or reference to'
+    * eg.`Car` has-a `Engine`
+* But there is also:
+    * [Composition](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Strong 'has-a'. Component parts are owned by thing pointing to them.
+    * [Aggregation](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Weak 'has-a'. Component part has its own lifecycle.
+    * Association: General term, refering to either composition or association, just a 'pointer-to'
+
  
+### Examples
+
+* Car 'has-a' Engine. Destroying car, you destroy engine. No point having an engine on its own.
+* Department 'has-a' Professor. If a department is shutdown (deleted), Professor should not be deleted. Needs assigning to another department.
+
+### But Why?
+
+* Good article: [Choosing Composition or Inheritance](https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose)
+* Inheritance has much tighter definition than you realise
+* Composition is more flexible 
+* See more later, when we 'code to interfaces'
+
 {% endidio %}
