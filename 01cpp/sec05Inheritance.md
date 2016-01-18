@@ -41,7 +41,7 @@ title: Object-Oriented Tips
   * Methods you don't want to implement in derived class
   * Methods that don't make sense in derived class
   * Methods that are unneeded in derived class
-  * If you have a list of something, and someone else swapping a Square/Rectangle would cause problems
+  * If you have a list of something, and someone else swapping a derived type would cause problems
 * Then you have probably got your inheritance wrong
 
 
