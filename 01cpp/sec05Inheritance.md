@@ -29,19 +29,19 @@ title: Object-Oriented Tips
 * "if S is a subtype of T, then objects of type T may be replaced with objects of type S without altering any of the desirable properties of that program"
 * Can something truely be substituted?
 * Look for:
-  * Preconditions cannot be strengthened
-  * Postconditions cannot be weakened
-  * Invariants preserved
-  * History constraint (e.g. mutable point deriving from immutable point)
+    * Preconditions cannot be strengthened
+    * Postconditions cannot be weakened
+    * Invariants preserved
+    * History constraint (e.g. mutable point deriving from immutable point)
 
 
 ### What to Look For
 
 * If you have:
-  * Methods you don't want to implement in derived class
-  * Methods that don't make sense in derived class
-  * Methods that are unneeded in derived class
-  * If you have a list of something, and someone else swapping a derived type would cause problems
+    * Methods you don't want to implement in derived class
+    * Methods that don't make sense in derived class
+    * Methods that are unneeded in derived class
+    * If you have a list of something, and someone else swapping a derived type would cause problems
 * Then you have probably got your inheritance wrong
 
 
@@ -49,12 +49,12 @@ title: Object-Oriented Tips
 
 * Lots of Info online eg. [wikipedia](https://en.wikipedia.org/wiki/Composition_over_inheritance)
 * In basic OO Principals
-    * 'Has-a' means 'pointer or reference to'
-    * eg.`Car` has-a `Engine`
+      * 'Has-a' means 'pointer or reference to'
+      * eg.`Car` has-a `Engine`
 * But there is also:
-    * [Composition](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Strong 'has-a'. Component parts are owned by thing pointing to them.
-    * [Aggregation](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Weak 'has-a'. Component part has its own lifecycle.
-    * Association: General term, refering to either composition or association, just a 'pointer-to'
+      * [Composition](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Strong 'has-a'. Component parts are owned by thing pointing to them.
+      * [Aggregation](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Weak 'has-a'. Component part has its own lifecycle.
+      * Association: General term, refering to either composition or association, just a 'pointer-to'
 
  
 ### Examples
