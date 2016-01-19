@@ -33,7 +33,7 @@ title: Error Handling
 * Can be perfectly usable
 * Depends on depth of function call stack
 * Depends on complexity of program
-* If deep/large, then becomes unweildy
+* If deep/large, then can become unweildy
 
 
 ### Error Handling C++ Style

@@ -62,6 +62,7 @@ title: Object-Oriented Tips
 * Car 'has-a' Engine. Destroying car, you destroy engine. No point having an engine on its own.
 * Department 'has-a' Professor. If a department is shutdown (deleted), Professor should not be deleted. Needs assigning to another department.
 
+
 ### But Why?
 
 * Good article: [Choosing Composition or Inheritance](https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose)

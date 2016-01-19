@@ -98,7 +98,7 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
 
 * [Waterfall](https://en.wikipedia.org/wiki/Waterfall_model)
 * [Agile](https://en.wikipedia.org/wiki/Agile_software_development)
-* At the 'concept discovery' stage, too early to talk about product development
+* At the 'concept discovery' stage, probably too early to talk about product development
 
 
 ### What Isn't This Course?
