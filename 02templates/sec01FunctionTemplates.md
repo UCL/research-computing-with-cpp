@@ -93,7 +93,7 @@ double GetAverage<double>(const std::vector<double>& someNumbers);
 So, if function parameters can inform the compiler uniquely as to which function to instantiate, its automatically compiled.
 
 
-### Explicit Argument Resolution
+### Explicit Argument Resolution - 1
 
 However, given:
 
@@ -114,7 +114,13 @@ But you don't want the int version called (due to integer division perhaps), you
 double result = GetAverage<double>(a, b);
 ```
 
-* equivalent to ```GetAverage<double>(static_cast<double>(a), static_cast<double>(b));```
+
+### Explicit Argument Resolution - 2
+
+* equivalent to 
+
+```GetAverage<double>(static_cast<double>(a), static_cast<double>(b));```
+
 * i.e. name the template function parameter explicitly.
 
 * Cases for Explicit Template Argument Specification
