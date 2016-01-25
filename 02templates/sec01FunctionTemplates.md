@@ -6,17 +6,18 @@ title: Function Templates
 
 ### Function Templates Example
 
-Credit to [www.cplusplus.com][OverloadedFunctions]:
+* Credit to [www.cplusplus.com][OverloadedFunctions]:
 
 {% idio cpp/sumFunctionExample %}
 
 {% code sumFunctionExample.cc  %}
 
-And produces this output when run:
+* And produces this output when run:
 
 {% code sumFunctionExample.out %}
 
 {% endidio %}
+
 
 ### Why Use Function Templates?
 
@@ -34,14 +35,14 @@ double Add(double a, double b);
 
 ### Language Definition 1
 
-From the [language reference](http://en.cppreference.com/w/cpp/language/function_template):
+* From the [language reference](http://en.cppreference.com/w/cpp/language/function_template):
 
 
 ```
 template < parameter-list > function-declaration
 ```
 
-so:
+* so:
 
 ```
 template < class T >  // note 'class'
@@ -51,7 +52,7 @@ void MyFunction(T a, T b)
 }
 ```
 
-or:
+* or:
 
 ```
 template < typename T1, typename T2 >  // note 'typename'
@@ -60,6 +61,7 @@ T1 MyFunctionTwoArgs(T1 a, T2 b)
   // do something
 }
 ```
+
 
 ### Language Definition 2
 
@@ -71,44 +73,44 @@ T1 MyFunctionTwoArgs(T1 a, T2 b)
 
 ### Default Argument Resolution
 
-Given:
+* Given:
 
 ```
 double GetAverage<typename T>(const std::vector<T>& someNumbers);
 ```
 
-then:
+* then:
 
 ```
 std::vector<double> myNumbers;
 double result = GetAverage(myNumbers);
 ```
 
-will call:
+* will call:
 
 ```
 double GetAverage<double>(const std::vector<double>& someNumbers);
 ```
 
-So, if function parameters can inform the compiler uniquely as to which function to instantiate, its automatically compiled.
+* So, if function parameters can inform the compiler uniquely as to which function to instantiate, its automatically compiled.
 
 
 ### Explicit Argument Resolution - 1
 
-However, given:
+* However, given:
 
 ```
 double GetAverage<typename T>(const T& a, const T& b);
 ```
 
-and:
+* and:
 
 ```
 int a, b;
 int result = GetAverage(a, b);
 ```
 
-But you don't want the int version called (due to integer division perhaps), you can:
+* But you don't want the int version called (due to integer division perhaps), you can:
 
 ```
 double result = GetAverage<double>(a, b);
@@ -130,13 +132,13 @@ double result = GetAverage<double>(a, b);
 
 ### Beware of Code Bloat
 
-Given:
+* Given:
 
 ```
 double GetMax<typename T1, typename T2>(const &T1, const &T2);
 ```
 
-and:
+* and:
 
 ```
 double r1 = GetMax(1,2);
@@ -170,32 +172,32 @@ double r3 = GetMax(1.0,2.0);
 
 ### Explicit Instantiation - 1
 
-Language Reference [here][FunctionTemplate]
-
-[Microsoft Example][ExplicitInstantiationMicrosoft]
+* Language Reference [here][FunctionTemplate]
+* [Microsoft Example][ExplicitInstantiationMicrosoft]
 
 {% idio cpp/explicitInstantiation %}
 
-Given (library) header:
+* Given (library) header:
 
 {% code explicitInstantiation.h %}
 
-Given (library) implementation:
+* Given (library) implementation:
 
 {% code explicitInstantiation.cc %}
 
 
 ### Explicit Instantiation - 2
 
-Given client code:
+* Given client code:
 
 {% code explicitInstantiationMain.cc %}
 
-We get:
+* We get:
 
 {% code explicitInstantiationMain.out %}
 
 {% endidio %}
+
 
 ### Explicit Instantiation - 3
 
@@ -221,18 +223,18 @@ Undefined symbols for architecture x86_64:
 
 {% idio cpp/implicitInstantiation %}
 
-Given (library) header, that containts implementation:
+* Given (library) header, that containts implementation:
 
 {% code implicitInstantiation.h %}
 
 
 ### Implicit Instantiation - 2
 
-Given client code:
+* Given client code:
 
 {% code implicitInstantiation.cc %}
 
-We get:
+* We get:
 
 {% code implicitInstantiation.out %}
 
