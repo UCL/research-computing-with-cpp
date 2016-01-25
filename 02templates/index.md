@@ -2,9 +2,7 @@
 title: Templates
 ---
 
-# Templates
-
-## Why Templates?
+## Templates
 
 ### What Are Templates?
 
@@ -12,6 +10,13 @@ title: Templates
     * Write code, where 'type' is provided later
     * Types instantiated at compile time, as they are needed
     * (Remember, C++ is strongly typed)
+
+
+### Book
+
+* You should read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/) 
+* 2001, but still excellent text on templates, meta-programming, policy based design etc.
+* This section of course, gives basic introduction for research programmers
 
 
 ### You Already Use Them!
@@ -28,7 +33,7 @@ Example algorithm: [C++ sort](http://www.cplusplus.com/reference/algorithm/sort/
 std::sort(myVectorInts.begin(), myVectorInts.end());
 ```
 
-Aim: Write functions, classes, in terms of future/other/generic types.
+Aim: Write functions, classes, in terms of future/other/generic types, type provided as parameter.
 
 
 ### Why Are Templates Useful?
@@ -50,7 +55,8 @@ Aim: Write functions, classes, in terms of future/other/generic types.
     * Take small steps, compile regularly
     * Learn to think like a compiler
 * Code infiltration
-    * So, use sparingly
+    * Use sparingly
+    * Hide usage behind clean interface
 
 
 ### Why Templates in Research?
@@ -62,8 +68,7 @@ Aim: Write functions, classes, in terms of future/other/generic types.
 
 ### Why Teach Templates?
 
+* Standard Template Library uses them
 * More common in research code, than business code
 * In research, more likely to 'code for the unknown'
-* Standard Template Library uses them
 * Boost, Qt, EIGEN uses them
-* Benchmark of "intermediate" programmer?
