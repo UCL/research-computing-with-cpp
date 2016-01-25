@@ -6,13 +6,13 @@ title: Function Templates
 
 ### Function Templates Example
 
-* Credit to [www.cplusplus.com][OverloadedFunctions]:
+* Credit to [www.cplusplus.com][OverloadedFunctions]
 
 {% idio cpp/sumFunctionExample %}
 
 {% code sumFunctionExample.cc  %}
 
-* And produces this output when run:
+* And produces this output when run
 
 {% code sumFunctionExample.out %}
 
@@ -21,28 +21,28 @@ title: Function Templates
 
 ### Why Use Function Templates?
 
-```c++
-int Add(int a, int b);
-double Add(double a, double b);
-```
-
 * Instead of function overloading
     * Reduce your code duplication
     * Reduce your maintenance
     * Reduce your effort
     * Also see this [Additional tutorial][TemplatesTutorial].
 
+```c++
+int Add(int a, int b);
+double Add(double a, double b);
+```
+
 
 ### Language Definition 1
 
-* From the [language reference](http://en.cppreference.com/w/cpp/language/function_template):
+* From the [language reference](http://en.cppreference.com/w/cpp/language/function_template)
 
 
 ```
 template < parameter-list > function-declaration
 ```
 
-* so:
+* so
 
 ```
 template < class T >  // note 'class'
@@ -52,7 +52,7 @@ void MyFunction(T a, T b)
 }
 ```
 
-* or:
+* or
 
 ```
 template < typename T1, typename T2 >  // note 'typename'
