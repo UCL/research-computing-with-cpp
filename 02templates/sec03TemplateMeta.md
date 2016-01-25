@@ -285,8 +285,6 @@ which may be unrolled by compiler.
 * And of course, keep reading [Meyers][Meyers]
 
 
-## Summary
-
 ### Summary
 
 * Learnt
@@ -323,3 +321,5 @@ which may be unrolled by compiler.
 [MITKPixelType]: http://docs.mitk.org/2014.03/mitkPixelTypeList_8h.html
 [MITKClassHierarchy]: http://docs.mitk.org/nightly-qt4/mitkGetClassHierarchy_8h.html
 [BSplinePaper]: http://link.springer.com/chapter/10.1007%2F978-3-319-08554-8_2
+[Meyers]: http://www.aristeia.com/books.html
+
