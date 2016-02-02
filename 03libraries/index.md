@@ -2,22 +2,28 @@
 title: Libraries
 ---
 
-#Libraries
-
 ## Why use Libraries?
 
-### Understanding Library Usage
+### What are libraries?
 
 * Libraries provide collections of useful classes and functions, ready to use.
+* But code MUST be CORRECT for good science, so you need a good library.
+
+
+### Scientists perspective
+
 * As a scientist you want:
     * Run experiments, demonstrate new concepts
-    * Don't want to spend too much time writing code, if its readily available.
-    * But code MUST be CORRECT for good science, so you need a good library.
+    * To not spend too much time writing code, if its readily available.
+
+
+### Developers perspective
+
 * As a developer:
     * You need to write some code yourself (as you're doing novel science)
     * But do you write all of it?
 
-Our job as [Craftsperson and Scholar][Craftsperson] necessitates knowledge of software engineering, and science and to balance our usage of time.
+Our job as [Craftsperson and Scholar][Craftsperson] necessitates knowledge of software engineering and science and to balance our usage of time.
 
 
 ### Aim for this chapter

@@ -70,15 +70,22 @@ that version of the code.
     * But if you do, understand what that means.
 
 
-### Developer Community
+### Developer Community - 1
 
 * Code that is not developed, rots.
-* When was the last commit?
-* How often are there commits?
+    * When was the last commit?
+    * How often are there commits?
+    * Is the code on an open version control tool like GitHub?
+
+### Developer Community - 2
+
 * Can you find the lead contributor on the internet?
-* Do they respond when approached?
+    * Do they respond when approached?
 * Are there contributors other than the lead contributor?
-* Is the code on an open version control tool like GitHub?
+
+
+### Developer Community - 3
+
 * Are there many unit tests, do they run, do they pass?
 * Does the library depend on other libraries?
 * Are the build tools common?

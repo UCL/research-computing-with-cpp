@@ -2,6 +2,8 @@
 title: Boost
 ---
 
+{% idio cpp %}
+
 ## Using Boost
 
 ### Introduction
@@ -64,15 +66,13 @@ title: Boost
 * Useful if using [Numerical Recipes in C][NumericalRecipesC]
 * See [Wikipedia][WikipediaFunctionPointers] article and tutorials online
 
-{% idio cpp/FunctionPointer %}
-
 This:
 
-{% code FunctionPointer.cc %}
+{% code FunctionPointer/FunctionPointer.cc %}
 
 Produces:
 
-{% code FunctionPointer.out %}
+{% code FunctionPointer/FunctionPointer.out %}
 
 
 ### C Function Pointers - 2
@@ -80,12 +80,11 @@ Produces:
 * Function pointers can be passed to functions
 
 This:
-{% code PassToFunction.cc %}
+{% code FunctionPointer/PassToFunction.cc %}
 
 Produces:
-{% code PassToFunction.out %}
+{% code FunctionPointer/PassToFunction.out %}
 
-{% endidio %}
 
 ### C Function Pointers - 3
 
@@ -100,16 +99,13 @@ Produces:
 * We can define an object to represent a function
     * Called [Function Object][WikipediaFunctionObject] or Functor
 
-{% idio cpp/FunctionObject %}
-
 This:
 
-{% code FunctionObject.cc %}
+{% code FunctionObject/FunctionObject.cc %}
 
 Produces:
-{% code FunctionObject.out %}
+{% code FunctionObject/FunctionObject.out %}
 
-{% endidio %}
 
 ### C++ Function Objects - 2
 
@@ -145,8 +141,7 @@ endif()
 * Its a numerical example, as we are doing scientific computing!
 * As with many libraries, just include right header
 
-``` cpp
-#include <boost/whatever.hpp>       // e.g.:
+``` 
 #include <boost/numeric/odeint.hpp> // Include ODE solver library
                                     // just to check our build system found it
 ```
@@ -157,39 +152,35 @@ endif()
 
 Given these global definitions:
 
-{% idio cpp/Boost %}
-
-{% fragment global, BoostHarmonicOscillator.cc %}
+{% fragment global, Boost/BoostHarmonicOscillator.cc %}
 
 
 ### Boost odeint - 2
 
 First define a functor for the function to integrate:
 
-{% fragment harm_osc, BoostHarmonicOscillator.cc %}
+{% fragment harm_osc, Boost/BoostHarmonicOscillator.cc %}
 
 
 ### Boost odeint - 3
 
 Define an observer to collect graph-points:
 
-{% fragment observer, BoostHarmonicOscillator.cc %}
+{% fragment observer, Boost/BoostHarmonicOscillator.cc %}
 
 
 ### Boost odeint - 4
 
 The run it:
 
-{% fragment main, BoostHarmonicOscillator.cc %}
+{% fragment main, Boost/BoostHarmonicOscillator.cc %}
 
 
 ### Boost odeint - 4
 
 Produces:
 
-{% code BoostHarmonicOscillator.out %}
-
-{% endidio %}
+{% code Boost/BoostHarmonicOscillator.out %}
 
 
 ### Why Boost for Numerics
@@ -203,6 +194,8 @@ Produces:
         * MPI
         * etc
 * You just focus on your bit
+
+{% endidio %}
 
 [BoostHome]: http://www.boost.org/
 [BoostDoc]: http://www.boost.org/doc/libs/1_57_0/
