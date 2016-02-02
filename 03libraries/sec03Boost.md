@@ -106,6 +106,7 @@ This:
 {% code FunctionObject/FunctionObject.cc %}
 
 Produces:
+
 {% code FunctionObject/FunctionObject.out %}
 
 
@@ -122,7 +123,7 @@ Produces:
 
 * If installed correctly, should be something like:
 
-``` cpp
+```
 set(Boost_ADDITIONAL_VERSIONS 1.53.0 1.54.0 1.53 1.54)
 find_package(Boost 1.53.0)
 if(Boost_FOUND)
