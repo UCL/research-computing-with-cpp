@@ -80,9 +80,11 @@ Produces:
 * Function pointers can be passed to functions
 
 This:
+
 {% code FunctionPointer/PassToFunction.cc %}
 
 Produces:
+
 {% code FunctionPointer/PassToFunction.out %}
 
 
