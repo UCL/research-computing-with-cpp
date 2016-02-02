@@ -1,5 +1,5 @@
-#include <stdio.h>  /* for printf */
-#include <math.h>   /* for sin */
+#include <stdio.h>  
+#include <math.h>  
 double integrate(double (*funcp)(double), double lo, double hi) {
   double  sum = 0.0;
   for (int i = 0;  i <= 100;  i++)
