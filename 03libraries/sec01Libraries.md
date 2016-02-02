@@ -93,22 +93,6 @@ that version of the code.
 * Is there a suitable release schedule?
 
 
-### Cross Platform? Really?
-
-* [NifTK][NifTK] written for Windows, Linux, Mac, signficant overhead.
-* Do you really need cross platform?
-* Some other suggestions:
-    * Papers come from algorithms:
-        * Write smallest possible library
-        * This library can be wrapped (Python), or included (CMake) in other projects.
-        * Small library, easier to make cross platform.
-    * Separate GUI and algorithm
-        * GUI can be in Python, VC++, Qt, WxWidgets etc.
-    * Write your code to be caller independent
-        * Call from GUI widget
-        * Call from command line app
-
-
 ### Implementation Details
 
 * Shouldn't need to look excessively closely, but consider
