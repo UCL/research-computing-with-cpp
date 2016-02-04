@@ -19,13 +19,16 @@ Header:
 ### Class Templates Example - 2
 
 Implementation:
+
 {% code pairClassExample.cc %}
 
 
 ### Class Templates Example - 3
 
 Usage:
+
 {% code pairClassMain.cc %}
+
 {% endidio %}
 
 ### Quick Comments

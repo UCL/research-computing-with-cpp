@@ -78,7 +78,7 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 
 {% code TMPLoop.cc %}
 
-* Time: numberOfInts=3 took 37 seconds
+* Time: numberOfInts=3 took 40 seconds
 
 
 ### Loop Unrolled
@@ -89,7 +89,7 @@ See [Wikipedia Factorial Example][TMPWikipedia]
 
 {% endidio %}
 
-* Time: numberOfInts=3 took 10 seconds  
+* Time: numberOfInts=3 took 32 seconds when switch to fixed vector, and 23 when a raw array.  
 
 
 ### Policy Checking
@@ -322,4 +322,5 @@ which may be unrolled by compiler.
 [MITKClassHierarchy]: http://docs.mitk.org/nightly-qt4/mitkGetClassHierarchy_8h.html
 [BSplinePaper]: http://link.springer.com/chapter/10.1007%2F978-3-319-08554-8_2
 [Meyers]: http://www.aristeia.com/books.html
+[ITK]: http://www.itk.org
 

@@ -162,8 +162,8 @@ cp <path_to_eigen>/cmake/FindEigen3.cmake ./CMake
 
 ``` cmake
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
-find_package(Eigen)
-include_directories(${EIGEN_INCLUDE_DIRS})
+find_package(Eigen3)
+include_directories(${EIGEN3_INCLUDE_DIR})
 ```
 
 
