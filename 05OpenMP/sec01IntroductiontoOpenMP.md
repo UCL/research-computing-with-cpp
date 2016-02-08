@@ -10,10 +10,11 @@ title: Introduction to OpenMP
     - This instruct the compiler in how to parallize the code
     - `#pragma`s are a instructions to the compiler
     - Not part of the language
-    - I.e. `#pragma once` alternative to include guards
+    - i.e. `#pragma once` alternative to include guards
     - Compiler will usually ignore pragmas that it doesn't understand
     - All OpenMP pragmas start with `#pragma omp`
 * OpenMP must typically be activated when compiling code
+
 
 ### OpenMP library
 
@@ -21,6 +22,7 @@ title: Introduction to OpenMP
     - It provides utility functions.
     - `omp_get_num_threads()` ...
     - Use with `#include <omp.h>`
+
 
 ### Compiler support
 
@@ -33,6 +35,7 @@ OpenMP is supported by most compilers, except LLVM/Clang(++)
 
 A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mainline eventually.
 
+
 ### Hello world
 
 {% code cpp/hello/HelloOpenMP.cc %}
@@ -40,6 +43,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 * `#pragma omp parallel` marks a block is to be run in parallel
 * In this case all threads do the same
 * No real work sharing
+
 
 ### Issues with this example
 
@@ -50,6 +54,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
     - Might be wasteful if this was a slow function
     - Everybody stores a copy of numthreads
     - Waste of memory
+
 
 ### Slightly improved hello world
 
@@ -68,6 +73,7 @@ A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mai
 * `#pragma omp single`
     - Only one thread calls `get_num_threds()`
 
+
 ### Running OpenMP code for the course
 
 If you have a multicore computer with GCC or other suitable compiler you can run it locally.
@@ -84,8 +90,6 @@ Otherwise you can use GCC on aristotle
 * [OpenMP homepage][OpenMPhomepage]
 * [OpenMP cheat sheet][OpenMPcheatsheet]
 * [OpenMP specifications][OpenMPSpecs]
-
-
 
 [OpenMPhomepage]: http://openmp.org/
 [OpenMPcheatsheet]: http://openmp.org/mp-documents/OpenMP-4.0-C.pdf
