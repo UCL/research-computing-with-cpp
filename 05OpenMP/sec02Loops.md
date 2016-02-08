@@ -12,8 +12,6 @@ Integrate:
 
 $\int_0^1 \frac{4}{1+x^2} \mathrm{d}x=\pi$
 
-Don't do this in production code. Use a standard library function to integrate functions.
-
 {% code cpp/forloop/openmpforloop.cc %}
 
 

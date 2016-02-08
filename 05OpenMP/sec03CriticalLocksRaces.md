@@ -93,3 +93,6 @@ Sometimes it is useful to lock multiple resources with different locks.
 
 OpenMP implements two types of locks. We have only considered simple locks.
 Consult the [OpenMP specifications][OpenMPSpecs] for nested locks.
+
+[OpenMPSpecs]: http://openmp.org/wp/openmp-specifications/
+
