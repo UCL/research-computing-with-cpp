@@ -22,6 +22,14 @@ title: HPC Concepts
     * Use of unix shell, and submitting jobs on a cluster
     * See [RITS][RITS]/[RSD][RSD] [training courses][training] such as "[Introduction to high performance and high throughput computing][IntroHPC]" 
 
+### Aim
+
+For the remainder of the course, we need to develop
+
+* Skills to run jobs on a cluster, e.g. Legion, start [here][Legion].
+* A locally installed development environment, so you can develop
+* Familiarity with new technologies, OpenMP, MPI, Accelerators, Cloud, so you can make a reasoned choice
+
 [MJonesTutorial]: https://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-09---parallel-programming-overview--hpc-1-/_jcr_content/par/download/file.res/briefpp-handout-2x2.pdf 
 [WikiPediaSuperComputer]: http://en.wikipedia.org/wiki/Supercomputer
 [SutterWTTJ]: http://herbsutter.com/welcome-to-the-jungle
@@ -32,3 +40,5 @@ title: HPC Concepts
 [RSD]: https://www.ucl.ac.uk/research-it-services/about/research-software-development
 [IntroHPC]: http://development.rc.ucl.ac.uk/training/hptclegion/
 [training]: https://www.ucl.ac.uk/isd/services/research-it/training
+[Legion]: https://wiki.rc.ucl.ac.uk/wiki/Main_Page
+
