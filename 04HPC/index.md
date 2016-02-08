@@ -2,48 +2,33 @@
 title: HPC Concepts
 ---
 
-# High Performance Computing
+## High Performance Computing Overview
 
-## Why HPC?
+### Background Reading 
 
-### What is HPC?
+* This lecture has now largely been replaced, and we move straight to Shared Memory Parallelism.
+* Read:
+    * [Dr. Matt Jones' Introduction to HPC][MJonesTutorial]
+    * [Herb Sutter's article on why multi-core is important][SutterWTTJ]
+    * [Some background history on Wikipedia][WikiPediaSuperComputer]
+    * [Blaise Barney's overview of parallel computing][Blaise]
 
-* HPC: High Performance Computing
-    * refers to "any computational activity requiring more than a single computer to execute a task."
-* From [M.Jones][MJonesTutorial]
-    * "HPC requires substantially (more than an order of magnitude) more computational resources than are available on current workstations, and typically require concurrent (parallel) computation."
-* So,
-    * big + parallel
+### Essential Reading
 
+* For the exam you will need:
+    * [Amdahl's law, and use it in calculations][Amdahl]
+    * [Flynn's Taxonomy, and understand main catergories][Flynn]
+* For tutorial's and practical work you will need:
+    * Use of unix shell, and submitting jobs on a cluster
+    * See [RITS][RITS]/[RSD][RSD] [training courses][training] such as "[Introduction to high performance and high throughput computing][IntroHPC]" 
 
-### Why HPC in Research?
-
-* Its the nature of research
-    * Always tackle bigger problems
-    * Driving the limits of hardware and software
-
-
-### Why Teach HPC?
-
-* Read [Herb Sutter's Article][SutterWTTJ]
-* All major devices have multiple cores
-    * Phone ([Apple A8][AppleA8] dual core),
-    * Tablet ([Apple A8][AppleA8] dual core),
-    * Laptop (Apple MBP, 2.5Ghz, quad core),
-    * Desktop (Apple Mac Pro, 3.5Ghz, 6-core),
-* Research problems require more compute power
-* Soon be at a disadvantage if you don't
-
-
-### Aim for this Chapter
-
-* Overview,
-    * hardware, software,
-    * buzzwords
-* Basic cluster computing
-* (next week, start parallel programming)
-
-[MJonesTutorial]: http://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-01---introduction-to-hpc--hpc-1-/_jcr_content/par/download/file.res/introHPC-handout-2x2.pdf
+[MJonesTutorial]: https://www.buffalo.edu/content/www/ccr/support/training-resources/tutorials/advanced-topics--e-g--mpi--gpgpu--openmp--etc--/2011-09---parallel-programming-overview--hpc-1-/_jcr_content/par/download/file.res/briefpp-handout-2x2.pdf 
 [WikiPediaSuperComputer]: http://en.wikipedia.org/wiki/Supercomputer
 [SutterWTTJ]: http://herbsutter.com/welcome-to-the-jungle
-[AppleA8]: http://en.wikipedia.org/wiki/Apple_A8
+[Blaise]: https://computing.llnl.gov/tutorials/parallel_comp/
+[Amdahl]: https://en.wikipedia.org/wiki/Amdahl%27s_law
+[Flynn]: https://en.wikipedia.org/wiki/Flynn%27s_taxonomy
+[RITS]: https://www.ucl.ac.uk/isd/services/research-it
+[RSD]: https://www.ucl.ac.uk/research-it-services/about/research-software-development
+[IntroHPC]: http://development.rc.ucl.ac.uk/training/hptclegion/
+[training]: https://www.ucl.ac.uk/isd/services/research-it/training
