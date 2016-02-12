@@ -15,39 +15,38 @@ Think of two possible forms of *collective* communications:
 
 ### Broadcast: one to many
 
---------------------------- ---------------------------------
-data in 0, no data in 1, 2  ![]({% figurepath %}broadcast0.png)
-data from 0 sent to 0, 1    ![]({% figurepath %}broadcast1.png)
---------------------------- ---------------------------------
+| State                      | Figure                              |
+|:---------------------------|:------------------------------------|
+| data in 0, no data in 1, 2 | ![]({% figurepath %}broadcast0.png) |
+| data from 0 sent to 0, 1   | ![]({% figurepath %}broadcast1.png) |
 
 ### Gather: many to one
 
-------------------------- ---------------------------------
-data in 0, 1, 2           ![]({% figurepath %}collective.png)
-data from 1, 2 sent to 0  ![]({% figurepath %}gather1.png)
-------------------------- ---------------------------------
+| State                    | Figure                              |
+|:-------------------------|:------------------------------------|
+| data in 0, 1, 2          | ![]({% figurepath %}collective.png) |
+| data from 1, 2 sent to 0 | ![]({% figurepath %}gather1.png)    |
+
 
 ### Scatter: one to many
 
-------------------------- ---------------------------------
-data in 0                 ![]({% figurepath %}gather1.png)
-data from 0 in 0, 1, 2    ![]({% figurepath %}collective.png)
-------------------------- ---------------------------------
+| State                  | Figure                              |
+|:-----------------------|:------------------------------------|
+| data in 0              | ![]({% figurepath %}gather1.png)    |
+| data from 0 in 0, 1, 2 | ![]({% figurepath %}collective.png) |
 
 ### All to All: many to many
 
-------------------  -------------------------------
-data in 0, 1, 2     ![]({% figurepath %}all2all0.png)
-from each to each   ![]({% figurepath %}all2all1.png)
-------------------  -------------------------------
-
+| State             | Figure                            |
+|:------------------|:----------------------------------|
+| data in 0, 1, 2   | ![]({% figurepath %}all2all0.png) |
+| from each to each | ![]({% figurepath %}all2all1.png) |
 
 ### Reduce operation
-
------------------ ---------------------------------
-data in 0, 1, 2   ![]({% figurepath %}collective.png)
-Baby Bunny!       ![]({% figurepath %}reduce1.png)
------------------ ---------------------------------
+| State           | Figure                              |
+|:----------------|:------------------------------------|
+| data in 0, 1, 2 | ![]({% figurepath %}collective.png) |
+| Baby Bunny!     | ![]({% figurepath %}reduce1.png)    |
 
 Wherefrom the baby bunny?
 
@@ -72,19 +71,15 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
     MPI_Comm comm)
 ```
 
-----------    -----------------------------------------------------------------------
-buf           Pointer to sending/receiving buffer
+| Parameter | Content                             |
+|:----------|:------------------------------------|
+| buf       | Pointer to sending/receiving buffer |
+| count     | Size of the buffer/message          |
+| datatype  | Informs on the type of the buffer   |
+| root      | Sending processor                   |
+| comm      | The communicator!                   |
+| return    | Error tag                           |
 
-count         Size of the buffer/message
-
-datatype      Informs on the type of the buffer
-
-root          Sending processor
-
-comm          The communicator!
-
-return        Error tag
-----------    -----------------------------------------------------------------------
 
 ### Example of collective operation (1)
 
@@ -132,19 +127,14 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
                MPI_Comm comm)
 ```
 
-----------    -----------------------------------------------------------------------
-sendbuf       Pointer to sending buffer (only significant at root)
-
-sendcount     Size of a *single* message
-
-datatype      Informs on the type of the buffer
-
-recvbuf       Pointer to receiving buffers (also at root)
-
-recvcount     Size of the receiving buffer
-
-recvtype      Informs on the type of the receiving buffer
-----------    -----------------------------------------------------------------------
+| Parameter | Content                                              |
+|:----------|:-----------------------------------------------------|
+| sendbuf   | Pointer to sending buffer (only significant at root) |
+| sendcount | Size of a *single* message                           |
+| datatype  | Type of the buffer                                   |
+| recvbuf   | Pointer to receiving buffers (also at root)          |
+| recvcount | Size of the receiving buffer                         |
+| recvtype  | Informs on the type of the receiving buffer          |
 
 Exercise:
     Have the root scatter "This....." "message.." "is.split." to 3 processors
@@ -161,12 +151,12 @@ Groups of processes can be split according to *color*:
 int MPI_Comm_split(MPI_Comm comm, int color, int key, MPI_Comm *newcomm)
 ```
 
-----------    -----------------------------------------------------------------------
-comm          Communicator that contains all the processes to be split
-color         All processes with same color end up in same group
-int key       Controls rank in final group
-newcomm       Output communicator
-----------    -----------------------------------------------------------------------
+| Parameter | Content                                                  |
+|:----------|:---------------------------------------------------------|
+| comm      | Communicator that contains all the processes to be split |
+| color     | All processes with same color end up in same group       |
+| int key   | Controls rank in final group                             |
+| newcomm   | Output communicator                                      |
 
 ### Splitting communicators: example
 

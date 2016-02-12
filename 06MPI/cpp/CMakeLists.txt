@@ -17,6 +17,9 @@ if(MPI_C_FOUND)
     add_executable(point2point point2point.cc)
     target_link_libraries(point2point ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
 
+    add_executable(ring ring.cc)
+    target_link_libraries(ring ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+
     add_executable(collective collective.cc)
     target_link_libraries(collective ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
 

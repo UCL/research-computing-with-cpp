@@ -16,6 +16,10 @@ SLIDES=$(MDS:.md=-reveal.html)
 
 EXES=$(shell find build -name *.x)
 
+PY_FIGURE_SOURCES=$(filter-out %visualise.py, $(shell find . -name *.py))
+
+PY_FIGURES=$(PY_FIGURE_SOURCES:.py=.png)
+
 vpath %.x build
 
 OUTS=$(subst build/,,$(EXES:.x=.out))
@@ -42,7 +46,7 @@ default: _site
 %.png: %.uml Makefile
    java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
-notes.pdf: combined.md Makefile
+notes.pdf: combined.md Makefile $(PY_FIGURES)
 	$(PANDOC) --from markdown combined.md -o notes.pdf
 
 %.tmd: %.md liquify.rb _plugins/idio.rb Makefile
@@ -61,7 +65,7 @@ master.zip: Makefile
 	rm -f master.zip
 	wget https://github.com/UCL-RITS/indigo-jekyll/archive/master.zip
 
-ready: indigo $(OUTS) notes.pdf $(SLIDES) notes.tex
+ready: indigo $(OUTS) notes.pdf $(SLIDES) notes.tex $(PY_FIGURES)
 
 indigo-jekyll-master: Makefile master.zip
 	rm -rf indigo-jekyll-master
