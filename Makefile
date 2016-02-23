@@ -16,7 +16,7 @@ SLIDES=$(MDS:.md=-reveal.html)
 
 EXES=$(shell find build -name *.x)
 
-PY_FIGURE_SOURCES=$(filter-out %visualise.py, $(shell find . -name *.py))
+PY_FIGURE_SOURCES=$(filter-out %visualise.py %legion.py %__init__.py %fabfile.py, $(shell find . -name *.py))
 
 PY_FIGURES=$(PY_FIGURE_SOURCES:.py=.png)
 
