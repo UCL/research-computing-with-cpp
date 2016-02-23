@@ -190,7 +190,7 @@ int MPI_Isend(const void *buf, int count, MPI_Datatype datatype, int dest, int t
 ```
 
 
-### Pass the parcel: SendRecv
+### Pass the parcel: SendRecv
 
 Consider a group of N processes in a ring: each has a value, and wants to "pass
 the parcel" to the left. How would you achieve this with SSend and Receive?
