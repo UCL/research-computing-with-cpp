@@ -47,8 +47,12 @@ The Python toolchain for visualising quantitative data is powerful, fast and eas
 Here's how we turn a NumPy Matrix view of our data, with axes (frames, width, height), into an animation and
 save it to disk as an mp4:
 
-```python
-{{d['07MPIExample/cpp/parallel/visualise.py|idio|t']['Animation']}}
-```
+{% idio ../07MPIExample/cpp/parallel/visualise.py %}
+
+
+{% fragment Animation %}
+
+{% endidio %}
+
 
 Try doing that with C++ libraries!
