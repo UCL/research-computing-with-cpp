@@ -23,13 +23,11 @@ title: Using a GPU as an Accelerator
 * They have *much* slower single-core performance (but you would never do this)
 
 
-| Property          | CPU       | GPU       |
-|:------------------|:----------|:----------|
-| No of cores       | <10       | 1000s     |
-| ----------------- | --------- | --------- |
-| SIMD width        | 256 bits  | 1024 bits |
-| ----------------- | --------- | --------- |
-| Memory bandwidth  | <25 GB/s  | <500 GB/s |
+| Property         | CPU      | GPU       |
+|:-----------------|:---------|:----------|
+| No of cores      | <10      | 1000s     |
+| SIMD width       | 256 bits | 1024 bits |
+| Memory bandwidth | <25 GB/s | <500 GB/s |
 
 
 
