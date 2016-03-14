@@ -1,17 +1,16 @@
 MPHYG002 Coursework 2: Parallelising Conway's Game of Life
 ==========================================================
 
-
-## Serial Solution
+## Serial Solution
 
 Build a C++ implementation of Conway's Game of Life. See for example https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life [5 Marks]
 
-Marks Scheme: 
+Marks Scheme:
 
-* Valid code: 1 mark. 
-* Readable code: 1 marks. 
-* Appropriate unit tests: 1 marks. 
-* Well-structured project layout and build system: 1 mark. 
+* Valid code: 1 mark.
+* Readable code: 1 marks.
+* Appropriate unit tests: 1 marks.
+* Well-structured project layout and build system: 1 mark.
 * Use of version control: 1 mark.
 
 ## Organising remote computation
@@ -19,12 +18,12 @@ Marks Scheme:
 Define an appropriate output file format, and use a script in a dynamic language (Python, MATLAB, R, Ruby, Perl etc)
 to create an mpeg video of your results. Use a script to deploy your serial code on a remote cluster with qsub. [5 marks]
 
-Marks scheme: 
+Marks scheme:
 
 * Output file works: 1 mark.
 * Visualiser works: 1 mark.
 * Automated deployment script with fabric or bash: 1 mark.
-* Output file and script organisation support reproducible research: 1 mark. 
+* Output file and script organisation support reproducible research: 1 mark.
 * Valid job submission script: 1 mark.
 
 ## Shared memory parallelism
@@ -32,11 +31,11 @@ Marks scheme:
 Parallelise your code using OpenMP.  Create a graph of performance versus core count on a machine with at least
 12 cores. Comment on your findings. [5 Marks]
 
-Marks scheme: 
+Marks scheme:
 
 * Valid OpenMP parallelisation: 1 mark.
 * Preprocessor usage so that code remains valid without OpenMP: 1 mark
-* Script to organise job runs and results for performance measurement: 1 mark. 
+* Script to organise job runs and results for performance measurement: 1 mark.
 * Clear and meaningful scaling graph: 1 mark.
 * Discussion: 1 mark
 
@@ -55,7 +54,7 @@ Marks scheme:
 
 ## Accelerators
 
-Accelerate your serial solution using at least one of CUDA Thrust, CUDA C or OpenCL. Experiment with different thread counts and 
+Accelerate your serial solution using at least one of CUDA Thrust, CUDA C or OpenCL. Experiment with different thread counts and
 performance optimisations. Measure speedup
 compared to the serial code, either on a cluster or using a graphics card on your own computer. Comment on your findings.
 (There is one mark available for a second accelerator solution.) [5 marks]
