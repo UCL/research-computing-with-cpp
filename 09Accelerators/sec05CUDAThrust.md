@@ -125,4 +125,5 @@ Throughput: 7.86722GFlops/s
 
 * GitHub repository at <https://github.com/thrust/thrust>
 * Documentation at <https://thrust.github.io>
+* Legion scaffold at <https://github.com/UCL-RITS/Legion-Fabric-Scaffold/blob/gpu/src/cuda_main.cu>
 * Tutorial at <http://docs.nvidia.com/cuda/thrust/>

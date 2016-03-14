@@ -94,3 +94,4 @@ Throughput: 28.358GFlops/s
 
 * [NVidia CUDA tutorial](http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
 * [NVidia CUDA Developer Zone](https://developer.nvidia.com/cuda-zone)
+* [Legion Scaffold](https://github.com/UCL-RITS/Legion-Fabric-Scaffold/blob/gpu-c-cuda/src/cuda_main.cu)
