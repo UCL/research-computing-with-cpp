@@ -54,7 +54,7 @@ title: Object-Oriented Tips
 * But there is also:
       * [Composition](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Strong 'has-a'. Component parts are owned by thing pointing to them.
       * [Aggregation](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Weak 'has-a'. Component part has its own lifecycle.
-      * Association: General term, refering to either composition or association, just a 'pointer-to'
+      * Association: General term, refering to either composition or aggregation, just a 'pointer-to'
 
  
 ### Examples
