@@ -37,10 +37,10 @@ the grid version.)
 ### Smooth Life
 
 * A point has some degree of aliveness.
-* Next timestep, a point's aliveness depends on these two integrals. ($F_{r}$ and $F_{d}$)
-* The new aliveness $S(F_{r},F{d})$ is a smoothly varying function such that:
-    * If $F_{d}$ is 1, S will be 1 if $d_1< F_{r} < d_2$
-    * If $F_{d}$ is 0, S will be 1 if $b_1< F_d < b_2$
+* Next timestep, a point's aliveness depends on these two integrals. (`$F_{r}$` and `$F_{d}$`)
+* The new aliveness `$S(F_{r},F{d})$` is a smoothly varying function such that:
+    * If `$F_{d}$` is 1, S will be 1 if `$d_1< F_{r} < d_2$`
+    * If `$F_{d}$` is 0, S will be 1 if `$b_1< F_d < b_2$`
 
 A "Sigmoid" function is constructed that smoothly blends between these limits.
 
