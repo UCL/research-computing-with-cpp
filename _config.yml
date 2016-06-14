@@ -8,7 +8,7 @@ defaults:
   - scope: {path: ""}
     values: {layout: default, slidelink: true}
 
-baseurl: /training/rcwithcpp
+baseurl: /research-computing-with-cpp
 
 crumbs:
   - link: http://www.ucl.ac.uk/ISD
