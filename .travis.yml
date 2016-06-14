@@ -19,8 +19,12 @@ addons:
     - libvtkgdcm2.2
     - libgdcm-tools
     - cmake
+    - texlive-latex-base
+    - texlive-latex-extra
+    - texlive-fonts-recommended
+    - texlive-latex-recommended
+    - texlive-xetex
 install:
-- PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 - virtualenv virtualenv
 - source virtualenv/bin/activate
 - pip install --upgrade pip setuptools wheel
@@ -39,8 +43,6 @@ before_install:
 - eval `ssh-agent -s`
 - chmod 600 deploy_key
 - ssh-add deploy_key
-- mkdir -p $HOME/texlive && curl -L https://github.com/urdh/texlive-blob/releases/download/20150712/texlive.tar.xz
-  | tar -JxC $HOME/texlive
 - export ITK_DIR=/usr/lib/InsightToolkit
 after_success:
 - cd _site
