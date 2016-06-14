@@ -13,6 +13,8 @@ addons:
     - openssh-client
     - openssh-server
     - libinsighttoolkit3-dev
+    - libvtk5.10
+    - libvtk5-dev
     - cmake
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
