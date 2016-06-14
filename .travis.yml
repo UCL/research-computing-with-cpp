@@ -3,6 +3,11 @@ addons:
   apt:
     packages:
     - pandoc
+    - libboost-all-dev
+    - openmpi-bin
+    - libopenmpi-dev
+    - openssh-client
+    - openssh-server
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 - gem install jekyll
