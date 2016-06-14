@@ -30,6 +30,7 @@ before_install:
 - ssh-add deploy_key
 - mkdir -p $HOME/texlive && curl -L https://github.com/urdh/texlive-blob/releases/download/20150712/texlive.tar.xz
   | tar -JxC $HOME/texlive
+- export ITK_DIR=/usr/lib/InsightToolkit
 after_success:
 - git checkout -b gh-pages
 - git add -f _site
