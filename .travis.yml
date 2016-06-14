@@ -39,9 +39,12 @@ before_install:
   | tar -JxC $HOME/texlive
 - export ITK_DIR=/usr/lib/InsightToolkit
 after_success:
+- cd _site
+- git init
 - git checkout -b gh-pages
-- git add -f _site
 - git config --global user.email "jamespjh@gmail.com"
 - git config --global user.name "Pushed by Travis CI"
+- git add .
 - git commit -m "Pushed by Travis"
-- git push $SSH_REPO `git subtree split --prefix _site gh-pages`:gh-pages --force
+- git remote add origin $SSH_REPO
+- git push -f -u origin gh-pages
