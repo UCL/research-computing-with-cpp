@@ -16,6 +16,7 @@ addons:
     - libvtk5.8
     - libvtk5-dev
     - libvtkgdcm2.0
+    - libgdcm-tools
     - cmake
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
