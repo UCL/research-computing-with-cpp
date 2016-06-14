@@ -1,6 +1,6 @@
 dist: trusty
 sudo: required
-language: cpp
+language: python
 cache:
   - apt
   - pip
@@ -21,9 +21,9 @@ addons:
     - cmake
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
-- sudo -H pip install --upgrade pip setuptools wheel
-- sudo -H pip install matplotlib
-- export PYTHONPATH=/opt/python/2.7.10/lib/python2.7/site-packages
+- pip install --upgrade pip setuptools wheel
+- pip install matplotlib
+- echo $PYTHONPATH
 - python 06MPI/figures/efficient.py 06MPI/figures/efficient.png
 - gem install jekyll
 - gem install redcarpet
