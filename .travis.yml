@@ -23,7 +23,7 @@ install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 - pip install --upgrade pip setuptools wheel
 - pip install matplotlib
-- echo $PYTHONPATH
+- python -c 'import sys; print sys.path'
 - python 06MPI/figures/efficient.py 06MPI/figures/efficient.png
 - gem install jekyll
 - gem install redcarpet
