@@ -12,6 +12,7 @@ addons:
     - libopenmpi-dev
     - openssh-client
     - openssh-server
+    - libinsighttoolkit3-dev
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 - gem install jekyll
