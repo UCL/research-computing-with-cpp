@@ -26,7 +26,7 @@ ParallelWriter::ParallelWriter(Smooth & smooth, int rank, int size)
     :SmoothWriter(smooth,rank,size)
 {
    /// "Open"
-     MPI_File_open(MPI_COMM_WORLD, fname.str().c_str(),
+     MPI_File_open(MPI_COMM_WORLD, const_cast<char *>(fname.str().c_str()),
                 MPI_MODE_CREATE | MPI_MODE_RDWR, MPI_INFO_NULL, &outfile);
   /// "OpenEnd"
 }
