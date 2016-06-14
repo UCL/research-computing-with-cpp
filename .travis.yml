@@ -1,6 +1,6 @@
 dist: trusty
 sudo: required
-language: python
+language: cpp
 cache:
   - apt
   - pip
@@ -21,6 +21,8 @@ addons:
     - cmake
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+- virtualenv virtualenv
+- source virtualenv/bin/activate
 - pip install --upgrade pip setuptools wheel
 - pip install matplotlib
 - python -c 'import sys; print sys.path'
