@@ -21,8 +21,8 @@ addons:
     - cmake
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
-- sudo pip install --upgrade pip setuptools wheel
-- sudo pip install matplotlib
+- sudo -H pip install --upgrade pip setuptools wheel
+- sudo -H pip install matplotlib
 - gem install jekyll
 - gem install redcarpet
 script:
