@@ -13,7 +13,7 @@ addons:
     - openssh-client
     - openssh-server
     - libinsighttoolkit3-dev
-    - libvtk5.10
+    - libvtk5.8
     - libvtk5-dev
     - cmake
 install:
