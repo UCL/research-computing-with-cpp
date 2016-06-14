@@ -16,7 +16,7 @@ addons:
     - libinsighttoolkit3-dev
     - libvtk5.8
     - libvtk5-dev
-    - libvtkgdcm2.0
+    - libvtkgdcm2.2
     - libgdcm-tools
     - cmake
 install:
