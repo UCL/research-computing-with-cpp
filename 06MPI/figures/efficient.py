@@ -1,4 +1,6 @@
 from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.patches as mpatches
 import sys
 figure, axes = plt.subplots()
