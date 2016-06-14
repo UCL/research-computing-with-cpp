@@ -22,6 +22,7 @@ addons:
 install:
 - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 - pip install --upgrade pip setuptools wheel
+- pip install matplotlib
 - gem install jekyll
 - gem install redcarpet
 script:
