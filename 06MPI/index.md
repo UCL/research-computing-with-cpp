@@ -2,9 +2,9 @@
 title: Distributed memory parallelism
 ---
 
-# Distributed Memory Parallelism
+## Distributed Memory Parallelism
 
-### Paradigm
+### The basic idea
 
 * many processes, each with their own data
 

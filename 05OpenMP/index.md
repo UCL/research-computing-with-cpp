@@ -37,4 +37,3 @@ title: Shared memory parallelism
 * More complicated if an iterations have dependencies
 
 [OpenMPhomepage]: http://openmp.org/wp/
-

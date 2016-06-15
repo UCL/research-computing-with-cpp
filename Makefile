@@ -47,16 +47,16 @@ default: _site
    java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
 notes.pdf: combined.md Makefile $(PY_FIGURES)
-	$(PANDOC) --from markdown combined.md -o notes.pdf
+	$(PANDOC) -Vdocumentclass=report --toc --from markdown combined.md -o notes.pdf
 
 %.tmd: %.md liquify.rb _plugins/idio.rb Makefile
 	ruby liquify.rb $< > $@
 
 %.rmd: %.md liquify.rb _plugins/idio.rb Makefile
-		ruby liquify.rb $< rel > $@
+		ruby liquify.rb $< slides > $@
 
-combined.md: $(TEMPLATED)
-	cat $^ > $@
+combined.md: $(TEMPLATED) cover.md
+	cat cover.md $^ > $@
 
 notes.tex: combined.md Makefile $(OUTS)
 	$(PANDOC) --from markdown combined.md -o notes.tex

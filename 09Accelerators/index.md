@@ -2,7 +2,7 @@
 title: Accelerators
 ---
 
-## Accelerators
+## Introduction to Accelerators
 
 ### What is an accelerator?
 

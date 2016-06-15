@@ -1,10 +1,10 @@
 ---
-title: C++ in Research 
+title: C++ in Research
 ---
 
-## C++ in Research
+## C++ In Research
 
-### Research Programming 
+### Research Programming
 
 * Software is Expensive
     * Famous Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
@@ -117,5 +117,3 @@ We aim to:
 * Do High Performance Computing (HPC).
 * Apply it to research in a pragmatic fashion.
 * You need the right tool for the job.
-
-

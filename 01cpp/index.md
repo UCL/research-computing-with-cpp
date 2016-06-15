@@ -1,26 +1,27 @@
 ---
-title: Effective C++ 
+title: Research Computing With C++
+author:
+  - James Hetherington
+  - Matt Clarkson
 ---
 
-## Introduction
+## Course Overview
 
-### Course Overview
+### Part 1
 
 * C++ recap
 * C++ templates, template meta-programming
 * C++ libraries
 * HPC concepts
 
-
-### Course Overview
+### Part 2
 
 * Shared memory parallelism - [OpenMP](http://www.openmp.org)
 * Distributed memory parallelism - [MPI](http://www.open-mpi.org)
 * Accelerators (GPU/OpenACC)
 * Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
-
-### Course Aims
+## Course Aims
 
 * A taster for a lot of technologies
 * Teach how to do research with C++
@@ -28,11 +29,12 @@ title: Effective C++
 * Not just C++ syntax, Google/Compiler could tell you that!
 
 
-### Course Admin
+## Course Admin
+
+### Notes and tools
 
 * UCL Moodle: MPHYG002
 * Online notes: [http://development.rc.ucl.ac.uk/training/rcwithcpp](http://development.rc.ucl.ac.uk/training/rcwithcpp/)
-
 
 ### Course Assessment
 
@@ -54,7 +56,7 @@ title: Effective C++
 * You are familiar with your compiler
 * You are happy with the concept of classes
 * You know C++ up to templates?
-* You are familiar with development eg. version control 
+* You are familiar with development eg. version control
     * Git: [https://git-scm.com/](https://git-scm.com/)
 
 
@@ -65,5 +67,3 @@ title: Effective C++
 * Recap of basic C++
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
- 
-

@@ -2,7 +2,7 @@
 title: Templates
 ---
 
-## Templates
+## Using Templates
 
 ### What Are Templates?
 
@@ -14,7 +14,7 @@ title: Templates
 
 ### Book
 
-* You should read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/) 
+* You should read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
 * 2001, but still excellent text on templates, meta-programming, policy based design etc.
 * This section of course, gives basic introduction for research programmers
 

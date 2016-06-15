@@ -1,7 +1,10 @@
-MPHYG002 Coursework 2: Parallelising Conway's Game of Life
-==========================================================
+---
+title: MPHYG002 Coursework 2 Parallelising Conway's Game of Life
+---
 
-## Serial Solution
+## Assignment 2
+
+### Serial Solution
 
 Build a C++ implementation of Conway's Game of Life. See for example https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life [5 Marks]
 
@@ -13,7 +16,7 @@ Marks Scheme:
 * Well-structured project layout and build system: 1 mark.
 * Use of version control: 1 mark.
 
-## Organising remote computation
+### Organising remote computation
 
 Define an appropriate output file format, and use a script in a dynamic language (Python, MATLAB, R, Ruby, Perl etc)
 to create an mpeg video of your results. Use a script to deploy your serial code on a remote cluster with qsub. [5 marks]
@@ -26,7 +29,7 @@ Marks scheme:
 * Output file and script organisation support reproducible research: 1 mark.
 * Valid job submission script: 1 mark.
 
-## Shared memory parallelism
+### Shared memory parallelism
 
 Parallelise your code using OpenMP.  Create a graph of performance versus core count on a machine with at least
 12 cores. Comment on your findings. [5 Marks]
@@ -39,7 +42,7 @@ Marks scheme:
 * Clear and meaningful scaling graph: 1 mark.
 * Discussion: 1 mark
 
-## Distributed memory parallelism
+### Distributed memory parallelism
 
 Parallelise your code using MPI, with a 2-dimensional spatial decomposition scheme. Create a performance
 graph with at least 12 cores. Comment on your findings. [5 marks]
@@ -52,7 +55,7 @@ Marks scheme:
 * Performance graph, with script to organise measurement runs and clear graph: 1 mark
 * Discussion: 1 mark
 
-## Accelerators
+### Accelerators
 
 Accelerate your serial solution using at least one of CUDA Thrust, CUDA C or OpenCL. Experiment with different thread counts and
 performance optimisations. Measure speedup
@@ -67,7 +70,7 @@ Marks scheme:
 * Speedup analysis and discussion: 1 mark
 * Second accelerator parallelisation: 1 mark.
 
-## Submission of the assignment
+### Submission of the assignment
 
 You should submit your solution via Moodle, including the entire code repository with version control history. Your
 solution should include a text report with a discussion of your project and a clear explanation of how to build and

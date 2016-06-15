@@ -2,7 +2,7 @@
 title: MPI Design Example
 ---
 
-# MPI Design Example
+## MPI Design Example
 
 ### Objectives for this chapter
 

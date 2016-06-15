@@ -2,7 +2,7 @@
 title: MPI File I/O
 ---
 
-# Parallel Input and Output
+## Parallel Input and Output
 
 ### Objectives for the Chapter
 
