@@ -53,7 +53,7 @@ title: Using a GPU as an Accelerator
 
 ### GPU Architecture
 
-![](https://www.pgroup.com/images/insider/pgi-nvidia-block-diagram.png)
+![]({% figurepath %}pgi-nvidia-block-diagram.png)
 
 See [more](http://www.gris.informatik.tu-darmstadt.de/cuda-workshop/tutorial/Advanced_CUDA_01.pdf)
 
