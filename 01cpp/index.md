@@ -1,5 +1,5 @@
 ---
-title: Research Computing With C++
+title: C++ for Research
 author:
   - James Hetherington
   - Matt Clarkson
