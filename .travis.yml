@@ -24,6 +24,7 @@ addons:
     - texlive-fonts-recommended
     - texlive-latex-recommended
     - texlive-xetex
+    - lmodern
 install:
 - virtualenv virtualenv
 - source virtualenv/bin/activate
