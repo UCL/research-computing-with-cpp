@@ -65,8 +65,8 @@ module Idio
 
       raw_sections = ["Beginning"]+raw_sections
 
-      sections= raw_sections.each_slice(2).map{ |k, v|
-        [k.downcase.gsub('"','') , v] }.to_h
+      sections= Hash[raw_sections.each_slice(2).map{ |k, v|
+        [k.downcase.gsub('"','') , v] }]
 
       if not sections.keys.include?(name)
         raise SyntaxError.new("No such idio section as #{name} in #{@path}. Available: #{sections.keys} ")
