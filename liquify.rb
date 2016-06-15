@@ -37,8 +37,7 @@ site.config={
     "fence" => true
   },
   "absolute_figures" => latex,
-  "latex" => latex,
-  "slides" => slides
+  "latex" => latex
 }
 
 page = {
@@ -50,6 +49,6 @@ registers = {
   :page => page
 }
 
-context = Liquid::Context.new({}, {}, registers)
+context = Liquid::Context.new({}, {"site"=>site.config}, registers)
 
 print @template.render(context)
