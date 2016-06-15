@@ -41,3 +41,5 @@ exclude:
   - "*.rb"
   - Makefile
   - CMakeLists.txt
+
+latex: false

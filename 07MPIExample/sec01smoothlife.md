@@ -22,7 +22,7 @@ On the next iteration:
 
 This simple set of rules produces beautiful, complex behaviours:
 
-!["Gospers glider gun" by Kieff. Licensed under CC BY-SA 3.0 via Wikimedia Commons.]({% figurepath %}gun.gif)
+!["Gospers glider gun" by Kieff. Licensed under CC BY-SA 3.0 via Wikimedia Commons.]({% figurepath %}gun.{% if site.config.latex %}png{%else%}gif{% endif%})
 
 ### Smooth Life
 
