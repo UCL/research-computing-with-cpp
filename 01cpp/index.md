@@ -34,7 +34,7 @@ author:
 ### Notes and tools
 
 * UCL Moodle: MPHYG002
-* Online notes: [http://development.rc.ucl.ac.uk/training/rcwithcpp](http://development.rc.ucl.ac.uk/training/rcwithcpp/)
+* Online notes: [http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 
 ### Course Assessment
 

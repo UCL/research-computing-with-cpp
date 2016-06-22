@@ -24,7 +24,7 @@ title: HPC Concepts
 * For tutorial's and practical work you will need:
     * Use of unix shell
     * Submitting jobs on a cluster
-    * See [RITS HPC Training](http://development.rc.ucl.ac.uk/training/hptclegion/)
+    * See [RITS HPC Training](http://github-pages.ucl.ac.uk/RCPSTrainingMaterials/)
     * We'll recap this now
 
 ### Aim
