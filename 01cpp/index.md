@@ -9,8 +9,8 @@ author:
 
 ### Part 1
 
-* C++ recap
-* C++ templates, template meta-programming
+* Very brief C++ recap
+* Reliable, robust C++
 * C++ libraries
 * HPC concepts
 
@@ -64,6 +64,6 @@ author:
 
 * Introduction, course overview, admin
 * Using C++ in research
-* Recap of basic C++
+* Quick recap of basic C++
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
