@@ -10,15 +10,16 @@ author:
 ### Part 1
 
 * Very brief C++ recap
-* Reliable, robust C++
-* C++ libraries
+* Correct C++ - unit testing
+* Reliable C++ - e.g. memory management
+* Reproducible science
 * HPC concepts
 
 ### Part 2
 
 * Shared memory parallelism - [OpenMP](http://www.openmp.org)
 * Distributed memory parallelism - [MPI](http://www.open-mpi.org)
-* Accelerators (GPU/OpenACC)
+* Accelerators (GPU/Thrust)
 * Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
 ## Course Aims
@@ -33,8 +34,9 @@ author:
 
 ### Notes and tools
 
+* Software Engineering: [MPHYG001](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 * UCL Moodle: MPHYG002
-* Online notes: [http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
+* Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 
 ### Course Assessment
 
@@ -67,3 +69,4 @@ author:
 * Quick recap of basic C++
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
+* Using [Git](http://www.git-scm.org)
