@@ -13,18 +13,18 @@ At a high level
     * Smallest 'atomic' chunk of code
     * i.e. Function, could be a Class
 * See also:
-    * Integration Testing
-    * System Testing
+    * Integration/System Testing
+    * Regression Testing
     * User Acceptance Testing
 
 
 ### Benefits of Unit Testing?
 
 * Certainty of correctness
+* (Scientific Rigour)
 * Influences and improves design
 * Confidence to refactor, improve
-* Continuous improvement, development
-* i.e. Your code-base should grow in a controlled manner
+
 
 ### Drawbacks for Unit Testing?
 

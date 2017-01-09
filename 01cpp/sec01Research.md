@@ -14,11 +14,11 @@ title: C++ in Research
 
 ### Research Programming
 
-* Software is Expensive
+* Software is already expensive
     * Famous Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
     * Famous People: [Edsger W. Dijkstra](https://www.cs.utexas.edu/users/EWD/)
-* In research we don't know what the end product is
-* We need to test lots of ideas quickly
+* Research programming is different
+    * What end product?
 
 
 ### What about Methodology?
@@ -58,7 +58,7 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
 * Write as little code as possible
 * Focus tightly on your hypothesis
 * Write the minimum code produces a paper
-* Choose the right language)
+* Choose the right language
 
 Don't fall into the trap "Hey, I'll write a framework for that"
 
