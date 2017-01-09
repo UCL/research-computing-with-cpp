@@ -57,8 +57,8 @@ Examples: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), [matc
 * Your brain is your asset
 * Write as little code as possible
 * Focus tightly on your hypothesis
-
-(i.e. write the minimum that produces a paper, and do it in the right language)
+* Write the minimum code produces a paper
+* Choose the right language)
 
 Don't fall into the trap "Hey, I'll write a framework for that"
 
@@ -68,7 +68,8 @@ Don't fall into the trap "Hey, I'll write a framework for that"
 * I'm not a software engineer
     * Learn effective, minimal tools
 * I don't have time
-    * Unit testing, choose your battles
+    * Unit testing to save time
+    * Choose your battles wisely
 * I'm unsure of my code
     * Share, collaborate
 
@@ -97,7 +98,6 @@ We are NOT suggesting that:
 
 * C++ is the solution to all problems.
 * You should write all parts of your code in C++.
-* Again - this course is not Beginner C++
 
 
 ### What Is This Course?
