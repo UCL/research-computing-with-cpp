@@ -34,7 +34,7 @@ author:
 
 ### Notes and tools
 
-* Software Engineering: [MPHYG001](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
+* Software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
 * UCL Moodle: MPHYG002
 * Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 
@@ -66,7 +66,7 @@ author:
 
 * Introduction, course overview, admin
 * Using C++ in research
-* Quick recap of basic C++
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
 * Using [Git](http://www.git-scm.org)
+* Quick recap of basic C++
