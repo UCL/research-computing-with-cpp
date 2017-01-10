@@ -26,33 +26,13 @@ author:
 * Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
 
-## Course Aims
+### Course Aims
 
 * Teach how to do research with C++
 * Optimise your research output
 * A taster for a lot of technologies
 * Not just C++ syntax, Google/Compiler could tell you that!
 
-
-## Course Admin
-
-### Notes and tools
-
-* Software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
-* UCL Moodle: MPHYG002
-* Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
-
-### Course Assessment
-
-* 3 hour exam
-* 2 pieces coursework - 40 hours each
-    * 1 due 3rd week March
-    * 1 due last week April
-
-### Course Community
-
-* UCL Research Programming Hub: [http://research-programming.ucl.ac.uk](http://research-programming.ucl.ac.uk/)
-* Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
 
 ### Pre-requisites
 
@@ -62,6 +42,28 @@ author:
 * You know C++ up to templates?
 * You are familiar with development eg. version control
     * Git: [https://git-scm.com/](https://git-scm.com/)
+    
+    
+### Course Notes
+
+* Software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
+* UCL Moodle: MPHYG002
+* Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
+
+
+### Course Assessment
+
+* 3 hour exam
+* 2 pieces coursework - 40 hours each
+    * 1 due 3rd week March
+    * 1 due last week April
+
+
+### Course Community
+
+* UCL Research Programming Hub: [http://research-programming.ucl.ac.uk](http://research-programming.ucl.ac.uk/)
+* Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
+
 
 ### Todays Lesson
 
