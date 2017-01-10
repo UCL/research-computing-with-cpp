@@ -23,38 +23,48 @@ subject to change as the course progresses.
 
 ### Lesson 1
 
-* Some C++ reminders
+* Intro, course admin
+* Git quick-start
 * CMake quick-start
 * C++ unit testing framework
-* Design for testability
+* Quick C++ reminder
+
 
 ### Lesson 2
 
-* Templates
-* Template meta-programming
+* Smart Pointers
+* Exceptions
+* Design Patterns
 
 
 ### Lesson 3
 
-* Using libraries
-* Linear algebra (Eigen)
-* Boost
-* ITK (image processing)
+* Templates
+* C++11/C++14 features
+* static asserts
 
 
 ### Lesson 4
 
-* Memory, processors, cores and caches
-* Amdahl's law
-* How parallel computers work
-* Shared and distributed memory 
-* High performance programming
-* Schedulers and job submission 
+* Data structures - STL
 
 
 ### Lesson 5
 
+* Using libraries
+    * Linear algebra (Eigen)
+    * Boost
+* Memory, processors, cores and caches
+* Amdahl's law
+* How parallel computers work
+* High performance programming
+* Schedulers and job submission 
+
+
+### Lesson 6
+
 * Shared memory parallelism
+* Threads
 * OpenMP
 * Parallel sections, reduction 
 * Safety, locks and races
@@ -62,22 +72,17 @@ subject to change as the course progresses.
 * Load balancing
 
 
-### Lesson 6
+### Lesson 7
 
+* Distributed memory parallelism
 * Message passing
 * MPI
 * Send, receive
 * Broadcast, gather, reduce
 
 
-### Lesson 7
-
-* Parallel storage
-* Lustre
-* MPI-IO
-
-
 ### Lesson 8
+
 * Parallel algorithms and design
 * Overlapping communication and calculation
 * Minimising communication
@@ -87,7 +92,7 @@ subject to change as the course progresses.
 
 * Introduction to accelerators
 * CUDA with Thrust
-* OpenACC
+* OpenACC?
 * OpenCL?
 
 
