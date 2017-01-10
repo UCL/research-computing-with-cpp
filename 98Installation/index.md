@@ -8,8 +8,9 @@ title: Installation
 
 This document contains instructions for installation of the packages we'll be using during the
 course. You will be following the training on your own machines, so please complete these instructions.
+You don't need everything before lecture one: you can refer to these instructions as the course proceeds.
 
-###What we're installing
+###What you'll need by the end of the course
 
 * [CMake](http://www.cmake.org) build tool.
 * [Catch](https://github.com/philsquared/Catch) unit testing framework.
