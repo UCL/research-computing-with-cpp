@@ -14,6 +14,7 @@ author:
 * Reliable C++
 * Reproducible science
 
+
 ### Part 2
 
 * HPC concepts
@@ -22,12 +23,14 @@ author:
 * Accelerators (GPU/Thrust)
 * Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
+
 ## Course Aims
 
 * Teach how to do research with C++
 * Optimise your research output
 * A taster for a lot of technologies
 * Not just C++ syntax, Google/Compiler could tell you that!
+
 
 ## Course Admin
 
