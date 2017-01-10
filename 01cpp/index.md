@@ -72,4 +72,3 @@ author:
 * Using [Git](http://www.git-scm.org)
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
-* Quick recap of basic C++
