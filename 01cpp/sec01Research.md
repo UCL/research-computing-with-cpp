@@ -17,7 +17,8 @@ title: C++ in Research
 
 Some people say:
 
-* Compiled language (compiler versions, libraries, platform specific etc)
+* Compiled language 
+    * (compiler versions, libraries, platform specific etc)
 * Perceived as difficult, error prone, wordy, unfriendly syntax
 * Result: It's more trouble than its worth?
 
@@ -93,7 +94,7 @@ Don't fall into the trap "Hey, I'll write a framework for that"
 
 ### Example - NiftyCal
 
-* I should: Practice What We Preach
+* We should: Practice What We Preach
 * Small, algorithms
 * Unit tested
 * Version controlled

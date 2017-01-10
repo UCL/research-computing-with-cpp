@@ -17,6 +17,8 @@ title: Git
 * Complete beginner - [Try Git](https://try.github.io)
 * [Git book by Scott Chacon](https://git-scm.com/book/en/v2)
 * [Git section](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/ch02git/) of MPHYG001
+* [MPHYG001 repo](https://github.com/UCL/rsd-engineeringcourse)
+
 
 ### Git Walk Through
 
@@ -30,6 +32,7 @@ title: Git
 * git push
 * git pull
 * git clone
+* forking
 
 
 ### Homework
@@ -38,4 +41,4 @@ title: Git
 * Create new empty repository - CPPCW1
 * Ensure it is a [private repository - free](https://www.ucl.ac.uk/isd/services/research-it/research-software/github/github-signup/)
 * Find project of interest - try cloning it 
-
+* Find project of interest - try forking it
