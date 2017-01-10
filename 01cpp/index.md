@@ -10,13 +10,13 @@ author:
 ### Part 1
 
 * Very brief C++ recap
-* Correct C++ - unit testing
-* Reliable C++ - e.g. memory management
+* Correct C++ via unit testing
+* Reliable C++
 * Reproducible science
-* HPC concepts
 
 ### Part 2
 
+* HPC concepts
 * Shared memory parallelism - [OpenMP](http://www.openmp.org)
 * Distributed memory parallelism - [MPI](http://www.open-mpi.org)
 * Accelerators (GPU/Thrust)
@@ -24,11 +24,10 @@ author:
 
 ## Course Aims
 
-* A taster for a lot of technologies
 * Teach how to do research with C++
 * Optimise your research output
+* A taster for a lot of technologies
 * Not just C++ syntax, Google/Compiler could tell you that!
-
 
 ## Course Admin
 
@@ -45,12 +44,10 @@ author:
     * 1 due 3rd week March
     * 1 due last week April
 
-
 ### Course Community
 
 * UCL Research Programming Hub: [http://research-programming.ucl.ac.uk](http://research-programming.ucl.ac.uk/)
 * Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
-
 
 ### Pre-requisites
 
@@ -61,12 +58,11 @@ author:
 * You are familiar with development eg. version control
     * Git: [https://git-scm.com/](https://git-scm.com/)
 
-
 ### Todays Lesson
 
 * Introduction, course overview, admin
 * Using C++ in research
+* Using [Git](http://www.git-scm.org)
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
-* Using [Git](http://www.git-scm.org)
 * Quick recap of basic C++

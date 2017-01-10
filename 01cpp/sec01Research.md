@@ -53,6 +53,7 @@ Some people say:
 * What am I trying to achieve?
 * How do I maximise my output?
 * What is the best pathway to success?
+* How do I de-risk my research?
 
 
 ### 1. Types of Code
@@ -76,7 +77,7 @@ Examples: NiftyReg 300 citations in 5 years!
 * Your brain is your asset
 * Write as little code as possible
 * Focus tightly on your hypothesis
-* Write the minimum code produces a paper
+* Write the minimum code that produces a paper
 
 Don't fall into the trap "Hey, I'll write a framework for that"
 
@@ -92,12 +93,12 @@ Don't fall into the trap "Hey, I'll write a framework for that"
 
 ### Example - NiftyCal
 
-* We should: Practice What We Preach
+* I should: Practice What We Preach
 * Small, algorithms
 * Unit tested
 * Version controlled
 * Small number of libraries
-* Increasing research output
+* Increased research output
 
 
 ### Debunking The Excuses

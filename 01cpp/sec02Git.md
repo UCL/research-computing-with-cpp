@@ -16,7 +16,7 @@ title: Git
 
 * Complete beginner - [Try Git](https://try.github.io)
 * [Git book by Scott Chacon](https://git-scm.com/book/en/v2)
-
+* [Git section](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/ch02git/) of MPHYG001
 
 ### Git Walk Through
 

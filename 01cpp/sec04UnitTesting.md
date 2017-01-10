@@ -286,21 +286,26 @@ So, Setup/Tear down is done before/after each section.
 * Aim to get good coverage
 * Some people quote 70% or more
 * What are the downsides?
+* Don't write 'brittle' tests
 
 
 ### Behaviour Driven Development (BDD)
 
 * Behaviour Driven Development (BDD)
-    * Less pre-occupied on testing a known class
+    * Refers to a [whole area](https://en.wikipedia.org/wiki/Behavior-driven_development) of software engineering
+    * With associated tools and practices
     * Think about end-user perspective
-
+    * Think about the desired behaviour not the implementation
+    * See [Jani Hartikainen](https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/) article.
 
 ### TDD Vs BDD
 
 * TDD
     * Test/Design based on methods available
+    * Often ties in implementation details
 * BDD
-    * Test/Design based on behaviour    
+    * Test/Design based on behaviour  
+    * Code to interfaces (later in course)
 * Subtly different
 * Aim for BDD
 
@@ -341,7 +346,7 @@ and tests like:
 * It feels tedious
 * But you want good coverage
 * This often puts people off testing
-* It also produces "brittle", where 1 change brakes many things
+* It also produces "brittle", where 1 change breaks many things
 
 
 ### Anti-Pattern 1: Suggestion.
@@ -357,7 +362,7 @@ and tests like:
     * Provide the bare number of methods
     * Don't provide setters if you don't want them
     * Don't provide getters unless the user needs something
-    * Less to test. Use documentation to describe why
+    * Less to test. Use documentation to describe why.
 
 
 ### Anti-Pattern 2: Constructing Dependent Classes
