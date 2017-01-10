@@ -21,7 +21,7 @@ title: Object Oriented Review
 
 * Can get out of hand as program size increases
 * Can't easily describe relationships between bits of data
-* Relies on  method documentation, functiona and variable names
+* Relies on  method documentation, function and variable names
 * Can't easily control/(enforce control of) access to data
 
 

@@ -1,40 +1,55 @@
 ---
 title: C++ for Research
 author:
-  - James Hetherington
   - Matt Clarkson
+  - Ilektra Christidi
+  - Mayeul D'Avezac
+  - James Hetherington
 ---
 
 ## Course Overview
 
 ### Part 1
 
-* C++ recap
-* C++ templates, template meta-programming
-* C++ libraries
-* HPC concepts
+* Very brief C++ recap
+* Correct C++ via unit testing
+* Reliable C++
+* Reproducible science
+
 
 ### Part 2
 
+* HPC concepts
 * Shared memory parallelism - [OpenMP](http://www.openmp.org)
 * Distributed memory parallelism - [MPI](http://www.open-mpi.org)
-* Accelerators (GPU/OpenACC)
+* Accelerators (GPU/Thrust)
 * Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
-## Course Aims
 
-* A taster for a lot of technologies
+### Course Aims
+
 * Teach how to do research with C++
 * Optimise your research output
+* A taster for a lot of technologies
 * Not just C++ syntax, Google/Compiler could tell you that!
 
 
-## Course Admin
+### Pre-requisites
 
-### Notes and tools
+* You are already doing some C++
+* You are familiar with your compiler
+* You are happy with the concept of classes
+* You know C++ up to templates?
+* You are familiar with development eg. version control
+    * Git: [https://git-scm.com/](https://git-scm.com/)
+    
+    
+### Course Notes
 
+* Software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
 * UCL Moodle: MPHYG002
-* Online notes: [http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
+* Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
+
 
 ### Course Assessment
 
@@ -50,20 +65,11 @@ author:
 * Slack: [https://ucl-programming-hub.slack.com](https://ucl-programming-hub.slack.com/)
 
 
-### Pre-requisites
-
-* You are already doing some C++
-* You are familiar with your compiler
-* You are happy with the concept of classes
-* You know C++ up to templates?
-* You are familiar with development eg. version control
-    * Git: [https://git-scm.com/](https://git-scm.com/)
-
-
 ### Todays Lesson
 
 * Introduction, course overview, admin
 * Using C++ in research
-* Recap of basic C++
+* Using [Git](http://www.git-scm.org)
 * Using [CMake](http://www.cmake.org)
 * Using [Catch](https://github.com/philsquared/Catch) unit testing framework
+* Quick recap of basic C++

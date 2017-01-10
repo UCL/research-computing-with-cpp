@@ -13,8 +13,8 @@ title: Next Steps
 * Here we learn:
     * Some C++ features
     * Some general tips
-* Your code should grow throughout PhD in controlled, thoughtful manner.
-* You science should be repeatable, justifiable
+* Your code should grow throughout PhD/MSc in controlled, thoughtful manner.
+* You science should be repeatable, reproducible by others
 
 
 ### C++ Features

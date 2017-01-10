@@ -16,7 +16,7 @@ to understand and adapt.
 
 * Detailed prior knowledge of C++
 * You are required to bring your own laptop to the course as the classrooms we are using do not have desktop computers.
-* We have provided [setup](99Installation) instructions for installing the software needed for the course on
+* We have provided [setup](98Installation) instructions for installing the software needed for the course on
 your computer.
 * Eligibility: This course is for UCL post-graduate students.
 
@@ -37,7 +37,7 @@ or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
 
 ##Registration
 
-Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers. Other UCL graduate students or post-doctoral staff can register at [UCL Market Place](http://onlinestore.ucl.ac.uk/browse/extra_info.asp?compid=1&modid=5&deptid=126&catid=40&prodid=117).
+Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers. Other UCL graduate students or post-doctoral staff can register at [UCL Market Place](http://onlinestore.ucl.ac.uk/) (search for MPHYG002).
 
 Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://medicalimaging-cdt.ucl.ac.uk/programmes).
 
@@ -50,12 +50,36 @@ This course may not be audited.
   <tr>
    <td>
 
-<h3>Effective C++</h3><ul>
+<h3>Intro</h3><ul>
 
-<li>C++ in research</li>
-<li>C++ concepts recap</li>
-<li>Building with CMake</li>
-<li>Unit Testing C++</li>
+    <li>Intro, course admin</li>
+    <li>Git quick-start</li>
+    <li>CMake quick-start</li>
+    <li>C++ unit testing framework</li>
+    <li>Quick C++ reminder</li>
+
+   </ul></td>
+  <td>
+
+<h3>Shared Memory Parallelism</h3><ul>
+
+    <li>OpenMP</li>
+    <li>Parallel sections, reduction</li>
+    <li>Safety, locks and races</li>
+    <li>Task-oriented parallelism</li>
+    <li>Load balancing</li>
+    <li>OpenMP alternatives</li>
+
+   </ul></td>
+  </tr>
+  <tr>
+   <td>
+
+<h3>Better C++</h3><ul>
+
+  <li>Smart Pointers</li>
+  <li>Exceptions</li>
+  <li>Design Patterns</li>
 
    </ul></td>
    <td>
@@ -67,6 +91,7 @@ This course may not be audited.
    <li>Collective communication</li>
    <li>Groups and communicators</li>
    <li>Advanced communications concepts</li>
+   
 
    </ul></td>
   </tr>
@@ -75,10 +100,9 @@ This course may not be audited.
 
 <h3>Templates</h3><ul>
 
-   <li>Introduction to templates</li>
-   <li>Function templates</li>
-   <li>Class templates</li>
-   <li>Template metaprogramming</li>
+  <li>Templates</li>
+  <li>C++11/C++14 features</li>
+  <li>static asserts</li>
 
    </ul></td>
    <td>
@@ -97,38 +121,9 @@ This course may not be audited.
   <tr>
    <td>
 
-<h3>libraries</h3><ul>
+<h3>Data Structures - STL</h3><ul>
 
-   <li>Working with Libraries</li>
-   <li>EIGEN and Linear Algebra libraries</li>
-   <li>Boost</li>
-   <li>ITK</li>
-
-   </ul></td>
-   <td>
-
-<h3>Input and Output for MPI Programs</h3><ul>
-
-   <li>Write in C++, visualise dynamically</li>
-   <li>Problems with text output</li>
-   <li>Basic binary output</li>
-   <li>Endianness and portability</li>
-   <li>Problems with multiple output files</li>
-   <li>Writing from rank zero</li>
-   <li>Problems with serial IO</li>
-   <li>MPI-IO</li>
-
-   </ul></td>
-  </tr>
-  <tr>
-   <td>
-
-<h3>High Performance computing</h3><ul>
-
-   <li>The story of HPC</li>
-   <li>Parallel computing concepts</li>
-   <li>How to use a supercomputer</li>
-
+   <li>TBC</li>
 
    </ul></td>
    <td>
@@ -139,8 +134,6 @@ This course may not be audited.
    <li>Using a GPU as an Accelerator</li>
    <li>Using GPU-accelerated libraries</li>
    <li>Using CUDA with Thrust</li>
-   <li>OpenACC</li>
-   <li>Writing your own GPU code using CUDA-C</li>
 
    </ul></td>
   </tr>
@@ -148,14 +141,16 @@ This course may not be audited.
   <tr>
    <td>
 
-<h3>Shared memory parallelism</h3><ul>
+<h3>Libraries</h3><ul>
 
-      <li>OpenMP</li>
-      <li>Parallel sections, reduction</li>
-      <li>Safety, locks and races</li>
-      <li>Task-oriented parallelism</li>
-      <li>Load balancing</li>
-      <li>OpenMP alternatives</li>
+    <li>Using libraries</li>
+    <li>Linear algebra (Eigen)</li>
+    <li>Boost</li>
+    <li>Memory, processors, cores and caches</li>
+    <li>Amdahl's law</li>
+    <li>How parallel computers work</li>
+    <li>High performance programming</li>
+    <li>Schedulers and job submission</li>
 
    </ul></td>
    <td>
