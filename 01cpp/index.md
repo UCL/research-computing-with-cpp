@@ -1,8 +1,10 @@
 ---
 title: C++ for Research
 author:
-  - James Hetherington
   - Matt Clarkson
+  - Ilektra Christidi
+  - Mayeul D'Avezac
+  - James Hetherington
 ---
 
 ## Course Overview
