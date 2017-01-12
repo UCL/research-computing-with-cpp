@@ -277,8 +277,9 @@ So, Setup/Tear down is done before/after each section.
     1. Run test, should fail
     1. Implement/Debug functionality
     1. Run test
-        1. if succeed finish
+        1. if succeed goto 5
         1. else goto  3
+    1. Refactor to tidy up
 
 
 ### TDD in practice
