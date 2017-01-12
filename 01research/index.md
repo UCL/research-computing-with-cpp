@@ -11,8 +11,8 @@ author:
 
 ### Part 1
 
-* Very brief C++ recap
 * Correct C++ via unit testing
+* Very brief C++ recap
 * Reliable C++
 * Reproducible science
 

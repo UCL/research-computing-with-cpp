@@ -87,8 +87,9 @@ Don't fall into the trap "Hey, I'll write a framework for that"
 
 * Before contemplating a new piece of software
     * Ask advice - [Slack Channel](https://ucl-programming-hub.slack.com/)
-    * Review libraries to use, and how easy to adopt?
-    * Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://development.rc.ucl.ac.uk/training/engineering/) course
+    * Review libraries and use them.
+    * Check libraries are suitable, and sustainable.
+    * Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/) course
     * Ask about best practices
 
 
