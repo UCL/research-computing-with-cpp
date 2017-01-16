@@ -1,5 +1,5 @@
 ---
-title: Template Meta-Programming
+title: Appendix: Template Meta-Programming
 ---
 
 ## Template Meta-Programming (TMP)

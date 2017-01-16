@@ -1,0 +1,4 @@
+add_subdirectory(TMPFactorial)
+add_subdirectory(TMPLoopUnrolling)
+add_subdirectory(TMPPolicy)
+add_subdirectory(TMPTrait)
