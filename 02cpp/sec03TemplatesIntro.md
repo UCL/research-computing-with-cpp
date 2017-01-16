@@ -6,20 +6,14 @@ title: Templates
 
 ### What Are Templates?
 
-* The broader concept is [Generic Programming](http://en.wikipedia.org/wiki/Generic_programming).
-    * Write code, where 'type' is provided later
-    * Types instantiated at compile time, as they are needed
-    * (Remember, C++ is strongly typed)
+* C++ templates allow functions/classes to operate on generic types.
+* See: [Generic Programming](http://en.wikipedia.org/wiki/Generic_programming).
+* Write code, where 'type' is provided later
+* Types instantiated at compile time, as they are needed
+* (Remember, C++ is strongly typed)
 
 
-### Book
-
-* You should read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
-* 2001, but still excellent text on templates, meta-programming, policy based design etc.
-* This section of course, gives basic introduction for research programmers
-
-
-### You Already Use Them!
+### You May Already Use Them!
 
 You probably use them already. Example type (class):
 
@@ -39,10 +33,17 @@ Aim: Write functions, classes, in terms of future/other/generic types, type prov
 ### Why Are Templates Useful?
 
 * Generic programming:
-    * without pre-processor macros
-    * so, maintaining type safety
+    * not pre-processor macros
+    * so maintain type safety
     * separate algorithm from implementation
     * extensible, optimisable via Template Meta-Programming (TMP)
+
+
+### Book
+
+* You should read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
+* 2001, but still excellent text on templates, meta-programming, policy based design etc.
+* This section of course, gives basic introduction for research programmers
 
 
 ### Are Templates Difficult?
