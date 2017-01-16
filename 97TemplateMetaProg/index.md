@@ -6,6 +6,5 @@ title: Template Meta-Programming
 
 ### No Longer In Course
 
-* Notes provided here for historical reasons.
-* If you are interested
-    * Read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
+* Notes provided [here](sec01TemplateMeta) for historical reasons.
+* Also, read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
