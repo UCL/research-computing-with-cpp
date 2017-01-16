@@ -26,7 +26,7 @@ title: Memory Management
 * From ["Effective Modern C++", Meyers, p117](https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B).
     * Single object or array?
     * If you are done, do you destroy it?
-    * How to destroy it? Call ```delete``` or some method?
+    * How to destroy it? Call ```delete``` or some method first: ```a->Shutdown();```
     * ```delete``` or ```delete[]```?
     * How to ensure you delete it once?
     * Is it dangling?
