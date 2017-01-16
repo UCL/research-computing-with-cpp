@@ -16,6 +16,7 @@ title: Better C++
 
 * Beginners C++ not sufficient
 * Look at
-    * Smart Pointers - memory management
+    * C++ recap
+    * Templates - generic programming
     * Exceptions - error handling
-    * Design patterns - organisation
+    * Construction

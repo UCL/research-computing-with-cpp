@@ -1,13 +1,14 @@
 ---
-title: Summary Of Patterns
+title: Summary
 ---
 
 {% idio cpp %}
 
-## Summary Of Patterns 
+## Summary
 
 ### All Together
 
+* Choose correct data-structure
 * Always use smart pointers
 * Program to interfaces
 * Composition over inheritance
