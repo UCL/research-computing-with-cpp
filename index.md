@@ -77,9 +77,10 @@ This course may not be audited.
 
 <h3>Better C++</h3><ul>
 
-  <li>Smart Pointers</li>
-  <li>Exceptions</li>
-  <li>Design Patterns</li>
+   <li>Quick language recap</li>
+   <li>Templates</li>
+   <li>Error handling</li>
+   <li>Construction</li>
 
    </ul></td>
    <td>
@@ -98,9 +99,10 @@ This course may not be audited.
   <tr>
    <td>
 
-<h3>Templates</h3><ul>
+<h3>More C++</h3><ul>
 
-  <li>Templates</li>
+  <li>Smart Pointers</li>
+  <li>Design Patterns</li>
   <li>C++11/C++14 features</li>
   <li>static asserts</li>
 

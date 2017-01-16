@@ -27,19 +27,20 @@ subject to change as the course progresses.
 * Git quick-start
 * CMake quick-start
 * C++ unit testing framework
-* Quick C++ reminder
 
 
 ### Lesson 2
 
-* Smart Pointers
-* Exceptions
-* Design Patterns
+* Quick language recap
+* Templates
+* Error handling
+* Construction
 
 
 ### Lesson 3
 
-* Templates
+* Smart Pointers
+* Design Patterns
 * C++11/C++14 features
 * static asserts
 
