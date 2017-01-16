@@ -36,7 +36,7 @@ Aim: Write functions, classes, in terms of future/other/generic types, type prov
     * not pre-processor macros
     * so maintain type safety
     * separate algorithm from implementation
-    * extensible, optimisable via Template Meta-Programming (TMP)
+    * extensible, optimisable via [Template Meta-Programming](97TemplateMetaProg) (TMP)
 
 
 ### Book
