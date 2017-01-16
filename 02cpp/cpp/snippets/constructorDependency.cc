@@ -7,11 +7,11 @@ class Foo {
 public:
   Foo()
   {
-    m_Bar.reset(new Bar());
+    m_Bar = new Bar();
   }
 
 private:
-  std::unique_ptr<Bar> m_Bar;
+  Bar* m_Bar;
 };
 
 int main()

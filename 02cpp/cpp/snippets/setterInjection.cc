@@ -8,10 +8,10 @@ public:
   Foo()
   {
   }
-  void SetBar(Bar *b) { m_Bar.reset(b); }
+  void SetBar(Bar *b) { m_Bar = b; }
 
 private:
-  std::unique_ptr<Bar> m_Bar;
+  Bar* m_Bar;
 };
 
 int main()

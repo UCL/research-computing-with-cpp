@@ -11,7 +11,7 @@ public:
   }
 
 private:
-  std::unique_ptr<Bar> m_Bar;
+  Bar* m_Bar;
 };
 
 int main()
