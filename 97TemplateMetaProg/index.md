@@ -1,8 +1,8 @@
 ---
-title: Template Meta-Programming
+title: Appendix - Template Meta-Programming
 ---
 
-## Template Meta-Programming
+## Appendix - Template Meta-Programming
 
 ### No Longer In Course
 
