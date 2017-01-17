@@ -31,20 +31,22 @@ title: Essential Reading
 
 Numbers in brackets refer to Scott Meyers "Effective C++" book.
 
-* Declare data members private (22)
-* Use `const` whenever possible (3) 
-* Make interfaces easy to use correctly and hard to use incorrectly (18)
-* Avoid returning "handles" to object internals (28) 
-* Initialise objects properly. Throw exceptions from constructors. Fail early. (4)
+* Top C++ tips such as:
+    * Declare data members private (22)
+    * Use `const` whenever possible (3) 
+    * Make interfaces easy to use correctly and hard to use incorrectly (18)
+    * Avoid returning "handles" to object internals (28) 
+    * Initialise objects properly. Throw exceptions from constructors. Fail early. (4)
 
 
 ### OO tips
 
-* Never throw exceptions from destructors
-* Prefer non-member non-friend functions to member functions (better encapsulation) (23)
-* Make sure public inheritance really models "is-a" (32) 
-* Learn alternatives to polymorphism (Template Method, Strategy) (35) 
-* Model "has-a" through composition (38) 
+* More general OO tips such as:
+    * Never throw exceptions from destructors
+    * Prefer non-member non-friend functions to member functions (better encapsulation) (23)
+    * Make sure public inheritance really models "is-a" (32) 
+    * Learn alternatives to polymorphism (Template Method, Strategy) (35) 
+    * Model "has-a" through composition (38) 
 
 [Meyers]: http://www.aristeia.com/books.html
 

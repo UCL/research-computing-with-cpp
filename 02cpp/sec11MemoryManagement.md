@@ -10,7 +10,7 @@ title: Memory Management
 
 * Given a pointer passed to a function
 
-``` cpp
+```
    void DoSomethingClever(int *a) 
    {
      // write some code

@@ -27,11 +27,6 @@ title: Function Templates
     * Reduce your effort
     * Also see this [Additional tutorial][TemplatesTutorial].
 
-```c++
-int Add(int a, int b);
-double Add(double a, double b);
-```
-
 
 ### Language Definition 1
 

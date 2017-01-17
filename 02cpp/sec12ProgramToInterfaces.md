@@ -8,7 +8,7 @@ title: Program To Interfaces
 
 ### Why?
 
-* In research code - "just start hacking"
+* In research code we often "just start hacking"
 * You tend to mix interface and implementation
 * Results in client of a class having implicit dependency on the implementation
 * So, define a pure virtual class, not for inheritance, but for clean API 
@@ -28,5 +28,6 @@ title: Program To Interfaces
     * e.g. camera calibration depends on OpenCV
     * define an interface that just exports standard types
     * stops the spread of dependencies
-
+    * Lookup Pimpl idiom
+    
 {% endidio %}

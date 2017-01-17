@@ -54,12 +54,12 @@ title: Object-Oriented Tips
 * But there is also:
       * [Composition](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Strong 'has-a'. Component parts are owned by thing pointing to them.
       * [Aggregation](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Weak 'has-a'. Component part has its own lifecycle.
-      * Association: General term, refering to either composition or aggregation, just a 'pointer-to'
+      * Association: General term, referring to either composition or aggregation, just a 'pointer-to'
 
  
 ### Examples
 
-* Car 'has-a' Engine. Destroying car, you destroy engine. No point having an engine on its own.
+* House 'has-a' set of Rooms. Destroying House, you destroy all Room objects. No point having a House on its own.
 * Department 'has-a' Professor. If a department is shutdown (deleted), Professor should not be deleted. Needs assigning to another department.
 
 

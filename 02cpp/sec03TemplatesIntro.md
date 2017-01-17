@@ -17,13 +17,13 @@ title: Templates
 
 You probably use them already. Example type (class):
 
-```c++
+```
 std::vector<int> myVectorInts;
 ```
 
 Example algorithm: [C++ sort](http://www.cplusplus.com/reference/algorithm/sort/)
 
-```c++
+```
 std::sort(myVectorInts.begin(), myVectorInts.end());
 ```
 
