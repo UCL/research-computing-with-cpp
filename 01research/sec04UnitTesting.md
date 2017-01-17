@@ -393,6 +393,9 @@ Aim to write:
 
 ### End of Lecture?
 
+* Example git repo, CMake, Catch template project:
+    * ```[https://github.com/MattClarkson/CMakeCatchTemplate]```(https://github.com/MattClarkson/CMakeCatchTemplate)
+    
 [GoogleTest]: https://code.google.com/p/googletest/
 [QTestLib]: http://qt-project.org/doc/qt-4.8/qtestlib-manual.html
 [CppUnit]: http://sourceforge.net/projects/cppunit/
