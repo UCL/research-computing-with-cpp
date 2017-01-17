@@ -34,7 +34,7 @@ title: Memory Management
 
 ### Smart Pointers
 
-* ```new/delete```/raw pointers not good enough
+* ```new/delete``` on raw pointers not good enough
 * You will introduce bugs
 * So, use smart pointers
 * Class that looks like a pointer, but smarter
@@ -42,24 +42,17 @@ title: Memory Management
     * more control over sharing
 
 
-### Example
-
-* unique_ptr from [here](http://en.cppreference.com/w/cpp/memory/unique_ptr)
- 
-{% code snippets/unique.cc %}
-
-
 ### Using Smart Pointers
 
 * Varying semantics
-    * [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - models *has-a* but also unique ownership
-    * [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - models *has-a* but shared ownership
-    * [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary reference, breaks circular references
+    * [std::unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - models *has-a* but also unique ownership
+    * [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - models *has-a* but shared ownership
+    * [std::weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary reference, breaks circular references
     * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
     * ["Effective Modern C++", Meyers, ch4](https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B)
 
 
-### Watch out for Boost
+### Comment on Boost
 
 * Boost has become a sandbox for standard C++
 * Boost features become part of standard C++, (different name space)
@@ -72,7 +65,10 @@ title: Memory Management
 ### Intrusive Vs Non-Intrusive
 
 * Intrusive - Base class maintains a reference count eg. [ITK](http://www.itk.org)
-* Non-intrusive - Reference count is in the pointer eg. [Boost](http://www.boost.org)
+* Non-intrusive
+    * ```std::unique_ptr```
+    * ```std::shared_ptr```
+    * ```std::weak_ptr```
 
 Question what are the implications when passing to a function?
 
@@ -86,10 +82,10 @@ Question what are the implications when passing to a function?
 
 * Default to standard library, check compiler
 * Lots of other Smart Pointers
-    * [Boost](http://www.boost.org)
+    * [Boost](http://www.boost.org) (use STL).
     * [ITK](http://www.itk.org)
-    * [Qt Smart Pointers](https://wiki.qt.io/Smart_Pointers)
     * [VTK](http://www.vtk.org/Wiki/VTK/Tutorials/SmartPointers)
+    * [Qt Smart Pointers](https://wiki.qt.io/Smart_Pointers)
 * Don't be tempted to write your own
 * Always read the manual
 * Always consistently use it

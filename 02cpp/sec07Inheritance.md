@@ -52,7 +52,7 @@ title: Object-Oriented Tips
       * 'Has-a' means 'pointer or reference to'
       * eg.`Car` has-a `Engine`
 * But there is also:
-      * [Composition](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Strong 'has-a'. Component parts are owned by thing pointing to them.
+      * [Composition](https://en.wikipedia.org/wiki/Object_composition#Composition): Strong 'has-a'. Component parts are owned by thing pointing to them.
       * [Aggregation](https://en.wikipedia.org/wiki/Object_composition#Aggregation): Weak 'has-a'. Component part has its own lifecycle.
       * Association: General term, referring to either composition or aggregation, just a 'pointer-to'
 

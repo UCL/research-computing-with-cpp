@@ -8,12 +8,11 @@ title: Summary
 
 ### All Together
 
-* Choose correct data-structure
-* Always use smart pointers
 * Program to interfaces
-* Composition over inheritance
+* Prefer composition over inheritance
 * Inject dependencies
 * Use constructional patterns to assemble code
+* Always use smart pointers
 * Always make fully initialised object
 * Use exceptions for errors
 * RAII very useful 
