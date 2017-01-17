@@ -28,6 +28,7 @@ title: Object-Oriented Tips
 * [Wikipedia](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
 * "if S is a subtype of T, then objects of type T may be replaced with objects of type S without altering any of the desirable properties of that program"
 * Can something truely be substituted?
+* If someone else filled a vector of type T, would I care what type I have?
 * Look for:
     * Preconditions cannot be strengthened
     * Postconditions cannot be weakened
