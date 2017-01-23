@@ -28,6 +28,6 @@ title: Program To Interfaces
     * e.g. camera calibration depends on OpenCV
     * define an interface that just exports standard types
     * stops the spread of dependencies
-    * Lookup Pimpl idiom
+    * Lookup [Pimpl](http://en.cppreference.com/w/cpp/language/pimpl) idiom
     
 {% endidio %}

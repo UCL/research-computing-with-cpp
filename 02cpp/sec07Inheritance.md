@@ -1,10 +1,10 @@
 ---
-title: Object-Oriented Tips
+title: Inheritance
 ---
 
 {% idio cpp %}
 
-## Object-Oriented Tips
+## Inheritance
 
 ### Don't overuse Inheritance
 
@@ -33,7 +33,6 @@ title: Object-Oriented Tips
     * Preconditions cannot be strengthened
     * Postconditions cannot be weakened
     * Invariants preserved
-    * History constraint (e.g. mutable point deriving from immutable point)
 
 
 ### What to Look For
@@ -69,6 +68,5 @@ title: Object-Oriented Tips
 * Good article: [Choosing Composition or Inheritance](https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose)
 * Inheritance has much tighter definition than you realise
 * Composition is more flexible 
-* See more later, when we 'code to interfaces'
 
 {% endidio %}
