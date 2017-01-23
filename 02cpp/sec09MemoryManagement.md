@@ -36,18 +36,18 @@ title: Smart Pointers
 
 * ```new/delete``` on raw pointers not good enough
 * So, use smart pointers
-* Use Smart Points
+* Use Smart Pointers
     * automatically delete pointed to object
     * more control over sharing
     * i.e. smarter
-* Describes "ownership" and manages it
+* Smart Pointers model "ownership"
 
 
 ### Further Reading
 
 * Notes here are based on these:
     * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
-    * ["Effective Modern C++", Meyers, ch4](https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B)
+    * ["Effective Modern C++", Meyers, ch4](Meyers14)
 
 
 ### Standard Library Smart Pointers
@@ -85,7 +85,7 @@ title: Smart Pointers
 * Its the pointer (stack allocated) that's deleted.
 
 
-### Unique Ptr - No Leak.
+### Unique Ptr - Unique Ownership
 
 * So:
 
@@ -99,7 +99,7 @@ title: Smart Pointers
 * Is that it?
 
 
-### Check Uniqueness - Move?
+### Unique Ptr - Move?
 
 * Does move work?
 
@@ -118,6 +118,39 @@ title: Smart Pointers
     * No copy constructor
     * No assignment
 * Can't assign a raw pointer
+* Consequently
+    * Can't pass pointer by value
+    * Use move semantics for placing in containers
+    
+
+### Unique Ptr - Usage 2
+
+* Put raw pointer STRAIGHT into unique_ptr
+
+{% code memory/fractionOnHeapUniquePtr.cc %}
+
+
+### Shared Ptr - Shared Ownership
+
+* Many pointers pointing to same object
+* Object only deleted if no pointers refer to it
+* Achieved via reference counting
+
+
+### Shared Ptr Control Block
+
+* Won't go to too many details:
+<img src="https://www.safaribooksonline.com/library/view/effective-modern-c/9781491908419/assets/emcp_04in02.png" alt="Control Block">
+
+* From ["Effective Modern C++", Meyers, p140](Meyers14)
+
+
+### Shared Ptr - Usage 1
+
+* Watch out for exceptions.
+* ["Effective Modern C++", Meyers, p140](Meyers14)
+
+{% code memory/fractionExceptionProblem.cc %}
 
 ### Comment on Boost
 
@@ -160,3 +193,5 @@ Question what are the implications when passing to a function?
 * Always consistently use it
 
 {% endidio %}
+
+Meyers14 : https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B
