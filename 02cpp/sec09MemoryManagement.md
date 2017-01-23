@@ -1,5 +1,5 @@
 ---
-title: Memory Management 
+title: Smart Pointers
 ---
 
 {% idio cpp %}
