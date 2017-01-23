@@ -45,8 +45,8 @@ title: Smart Pointers
 ### Further Reading
 
 * Notes here are based on these:
-    * [David Kieras online paper](DavidK)
-    * ["Effective Modern C++", Meyers, ch4](Meyers14)
+    * [David Kieras online paper][DavidK]
+    * ["Effective Modern C++", Meyers, ch4][Meyers14]
 
 
 ### Standard Library Smart Pointers
@@ -141,7 +141,7 @@ title: Smart Pointers
 * Won't go to too many details:
 <img src="https://www.safaribooksonline.com/library/view/effective-modern-c/9781491908419/assets/emcp_04in02.png" alt="Control Block">
 
-* From ["Effective Modern C++", Meyers, p140](Meyers14)
+* From ["Effective Modern C++", Meyers, p140][Meyers14]
 
 
 ### Shared Ptr - Usage 1
@@ -159,7 +159,7 @@ title: Smart Pointers
 ### Shared Ptr - Usage 3
 
 * Watch out for exceptions.
-* ["Effective Modern C++", Meyers, p140](Meyers14)
+* ["Effective Modern C++", Meyers, p140][Meyers14]
 
 {% code memory/fractionExceptionProblem.cc %}
 
@@ -184,14 +184,14 @@ title: Smart Pointers
 
 ### Weak Ptr - Example
 
-* See [David Kieras online paper](DavidK)
+* See [David Kieras online paper][DavidK]
         
 {% code memory/fractionOnHeapWeakPtr.cc %}
         
 ### Final Advice
 
 * Benefits of immediate, fine-grained, garbage collection
-* Just ask [Scott Meyers!](Meyers14)
+* Just ask [Scott Meyers!][Meyers14]
     * Use ```unique_ptr``` for unique ownership
     * Easy to convert ```unique_ptr``` to ```shared_ptr```
     * But not the reverse
@@ -238,5 +238,5 @@ title: Smart Pointers
 
 {% endidio %}
 
-Meyers14: https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B
-DavidK: http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf
+[Meyers14]: https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B
+[DavidK]: http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf
