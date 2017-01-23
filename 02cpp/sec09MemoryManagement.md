@@ -32,24 +32,71 @@ title: Smart Pointers
     * Is it dangling?
 
 
-### Smart Pointers
+### Use Smart Pointers
 
 * ```new/delete``` on raw pointers not good enough
-* You will introduce bugs
 * So, use smart pointers
-* Class that looks like a pointer, but smarter
+* Use Smart Points
     * automatically delete pointed to object
     * more control over sharing
+    * i.e. smarter
+* Describes "ownership" and manages it
 
 
-### Using Smart Pointers
+### Further Reading
 
-* Varying semantics
+* Notes here are based on these:
+    * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
+    * ["Effective Modern C++", Meyers, ch4](https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B)
+
+
+### Standard Library Smart Pointers
+
+* Here we teach Standard Library
     * [std::unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) - models *has-a* but also unique ownership
     * [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) - models *has-a* but shared ownership
     * [std::weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) - temporary reference, breaks circular references
-    * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
-    * ["Effective Modern C++", Meyers, ch4](https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B)
+
+
+### Stack Allocated - No Leak.
+
+* To recap:
+
+{% code memory/fractionOnStack.cc %}
+
+* Gives:
+
+{% code memory/fractionOnStack.out %}
+
+* So stack allocated objects are deleted, when stack unwinds.
+
+
+### Heap Allocated - Leak.
+
+* To recap:
+
+{% code memory/fractionOnHeap.cc %}
+
+* Gives:
+
+{% code memory/fractionOnHeap.out %}
+
+* So heap allocated objects are not deleted.
+* Its the pointer (stack allocated) that's deleted.
+
+
+### Unique Ptr - No Leak.
+
+* So:
+
+{% code memory/fractionOnHeapUniquePtr.cc %}
+
+* Gives:
+
+{% code memory/fractionOnHeapUniquePtr.out %}
+
+* And object is deleted.
+* Is that it?
 
 
 ### Comment on Boost
@@ -60,6 +107,8 @@ title: Smart Pointers
 * So check your compiler version
     * e.g. For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
 * Or you could fall back to boost ones
+
+
 
 
 ### Intrusive Vs Non-Intrusive
