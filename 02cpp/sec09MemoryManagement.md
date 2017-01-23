@@ -99,6 +99,19 @@ title: Smart Pointers
 * Is that it?
 
 
+### Check Uniqueness - Move?
+
+* Does move work?
+
+{% code memory/fractionUniquePtrMove.cc %}
+
+* Gives:
+
+{% code memory/fractionUniquePtrMove.out %}
+
+* We see that API makes difficult to use incorrectly.
+
+
 ### Comment on Boost
 
 * Boost has become a sandbox for standard C++
