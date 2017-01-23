@@ -14,11 +14,11 @@ int main() {
   std::shared_ptr<Fraction> s2 = w1.lock();
   if (s2)
   {
-    std::cerr << "Object w1 exists=" << s2->numerator << "/" << s2->denominator << std::endl;
+    std::cout << "Object w1 exists=" << s2->numerator << "/" << s2->denominator << std::endl;
   }
 
   // Or, create shared, check for exception
   std::shared_ptr<Fraction> s3(w2);
-  std::cerr << "Object must exists=" << s3->numerator << "/" << s3->denominator << std::endl;
+  std::cout << "Object must exists=" << s3->numerator << "/" << s3->denominator << std::endl;
 }
 

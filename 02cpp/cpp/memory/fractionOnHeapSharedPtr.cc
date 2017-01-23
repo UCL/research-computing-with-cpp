@@ -14,7 +14,7 @@ int main() {
   std::shared_ptr<Fraction> f2 = f1;
   divideBy2(f1);
   multiplyBy2(f2);
-  std::cerr << "Value=" << f1->numerator << "/" << f1->denominator << std::endl;
-  std::cerr << "f1=" << f1.get() << ", f2=" << f2.get() << std::endl;
+  std::cout << "Value=" << f1->numerator << "/" << f1->denominator << std::endl;
+  std::cout << "f1=" << f1.get() << ", f2=" << f2.get() << std::endl;
 }
 

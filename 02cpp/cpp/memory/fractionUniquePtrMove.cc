@@ -13,9 +13,9 @@ int main() {
   // f2.reset(f.get()); // bad idea
 
   f2.reset(f.release());
-  std::cerr << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
+  std::cout << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
 
   f = std::move(f2);
-  std::cerr << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
+  std::cout << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
 }
 
