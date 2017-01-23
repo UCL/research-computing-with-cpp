@@ -34,15 +34,13 @@ subject to change as the course progresses.
 * Quick language recap
 * Templates
 * Error handling
-* Construction
 
 
 ### Lesson 3
 
 * Smart Pointers
+* Construction
 * Design Patterns
-* C++11/C++14 features
-* static asserts
 
 
 ### Lesson 4
