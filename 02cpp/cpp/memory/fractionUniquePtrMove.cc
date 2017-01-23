@@ -11,8 +11,9 @@ int main() {
 
   std::unique_ptr<Fraction> f2;
   // f2 = f; // compile error
+  // f2.reset(f.get()); // bad idea
 
-  f2.reset(f.get());
+  f2.reset(f.release());
 
   std::cerr << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
 

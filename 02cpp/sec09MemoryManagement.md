@@ -112,6 +112,13 @@ title: Smart Pointers
 * We see that API makes difficult to use incorrectly.
 
 
+### Unique Ptr - Usage 1
+
+* Forces you to think about ownership 
+    * No copy constructor
+    * No assignment
+* Can't assign a raw pointer
+
 ### Comment on Boost
 
 * Boost has become a sandbox for standard C++
