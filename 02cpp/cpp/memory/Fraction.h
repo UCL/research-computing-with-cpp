@@ -2,7 +2,7 @@ class Fraction {
 public:
   Fraction(int n, int d);
   virtual ~Fraction();
-private:
+public:
   int numerator;
   int denominator;
 };

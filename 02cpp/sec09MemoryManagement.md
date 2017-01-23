@@ -147,10 +147,33 @@ title: Smart Pointers
 
 ### Shared Ptr - Usage 1
 
+* Place raw pointer straight into shared_ptr
+* Pass to functions, reference or by value
+* Copy/Move constructors and assignment all implemented
+
+
+### Shared Ptr - Usage 2
+
+{% code memory/fractionOnHeapSharedPtr.cc %}
+
+
+### Shared Ptr - Usage 3
+
 * Watch out for exceptions.
 * ["Effective Modern C++", Meyers, p140](Meyers14)
 
 {% code memory/fractionExceptionProblem.cc %}
+
+
+### Shared Ptr - Usage 4
+
+* Prefer ```std::make_shared```
+
+
+
+### Final Advice
+
+
 
 ### Comment on Boost
 
@@ -172,8 +195,6 @@ title: Smart Pointers
     * ```std::shared_ptr```
     * ```std::weak_ptr```
 
-Question what are the implications when passing to a function?
-
 
 ### ITK (intrusive) Smart Pointers
 
@@ -191,6 +212,7 @@ Question what are the implications when passing to a function?
 * Don't be tempted to write your own
 * Always read the manual
 * Always consistently use it
+
 
 {% endidio %}
 

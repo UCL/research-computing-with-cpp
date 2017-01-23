@@ -8,7 +8,7 @@ int checkSomething(const std::shared_ptr<Fraction>& f, const int& i)
 }
 int computeSomethingFirst()
 {
-  throw std::runtime_error("Oh dear!");
+  // what if this throws?
 }
 int main()
 {
