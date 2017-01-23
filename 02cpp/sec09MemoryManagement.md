@@ -4,7 +4,7 @@ title: Smart Pointers
 
 {% idio cpp %}
 
-## Memory Management 
+## Smart Pointers
 
 ### Use of Raw Pointers
 
@@ -24,23 +24,22 @@ title: Smart Pointers
 ### Problems with Raw Pointers
 
 * From ["Effective Modern C++", Meyers, p117](https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B).
-    * Single object or array?
     * If you are done, do you destroy it?
     * How to destroy it? Call ```delete``` or some method first: ```a->Shutdown();```
+    * Single object or array?
     * ```delete``` or ```delete[]```?
-    * How to ensure you delete it once?
-    * Is it dangling?
+    * How to ensure the whole system only deletes it once?
+    * Is it dangling, if I don't delete it?
 
 
 ### Use Smart Pointers
 
 * ```new/delete``` on raw pointers not good enough
-* So, use smart pointers
-* Use Smart Pointers
+* So, use Smart Pointers
     * automatically delete pointed to object
-    * more control over sharing
+    * explicit control over sharing
     * i.e. smarter
-* Smart Pointers model "ownership"
+* Smart Pointers model the "ownership"
 
 
 ### Further Reading
