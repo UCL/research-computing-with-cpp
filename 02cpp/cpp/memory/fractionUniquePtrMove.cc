@@ -4,7 +4,7 @@
 
 int main() {
   std::unique_ptr<Fraction> f(new Fraction(1,4));
-  // std::unique_ptr<Fraction> f2 = f; // compile error
+  // std::unique_ptr<Fraction> f2(f); // compile error
 
   std::cerr << "f=" << f.get() << std::endl;
 
@@ -13,8 +13,9 @@ int main() {
   // f2.reset(f.get()); // bad idea
 
   f2.reset(f.release());
-
   std::cerr << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
 
+  f = std::move(f2);
+  std::cerr << "f=" << f.get() << ", f2=" << f2.get() << std::endl;
 }
 
