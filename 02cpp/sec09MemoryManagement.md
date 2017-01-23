@@ -116,7 +116,6 @@ title: Smart Pointers
 * Forces you to think about ownership 
     * No copy constructor
     * No assignment
-* Can't assign a raw pointer
 * Consequently
     * Can't pass pointer by value
     * Use move semantics for placing in containers
