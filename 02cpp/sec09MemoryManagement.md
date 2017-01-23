@@ -193,6 +193,13 @@ title: Smart Pointers
 ### Final Advice
 
 * Benefits of immediate, fine-grained, garbage collection
+* Just ask [Scott Meyers!](Meyers14)
+    * Use ```unique_ptr``` for unique ownership
+    * Easy to convert ```unique_ptr``` to ```shared_ptr```
+    * But not the reverse
+    * Use ``shared_ptr``` for shared resource management
+    * Avoid raw ```new``` - use ```make_shared```, ```make_unique```
+    * Use ```weak_ptr``` for pointers that can dangle (cache etc)
 
 
 ### Comment on Boost
@@ -203,8 +210,6 @@ title: Smart Pointers
 * So check your compiler version
     * e.g. For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
 * Or you could fall back to boost ones
-
-
 
 
 ### Intrusive Vs Non-Intrusive
