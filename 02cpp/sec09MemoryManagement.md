@@ -46,7 +46,7 @@ title: Smart Pointers
 ### Further Reading
 
 * Notes here are based on these:
-    * [David Kieras online paper](http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf)
+    * [David Kieras online paper](DavidK)
     * ["Effective Modern C++", Meyers, ch4](Meyers14)
 
 
@@ -168,11 +168,31 @@ title: Smart Pointers
 ### Shared Ptr - Usage 4
 
 * Prefer ```std::make_shared```
+* Exception safe
+
+{% code memory/fractionExceptionMakeShared.cc %}
 
 
+### Weak Ptr - Why?
 
+* Like a shared pointer, but doesn't actually own anything
+* Use for example:
+    * Caches
+    * Break circular pointers
+* Limited API
+* Not terribly common
+    * Most code ends up as hierarchies
+
+
+### Weak Ptr - Example
+
+* See [David Kieras online paper](DavidK)
+        
+{% code memory/fractionOnHeapWeakPtr.cc %}
+        
 ### Final Advice
 
+* Benefits of immediate, fine-grained, garbage collection
 
 
 ### Comment on Boost
@@ -217,3 +237,4 @@ title: Smart Pointers
 {% endidio %}
 
 Meyers14 : https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B
+DavidK : http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf
