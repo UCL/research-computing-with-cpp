@@ -124,6 +124,7 @@ title: Smart Pointers
 ### Unique Ptr - Usage 2
 
 * Put raw pointer STRAIGHT into unique_ptr
+* see ```std::make_unique``` in C++14.
 
 {% code memory/fractionOnHeapUniquePtr.cc %}
 
@@ -178,8 +179,7 @@ title: Smart Pointers
     * Caches
     * Break circular pointers
 * Limited API
-* Not terribly common
-    * Most code ends up as hierarchies
+* Not terribly common as most code ends up as hierarchies
 
 
 ### Weak Ptr - Example
@@ -195,7 +195,7 @@ title: Smart Pointers
     * Use ```unique_ptr``` for unique ownership
     * Easy to convert ```unique_ptr``` to ```shared_ptr```
     * But not the reverse
-    * Use ``shared_ptr``` for shared resource management
+    * Use ```shared_ptr``` for shared resource management
     * Avoid raw ```new``` - use ```make_shared```, ```make_unique```
     * Use ```weak_ptr``` for pointers that can dangle (cache etc)
 
@@ -204,10 +204,8 @@ title: Smart Pointers
 
 * Boost has become a sandbox for standard C++
 * Boost features become part of standard C++, (different name space)
-* So smart pointers from boost may be in your compiler under `std::`
-* So check your compiler version
-    * e.g. For [MITK](http://www.mitk.org)/[NifTK](http://www.niftk.org): C++11: gcc 4.7.3, clang 3.4, apple clang 5.0, MSVC 17.0.61030.0 (2012 update 4)
-* Or you could fall back to boost ones
+* So if you are forced to use old compiler
+    * You could use boost - lecture 5.
 
 
 ### Intrusive Vs Non-Intrusive
@@ -217,7 +215,8 @@ title: Smart Pointers
     * ```std::unique_ptr```
     * ```std::shared_ptr```
     * ```std::weak_ptr```
-
+    * works for any class
+    
 
 ### ITK (intrusive) Smart Pointers
 
@@ -239,5 +238,5 @@ title: Smart Pointers
 
 {% endidio %}
 
-Meyers14 : https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B
-DavidK : http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf
+Meyers14: https://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/ref=sr_1_1?ie=UTF8&qid=1484571499&sr=8-1&keywords=Effective+Modern+C%2B%2B
+DavidK: http://www.umich.edu/~eecs381/handouts/C++11_smart_ptrs.pdf
