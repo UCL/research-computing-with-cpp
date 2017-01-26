@@ -13,7 +13,7 @@ addons:
     - libopenmpi-dev
     - openssh-client
     - openssh-server
-    - libinsighttoolkit3-dev
+    - libinsighttoolkit4-dev
     - libvtk5.8
     - libvtk5-dev
     - libvtkgdcm2.2
