@@ -1,0 +1,5 @@
+add_executable(sortArrays.x sortArrays.cc )
+add_executable(sortArraysCont.x sortArraysCont.cc )
+add_executable(particlesMMap.x particlesMMap.cc )
+add_executable(particlesMap.x particlesMap.cc )
+add_executable(particlesSet.x particlesSet.cc )

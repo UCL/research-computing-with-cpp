@@ -13,6 +13,20 @@ cd research-computing-with-cpp
 ./build.sh
 ```
 
+You will need to have a bunch of stuff installed in order for the build to succeed:
+* Libraries:
+   * `brew install boost`
+   * `brew tap homebrew/science`
+     `brew install insighttoolkit`
+* Ruby stuff:
+   * `brew install ruby`
+   * `gem install liquid`
+   * `gem install jekyll`
+   * `gem install redcarpet`
+
+Then in folder _site, you'll have the `html`'s.
+Or, for a shortcut: `make preview`
+
 See https://github.com/UCL-RITS/research-computing-with-cpp/blob/master/01cpp/index.md for an example of how to reference a C file, CMake file, and run an executable
 
 And https://github.com/UCL-RITS/research-computing-with-cpp/tree/master/01cpp/cpp/hello

@@ -1,0 +1,9 @@
+proton 4.5
+electron 17.8
+pion 4.6
+muon 12.0
+pion 3.2
+neutrino 8.2
+pion 23.7
+proton 9.4
+neutrino 6.7
