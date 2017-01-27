@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # Apparently now this is also needed for ITK-related stuff to compile...
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
+add_compile_options(-fpermissive)
 
 add_subdirectory(01research/cpp)
 add_subdirectory(02cpp/cpp)
