@@ -1,6 +1,6 @@
 mkdir -p build
 cd build
 cmake ..
-make
+make VERBOSE=1
 cd ..
-make
+make VERBOSE=1
