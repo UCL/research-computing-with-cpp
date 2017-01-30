@@ -13,6 +13,5 @@ title: The Standard Template Library
      * Associative
 * Iterators
 * I/O streams
-* Functors/functions/functionals
-     * lamdas
-* Some algorithms
+* Functors/functions
+* Algorithms
