@@ -1,26 +1,26 @@
-#include <stdio.h>
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 
 int main()
 {
-  FILE* if1 = fopen("02stl/cpp/randomNumbers1.txt","r");
-  FILE* if2 = fopen("02stl/cpp/randomNumbers2.txt","r");
+  std::ifstream if1("02stl/cpp/randomNumbers1.txt",std::ifstream::in);
+  std::ifstream if2("02stl/cpp/randomNumbers2.txt",std::ifstream::in);
 
   // Read in the data.
   int number;
   std::vector<int> theArray;
-  while (!feof(if1)) {
-    fscanf(if1, "%d",&number);
-    if (!feof(if1)) theArray.push_back(number);
+  while (!if1.eof()) {
+    if1 >> number;
+    if (!if1.eof()) theArray.push_back(number);
   }
-  while (!feof(if2)) {
-    fscanf(if2, "%d",&number);
-    if (!feof(if2)) theArray.push_back(number);
+  while (!if2.eof()) {
+    if2 >> number;
+    if (!if2.eof()) theArray.push_back(number);
   }
-  fclose(if1);
-  fclose(if2);
+  if1.close();
+  if2.close();
 
   // Sort and output
   std::sort(theArray.begin(),theArray.end());

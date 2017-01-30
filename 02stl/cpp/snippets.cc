@@ -19,18 +19,16 @@ for ( ; it!=mylist.end(); ++it) {
 #include <utility>      // std::pair
 
 int main () {
-  std::pair <int,int> foo;                                     // default constructor
-  std::pair <std::string,double> product1;                     // default constructor
-  std::pair <std::string,double> product2("tomatoes",2.30);   // value init
+  std::pair<std::string,double> product1;                    // default constructor
+  std::pair<std::string,double> product2("tomatoes",2.30);   // value init
 
-  foo = std::make_pair (10,20);
-  product1 = std::make_pair(std::string("lightbulbs"),0.99);   // using make_pair
+  auto foo = std::make_pair (10,20);                   // created a std::pair<int,int>
+  product1 = std::make_pair(std::string("lightbulbs"),0.99);  // using make_pair
 
   product2.first = "shoes";                  // the type of first is string
   product2.second = 39.90;                   // the type of second is double
 
   std::cout << "foo: " << foo.first << ", " << foo.second << '\n';
-  std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
 
   return 0;
 }

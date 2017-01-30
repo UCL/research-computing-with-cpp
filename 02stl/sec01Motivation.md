@@ -14,20 +14,14 @@ Because you have better things to do than rediscovering the wheel.
 Task: Read in two files with an unknown number of integers, and sort them altogether.
 
 
-### Brute-force solution
+### The **WRONG** way to do it!
 
 {% code sortArrays.cc %}
-
-Output:
-{% code sortArrays.out %}
 
 
 ### STL solution
 
 {% code sortArraysCont.cc %}
-
-Output:
-{% code sortArraysCont.out %}
 
 
 ### More conveniences

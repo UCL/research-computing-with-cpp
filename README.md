@@ -13,10 +13,12 @@ cd research-computing-with-cpp
 ./build.sh
 ```
 
-You will need to have a bunch of stuff installed in order for the build to succeed:
+You will need to have a bunch of stuff installed in order for the build to succeed.
+For Mac:
 * Libraries:
    * `brew install boost`
    * `brew tap homebrew/science`
+   
      `brew install insighttoolkit`
 * Ruby stuff:
    * `brew install ruby`

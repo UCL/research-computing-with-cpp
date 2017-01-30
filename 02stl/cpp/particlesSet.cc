@@ -1,13 +1,16 @@
-#include <stdio.h>
 #include <vector>
 #include <set>
 #include <string>
 #include <iostream>
+#include <fstream>
 
 /// comparator
 class compMass {
 public:
-  bool operator() (std::string s1, std::string s2)
+  compMass() :
+    m_particlesOrdered({"neutrino", "electron", "muon", "pion", "kaon", "proton"})
+  {};
+  bool operator() (const std::string& s1, const std::string& s2) const
   {
     int index1=-1, index2=-1;
     for (int i=0;i<m_particlesOrdered.size();++i) {
@@ -17,24 +20,24 @@ public:
     return index1<index2; // unknown particles appear first (index=-1)
   }
 private:
-  const std::vector<std::string> m_particlesOrdered =
-    {"neutrino", "electron", "muon", "pion", "kaon", "proton"};
+  std::vector<std::string> m_particlesOrdered;
 };
 
 
 /// main
 int main()
 {
-  FILE* ifp = fopen("02stl/cpp/particleList.txt","r");
+  std::ifstream ifs("02stl/cpp/particleList.txt",std::ifstream::in);
 
   // Read in the data
   std::set<std::string,compMass> theParticles;
-  char name[80];
-  while (!feof(ifp)) {
-    fscanf(ifp, "%s %*f", name);
-    if (!feof(ifp)) theParticles.insert( std::string(name) );
+  std::string name;
+  double momentum;
+  while (!ifs.eof()) {
+    ifs >> name >> momentum;
+    if (!ifs.eof()) theParticles.insert( std::string(name) );
   }
-  fclose(ifp);
+  ifs.close();
 
   // Output - it's already sorted!
   std::set<std::string>::iterator iter = theParticles.begin();
