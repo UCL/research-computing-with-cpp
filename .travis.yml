@@ -55,5 +55,6 @@ after_success:
 - git add .
 - git commit -m "Pushed by Travis"
 - git remote add origin $SSH_REPO
-- "[ \"$TRAVIS_BRANCH$TRAVIS_PULL_REQUEST\" -eq \"masterfalse\" ] && git push -f -u origin gh-pages || true"
+- echo $TRAVIS_BRANCH $TRAVIS_PULL_REQUEST
+- "[ \"$TRAVIS_BRANCH$TRAVIS_PULL_REQUEST\" == \"masterfalse\" ] && git push -f -u origin gh-pages || true"
 
