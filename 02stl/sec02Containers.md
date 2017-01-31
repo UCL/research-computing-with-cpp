@@ -68,6 +68,15 @@ std::cout << " after = " << myVec.size() << "\n";
 `Vector size before = 10 after = 5`
 
 
+### Note on C++11
+
+* For all containers, `emplace(const_iterator position, Args&&... args)` is preferable to `insert(const_iterator position, const value_type& val)`, as it doesn't create any copies of the object you add to the container.
+* Cases you might prefer something other than `emplace`:
+    * backward compatibility
+    * `insert` has more constructors
+    * at least `emplace_back` might not work as expected in some implementations
+
+
 ### Exercise
 
 Think of cases where you'd use a specific container

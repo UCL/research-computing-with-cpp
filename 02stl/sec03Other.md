@@ -107,3 +107,16 @@ fifth(sixty): 12
 
 * A collection of functions especially designed to be used on ranges of elements.
 * Don't start coding any task, before checking if it's already there!
+
+```cpp
+std::sort(RandomAccessIter first, RandomAccessIter last, Compare comp)
+
+std::transform(InIter first, InIter last, OutIter res, UnaryOp op)
+std::transform(InIter1 first1, InIter1 last1, InIter2 first2, OutIter res, BinaryOp op)
+
+std::for_each (InIter first, InIter last, Function fn)
+
+std::max_element(ForwardIter first, ForwardIter last, Compare comp)
+std::min_element(ForwardIter first, ForwardIter last, Compare comp)
+std::minmax_element(ForwardIter first, ForwardIter last, Compare comp)
+```
