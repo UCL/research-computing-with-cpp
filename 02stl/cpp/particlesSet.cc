@@ -35,7 +35,7 @@ int main()
   double momentum;
   while (!ifs.eof()) {
     ifs >> name >> momentum;
-    if (!ifs.eof()) theParticles.insert( std::string(name) );
+    if (!ifs.eof()) theParticles.insert(name);
   }
   ifs.close();
 

@@ -13,7 +13,7 @@ int main()
   while (!ifs.eof()) {
     ifs >> name >> momentum;
     if (!ifs.eof())
-      theParticles.insert( std::pair<std::string,double>(std::string(name),momentum) );
+      theParticles.insert( std::pair<std::string,double>(name,momentum) );
   }
   ifs.close();
   // Output - it's already sorted!

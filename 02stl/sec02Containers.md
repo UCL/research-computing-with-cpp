@@ -174,7 +174,7 @@ Hint: extend the map class. - How?
 
 Then use it in the loop when filling the container:
 
-`if (!feof(ifp)) keepMax( theParticles,std::string(name),momentum );`
+`if (!feof(ifp)) keepMax( theParticles,name,momentum );`
 
 
 ### Task 3 - with composition
