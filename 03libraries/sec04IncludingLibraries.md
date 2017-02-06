@@ -1,8 +1,8 @@
 ---
-title: Linking Libraries
+title: Including Libraries
 ---
 
-## Linking libraries
+## Including libraries
 
 ### Aim
 
@@ -189,8 +189,9 @@ set(CMAKE_MODULE_PATH
 * You can write your own
     * e.g. FindEigen in [CMakeCatchTemplate](https://github.com/MattClarkson/CMakeCatchTemplate/blob/master/CMake/FindEigen.cmake)
 * Use CMake to substitute variables
-* Force include/library dirs
-* Useful for vendors API that isn't CMake compatible
+    * Force include/library dirs
+    * Useful for vendors API that isn't CMake compatible
+    * Useful for meta-build. Force directories to match the package you just compiled.
 
 
 ### Provide Build Flags
@@ -220,3 +221,14 @@ blah blah
 #endif
 ```
 * should fail compilation
+
+
+### Summary
+
+* Basic aim:
+    * ```include_directories()``` generates -I
+    * ```link_directories()`` generates -L
+    * ```target_link_libraries(mylibrary PRIVATE ${libs})``` generates -l for each library
+* Might not need ```link_directories()``` if libraries fully qualified
+* Try default CMake find_package
+* Or write your own and add location to CMAKE_MODULE_PATH
