@@ -40,7 +40,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
 * However, you may plan to distribute your code:    
     * Read [this book][LicensingBook], and/or [GitHub's advice][Chooselicense], and [OSI][OSI] for choosing your own license.
-    * Don't write your own, unless you use legal advice.
+    * Don't write your own license, unless you use legal advice.
     * Try to pick one of the standard ones if you can, so your software is "compatible", and people understand the restrictions.
 
 
@@ -71,7 +71,7 @@ that version of the code.
     * But if you do, understand what that means.
 
 
-### Community - Updated
+### Is Library Updated?
 
 * Code that is not developed, rots.
     * When was the last commit?
@@ -79,14 +79,14 @@ that version of the code.
     * Is the code on an open version control tool like GitHub?
 
 
-### Community - Personal
+### Are Developers Reachable?
 
 * Can you find the lead contributor on the internet?
     * Do they respond when approached?
 * Are there contributors other than the lead contributor?
 
 
-### Implementation - Tested
+### Is Code Tested?
 
 * Are there many unit tests, do they run, do they pass?
 * Does the library depend on other libraries?
@@ -95,7 +95,7 @@ that version of the code.
 * Is there a suitable release schedule?
 
 
-### Implementation - Details
+### Library Quality
 
 * Shouldn't need to look excessively closely, but consider
     * Documentation
@@ -103,7 +103,13 @@ that version of the code.
     * Dependencies
     * Data Structures? How to import/export image
     * Can you write a convenient wrapper?
-    * Then look at features
+    
+    
+### Library Features
+
+* Then look at features
+    * Manual
+    * Easy to use
 
 
 ### Summary

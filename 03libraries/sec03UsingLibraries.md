@@ -8,11 +8,7 @@ title: Using Libraries
 
 * Can be difficult to include a C++ library
 * Step through
-    * Dynamic versus Static linking
-    * Ways of setting paths/library names
-        * Platform specific 
-        * Use of CMake
-    * Packaging - concepts only
+    * Build structure
 * Aim for - source code based distribution
 
 
@@ -76,10 +72,7 @@ We setup ```MyProject-build``` to know the location of ITK and VTK.
 ### Meta-Build
 
 * 2 basic approaches
-    * Separate build
-        * Build dependencies externally
-        * Point your software at those packages
-    * Meta-Build
+    * Meta-Build, a.k.a SuperBuild
         * Your software coordinates building dependencies
         
 

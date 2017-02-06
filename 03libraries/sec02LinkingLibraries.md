@@ -9,10 +9,6 @@ title: Linking Libraries
 * Can be difficult to include a C++ library
 * Step through
     * [Dynamic versus Static linking](http://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/)
-    * Ways of setting paths/library names
-        * Platform specific 
-        * Use of CMake
-    * Packaging - concepts only
 * Aim for - source code based distribution
 
 
@@ -44,6 +40,7 @@ title: Linking Libraries
     * Finds any unresolved libraries
         * Various search mechanisms
     * Recursive process
+* Saves disk space
 * Current translation unit has a known dependency remaining.
     
     
@@ -64,8 +61,9 @@ title: Linking Libraries
     * Doesn't require searching for libraries at run-time
 * Dynamic
     * Code gets referenced - smaller executable
-    * Require's finding libraries at run-time
-    
+    * Requires finding libraries at run-time
+* Less of a concern these days
+
 
 ### How to Check
 
