@@ -54,6 +54,7 @@ title: Using Libraries
         * Build dependencies externally
         * Point your software at those packages
 
+
 ### Example
 
 For example
@@ -70,6 +71,7 @@ C:\build\MyProject-build
 ```
 
 We setup ```MyProject-build``` to know the location of ITK and VTK. 
+    
     
 ### Meta-Build
 
