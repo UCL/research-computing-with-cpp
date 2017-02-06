@@ -1,5 +1,5 @@
 ---
-title: Libraries
+title: Choosing Libraries
 ---
 
 ## Choosing libraries
@@ -102,20 +102,6 @@ that version of the code.
     * Data Structures? How to import/export image
     * Can you write a convenient wrapper?
     * Then look at features
-
-
-### Installation
-
-* This issue linked to distributability and platform
-* Linux:
-    * package managers?
-    * just run your code from build environment?
-* Mac bundle?
-    * App store?
-* How does it affect your ability to run?
-    * What about on a cluster machine?
-    * What about on a colleagues machine?
-    * e.g. what if no "make install" target?
 
 
 ### Summary
