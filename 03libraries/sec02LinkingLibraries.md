@@ -8,7 +8,7 @@ title: Linking Libraries
 
 * Can be difficult to include a C++ library
 * Step through
-    * Dynamic versus Static linking
+    * [Dynamic versus Static linking](http://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/)
     * Ways of setting paths/library names
         * Platform specific 
         * Use of CMake
