@@ -16,7 +16,12 @@ title: Using Libraries
 * Aim for - source code based distribution
 
 
-### The Basics
+### Where from?
+
+* Package Manager (Linux/Mac)
+
+
+### Where from?
 
 * Compiler needs
     * Header files = declarations

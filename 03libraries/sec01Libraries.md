@@ -6,15 +6,13 @@ title: Choosing Libraries
 
 ### Libraries are awesome
 
-[MPHYG001][Python04Intro]: The strength of a language lies as much in the set of libraries available, as it does
-in the language itself.
-
-A great set of libraries allows for a very powerful programming style:
+A [great set of libraries allows for a very powerful programming style][Python04Intro]:
 
 * Write minimal code yourself
 * Choose the right libraries
 * Plug them together
 * Create impressive results
+
 
 ### Libraries for Efficiency
 
@@ -25,7 +23,7 @@ The chances are any general algorithm you might want to use
 has already been programmed better by someone else.
 
 
-### Licensing - Just Including A 3rd Party Library
+### Publihsing Results
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
@@ -36,7 +34,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     * however, increasingly you are asked to share code ... read on.
 
 
-### Licensing - Choosing Yours
+### Distributing Software
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
@@ -46,7 +44,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
     * Try to pick one of the standard ones if you can, so your software is "compatible", and people understand the restrictions.
 
 
-### Licensing - Redistribution
+### Choosing a License
 
 * If you distribute your code, the licenses of any 3rd party libraries take effect:
     * [MIT][MITLicense] and [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
@@ -58,33 +56,37 @@ Note: Once a 3rd party has your code under a license agreement, their restrictio
 that version of the code.
 
 
-### Licensing - So Think Long Term
+### Think Long Term
 
 * On [MPHYG001][PythonCourse], we encouraged
     * Share your code, collaborate, take pride.
     * This improves your code and your science. (See [this][NatureArticle]).
     * Your software should accumulate, reliably, and be extensible.
+    
+    
+### Choose Stability
 * So, take care in your choice of 3rd party library
     * Don't want to redo work later, at the end of PhD.
     * Don't want to rely too heavily on non-distributable code.
     * But if you do, understand what that means.
 
 
-### Developer Community - 1
+### Community - Updated
 
 * Code that is not developed, rots.
     * When was the last commit?
     * How often are there commits?
     * Is the code on an open version control tool like GitHub?
 
-### Developer Community - 2
+
+### Community - Personal
 
 * Can you find the lead contributor on the internet?
     * Do they respond when approached?
 * Are there contributors other than the lead contributor?
 
 
-### Developer Community - 3
+### Implementation - Tested
 
 * Are there many unit tests, do they run, do they pass?
 * Does the library depend on other libraries?
@@ -93,7 +95,7 @@ that version of the code.
 * Is there a suitable release schedule?
 
 
-### Implementation Details
+### Implementation - Details
 
 * Shouldn't need to look excessively closely, but consider
     * Documentation
