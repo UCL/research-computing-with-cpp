@@ -123,8 +123,10 @@ This course may not be audited.
 
 <h3>Data Structures - STL</h3><ul>
 
-   <li>TBC</li>
-
+   <li>Motivation</li>
+   <li>Containers</li>
+   <li>Other useful stuff</li>
+   
    </ul></td>
    <td>
 
