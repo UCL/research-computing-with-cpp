@@ -90,7 +90,7 @@ TEST_CASE("Multi-pass wavelet transform")
       { -1, -2, -1, 7, -5, 2, -9, 0, 0, 124 },    // level 5
       { -1, -2, -1, 7, -5, 2, -9, 0, 0, 0, 248 }, // level 6
     };
-    for (auto levels(0); levels < expecteds.size(); ++levels) {
+    for (decltype(expecteds.size()) levels(0); levels < expecteds.size(); ++levels) {
       auto const actual = direct_transform(signal, haar, levels);
       REQUIRE(actual.size() == expecteds[levels].size());
       CHECK(std::equal(actual.begin(), actual.end(), expecteds[levels].begin()));
