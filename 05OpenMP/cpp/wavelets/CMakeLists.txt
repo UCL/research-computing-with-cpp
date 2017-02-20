@@ -1,2 +1,7 @@
 include_directories(${PROJECT_SOURCE_DIR}/01research/cpp)
 add_executable(Wavelets.x main.cc wavelets.cc)
+if(OPENMP_FOUND)
+  add_executable(ThreadedWavelets.x main.cc wavelets.cc)
+  target_compile_options(ThreadedWavelets.x PUBLIC "${OpenMP_CXX_FLAGS}")
+  target_link_libraries(ThreadedWavelets.x "${OpenMP_CXX_FLAGS}")
+endif()

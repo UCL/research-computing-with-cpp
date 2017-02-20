@@ -2,6 +2,9 @@
 #include "wavelets.h"
 #include <algorithm>
 #include <catch/catch.hpp>
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 TEST_CASE("Application of Cyclical Filters")
 {
@@ -97,3 +100,31 @@ TEST_CASE("Multi-pass wavelet transform")
     }
   }
 }
+
+#ifdef _OPENMP
+// Catch offers to print out the duration of a test, so we can use it as a
+// make-do benchmarking framework
+// Run the executable with --duration yes
+TEST_CASE("OpenMP")
+{
+  wavelets::Signal input(1000000);
+  wavelets::Signal output(1000000);
+  std::generate(input.begin(), input.end(), std::rand);
+  std::fill(output.begin(), output.end(), 0);
+  SECTION("Serial")
+  {
+    auto const nthreads = omp_get_max_threads();
+    omp_set_num_threads(1);
+    for (int i(0); i < 1000; ++i)
+      wavelets::direct_transform(
+          input.begin(), input.end(), output.begin(), wavelets::daubechy2, 8);
+    omp_set_num_threads(nthreads);
+  }
+  SECTION("Parallel")
+  {
+    for (int i(0); i < 1000; ++i)
+      wavelets::direct_transform(
+          input.begin(), input.end(), output.begin(), wavelets::daubechy2, 8);
+  }
+}
+#endif

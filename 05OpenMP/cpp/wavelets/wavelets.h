@@ -50,9 +50,9 @@ struct DaubechyData {
 //! \details This data does not change from code to code. In fact, I got them
 //! from wikipedia. Constants of nature and constants of math are the only
 //! variable that should be declared global (and `const`).
-extern DaubechyData const daubechy_data1;
+extern DaubechyData const daubechy1;
 //! Data for the Daubechy wavelets of type 2
-extern DaubechyData const daubechy_data2;
+extern DaubechyData const daubechy2;
 
 //! \brief Applies a filter starting from a given location of the signal
 //! \details The signal is defined by the range `start`, and `end`. `location`
@@ -82,7 +82,7 @@ Scalar apply_cyclical_filter(
 //! and output arrays overlap.
 void single_direct_transform(
     Signal::const_iterator const& start, Signal::const_iterator const& end,
-    Signal::iterator out, DaubechyData const& wavelet);
+    Signal::iterator const &out, DaubechyData const& wavelet);
 
 //! \brief Applies high and low pass once to the signal range
 //! \details This wrapper is also to make testing somewhat simpler.

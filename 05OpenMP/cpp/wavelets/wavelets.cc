@@ -1,17 +1,20 @@
 #include "wavelets.h"
 #include <cassert>
 #include <numeric>
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 namespace wavelets {
 
-DaubechyData const daubechy_data1{
+DaubechyData const daubechy1{
   { 7.071067811865475244008443621048490392848359376884740365883398e-01,
       7.071067811865475244008443621048490392848359376884740365883398e-01 },
   { -7.071067811865475244008443621048490392848359376884740365883398e-01,
       7.071067811865475244008443621048490392848359376884740365883398e-01 }
 };
 
-DaubechyData const daubechy_data2{
+DaubechyData const daubechy2{
   { 4.829629131445341433748715998644486838169524195042022752011715e-01,
       8.365163037378079055752937809168732034593703883484392934953414e-01,
       2.241438680420133810259727622404003554678835181842717613871683e-01,
@@ -79,13 +82,19 @@ Scalar apply_cyclical_filter(
 
 void single_direct_transform(
     Signal::const_iterator const& start, Signal::const_iterator const& end,
-    Signal::iterator out, DaubechyData const& wavelet)
+    Signal::iterator const &out, DaubechyData const& wavelet)
 {
   assert(start <= end);
-  for (auto location = start; location < end; location += 2, ++out)
-    *out = apply_cyclical_filter(start, location, end, wavelet.high_pass);
-  for (auto location = start; location < end; location += 2, ++out)
-    *out = apply_cyclical_filter(start, location, end, wavelet.low_pass);
+  int const half = ((end - start) + (end - start) % 2) / 2;
+#pragma omp parallel
+  {
+#pragma omp for
+    for (int i=0; i < half; ++i)
+      *(out + i) = apply_cyclical_filter(start, start + 2 * i, end, wavelet.high_pass);
+#pragma omp for
+    for (int i=0; i < half; ++i)
+      *(out + i + half) = apply_cyclical_filter(start, start + 2 * i, end, wavelet.low_pass);
+  }
 }
 
 void direct_transform(
