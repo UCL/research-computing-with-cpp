@@ -2,10 +2,9 @@
 class Fraction {
 
 public: // access control
-
   // How to create
   Fraction();
-  Fraction(const int& num, const int& denom);
+  Fraction(const int &num, const int &denom);
 
   // How to destroy
   ~Fraction();
@@ -15,10 +14,9 @@ public: // access control
   int denominator() const;
 
   // What you can do
-  const Fraction operator+(const Fraction& another);
+  const Fraction operator+(const Fraction &another);
 
 private: // access control
-
   // The data
   int m_Numerator;
   int m_Denominator;
