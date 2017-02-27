@@ -36,4 +36,4 @@ title: Shared memory parallelism
 * Hopefully a significant part of the execution time
 * More complicated if an iterations have dependencies
 
-[OpenMPhomepage]: http://openmp.org/wp/
+[OpenMPhomepage]: http://openmp.org/

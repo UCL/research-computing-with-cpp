@@ -35,6 +35,20 @@ OpenMP is supported by most compilers, except LLVM/Clang(++)
 
 A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mainline eventually.
 
+### CMake Support
+
+CMake knows how to deal with OpenMP, mostly:
+
+```CMake
+find_package(OpenMP)
+
+add_program(my_threaded_monster main.cc)
+if(OPENMP_FOUND)
+  target_compile_options(my_threaded_monster PUBLIC "${OpenMP_CXX_FLAGS}")
+  target_link_libraries(my_threaded_monster PUBLIC "${OpenMP_CXX_FLAGS}")
+endif()
+```
+
 
 ### Hello world
 
@@ -81,7 +95,6 @@ If you have a multicore computer with GCC or other suitable compiler you can run
 Otherwise you can use GCC on aristotle
 
 * `ssh username@aristotle.rc.ucl.ac.uk`
-* `module load GCC/4.7.2`
 * `g++ -fopenmp -O3 mycode.cc`
 
 
