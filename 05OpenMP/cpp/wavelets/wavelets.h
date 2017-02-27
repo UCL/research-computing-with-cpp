@@ -1,8 +1,8 @@
 #ifndef CPP_COURSE_WAVELETS_H
 
 #include <cassert>
-#include <vector>
 #include <iostream>
+#include <vector>
 
 namespace wavelets {
 
@@ -58,11 +58,8 @@ extern DaubechyData const daubechy2;
 //! \details The signal is defined by the range `start`, and `end`. `location`
 //! must be a position inside that range. The filter is applied starting from
 //! that location of the signal.
-Scalar apply_cyclical_filter(
-    Signal::const_iterator const& start,
-    Signal::const_iterator location,
-    Signal::const_iterator const& end,
-    Signal const& filter);
+Scalar apply_cyclical_filter(Signal::const_iterator const &start, Signal::const_iterator location,
+                             Signal::const_iterator const &end, Signal const &filter);
 
 //! \brief Applies a filter starting from a given location of the signal
 //! \details Accumulates the result of `signal[location + i] * filter[i]` for i
@@ -72,35 +69,31 @@ Scalar apply_cyclical_filter(
 //!
 //! This is a thin wrapper around the function that does the work. Its purpose
 //! is to provide a user-friendly interface for end users and for testing.
-Scalar apply_cyclical_filter(
-    Signal const& signal, Signal::size_type location, Signal const& filter);
+Scalar
+apply_cyclical_filter(Signal const &signal, Signal::size_type location, Signal const &filter);
 
 //! \brief Applies the wavelet transform once to the signal
 //! \details The output iterator should point to a valid range of the same size
 //! as the input signal *if the size of the signal is even*, and one larger than the signal
 //! *if the size of the signal is odd*. The result is undefined when the signal
 //! and output arrays overlap.
-void single_direct_transform(
-    Signal::const_iterator const& start, Signal::const_iterator const& end,
-    Signal::iterator const &out, DaubechyData const& wavelet);
+void single_direct_transform(Signal::const_iterator const &start, Signal::const_iterator const &end,
+                             Signal::iterator const &out, DaubechyData const &wavelet);
 
 //! \brief Applies high and low pass once to the signal range
 //! \details This wrapper is also to make testing somewhat simpler.
-Signal single_direct_transform(Signal const& signal, DaubechyData const& wavelet);
+Signal single_direct_transform(Signal const &signal, DaubechyData const &wavelet);
 
 //! \brief Applies the wavelet transform `levels` time to the signal
 //! \details The number of coefficients is given by the function
 //! `number_of_coefficients`.
-void direct_transform(
-    Signal::const_iterator start, Signal::const_iterator end,
-    Signal::iterator out, DaubechyData const& wavelet,
-    unsigned int levels = 1);
+void direct_transform(Signal::const_iterator start, Signal::const_iterator end,
+                      Signal::iterator out, DaubechyData const &wavelet, unsigned int levels = 1);
 
 //! \brief Figures out number of coeffs
 unsigned int number_of_coefficients(unsigned int signal_size, unsigned int levels);
 
 //! \brief Transforms the input signal
-Signal direct_transform(
-    Signal const& signal, DaubechyData const& wavelet, unsigned int levels = 1);
+Signal direct_transform(Signal const &signal, DaubechyData const &wavelet, unsigned int levels = 1);
 }
 #endif
