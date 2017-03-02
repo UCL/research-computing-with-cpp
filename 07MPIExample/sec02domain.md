@@ -2,7 +2,7 @@
 title: Domain decomposition
 ---
 
-## Domain decomposition
+## "Ideal" Domain decomposition
 
 ### Domain decomposition
 
@@ -62,3 +62,43 @@ perfect *weak* scaling (until network congestion or IO problems dominate).
 Any NONLOCAL communication, where the total amount of time for communication to take place grows
 as the number of processes does (such as a gather, which takes $p$, a reduction, like $ln(p)$,
 or an all-to-all, like $p^2$, means that perfect weak scaling can't be achieved.)
+
+### Exercise: Blocking Collective
+
+We will parallelize the update and integral functions by having each process
+work on a contiguous strip of the whole field.
+
+For simplicity, each process owns a full replica of the field in memory. This
+is inneficient since each process owns memory describing a part of the field it
+will never use. Improving this is fairly easy, but require some more
+bookkeeping. Do try it at home!
+
+Exercise: parallelize using a blocking collective
+
+### Exercise: Halo update
+
+Parallelize using a non-blocking collective and layer computation and calculation:
+
+1. send data (part of the field) other processes need
+1. update part of owned field that does not need data from other processes
+1. receive data from other processes
+1. update part of owned field that needs data from other proceses
+
+This is called a halo update and quite common to domain decomposition problems.
+We can layer communication and computation even more by splitting over data on
+the left and on the right boundaries.
+
+### Header
+
+{% code cpp/serial/src/Smooth.h %}
+
+### Tests
+
+{% code cpp/serial/test/catch.cpp %}
+
+### Implementation
+
+{% code cpp/serial/src/Smooth.cpp %}
+
+
+[WaveletTransform]: http://en.wikipedia.org/wiki/Wavelet_transform

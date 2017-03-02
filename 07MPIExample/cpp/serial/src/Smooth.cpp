@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -6,208 +7,247 @@
 
 Smooth::Smooth(int sizex, int sizey, distance inner, filling birth_1, filling birth_2,
                filling death_1, filling death_2, filling smoothing_disk, filling smoothing_ring)
-    : sizex(sizex), sizey(sizey), inner(inner), birth_1(birth_1), birth_2(birth_2),
-      death_1(death_1), death_2(death_2), smoothing_disk(smoothing_disk),
-      smoothing_ring(smoothing_ring), outer(inner * 3), smoothing(1.0),
-      field1(sizex, std::vector<density>(sizey)), field2(sizex, std::vector<density>(sizey)),
-      field(&field1), fieldNew(&field2), frame(0) {
+    : sizex(sizex), sizey(sizey), field(sizex * sizey), work_field(sizex * sizey), inner(inner),
+      birth_1(birth_1), birth_2(birth_2), death_1(death_1), death_2(death_2),
+      smoothing_disk(smoothing_disk), smoothing_ring(smoothing_ring), outer(inner * 3),
+      smoothing(1.0)
+#ifdef HAS_MPI
+      ,
+      communicator(MPI_COMM_SELF)
+#endif
+{
   normalisation_disk = NormalisationDisk();
   normalisation_ring = NormalisationRing();
 }
 
-int Smooth::Range() { return outer + smoothing / 2; }
+const std::vector<density> &Smooth::Field() const { return field; };
+void Smooth::Field(std::vector<density> const &input) {
+  assert(field.size() == input.size());
+  field = input;
+}
 
-int Smooth::Sizex() { return sizex; }
-int Smooth::Sizey() { return sizey; }
-int Smooth::Size() { return sizex * sizey; }
+int Smooth::Range() const { return outer + smoothing / 2; }
+
+int Smooth::Sizex() const { return sizex; }
+int Smooth::Sizey() const { return sizey; }
+int Smooth::Size() const { return sizex * sizey; }
 
 /// "Disk_Smoothing"
 double Smooth::Disk(distance radius) const {
-  if(radius > inner + smoothing / 2) {
+  if(radius > inner + smoothing / 2)
     return 0.0;
-  }
-  if(radius < inner - smoothing / 2) {
+  if(radius < inner - smoothing / 2)
     return 1.0;
-  }
   return (inner + smoothing / 2 - radius) / smoothing;
 }
+/// end
 
-/// "Ring_Smoothing"
 double Smooth::Ring(distance radius) const {
-  if(radius < inner - smoothing / 2) {
+  if(radius < inner - smoothing / 2)
     return 0.0;
-  }
-  if(radius < inner + smoothing / 2) {
+  if(radius < inner + smoothing / 2)
     return (radius + smoothing / 2 - inner) / smoothing;
-  }
-  if(radius < outer - smoothing / 2) {
+  if(radius < outer - smoothing / 2)
     return 1.0;
-  }
-  if(radius < outer + smoothing / 2) {
+  if(radius < outer + smoothing / 2)
     return (outer + smoothing / 2 - radius) / smoothing;
-  }
   return 0.0;
 }
 
 double Smooth::Sigmoid(double variable, double center, double width) {
-  return 1.0 / (1.0 + std::exp(4.0 * (center - variable) / width));
+  return Sigmoid(variable - center, width);
+}
+double Smooth::Sigmoid(double x, double width) { return 1.0 / (1.0 + std::exp(-4.0 * x / width)); }
+
+density Smooth::Transition(filling disk, filling ring) const {
+  auto const sdisk = Sigmoid(disk - 0.5, smoothing_disk);
+  auto const t1 = birth_1 * (1.0 - sdisk) + death_1 * sdisk;
+  auto const t2 = birth_2 * (1.0 - sdisk) + death_2 * sdisk;
+  return Sigmoid(ring - t1, smoothing_ring) * Sigmoid(t2 - ring, smoothing_ring);
 }
 
-density Smooth::transition(filling disk, filling ring) const {
-  double t1 = birth_1 * (1.0 - Sigmoid(disk, 0.5, smoothing_disk))
-              + death_1 * Sigmoid(disk, 0.5, smoothing_disk);
-  double t2 = birth_2 * (1.0 - Sigmoid(disk, 0.5, smoothing_disk))
-              + death_2 * Sigmoid(disk, 0.5, smoothing_disk);
-  return Sigmoid(ring, t1, smoothing_ring) * (1.0 - Sigmoid(ring, t2, smoothing_ring));
-}
-
-const std::vector<std::vector<density>> &Smooth::Field() const { return *field; };
+int Smooth::Index(int i, int j) const { return i * Sizex() + j; }
+std::pair<int, int> Smooth::Index(int i) const { return {i / Sizex(), i % Sizex()}; }
 
 /// "Torus_Difference"
-int Smooth::TorusDifference(int x1, int x2, int size) const {
-  int straight = std::abs(x2 - x1);
-  int wrapleft = std::abs(x2 - x1 + size);
-  int wrapright = std::abs(x2 - x1 - size);
-  if((straight < wrapleft) && (straight < wrapright)) {
-    return straight;
-  } else {
-    return (wrapleft < wrapright) ? wrapleft : wrapright;
-  }
+int Smooth::TorusDistance(int x1, int x2, int size) const {
+  auto const remainder = std::abs(x1 - x2) % size;
+  return std::min(remainder, std::abs(remainder - size));
 }
+/// end
 
-/// "Radius"
 double Smooth::Radius(int x1, int y1, int x2, int y2) const {
-  int xdiff = TorusDifference(x1, x2, sizex);
-  int ydiff = TorusDifference(y1, y2, sizey);
+  int xdiff = TorusDistance(x1, x2, sizex);
+  int ydiff = TorusDistance(y1, y2, sizey);
   return std::sqrt(xdiff * xdiff + ydiff * ydiff);
 }
 
 double Smooth::NormalisationDisk() const {
   double total = 0.0;
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
+  for(int x = 0; x < sizex; x++)
+    for(int y = 0; y < sizey; y++)
       total += Disk(Radius(0, 0, x, y));
-    }
-  };
   return total;
 }
 
 double Smooth::NormalisationRing() const {
   double total = 0.0;
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
+  for(int x = 0; x < sizex; x++)
+    for(int y = 0; y < sizey; y++)
       total += Ring(Radius(0, 0, x, y));
-    }
-  };
   return total;
 }
 
-filling Smooth::FillingDisk(int x, int y) const {
-  double total = 0.0;
-  for(int x1 = 0; x1 < sizex; x1++) {
-    for(int y1 = 0; y1 < sizey; y1++) {
-      total += (*field)[x1][y1] * Disk(Radius(x, y, x1, y1));
-    }
-  };
-  return total / normalisation_disk;
-}
-
-filling Smooth::FillingRing(int x, int y) const {
-  double total = 0.0;
-  for(int x1 = 0; x1 < sizex; x1++) {
-    for(int y1 = 0; y1 < sizey; y1++) {
-      total += (*field)[x1][y1] * Ring(Radius(x, y, x1, y1));
-    }
-  };
-  return total / normalisation_ring;
-}
-
-density Smooth::NewState(int x, int y) const {
-  return transition(FillingDisk(x, y), FillingRing(x, y));
-}
-
 void Smooth::Update() {
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
-      (*fieldNew)[x][y] = NewState(x, y);
-    }
+#ifdef HAS_MPI
+  int rank, ncomms;
+  MPI_Comm_rank(Communicator(), &rank);
+  MPI_Comm_size(Communicator(), &ncomms);
+
+  WholeFieldBlockingSync(field, communicator);
+  auto const start = OwnedStart(Size(), ncomms, rank);
+  auto const end = OwnedStart(Size(), ncomms, rank + 1);
+#else
+  auto const start = 0;
+  auto const end = field.size();
+#endif
+
+  for(int i(start); i < end; ++i) {
+    auto const xy = Index(i);
+    auto const integrals = Integrals(xy.first, xy.second);
+    work_field[i] = Transition(integrals.first, integrals.second);
   }
 
-  std::vector<std::vector<density>> *fieldTemp;
-  fieldTemp = field;
-  field = fieldNew;
-  fieldNew = fieldTemp;
+  std::swap(field, work_field);
   frame++;
 }
-/// "Main_Loop"
-void Smooth::QuickUpdate() {
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
-      double ring_total = 0.0;
-      double disk_total = 0.0;
 
-      for(int x1 = 0; x1 < sizex; x1++) {
-        int deltax = TorusDifference(x, x1, sizex);
-        if(deltax > outer + smoothing / 2)
-          continue;
+#ifdef HAS_MPI
+void Smooth::LayeredUpdate() {
+  int rank, ncomms;
+  MPI_Comm_rank(Communicator(), &rank);
+  MPI_Comm_size(Communicator(), &ncomms);
 
-        for(int y1 = 0; y1 < sizey; y1++) {
-          int deltay = TorusDifference(y, y1, sizey);
-          if(deltay > outer + smoothing / 2)
-            continue;
+  auto request = WholeFieldNonBlockingSync(field, communicator);
+  auto const start = OwnedStart(Size(), ncomms, rank);
+  auto const end = OwnedStart(Size(), ncomms, rank + 1);
+  auto const interaction = Sizex() * static_cast<int>(std::floor(outer + smoothing / 2 + 1));
 
-          double radius = std::sqrt(deltax * deltax + deltay * deltay);
-          double fieldv = (*field)[x1][y1];
-          ring_total += fieldv * Ring(radius);
-          disk_total += fieldv * Disk(radius);
-        }
-      }
+  auto const set_work_field_at_index = [this](int i) {
+    auto const xy = Index(i);
+    auto const integrals = Integrals(xy.first, xy.second);
+    work_field[i] = Transition(integrals.first, integrals.second);
+  };
 
-      (*fieldNew)[x][y]
-          = transition(disk_total / normalisation_disk, ring_total / normalisation_ring);
-    }
+  for(int i(start + interaction); i < end - interaction; ++i)
+    set_work_field_at_index(i);
+
+  MPI_Wait(&request, MPI_STATUS_IGNORE);
+
+  for(int i(start); i < std::min(end, start + interaction); ++i)
+    set_work_field_at_index(i);
+  for(int i(std::min(end, end - interaction)); i < end; ++i)
+    set_work_field_at_index(i);
+
+  std::swap(field, work_field);
+  frame++;
+}
+#endif
+
+std::pair<density, density> Smooth::Integrals(int x, int y) const {
+  density ring_total(0), disk_total(0);
+  for(std::vector<density>::size_type i(0); i < field.size(); ++i) {
+    auto const cartesian = Index(i);
+    int deltax = TorusDistance(x, cartesian.first, sizex);
+    if(deltax > outer + smoothing / 2)
+      continue;
+
+    int deltay = TorusDistance(y, cartesian.second, sizey);
+    if(deltay > outer + smoothing / 2)
+      continue;
+
+    double radius = std::sqrt(deltax * deltax + deltay * deltay);
+    double fieldv = field[i];
+    ring_total += fieldv * Ring(radius);
+    disk_total += fieldv * Disk(radius);
   }
-
-  /// "Swap_Fields"
-  std::vector<std::vector<density>> *fieldTemp;
-  fieldTemp = field;
-  field = fieldNew;
-  fieldNew = fieldTemp;
-  frame++;
+  return {disk_total / NormalisationDisk(), ring_total / NormalisationRing()};
 }
-/// "Seed_Random"
+
 void Smooth::SeedRandom() {
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
-      (*field)[x][y] = (static_cast<double>(rand()) / static_cast<double>(RAND_MAX));
-    }
-  }
+  for(int x = 0; x < sizex; x++)
+    for(int y = 0; y < sizey; y++)
+      field[Index(x, y)] += (static_cast<double>(rand()) / static_cast<double>(RAND_MAX));
 }
 
-void Smooth::SeedDisk() {
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
-      (*field)[x][y] = Disk(Radius(0, 0, x, y));
-    }
-  }
+void Smooth::SeedConstant(density constant) { std::fill(field.begin(), field.end(), constant); }
+void Smooth::AddDisk(int x0, int y0) {
+  for(int x = 0; x < sizex; x++)
+    for(int y = 0; y < sizey; y++)
+      field[Index(x, y)] += Disk(Radius(x0, y0, x, y));
 }
 
-void Smooth::SeedRing() {
-  for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
-      (*field)[x][y] = Ring(Radius(0, 0, x, y));
-    }
-  }
+void Smooth::AddRing(int x0, int y0) {
+  for(int x = 0; x < sizex; x++)
+    for(int y = 0; y < sizey; y++)
+      field[Index(x, y)] += Ring(Radius(x0, y0, x, y));
 }
+
+void Smooth::AddPixel(int x0, int y0, density value) { field[Index(x0, y0)] = value; }
 
 void Smooth::Write(std::ostream &out) {
   for(int x = 0; x < sizex; x++) {
-    for(int y = 0; y < sizey; y++) {
-      out << (*field)[x][y] << " , ";
-    }
+    for(int y = 0; y < sizey; y++)
+      out << field[Index(x, y)] << " , ";
     out << std::endl;
   }
   out << std::endl;
 }
 
 int Smooth::Frame() const { return frame; }
+
+#ifdef HAS_MPI
+int Smooth::OwnedStart(int nsites, int ncomms, int rank) {
+  assert(nsites >= 0);
+  assert(ncomms > 0);
+  assert(rank >= 0 and rank <= ncomms);
+  return rank * (nsites / ncomms) + std::min(nsites % ncomms, rank);
+}
+
+void Smooth::WholeFieldBlockingSync(std::vector<density> &field, MPI_Comm const &comm) {
+  int rank, ncomms;
+  MPI_Comm_rank(comm, &rank);
+  MPI_Comm_size(comm, &ncomms);
+
+  if(ncomms == 1)
+    return;
+
+  std::vector<int> displacements{0}, sizes;
+
+  for(int i(0); i < ncomms; ++i) {
+    displacements.push_back(Smooth::OwnedStart(field.size(), ncomms, i + 1));
+    sizes.push_back(displacements.back() - displacements[i]);
+  }
+
+  MPI_Allgatherv(MPI_IN_PLACE, sizes[rank], MPI_DOUBLE, field.data(), sizes.data(),
+                 displacements.data(), MPI_DOUBLE, comm);
+}
+
+MPI_Request Smooth::WholeFieldNonBlockingSync(std::vector<density> &field, MPI_Comm const &comm) {
+  int rank, ncomms;
+  MPI_Comm_rank(comm, &rank);
+  MPI_Comm_size(comm, &ncomms);
+
+  std::vector<int> displacements{0}, sizes;
+
+  for(int i(0); i < ncomms; ++i) {
+    displacements.push_back(Smooth::OwnedStart(field.size(), ncomms, i + 1));
+    sizes.push_back(displacements.back() - displacements[i]);
+  }
+
+  MPI_Request request;
+  MPI_Iallgatherv(MPI_IN_PLACE, sizes[rank], MPI_DOUBLE, field.data(), sizes.data(),
+                  displacements.data(), MPI_DOUBLE, comm, &request);
+  return request;
+}
+#endif
