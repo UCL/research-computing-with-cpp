@@ -1,88 +1,107 @@
 ---
-title: Using Compiler Directives
+title: Vectorization
 ---
 
-## Using Compiler Directives
+## Just USES
 
-### OpenACC
+Using Somebody Else's Software is a good way to avoid becoming a GPU expert.
+But which? Check for usability and sustainability:
 
-* OpenACC is a set of compiler directives that execute blocks of code on an accelerator
-    - not specific to GPUs
-    - also works with APU (AMD), Xeon Phi (Intel), etc.
-* Set of compiler ```#pragma```s to specify:
-    - blocks of code to be run on an accelerator
-    - data movement between host and accelerator
-* Similar to OpenMP
-    - doesn't modify existing code
-    - is ignored by compilers that don't support it
-* Requires compiler support
-    - pgic (non-free, activate with ```-acc``` flag)
-    - gcc support coming
+* Does it do what you need?
+* What license is it under?
+* Is it simply available on Github/BitBucker/Gitlab?
+* Are there automatic tests?
+* Is it an active development repo? (number of commits, date of last commmit)
+* How many people/labs/companies are committing to it? (check pull-requests)
+* Is there a community of users? (check issues, wiki)
+* Is there documentation?
 
-### OpenACC Pragmas
+### Broadcasting (Vectorization)
 
-* ```#pragma acc kernels``` specifies a block of code to be run in parallel on an accelerator
-    - uses a lot of autodetection
-* ```#pragma acc data``` specifies data movement between host and accelerator
-    - can be used to control data movement between kernel calls
-* Each pragma can be customised with clauses that appear at the end of the line
-    - ```#pragma acc <pragma> [clause...]```
+GPU require running the *same operations* over mutliple data (SIMD). Broadcasting
+transforms nested loops into a set of matrix or array operations amenable to
+SIMD, *and* likely to be already GPU-ized by external libraries.
 
-### OpenACC Pragma Clauses
+Also useful for MATLAB, Python/numpy, etc...
 
-* ```if(condition)```
-    - executes only if the condition evaluates to true
-    - falls back to CPU code otherwise
-    - can be applied to both kernels and data pragmas among others
+Example:
 
-### Clauses specific to pragma acc kernel
+$$G = max(||A - R_i||)$$
 
-* ```num_gangs(n)```
-    - specifies the number of thread blocks to use
-* ```num_workers(n)```
-    - specifies the number of threads to use in each block
-* ```reduction(op, val)```
-    - performs a reduction using the specified operator and initial value
-    - similar to OpenMP's ```reduce``` pragma
+for all $i$, where $A$ and $R_i$ are vectors
 
-### General clauses for data movement
+Naive solution with explicit loops and STL:
 
-* ```copy(var1,var2,...)```
-    - allocates and copies variables from the host to the accelerator before a block
-    - copies variables back to the host and deallocates after a block
-* ```copyin(var1,var2,...)``` and ```copyout(var1,var2,...)```
-    - copies data onto the accelerator at the start of a block or off the accelerator at the end of a block
-* ```create(var1,var2,...)```, ```delete(var1,var2,...)```
-    - allocates variables on the accelerator at the start of a block and deallocates them at the end
-    - useful for temporary arrays
-* ```present(var1,var2,...)```
-    - variable is already present on device so don't allocate or copy
-    - also available as ```present_or_copy```, ```present_or_create```, ```present_or_copyin```, ```present_or_copyout```
-* ```private(var1,var2,...)```
-    - variable is copied to each thread (similarly to OpenMP's ```private```)
+{% fragment naive, cpp/arrayfire/max_norm.cc %}
 
-### OpenACC SAXPY
+### Broadcasting (Vectorization)
 
-* The following code snippet implements a SAXPY kernel using OpenACC:
+1. transform A from a vector to a matrix A3xn
+1. compute pow2 = (R - A3xn)^2 elementwise
+1. sum pow2 over columns
+1. reduce final vector using max
 
-{% idio cpp/saxpy/openacc.c %}
+{% fragment broadcasting, cpp/arrayfire/max_norm.cc %}
 
-{% fragment saxpy %}
+### A word on transfer rate
 
-{% endidio %}
+- Transfer to GPU takes time $T_0$
 
-* The only pragma required is the ```kernels``` pragma which turns the ```for``` loop into a GPU kernel
+{% fragment transfer to gpu, cpp/arrayfire/max_norm.cc %}
 
-### OpenACC SGEMM
+- Compute takes $\frac{C}{n}$, n the number of GPU threads
 
-* OpenACC can also be used to implement an SGEMM kernel:
+{% fragment compute, cpp/arrayfire/max_norm.cc %}
 
-{% idio cpp/sgemm/openacc.c %}
+- Transfer to CPU takes time $T_1$
 
-{% fragment sgemm %}
+{% fragment transfer to gpu, cpp/arrayfire/max_norm.cc %}
 
-{% endidio %}
+- Then, possibly $T_0 + T_1 + C/n > C$
 
-### Further Information
 
-* Further information (documentation/tutorials) is available on the (OpenACC website)[http://www.openacc-standard.org/]
+### Exercise: Broadcasting
+
+`G = \sum_{i, j, k} cos(K_k \cdot (R_i - R_j))`
+
+Given
+
+``` cpp
+std::vector<std::array<double, 3>> const Rs = {...};
+std::vector<std::array<double, 3>> const Ks = {...};
+```
+
+Write code to compute G (pseudo, or real code):
+
+1. Create an Rs array of (3, 1, n) using `af::moddims` (`n = Rs.size()`)
+1. Create an Rs array of (3, n, 1) using `af::moddims`
+1. Tile appropriately
+1. Compute the dot product using `af::moddims`, `af::matmul`, `af::transpose`
+1. sum over the cosine of the result
+
+
+### Exercise: Line of Sight
+
+Given an n by m matrix of altitudes, with n orientations and m distances:
+
+``` cpp
+std::vector<double> altitudes(nOrientations * mDistances) = { ... };
+```
+
+Compute the whether any point i, j is in sight.
+A point is in sight if, for that orientation, all previous angles between
+X-horizon and X-point are smaller
+
+                /---\
+    X---\      /     \---A
+         \____/
+
+Angles are computed using the formula `atan(z_i / (stepsize * i))`.
+
+`af::scanf` might come in handy:
+- given [a0, a1, a2, ..., aN]
+- it computes [0, a0, a0 + a1, a0 + a1 + a2, ..., a0 + ... + aN]
+- leading zero is removed in exclusive scans
+
+This function looks intrinsically difficult to parallelize, but there are well
+known solutions. It is useful in many fields.

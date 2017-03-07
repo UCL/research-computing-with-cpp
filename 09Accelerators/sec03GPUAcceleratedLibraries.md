@@ -1,64 +1,77 @@
 ---
-title: GPU-accelerated Libraries
+title: Streaming
 ---
 
-## GPU-accelerated Libraries
+## Streaming computations
 
-### CUDA Libraries
+### *Single Instruction*, Multiple Data
 
-* There are GPU-accelerated libraries available for:
-    - random number generation
-    - fast Fourier transforms
-    - BLAS/LAPACK
-    - sparse linear algebra
-* Nvidia ships cuRAND, cuFFT and cuBLAS with the CUDA toolkit
-    - 3rd party alternatives including MAGMA
+All threads in a warp perform the exact same hardware instruction, but on different data.
 
-### Converting existing code
+On thread 0:
 
-* Each library contains pre-written GPU kernels implementing common operations optimised for several classes of GPU
-* All that is required is to convert existing code that calls a CPU library to follow the upload/execute/synchronise/download pattern
-    - allocate GPU memory and upload data using the CUDA runtime library
-    - execute pre-written kernel from the specific CUDA library required
-    - synchronize, download results and free GPU memory using the CUDA runtime library
-
-### SAXPY from cuBLAS
-
-* The following code snippet replaces the ```saxpy_fast``` function with the equivalent ```cublasSaxpy```:
-
-{% idio cpp %}
-
-{% fragment cublas_saxpy, saxpy/cublas.c %}
-
-```
-n = 10000, incx = 1, incy = 1
-saxpy: 0.010205ms
-saxpy_fast: 0.002530ms
+``` cpp
+a[0] = alpha * x[0] + 1;
+___syncthreads();
+y[0] -= a[31];
 ```
 
-### Why isn't it faster?
+On thread 31:
 
-* GPUs have about 100x the computing power of a CPU
-    - but only 20x the memory bandwidth
-    - and data transfer over the PCI bus is sloooow.
-* SAXPY performs one floating point operation for each element in memory
-    - the performance is bound by the memory bandwidth
-* Matrix Multiply (SGEMM), however, performs ```2k``` operations per element
-    - matrix multiply: ```C = a*A*B + b*C```
-    - ```A``` is ```m``` by ```k```
-    - ```B``` is ```k``` by ```n```
-    - ```C``` is ```m``` by ```n```
-
-### SGEMM from cuBLAS
-
-* CUBLAS contains an SGEMM function:
-
-{%fragment cublas_sgemm, sgemm/cublas.c %}
-
-{% endidio %}
-
+``` cpp
+a[31] = alpha * x[0] + 1;
+__syncthreads();
+y[31] -= a[0];
 ```
-m = 320, n = 640, k = 640
-Bandwidth: 977.532GB/s
-Throughput: 244.383GFlops/s
+
+### Is this single instruction?
+
+``` cpp
+if(thread_id < 16)
+  a[thread_id] = alpha * x[thread_id] + 1;
+else
+  a[thread_id] = alpha * x[thread_id] - 1;
+
+__syncthreads();
+y[thread_id] -= a[31 - thread_id];
 ```
+
+### Single Instruction, *Multiple Contiguous Data*
+
+Each thread in a warp should access a consecutive address in memory.
+Lets create a kernel for copying a vector using a single block consisting of a
+single warp (of 32 threads).  Assume that the size of the vector is a multiple
+of 32. `threadIdx.x` is the thread id in Cuda, and automagically passed to
+each kernel.
+
+The following is a jumble of too many expressions: put it back in order.
+
+``` cpp
+__global__ void copy(float *odata, const float *idata, int n)
+{
+  for (int j = 0; 32 * j < n; ++j)
+  for (int j = 0; 32 * j < n; j += 32)
+  for (int j = 0; j < n; ++j)
+  for (int j = 0; j < n; j += 32)
+
+  odata[j + threadIdx.x] = idata[j + threadIdx.x];
+  odata[j + threadIdx.x * 32] = idata[j + threadIdx.x];
+  odata[j + threadIdx.x] = idata[j + threadIdx.x * 32];
+  odata[j + threadIdx.x * 32] = idata[j + threadIdx.x * 32];
+}
+```
+
+### The joys of indexing
+
+Now imagine rewriting the same code with n by m by p blocks of threads, where
+each block is u by v by w threads. You have access to the size of the block
+`blockDim.x`, the index and size of the grid (of blocks) `blockIdx.(x, y,
+z)` and `gridDim.(x, y, z)`.
+
+To limit memory transfers, each warp should read and write to contiguous arrays
+in memory.
+
+See also: [shared
+memory](https://devblogs.nvidia.com/parallelforall/using-shared-memory-cuda-cc/),
+[bank
+conflicts](http://cuda-programming.blogspot.co.uk/2013/02/bank-conflicts-in-shared-memory-in-cuda.html)
