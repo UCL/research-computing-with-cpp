@@ -31,9 +31,9 @@ public:
   //! - 0 outside the ring
   //! - 0 < x < 1 in the smoothing region
   double Ring(distance radius) const;
-  //! Smooth step function: 0 at -∞, 1 at +∞
+  //! Smooth step function: 0 at -infty, 1 at +infty
   static double Sigmoid(double variable, double center, double width);
-  //! $e^{-4x / width}$: 0 at -∞, 1 at +∞
+  //! $e^{-4x / width}$: 0 at -infty, 1 at +infty
   static double Sigmoid(double x, double width);
   density Transition(filling disk, filling ring) const;
   int TorusDistance(int x1, int x2, int size) const;
