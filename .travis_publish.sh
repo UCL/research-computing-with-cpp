@@ -1,3 +1,4 @@
+echo "?? $TRAVIS_BRANCH$TRAVIS_PULL_REQUEST" 
 if [ "$TRAVIS_BRANCH$TRAVIS_PULL_REQUEST" == "masterfalse" ] ; then
   cd _site
   git init
