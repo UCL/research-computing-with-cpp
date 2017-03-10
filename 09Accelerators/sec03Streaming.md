@@ -19,7 +19,7 @@ y[0] -= a[31];
 On thread 31:
 
 ``` cpp
-a[31] = alpha * x[0] + 1;
+a[31] = alpha * x[31] + 1;
 __syncthreads();
 y[31] -= a[0];
 ```
@@ -27,6 +27,7 @@ y[31] -= a[0];
 ### Is this single instruction?
 
 ``` cpp
+a[thread_id] = ((thread_id < 16) ? 1: -1) + alpha * x[thread_id];
 if(thread_id < 16)
   a[thread_id] = alpha * x[thread_id] + 1;
 else
@@ -49,15 +50,15 @@ The following is a jumble of too many expressions: put it back in order.
 ``` cpp
 __global__ void copy(float *odata, const float *idata, int n)
 {
-  for (int j = 0; 32 * j < n; ++j)
-  for (int j = 0; 32 * j < n; j += 32)
-  for (int j = 0; j < n; ++j)
+  <!-- for (int j = 0; 32 * j < n; ++j) -->
+  <!-- for (int j = 0; 32 * j < n; j += 32) -->
+  <!-- for (int j = 0; j < n; ++j) -->
   for (int j = 0; j < n; j += 32)
 
   odata[j + threadIdx.x] = idata[j + threadIdx.x];
-  odata[j + threadIdx.x * 32] = idata[j + threadIdx.x];
-  odata[j + threadIdx.x] = idata[j + threadIdx.x * 32];
-  odata[j + threadIdx.x * 32] = idata[j + threadIdx.x * 32];
+  <!-- odata[j + threadIdx.x * 32] = idata[j + threadIdx.x]; -->
+  <!-- odata[j + threadIdx.x] = idata[j + threadIdx.x * 32]; -->
+  <!-- odata[j + threadIdx.x * 32] = idata[j + threadIdx.x * 32]; -->
 }
 ```
 
@@ -75,3 +76,20 @@ See also: [shared
 memory](https://devblogs.nvidia.com/parallelforall/using-shared-memory-cuda-cc/),
 [bank
 conflicts](http://cuda-programming.blogspot.co.uk/2013/02/bank-conflicts-in-shared-memory-in-cuda.html)
+
+### Structure of Arrays or Arrays of structures
+
+``` cpp
+struct Atom { int x, y, z; };
+std::vector<Atom> molecule;
+```
+
+or
+
+``` cpp
+struct Molecule {
+  std::vector<int> x;
+  std::vector<int> y;
+  std::vector<int> z;
+};
+```
