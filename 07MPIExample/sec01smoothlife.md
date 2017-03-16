@@ -12,11 +12,11 @@ A cell, on a square grid, is either alive or dead.
 On the next iteration:
 
 * An alive cell:
-       * remains alive if it has 2 or 3 alive neighbours out of 8
-       * dies (of isolation or overcrowding) otherwise
+* remains alive if it has 2 or 3 alive neighbours out of 8
+* dies (of isolation or overcrowding) otherwise
 * A dead cell:
-       * becomes alive if it has exactly 3 alive neighbours
-       * stays dead otherwise
+* becomes alive if it has exactly 3 alive neighbours
+* stays dead otherwise
 
 ### Conway's Game of Life
 
@@ -37,10 +37,10 @@ the grid version.)
 ### Smooth Life
 
 * A point has some degree of aliveness.
-* Next timestep, a point's aliveness depends on these two integrals. (`$F_{r}$` and `$F_{d}$`)
-* The new aliveness `$S(F_{r},F{d})$` is a smoothly varying function such that:
-    * If `$F_{d}$` is 1, S will be 1 if `$d_1< F_{r} < d_2$`
-    * If `$F_{d}$` is 0, S will be 1 if `$b_1< F_d < b_2$`
+* Next timestep, a point's aliveness depends on these two integrals ($D(r)$ and $R(r)$)
+* The new aliveness $S(D(r),R(d))$ is a smoothly varying function such that:
+* If $D(d)$ is 1, S will be 1 if $d^{(1)} \leq D(r) \leq d^{(2)}$
+* If $R(d)$ is 0, S will be 1 if $b^{(1)}\leq R(r) \leq b^{(2)}$
 
 A "Sigmoid" function is constructed that smoothly blends between these limits.
 
@@ -64,9 +64,46 @@ Smooth Life shows even more interesting behaviour:
 * Gliders moving any direction
 * "Tension tubes"
 
-### Serial Smooth Life
+### Exercise
 
-Have a look at our [serial](https://github.com/UCL/SmoothLifeExample) implementation of SmoothLife.
+We will create the following two functions:
+
+- a function to compute the two integrals $D(r)$ and $R(r)$ as
+$D(x0, y0) = sum_{i, j \in \mathrm{grid}} F(i, j) \mathrm{Disk}(r=||(i - x0, j - y0)||)$
+  with $F(i, j)$ the current value at point $(i, j)$
+
+- the main update function:
+
+    loop over all points $(x, y)$ in field:
+
+    - compute integrals centered at $(x, y)$
+    - update the field using the transiontion function
+
+All other functions, including the transition function, $\mathrm{Disk}$, etc are given.
+
+### Square domain into a 1-d vector
+
+We wrap the 2d-grid into a one d vector in *row-major* format: $F(i, j) <==>
+F(I)$ with $i = I / Nx$ and $j = I \% Nx$, with $Nx$ the number of points in
+direction $x$.
+
+### Distances wrap around a torus
+
+We use periodic boundary conditions: the field is a torus.
+
+{% fragment Torus_Difference, cpp/serial/src/Smooth.cpp %}
+
+### Smoothed edge of ring and disk.
+
+$\mathrm{Disk}(r)$:
+
+{% fragment Disk_Smoothing, cpp/serial/src/Smooth.cpp %}
+
+### Automated tests for mathematics
+
+{% fragment Sigmoid_Test, cpp/serial/test/catch.cpp %}
+
+### Comments
 
 We can see that this is pretty slow:
 
@@ -75,33 +112,4 @@ step takes $MNr^2$ calculations: if we take all of these proportional as we "fin
 discretisation (a square domain, and a constant interaction distance in absolute units), the problem grows
 like $N^4$!
 
-To make this faster, we'll need to parallelise with MPI. But let's look at a few interesting things
-about the serial implementation.
-
-### Main loop
-
-Four levels deep:
-
-{% idio cpp/serial/src/Smooth.cpp %}
-
-{% fragment Main_Loop %}
-
-### Swapped before/after fields
-
-{% fragment Swap_Fields %}
-
-
-
-### Distances wrap around a torus
-
-{% fragment Torus_Difference %}
-
-### Smoothed edge of ring and disk.
-
-{% fragment Disk_Smoothing %}
-
-{% endidio %}
-
-### Automated tests for mathematics
-
-{% fragment Sigmoid_Test, cpp/serial/test/catch.cpp %}
+So let's parallelize!

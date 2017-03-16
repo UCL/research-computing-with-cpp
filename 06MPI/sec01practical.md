@@ -43,15 +43,11 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 ### Hello, world!: CMakeLists.txt
 
 ``` CMake
-cmake_minimum_required(VERSION 2.8)
-
 find_package(MPI REQUIRED)
 
-include_directories(${MPI_C_INCLUDE_PATH})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${MPI_C_COMPILE_FLAGS}")
-
 add_executable(hello hello.cc)
-target_link_libraries(hello ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+target_include_directories(hello SYSTEM PUBLIC ${MPI_INCLUDE_DIRS})
+target_link_libraries(hello PUBLIC ${MPI_LIBRARIES})
 ```
 
 ### Hello, world!: compiling and running
@@ -78,7 +74,7 @@ On aristotle.rc.ucl.ac.uk:
 
 ### MPI with CATCH
 
-Running MPI unit-tests requires MPI_Init and MPI_Failure before and after the
+Running MPI unit-tests requires ``MPI_Init`` and ``MPI_Finalize`` before and after the
 test framework (*not* inside the tests).
 
 {% code cpp/helloCatch.cc %}
