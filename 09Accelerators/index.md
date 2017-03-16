@@ -4,6 +4,14 @@ title: Accelerators
 
 ## Introduction to Accelerators
 
+### Gamers vs Researchers
+
+- Global entertainment industry (2016): $1800bn
+- Global video-game industry (PC and console) (2016): $100bn
+- Global video-game industry -- software expenditure (2016): $50bn
+- US government research efforts (pre-Trump), ~$100bn
+- Global HPC industry (2011): $10bn
+
 ### What is an accelerator?
 
 * An accelerator is a piece of computing hardware that performs some function faster than is possible in software running on a general purpose CPU
@@ -14,7 +22,10 @@ title: Accelerators
 
 ### Why would I want to use one?
 
-* Accelerators are designed to execute domain-specific computationally intensive software code faster than a CPU
+* Available on many laptop, desktops, phones, and supercomputers
+* Can speed-up calculations 2-20x by off-loading from CPU to GPU
+* Especially good at streaming
     - 3D graphics
     - MPEG decoding
     - cryptography
+

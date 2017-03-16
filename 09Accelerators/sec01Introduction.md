@@ -1,8 +1,8 @@
 ---
-title: Vectorisation
+title: CPU Vectorisation
 ---
 
-## Vectorisation
+## CPU Vectorisation
 
 
 ### Using an accelerator within the CPU

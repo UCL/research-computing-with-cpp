@@ -17,15 +17,16 @@ title: Using a GPU as an Accelerator
 
 ### GPUs as multicore vector processors
 
-* GPUs are  multicore vector processors.
-* They have much faster memory access to their own memory
-* And very slow transfer (more like 'download') to the main processor (~5GB/s)
-* They have *much* slower single-core performance (but you would never do this)
+* Multicore vector processors.
+* Much faster memory access to their own memory
+* Slow transfer between host and device (~5GB/s)
+* Constrained and complex access to different types of device memory
+* SIMD: Single Instruction, Multiple Data
 
 
 | Property         | CPU      | GPU       |
 |:-----------------|:---------|:----------|
-| No of cores      | <10      | 1000s     |
+| No of threads    | <10      | 1000s     |
 | SIMD width       | 256 bits | 1024 bits |
 | Memory bandwidth | <25 GB/s | <500 GB/s |
 
@@ -45,11 +46,11 @@ title: Using a GPU as an Accelerator
 
 ### General Purpose Programming for GPUs
 
-* GPU threads are run in (up to) 3-dimensional groups called "blocks"
-* Each block runs on one SM
-    - threads within a block can communicate via shared memory and use barrier synchronisation
-* Threads have their own registers for local variables
-* Each SM executes blocks of threads in groups of 32 called a "warp"
+* Threads are organised in groups of 32 called "warps"
+* Threads also organised "Thread blocks" of several warps
+* "Thread blocks" are organised in 1-d, 2-d, or 4-d grids
+* "Thread blocks" are assigned to Streaming Multiprocessors
+* A GPU cards is contains 1-50 Streaming Multiprocessor
 
 ### GPU Architecture
 
@@ -59,8 +60,9 @@ See [more](http://www.gris.informatik.tu-darmstadt.de/cuda-workshop/tutorial/Adv
 
 ### SIMT
 
-* Multiple thread blocks are arranged in a 3-dimensional "grid"
-* No communication/synchronisation primitives across blocks/SMs
+* Threads within a block have access to the same "shared" memory
+* Threads within a block can synchronise
+* No communication or synchronisation primitives across blocks/SMs
     - can use atomic operations on variables in global memory (slow)
 * This type of programming is a hybrid between threaded programming and SIMD and hence is called SIMT by Nvidia
 
@@ -80,6 +82,10 @@ See [more](http://www.gris.informatik.tu-darmstadt.de/cuda-workshop/tutorial/Adv
 
 * Four options to GPU accelerate code:
     - replace existing libraries with GPU-accelerated ones
-    - use compiler directives to automatically generate GPU-accelerated portions of code
+    ([ArrayFire](https://arrayfire.com/),
+    [cuFFT](https://developer.nvidia.com/cufft),
+    [cuBLAS](https://developer.nvidia.com/cublas), [Magma](http://icl.cs.utk.edu/magma/), ...)
+    - use compiler directives to automatically generate GPU-accelerated
+    portions of code (OpenMP 4.5, [OpenACC](http://www.openacc.org/))
     - use CUDA::Thrust C++ template library to build your own kernels
     - write your own kernels in CUDA-C
