@@ -45,7 +45,6 @@ Our mapper:
 - outputs a tab-separated string,value pair for each word (e.g. theword  1)
 
 ``` python
-
 #!/usr/bin/env python
 import sys
 import re
@@ -68,7 +67,6 @@ Our reducer:
 - outputs a word, count pair
 
 ``` python
-
 #!/usr/bin/env python
 import sys
 
@@ -111,7 +109,7 @@ Create a pipeline to process the book:
 
 ``` bash
 # sort represents the Hadoop shuffle
-$ cat dorian.txt | ./mapper.py | sort | ./reducer.py | more
+$ cat dorian.txt | ./mapper.py | ./reducer.py | sort
 
 the     3948
 of      2298

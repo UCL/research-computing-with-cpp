@@ -101,7 +101,7 @@ We will search for an Amazon Machine Image ID (AMI-ID) using the command line to
 # Use filter to locate a specific machine (ami-9d23aeea)
 # Filter is a key,value pair
 $ aws ec2 describe-images --owners amazon \
-  --filters "Name=name,Values=amzn-ami-hvm-2014.09.2.x86_64-ebs"
+  --filters "Name=name,Values=amzn-ami-hvm-2016.09.1.20170119-x86_64-gp2"
 ```
 
 ### Launch an instance
@@ -109,7 +109,7 @@ $ aws ec2 describe-images --owners amazon \
 Launch an instance using the Amazon Machine Image ID:
 
 ``` bash
-# <AMI-ID>: ami-9d23aeea
+# <AMI-ID>: ami-70edb016
 # <key_name>: defined when transferring the key
 # <group_name>: "My security group"
 $ aws ec2 run-instances --image-id <AMI-ID> \
