@@ -36,20 +36,33 @@ Creating a virtual machine is optional on Linux, and necessary on Windows and Ma
 ```
 > docker-machine create cpp_course  \
            --driver virtualbox      \
-           --virtualbox-memory 8000 \
-           --virtualbox-cpu-count 4
+           --virtualbox-memory 4000 \
+           --virtualbox-cpu-count 2
 > eval $(docker-machine env cpp_course)
 ```
 
 The last lines lets docker know on which VM it should create containers.
 
-Then, create a Dockerfile specifying the machine we want:
+Then ssh into the machine and look for your home directory:
+
+```
+> docker-machine ssh cpp_course
+> pwd
+# Mac users
+> ls /Users/
+# Linux users
+> ls /home
+# Windows users
+# uhm, no idea :(, look around and let me know!
+```
+
+Then, create a Dockerfile specifying the container we want:
 
 ```
 > mkdir docker_dir
-> cat > docker/Dockerfile <<EOF
+> cat > docker_dir/Dockerfile <<EOF
 FROM ubuntu:latest
-RUN  apt-get update && apt-get install -y cmake valgrind gcc g++
+RUN  apt-get update && apt-get install -y cmake g++ valgrind
 EOF
 ```
 
@@ -65,10 +78,10 @@ of the image.
 First, check you can see the directory with the source:
 
 ```
-> docker run --rm \
+> docker run --rm                                               \
           -v /path/to/source/on/vm:/path/to/source/on/container \
-          -w /path/to/source/on/container  \
-          course_container \
+          -w /path/to/source/on/container                       \
+          course_container                                      \
           ls
 ```
 
@@ -79,9 +92,9 @@ This should print the content of the directory on your machine, if:
 
 Finally, replace the ls command to:
 
-1. create a build directory
-1. run cmake
-1. run make
+1. create a build directory in the source code directory
+1. run cmake from the build directory
+1. run make in the build directory
 
 ## Running valgrind on program called `awful`
 
@@ -92,11 +105,12 @@ It can only run inside the container!
 It has memory leaks and bugs. Investigate and correct using valgrind:
 
 ```
-> docker run --rm \
+> docker run --rm                                         \
     -v /path/to/source/on/vm:/path/to/source/on/container \
-    -w /path/to/source/on/container  \
-    course_container \
-    valgrind -v --leak-check=full --show-leak-kinds=all --track-origin=yes ./awful
+    -w /path/to/source/on/container                       \
+    course_container                                      \
+    valgrind -v --leak-check=full --show-leak-kinds=all   \
+                --track-origin=yes ./awful
 ```
 
 ## Running valgrind on program called `less_bad`

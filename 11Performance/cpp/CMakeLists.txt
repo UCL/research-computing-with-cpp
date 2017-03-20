@@ -12,4 +12,7 @@ find_package(Eigen3)
 if(Eigen3_FOUND)
   add_executable(less_bad less_bad.cc)
   target_include_directories(less_bad SYSTEM PUBLIC "${EIGEN3_INCLUDE_DIR}")
+
+  add_executable(micro_benchmark micro_benchmark.cc)
+  target_include_directories(micro_benchmark SYSTEM PUBLIC "${EIGEN3_INCLUDE_DIR}")
 endif()

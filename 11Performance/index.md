@@ -1,23 +1,27 @@
 ---
-title: Post-coding medley: memory leaks and performance measurements
+title: Post-coding medley, memory leaks, and performance measurements
 ---
 
 ## Side-note: Flynn's Taxonomy of Parallelization
 
 - SISD: Single instruction single data
+
   prototypical serial code
 
 - SIMD: Single instruction multiple data
-  Same instruction is performed in parallel over different inputs.
-  Necessary in GPU (at the level of 32-thread warp). Likely in OpenMP (for loop
-  parallelization) and MPI.
+
+  Same instruction is performed in parallel over different inputs. Necessary
+  in GPU (at the level of a warp of 32 threads). Likely in OpenMP
+  (for loop parallelization) and MPI.
 
 - MIMD: Multiple instruction multiple data
+
   Basically, different threads or different nodes doing different things, e.g.
   computing different terms in an equation, dealing one with the GUI, the other
   with a database, etc...
 
 - MISD: Multiple instructions single data
+
   Weird... Used for fault tolerance (different algorithm that should lead to
   same output).
 

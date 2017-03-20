@@ -1,5 +1,5 @@
 ---
-title: Profiling and measuring performance
+title: Profiling a program
 ---
 
 ## Amdahl's law
@@ -14,7 +14,7 @@ Give's the maximum theoretical speedup for parallelizing a given task.
 
 Some simple cases:
 
-- $P \mapst 0$, $n \mapsto \infty$, then  $S \rightarrow 1$
+- $P \mapsto 0$, $n \mapsto \infty$, then  $S \rightarrow 1$
 - $P=0.5$, $n \mapsto \infty$, then  $S \rightarrow 2$
 
 In practice, it means programmers/researchers should measure performance before
@@ -47,8 +47,19 @@ Other considerations to take into account: threads, GPU-specifics, MPI...
     valgrind -v --tool=callgrind ./awful
 ```
 
+1. Then run qcachegrind on the artifact file:
+
+```
+> /usr/local/Cellar/qcachegrind/16.12.0/bin/qcachegrind callgrind.out.1
+```
+
+Notice the difference between `include` and `self`, e.g. the time spent in the
+function as whole, vs the time spent strictly in the function excluding
+sub-function calls.
+
 Questions:
 
 1. How much time is spent on `neighbor`
 1. How much time is spent on `TravelDistance::operator()`
 1. What happens when you increase the number of cities to 100, or 10000
+1. What should we optimze or parallelize?

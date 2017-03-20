@@ -41,6 +41,6 @@ Refactoring means rewriting:
 - to simplicy existing code
 - to simplify future development
 - for legibility
-  - to decrease tech-debt
+- to decrease tech-debt
 - to consolidate similar code (avoid copy-pasta)
 
