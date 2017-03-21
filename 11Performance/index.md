@@ -2,6 +2,27 @@
 title: Post-coding medley, memory leaks, and performance measurements
 ---
 
+## Please install docker and docker-machine
+
+Mac OS/X:
+
+```
+> brew install Caskroom/cask/virtualbox
+> brew install docker-machine
+> brew install docker
+```
+or
+```
+> brew install Caskroom/cask/docker-toolbox
+```
+
+Linux:
+- docker https://www.docker.com/community-edition
+- docker machine (optional): https://docs.docker.com/machine/install-machine/
+
+Windows or Mac OS/X:
+- https://www.docker.com/products/docker-toolbox
+
 ## Side-note: Flynn's Taxonomy of Parallelization
 
 - SISD: Single instruction single data
