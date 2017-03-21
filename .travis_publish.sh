@@ -13,7 +13,8 @@ if [ "$TRAVIS_BRANCH$TRAVIS_PULL_REQUEST" == "masterfalse" ] ; then
   eval `ssh-agent -s`
   chmod 600 deploy_key
   ssh-add deploy_key
-  git remote add origin $SSH_REPO
+  echo $SSH_REPO
+  git remote add origin git@github.com:UCL-RITS/research-computing-with-cpp
   echo $TRAVIS_BRANCH $TRAVIS_PULL_REQUEST
   git push -f -u origin gh-pages
 fi
