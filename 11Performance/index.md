@@ -2,7 +2,7 @@
 title: Post-coding medley, memory leaks, and performance measurements
 ---
 
-## Please install docker and docker-machine
+## Please install docker and docker-machine
 
 Mac OS/X:
 
@@ -46,7 +46,7 @@ Windows or Mac OS/X:
   Weird... Used for fault tolerance (different algorithm that should lead to
   same output).
 
-## All tests passe, the code works: are we done yet?
+## All tests pass, the code works: are we done yet?
 
 Lots of changes can be made to a code, from cosmetic to crucial:
 

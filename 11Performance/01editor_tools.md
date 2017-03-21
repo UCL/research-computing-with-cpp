@@ -38,7 +38,7 @@ Once tests exist, it is easy and safe to modify the code:
 
 Refactoring means rewriting:
 
-- to simplicy existing code
+- to simplify existing code
 - to simplify future development
 - for legibility
 - to decrease tech-debt

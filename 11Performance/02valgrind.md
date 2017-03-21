@@ -2,7 +2,7 @@
 title: Memory leaks
 ---
 
-### Checking memory allocation intrusively
+## Checking memory allocation intrusively
 
 There are a variety of compiler flags to check standard memory errors:
 
@@ -12,7 +12,7 @@ There are a variety of compiler flags to check standard memory errors:
 Good when debugging/testing, but may impact performance. May not detect all
 memory errors (e.g. read before initialization).
 
-### Checking memory allocation non-intrusively
+## Checking memory allocation non-intrusively
 
 [Valgrind](http://valgrind.org/) is an instrumentation framework for Linux and (older) Mac.
 
@@ -23,7 +23,24 @@ Unfortunately, Valgrind currently does not work with Mac OS/X > 10.11.
 
 So let's use docker (on Linux) and docker-machine (Windows, Mac OS/X)!
 
-### Exercise: Create a docker virtual machine
+## Exercise: Traveling salesman solved by Simulated Annealing
+
+Traveling Salesman Problem:
+
+   A salesman living in an n-dimensional world must visit N cities. What is the
+   shortest path?
+
+Simulated Annealing:
+
+- Start from a candidate A
+- Create a neighbor B of A
+- if `path(A) > path(B)`, then swap A and B
+- else if `exp(beta * (path(B) - path(A))) > random()`, then swap A and B
+- loop until satisfied
+
+
+
+### Setting up a docker VM and docker
 
 First download/update to the latest course:
 
@@ -48,12 +65,12 @@ Then ssh into the machine and look for your home directory:
 ```
 > docker-machine ssh cpp_course
 > pwd
-# Mac users
+# Mac users
 > ls /Users/
-# Linux users
+# Linux users
 > ls /home
-# Windows users
-# uhm, no idea :(, look around and let me know!
+# Windows users
+# uhm, no idea :(, look around and let me know!
 ```
 
 Then, create a Dockerfile specifying the container we want:
@@ -113,7 +130,7 @@ It has memory leaks and bugs. Investigate and correct using valgrind:
                 --track-origin=yes ./awful
 ```
 
-## Running valgrind on program called `less_bad`
+## Running valgrind on program called `less_bad`
 
 Even programs written without explicit memory allocations can have memory bugs.
 

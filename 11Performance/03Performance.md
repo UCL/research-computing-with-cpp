@@ -2,15 +2,15 @@
 title: Profiling a program
 ---
 
-## Amdahl's law
+## Amdahl's law
 
-Give's the maximum theoretical speedup for parallelizing a given task.
+Maximum theoretical speedup for parallelizing a given task.
 
 - Given a program that takes a time T to execute
 - When parallelizing a task A taking time P over n threads
 - Then the maximum speedup is:
 
-      $S = \frac{T}{T - P + frac{P}{n}}$
+      $S = \frac{T}{T - P + \frac{P}{n}}$
 
 Some simple cases:
 
@@ -28,6 +28,9 @@ Refers to measuring how much time the program spends in each function:
 - [gprof](https://sourceware.org/binutils/docs/gprof/) require "instrumenting"
   the program, e.g. recompiling with the gprof library. It polls the program
   every so often, a.k.a. "sampling"
+- [gperftools]([https://github.com/gperftools/gperftools), intrusive,
+thread-capable, can select parts of code to profile, info can be visualized by
+kcachegrind and/or [pprof](https://github.com/google/pprof)
 - [XCode instruments](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/) provides "sampling" without requiring instrumentation
 
 Other considerations to take into account: threads, GPU-specifics, MPI...
@@ -62,4 +65,4 @@ Questions:
 1. How much time is spent on `neighbor`
 1. How much time is spent on `TravelDistance::operator()`
 1. What happens when you increase the number of cities to 100, or 10000
-1. What should we optimze or parallelize?
+1. What should we optimize or parallelize?
