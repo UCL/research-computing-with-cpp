@@ -56,7 +56,7 @@ notes.pdf: combined.md Makefile $(PY_FIGURES)
 		ruby liquify.rb $< slides > $@
 
 combined.md: $(TEMPLATED) cover.md
-	cat cover.md $^ > $@
+	cat cover.md `echo $^ | sed s/cover.md// ` > $@
 
 notes.tex: combined.md Makefile $(OUTS)
 	$(PANDOC) --from markdown combined.md -o notes.tex
