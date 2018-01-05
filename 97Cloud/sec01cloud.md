@@ -2,8 +2,6 @@
 title: Cloud computing and big data
 ---
 
-## Cloud computing and big data
-
 ### Big data
 
 Some data requires special treatment for collection, storage, and analysis.

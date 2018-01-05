@@ -37,137 +37,136 @@ or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
 
 ##Registration
 
-Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers. Other UCL graduate students or post-doctoral staff can register at [UCL Market Place](http://onlinestore.ucl.ac.uk/) (search for MPHYG002).
+Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers. 
 
 Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://medicalimaging-cdt.ucl.ac.uk/programmes).
 
-This course may not be audited.
+This course may not be audited without the prior permission of the course organiser Dr. Matt Clarkson.
 
 ##Synopsis
 
+This year we propose to cover the following topics. These notes will be updated as we go through the course.
+
 <table>
  <tbody>
+
   <tr>
-   <td>
-
-<h3>Intro</h3><ul>
-
-    <li>Intro, course admin</li>
-    <li>Git quick-start</li>
-    <li>CMake quick-start</li>
-    <li>C++ unit testing framework</li>
-    <li>Quick C++ reminder</li>
-
-   </ul></td>
-  <td>
-
-<h3>Shared Memory Parallelism</h3><ul>
-
-    <li>OpenMP</li>
-    <li>Parallel sections, reduction</li>
-    <li>Safety, locks and races</li>
-    <li>Task-oriented parallelism</li>
-    <li>Load balancing</li>
-    <li>OpenMP alternatives</li>
-
-   </ul></td>
-  </tr>
-  <tr>
-   <td>
-
-<h3>Better C++</h3><ul>
-
-   <li>Quick language recap</li>
-   <li>Templates</li>
-   <li>Error handling</li>
-
-   </ul></td>
-   <td>
-
-<h3>Distributed Memory Parallelism</h3><ul>
-
-   <li>Concepts</li>
-   <li>Point to point communication</li>
-   <li>Collective communication</li>
-   <li>Groups and communicators</li>
-   <li>Advanced communications concepts</li>
    
-
-   </ul></td>
-  </tr>
-  <tr>
    <td>
-
-<h3>More C++</h3><ul>
-
-  <li>Smart Pointers</li>
-  <li>Construction</li>
-  <li>Design Patterns</li>
-
-   </ul></td>
-   <td>
-
-<h3>MPI Design Example</h3><ul>
-
-   <li>SmoothLife: An example parallel computing problem</li>
-   <li>Domain Decomposition</li>
-   <li>Local Communication with Sendrecv</li>
-   <li>Scripting Job Submission</li>
-   <li>Simplifying communication with derived datatypes</li>
-   <li>Overlapping Computation and Communication</li>
-
-   </ul></td>
-  </tr>
-  <tr>
-   <td>
-
-<h3>Data Structures - STL</h3><ul>
-
-   <li>Motivation</li>
-   <li>Containers</li>
-   <li>Other useful stuff</li>
+    <h3>Intro</h3>
+    <ul>
+     <li>Course structure and admin</li>
+     <li>Git quick-start</li>
+     <li>CMake quick-start</li>
+     <li>Unit testing</li>
+     <li>Quick C++ reminder</li>
+    </ul>
+   </td>
    
-   </ul></td>
    <td>
-
-<h3>Accelerators</h3><ul>
-
-   <li>Introduction to Accelerators</li>
-   <li>Using a GPU as an Accelerator</li>
-   <li>Using GPU-accelerated libraries</li>
-   <li>Using CUDA with Thrust</li>
-
-   </ul></td>
+    <h3>Distributed Memory Parallelism</h3>
+    <ul>
+     <li>Concepts</li>
+     <li>Point to point communication</li>
+     <li>Collective communication</li>
+     <li>Groups and communicators</li>
+     <li>Advanced communications concepts</li>
+    </ul>
+   </td>
+   
   </tr>
-
   <tr>
+  
    <td>
-
-<h3>Libraries</h3><ul>
-
-    <li>Using libraries</li>
-    <li>Linear algebra (Eigen)</li>
-    <li>Boost</li>
-    <li>Memory, processors, cores and caches</li>
-    <li>Amdahl's law</li>
-    <li>How parallel computers work</li>
-    <li>High performance programming</li>
-    <li>Schedulers and job submission</li>
-
-   </ul></td>
+    <h3>Libraries</h3>
+    <ul>
+     <li>Why use libraries?</li>
+     <li>Boost</li>
+     <li>Eigen (Linear Algebra)</li>
+     <li>ITK / OpenCV</li>
+    </ul>
+   </td>
+  
    <td>
-
-<h3>Cloud computing and big data</h3><ul>
-
-   <li>'Big data'</li>
-   <li>Working in the cloud</li>
-   <li>Virtualisation</li>
-   <li>Distributed computing</li>
-   <li>Hadoop and MapReduce</li>
-
-   </ul></td>
+    <h3>OpenMPI</h3>
+    <ul>
+     <li>Examples</li>
+    </ul>
+   </td>
+   
   </tr>
-
+  <tr>
+  
+   <td>
+    <h3>Using Libraries</h3>
+    <ul>
+     <li>Finding libraries with CMake</li>
+     <li>Module mode</li>
+     <li>Config mode</li>
+     <li>Examples</li>
+     <li>Using non-CMake'd libraries</li>
+    </ul>
+   </td>
+    
+   <td>
+    <h3>OpenMPI</h3>
+    <ul>
+     <li>TBC</li>
+    </ul>
+   </td>
+    
+  </tr>
+  <tr>
+  
+   <td>
+    <h3>Shared Memory Parallelism</h3>
+    <ul>
+     <li>OpenMP</li>
+     <li>Memory, processors, cores and caches</li>
+     <li>Amdahl's law</li>
+     <li>How parallel computers work</li>
+     <li>High performance programming</li>
+     <li>Schedulers and job submission</li>     
+     <li>Parallel sections, reduction</li>
+     <li>Safety, locks and races</li>
+     <li>Task-oriented parallelism</li>
+     <li>Load balancing</li>
+     <li>OpenMP alternatives</li>
+    </ul>
+   </td>
+   
+   <td>
+    <h3>Accelerators</h3>
+    <ul>
+     <li>Concepts</li>
+     <li>Trivially parallelisable examples<li>
+     <li>Map Reduce</li>
+    </ul>
+   </td>
+   
+  </tr>
+  <tr>
+  
+   <td>
+    <h3>Binding & Tuning</h3>
+    <ul>
+     <li>Python Binding</li>
+     <li>Profiling</li>
+     <li>Valgrind</li>
+    </ul>
+   </td>
+   
+   <td>
+    <h3>Accelerators</h3>
+    <ul>
+     <li>Thrust</li>
+     <li>ArrayFire</li>
+     <li>CUDA</li>
+    </ul>
+   </td>
+   
+  </tr>
+  
  </tbody>
 </table>
 
