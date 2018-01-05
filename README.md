@@ -17,9 +17,6 @@ You will need to have a bunch of stuff installed in order for the build to succe
 For Mac:
 * Libraries:
    * `brew install boost`
-   * `brew tap homebrew/science`
-   
-     `brew install insighttoolkit`
 * Ruby stuff:
    * `brew install ruby`
    * `gem install liquid`
