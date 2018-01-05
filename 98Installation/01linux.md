@@ -19,13 +19,9 @@ On RedHat based systems:
 
     sudo yum install git
 
-## Subversion ##
-
-Again, install the appropriate package with apt-get or yum (`subversion`)
-
 ## CMake ##
 
-Again, install the appropriate package with apt-get or yum (`cmake`)
+Again, install the appropriate package with apt-get or yum (`cmake`). Minimum version 3.5.
 
 ## Editor and shell ##
 

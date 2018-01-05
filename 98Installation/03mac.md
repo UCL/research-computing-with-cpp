@@ -37,6 +37,8 @@ Just do
 brew install cmake
 ```
 
+Minimum version 3.5.
+
 ## Editor and shell ##
 
 The default text editor on OS X *textedit* should be sufficient for our use. Alternatively

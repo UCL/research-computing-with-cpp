@@ -11,15 +11,9 @@ Install [msysgit](http://code.google.com/p/msysgit/downloads/list?q=full+install
 
 Then install the [GitHub for Windows client](http://windows.github.com/).
 
-## Subversion
-
-Install [subversion](http://sourceforge.net/projects/win32svn/)
-
-And choose to add it to the path for all users if so prompted.
-
 ## CMake
 
-Install [cmake](http://www.cmake.org/cmake/resources/software.html)
+Install [cmake](http://www.cmake.org/cmake/resources/software.html). Minimum version 3.5.
 
 And choose to add it to the path for all users if so prompted.
 
