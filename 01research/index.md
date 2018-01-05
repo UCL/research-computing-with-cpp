@@ -2,8 +2,8 @@
 title: C++ for Research
 author:
   - Matt Clarkson
-  - Ilektra Christidi
-  - Mayeul D'Avezac
+  - Jonathan Cooper
+  - Roma Klapaukh
   - James Hetherington
 ---
 
@@ -11,8 +11,8 @@ author:
 
 ### Part 1
 
-* Correct C++ via unit testing
-* Very brief C++ recap
+* Better C++
+* Using C++ in research
 * Reliable C++
 * Reproducible science
 
@@ -23,7 +23,6 @@ author:
 * Shared memory parallelism - [OpenMP](http://www.openmp.org)
 * Distributed memory parallelism - [MPI](http://www.open-mpi.org)
 * Accelerators (GPU/Thrust)
-* Cloud Computing - [Amazon EC2](http://aws.amazon.com/)
 
 
 ### Course Aims
@@ -57,6 +56,7 @@ author:
 * 2 pieces coursework - 40 hours each
     * 1 due 3rd week March
     * 1 due last week April
+    * (roughly)
 
 
 ### Course Community
