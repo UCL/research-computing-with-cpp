@@ -46,7 +46,7 @@ author:
 ### Course Notes
 
 * Software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
-* UCL Moodle: MPHYG002
+* Moodle: [MPHYG002](https://moodle.ucl.ac.uk/), key is "performance"
 * Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 
 
