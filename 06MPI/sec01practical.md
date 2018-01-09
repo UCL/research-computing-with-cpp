@@ -9,7 +9,7 @@ title: MPI in practice
 
 ### Specification and implementation
 
-* in practice, we use MPI, the [Message Passing Interface](http://en.wikipedia.org/wiki/Message_Passing_Interface)
+* In practice, we use MPI, the [Message Passing Interface](http://en.wikipedia.org/wiki/Message_Passing_Interface)
 * MPI is a *specification* for a *library*
 * It is implemented by separate vendors/open-source projects
      - [OpenMPI](http://www.open-mpi.org/)
@@ -18,11 +18,11 @@ title: MPI in practice
      - Fortran (part of official MPI specification)
      - Python: [boost](http://www.boost.org/doc/libs/1_55_0/doc/html/mpi/python.html), [mpi4py](http://mpi4py.scipy.org/)
      - R: [Rmpi](http://cran.r-project.org/web/packages/Rmpi/index.html)
-     - c++: [boost](http://www.boost.org/doc/libs/1_57_0/doc/html/mpi.html)
+     - C++: [boost](http://www.boost.org/doc/libs/1_57_0/doc/html/mpi.html)
 
 ### Programming and running
 
-* an MPI program is executed with ``mpiexec -n N [options] nameOfProgram [args]``
+* An MPI program is executed with ``mpiexec -n N [options] nameOfProgram [args]``
 
 * MPI programs call methods from the mpi library
 
@@ -31,8 +31,7 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
                MPI_Comm comm)
 ```
 
-
-* vendors provide wrappers (mpiCC, mpic++) around compilers.
+* Vendors provide wrappers (mpiCC, mpic++) around compilers.
   Wrappers point to header file location and link to right libraries.
   MPI program can be (easily) compiled by substituting ``(g++|icc) -> mpiCC``
 
