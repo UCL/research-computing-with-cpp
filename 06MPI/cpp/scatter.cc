@@ -11,11 +11,11 @@ TEST_CASE("Collective communications") {
     SECTION("Collective scatter") {
       /// "scatter"
       std::string const message = "This message is going to come out in separate channels";
+      if (message.size() < (unsigned)size) return;
       int N = message.size() / size;
-      if(message.size() < size) return;
 
       char buffer[256];
-      if(rank == 0) {
+      if (rank == 0) {
         int const error = MPI_Scatter(
                 (void*) message.c_str(), N, MPI_CHAR,
                 buffer, 256, MPI_CHAR, 0, MPI_COMM_WORLD

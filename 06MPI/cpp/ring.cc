@@ -31,17 +31,21 @@ TEST_CASE("Ring communications") {
       if (rank%2 == 0) {
         int error = MPI_Ssend(
           &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD);
+        REQUIRE(error == MPI_SUCCESS);
 
         error = MPI_Recv(
           &received, 1, MPI_INT, right, right, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        REQUIRE(error == MPI_SUCCESS);
       }
       if (rank%2 == 1) {
 
         int error = MPI_Recv(
           &received, 1, MPI_INT, right, right, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        REQUIRE(error == MPI_SUCCESS);
 
         error = MPI_Ssend(
           &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD);
+        REQUIRE(error == MPI_SUCCESS);
       }
       REQUIRE( received == right*right );
       /// "Stub"
@@ -53,10 +57,12 @@ TEST_CASE("Ring communications") {
       // Everyone sets up their messages to send
       int error = MPI_Isend(
         &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD, &request);
+      REQUIRE(error == MPI_SUCCESS);
 
       // Recv acts as our sync-barrier
       error = MPI_Recv(
         &received, 1, MPI_INT, right, right, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      REQUIRE(error == MPI_SUCCESS);
 
       // But let's check our send completed:
       error = MPI_Wait(&request, MPI_STATUS_IGNORE);
@@ -72,8 +78,9 @@ TEST_CASE("Ring communications") {
           &message, 1, MPI_INT, left, rank,
           &received, 1, MPI_INT, right, right,
           MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        REQUIRE(error ==  MPI_SUCCESS);
 
-          REQUIRE( received == right*right );
+        REQUIRE( received == right*right );
         /// "Stub"
     }
 
