@@ -375,7 +375,7 @@ and tests like:
 
 ### Anti-Pattern 2: Suggestion
 
-* Read up on [Dependency Injection][DependencyInjection]
+* Read up on [Dependency Injection](https://martinfowler.com/articles/injection.html)
 * Enables you to create and inject dummy test classes
 * So, testing again used to break down design, and increase flexibility
 
