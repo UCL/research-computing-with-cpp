@@ -1,7 +1,7 @@
 ### "hello"
 cmake_minimum_required(VERSION 2.8)
 
-find_package(MPI)
+find_package(MPI REQUIRED)
 
 if(MPI_C_FOUND)
     include_directories(${MPI_C_INCLUDE_PATH})
