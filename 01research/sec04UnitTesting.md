@@ -168,7 +168,7 @@ Each framework has a variety of macros to test for failure. [Check][Check] has:
     CHECK(expression);   // doesn't stop if fails
 ```
 
-if an exception is throw, its caught, reported and counts as a failure.
+If an exception is thrown, it's caught, reported and counts as a failure.
 
 Examples:
 
