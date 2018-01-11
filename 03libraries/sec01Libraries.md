@@ -23,7 +23,7 @@ The chances are any general algorithm you might want to use
 has already been programmed better by someone else.
 
 
-### Publihsing Results
+### Publishing Results
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
@@ -121,8 +121,8 @@ that version of the code.
     * Be able to compile all your own code, including libraries
         * so need common build environment. (eg. CMake, Make, Visual Studio).
 
-[PythonCourse]: http://development.rc.ucl.ac.uk/training/engineering
-[Python04Intro]: http://development.rc.ucl.ac.uk/training/engineering/session04/
+[PythonCourse]: http://github-pages.ucl.ac.uk/rsd-engineeringcourse/
+[Python04Intro]: http://github-pages.ucl.ac.uk/rsd-engineeringcourse/ch04packaging/01Libraries.html
 [NatureArticle]: http://www.nature.com/news/2010/101013/full/467753a.html
 [LicensingBook]: http://www.oreilly.com/openbook/osfreesoft/book/
 [Chooselicense]: http://choosealicense.com/
@@ -133,4 +133,3 @@ that version of the code.
 [GPLLicense]: http://opensource.org/licenses/gpl-license
 [LGPLLicense]: http://opensource.org/licenses/lgpl-license
 [semver]: http://www.semver.org/
-[NifTK]: http://www.niftk.org/
