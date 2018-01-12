@@ -1,26 +1,8 @@
 ---
-title: Including Libraries
+title: Examples
 ---
 
-## Including libraries
-
-### Aim
-
-* Can be difficult to include a C++ library
-* Step through
-    * Ways of setting paths/library names
-        * Platform specific 
-        * Use of CMake
-* Aim for - source code based distribution
-
-
-### Recap
-
-* So far
-    * Seen how to chose
-    * Static / Dynamic
-    * How to structure layout
-* Now we want to use a library
+## Examples
 
 
 ### Fundamental
@@ -119,7 +101,7 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3\
 * Hard-coded, but usable if you write detailed build instructions
 * Not very platform independent
 * Not very flexible
-* Can be self contained if you have a Meta-build
+* Can be self contained if you have a Meta-build - read on.
 
 
 ### CMake - find_package
@@ -131,14 +113,15 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3\
   list(APPEND ALL_THIRD_PARTY_LIBRARIES ${OpenCV_LIBS})
   add_definitions(-DBUILD_OpenCV)
 ```
-* So a package can provide information on how you should use it
+* So a 3rd party package can provide information on how you should use it
 * If its written in CMake code, even better!
 
 
 ### find_package - Intro
 
-* CMake comes with scripts to include 3rd Party Libraries
-* You can also write your own ones
+* CMake comes with scripts to include various 3rd Party Libraries
+* 3rd Parties can write these scripts aswell
+* You can also write your own scripts
 
 
 ### find_package - Search Locations
@@ -158,16 +141,16 @@ A Basic Example (for a full example - see docs)
     
 ### find_package - Result
 
-* If file is found, CMake will try to run it, to find that library.
+* If FindSomeLibrary.cmake is found, CMake will try to run it, to find the required library.
 * FindSomeLibrary.cmake should return SomeLibrary_FOUND:BOOL=TRUE if library was found
 * Sets any other variables necessary to use the library
-* Check CMakeCache.txt
+* Check CMakeCache.txt to see result
 
 
 ### find_package - Usage
 
 * So many 3rd party libraries are CMake ready.
-* If things go wrong, you can debug it - not compiled
+* If things go wrong, you can debug it - CMake is all text based.
 
 
 ### find_package - Fixing
@@ -208,7 +191,7 @@ add_definitions(-DBUILD_OpenCV)
 ```
 * Best not to do too much of this.
 * Useful to provide build options, e.g. for running on clusters
- 
+
 
 ### Check Before Committing
 

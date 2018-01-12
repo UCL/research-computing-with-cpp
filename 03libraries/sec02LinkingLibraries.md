@@ -4,22 +4,14 @@ title: Linking Libraries
 
 ## Linking libraries
 
-### Aim
-
-* Can be difficult to include a C++ library
-* Step through
-    * [Dynamic versus Static linking](http://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/)
-* Aim for - source code based distribution
-
-
 ### Linking
 
-* Code is split into functions/classes
-* Related functions get grouped into libraries
-* Libraries have namespaces, names, declaration, definitions (implementations)
-* Libraries get compiled - saves compilation time
+* From first lecture
+    * Code is split into functions/classes
+    * Related functions get grouped into libraries
+    * Libraries get compiled / archived into one file
 * End User needs
-    * Header file = declarations
+    * Header file = declarations (and implementation if header only)
     * Object code / library file = implementations
     
     
@@ -27,7 +19,7 @@ title: Linking Libraries
 
 * Windows (.lib), Mac/Linux (.a)
 * Compiled code from static library is copied into the current translation unit.
-* Increases disk space
+* Increases disk space compared with dynamic linking.
 * Current translation unit then does not depend on that library.
 
 
@@ -37,10 +29,10 @@ title: Linking Libraries
 * Compiled code is left in the library.
 * At runtime, 
     * OS loads the executable
-    * Finds any unresolved libraries
-        * Various search mechanisms
+    * OS / Linker finds any unresolved libraries
     * Recursive process
-* Saves disk space
+* Saves disk space compared with static linking.
+* Faster compilation/linking times?
 * Current translation unit has a known dependency remaining.
     
     
@@ -65,17 +57,17 @@ title: Linking Libraries
 * Less of a concern these days
 
 
+### For Scientists
+
+* Ease of use
+* Ease of distribution to collaborators
+* Prefer static if possible
+* Let complex deployment scenarios be done by Research Software Engineers
+
+
 ### How to Check
 
 * Windows - Dependency Walker
 * Linux - ```ldd```
 * Mac - ```otool -L```
 * (live demo on Mac)
-
-
-### Note about Licenses
-
-CAVEAT: Again - this is not legal advice.
-
-* Static linking considered to make your work a 'derivative work'
-* If you use LGPL - use dynamic linking
