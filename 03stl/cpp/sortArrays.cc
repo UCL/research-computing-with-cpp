@@ -8,8 +8,8 @@ int compare(const void* a, const void* b)
 
 int main()
 {
-  FILE* if1 = fopen("02stl/cpp/randomNumbers1.txt","r");
-  FILE* if2 = fopen("02stl/cpp/randomNumbers2.txt","r");
+  FILE* if1 = fopen("03stl/cpp/randomNumbers1.txt","r");
+  FILE* if2 = fopen("03stl/cpp/randomNumbers2.txt","r");
 
   // First determine size of array needed
   int size1=0, size2=0;

@@ -11,10 +11,10 @@ author:
 
 ### Part 1
 
-* Better C++
 * Using C++ in research
-* Reliable C++
-* Reproducible science
+* Better C++
+    * Reliable
+    * Reproducible
 
 
 ### Part 2
@@ -45,8 +45,9 @@ author:
     
 ### Course Notes
 
-* Software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
-* Moodle: [MPHYG002](https://moodle.ucl.ac.uk/), key is "performance"
+* Revise some software Engineering: [MPHYG001](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
+* Register with Moodle: [MPHYG002](https://moodle.ucl.ac.uk/)
+    * key is "performance"
 * Online notes: [MPHYG002](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 
 

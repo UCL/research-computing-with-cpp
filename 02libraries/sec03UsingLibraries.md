@@ -4,23 +4,17 @@ title: Using Libraries
 
 ## Using libraries
 
-### Aim
-
-* Can be difficult to include a C++ library
-* Step through
-    * Build structure
-* Aim for - source code based distribution
-
-
 ### Where from?
 
 * Package Manager (Linux/Mac)
     * Precompiled
     * Stable choice
     * Inter-dependencies work
-* For example
+* Linux
     * ```sudo apt-get install```
-    * ```port install```
+    * ```sudo yum install```
+* Mac    
+    * ```sudo port install```
     * ```brew install```
     
 
@@ -31,7 +25,14 @@ title: Using Libraries
     * In system folders
     * In developer folders
     * In build folder
-* Package managers forthcoming
+* Try [Chocolatey](http://chocolatey.org) package manager
+
+
+### Package Managers
+
+* So, if you can use standard versions of 3rd party libraries
+* Package managers are a good way to go
+* You just need to specify what versions so your collaborator can check
 
 
 ### Problems
@@ -66,10 +67,10 @@ C:\build\MyProject
 C:\build\MyProject-build
 ```
 
-We setup ```MyProject-build``` to know the location of ITK and VTK. 
+We setup ```MyProject-build``` to know the location of ITK and VTK install folder.
     
     
-### Meta-Build
+### Meta-Build / Super-Build
 
 * 2 basic approaches
     * Meta-Build, a.k.a SuperBuild
@@ -91,4 +92,14 @@ C:\build\MyProject-SuperBuild\VTK\install
 C:\build\MyProject-SuperBuild\MyProject-build
 ```
 
-We setup ```MyProject-build``` to know the location of ITK and VTK. 
+We setup ```MyProject-build``` to know the location of ITK and VTK that it itself compiled.
+
+### Pro's / Con's
+
+* External Build
+    * Pro's - build each dependency once
+    * Con's - collaborators will do this inconsistently
+    * Con's - how to manage multiple versions of all dependencies
+* Meta Build
+    * Pro's - all documented, all self-contained, easier to share
+    * Con's - Slow build? Not a problem.

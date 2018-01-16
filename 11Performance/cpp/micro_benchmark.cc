@@ -5,6 +5,7 @@
 #include <time.h>
 #include <vector>
 #include <Eigen/Dense>
+#include <random>
 
 // Order for visiting the cities
 typedef std::vector<Eigen::Index> Candidate;
