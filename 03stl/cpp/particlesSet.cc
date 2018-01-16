@@ -27,7 +27,7 @@ private:
 /// main
 int main()
 {
-  std::ifstream ifs("02stl/cpp/particleList.txt",std::ifstream::in);
+  std::ifstream ifs("03stl/cpp/particleList.txt",std::ifstream::in);
 
   // Read in the data
   std::set<std::string,compMass> theParticles;

@@ -5,7 +5,7 @@
 
 int main()
 {
-  std::ifstream ifs("02stl/cpp/particleList.txt",std::ifstream::in);
+  std::ifstream ifs("03stl/cpp/particleList.txt",std::ifstream::in);
   // Read in the data
   std::multimap<std::string,double> theParticles;
   std::string name;
