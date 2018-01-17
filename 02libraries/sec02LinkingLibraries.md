@@ -54,15 +54,20 @@ title: Linking Libraries
 * Dynamic
     * Code gets referenced - smaller executable
     * Requires finding libraries at run-time
-* Less of a concern these days
+* Space - less of a concern these days
 
 
 ### For Scientists
 
 * Ease of use
 * Ease of distribution to collaborators
-* Prefer static if possible
-* Let complex deployment scenarios be done by Research Software Engineers
+* Prefer static if possible for ease of deployment
+
+
+### Packaging
+
+* Packaging large apps takes effort
+* hire Research Software Engineers
 
 
 ### How to Check

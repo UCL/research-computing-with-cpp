@@ -40,6 +40,14 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 * If library has:
     * [MIT][MITLicense] and [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
     * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
+
+
+### Third Party Licenses
+
+CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
+
+* When you distribute your code, the licenses of any libraries you use takes effect
+* If library has:
     * [GPL][GPLLicense] requires you to open-source your code, including changes to the library you imported, and your work is considered a "derivative work", so must be shared.
     * [LGPL][LGPLLicense] for libraries, but use dynamic not static linkage. If you use static linking its basically as per [GPL][GPLLicense].
 
@@ -53,7 +61,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 * When you plan to distribute code:    
     * Read [this book][LicensingBook], and/or [GitHub's advice][Chooselicense], and [OSI][OSI] for choosing your own license.
     * Don't write your own license, unless you use legal advice.
-    * Try to pick one of the standard ones if you can, so your software is "compatible", and people understand the restrictions.
+    * Try to pick one of the standard ones for compatibility.
 
 * Note: Once a 3rd party has your code under a license agreement, their restrictions are determined by that version of the code.
 
@@ -61,7 +69,7 @@ CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 ### Choose Stability
 
 * So, take care in your choice of 3rd party library
-    * Don't want to redo work later, at the end of PhD.
+    * Don't want to redo work later.
     * Don't want to rely too heavily on non-distributable code.
     * But if you do, understand what that means.
 

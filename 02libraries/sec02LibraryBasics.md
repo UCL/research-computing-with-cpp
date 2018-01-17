@@ -40,7 +40,7 @@ So, that means
 Similar concept on Windows, Linux and Mac.
 
 
-### Native Build Platform
+### Check Native Build Platform
 
 * Look inside
     * Makefile
