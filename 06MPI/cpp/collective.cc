@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
-TEST_CASE("Point to point communications") {
+TEST_CASE("Collective communications") {
 
     int rank, size;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);

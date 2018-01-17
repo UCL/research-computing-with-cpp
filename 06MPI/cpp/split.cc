@@ -12,7 +12,7 @@ TEST_CASE("Communicators can be split", "splitting") {
 
     /// "main"
     bool const is_apple = rank % 3 == 0;
-    SECTION("split 1:3 and keep same process order") {
+    SECTION("split 1:2 and keep same process order") {
         MPI_Comm apple_orange;
         MPI_Comm_split(MPI_COMM_WORLD, is_apple ? 0 : 1, rank, &apple_orange);
 
@@ -31,7 +31,7 @@ TEST_CASE("Communicators can be split", "splitting") {
     }
     /// "dummy"
 
-    SECTION("split 1:3 and reverse process order") {
+    SECTION("split 1:2 and reverse process order") {
         MPI_Comm apple_orange;
         MPI_Comm_split(MPI_COMM_WORLD, is_apple ? 0 : 1, -rank, &apple_orange);
 

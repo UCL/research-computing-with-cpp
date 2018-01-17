@@ -53,10 +53,10 @@ TEST_CASE("Ring communications") {
 
     SECTION("Asynchronous") {
       /// "Isend"
-      MPI_Request request;
+      MPI_Request send_req;
       // Everyone sets up their messages to send
       int error = MPI_Isend(
-        &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD, &request);
+        &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD, &send_req);
       REQUIRE(error == MPI_SUCCESS);
 
       // Recv acts as our sync-barrier
