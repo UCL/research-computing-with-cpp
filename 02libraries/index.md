@@ -4,33 +4,30 @@ title: Libraries
 
 ## Why use Libraries?
 
+### Scientific Coding
+
+* Explain your science
+    * Should not just distribute binaries and papers
+    * Source code is best description of your science
+* Reproducible science     
+    * Collaborators must know how you build your project and libraries
+* Time is short
+    * Don't re-invent the wheel
+    * Use libraries if they provide bits you need
+
+
 ### What are libraries?
 
-* Libraries provide collections of useful classes and functions, ready to use.
-* But code MUST be CORRECT for good science, so you need a good library.
-
-
-### Scientists perspective
-
-* As a scientist you want:
-    * Run experiments, demonstrate new concepts
-    * To not spend too much time writing code, if its readily available.
-
-
-### Developers perspective
-
-* As a developer:
-    * You need to write some code yourself (as you're doing novel science)
-    * But do you write all of it?
-
-Our job as [Craftsperson and Scholar][Craftsperson] necessitates knowledge of software engineering and science and to balance our usage of time.
+* Libraries provide collections of useful classes and functions, ready to use
+* C++ libraries can be somewhat harder to use than pure Python modules
+* This lecture will get you started
 
 
 ### Aim for this chapter
 
 * How to choose a library
-    * Licensing, longevity, developer community, technical implementation, feature list etc.
+    * Licensing, longevity, developer community, technical implementation, **feature list** etc.
 * Working with libraries
-    * Illustrating C++ concepts, not an exhaustive product specific tutorial.
-
-[Craftsperson]: http://www.software.ac.uk/blog/2012-11-09-craftsperson-and-scholar
+    * Including them
+    * C++ concepts
+    * Not an exhaustive product specific tutorial

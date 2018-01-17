@@ -5,34 +5,11 @@ title: Examples
 ## Examples
 
 
-### Fundamental
+### Reminder
 
-* Access to header files - declaration
-* Access to compiled code - definition
-
-
-### Linux/Mac
-
-```
-g++ -c -I/users/me/myproject/include main.cpp
-g++ -o main main.o -L/users/me/myproject/lib -lmylib
-```
-
-* ```-I``` to specify include folder
-* ```-L``` to specify library folder
-* ```-l``` to specify the actual library
-
-Notice: you don't specify .a or .so/.dylib if only 1 type exists.
-
-
-### Windows
-
-* Visual Studio (check version)
-* Project Properties
-    * C/C++ -> Additional Include Directories.
-    * Configuration Properties -> Linker -> Additional Library Directories
-    * Linker -> Input -> Additional Dependencies.
-* Check compile line - its equivalent to Linux/Mac, -I, -L, -l
+* Fundamentally, we need:
+    * Access to header files - declaration
+    * Access to compiled code - definition
 
 
 ### Header Only?
@@ -49,9 +26,12 @@ Notice: you don't specify .a or .so/.dylib if only 1 type exists.
 ### Use of CMake
 
 * Several ways depending on your setup
-    * Hard code paths and library names
-    * Use a FindModule
-    * Generate and use a FindModule
+    * Specify paths and library names
+    * Use ```find_package```
+        * Use 3rd party projects own config, eg. ```VTKConfig.cmake```
+        * Use a FindModule, some come with CMake
+        * Write your own FindModule
+        * Write your own FindModule with generated / substituted variables
 
 
 ### CMake - Header Only
@@ -85,7 +65,7 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdParty/libraryA/version1/)
 * You'd have audit trail (via git repo) of when updates to library were made.
 
 
-### CMake - Header Only External
+### CMake - Header Only, External
 
 * If larger, e.g. Eigen
 
@@ -135,14 +115,14 @@ A Basic Example (for a full example - see docs)
 
 * CMake will search 
     * all directories in CMAKE_MODULE_PATH
-    * for FindSomeLibrary.cmake
+    * for SomeLibraryConfig.cmake - does *config* mode
+    * for FindSomeLibrary.cmake - does *module* mode
     * case sensitive
     
     
 ### find_package - Result
 
-* If FindSomeLibrary.cmake is found, CMake will try to run it, to find the required library.
-* FindSomeLibrary.cmake should return SomeLibrary_FOUND:BOOL=TRUE if library was found
+* ```find_package(SomeLibrary)``` should return SomeLibrary_FOUND:BOOL=TRUE if library was found
 * Sets any other variables necessary to use the library
 * Check CMakeCache.txt to see result
 

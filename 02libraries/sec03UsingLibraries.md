@@ -4,7 +4,7 @@ title: Using Libraries
 
 ## Using libraries
 
-### Where from?
+### Package Managers
 
 * Package Manager (Linux/Mac)
     * Precompiled
@@ -25,6 +25,7 @@ title: Using Libraries
     * In system folders
     * In developer folders
     * In build folder
+* Please clean your machine!!
 * Try [Chocolatey](http://chocolatey.org) package manager
 
 
@@ -44,40 +45,36 @@ title: Using Libraries
         * Inconsistent development environment
         
 
-### External Build
+### Build Your Own
 
 * 2 basic approaches
-    * Separate build
+    * External / Individual build
         * Build dependencies externally
         * Point your software at those packages
+    * SuperBuild / Meta-Build
+        * Write code to download all dependencies
+        * The correct version numbers is stored in code
+        
 
-
-### Example
+### External / Individual Build
 
 For example
 
 ```
-C:\build\ITK
-C:\build\ITK-build
-C:\build\ITK-install
-C:\build\VTK
-C:\build\VTK-build
-C:\build\VTK-install
+C:\build\ITK-v1
+C:\build\ITK-v1-build
+C:\build\ITK-v1-install
+C:\build\VTK-v2
+C:\build\VTK-v2-build
+C:\build\VTK-v2-install
 C:\build\MyProject
 C:\build\MyProject-build
 ```
 
 We setup ```MyProject-build``` to know the location of ITK and VTK install folder.
-    
-    
+       
+
 ### Meta-Build / Super-Build
-
-* 2 basic approaches
-    * Meta-Build, a.k.a SuperBuild
-        * Your software coordinates building dependencies
-        
-
-### Example
 
 For example
 
@@ -94,6 +91,7 @@ C:\build\MyProject-SuperBuild\MyProject-build
 
 We setup ```MyProject-build``` to know the location of ITK and VTK that it itself compiled.
 
+
 ### Pro's / Con's
 
 * External Build
@@ -102,4 +100,4 @@ We setup ```MyProject-build``` to know the location of ITK and VTK that it itsel
     * Con's - how to manage multiple versions of all dependencies
 * Meta Build
     * Pro's - all documented, all self-contained, easier to share
-    * Con's - Slow build? Not a problem.
+    * Con's - Slow build? Not a problem if you only run ```make``` in sub-folder ```MyProject-build```
