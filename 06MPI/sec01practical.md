@@ -13,7 +13,7 @@ title: MPI in practice
 * MPI is a *specification* for a *library*
 * It is implemented by separate vendors/open-source projects
      - [OpenMPI](http://www.open-mpi.org/)
-     - [mpich](http://www.mpich.org/)
+     - [MPICH](http://www.mpich.org/)
 * It is a C library with many many bindings:
      - Fortran (part of official MPI specification)
      - Python: [boost](http://www.boost.org/doc/libs/1_55_0/doc/html/mpi/python.html), [mpi4py](http://mpi4py.scipy.org/)
@@ -32,8 +32,8 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 ```
 
 * Vendors provide wrappers (mpiCC, mpic++) around compilers.
-  Wrappers point to header file location and link to right libraries.
-  MPI program can be (easily) compiled by substituting ``(g++|icc) -> mpiCC``
+  Wrappers point to header file locations and link to the right libraries.
+  An MPI program can be (easily) compiled by substituting ``(g++|icc) -> mpiCC``
 
 ### Hello, world!: hello.cc
 
@@ -51,7 +51,7 @@ target_link_libraries(hello PUBLIC ${MPI_LIBRARIES})
 
 ### Hello, world!: compiling and running
 
-On aristotle.rc.ucl.ac.uk:
+On `aristotle.rc.ucl.ac.uk`:
 
 - load modules:
   ``module load GCC/4.7.2 OpenMPI/1.6.4-GCC-4.7.2``
@@ -68,7 +68,7 @@ On aristotle.rc.ucl.ac.uk:
     the group of all processes.
     ![]({% figurepath %}world.png)
 
-- Size of group and rank (order) of process in group
+- All know size of group and rank (order) of process in group
 - By *convention*, process of rank 0 is *special* and called *root*
 
 ### MPI with CATCH

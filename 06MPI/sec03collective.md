@@ -56,7 +56,7 @@ Sum, difference, or any other *binary* operator:
 
 ![]({% figurepath %}BunnyOps.png)
 
-### Collective operation API
+### Collective operation API (1)
 
 Group synchronisation:
 
@@ -100,7 +100,7 @@ Explain why the following two codes fail.
 1. Replace the loop in the last fragment with:
 
 ``` cpp
-for(int i(1); i < size; ++i) ...
+for (int i(1); i < size; ++i) ...
 ```
 
 2. Refactor and put everything inside the loop
@@ -108,15 +108,15 @@ for(int i(1); i < size; ++i) ...
 ``` cpp
 std::string const peace = "I come in peace!";
 std::string message;
-for(int i(0); i < size; ++i) {
-    if(i == 0 and rank == 0) { /* broadcast */ }
-    else if(rank == i) { /* broadcast */ }
-    if(rank == i) { /* testing bit */ }
+for (int i(0); i < size; ++i) {
+    if (i == 0 && rank == 0) { /* broadcast */ }
+    else if (rank == i) { /* broadcast */ }
+    if (rank == i) { /* testing bit */ }
     MPI_Barrier(MPI_COMM_WORLD);
 }
 ```
 
-NOTE: a loop with a condition for i == 0 is a common anti-pattern (eg bad)
+NOTE: a loop with a condition for i == 0 is a common anti-pattern (i.e. bad)
 
 
 ### All to all operation
@@ -138,7 +138,7 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
 
 Exercise:
     Have the root scatter "This....." "message.." "is.split." to 3 processors
-    (including it self).
+    (including itself).
 
 
 ### Splitting the communicators
@@ -165,13 +165,11 @@ The following splits processes into two groups with ratio 1:2.
 {% fragment main, cpp/split.cc %}
 
 
-### Splitting communicators: Exercise
+### Splitting communicators: Exercises
 
-Exercise:
-
-- use "-rank" as the key: what happens?
-- split into three groups with ratios 1:1:2
-- use one of the collective operation on a single group
+1. Use "-rank" as the key: what happens?
+2. Split into three groups with ratios 1:1:2
+3. Use one of the collective operations on a single group
 
 
 ### Scatter operation solution

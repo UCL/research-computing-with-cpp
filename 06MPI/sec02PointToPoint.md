@@ -82,7 +82,7 @@ Good for both synchronous and asynchonous communication
 | datatype  | Informs on the type of the buffer                                                        |
 | source    | Rank of the *sending* process                                                            |
 | tag       | A tag for message book-keeping                                                           |
-| status    | `MPI_STATUS_IGNORE`` for now. See ``MPI_Get_count``.                                     |
+| status    | `MPI_STATUS_IGNORE` for now. See ``MPI_Get_count``.                                     |
 | comm      | The communicator                                                                         |
 | return    | Error tag                                                                                |
 
@@ -184,11 +184,23 @@ example of using this next lecture.
 
 {% fragment isend, cpp/point2point.cc %}
 
+### Function signatures
+
 ``` cpp
 int MPI_Isend(const void *buf, int count, MPI_Datatype datatype, int dest, int tag,
               MPI_Comm comm, MPI_Request *request)
+
+
+int MPI_Irecv(void *buf, int count, MPI_Datatype datatype,
+              int source, int tag, MPI_Comm comm, MPI_Request *request)
 ```
 
+. . .
+
+``` cpp
+int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag,
+             MPI_Comm comm, MPI_Status *status)
+```
 
 ### Pass the parcel: SendRecv
 
@@ -220,12 +232,13 @@ int MPI_Sendrecv(void *sendbuf, int scount, MPI_Datatype stype, int dest, int st
 
 Each argument is duplicated for the send and receive payloads.
 
-Classroom exercise: implement ring-send using Sendrecv.
+### Classroom exercise
 
-### Al(most all) point to point
+Implement ring-send using Sendrecv.
+
+### Point to point summary
 
 Sending messages:
-
 
 | name      | Blocking | forces synchronisation point | Buffer-safe |
 |:----------|:---------|:-----------------------------|:------------|
@@ -233,10 +246,11 @@ Sending messages:
 | MPI_Send  | maybe    | no                           | yes         |
 | MPI_Isend | no       | no                           | no          |
 
-
 Receiving messages:
 
 | name      | blocking |
 |:----------|:---------|
 | MPI_Recv  | yes      |
 | MPI_Irecv | no       |
+
+(There are a few others, rarely used - see [MPI manuals](https://www.open-mpi.org/doc/v3.0/)!)

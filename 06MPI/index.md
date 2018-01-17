@@ -6,9 +6,9 @@ title: Distributed memory parallelism
 
 ### The basic idea
 
-* many processes, each with their own data
+* Many processes, each with their own data
 
     ![]({% figurepath %}many.png)
 
-* each process is independent
-* processes can send messages to one another
+* Each process is independent
+* Processes can send messages to one another
