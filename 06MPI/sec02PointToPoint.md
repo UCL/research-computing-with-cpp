@@ -10,6 +10,8 @@ Can you think of two behaviours for message passing?
 
 ![]({% figurepath %}mpi.png)
 
+---
+
 - Process 0 can (i) give message and then either (ii) leave or (iii) wait for
   acknowledgements
 - Process 1 can (i) receive message
@@ -125,6 +127,7 @@ if(rank == 0) {
 }
 ```
 
+---
 Good:
 
 ```
@@ -143,21 +146,31 @@ Why would we use Send instead of SSend?
 
 {% fragment send, cpp/point2point.cc %}
 
+---
+
 Both guarantee the buffer is safe to reuse. Send makes no guarantee as to
 whether it returns early or not. But *SSend* forces a *synchronisation point*:
 the codes reach the matching places, with all processes waiting until all reach
 that point.
 
 It may come out slightly faster to use Send,
-since having a **synchronisation point** when you don't need one can slow things
-down: Suppose (A) runs slightly faster, then (B) does; at the end, they've both
+since having a *synchronisation point* when you don't need one can slow things
+down.
+
+---
+
+Suppose (A) runs slightly faster than (B) does; at the end, they've both
 been running fully efficiently.
 
 ![]({% figurepath %}efficient.png)
 
+---
+
 Wth a synchronisation point in between, you'll have wasted time:
 
 ![]({% figurepath %}inefficient.png)
+
+---
 
 This is only important when there is noise
 or variability in the execution time on different processes,
@@ -181,6 +194,8 @@ This produces more complicated code, but you can write code which **overlaps
 calculation with communication**: the message is travelling, while you
 get on with something else. We'll see a practical
 example of using this next lecture.
+
+---
 
 {% fragment isend, cpp/point2point.cc %}
 
@@ -209,16 +224,22 @@ the parcel" to the left. How would you achieve this with SSend and Receive?
 
 {% fragment setup, cpp/ring.cc %}
 
+---
+
 With synchronous calls each process can only either be sending or receiving.
 So the even processes need to send, while the odd ones receive, then vice-versa.
 This is clearly inefficient.
 
 {% fragment ssend, cpp/ring.cc %}
 
+---
+
 With ISend/IRecv, this can be achieved in one go: each process posts its
 send, then posts its receive, then waits for completion.
 
 {% fragment isend, cpp/ring.cc %}
+
+---
 
 However, this is such a common pattern, that there is a separate MPI call to
 make this easier:

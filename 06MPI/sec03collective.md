@@ -64,6 +64,8 @@ Group synchronisation:
 int MPI_Barrier(MPI_Comm comm);
 ```
 
+---
+
 Broadcasting:
 
 ``` cpp
@@ -102,6 +104,8 @@ Explain why the following two codes fail.
 ``` cpp
 for (int i(1); i < size; ++i) ...
 ```
+
+---
 
 2. Refactor and put everything inside the loop
 
