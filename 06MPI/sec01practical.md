@@ -53,13 +53,19 @@ target_link_libraries(hello PUBLIC ${MPI_LIBRARIES})
 
 On `aristotle.rc.ucl.ac.uk`:
 
-- load modules:
-  ``module load GCC/4.7.2 OpenMPI/1.6.4-GCC-4.7.2``
-  ``module load cmake/2.8.10.2``
-- create files "hello.cc" and "CMakeLists.txt" in some directory
-- create build directory ``mkdir build && cd build``
-- run cmake and make ``cmake .. && make``
-- run the code ``mpiexec -n 4 hello``
+- Load modules:
+
+``` bash
+  module swap compilers/gnu
+  module unload mpi/intel/2015/update3/intel
+  module load mpi/openmpi/3.0.0/gnu-4.9.2
+  module load cmake
+```
+
+- Create files "hello.cc" and "CMakeLists.txt" in some directory
+- Create build directory: ``mkdir build && cd build``
+- Run cmake and make: ``cmake .. && make``
+- Run the code: ``mpiexec -n 4 hello``
 
 ### Hello, world! dissected
 
