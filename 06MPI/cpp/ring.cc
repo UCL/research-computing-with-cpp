@@ -65,8 +65,10 @@ TEST_CASE("Ring communications") {
       REQUIRE(error == MPI_SUCCESS);
 
       // But let's check our send completed:
-      error = MPI_Wait(&request, MPI_STATUS_IGNORE);
+      int completed;
+      error = MPI_Test(&send_req, &completed, MPI_STATUS_IGNORE);
       REQUIRE(error ==  MPI_SUCCESS);
+      REQUIRE(completed == true);
 
       REQUIRE( received == right*right );
       /// "Stub2"
