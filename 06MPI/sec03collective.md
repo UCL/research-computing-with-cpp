@@ -78,10 +78,32 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 | buf       | Pointer to sending/receiving buffer |
 | count     | Size of the buffer/message          |
 | datatype  | Informs on the type of the buffer   |
-| root      | Sending processor                   |
+| root      | Sending process                     |
 | comm      | The communicator!                   |
 | return    | Error tag                           |
 
+---
+
+Reduce:
+
+``` cpp
+int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
+               MPI_Datatype datatype, MPI_Op op, int root,
+               MPI_Comm comm)
+```
+
+| Parameter | Content                             |
+|:----------|:------------------------------------|
+| sendbuf   | Pointer to sending buffer           |
+| recvbuf   | Pointer to receiving buffer         |
+| count     | Size of the buffer/message          |
+| datatype  | Informs on the type of the buffer   |
+| op        | The binary operation to perform     |
+| root      | Receiving process                   |
+| comm      | The communicator!                   |
+| return    | Error tag                           |
+
+TODO: Move reduce after scatter and add another mini exercise?
 
 ### Example of collective operation (1)
 
