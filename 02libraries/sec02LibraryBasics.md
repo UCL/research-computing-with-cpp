@@ -14,6 +14,18 @@ You need your compiler to find:
     * Static: .a, .lib
 
 
+### Linux/Mac
+
+```
+g++ -c -I/users/me/myproject/include main.cpp
+g++ -o main main.o -L/users/me/myproject/lib -lmylib
+```
+
+* ```-I``` to specify include folder
+* ```-L``` to specify library folder
+* ```-l``` to specify the actual library
+
+
 ### Compiler switches
 
 So, that means
@@ -25,7 +37,7 @@ So, that means
 * Library
     * ```-l library``` 
 
-Similar concept on Windows/Linux and Mac.
+Similar concept on Windows, Linux and Mac.
 
 
 ### Native Build Platform
@@ -33,7 +45,17 @@ Similar concept on Windows/Linux and Mac.
 * Look inside
     * Makefile
     * Visual Studio options
-* Basically constructing ```-I```, ```-L```, ```-l``` switches to pass command line compiler.        
+* Basically constructing ```-I```, ```-L```, ```-l``` switches to pass to command line compiler.        
+
+
+### Windows Compiler Switches
+
+* Visual Studio (check version)
+* Project Properties
+    * C/C++ -> Additional Include Directories.
+    * Configuration Properties -> Linker -> Additional Library Directories
+    * Linker -> Input -> Additional Dependencies.
+* Check compile line - its equivalent to Linux/Mac, -I, -L, -l
 
 
 ### Difficulties with Libraries
@@ -65,14 +87,9 @@ When you use a library:
 * Pre-installed, or did you compile it?
 
 
-### No Magic Answer
-
-While package managers make it easier, you still need to understand what you're building.
-
-
 ### A Few Good Libraries
 
-Again - main advice for libraries:
+Due to all those issues shown above, again, the main advice for libraries:
 
 * As few as possible
 * As good as possible

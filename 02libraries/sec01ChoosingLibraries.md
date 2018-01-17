@@ -4,22 +4,14 @@ title: Choosing Libraries
 
 ## Choosing libraries
 
-### Aim
-
-* Explain your science
-    * source code based distribution
-* Reproducible science     
-    * describe how you build your dependencies
-
-
 ### Libraries are Awesome
 
 A [great set of libraries allows for a very powerful programming style][Python04Intro]:
 
 * Write minimal code yourself
-* Choose the right libraries
-* Plug them together
-* Create impressive results
+    * Choose the right libraries
+    * Plug them together
+    * Create impressive results
 
 
 ### Libraries for Efficiency
@@ -44,7 +36,8 @@ has already been programmed better by someone else.
 
 CAVEAT: This is not legal advice. If in doubt, seek your own legal advice.
 
-* When you distribute your code, the licenses of any 3rd party libraries take effect:
+* When you distribute your code, the licenses of any libraries you use takes effect
+* If library has:
     * [MIT][MITLicense] and [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
     * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
     * [GPL][GPLLicense] requires you to open-source your code, including changes to the library you imported, and your work is considered a "derivative work", so must be shared.
