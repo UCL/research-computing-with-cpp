@@ -1,8 +1,8 @@
 ---
-title: Appendix - Cloud computing and big data
+title: Appendix - Cloud
 ---
 
-## Appendix - Cloud computing and big data
+## Appendix - Cloud computing
 
 ### No Longer In Course
 

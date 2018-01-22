@@ -1,5 +1,5 @@
 ---
-title: Libraries
+title: Including Libraries
 ---
 
 ## Why use Libraries?
