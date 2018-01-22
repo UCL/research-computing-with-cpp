@@ -25,7 +25,7 @@ title: Object Oriented Review
 * Can't easily control/(enforce control of) access to data
 
 
-### C Struct
+### C Struct 
 
 * So, in C, the struct was invented
 * Basically a class without methods
