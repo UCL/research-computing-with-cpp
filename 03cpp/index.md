@@ -4,12 +4,11 @@ title: Better C++
 
 ## Better C++
 
-### Last Weeks Lesson
+### The Story So Far
 
-* Getting started
 * Git
 * CMake
-* Unit Testing
+* Use libraries
 
 
 ### Todays Lesson
@@ -19,4 +18,5 @@ title: Better C++
     * C++ recap
     * Templates - generic programming
     * Exceptions - error handling
-    * Construction
+    * Construction - assembling code
+    * Some libraries and their C++
