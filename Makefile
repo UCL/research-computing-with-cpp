@@ -3,7 +3,8 @@ PANDOC=pandoc
 ROOT="/research-computing-with-cpp/"
 
 PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css/theme/night.css \
-					 --css=$(ROOT)/css/ucl_reveal.css --css=$(ROOT)/site-styles/reveal.css \
+           --css=$(ROOT)/css/ucl_reveal.css --css=$(ROOT)/site-styles/reveal.css \
+           -V width:'"100%"' -V height:'"100%"' -V margin:0 -V minScale:0.1 -V maxScale:1.5 \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
 MDS=$(filter-out indigo-jekyll-master% _site%, $(wildcard */*.md ))
