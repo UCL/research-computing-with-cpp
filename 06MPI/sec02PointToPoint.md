@@ -118,7 +118,7 @@ Watch out for order of send and receive!
 Bad:
 
 ``` cpp
-if(rank == 0) {
+if (rank == 0) {
    MPI_Ssend (sendbuf, count, MPI_INT, 1, tag, comm);
    MPI_Recv (recvbuf, count, MPI_INT, 1, tag, comm, &status);
 } else {
@@ -127,11 +127,12 @@ if(rank == 0) {
 }
 ```
 
----
+. . .
+
 Good:
 
 ```
-if(rank == 0) {
+if (rank == 0) {
    MPI_Ssend (sendbuf, count, MPI_INT, 1, tag, comm);
    MPI_Recv (recvbuf, count, MPI_INT, 1, tag, comm, &status);
 } else {
