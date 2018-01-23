@@ -82,29 +82,6 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 | comm      | The communicator!                   |
 | return    | Error tag                           |
 
----
-
-Reduce:
-
-``` cpp
-int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
-               MPI_Datatype datatype, MPI_Op op, int root,
-               MPI_Comm comm)
-```
-
-| Parameter | Content                             |
-|:----------|:------------------------------------|
-| sendbuf   | Pointer to sending buffer           |
-| recvbuf   | Pointer to receiving buffer         |
-| count     | Size of the buffer/message          |
-| datatype  | Informs on the type of the buffer   |
-| op        | The binary operation to perform     |
-| root      | Receiving process                   |
-| comm      | The communicator!                   |
-| return    | Error tag                           |
-
-TODO: Move reduce after scatter and add another mini exercise?
-
 ### Example of collective operation (1)
 
 Insert into a new CATCH section the following commands
@@ -196,6 +173,36 @@ The following splits processes into two groups with ratio 1:2.
 1. Use "-rank" as the key: what happens?
 2. Split into three groups with ratios 1:1:2
 3. Use one of the collective operations on a single group
+
+
+### MPI_Reduce
+
+``` cpp
+int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
+               MPI_Datatype datatype, MPI_Op op, int root,
+               MPI_Comm comm)
+```
+
+| Parameter | Content                             |
+|:----------|:------------------------------------|
+| sendbuf   | Pointer to sending buffer           |
+| recvbuf   | Pointer to receiving buffer         |
+| count     | Size of the buffer/message          |
+| datatype  | Informs on the type of the buffer   |
+| op        | The binary operation to perform     |
+| root      | Receiving process                   |
+| comm      | The communicator!                   |
+| return    | Error tag                           |
+
+
+### Exercise: MPI_Reduce
+
+This example uses the Gregory-Leibniz Series to calculate $\pi$.
+
+{% fragment independent calculation, cpp/reduce.cc %}
+
+Can you write the parallel code that combines these results
+and checks the accuracy of the calculation?
 
 
 ### Scatter operation solution
