@@ -21,7 +21,7 @@ title: Construction Patterns
 * Rather than monolithic code (bad)
 * We end up with many smaller classes (good)
 * So, its more flexible (good)
-* But its more complex (bad)
-* Who "owns" stuff?
+* It does look more complex at first (don't panic)
+* You get used to thinking in small objects
 
 {% endidio %}

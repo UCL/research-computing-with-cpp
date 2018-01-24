@@ -10,7 +10,8 @@ title: C++ in Research
 * Excuses
     * I'm not a software engineer
     * I don't have time
-    * I'm unsure of my code
+    * It's just a prototype
+    * I'm unsure of my code (scared to share)
 
 
 ### C++ Disadvantages
@@ -26,9 +27,9 @@ Some people say:
 ### C++ Advantages
 
 * Fast, code compiled to machine code
-* Nice integration with CUDA, OpenACC, OpenCL, OpenMP, OpenMPI
 * Stable, evolving standard, powerful notation, improving
 * Lots of libraries, Boost, Qt, VTK, ITK etc.
+* Nice integration with CUDA, OpenACC, OpenCL, OpenMP, OpenMPI
 * Result: Good reasons to use it, or you may *have* to use it
 
 
@@ -54,7 +55,7 @@ Some people say:
 * What am I trying to achieve?
 * How do I maximise my output?
 * What is the best pathway to success?
-* How do I de-risk my research?
+* How do I de-risk (get results, meet deadlines) my research?
 
 
 ### 1. Types of Code
