@@ -1,5 +1,4 @@
 add_subdirectory(hello)
-add_subdirectory(construction)
 add_subdirectory(fraction)
 add_subdirectory(shape)
 add_subdirectory(memory)
