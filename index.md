@@ -14,7 +14,7 @@ to understand and adapt.
 
 ##Pre-requisites
 
-* You must understand how to use a Unix style terminal, including commands such as ```ls```, ```cd``` and creating and editing files in a text editor of your choice, e.g. [Atom](https://atom.io/).
+* You must understand how to use a Unix style terminal, including commands such as ```ls```, ```cd``` and creating and editing files in a text editor of your choice.
 * Detailed prior knowledge of C++, including at least creation of classes, understanding abstraction, encapsulation, inheritance and polymorphism.
 * You are required to bring your own laptop to the course as the classrooms we are using do not have desktop computers.
 * We have provided [setup](98Installation) instructions for installing the software needed for the course on your computer.

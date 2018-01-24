@@ -16,7 +16,7 @@ You don't need everything before lecture one: you can refer to these instruction
 * [Catch](https://github.com/philsquared/Catch) unit testing framework.
 * [Git](https://git-scm.com/) and the [GitHub](https://github.com/) website.
 * Some C++ libraries: [The Boost C++ library package](http://www.boost.org/), and [Eigen linear algebra library](http://eigen.tuxfamily.org/index.php?title=Main_Page).
-* A code editor of your choice, e.g. [Atom](https://atom.io/).
+* A code editor of your choice.
 
 ###Eduroam
 

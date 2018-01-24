@@ -26,8 +26,7 @@ Again, install the appropriate package with apt-get or yum (`cmake`). Minimum ve
 ## Editor and shell ##
 
 Many different text editors suitable for programming are available.
-If you don't already have a favourite,
-you could look at [Kate](http://kate-editor.org/).
+If you don't already have a favourite, you could look at [Kate](http://kate-editor.org/).
 
 Regardless of which editor you have chosen you should configure git to use it. Executing something like this in a terminal should work:
 
