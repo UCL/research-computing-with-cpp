@@ -15,7 +15,8 @@ author:
 * Better C++
     * Reliable
     * Reproducible
-
+    * Good science
+    
 
 ### Part 2
 
@@ -29,7 +30,7 @@ author:
 
 * Teach how to do research with C++
 * Optimise your research output
-* A taster for a lot of technologies
+* A taster for various technologies
 * Not just C++ syntax, Google/Compiler could tell you that!
 
 

@@ -8,7 +8,7 @@ title: Better C++
 
 * Git
 * CMake
-* Use libraries
+* Use libraries with CMake
 
 
 ### Todays Lesson
@@ -18,5 +18,3 @@ title: Better C++
     * C++ recap
     * Templates - generic programming
     * Exceptions - error handling
-    * Construction - assembling code
-    * Some libraries and their C++

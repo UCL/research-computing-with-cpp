@@ -23,7 +23,6 @@ title: RAII Pattern
 ### Example
 
 * You may already be using it: [STL example](https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
-* [NifTK example](https://cmiclab.cs.ucl.ac.uk/CMIC/NifTK/blob/2586-data-source-redesign/Code/Gui/MITK/Modules/IGIServices/niftkPointRegServiceRAII.cxx)
 * [Another example](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Resource_Acquisition_Is_Initialization)
 
 
