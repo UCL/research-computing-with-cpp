@@ -15,15 +15,15 @@ Normally `OMP_NUM_THREADS` should be equal to the number of CPU cores
 
 ### Load balancing
 
-Consider our earlier example of a for loop. 10000000 iterations split on 4 cores
+Consider our earlier example of a for loop. 10,000,000 iterations split on 4 cores
 
 Two obvious strategies:
 
 * Split in 4 chunks:
-    - 2500000 iterations for each core
+    - 2,500,000 iterations for each core
     - Minimal overhead for managing threads
-    - Probably a good solution if the cost is independent of `i`
-    - But what if the cost depended on `i`
+    - Probably a good solution if the cost is independent of thread
+    - But what if the cost depended on the thread.
     - One tread might be slower than the rest
 * Give each thread one iteration at a time
     - No idling thread

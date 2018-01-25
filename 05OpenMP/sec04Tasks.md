@@ -16,7 +16,7 @@ title: Tasks
 Calculate Fibonacci numbers by recursion.
 
 * Only as an example:
-    - Hard to get any performance improvement. Usually slower that serial code
+    - Hard to get any performance improvement. Usually slower than serial code
     - Inefficient algorithm in any case. Why?
     - Consider limiting the number of tasks. Why?
 * Use taskwait to ensure results are done before adding their results together
