@@ -61,7 +61,7 @@ int MPI_Ssend(const void *buf, int count, MPI_Datatype datatype, int dest, int t
 | buf       | Pointer to buffer. Always `void` because practical C is not type safe.                                 |
 | count     | Size of the buffer. I.e. length of the message to send, in units of the specified datatype (not bytes) |
 | datatype  | Encodes type of the buffer. ``MPI_INT`` for integers,   ``MPI_CHAR`` for characters.  Lots of others.  |
-| dest      | Rank of the *receiving* process                                                                        |
+| dest      | Rank of the **receiving** process                                                                      |
 | tag       | A tag for message book-keeping                                                                         |
 | comm      | The communicator -- usually just ``MPI_COMM_WORLD``                                                    |
 | return    | An error tag. Equals ``MPI_SUCCESS`` on success.                                                       |
@@ -79,12 +79,12 @@ Good for both synchronous and asynchonous communication
 
 | Parameter | Meaning                                                                                  |
 |:----------|:-----------------------------------------------------------------------------------------|
-| buf       | Pointer to receiving *pre-allocated* buffer                                              |
+| buf       | Pointer to receiving **pre-allocated** buffer                                            |
 | count     | Size of the buffer. I.e. maximum length of the message to receive. See ``MPI_Get_count`` |
 | datatype  | Informs on the type of the buffer                                                        |
-| source    | Rank of the *sending* process                                                            |
+| source    | Rank of the **sending** process                                                          |
 | tag       | A tag for message book-keeping                                                           |
-| status    | `MPI_STATUS_IGNORE` for now. See ``MPI_Get_count``.                                     |
+| status    | `MPI_STATUS_IGNORE` for now. See ``MPI_Get_count``.                                      |
 | comm      | The communicator                                                                         |
 | return    | Error tag                                                                                |
 
@@ -109,7 +109,7 @@ int const error = MPI_Ssend(
 
 Because C and C++ ``char const*`` strings are null-terminated to indicate the
 string is finished, which adds an extra character. However, ``std::string``
-abstracts it away. And so its length does *not* include the null-termination.
+abstracts it away. And so its length does **not** include the null-termination.
 
 ### Example: Causing a dead-lock
 
@@ -150,12 +150,12 @@ Why would we use Send instead of SSend?
 ---
 
 Both guarantee the buffer is safe to reuse. Send makes no guarantee as to
-whether it returns early or not. But *SSend* forces a *synchronisation point*:
+whether it returns early or not. But **SSend** forces a **synchronisation point**:
 the codes reach the matching places, with all processes waiting until all reach
 that point.
 
 It may come out slightly faster to use Send,
-since having a *synchronisation point* when you don't need one can slow things
+since having a synchronisation point when you don't need one can slow things
 down.
 
 ---

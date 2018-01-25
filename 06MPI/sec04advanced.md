@@ -6,7 +6,7 @@ title: More advanced MPI
 
 ### Architecture and usage
 
-* Depending on library, MPI processes can be *placed* on a specific node...
+* Depending on library, MPI processes can be **placed** on a specific node...
 * ... and even chained to specific cores
 * Fewer processes than cores means we can do MPI + openMP:
    - some data is distributed (MPI)

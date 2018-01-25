@@ -10,7 +10,7 @@ title: MPI in practice
 ### Specification and implementation
 
 * In practice, we use MPI, the [Message Passing Interface](http://en.wikipedia.org/wiki/Message_Passing_Interface)
-* MPI is a *specification* for a *library*
+* MPI is a **specification** for a **library**
 * It is implemented by separate vendors/open-source projects
      - [OpenMPI](http://www.open-mpi.org/)
      - [MPICH](http://www.mpich.org/)
@@ -69,17 +69,17 @@ On `aristotle.rc.ucl.ac.uk`:
 
 ### Hello, world! dissected
 
-- MPI calls *must* appear beween ``MPI_Init`` and ``MPI_Finalize``
+- MPI calls **must** appear beween ``MPI_Init`` and ``MPI_Finalize``
 - Groups of processes are handled by a communicator. `MPI_COMM_WORLD` handles
     the group of all processes.
     ![]({% figurepath %}world.png)
 
 - All know size of group and rank (order) of process in group
-- By *convention*, process of rank 0 is *special* and called *root*
+- By **convention**, process of rank 0 is **special** and called **root**
 
 ### MPI with CATCH
 
 Running MPI unit-tests requires ``MPI_Init`` and ``MPI_Finalize`` before and after the
-test framework (*not* inside the tests).
+test framework (**not** inside the tests).
 
 {% code cpp/helloCatch.cc %}

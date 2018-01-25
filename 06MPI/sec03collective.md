@@ -6,7 +6,7 @@ title: Collective communication
 
 ### Many possible communication schemes
 
-Think of two possible forms of *collective* communications:
+Think of two possible forms of **collective** communications:
 
 - give a beginning state
 - give an end state
@@ -52,7 +52,7 @@ Wherefrom the baby bunny?
 
 . . .
 
-Sum, difference, or any other *binary* operator:
+Sum, difference, or any other **binary** operator:
 
 ![]({% figurepath %}BunnyOps.png)
 
@@ -133,7 +133,7 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
 | Parameter | Content                                              |
 |:----------|:-----------------------------------------------------|
 | sendbuf   | Pointer to sending buffer (only significant at root) |
-| sendcount | Size of a *single* message                           |
+| sendcount | Size of a **single** message                           |
 | datatype  | Type of the buffer                                   |
 | recvbuf   | Pointer to receiving buffers (also at root)          |
 | recvcount | Size of the receiving buffer                         |
@@ -146,7 +146,7 @@ Exercise:
 
 ### Splitting the communicators
 
-Groups of processes can be split according to *color*:
+Groups of processes can be split according to **color**:
 
 ![]({% figurepath %}split.png)
 
