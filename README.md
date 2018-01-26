@@ -10,13 +10,19 @@ To build and test:
 ``` bash
 git clone https://github.com/UCL-RITS/research-computing-with-cpp
 cd research-computing-with-cpp
-./build.sh
+CC=gcc-7 GXX=g++-7 ./build.sh
 ```
+
+The explicit compiler selection is needed on Mac OS for OpenMP (and possibly MPI)
+examples to build.
 
 You will need to have a bunch of stuff installed in order for the build to succeed.
 For Mac:
 * Libraries:
    * `brew install boost`
+* For building MPI and OpenMP examples:
+   * `brew install open-mpi`
+   * `brew install gcc`
 * Ruby stuff:
    * `brew install ruby`
    * `gem install liquid`
