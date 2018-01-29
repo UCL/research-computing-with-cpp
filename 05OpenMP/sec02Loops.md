@@ -17,7 +17,7 @@ $\int_0^1 \frac{4}{1+x^2} \mathrm{d}x=\pi$
 
 ### Variable scope
 
-* Private: Each thread has it's own copy
+* Private: Each thread has its own copy
 * Shared: Only one shared variable
 * Firstprivate: Private variable but initialized with serial value
 
@@ -29,7 +29,7 @@ $\int_0^1 \frac{4}{1+x^2} \mathrm{d}x=\pi$
     - Can be controlled with the default clause
     - `default(none)` is safer
     - "Explicit is better that implicit"
-* We use a critical region to add safely without a race condition
+* We use a critical region to add safety without a race condition
 
 ### Reduction
 
