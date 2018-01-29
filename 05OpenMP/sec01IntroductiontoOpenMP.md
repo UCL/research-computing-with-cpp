@@ -26,14 +26,16 @@ title: Introduction to OpenMP
 
 ### Compiler support
 
-OpenMP is supported by most compilers, except LLVM/Clang(++)
+OpenMP is supported by most compilers.
 
 * OpenMP must typically be activated with a command line flags at compile time. Different for different compilers. Examples:
     - Intel, Linux, Mac  `-openmp`
     - Intel, Windows `/Qopenmp`
     - GCC/G++, `-fopenmp`
 
-A fork of clang with OpenMP [exists][ClangOpenMP]. It might make it into the mainline eventually.
+Clang OpenMP is slightly different from other OpenMP code, 
+and as such may not be able to work together 
+(as clang does not support 128-bit floats).
 
 ### CMake Support
 
