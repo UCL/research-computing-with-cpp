@@ -31,8 +31,10 @@ public:
   //! - 0 outside the ring
   //! - 0 < x < 1 in the smoothing region
   double Ring(distance radius) const;
+  /// "Sigmoid_Signature"
   //! Smooth step function: 0 at -infty, 1 at +infty
   static double Sigmoid(double variable, double center, double width);
+  /// end
   //! $e^{-4x / width}$: 0 at -infty, 1 at +infty
   static double Sigmoid(double x, double width);
   density Transition(filling disk, filling ring) const;

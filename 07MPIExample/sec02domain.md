@@ -37,7 +37,7 @@ Given that each cell needs to know the state of cells within a range $r=3r_d$, w
 the inner radius of the neighbourhood ring, and $r$ the outer radius, we need to get this
 information to the neighbouring sites.
 
-This is *great*: we only need to transfer information to neighbours, not all the other processes.
+This is **great**: we only need to transfer information to neighbours, not all the other processes.
 Such "local" communication results in fast code.
 
 The amount of communication to take place each time step is proportional to $rMp$, but assuming
@@ -57,7 +57,7 @@ and communication will dominate: this is Amdahl's law again.
 
 However, if we consider larger and larger problems, growing $N$ as $p$ grows,
 then we can stop communication overtaking us. This is a common outcome: *local* problems provide
-perfect *weak* scaling (until network congestion or IO problems dominate).
+perfect **weak** scaling (until network congestion or IO problems dominate).
 
 Any NONLOCAL communication, where the total amount of time for communication to take place grows
 as the number of processes does (such as a gather, which takes $p$, a reduction, like $ln(p)$,
@@ -73,7 +73,7 @@ is inneficient since each process owns memory describing a part of the field it
 will never use. Improving this is fairly easy, but require some more
 bookkeeping. Do try it at home!
 
-Exercise: parallelize using a blocking collective
+Exercise: parallelize using a blocking collective.
 
 ### Exercise: Halo update
 

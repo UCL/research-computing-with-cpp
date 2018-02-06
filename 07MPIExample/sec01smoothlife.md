@@ -12,11 +12,11 @@ A cell, on a square grid, is either alive or dead.
 On the next iteration:
 
 * An alive cell:
-* remains alive if it has 2 or 3 alive neighbours out of 8
-* dies (of isolation or overcrowding) otherwise
+    * remains alive if it has 2 or 3 alive neighbours out of 8
+    * dies (of isolation or overcrowding) otherwise
 * A dead cell:
-* becomes alive if it has exactly 3 alive neighbours
-* stays dead otherwise
+    * becomes alive if it has exactly 3 alive neighbours
+    * stays dead otherwise
 
 ### Conway's Game of Life
 
@@ -28,21 +28,24 @@ This simple set of rules produces beautiful, complex behaviours:
 
 Smooth Life, proposed by Stephan Rafler, extends this to continuous variables:
 
-* The neighbourhood is an integral over a ring centered on a point.
-* The local state is an integral over the disk inside the ring.
+* The neighbourhood is an integral over a ring centered on a point, $R(r)$.
+* The local state is an integral over the disk inside the ring, $D(r)$.
+
+![A cell and its neighbourhood]({% figurepath %}cell_neighbourhood.png)
 
 (The ring has outer radius 3*inner radius, so that the area ratio of 1:8 matches
 the grid version.)
 
 ### Smooth Life
 
-* A point has some degree of aliveness.
-* Next timestep, a point's aliveness depends on these two integrals ($D(r)$ and $R(r)$)
-* The new aliveness $S(D(r),R(d))$ is a smoothly varying function such that:
-* If $D(d)$ is 1, S will be 1 if $d^{(1)} \leq D(r) \leq d^{(2)}$
-* If $R(d)$ is 0, S will be 1 if $b^{(1)}\leq R(r) \leq b^{(2)}$
-
-A "Sigmoid" function is constructed that smoothly blends between these limits.
+* Each point has some degree of 'aliveness' in [0, 1]
+* At the next timestep
+    - a 'fully alive' cell ($D(r)=1$) remains alive if the neighbourhood is within the 'death' limits,
+      i.e. $d^{(1)} \leq R(r) \leq d^{(2)}$
+    - a 'fully dead' cell ($D(r)=0$) becomes alive if the neighbourhood is within the 'birth' limits,
+      i.e. $b^{(1)} \leq R(r) \leq b^{(2)}$
+* We actually define the new aliveness $S(D(r),R(r))$ as a smoothly varying function blending between
+  these limiting cases, using a 'sigmoid' shape
 
 ### Smooth Life on a computer
 
@@ -53,7 +56,7 @@ To avoid the hard-edges of a "ring" and "disk" defined on a grid, we weight the 
 by the fraction of a cell that would fall inside the ring or disk:
 
 If the distance $d$ from the edge of the ring is within 0.5 units,
-we weight the integral by $2d-1$, so that it smoothly various from 1 just inside to 0 just outside.
+we weight the integral by $2d-1$, so that it smoothly varies from 1 just inside to 0 just outside.
 
 ### Smooth Life
 
@@ -70,22 +73,26 @@ We will create the following two functions:
 
 - a function to compute the two integrals $D(r)$ and $R(r)$ as
 $D(x0, y0) = sum_{i, j \in \mathrm{grid}} F(i, j) \mathrm{Disk}(r=||(i - x0, j - y0)||)$
-  with $F(i, j)$ the current value at point $(i, j)$
+with $F(i, j)$ the current value at point $(i, j)$
 
 - the main update function:
 
     loop over all points $(x, y)$ in field:
 
     - compute integrals centered at $(x, y)$
-    - update the field using the transiontion function
+    - update the field using the transition function
 
 All other functions, including the transition function, $\mathrm{Disk}$, etc are given.
 
 ### Square domain into a 1-d vector
 
-We wrap the 2d-grid into a one d vector in *row-major* format: $F(i, j) <==>
-F(I)$ with $i = I / Nx$ and $j = I \% Nx$, with $Nx$ the number of points in
-direction $x$.
+We wrap the 2-d grid into a 1-d vector in **row-major** format:
+
+$F(i, j) <==> F(I)$
+
+with $i = I / {N\_x}$ and $j = I \% {N\_x}$,
+
+with $N\_x$ the number of points in direction $x$.
 
 ### Distances wrap around a torus
 
@@ -93,13 +100,15 @@ We use periodic boundary conditions: the field is a torus.
 
 {% fragment Torus_Difference, cpp/serial/src/Smooth.cpp %}
 
-### Smoothed edge of ring and disk.
+### Smoothed edge of ring and disk
 
 $\mathrm{Disk}(r)$:
 
 {% fragment Disk_Smoothing, cpp/serial/src/Smooth.cpp %}
 
 ### Automated tests for mathematics
+
+{% fragment Sigmoid_Signature, cpp/serial/src/Smooth.h %}
 
 {% fragment Sigmoid_Test, cpp/serial/test/catch.cpp %}
 
