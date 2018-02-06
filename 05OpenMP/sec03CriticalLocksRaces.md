@@ -15,7 +15,7 @@ However, even in our simplest examples we saw issues.
 * Real world examples may be more complicated
 * Incorrectly shared variable leads to random and typically wrong results
 
-### Race condition
+### Race conditions
 
 When the result of a calculation depends on the timing between threads.
 
@@ -34,11 +34,11 @@ done with a piece of work before moving on. Barriers synchronizes threads.
     - Threads wait for the last to finish before moving on
     - May waste significant amount of time
     - We will return to look at load balancing later
-    - Sometime there is no need to wait
+    - Sometimes there is no need to wait
     - Disable implicit barrier with `nowait`
 * Sometimes you need a barrier where there is no implicit barrier
     - `#pragma omp barrier` inserts a barrier
-    - Don't overuse this. Performance drop
+    - Overusing this may lead to a performance drop
 
 ### Protecting code and variables
 
@@ -49,7 +49,7 @@ done with a piece of work before moving on. Barriers synchronizes threads.
     - Only one tread executes this block
     - The first thread that arrives will execute the code
 * `#pragma omp master`
-    - Similar to singe but uses the master thread
+    - Similar to `single` but uses the master thread
 * `#pragma omp atomic`
     - Protect a variable by changing it in one step.
 
