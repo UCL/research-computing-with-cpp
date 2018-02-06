@@ -11,7 +11,7 @@ The number of threads executing an OpenMP
 code is determined by the environmental variable 
 `OMP_NUM_THREADS`. 
 
-Normally `OMP_NUM_THREADS` should be equal to the number of CPU cores
+Normally `OMP_NUM_THREADS` is equal to the number of CPU cores
 
 ### Load balancing
 
@@ -23,8 +23,8 @@ Two obvious strategies:
     - 2,500,000 iterations for each core
     - Minimal overhead for managing threads
     - Probably a good solution if the cost is independent of thread
-    - But what if the cost depended on the thread.
-    - One tread might be slower than the rest
+    - But what if the cost depends on the thread.
+    - One thread might be slower than the rest
 * Give each thread one iteration at a time
     - No idling thread
     - But huge overhead

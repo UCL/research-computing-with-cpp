@@ -17,9 +17,9 @@ $\int_0^1 \frac{4}{1+x^2} \mathrm{d}x=\pi$
 
 ### Variable scope
 
-* Private: Each thread has its own copy
-* Shared: Only one shared variable
-* Firstprivate: Private variable but initialized with serial value
+* Private: Each thread has its own copy. Any values from before the `parallel` block are ignored, and are not affected after. 
+* Shared: Only one shared variable. Shared both between threads and with the non parallel code.
+* Firstprivate: Private variable but initialized with value from before the `parallel` block.
 
 ### Details of example
 
