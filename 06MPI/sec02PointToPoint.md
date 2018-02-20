@@ -71,7 +71,7 @@ int MPI_Ssend(const void *buf, int count, MPI_Datatype datatype, int dest, int t
 ### Blocking receive
 
 ``` cpp
-int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag,
+int MPI_Recv(void *buf, int bufsize, MPI_Datatype datatype, int source, int tag,
              MPI_Comm comm, MPI_Status *status)
 ```
 
@@ -80,7 +80,7 @@ Good for both synchronous and asynchonous communication
 | Parameter | Meaning                                                                                  |
 |:----------|:-----------------------------------------------------------------------------------------|
 | buf       | Pointer to receiving **pre-allocated** buffer                                            |
-| count     | Size of the buffer. I.e. maximum length of the message to receive. See ``MPI_Get_count`` |
+| bufsize   | Size of the buffer. I.e. maximum length of the message to receive. See ``MPI_Get_count`` |
 | datatype  | Informs on the type of the buffer                                                        |
 | source    | Rank of the **sending** process                                                          |
 | tag       | A tag for message book-keeping                                                           |
@@ -207,14 +207,14 @@ int MPI_Isend(const void *buf, int count, MPI_Datatype datatype, int dest, int t
               MPI_Comm comm, MPI_Request *request)
 
 
-int MPI_Irecv(void *buf, int count, MPI_Datatype datatype,
-              int source, int tag, MPI_Comm comm, MPI_Request *request)
+int MPI_Irecv(void *buf, int bufsize, MPI_Datatype datatype, int source, int tag,
+              MPI_Comm comm, MPI_Request *request)
 ```
 
 . . .
 
 ``` cpp
-int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag,
+int MPI_Recv(void *buf, int bufsize, MPI_Datatype datatype, int source, int tag,
              MPI_Comm comm, MPI_Status *status)
 ```
 
