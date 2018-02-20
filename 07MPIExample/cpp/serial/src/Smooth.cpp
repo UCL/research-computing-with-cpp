@@ -128,22 +128,28 @@ void Smooth::LayeredUpdate() {
   MPI_Comm_rank(Communicator(), &rank);
   MPI_Comm_size(Communicator(), &ncomms);
 
+  // Start synchronising the field
   auto request = WholeFieldNonBlockingSync(field, communicator);
   auto const start = OwnedStart(Size(), ncomms, rank);
   auto const end = OwnedStart(Size(), ncomms, rank + 1);
+  // Determine which locations could be affected by other processes
   auto const interaction = Sizex() * static_cast<int>(std::floor(outer + smoothing / 2 + 1));
 
+  // Define a lambda function to update part of our field
   auto const set_work_field_at_index = [this](int i) {
     auto const xy = Index(i);
     auto const integrals = Integrals(xy.first, xy.second);
     work_field[i] = Transition(integrals.first, integrals.second);
   };
 
+  // Update those locations that cannot be affected by other processes
   for(int i(start + interaction); i < end - interaction; ++i)
     set_work_field_at_index(i);
 
+  // Wait for field sync to finish
   MPI_Wait(&request, MPI_STATUS_IGNORE);
 
+  // Update the remaining locations
   for(int i(start); i < std::min(end, start + interaction); ++i)
     set_work_field_at_index(i);
   for(int i(std::min(end, end - interaction)); i < end; ++i)

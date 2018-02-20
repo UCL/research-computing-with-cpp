@@ -38,11 +38,13 @@ public:
   //! $e^{-4x / width}$: 0 at -infty, 1 at +infty
   static double Sigmoid(double x, double width);
   density Transition(filling disk, filling ring) const;
+  //! Find the distance between 2 indices on a 1d torus
   int TorusDistance(int x1, int x2, int size) const;
+  //! Find the Euclidean distance between points on a torus
   double Radius(int x1, int y1, int x2, int y2) const;
-  // Value of the integral over a single ring
+  //! Value of the integral over a single ring
   double NormalisationRing() const;
-  // Value of the integral over a single disk
+  //! Value of the integral over a single disk
   double NormalisationDisk() const;
   //! Sets the playing field to random values
   void SeedRandom();
