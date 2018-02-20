@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
   int height;
   int range;
   int spots;
-  int frames;
+  std::vector<std::clock_t>::size_type frames;
 
   std::string label;
   config_file >> label >> width;

@@ -28,4 +28,7 @@ if(MPI_C_FOUND)
 
     add_executable(split split.cc)
     target_link_libraries(split ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
+
+    add_executable(reduce reduce.cc)
+    target_link_libraries(reduce ${MPI_C_LIBRARIES} ${MPI_CXX_LIBRARIES})
 endif()

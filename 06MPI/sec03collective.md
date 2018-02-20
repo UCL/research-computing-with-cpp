@@ -6,7 +6,7 @@ title: Collective communication
 
 ### Many possible communication schemes
 
-Think of two possible forms of *collective* communications:
+Think of two possible forms of **collective** communications:
 
 - give a beginning state
 - give an end state
@@ -52,17 +52,19 @@ Wherefrom the baby bunny?
 
 . . .
 
-Sum, difference, or any other *binary* operator:
+Sum, difference, or any other **binary** operator:
 
 ![]({% figurepath %}BunnyOps.png)
 
-### Collective operation API
+### Collective operation API (1)
 
 Group synchronisation:
 
 ``` cpp
 int MPI_Barrier(MPI_Comm comm);
 ```
+
+---
 
 Broadcasting:
 
@@ -76,10 +78,9 @@ int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root,
 | buf       | Pointer to sending/receiving buffer |
 | count     | Size of the buffer/message          |
 | datatype  | Informs on the type of the buffer   |
-| root      | Sending processor                   |
+| root      | Sending process                     |
 | comm      | The communicator!                   |
 | return    | Error tag                           |
-
 
 ### Example of collective operation (1)
 
@@ -100,23 +101,25 @@ Explain why the following two codes fail.
 1. Replace the loop in the last fragment with:
 
 ``` cpp
-for(int i(1); i < size; ++i) ...
+for (int i(1); i < size; ++i) ...
 ```
+
+---
 
 2. Refactor and put everything inside the loop
 
 ``` cpp
 std::string const peace = "I come in peace!";
 std::string message;
-for(int i(0); i < size; ++i) {
-    if(i == 0 and rank == 0) { /* broadcast */ }
-    else if(rank == i) { /* broadcast */ }
-    if(rank == i) { /* testing bit */ }
+for (int i(0); i < size; ++i) {
+    if (i == 0 && rank == 0) { /* broadcast */ }
+    else if (rank == i) { /* broadcast */ }
+    if (rank == i) { /* testing bit */ }
     MPI_Barrier(MPI_COMM_WORLD);
 }
 ```
 
-NOTE: a loop with a condition for i == 0 is a common anti-pattern (eg bad)
+NOTE: a loop with a condition for i == 0 is a common anti-pattern (i.e. bad)
 
 
 ### All to all operation
@@ -130,7 +133,7 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
 | Parameter | Content                                              |
 |:----------|:-----------------------------------------------------|
 | sendbuf   | Pointer to sending buffer (only significant at root) |
-| sendcount | Size of a *single* message                           |
+| sendcount | Size of a **single** message                           |
 | datatype  | Type of the buffer                                   |
 | recvbuf   | Pointer to receiving buffers (also at root)          |
 | recvcount | Size of the receiving buffer                         |
@@ -138,12 +141,12 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
 
 Exercise:
     Have the root scatter "This....." "message.." "is.split." to 3 processors
-    (including it self).
+    (including itself).
 
 
 ### Splitting the communicators
 
-Groups of processes can be split according to *color*:
+Groups of processes can be split according to **color**:
 
 ![]({% figurepath %}split.png)
 
@@ -165,13 +168,41 @@ The following splits processes into two groups with ratio 1:2.
 {% fragment main, cpp/split.cc %}
 
 
-### Splitting communicators: Exercise
+### Splitting communicators: Exercises
 
-Exercise:
+1. Use "-rank" as the key: what happens?
+2. Split into three groups with ratios 1:1:2
+3. Use one of the collective operations on a single group
 
-- use "-rank" as the key: what happens?
-- split into three groups with ratios 1:1:2
-- use one of the collective operation on a single group
+
+### MPI_Reduce
+
+``` cpp
+int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
+               MPI_Datatype datatype, MPI_Op op, int root,
+               MPI_Comm comm)
+```
+
+| Parameter | Content                             |
+|:----------|:------------------------------------|
+| sendbuf   | Pointer to sending buffer           |
+| recvbuf   | Pointer to receiving buffer         |
+| count     | Size of the buffer/message          |
+| datatype  | Informs on the type of the buffer   |
+| op        | The binary operation to perform     |
+| root      | Receiving process                   |
+| comm      | The communicator!                   |
+| return    | Error tag                           |
+
+
+### Exercise: MPI_Reduce
+
+This example uses the Gregory-Leibniz Series to calculate $\pi$.
+
+{% fragment independent calculation, cpp/reduce.cc %}
+
+Can you write the parallel code that combines these results
+and checks the accuracy of the calculation?
 
 
 ### Scatter operation solution

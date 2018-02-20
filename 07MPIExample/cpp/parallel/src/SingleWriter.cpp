@@ -9,8 +9,10 @@ void SingleWriter::Write() {
     receive_buffer = new double[total_element_count];
   }
 
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
   MPI_Gather(smooth.StartOfWritingBlock(), local_element_count, MPI_DOUBLE, receive_buffer,
              local_element_count, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+#pragma GCC diagnostic pop
 
   if(rank == 0) {
     xdr_vector(&xdrfile, reinterpret_cast<char *>(receive_buffer), total_element_count,

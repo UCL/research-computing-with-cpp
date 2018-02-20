@@ -6,23 +6,27 @@ title: More advanced MPI
 
 ### Architecture and usage
 
-* depending on library, MPI processes can be *placed* on specific node...
+* Depending on library, MPI processes can be **placed** on a specific node...
 * ... and even chained to specific cores
-* Fewer processes than core means we can do MPI + openmp:
+* Fewer processes than cores means we can do MPI + openMP:
    - some data is distributed (MPI)
    - some data is shared (openMP)
 * MPI-3 allows for creating/destroying processes dynamically
 
+
 ### Splitting communicators
 
 ``MPI_Group_*`` specify operations to create sets of processes.
-In practice, it defines operations on sets:
+In practice, they define operations on sets:
 
 - union
 - intersection
 - difference
 
-And allows the creation of a communicator for the resulting group.
+And allow the creation of a communicator for the resulting group.
+
+`MPI_Comm_group` does the converse, giving you a group from a communicator.
+
 
 ### More MPI data-types
 
@@ -48,4 +52,4 @@ can access without their explicit knowledge.
   of (0, 1), (1, 0), (2, 1), (1, 2). With simplified operations to send data
   EAST, WEST, UP, DOWN....
 - More complex graph topologies
-- non-blocking collective operations
+- Non-blocking collective operations
