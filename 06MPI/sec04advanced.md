@@ -32,9 +32,9 @@ And allow the creation of a communicator for the resulting group.
 
 It is possible to declare complex data types
 
-- strided vectors, e.g. only one of every element (MPI_Type_vector)
-- sub-matrices (strided in n axes, n >= 2) (MPI_Type_Create_struct)
-- irregular strides (MPI_Type_indexed)
+- strided vectors, e.g. only one of every element (`MPI_Type_vector`)
+- sub-matrices (strided in n axes, n >= 2) (`MPI_Type_Create_struct`)
+- irregular strides (`MPI_Type_indexed`)
 
 
 ### One sided communication
@@ -48,7 +48,7 @@ can access without their explicit knowledge.
 
 ### And also
 
-- Cartesian grid topology where process (1, 1) is neighbor
+- Cartesian grid topology where process (1, 1) is neighbour
   of (0, 1), (1, 0), (2, 1), (1, 2). With simplified operations to send data
   EAST, WEST, UP, DOWN....
 - More complex graph topologies
