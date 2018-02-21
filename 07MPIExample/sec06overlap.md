@@ -8,7 +8,7 @@ title: Overlap
 
 We are calculating our whole field, then sharing all the halo.
 
-This is wasteful: we don't need our neighbour's data to calculate the data in the *middle*
+This is wasteful: we don't need our neighbour's data to calculate the data in the **middle**
 of our field.
 
 We can start transmitting our halo and receiving our neighbour's, while calculating our
