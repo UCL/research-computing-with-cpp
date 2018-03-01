@@ -13,7 +13,7 @@ One of the most important problems in designing a parallel code is "Domain Decom
 Design objectives in decomposition are:
 
 * Minimise communication
-* Optimise load balance (Share out work evenly)
+* Optimise load balance (share out work evenly)
 
 ### Decomposing Smooth Life
 
@@ -33,11 +33,11 @@ and our field will vary as time passes, we will not achieve perfect **dynamic** 
 
 ### Communication in Smooth Life
 
-Given that each cell needs to know the state of cells within a range $r=3r_d$, where $r_d$ is
+Given that each cell needs to know the state of cells within a range $r=3r\_d$, where $r\_d$ is
 the inner radius of the neighbourhood ring, and $r$ the outer radius, we need to get this
 information to the neighbouring sites.
 
-This is *great*: we only need to transfer information to neighbours, not all the other processes.
+This is **great**: we only need to transfer information to neighbours, not all the other processes.
 Such "local" communication results in fast code.
 
 The amount of communication to take place each time step is proportional to $rMp$, but assuming
@@ -48,7 +48,7 @@ at the same time, so communication will take time proportional to $rMp/p$=$rM$.
 
 We therefore expect the time taken for a simulation to vary like: $Mr(k+Nr/p)$. (Where $k$ is a
 parameter describing the relative time to communicate one cell's state compared to the time
-for calculating one cell )
+for calculating one cell.)
 
 Thus, we see that for a FIXED problem size, the benefit of parallelism will disappear
 and communication will dominate: this is Amdahl's law again.
@@ -56,12 +56,12 @@ and communication will dominate: this is Amdahl's law again.
 ### Weak scaling
 
 However, if we consider larger and larger problems, growing $N$ as $p$ grows,
-then we can stop communication overtaking us. This is a common outcome: *local* problems provide
-perfect *weak* scaling (until network congestion or IO problems dominate).
+then we can stop communication overtaking us. This is a common outcome: **local** problems provide
+perfect **weak** scaling (until network congestion or IO problems dominate).
 
-Any NONLOCAL communication, where the total amount of time for communication to take place grows
-as the number of processes does (such as a gather, which takes $p$, a reduction, like $ln(p)$,
-or an all-to-all, like $p^2$, means that perfect weak scaling can't be achieved.)
+Any NON-LOCAL communication, where the total amount of time for communication to take place grows
+as the number of processes does (such as a gather, which takes time $p$, or a reduction, like $ln(p)$,
+or an all-to-all, like $p^2$) means that perfect weak scaling can't be achieved.
 
 ### Exercise: Blocking Collective
 
@@ -69,11 +69,11 @@ We will parallelize the update and integral functions by having each process
 work on a contiguous strip of the whole field.
 
 For simplicity, each process owns a full replica of the field in memory. This
-is inneficient since each process owns memory describing a part of the field it
-will never use. Improving this is fairly easy, but require some more
+is inefficient since each process owns memory describing a part of the field it
+will never use. Improving this is fairly easy, but requires some more
 bookkeeping. Do try it at home!
 
-Exercise: parallelize using a blocking collective
+Exercise: parallelize using a blocking collective.
 
 ### Exercise: Halo update
 

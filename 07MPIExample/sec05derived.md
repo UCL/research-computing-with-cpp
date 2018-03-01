@@ -29,7 +29,7 @@ the change in one place.
 It's usually the case in programming that thinking of a whole body of data as a single
 entity produces cleaner, faster code than programming at the level of the individual datum.
 
-We want to be able to think of the *Halo* as a single object to be transferred, rather
+We want to be able to think of the **Halo** as a single object to be transferred, rather
 than as a series of `double`s.
 
 We can do this using an MPI Derived Datatype:
