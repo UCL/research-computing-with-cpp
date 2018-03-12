@@ -5,8 +5,8 @@
 
 int main()
 {
-  std::ifstream if1("95stl/cpp/randomNumbers1.txt",std::ifstream::in);
-  std::ifstream if2("95stl/cpp/randomNumbers2.txt",std::ifstream::in);
+  std::ifstream if1("90stl/cpp/randomNumbers1.txt",std::ifstream::in);
+  std::ifstream if2("90stl/cpp/randomNumbers2.txt",std::ifstream::in);
 
   // Read in the data.
   int number;

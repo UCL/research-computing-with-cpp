@@ -39,7 +39,7 @@ private:
 ///main
 int main()
 {
-  std::ifstream ifs("95stl/cpp/particleList.txt",std::ifstream::in);
+  std::ifstream ifs("90stl/cpp/particleList.txt",std::ifstream::in);
   // Read in the data
   maxMap theParticles;
   std::string name;
