@@ -25,7 +25,7 @@ To make use of this, it is necessary to use MPI's parallel IO library, MPI-IO.
 
 MPI-IO works by accessing files as data buffers like core MPI_Send and so on:
 
-{% idio ../07MPIExample/cpp/parallel/src/ParallelWriter.cpp %}
+{% idio ../93MPIExample/cpp/parallel/src/ParallelWriter.cpp %}
 
 {% fragment Write %}
 

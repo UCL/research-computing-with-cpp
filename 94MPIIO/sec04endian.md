@@ -57,7 +57,7 @@ appropriate types.
 
 ### Writing with XDR
 
-{% idio ../07MPIExample/cpp/parallel/src %}
+{% idio ../93MPIExample/cpp/parallel/src %}
 
 {% fragment Includes, XdrWriter.h %}
 {% fragment Write, XdrWriter.cpp %}

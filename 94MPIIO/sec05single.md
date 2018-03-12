@@ -9,7 +9,7 @@ title: Writing from a single process
 So far, we've been writing one process from each file, calling them
 `frames.dat.0`, `frames.dat.1` etc.
 
-{% idio ../07MPIExample/cpp/parallel %}
+{% idio ../93MPIExample/cpp/parallel %}
 
 {% fragment AddName, src/TextWriter.cpp %}
 
