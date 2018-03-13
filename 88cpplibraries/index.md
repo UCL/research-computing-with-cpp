@@ -1,8 +1,9 @@
 ---
-title: C++ Libraries
+title: Appendix - Libraries
 ---
 
-## C++ Libraries
+## Appendix - C++ Library Examples
+
 
 ### The Story So Far
 

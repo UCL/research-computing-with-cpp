@@ -1,5 +1,5 @@
 ---
-title: MPI Design Example
+title: Appendix - MPI
 ---
 
 ## MPI Design Example
