@@ -2,7 +2,9 @@
 title: Profiling a program
 ---
 
-## Amdahl's law
+## Profiling a program
+
+### Amdahl's law
 
 Maximum theoretical speedup for parallelizing a given task.
 
@@ -20,7 +22,7 @@ Some simple cases:
 In practice, it means programmers/researchers should measure performance before
 jumping to "optimize" code (a.k.a. apply the scientific method?).
 
-## Profiling
+### Profiling
 
 Refers to measuring how much time the program spends in each function:
 
@@ -35,7 +37,7 @@ kcachegrind and/or [pprof](https://github.com/google/pprof)
 
 Other considerations to take into account: threads, GPU-specifics, MPI...
 
-## Exercise: Profiling the correct `less_bad`
+### Exercise: Profiling the correct `less_bad`
 
 1. install `kcachegrind` or `qcachegrind` (latter on Mac + Homebrew, or
    Windows)

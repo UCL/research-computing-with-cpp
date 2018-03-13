@@ -2,31 +2,29 @@
 title: Mac
 ---
 
+## Mac
 
-Mac Install
-===========
-
-## XCode and command line tools ##
+### XCode and command line tools
 
 Install [XCode](https://itunes.apple.com/us/app/xcode/id497799835) using the Mac app store.
 
 Then, go to Xcode...Preferences...Downloads... and install the command line tools option
 
-## A note on Homebrew Versus MacPorts
+### A note on Homebrew Versus MacPorts
 
-If you already have either Homebrew or MacPorts installed, do NOT install both. This usually creates a confusing mess for students. 
+If you already have either Homebrew or MacPorts installed, do NOT install both. This usually creates a confusing mess for students.
 If you have either installed already for other courses, then as long as the minimum compiler versions, cmake versions and git versions
 seem to work, there is no reason to swap. If you have neither installed, we prefer Homebrew, and the notes below are for Homebrew.
 
-## Installing Homebrew ##
+### Installing Homebrew
 
 Install Homebrew via typing this at a terminal:
 
 ``` Bash
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 ```    
-  
-## Git ##
+
+### Git
 
 Once Homebrew is installed:
 
@@ -36,7 +34,7 @@ brew install git
 
 Then install the [GitHub for Mac client](http://mac.github.com). (If you have problems with older versions of OSX, it's safe to skip this.)
 
-## CMake
+### CMake
 
 Just do
 
@@ -46,7 +44,7 @@ brew install cmake
 
 Minimum version 3.5.
 
-## Editor and shell ##
+### Editor and shell
 
 The default text editor on OS X *textedit* should be sufficient for our use. Alternatively
 choose from a [list](http://mac.appstorm.net/roundups/office-roundups/top-10-mac-text-editors/) of other good editors.

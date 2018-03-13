@@ -4,6 +4,8 @@ title: Micro-benchmarking
 
 ## Micro-benchmarking
 
+### Introduction
+
 meaningful bit of code, and systematically run performance tests for each
 Scientific method applied to performance: measure the time taken by each
 commit.
@@ -28,7 +30,7 @@ Questions it doesn't always answer:
 1. Performance of large subsets or whole application
 1. Parallelization: communication vs computation
 
-## Exercise: build and run `micro_benchmark`
+### Exercise: build and run `micro_benchmark`
 
 `micro_benchmark` reproduces the evaluation function from the travelling
 salesman problem.

@@ -2,10 +2,9 @@
 title: Windows
 ---
 
-Windows Install
-===============
+## Windows
 
-## Editor ##
+### Editor
 
 Unless you already use a specific editor which you are comfortable with we recommend using
 [*Notepad++*](http://notepad-plus-plus.org/) on windows.
@@ -13,7 +12,7 @@ Unless you already use a specific editor which you are comfortable with we recom
 Using Notepad++ to edit text files including code should be straight forward but in addition you should configure git
 to use Notepad++ when writing commit messages (see below).
 
-## Git ##
+### Git
 
 Install [Git for Windows](http://gitforwindows.org/).
 
@@ -23,14 +22,14 @@ The defaults should be suitable for other options.
 
 Then install the [GitHub for Windows client](http://windows.github.com/).
 
-## CMake
+### CMake
 
 Install [cmake](http://www.cmake.org/cmake/resources/software.html). Minimum version 3.5.
 
 And choose to add it to the path for all users if so prompted.
 (You may need to log out and log back in again before this takes effect!)
 
-## Unix tools ##
+### Unix tools
 
 Install [MinGW](http://sourceforge.net/projects/mingw/) by following the download link.
 It should install MinGW's package manager. On the left, select ``Basic Setup``, and on the right select
@@ -38,13 +37,13 @@ It should install MinGW's package manager. On the left, select ``Basic Setup``, 
 ``mingw-gcc-g++`` and ``msys-base``. On some systems these package
 might be selected from start. Finally, click the installation menu and ``Apply Changes``.
 
-## Locating your install
+### Locating your install
 
 Now, we need to find out where Git and Notepad++ have been installed, this will be either in
 `C:\Program Files (x86)` or in `C:\Program Files`. The former is the norm on more modern versions of windows.
 If you have the older version, replace `Program\ Files\ \(x86\)` with `Program\ Files` in the instructions below.
 
-## Telling Shell where to find the tools
+### Telling Shell where to find the tools
 
 We need to tell the new shell installed by MinGW where Notepad++ is.
 
@@ -59,7 +58,7 @@ export PATH=$PATH:/c/Program\ Files\ \(x86\)/Notepad++
 ```
 
 
-## Finding your terminal
+### Finding your terminal
 
 Check this works by opening MinGW shell, with the start menu (Start->All programs->MinGW->MinGW
 Shell). This should open a *terminal* window, where commands can be typed in directly.
@@ -73,7 +72,7 @@ C:\MinGW\msys\1.0\msys.bat
 
 You can also create a shortcut to this file on your Desktop for quicker access.
 
-## Checking which tools you have
+### Checking which tools you have
 
 Once you have a terminal open, type
 
@@ -101,7 +100,7 @@ which should produce
 
 The ``which`` command is used to figure out where a given program is located on disk.
 
-## Tell Git about your editor
+### Tell Git about your editor
 
 If you didn't do this as part of the Git install, you now need to update the default editor used by Git.
 

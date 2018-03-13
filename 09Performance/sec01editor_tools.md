@@ -2,7 +2,9 @@
 title: Tools for pretty code
 ---
 
-## The end of brace wars: brainless auto formatting
+## Tools for pretty code
+
+### The end of brace wars: brainless auto formatting
 
 Code is read more often than written:
 
@@ -16,7 +18,7 @@ int GCD(int a,int b)
   code formatter. Add it (or any equivalent) to you editor for automatic
   formating.
 
-## Linting
+### Linting
 
   Software to check code for correctness:
 
@@ -32,7 +34,7 @@ int GCD(int a,int b)
   }
 ```
 
-## Refactoring
+### Refactoring
 
 Once tests exist, it is easy and safe to modify the code:
 
@@ -43,4 +45,3 @@ Refactoring means rewriting:
 - for legibility
 - to decrease tech-debt
 - to consolidate similar code (avoid copy-pasta)
-

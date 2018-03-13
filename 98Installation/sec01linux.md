@@ -2,11 +2,9 @@
 title: Linux
 ---
 
-Linux Install
-=============
+## Linux
 
-Git
----
+### Git
 
 If git is not already available on your machine
 you can try to install it via your distribution package manager (e.g. `apt-get` or `yum`).
@@ -19,11 +17,11 @@ On RedHat based systems:
 
     sudo yum install git
 
-## CMake ##
+### CMake
 
 Again, install the appropriate package with apt-get or yum (`cmake`). Minimum version 3.5.
 
-## Editor and shell ##
+### Editor and shell
 
 Many different text editors suitable for programming are available.
 If you don't already have a favourite, you could look at [Kate](http://kate-editor.org/).

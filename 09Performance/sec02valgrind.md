@@ -2,7 +2,9 @@
 title: Memory leaks
 ---
 
-## Checking memory allocation intrusively
+## Memory leaks
+
+### Checking memory allocation intrusively
 
 There are a variety of compiler flags to check standard memory errors:
 
@@ -12,7 +14,7 @@ There are a variety of compiler flags to check standard memory errors:
 Good when debugging/testing, but may impact performance. May not detect all
 memory errors (e.g. read before initialization).
 
-## Checking memory allocation non-intrusively
+### Checking memory allocation non-intrusively
 
 [Valgrind](http://valgrind.org/) is an instrumentation framework for Linux and (older) Mac.
 
@@ -23,7 +25,7 @@ Unfortunately, Valgrind currently does not work with Mac OS/X > 10.11.
 
 So let's use docker (on Linux) and docker-machine (Windows, Mac OS/X)!
 
-## Exercise: Traveling salesman solved by Simulated Annealing
+### Exercise: Traveling salesman solved by Simulated Annealing
 
 Traveling Salesman Problem:
 

@@ -1,8 +1,13 @@
 ---
-title: MPHYG002 Coursework 2 Parallelising Conway's Game of Life
+title: Assignment 2
 ---
 
 ## Assignment 2
+
+### Introduction
+
+In this coursework, we will implement serial and parallel versions
+of Conway's Game of Life.
 
 ### Serial Solution
 
