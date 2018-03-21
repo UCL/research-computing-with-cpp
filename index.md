@@ -7,8 +7,7 @@ slidelink: false
 ##Introduction
 
 In this course, we build on your knowledge of C++ to enable you to work on complex numerical codes for research.
-Research software needs to handle complex mathematics quickly, so the course focuses on writing software to exploit the
-capabilities of modern supercomputers, accelerator chips, and cloud computing facilities. But research software is also
+Research software needs to handle complex mathematics quickly, so the course focuses on writing software to perform multi-threaded computation. But research software is also
 very complicated, so the course also focuses on techniques which will enable you to build software which is easy for colleagues
 to understand and adapt.
 
@@ -24,7 +23,7 @@ to understand and adapt.
 
 Your C++ knowledge should include:
 
-* Compiling a library
+* Compiling a library, using CMake.
 * Testing and debugging
 * Arrays and structures
 * Containers
@@ -39,7 +38,7 @@ or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
 
 ##Registration
 
-Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers. 
+Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers.
 
 Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://medicalimaging-cdt.ucl.ac.uk/programmes).
 
@@ -53,7 +52,7 @@ This year we propose to cover the following topics. These notes will be updated 
  <tbody>
 
   <tr>
-   
+
    <td>
     <h3>Intro</h3>
     <ul>
@@ -63,7 +62,7 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>Unit testing</li>
     </ul>
    </td>
-   
+
    <td>
     <h3>Distributed Memory Parallelism</h3>
     <ul>
@@ -74,10 +73,10 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>Advanced communications concepts</li>
     </ul>
    </td>
-   
+
   </tr>
   <tr>
-  
+
    <td>
     <h3>Libraries</h3>
     <ul>
@@ -91,17 +90,19 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>Using non-CMake'd libraries</li>     
     </ul>
    </td>
-  
+
    <td>
-    <h3>OpenMPI</h3>
+    <h3>Distributed Memory Parallelism Continued</h3>
     <ul>
+     <li>Running multiple nodes</li>
+     <li>Unit testing</li>
      <li>Examples</li>
     </ul>
    </td>
-   
+
   </tr>
   <tr>
-  
+
    <td>
     <h3>C++</h3>
     <ul>
@@ -110,24 +111,24 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>Templates</li>
      <li>Smart Pointers</li>
      <li>Exceptions</li>
-     <li>Eigen (Linear Algebra)</li>
-     <li>Boost</li>
      <li>RAII pattern</li>
      <li>Program to Interfaces</li>
      <li>Dependency Injection</li>
     </ul>
    </td>
-    
+
    <td>
-    <h3>OpenMPI</h3>
+    <h3>Binding</h3>
     <ul>
-     <li>TBC</li>
+     <li>Boost Python</li>
+     <li>PyBind11</li>
+     <li><b>Not done in 2018</b></li>
     </ul>
    </td>
-    
+
   </tr>
   <tr>
-  
+
    <td>
     <h3>Shared Memory Parallelism</h3>
     <ul>
@@ -144,7 +145,7 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>OpenMP alternatives</li>
     </ul>
    </td>
-   
+
    <td>
     <h3>Accelerators</h3>
     <ul>
@@ -153,19 +154,19 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>Map Reduce</li>
     </ul>
    </td>
-   
+
   </tr>
   <tr>
-  
+
    <td>
-    <h3>Binding & Tuning</h3>
+    <h3>Shared Memory Parallelism Continued</h3>
     <ul>
-     <li>Python Binding</li>
-     <li>Profiling</li>
+     <li>Remaining OpenMP</li>
      <li>Valgrind</li>
+     <li>Debugging</li>
     </ul>
    </td>
-   
+
    <td>
     <h3>Accelerators</h3>
     <ul>
@@ -174,9 +175,9 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>CUDA</li>
     </ul>
    </td>
-   
+
   </tr>
-  
+
  </tbody>
 </table>
 
