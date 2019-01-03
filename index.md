@@ -13,10 +13,11 @@ to understand and adapt.
 
 ##Pre-requisites
 
-* Detailed prior knowledge of C++, see below.
+* Detailed (2019 - 'Some') prior knowledge of C++, see below.
 * You must also understand how to use a Unix style terminal, including commands such as ```ls```, ```cd``` and creating and editing files in a text editor of your choice.
-* You must understand how your compiler toolchain works.
-* You are required to bring your own laptop to the course as the classrooms we are using do not have desktop computers.
+* You should understand how your compiler toolchain works.
+* For 2019, we will start the course in a UCL Cluster (Computer) Room. However, you
+  should bring your own laptop to the course and try to get all the C++ working on your own environment.
 * We have provided [setup](98Installation) instructions for installing the software needed for the course on your computer.
 
 * Eligibility: This course is for UCL post-graduate students.
@@ -54,31 +55,19 @@ This year we propose to cover the following topics. These notes will be updated 
   <tr>
 
    <td>
-    <h3>Intro</h3>
+    <h3>1. Intro</h3>
     <ul>
      <li>Course structure and admin</li>
-     <li>Git quick-start</li>
-     <li>CMake quick-start</li>
-     <li>Unit testing</li>
-    </ul>
-   </td>
-
-   <td>
-    <h3>Distributed Memory Parallelism</h3>
-    <ul>
-     <li>Concepts</li>
-     <li>Point to point communication</li>
-     <li>Collective communication</li>
-     <li>Groups and communicators</li>
-     <li>Advanced communications concepts</li>
+     <li>CMake</li>
+     <li>Building C++</li>        
     </ul>
    </td>
 
   </tr>
   <tr>
-
+  
    <td>
-    <h3>Libraries</h3>
+    <h3>2. C++ Libraries</h3>
     <ul>
      <li>Why use libraries?</li>
      <li>Choosing libraries</li>
@@ -90,23 +79,27 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>Using non-CMake'd libraries</li>     
     </ul>
    </td>
-
+  
+  </tr>
+  <tr>
+  
    <td>
-    <h3>Distributed Memory Parallelism Continued</h3>
+    <h3>3. C++ and TDD</h3>
     <ul>
-     <li>Running multiple nodes</li>
-     <li>Unit testing</li>
-     <li>Examples</li>
+     <li>Passing data to functions</li>
+     <li>Functions Vs Objects</li>
+     <li>Object Oriented Design</li>
+     <li>Unit testing</li> 
+     <li>Test Driven Development</li>
     </ul>
    </td>
 
   </tr>
   <tr>
-
+     
    <td>
-    <h3>C++</h3>
+    <h3>4. More C++</h3>
     <ul>
-     <li>Language recap</li>
      <li>Essential reading</li>
      <li>Templates</li>
      <li>Smart Pointers</li>
@@ -117,20 +110,23 @@ This year we propose to cover the following topics. These notes will be updated 
     </ul>
    </td>
 
-   <td>
-    <h3>Binding</h3>
-    <ul>
-     <li>Boost Python</li>
-     <li>PyBind11</li>
-     <li><b>Not done in 2018</b></li>
-    </ul>
-   </td>
-
   </tr>
   <tr>
 
    <td>
-    <h3>Shared Memory Parallelism</h3>
+    <h3>5. Debugging, Optimisating for C++</h3>
+    <ul>
+     <li>Debugging</li>
+     <li>Valgrind</li>
+     <li>Profiling</li>
+    </ul>
+   </td>
+  
+  </tr>
+  <tr>
+  
+   <td>
+    <h3>6. Shared Memory Parallelism</h3>
     <ul>
      <li>OpenMP</li>
      <li>Memory, processors, cores and caches</li>
@@ -145,34 +141,54 @@ This year we propose to cover the following topics. These notes will be updated 
      <li>OpenMP alternatives</li>
     </ul>
    </td>
-
+     
+  </tr>
+  <tr>
+         
    <td>
-    <h3>Accelerators</h3>
+    <h3>7. Distributed Memory Parallelism</h3>
     <ul>
      <li>Concepts</li>
-     <li>Trivially parallelisable examples<li>
-     <li>Map Reduce</li>
+     <li>Point to point communication</li>
+     <li>Collective communication</li>
+     <li>Groups and communicators</li>
+     <li>Advanced communications concepts</li>
     </ul>
    </td>
 
   </tr>
   <tr>
 
+
    <td>
-    <h3>Shared Memory Parallelism Continued</h3>
+    <h3>8. Distributed Memory Parallelism Continued</h3>
     <ul>
-     <li>Remaining OpenMP</li>
-     <li>Valgrind</li>
-     <li>Debugging</li>
+     <li>Running multiple nodes</li>
+     <li>Unit testing</li>
+     <li>Examples</li>
     </ul>
    </td>
 
+  </tr>
+  <tr>
+
+
    <td>
-    <h3>Accelerators</h3>
+    <h3>9. Python Binding</h3>
     <ul>
-     <li>Thrust</li>
-     <li>ArrayFire</li>
-     <li>CUDA</li>
+     <li>Boost Python</li>
+     <li>PyBind11</li>
+    </ul>
+   </td>
+
+  </tr>
+  <tr>
+
+
+   <td>
+    <h3>10. Contingency</h3>
+    <ul>
+     <li>Depends on how fast the previous lectures go.</li>
     </ul>
    </td>
 
