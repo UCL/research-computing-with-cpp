@@ -13,11 +13,11 @@ to understand and adapt.
 
 ##Pre-requisites
 
-* Detailed (2019 - 'Some') prior knowledge of C++, see below.
-* You must also understand how to use a Unix style terminal, including commands such as ```ls```, ```cd``` and creating and editing files in a text editor of your choice.
-* You should understand how your compiler toolchain works.
 * For 2019, we will start the course in a UCL Cluster (Computer) Room. However, you
   should bring your own laptop to the course and try to get all the C++ working on your own environment.
+* Prior knowledge of C++, see below.
+* You should understand how your compiler toolchain works.
+* You must also understand how to use a Unix style terminal, including commands such as ```ls```, ```cd``` and creating and editing files in a text editor of your choice.
 * We have provided [setup](98Installation) instructions for installing the software needed for the course on your computer.
 
 * Eligibility: This course is for UCL post-graduate students.

@@ -35,10 +35,10 @@ Some people say:
 
 ### Research Programming
 
-* Software is already expensive
+* Software is always expensive
     * Famous Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
     * Famous People: [Edsger W. Dijkstra](https://www.cs.utexas.edu/users/EWD/)
-* Research programming is different
+* Research programming is different to product development:
     * What is the end product?
 
 
@@ -53,9 +53,10 @@ Some people say:
 ### Approach
 
 * What am I trying to achieve?
-* How do I maximise my output?
+* How do I maximise my research output?
 * What is the best pathway to success?
 * How do I de-risk (get results, meet deadlines) my research?
+* Software is an important part of scientific reproducibility, authorship, credibility.
 
 
 ### 1. Types of Code
@@ -71,7 +72,10 @@ Some people say:
     * Scientific [paper](http://www.sciencedirect.com/science/article/pii/S0169260709002533) production
      
 Examples: NiftyReg 300 citations in 5 years!
-    
+ 
+Question: What type of code is C++ good for?
+Question: Should all code be in C++?
+   
     
 ### 2. Maximise Your Value
 
@@ -94,7 +98,7 @@ Don't fall into the trap "Hey, I'll write a framework for that"
     * Ask about best practices
 
 
-### Example - NiftyCal
+### Another Example - NiftyCal
 
 * We should: Practice What We Preach
 * Small, algorithms
