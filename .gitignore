@@ -53,3 +53,7 @@ notes.pdf
 css/
 notes.tex
 .vscode/
+.idea/
+
+# Build folder.
+build/
