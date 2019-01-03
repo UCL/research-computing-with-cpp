@@ -4,13 +4,17 @@ title: Windows
 
 ## Windows
 
-### Editor
+### Compiler / Editor
 
-Unless you already use a specific editor which you are comfortable with we recommend using
-[*Notepad++*](http://notepad-plus-plus.org/) on windows.
+For code editing we recommend [Visual Studio](https://visualstudio.microsoft.com/downloads/).
+Please download and install Visual Studio 2017 or 2015. You are advised not
+to have multiple versions of Visual Studio installed simultaneously. 
 
-Using Notepad++ to edit text files including code should be straight forward but in addition you should configure git
-to use Notepad++ when writing commit messages (see below).
+In addition, it is convenient to have a simple editor that integrates with Git,
+for the purpose of writing Git commit messages. For this we recommend
+[*Notepad++*](http://notepad-plus-plus.org/) on windows. 
+
+Please download and install Notepad++ and integrate with Git, as shown below.
 
 ### Git
 
@@ -28,14 +32,6 @@ Install [cmake](http://www.cmake.org/cmake/resources/software.html). Minimum ver
 
 And choose to add it to the path for all users if so prompted.
 (You may need to log out and log back in again before this takes effect!)
-
-### Unix tools
-
-Install [MinGW](http://sourceforge.net/projects/mingw/) by following the download link.
-It should install MinGW's package manager. On the left, select ``Basic Setup``, and on the right select
-``mingw32-base``, ``mingw-developer-toolkit,``
-``mingw-gcc-g++`` and ``msys-base``. On some systems these package
-might be selected from start. Finally, click the installation menu and ``Apply Changes``.
 
 ### Locating your install
 
