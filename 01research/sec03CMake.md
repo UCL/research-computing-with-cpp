@@ -62,7 +62,7 @@ to google CMake issues and work with CMake.
 
 Demo an "out-of-source" build
 
-```
+``` bash
 cd ~/build
 git clone https://github.com/MattClarkson/CMakeHelloWorld
 mkdir CMakeHelloWorld-build

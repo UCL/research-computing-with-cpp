@@ -31,7 +31,8 @@ That's what you are trying to describe in CMake.
 to process the CMakeLists.txt therein. Once finished it will exit, go back
 to directory above and continue where it left off.
 * e.g. top level CMakeLists.txt
-```
+
+``` cmake
 project(MYPROJECT VERSION 0.0.0)
 add_subdirectory(Code)
 if(BUILD_TESTING)
@@ -45,9 +46,11 @@ endif()
 ### CMake - Define Targets
 
 * Describe a target, e.g. Library, Application, Plugin
-```
+
+``` cmake
 add_executable(hello hello.cpp)
 ```
+
 * Note: You don't write compile commands
 * You tell CMake what things need compiling to build
 a given target. CMake works out the compile commands!
@@ -57,13 +60,15 @@ a given target. CMake works out the compile commands!
 
 * You can't say "build Y and link to X" if X not defined
 * So, imagine in a larger project
-```
+
+``` cmake
 add_library(libA a.cpp b.cpp c.cpp)
 add_library(libZ x.cpp y.cpp z.cpp)
 target_link_libraries(libZ libA)
 add_executable(myAlgorithm algo.cpp) # contains main()
 target_link_libraries(myAlgorithm libA libZ ${THIRD_PARTY_LIBS})
 ```
+
 * So, logically, its a big, ordered set of build commands.
 
 

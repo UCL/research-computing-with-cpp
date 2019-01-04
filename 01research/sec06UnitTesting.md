@@ -161,7 +161,7 @@ which passes:
 
 ### Test Macros
 
-Each framework has a variety of macros to test for failure. [Check][Check] has:
+Each framework has a variety of macros to test for failure. [Catch][Catch] has:
 
 ``` cpp
     REQUIRE(expression); // stop if fail
