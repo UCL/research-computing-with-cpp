@@ -50,7 +50,7 @@ These were covered earlier - here's how you set them.
 * A SuperBuild with no dependencies just does nothing
 
 
-### Home Work 1a - Basic Build 
+### Home Work - 9a - Basic Build 
 
 * Build CMakeCatchTemplate ```BUILD_SUPERBUILD=OFF```
 * Modify some C++, recompile
@@ -59,7 +59,7 @@ These were covered earlier - here's how you set them.
 * Or install via package manager
 
 
-### Home Work 1b - Basic Build
+### Home Work 9b - Basic Build
 
 * Try to ```find_package(PackageName)``` to see what happens
 * Set ```include_directories```
@@ -67,7 +67,7 @@ These were covered earlier - here's how you set them.
 * Work out if its necessary to build it yourself
 
 
-### Home Work 2 - SuperBuild
+### Home Work 10 - SuperBuild
 
 * Not for the faint-hearted
     * 3rd party examples in ```CMake/ExternalProjects```

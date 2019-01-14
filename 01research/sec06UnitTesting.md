@@ -391,11 +391,40 @@ Aim to write:
 
 ## Any Questions?
 
-### End of Lecture?
+### Homework - Overview
 
 * Example git repo, CMake, Catch template project:
-    * [https://github.com/MattClarkson/CMakeCatchTemplate](https://github.com/MattClarkson/CMakeCatchTemplate)
+    * [CMakeCatch2](https://github.com/MattClarkson/CMakeCatch2) - Simple
+    * [CMakeCatchTemplate](https://github.com/MattClarkson/CMakeCatchTemplate) - Complex
     
+* You should
+    * Clone, Build.
+    * Add unit test in Testing
+    * Run via ctest
+    * Find log file
+    
+### Homework - 7
+
+* Imagine a simple function, e.g. to add two numbers.
+* Play with unit tests until you understand the difference between:
+```cpp
+int AddTwoNumbers(int a, int b);
+int AddTwoNumbers(const int& a, const int&b);
+void AddTwoNumbers(int* a, int*b, int* output);
+void AddTwoNumbers(const int* const a, const int* const b);
+```   
+Now imagine, instead of integers, the variables all contained a large Image.
+Which type of function declaration would you use?
+
+### Homework - 8
+
+* Write a Fraction class
+* Write a print function to print nicely formatted fractions
+* Does the print function live inside or outside of the class?
+* Write a method `simplify()` which will simplify the fraction.
+* Unit test until you have at least got the hang of unit testing
+* Review your function arguments and return types
+
 [GoogleTest]: https://code.google.com/p/googletest/
 [QTestLib]: http://qt-project.org/doc/qt-4.8/qtestlib-manual.html
 [CppUnit]: http://sourceforge.net/projects/cppunit/
