@@ -28,6 +28,8 @@ For Mac:
    * `gem install liquid`
    * `gem install jekyll`
    * `gem install redcarpet`
+* Other utilities:
+   * `brew install wget`
 
 Then in folder _site, you'll have the `html`'s.
 Or, for a shortcut: `make preview`
