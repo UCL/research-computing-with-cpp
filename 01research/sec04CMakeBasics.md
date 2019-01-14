@@ -72,7 +72,7 @@ target_link_libraries(myAlgorithm libA libZ ${THIRD_PARTY_LIBS})
 * So, logically, its a big, ordered set of build commands.
 
 
-### Classroom Exercise 3. (or Homework)
+### Homework - 4
 
 * Build https://github.com/MattClarkson/CMakeLibraryAndApp.git
 * Look through .cpp/.h code. Ask questions if you don't understand it.

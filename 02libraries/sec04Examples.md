@@ -23,21 +23,10 @@ title: Examples
 * Header only libraries are very attractive.
 
 
-### Use of CMake
+### CMake - Example
 
-* Several ways depending on your setup
-    * Specify paths and library names
-    * Use ```find_package```
-        * Use 3rd party projects own config, eg. ```VTKConfig.cmake```
-        * Use a FindModule, some come with CMake
-        * Write your own FindModule
-        * Write your own FindModule with generated / substituted variables
-
-
-### CMake - Header Only
-
-* catch.hpp Header files in project [CMakeCatchTemplate](https://github.com/MattClarkson/CMakeCatchTemplate/blob/master/Testing/mpBasicTest.cpp)
-* From ```CMakeCatchTemplate/CMakeLists.txt```
+* catch.hpp Header files in project [CMakeCatch2](https://github.com/MattClarkson/CMakeCatch2)
+* From ```CMakeCatch2/CMakeLists.txt```
 
 ```
 include_directories(${CMAKE_SOURCE_DIR}/Code/)
@@ -48,11 +37,9 @@ if(BUILD_TESTING)
 endif()
 ```
 
+
 ### CMake - Header Only
 
-* Options are:
-    * Check small/medium size project into your project
-    
 * For example:
 ```
 CMakeCatchTemplate/3rdParty/libraryA/version1/Class1.hpp
@@ -81,7 +68,6 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3\
 * Hard-coded, but usable if you write detailed build instructions
 * Not very platform independent
 * Not very flexible
-* Can be self contained if you have a Meta-build - read on.
 
 
 ### CMake - find_package
@@ -95,6 +81,15 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3\
 ```
 * So a 3rd party package can provide information on how you should use it
 * If its written in CMake code, even better!
+
+
+### Use of CMake
+
+* Use ```find_package```
+    * Use 3rd party projects own config, eg. ```VTKConfig.cmake```
+    * Use a FindModule, some come with CMake
+    * Write your own FindModule
+    * Write your own FindModule with generated / substituted variables
 
 
 ### find_package - Intro

@@ -87,7 +87,7 @@ Demo an "out-of-source" build
 * Compile, normally using Visual Studio
 
 
-### Classroom Exercise 1. (or Homework)
+### Homework - 2
 
 * Build https://github.com/MattClarkson/CMakeHelloWorld.git
 * Ensure you do "out-of-source" builds
@@ -99,7 +99,7 @@ Demo an "out-of-source" build
     * (i.e. you don't need to repeatedly run CMake)
 
 
-### Classroom Exercise 2. (or Homework)
+### Homework - 3
 
 * Build https://github.com/MattClarkson/CMakeHelloWorld.git
 * Exit all code editors

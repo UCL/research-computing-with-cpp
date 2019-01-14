@@ -35,7 +35,7 @@ title: Git
 * forking
 
 
-### Homework
+### Homework - 1
 
 * Register Github
 * Create new empty repository - CPPCW1

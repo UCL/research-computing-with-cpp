@@ -12,7 +12,7 @@ title: Intermediate CMake
 * i.e. just keep piling more code into the same file.
 * Want to show you a reasonable template project.
 
-### Classroom Exercise 4. (or Homework)
+### Homework - 5
 
 * Build https://github.com/MattClarkson/CMakeCatch2.git
 * If open-source, use travis and appveyor from day 1.
@@ -25,7 +25,7 @@ title: Intermediate CMake
     * Then it can be called from command line, wrapped in Python, used via GUI.
     
 
-### Classroom Exercise 5. (or Homework)
+### Homework - 6
 
 * Try renaming stuff to create a library of your choice.
 * Create a github account, github repo, Appveyor and Travis account
