@@ -20,7 +20,7 @@ title: Examples
     * External build / Internal Build
     * Release / Debug
     * -I, -L, -l
-* Header only libraries are very attractive.
+* Header only libraries are very attractive!
 
 
 ### CMake - Example
@@ -45,7 +45,7 @@ endif()
 CMakeCatchTemplate/3rdParty/libraryA/version1/Class1.hpp
 CMakeCatchTemplate/3rdParty/libraryA/version1/Class2.hpp
 ```
-* Add to CMakeLists.txt
+* Add path to CMakeLists.txt
 ```
 include_directories(${CMAKE_SOURCE_DIR}/3rdParty/libraryA/version1/)
 ```
@@ -54,7 +54,7 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdParty/libraryA/version1/)
 
 ### CMake - Header Only, External
 
-* If larger, e.g. Eigen
+* If you think library is too large:
 
 ```
 C:\3rdParty\Eigen
@@ -72,7 +72,8 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3\
 
 ### CMake - find_package
 
-* For example:
+* In general, in CMake, each dependency requires
+a bit of code to look up include directories, and libraries.
 ```
   find_package(OpenCV REQUIRED)
   include_directories(${OpenCV_INCLUDE_DIRS})
@@ -80,26 +81,18 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3\
   add_definitions(-DBUILD_OpenCV)
 ```
 * So a 3rd party package can provide information on how you should use it
-* If its written in CMake code, even better!
 
 
-### Use of CMake
+### Types of find_package
 
-* Use ```find_package```
-    * Use 3rd party projects own config, eg. ```VTKConfig.cmake```
-    * Use a FindModule, some come with CMake
-    * Write your own FindModule
-    * Write your own FindModule with generated / substituted variables
-
-
-### find_package - Intro
-
-* CMake comes with scripts to include various 3rd Party Libraries
-* 3rd Parties can write these scripts aswell
-* You can also write your own scripts
+* ```find_package``` has several different modes:
+    * *config* mode: Use 3rd party projects own config, eg. ```VTKConfig.cmake```
+    * *module* mode: Use a FindModule, some come with CMake
+    * *module* mode: Write your own FindModule
+    * *module* mode: Write your own FindModule with generated / substituted variables
 
 
-### find_package - Search Locations
+### find_package - refer to docs
 
 A Basic Example (for a full example - see docs)
 
