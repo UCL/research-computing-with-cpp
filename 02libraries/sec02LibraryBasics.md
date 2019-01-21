@@ -65,7 +65,7 @@ When you use a library:
 * Where is it?
 * Header only?
 * System version or your version?
-* What about bugs? How do I upgrade?
+* What about bugs? How do I upgrade? Do I need to build it myself?
 
 
 ### Compilation Issues
