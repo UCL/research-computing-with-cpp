@@ -58,12 +58,6 @@ Similar concept on Windows, Linux and Mac.
 * Check compile line - its equivalent to Linux/Mac, -I, -L, -l
 
 
-### Difficulties with Libraries
-
-* Discuss
-* (confession time)
-
-
 ### Location Issues
 
 When you use a library:
