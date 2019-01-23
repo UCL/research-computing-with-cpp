@@ -20,25 +20,42 @@ title: Git
 * [MPHYG001 repo](https://github.com/UCL/rsd-engineeringcourse)
 
 
-### Git Walk Through
+### Git Walk Through - 1
 
 (demo on command line)
 
-* git init
-* git add
-* git commit
-* git status
-* git log
-* git push
-* git pull
-* git clone
-* forking
+* Creating your own repo:
+    * git init
+    * git add
+    * git commit
+    * git log
+    * git status
+    * git remote add
+    * git push
+    
+### Git Walk Through - 2
+
+(demo on command line)
+
+* Working on existing repo:
+    * git clone
+    * git add
+    * git commit
+    * git log
+    * git status   
+    * git push
+    * git pull
+    
+### Git Walk Through - 3
+
+* Cloning or forking:
+    * If you have write permission to a repo: clone it, and make modifications
+    * If you don't: fork it, to make your own version, then clone that and make modifications.
 
 
 ### Homework - 1
 
 * Register Github
-* Create new empty repository - CPPCW1
-* Ensure it is a [private repository - free](https://www.ucl.ac.uk/isd/services/research-it/research-software/github/github-signup/)
-* Find project of interest - try cloning it 
-* Find project of interest - try forking it
+* Register for private repos - free for academia.
+* Find project of interest - try cloning it, make edits, can you push? 
+* Find project of interest - try forking it, make edits, can you push?
