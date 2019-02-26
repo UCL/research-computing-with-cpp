@@ -10,7 +10,7 @@ title: Introduction to OpenMP
     - This instruct the compiler in how to parallize the code
     - `#pragma`s are a instructions to the compiler
     - Not part of the language
-    - i.e. `#pragma once` alternative to include guards
+    - i.e. like `#pragma once` alternative to include guards
     - Compiler will usually ignore pragmas that it doesn't understand
     - All OpenMP pragmas start with `#pragma omp`
 * OpenMP must typically be activated when compiling code
@@ -93,11 +93,6 @@ endif()
 ### Running OpenMP code for the course
 
 If you have a multicore computer with GCC or other suitable compiler you can run it locally.
-
-Otherwise you can use GCC on aristotle
-
-* `ssh username@aristotle.rc.ucl.ac.uk`
-* `g++ -fopenmp -O3 mycode.cc`
 
 
 ### References
