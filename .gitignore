@@ -57,3 +57,4 @@ notes.tex
 
 # Build folder.
 build/
+_local/
