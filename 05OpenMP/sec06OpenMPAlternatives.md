@@ -8,7 +8,7 @@ title: Alternatives to OpenMP
 ### Overview
 
 * OpenACC:
-    - Similar to OpenMP but intended for accelerators. Lecture 9
+    - Similar to OpenMP but intended for accelerators.
 * MPI:
     -  For distributed memory systems. Next lecture
 * POSIX and Windows threads. Not portable across operation systems

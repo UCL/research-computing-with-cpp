@@ -1,5 +1,5 @@
 ---
-title: Exercise
+title: Optional Exercise
 ---
 
 ## Wavelet decomposition
