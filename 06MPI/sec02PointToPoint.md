@@ -141,6 +141,15 @@ if (rank == 0) {
 }
 ```
 
+### Blocking send: MPI_Send
+
+| Stage                         | Figure                          |
+|:------------------------------|:--------------------------------|
+| a. 0, 1, and MPI stand ready: | ![]({% figurepath %}sync0.png)  |
+| b. message dropped off by 0:  | ![]({% figurepath %}sync1.png)  |
+| c. transit, 0 leaves          | ![]({% figurepath %}ssyncT.png) |
+| d. message received by 1      | ![]({% figurepath %}ssyncA.png) |
+
 ### Send vs SSend
 
 Why would we use Send instead of SSend?
@@ -181,11 +190,20 @@ So unnecessary synchronisation points are bad. The MPI Implementation
 may choose to buffer, or synchronise in Send; you're letting MPI guess.
 
 However, if you want to fine tune this to get the best performance,
-you should use ISend.
+you should use Isend.
 
-### Non-blocking: ISend/IRecv
+### Non-blocking MPI_Isend
+| Stage                          | Figure                          |
+|:-------------------------------|:--------------------------------|
+| a. 0, 1, and MPI stand ready:  | ![]({% figurepath %}async0.png) |
+| b. 0 leaves message in safebox | ![]({% figurepath %}async1.png) |
+| c. transit                     | ![]({% figurepath %}asyncT.png) |
+| d. message received by 1       | ![]({% figurepath %}asyncA.png) |
+| e. receipt placed in safebox   | ![]({% figurepath %}asyncR.png) |
 
-With ISend, we indicate when we want the message to set off.
+### Non-blocking: Isend/Irecv
+
+With Isend, we indicate when we want the message to set off.
 
 We receive a handle to the message, of type `MPI_Request*`
 which we can use to require it has
