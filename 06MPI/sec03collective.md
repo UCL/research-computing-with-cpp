@@ -20,20 +20,19 @@ Think of two possible forms of **collective** communications:
 | data in 0, no data in 1, 2 | ![]({% figurepath %}broadcast0.png) |
 | data from 0 sent to 0, 1   | ![]({% figurepath %}broadcast1.png) |
 
-### Gather: many to one
-
-| State                    | Figure                              |
-|:-------------------------|:------------------------------------|
-| data in 0, 1, 2          | ![]({% figurepath %}collective.png) |
-| data from 1, 2 sent to 0 | ![]({% figurepath %}gather1.png)    |
-
-
 ### Scatter: one to many
 
 | State                  | Figure                              |
 |:-----------------------|:------------------------------------|
 | data in 0              | ![]({% figurepath %}gather1.png)    |
 | data from 0 in 0, 1, 2 | ![]({% figurepath %}collective.png) |
+
+### Gather: many to one
+
+| State                    | Figure                              |
+|:-------------------------|:------------------------------------|
+| data in 0, 1, 2          | ![]({% figurepath %}collective.png) |
+| data from 1, 2 sent to 0 | ![]({% figurepath %}gather1.png)    |
 
 ### All to All: many to many
 
@@ -43,6 +42,7 @@ Think of two possible forms of **collective** communications:
 | from each to each | ![]({% figurepath %}all2all1.png) |
 
 ### Reduce operation
+
 | State           | Figure                              |
 |:----------------|:------------------------------------|
 | data in 0, 1, 2 | ![]({% figurepath %}collective.png) |
@@ -144,6 +144,35 @@ Exercise:
     (including itself).
 
 
+### MPI_Reduce
+
+``` cpp
+int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
+               MPI_Datatype datatype, MPI_Op op, int root,
+               MPI_Comm comm)
+```
+
+| Parameter | Content                             |
+|:----------|:------------------------------------|
+| sendbuf   | Pointer to sending buffer           |
+| recvbuf   | Pointer to receiving buffer         |
+| count     | Size of the buffer/message          |
+| datatype  | Informs on the type of the buffer   |
+| op        | The binary operation to perform     |
+| root      | Receiving process                   |
+| comm      | The communicator!                   |
+| return    | Error tag                           |
+
+
+### Exercise: MPI_Reduce
+
+This example uses the Gregory-Leibniz Series to calculate $\pi$.
+
+{% fragment independent calculation, cpp/reduce.cc %}
+
+Can you write the parallel code that combines these results
+and checks the accuracy of the calculation?
+
 ### Splitting the communicators
 
 Groups of processes can be split according to **color**:
@@ -173,36 +202,6 @@ The following splits processes into two groups with ratio 1:2.
 1. Use "-rank" as the key: what happens?
 2. Split into three groups with ratios 1:1:2
 3. Use one of the collective operations on a single group
-
-
-### MPI_Reduce
-
-``` cpp
-int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
-               MPI_Datatype datatype, MPI_Op op, int root,
-               MPI_Comm comm)
-```
-
-| Parameter | Content                             |
-|:----------|:------------------------------------|
-| sendbuf   | Pointer to sending buffer           |
-| recvbuf   | Pointer to receiving buffer         |
-| count     | Size of the buffer/message          |
-| datatype  | Informs on the type of the buffer   |
-| op        | The binary operation to perform     |
-| root      | Receiving process                   |
-| comm      | The communicator!                   |
-| return    | Error tag                           |
-
-
-### Exercise: MPI_Reduce
-
-This example uses the Gregory-Leibniz Series to calculate $\pi$.
-
-{% fragment independent calculation, cpp/reduce.cc %}
-
-Can you write the parallel code that combines these results
-and checks the accuracy of the calculation?
 
 
 ### Scatter operation solution
