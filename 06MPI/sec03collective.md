@@ -20,20 +20,19 @@ Think of two possible forms of **collective** communications:
 | data in 0, no data in 1, 2 | ![]({% figurepath %}broadcast0.png) |
 | data from 0 sent to 0, 1   | ![]({% figurepath %}broadcast1.png) |
 
-### Gather: many to one
-
-| State                    | Figure                              |
-|:-------------------------|:------------------------------------|
-| data in 0, 1, 2          | ![]({% figurepath %}collective.png) |
-| data from 1, 2 sent to 0 | ![]({% figurepath %}gather1.png)    |
-
-
 ### Scatter: one to many
 
 | State                  | Figure                              |
 |:-----------------------|:------------------------------------|
 | data in 0              | ![]({% figurepath %}gather1.png)    |
 | data from 0 in 0, 1, 2 | ![]({% figurepath %}collective.png) |
+
+### Gather: many to one
+
+| State                    | Figure                              |
+|:-------------------------|:------------------------------------|
+| data in 0, 1, 2          | ![]({% figurepath %}collective.png) |
+| data from 1, 2 sent to 0 | ![]({% figurepath %}gather1.png)    |
 
 ### All to All: many to many
 
@@ -43,6 +42,7 @@ Think of two possible forms of **collective** communications:
 | from each to each | ![]({% figurepath %}all2all1.png) |
 
 ### Reduce operation
+
 | State           | Figure                              |
 |:----------------|:------------------------------------|
 | data in 0, 1, 2 | ![]({% figurepath %}collective.png) |
@@ -55,6 +55,12 @@ Wherefrom the baby bunny?
 Sum, difference, or any other **binary** operator:
 
 ![]({% figurepath %}BunnyOps.png)
+
+There are [predefined operators](https://www.open-mpi.org/doc/v3.0/man3/MPI_Reduce.3.php#sect10)
+or you can define your own.
+
+The predefined operators are all both associative and commutative.
+User-defined ones can be specified as non-commutative (e.g. difference).
 
 ### Collective operation API (1)
 
@@ -122,7 +128,7 @@ for (int i(0); i < size; ++i) {
 NOTE: a loop with a condition for i == 0 is a common anti-pattern (i.e. bad)
 
 
-### All to all operation
+### Scattering data
 
 ``` cpp
 int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
@@ -142,6 +148,40 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
 Exercise:
     Have the root scatter "This....." "message.." "is.split." to 3 processors
     (including itself).
+
+
+### MPI_Reduce
+
+``` cpp
+int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
+               MPI_Datatype datatype, MPI_Op op, int root,
+               MPI_Comm comm)
+```
+
+| Parameter | Content                             |
+|:----------|:------------------------------------|
+| sendbuf   | Pointer to sending buffer           |
+| recvbuf   | Pointer to receiving buffer         |
+| count     | Size of the buffer/message          |
+| datatype  | Informs on the type of the buffer   |
+| op        | The binary operation to perform     |
+| root      | Receiving process                   |
+| comm      | The communicator!                   |
+| return    | Error tag                           |
+
+
+### Exercise: MPI_Reduce
+
+This example uses the Gregory-Leibniz Series to calculate $\pi$.
+
+{% fragment independent calculation, cpp/reduce.cc %}
+
+Can you write the parallel code that combines these results
+and checks the accuracy of the calculation?
+
+See [the MPI_Reduce docs](https://www.open-mpi.org/doc/v3.0/man3/MPI_Reduce.3.php) to help you.
+
+Extension: use [MPI_Allreduce](https://www.open-mpi.org/doc/v3.0/man3/MPI_Allreduce.3.php) instead so all processes get the final answer.
 
 
 ### Splitting the communicators
@@ -173,36 +213,6 @@ The following splits processes into two groups with ratio 1:2.
 1. Use "-rank" as the key: what happens?
 2. Split into three groups with ratios 1:1:2
 3. Use one of the collective operations on a single group
-
-
-### MPI_Reduce
-
-``` cpp
-int MPI_Reduce(const void *sendbuf, void *recvbuf, int count,
-               MPI_Datatype datatype, MPI_Op op, int root,
-               MPI_Comm comm)
-```
-
-| Parameter | Content                             |
-|:----------|:------------------------------------|
-| sendbuf   | Pointer to sending buffer           |
-| recvbuf   | Pointer to receiving buffer         |
-| count     | Size of the buffer/message          |
-| datatype  | Informs on the type of the buffer   |
-| op        | The binary operation to perform     |
-| root      | Receiving process                   |
-| comm      | The communicator!                   |
-| return    | Error tag                           |
-
-
-### Exercise: MPI_Reduce
-
-This example uses the Gregory-Leibniz Series to calculate $\pi$.
-
-{% fragment independent calculation, cpp/reduce.cc %}
-
-Can you write the parallel code that combines these results
-and checks the accuracy of the calculation?
 
 
 ### Scatter operation solution
