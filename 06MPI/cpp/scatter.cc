@@ -15,21 +15,13 @@ TEST_CASE("Collective communications") {
       int N = message.size() / size;
 
       char buffer[256];
-      if (rank == 0) {
-        int const error = MPI_Scatter(
-                (void*) message.c_str(), N, MPI_CHAR,
-                buffer, 256, MPI_CHAR, 0, MPI_COMM_WORLD
-        );
-        REQUIRE(error == MPI_SUCCESS);
-        CHECK(message.substr(rank*N, N) == std::string(buffer, N));
-      } else {
-        int const error = MPI_Scatter(
-                NULL, -1, MPI_CHAR, // not significant outside root
-                buffer, 256, MPI_CHAR, 0, MPI_COMM_WORLD
-        );
-        REQUIRE(error == MPI_SUCCESS);
-        CHECK(message.substr(rank*N, N) == std::string(buffer, N));
-      }
+      int const error = MPI_Scatter(
+                (void*) message.c_str(), N, MPI_CHAR, // Only significant at root
+                buffer, 256, MPI_CHAR, // Receiver side
+                0, MPI_COMM_WORLD
+      );
+      REQUIRE(error == MPI_SUCCESS);
+      CHECK(message.substr(rank*N, N) == std::string(buffer, N));
       /// "dummy"
     }
 }
