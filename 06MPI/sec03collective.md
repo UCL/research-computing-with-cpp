@@ -56,6 +56,12 @@ Sum, difference, or any other **binary** operator:
 
 ![]({% figurepath %}BunnyOps.png)
 
+There are [predefined operators](https://www.open-mpi.org/doc/v3.0/man3/MPI_Reduce.3.php#sect10)
+or you can define your own.
+
+The predefined operators are all both associative and commutative.
+User-defined ones can be specified as non-commutative (e.g. difference).
+
 ### Collective operation API (1)
 
 Group synchronisation:
@@ -122,7 +128,7 @@ for (int i(0); i < size; ++i) {
 NOTE: a loop with a condition for i == 0 is a common anti-pattern (i.e. bad)
 
 
-### All to all operation
+### Scattering data
 
 ``` cpp
 int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
@@ -172,6 +178,11 @@ This example uses the Gregory-Leibniz Series to calculate $\pi$.
 
 Can you write the parallel code that combines these results
 and checks the accuracy of the calculation?
+
+See [the MPI_Reduce docs](https://www.open-mpi.org/doc/v3.0/man3/MPI_Reduce.3.php) to help you.
+
+Extension: use [MPI_Allreduce](https://www.open-mpi.org/doc/v3.0/man3/MPI_Allreduce.3.php) instead so all processes get the final answer.
+
 
 ### Splitting the communicators
 
