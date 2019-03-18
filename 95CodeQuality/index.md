@@ -1,8 +1,8 @@
 ---
-title: Appendix - Performance
+title: Appendix - Code Quality
 ---
 
-## Appendix - Performance
+## Appendix - Code Quality
 
 ### No Longer In Course
 
