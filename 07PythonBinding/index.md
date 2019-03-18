@@ -22,7 +22,7 @@ The basic idea:
 - Write your C/C++ function/class
 - Wrap it using a suitable library/macro
 - Compile
-- ```import``` module into Python
+- import module into Python
 
 
 

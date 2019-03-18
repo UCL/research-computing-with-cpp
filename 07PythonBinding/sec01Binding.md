@@ -9,7 +9,7 @@ title: Python Binding
 
 * [CMakeCatchTemplate][CMakeCatchTemplate] also has Python examples
 * Use either [BoostPython][BoostPython] or [PyBind11][PyBind11]
-* PyBind11 is header only, should be easier
+* [PyBind11][PyBind11] is header only, in theory, should be easier
 * But Boost seems to have better examples on the internet
 
 
@@ -24,13 +24,13 @@ We shall step through a simple function:
 
 ### Other examples
 
-* OpenCV uses numpy ndarray (Python) and converts to ```cv::Matt``` (C++)
+* OpenCV uses numpy ndarray (Python) and converts to ```cv::Mat``` (C++)
 * See [Gregory Kramida's pyboostconverter][pyboostconverter], integrated [here][CMakeCatchTemplateOpenCV], using Boost.Python.
-* Also see ongoing C++/OpenCV project: [scikit-surgeryopencvcpp][scikit-surgeryopencvcpp], using Boost.Python, and [Gregory Kramida's pyboostconverter][pyboostconverter]
-* Also see ongoing C++/[PCL][PCL] project: [scikit-surgerypcl][scikit-surgerypcl], using Boost.Python, Boost.Numpy and [PCL][PCL].
+* Also see [scikit-surgeryopencvcpp][scikit-surgeryopencvcpp], using Boost.Python, OpenCV and [Gregory Kramida's pyboostconverter][pyboostconverter].
+* Also see [scikit-surgerypcl][scikit-surgerypcl], using Boost.Python, Boost.Numpy and [PCL][PCL].
 
 
-[CMakeTemplate]: https://github.com/MattClarkson/CMakeCatchTemplate
+[CMakeCatchTemplate]: https://github.com/MattClarkson/CMakeCatchTemplate
 [BoostPython]: https://www.boost.org/doc/libs/1_68_0/libs/python/doc/html/index.html
 [PyBind11]: https://github.com/pybind/pybind11
 [BoostPythonExample]: https://github.com/MattClarkson/CMakeCatchTemplate/blob/master/Code/PythonBoost/mpLibPython.cpp
