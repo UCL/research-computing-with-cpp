@@ -1,8 +1,8 @@
 contact: http://www.ucl.ac.uk/research-it-services/partner-with-us
 
-title: "MPHYG002: Research Computing with C++"
+title: "MPHY0022: Research Computing with C++"
 includeleftnav: True
-short: MPHYG002
+short: MPHY0022
 
 defaults:
   - scope: {path: ""}
