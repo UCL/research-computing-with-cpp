@@ -41,3 +41,4 @@ exclude:
   - "*.rb"
   - Makefile
   - CMakeLists.txt
+  - cpp
