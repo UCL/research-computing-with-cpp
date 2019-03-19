@@ -659,6 +659,7 @@ contains 2 lists of 3 floats each.
 `setValues()` returns the tensor itself in case you want to chain another
 call.
 
+```
     Eigen::Tensor<float, 2> a(2, 3);
     a.setValues({{0.0f, 1.0f, 2.0f}, {3.0f, 4.0f, 5.0f}});
     cout << "a" << endl << a << endl << endl;
@@ -666,6 +667,7 @@ call.
     a
     0 1 2
     3 4 5
+```
 
 If a list is too short, the corresponding elements of the tensor will not be
 changed.  This is valid at each level of nesting.  For example the following
