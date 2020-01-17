@@ -29,6 +29,22 @@ idio:
 
 include: [ _static, _sources]
 exclude:
+  - 02libraries
+  - 03cpp
+  - 03cpppatterns
+  - 04HPC
+  - 05OpenMP
+  - 06MPI
+  - 07PythonBinding
+  - 08Summary2019
+  - 88cpplibraries
+  - 90stl
+  - 92TemplateMetaProg 
+  - 93MPIExample
+  - 94MPIIO
+  - 95CodeQuality  
+  - 96Cloud
+  - 97Accelerators
   - combined.md
   - build
   - "*.tmd"
