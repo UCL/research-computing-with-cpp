@@ -4,23 +4,21 @@ layout: default
 slidelink: false
 ---
 
-##Introduction
+## Introduction
 
 In this course, we build on your knowledge of C++ to enable you to work on complex numerical codes for research.
 Research software needs to handle complex mathematics quickly, so the course focuses on writing software to perform multi-threaded computation. But research software is also
 very complicated, so the course also focuses on techniques which will enable you to build software which is easy for colleagues
 to understand and adapt.
 
-##Pre-requisites
+## Pre-requisites
 
-* For 2019, we will start the course in a UCL Cluster (Computer) Room. However, you
-  should bring your own laptop to the course and try to get all the C++ working on your own environment.
 * Prior knowledge of C++, see below.
 * You should understand how your compiler toolchain works.
 * You must also understand how to use a Unix style terminal, including commands such as ```ls```, ```cd``` and creating and editing files in a text editor of your choice.
 * We have provided [setup](98Installation) instructions for installing the software needed for the course on your computer.
 
-* Eligibility: This course is for UCL post-graduate students.
+* Eligibility: This course designed for UCL post-graduate students but with agreement of their course tutor a limited number of undegraduate students can also take it.
 
 Your C++ knowledge should include:
 
@@ -32,18 +30,13 @@ Your C++ knowledge should include:
 * Operator overloading
 * Inheritance and polymorphism
 
-This could be obtained via a variety of C++ courses in college, such as
-[MPHYGB24](https://moodle.ucl.ac.uk/course/view.php?id=5395)
-or through online resources such as [UCL Lynda](https://www.ucl.ac.uk/lynda),
- e.g. [http://www.lynda.com/C-tutorials/C-Essential-Training/182674-2.html](http://www.lynda.com/C-tutorials/C-Essential-Training/182674-2.html)
+This could be obtained through online resources such as the the C++ Essential Training course by Bill Weinman on [LinkedIn Learning](https://www.ucl.ac.uk/isd/linkedin-learning) (accessable using your UCL single sign-on) or via a variety of C++ courses in college, such as [MPHYGB24](https://moodle.ucl.ac.uk).
 
-##Registration
+## Registration
 
 Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers.
 
-Further information on the [UCL EPSRC Centre for Doctoral Training in Medical Imaging website](http://medicalimaging-cdt.ucl.ac.uk/programmes).
-
-This course may not be audited without the prior permission of the course organiser Dr. Matt Clarkson.
+This course may not be audited without the prior permission of the course organiser Dr. Jim Dobson as due to the practical nature of the lectures there is a cap on the total number of students who can enroll. 
 
 ##Synopsis
 
@@ -59,7 +52,8 @@ This year we propose to cover the following topics. These notes will be updated 
     <ul>
      <li>Course structure and admin</li>
      <li>CMake</li>
-     <li>Building C++</li>        
+     <li>Unit tests</li>        
+     <li>Getting setup with the development environment</li>        
     </ul>
    </td>
 
@@ -67,16 +61,10 @@ This year we propose to cover the following topics. These notes will be updated 
   <tr>
   
    <td>
-    <h3>2. C++ Libraries</h3>
+    <h3>2. Modern C++ (1)</h3>
     <ul>
-     <li>Why use libraries?</li>
-     <li>Choosing libraries</li>
-     <li>How to include libraries</li>
-     <li>Finding libraries with CMake</li>
-     <li>Module mode</li>
-     <li>Config mode</li>
-     <li>Examples</li>
-     <li>Using non-CMake'd libraries</li>     
+     <li>Recap of features and concepts</li>
+     <li>OO concepts: encapsulation and data abstraction, inheritance, polymorphism</li>
     </ul>
    </td>
   
@@ -84,13 +72,10 @@ This year we propose to cover the following topics. These notes will be updated 
   <tr>
   
    <td>
-    <h3>3. C++ and TDD</h3>
+    <h3>3. Modern C++ (2)</h3>
     <ul>
-     <li>Passing data to functions</li>
-     <li>Functions Vs Objects</li>
-     <li>Object Oriented Design</li>
-     <li>Unit testing</li> 
-     <li>Test Driven Development</li>
+     <li>Lambda constructs</li>
+     <li>C++ standard library</li>
     </ul>
    </td>
 
@@ -98,15 +83,11 @@ This year we propose to cover the following topics. These notes will be updated 
   <tr>
      
    <td>
-    <h3>4. More C++</h3>
+    <h3>4. Modern C++ (3)</h3>
     <ul>
-     <li>Essential reading</li>
+     <li>Extensible code design</li>
+     <li>Patterns</li>
      <li>Templates</li>
-     <li>Smart Pointers</li>
-     <li>Exceptions</li>
-     <li>RAII pattern</li>
-     <li>Program to Interfaces</li>
-     <li>Dependency Injection</li>
     </ul>
    </td>
 
@@ -114,31 +95,23 @@ This year we propose to cover the following topics. These notes will be updated 
   <tr>
 
    <td>
-    <h3>5. Debugging, Optimisating for C++</h3>
+    <h3>5. Libraries for research computing</h3>
     <ul>
-     <li>Debugging</li>
-     <li>Valgrind</li>
+     <li>Boost</li>
+     <li>Linear algebra packages</li>
+    </ul>
+   </td>
+  
+  </tr>
+  <tr>
+  
+   <td>
+    <h3>6. Code Quality</h3>
+    <ul>
+     <li>Tools for pretty code</li>
+     <li>Memory leaks</li>
      <li>Profiling</li>
-    </ul>
-   </td>
-  
-  </tr>
-  <tr>
-  
-   <td>
-    <h3>6. Shared Memory Parallelism</h3>
-    <ul>
-     <li>OpenMP</li>
-     <li>Memory, processors, cores and caches</li>
-     <li>Amdahl's law</li>
-     <li>How parallel computers work</li>
-     <li>High performance programming</li>
-     <li>Schedulers and job submission</li>     
-     <li>Parallel sections, reduction</li>
-     <li>Safety, locks and races</li>
-     <li>Task-oriented parallelism</li>
-     <li>Load balancing</li>
-     <li>OpenMP alternatives</li>
+     <li>Benchmarking</li>
     </ul>
    </td>
      
@@ -146,13 +119,14 @@ This year we propose to cover the following topics. These notes will be updated 
   <tr>
          
    <td>
-    <h3>7. Distributed Memory Parallelism</h3>
+    <h3>7. Performance programming</h3>
     <ul>
-     <li>Concepts</li>
-     <li>Point to point communication</li>
-     <li>Collective communication</li>
-     <li>Groups and communicators</li>
-     <li>Advanced communications concepts</li>
+     <li>What a computer is and how one works</li>
+     <li>Memory, processors, and cores</li>
+     <li>Caches</li>
+     <li>How parallel computers work</li>
+     <li>Shared and distributed memory</li>
+     <li>Schedulers and job submission</li>
     </ul>
    </td>
 
@@ -161,11 +135,11 @@ This year we propose to cover the following topics. These notes will be updated 
 
 
    <td>
-    <h3>8. Distributed Memory Parallelism Continued</h3>
+    <h3>8. Shared memory parallelism (1)</h3>
     <ul>
-     <li>Running multiple nodes</li>
-     <li>Unit testing</li>
-     <li>Examples</li>
+     <li>OpenMP</li>
+     <li>Parallel sections, Reduction</li>
+     <li>Safety, Locks and races</li>
     </ul>
    </td>
 
@@ -174,10 +148,10 @@ This year we propose to cover the following topics. These notes will be updated 
 
 
    <td>
-    <h3>9. Python Binding</h3>
+    <h3>9. Shared memory parallelism (2)</h3>
     <ul>
-     <li>Boost Python</li>
-     <li>PyBind11</li>
+     <li>Task-oriented parallelism</li>
+     <li>Load balancing</li>
     </ul>
    </td>
 
@@ -186,9 +160,11 @@ This year we propose to cover the following topics. These notes will be updated 
 
 
    <td>
-    <h3>10. Contingency</h3>
+    <h3>10. Distributed memory parallelism</h3>
     <ul>
-     <li>Depends on how fast the previous lectures go.</li>
+     <li>Message passing, MPI</li>
+     <li>Parallel storage</li>
+     <li>Parallel algorithms and design</li>
     </ul>
    </td>
 
