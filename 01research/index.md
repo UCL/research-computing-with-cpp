@@ -1,5 +1,5 @@
 ---
-title: C++ for Research
+title: "Lecture 1: C++ for Research"
 author:
   - Matt Clarkson
   - Jonathan Cooper
@@ -14,8 +14,8 @@ author:
     * Reliable
     * Reproducible
     * Good science
+    * Libraries
     
-
 ### Part 2
 
 * HPC concepts
@@ -45,19 +45,16 @@ author:
 ### Course Notes
 
 * Revise some software Engineering: [MPHY0021](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/)
-* Register with Moodle: [MPHY0022](https://moodle.ucl.ac.uk/)
-    * key is "performance"
-* Online notes: [MPHY0022](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
+* Register with Moodle: [PHAS0100](https://moodle.ucl.ac.uk/)
+    * contact lecturer for key to self-register
+    * guest key to look around is "996135"
+* Online notes: [PHAS0100](http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp/)
 
 
 ### Course Assessment
 
-* 3 hour exam
 * 2 pieces coursework - 40 hours each
-    * 1 due 3rd week March
-    * 1 due last week April
-    * (roughly)
-
+    * See assessment section for details 
 
 ### Course Community
 

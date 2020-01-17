@@ -14,7 +14,8 @@ Question: How does a compiler work?
 Question: How does a compiler work?
 
 * (Don't quote any of this in a compiler theory course!)
-* .cpp/.cxx files compiled, one by one into .o/.obj
+* Preprocessing .cpp/.cxx into pure source files
+* Source files compiled, one by one into .o/.obj
 * executable compiled to .o/.obj
 * executable linked against all .o, and all libraries 
 

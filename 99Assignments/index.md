@@ -4,9 +4,7 @@ title: Assessment
 
 ## Assessment Structure
 
-* 3 hour exam
-    * Past papers from 2015 and later are available, but syllabus does evolve
-    * Past marks schemes and standard solutions are not available
-* 2 pieces coursework - 40 hours each
-    * 1 due 3rd week March
-    * 1 due just after Easter
+* 2 pieces coursework - 40 hours each, exact dates will be confirmed
+    * 1st piece set after lecture 5 and due 4 weeks later (mid March)
+    * 2nd piece set after lecture 9 and due 4 weeks later (mid April)
+* Plus weekly formative assessment through homework tasks
