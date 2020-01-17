@@ -63,11 +63,12 @@ to google CMake issues and work with CMake.
 Demo an "out-of-source" build
 
 ``` bash
-cd ~/build
+mkdir cmake_demo
+cd cmake_demo
 git clone https://github.com/MattClarkson/CMakeHelloWorld
 mkdir CMakeHelloWorld-build
 cd CMakeHelloWorld-build
-ccmake ../CMakeHelloWorld
+cmake ../CMakeHelloWorld
 make
 ```
 
