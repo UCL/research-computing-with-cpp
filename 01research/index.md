@@ -14,8 +14,8 @@ author:
     * Reliable
     * Reproducible
     * Good science
+    * Libraries
     
-
 ### Part 2
 
 * HPC concepts
@@ -53,12 +53,8 @@ author:
 
 ### Course Assessment
 
-* 3 hour exam
 * 2 pieces coursework - 40 hours each
-    * 1 due 3rd week March
-    * 1 due last week April
-    * (roughly)
-
+    * See assessment section for details 
 
 ### Course Community
 
