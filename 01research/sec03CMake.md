@@ -71,33 +71,13 @@ ccmake ../CMakeHelloWorld
 make
 ```
 
-
-### CMake Usage Windows
-
-Demo an "out-of-source" build
-
-* git clone https://github.com/MattClarkson/CMakeHelloWorld
-* Run cmake-gui.exe
-* Select source folder (CMakeHelloWorld downloaded above)
-* Specify new build folder (CMakeHelloWorld-build next to, but not inside CMakeHelloWorld)
-* Hit *configure*
-* When asked, specify compiler
-* Set flags and repeatedly *configure*
-* When *generate* option is present, hit *generate*
-* Compile, normally using Visual Studio
-
-
 ### Homework - 2
 
 * Build https://github.com/MattClarkson/CMakeHelloWorld.git
 * Ensure you do "out-of-source" builds
 * Use CMake to configure separate Debug and Release versions
-* On Windows, build separate 32 and 64 bit versions
 * Add code to hello.cpp:
     * On Linux/Mac re-compile just using make
-    * On Windows, re-compile within Visual Studio
-    * (i.e. you don't need to repeatedly run CMake)
-
 
 ### Homework - 3
 

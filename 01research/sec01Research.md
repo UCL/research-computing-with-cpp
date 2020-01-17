@@ -37,7 +37,6 @@ Some people say:
 
 * Software is always expensive
     * Famous Book: [Mythical Man Month](http://www.amazon.co.uk/Mythical-Man-month-Essays-Software-Engineering/dp/0201835959/ref=sr_1_1?ie=UTF8&qid=1452507457&sr=8-1&keywords=mythical+man+month)
-    * Famous People: [Edsger W. Dijkstra](https://www.cs.utexas.edu/users/EWD/)
 * Research programming is different to product development:
     * What is the end product?
 
@@ -63,16 +62,14 @@ Some people say:
 
 * What are you trying to achieve?
 * Divide code:
-    * Your algorithm: [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg)
+    * Your algorithm
     * Testing code
     * Data analysis
     * User Interface
     * Glue code
     * Deployment code
-    * Scientific [paper](http://www.sciencedirect.com/science/article/pii/S0169260709002533) production
+    * Scientific output (a paper)
      
-Examples: NiftyReg 300 citations in 5 years!
- 
 Question: What type of code is C++ good for?
 Question: Should all code be in C++?
    
@@ -96,16 +93,6 @@ Don't fall into the trap "Hey, I'll write a framework for that"
     * Check libraries are suitable, and sustainable.
     * Read [Libraries](http://development.rc.ucl.ac.uk/training/engineering/ch04packaging/01Libraries.html) section from [Software Engineering](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/) course
     * Ask about best practices
-
-
-### Another Example - NiftyCal
-
-* We should: Practice What We Preach
-* Small, algorithms
-* Unit tested
-* Version controlled
-* Small number of libraries
-* Increased research output
 
 
 ### Debunking The Excuses
@@ -132,7 +119,7 @@ We are NOT suggesting that:
 We aim to:
 
 * Improve your C++ (and associated technologies).
-* Do High Performance Computing (HPC).
+* Introduction to High Performance Computing (HPC).
 
 So that:
 
