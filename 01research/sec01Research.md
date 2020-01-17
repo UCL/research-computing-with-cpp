@@ -2,7 +2,7 @@
 title: C++ in Research
 ---
 
-## C++ In Research
+## Lecture 1: C++ In Research
 
 ### Problems In Research
 
