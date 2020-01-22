@@ -37,15 +37,11 @@ Once complete you'll need to shutdown and restart the VM.
 
 ### Installing required packages
 
-Then you need to install the following packages using the apt-get:
+Then you need to install `build-essential`, `cmake` and `git` using apt-get. In a terminal run the following commands:
 ```
 sudo apt-get update 
 
 sudo apt-get install build-essential cmake git
-
-sudo apt-get install cmake 
-
-sudo apt-get install git 
 ```
 
 ### Misc
@@ -60,3 +56,5 @@ sudo apt-get install virtualbox-guest-x11-hwe
 
 sudo VBoxClient --clipboard
 ```
+
+
