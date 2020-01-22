@@ -24,7 +24,7 @@ Then open VirtualBox and create a new VM of Type: Linux and Version: Ubuntu 64 b
 
 Choose `Create a virtual hard disk now` and select it to be of type VirtualBox Disk Image (VDI) that is Dynamically allocated. Between 10 GB and 20 GB storage is sufficient. 
 
-If you are using a Desktop@UCL machine then it is important that you save the virtual machine .vdi file to your network drive in a folder in `Home (N:)` so that you can access the virtual machine from different Desktop@UCL machines. 
+If you are using a Desktop@UCL machine then it is important that you save the virtual machine `.vdi` file to your network drive in a folder in `Home (N:)` so that you can access the virtual machine from different Desktop@UCL machines. 
 
 If you are using a different Desktop@UCL machine then each time you open VirtualBox you may need to specify the location
 of you VM .vdi file using the `Machine` then `Add` option as opposed to a new machine.   
