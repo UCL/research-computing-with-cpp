@@ -46,6 +46,8 @@ sudo apt-get install build-essential cmake git
 
 ### Misc
 
+#### Enabling copy and paste between host and virtual machine
+
 To enable copy and paste between host machine (your laptop) and the VM you may need to complete the following steps:
 Power off the VM, then Settings -> Advanced -> and set Shared Clipboard to Bidirectional
 Restart the VM and see if you can copy and paste (in Ubuntu paste is `Shift-Ctrl-C` and `Shift-Ctrl-V`).
@@ -57,4 +59,16 @@ sudo apt-get install virtualbox-guest-x11-hwe
 sudo VBoxClient --clipboard
 ```
 
+#### Workaround for small font and window size
 
+If the fonts and window size on the virtual machine are unreadabe because they are too small or too large first try installing the above `virtualbox-guest-x11-hwe` and then restaring the virtual machine. If this doesn't resolve the issue and the font size is still unusable then the following workaround may help.
+
+Run the following in a terminal:
+```
+sudo apt-get install gnome-tweaks
+```
+
+This will install a small a small GUI that can be opened using the desktop search for `Tweaks`. Then under `Fonts` there is a scaling factor that can be adjusted as needed. 
+
+
+ 
