@@ -66,9 +66,10 @@ Demo an "out-of-source" build
 mkdir cmake_demo
 cd cmake_demo
 git clone https://github.com/MattClarkson/CMakeHelloWorld
-mkdir CMakeHelloWorld-build
-cd CMakeHelloWorld-build
-cmake ../CMakeHelloWorld
+cd CMakeHelloWorld
+mkdir build
+cd build
+cmake ..
 make
 ```
 
