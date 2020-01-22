@@ -41,7 +41,7 @@ Then you need to install the following packages using the apt-get:
 ```
 sudo apt-get update 
 
-sudo apt-get install build-essential 
+sudo apt-get install build-essential cmake git
 
 sudo apt-get install cmake 
 
