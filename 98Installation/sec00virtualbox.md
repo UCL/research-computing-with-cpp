@@ -11,8 +11,8 @@ one on one of the Desktop@UCL machines in Physics Lab 1. If you have a laptop th
 will mean you will be able to work on the homework problems and coursework without needing access to a cluster room. If you don’t have a laptop then that is fine as well as the whole course can be completed using the Desktop@UCL machines.
 
 Download and install on your laptop:
-* VirtualBox from [virtualbox.org](https://www.virtualbox.org/wiki/Downloads) 
-* The VirtualBox Extension Pack (from same page, make sure the versions match 
+* The latest VirtualBox from [virtualbox.org](https://www.virtualbox.org/wiki/Downloads) 
+* The VirtualBox Extension Pack (from same page) 
 
 If you are using one of the Desktop@UCL machines then VirtualBox is already installed.  
 
