@@ -33,7 +33,7 @@ Then you can start your VM for the first time it will ask you to specify the Ubu
 
 When installing Ubuntu select the `Minimal installation` and check the box which says `Download updates while installing Ubuntu`. Select `Erase disk and install Ubuntu` and `Encrypt the new Ubuntu installation` boxes but make sure you write down you security key password as if you lose this you will lose access to the VM.
 
-Once complete you'll need to rshutdown and restart the VM.
+Once complete you'll need to shutdown and restart the VM.
 
 ### Installing required packages
 
