@@ -18,7 +18,7 @@ If you are using one of the Desktop@UCL machines then VirtualBox is already inst
 
 ### Creating the VM and installing Ubuntu
 
-Download the Ubuntu 18.04.3 LTS from https://ubuntu.com/download/desktop and save the .iso file somewhere locally on your laptop or if you are using one of the Desktop@UCL machines someone in your home folder.
+Download the [Ubuntu 18.04.3 LTS](https://ubuntu.com/download/desktop) and save the `.iso` file somewhere locally on your laptop or if you are using one of the Desktop@UCL machines someone in your home folder.
 
 Then open VirtualBox and create a new VM of Type: Linux and Version: Ubuntu 64 bit. 2 GB ram is sufficient. 
 
