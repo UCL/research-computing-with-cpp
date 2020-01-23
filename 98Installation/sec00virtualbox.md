@@ -38,9 +38,9 @@ Once complete you'll need to shutdown and restart the VM.
 ### Installing required packages
 
 Then you need to install `build-essential`, `cmake` and `git` using apt-get. In a terminal run the following commands:
-```
-sudo apt-get update 
 
+``` bash
+sudo apt-get update 
 sudo apt-get install build-essential cmake git
 ```
 
@@ -53,9 +53,8 @@ Power off the VM, then Settings -> Advanced -> and set Shared Clipboard to Bidir
 Restart the VM and see if you can copy and paste (in Ubuntu paste is `Shift-Ctrl-C` and `Shift-Ctrl-V`).
 If you are unable to copy to from your host the the VM then the following may need to be done:
 
-```
+``` bash
 sudo apt-get install virtualbox-guest-x11-hwe
-
 sudo VBoxClient --clipboard
 ```
 
@@ -64,7 +63,8 @@ sudo VBoxClient --clipboard
 If the fonts and window size on the virtual machine are unreadabe because they are too small or too large first try installing the above `virtualbox-guest-x11-hwe` and then restaring the virtual machine. If this doesn't resolve the issue and the font size is still unusable then the following workaround may help.
 
 Run the following in a terminal:
-```
+
+``` bash
 sudo apt-get install gnome-tweaks
 ```
 
