@@ -7,7 +7,7 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
            -V width:'"100%"' -V height:'"100%"' -V margin:0 -V minScale:0.1 -V maxScale:1.5 \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
-MDS=$(filter-out indigo-jekyll-master% _site%, $(wildcard 01research/*.md ))
+MDS=$(filter-out indigo-jekyll-master% _site%, $(wildcard 01research/*.md 02cpp1/index.md 02cpp1/sec01*.md 02cpp1/sec02*.md 02cpp1/sec03EssentialReading-reveal.md ))
 
 TEMPLATED=$(MDS:.md=.tmd)
 
