@@ -407,12 +407,14 @@ Aim to write:
 
 * Imagine a simple function, e.g. to add two numbers.
 * Play with unit tests until you understand the difference between:
-```cpp
+
+``` cpp
 int AddTwoNumbers(int a, int b);
 int AddTwoNumbers(const int& a, const int&b);
 void AddTwoNumbers(int* a, int*b, int* output);
 void AddTwoNumbers(const int* const a, const int* const b);
 ```   
+
 Now imagine, instead of integers, the variables all contained a large Image.
 Which type of function declaration would you use?
 
