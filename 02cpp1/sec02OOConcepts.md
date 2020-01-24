@@ -117,4 +117,15 @@ relative to the perspective of the viewer.”
 
 {% code shape/shapeTest.cc %}
 
+### Homework - 11
+
+* Use [https://github.com/MattClarkson/CMakeCatch2.git](https://github.com/MattClarkson/CMakeCatch2.git) and create a simple shape class for a square with methods to calculate the area
+   * Create an object of the class from within an app and print the result of the area calculation to screen
+   * Try to write some unit tests to check the class behaves as expected 
+
+### Homework - 12
+* Again using `CMakeCatch2` as a basis use inheritance and polymorphism to create a shape base class and a set of derived classes for a square, rectangle
+   * Draw a class inheritance diagram before starting
+   * Confirm that the get area functions behave differently for the different dervied classes
+
 {% endidio %}
