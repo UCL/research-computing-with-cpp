@@ -1,20 +1,20 @@
 ---
-title: Better C++
+title: "Lecture 2: Modern C++ (1)"
 ---
 
-## Better C++
+## Modern C++ (1)
 
 ### The Story So Far
 
 * Git
 * CMake
-* Use libraries with CMake
+* Catch2
 
 
 ### Todays Lesson
 
-* Beginners C++ not sufficient
-* Look at
-    * C++ recap
-    * Templates - generic programming
-    * Exceptions - error handling
+* Recap of C++ features 
+* OO concepts: 
+    * Encapsulation and data abstraction
+    * Iheritance
+    * Polymorphism

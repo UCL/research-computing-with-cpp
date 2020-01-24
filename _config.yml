@@ -30,7 +30,6 @@ idio:
 include: [ _static, _sources]
 exclude:
   - 02libraries
-  - 03cpp
   - 03cpppatterns
   - 04HPC
   - 05OpenMP
