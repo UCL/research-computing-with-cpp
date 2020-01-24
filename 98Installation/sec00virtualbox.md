@@ -68,7 +68,7 @@ Run the following in a terminal:
 sudo apt-get install gnome-tweaks
 ```
 
-This will install a small a small GUI that can be opened using the desktop search for `Tweaks`. Then under `Fonts` there is a scaling factor that can be adjusted as needed. 
+This will install a small GUI that can be opened using the desktop search for `Tweaks`. Then under `Fonts` there is a scaling factor that can be adjusted as needed. 
 
 
  
