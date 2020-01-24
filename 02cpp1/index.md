@@ -2,7 +2,7 @@
 title: "Lecture 2: Modern C++ (1)"
 ---
 
-## Modern C++ (1)
+## Lecture 2: Overview 
 
 ### The Story So Far
 
@@ -16,5 +16,5 @@ title: "Lecture 2: Modern C++ (1)"
 * Recap of C++ features 
 * OO concepts: 
     * Encapsulation and data abstraction
-    * Iheritance
+    * Inheritance
     * Polymorphism

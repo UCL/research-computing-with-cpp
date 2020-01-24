@@ -6,7 +6,7 @@ short: PHAS0100
 
 defaults:
   - scope: {path: ""}
-    values: {layout: default, slidelink: true}
+    values: {layout: default, slidelink: false}
 
 baseurl: /research-computing-with-cpp
 
@@ -30,6 +30,11 @@ idio:
 include: [ _static, _sources]
 exclude:
   - 02libraries
+  - 02cpp1/sec04*.md
+  - 02cpp1/sec05*.md
+  - 02cpp1/sec06*.md
+  - 02cpp1/sec07*.md
+  - 02cpp1/sec03TemplatesIntro.md
   - 03cpppatterns
   - 04HPC
   - 05OpenMP
