@@ -13,7 +13,6 @@ title: "Lecture 3: Modern C++ (2)"
 
 ### Todays Lesson
 
-* Primer on Including Libraries 
 * C++ Standard Library
 * Smart pointers and move semantics
 * Lambda expressions
