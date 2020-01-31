@@ -200,25 +200,6 @@ title: Smart Pointers
     * Use ```weak_ptr``` for pointers that can dangle (cache etc)
 
 
-### Comment on Boost
-
-* Boost has become a sandbox for standard C++
-* Boost features become part of standard C++, (different name space)
-* So if you are forced to use old compiler
-    * You could use boost - lecture 5.
-
-
-### Intrusive Vs Non-Intrusive
-
-* Intrusive - Base class maintains a reference count eg. [ITK](http://www.itk.org)
-* Non-intrusive
-    * ```std::unique_ptr```
-    * ```std::shared_ptr```
-    * ```std::weak_ptr```
-    * works for any class
-    
-
-
 ### Conclusion for Smart Pointers
 
 * Default to standard library, check compiler
@@ -230,6 +211,12 @@ title: Smart Pointers
 * Don't be tempted to write your own
 * Always read the manual
 * Always consistently use it
+
+### Homework - 14
+
+* Create a memory leak using bare pointers and `new` to heap allocate and then repeat using using smart pointers 
+* Think of a use case where a resource should be uniqely owned and implement as a short application 
+* Think of a use case where the resource is shared between multiple and implement
 
 
 {% endidio %}

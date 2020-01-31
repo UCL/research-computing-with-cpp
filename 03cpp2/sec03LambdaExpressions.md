@@ -63,13 +63,13 @@ c2(4) = 16
   int neven = std::count_if(v.begin(), v.end(), [](int i){ return i % 2 == 0; });
 ```
 
-### Homework 16
+### Homework 15
 
 * Create your own lambda expressions for each of the three basic syntax examples given above
 * Try to change a param from within, can you see a different behaviour if passed by reference or by value?
 * Use `std::count_if` with an appropriate lambda expression to count the number of values in a `vector<int>` that are divisable by 2 or 3   
 
-### Homework 17
+### Homework 16
 
 * Create a simple `Student` class that has public member variables storing `string firstname`, `string secondname` and `int age` 
 * Create a vector and fill it with varios instances of the `Student` class 
