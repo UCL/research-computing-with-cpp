@@ -218,10 +218,6 @@ title: Smart Pointers
     * works for any class
     
 
-### ITK (intrusive) Smart Pointers
-
-{% code snippets/itkSmartPointer.cc %}
-
 
 ### Conclusion for Smart Pointers
 

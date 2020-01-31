@@ -1,7 +1,6 @@
 add_subdirectory(hello)
 add_subdirectory(fraction)
 add_subdirectory(shape)
-add_subdirectory(memory)
 add_subdirectory(vectorExample)
 add_subdirectory(sumFunctionExample)
 add_subdirectory(explicitInstantiation)
