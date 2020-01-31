@@ -11,6 +11,7 @@ add_compile_options(-fpermissive)
 
 add_subdirectory(01research/cpp)
 add_subdirectory(02cpp1/cpp)
+add_subdirectory(03cpp2/cpp)
 add_subdirectory(03cpppatterns/cpp)
 add_subdirectory(04HPC/cpp)
 add_subdirectory(05OpenMP/cpp)
