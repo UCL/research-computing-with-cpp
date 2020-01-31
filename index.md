@@ -74,8 +74,9 @@ This year we propose to cover the following topics. These notes will be updated 
    <td>
     <h3>3. Modern C++ (2)</h3>
     <ul>
-     <li>Lambda constructs</li>
      <li>C++ standard library</li>
+     <li>Smart pointers</li>
+     <li>Lambda constructs</li>
     </ul>
    </td>
 
@@ -97,6 +98,7 @@ This year we propose to cover the following topics. These notes will be updated 
    <td>
     <h3>5. Libraries for research computing</h3>
     <ul>
+     <li>Including libraries</li>
      <li>Boost</li>
      <li>Linear algebra packages</li>
     </ul>
