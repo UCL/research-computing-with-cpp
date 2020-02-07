@@ -9,8 +9,11 @@ title: Error Handling
 ### Exceptions 
 
 * Exceptions are the C++ or Object Oriented way of Error Handling
-* Read [this](https://msdn.microsoft.com/en-us/library/hh279678.aspx) example
-
+* Why are exceptions preferred for Error Handling in modern c++?
+* A good summary [here](https://msdn.microsoft.com/en-us/library/hh279678.aspx): 
+   * Forces calling code to recognize an error condition and handle it
+   * Stack-unwinding destroys all objects in scope according to well-defined rules
+   * A clean separation between code that detects error and code that handles error
 
 ### Exception Handling Example
 

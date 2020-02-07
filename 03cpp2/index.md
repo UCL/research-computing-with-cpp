@@ -16,4 +16,5 @@ title: "Lecture 3: Modern C++ (2)"
 * C++ Standard Library
 * Smart pointers and move semantics
 * Lambda expressions
+* Exceptions
 
