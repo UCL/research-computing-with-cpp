@@ -12,6 +12,7 @@ title: "Lecture 4: Modern C++ (3)"
 * C++ Standard Library
 * Smart pointers and move semantics
 * Lambda expressions
+* Error handling
 
 ### Todays Lesson
 

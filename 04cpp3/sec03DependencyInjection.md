@@ -46,4 +46,13 @@ Question: Which is better?
     * Creation is done outside class, so class only uses public API
     * Leads towards fewer assumptions in the code
 
+### Homework 18
+
+* Taking the `Student` class from homework 16: 
+   * Create a new `Laptop` class that has a string `os` data member for the operating system name and an integer  `year` data member for the year produced. 
+   * `Laptop` should have both a default constructor that sets `year` to 0 and name to "Not set" as well as an overloaded constructor that initialises both `year` and  `os`
+   * Modify `Student` to have a `Laptop` data member 
+   * Try out the two types of dependency injection above: constructor, setter
+   * Confirm that the `Student` class is now invarient to changes in how you instantiate `Laptop`    
+
 {% endidio %}
