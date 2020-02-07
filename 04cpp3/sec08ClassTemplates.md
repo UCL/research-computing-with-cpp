@@ -4,7 +4,7 @@ title: Class Templates
 
 ## Class Templates
 
-### Class Templates Example - 1
+### Class Templates Example - part 1
 
 * If you understand template functions, then template classes are easy!
 * Refering to [this tutorial][TemplateClassTutorial], an example:
@@ -16,14 +16,14 @@ Header:
 {% code pairClassExample.h %}
 
 
-### Class Templates Example - 2
+### Class Templates Example - part 2
 
 Implementation:
 
 {% code pairClassExample.cc %}
 
 
-### Class Templates Example - 3
+### Class Templates Example - part 3
 
 Usage:
 
@@ -40,7 +40,6 @@ Usage:
     * Remember code not instantiated until its used
     * Take Unit Testing Seriously!
 
-
 ### Template Specialisation
 
 * If template defined for type T
@@ -53,24 +52,10 @@ template <> class MyVector<char> {  // full specialisation
 template <typename T> MyVector<T*> { // partial specialisation
 ```
 
-### Nested Types
+### Homework 19
 
-In libraries such as [ITK][ITK], we see:
-
-```
-    template< typename T, unsigned int NVectorDimension = 3 >
-    class Vector:public FixedArray< T, NVectorDimension >
-    {
-      public:
-        // various stuff
-        typedef T  ValueType;
-        // various stuff
-        T someMemberVariable;
-```
-
-* typedef is just an alias
-* using nested typedef, must be qualified by class name
-* can also refer to a real variable
+* Implement the above class `MyPair` template
+* Try out with both Implicit and Explicit instantiation
+* Add a `Swap()` method that switches the contents of `m_Values[0]` and `m_Values[1]`
 
 [TemplateClassTutorial]: http://www.cplusplus.com/doc/tutorial/templates/ 'Template Class Tutorial'
-[ITK]: http://www.itk.org

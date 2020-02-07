@@ -90,7 +90,7 @@ double GetAverage<double>(const std::vector<double>& someNumbers);
 * So, if function parameters can inform the compiler uniquely as to which function to instantiate, its automatically compiled.
 
 
-### Explicit Argument Resolution - 1
+### Explicit Argument Resolution - part 1
 
 * However, given:
 
@@ -112,7 +112,7 @@ double result = GetAverage<double>(a, b);
 ```
 
 
-### Explicit Argument Resolution - 2
+### Explicit Argument Resolution - part 2
 
 * equivalent to 
 
@@ -165,7 +165,7 @@ double r3 = GetMax(1.0,2.0);
     * Most libraries/people prefer header only implementations
 
 
-### Explicit Instantiation - 1
+### Explicit Instantiation - part 1
 
 * Language Reference [here][FunctionTemplate]
 * [Microsoft Example][ExplicitInstantiationMicrosoft]
@@ -181,7 +181,7 @@ double r3 = GetMax(1.0,2.0);
 {% code explicitInstantiation.cc %}
 
 
-### Explicit Instantiation - 2
+### Explicit Instantiation - part 2
 
 * Given client code:
 
@@ -194,7 +194,7 @@ double r3 = GetMax(1.0,2.0);
 {% endidio %}
 
 
-### Explicit Instantiation - 3
+### Explicit Instantiation - part 3
 
 * Explicit Instantiation:
     * Forces instantiation of the function
@@ -211,7 +211,7 @@ Undefined symbols for architecture x86_64:
 ```
 
 
-### Implicit Instantiation - 1
+### Implicit Instantiation - part 1
 
 * Instantiated as they are used
 * Normally via ```#include``` header files.
@@ -223,7 +223,7 @@ Undefined symbols for architecture x86_64:
 {% code implicitInstantiation.h %}
 
 
-### Implicit Instantiation - 2
+### Implicit Instantiation - part 2
 
 * Given client code:
 
@@ -234,6 +234,12 @@ Undefined symbols for architecture x86_64:
 {% code implicitInstantiation.out %}
 
 {% endidio %}
+
+### Homework 19
+
+* Write a template function `AGreaterThanB` that compares two input agruments of type `T` and returns a `bool` if `A` is greater than `B`. The function should be able to handle either `int`,  `float` or `string` entries (for the latter you will need to decide how to rank by size) 
+* Try out the different types of explicit and implicit instantiation 
+* Advanced/optional: write a template function that performs a binary search on the contents of a vector containing either `int`,  `float` or `string` entries (you could adapt this [equivalent to](http://www.cplusplus.com/reference/algorithm/find/) ) code, N.B. the `vector` will need to be sorted by size
 
 [OverloadedFunctions]: http://www.cplusplus.com/doc/tutorial/functions2 'Overloaded Functions and Template Functions'
 [FunctionTemplate]: http://en.cppreference.com/w/cpp/language/function_template 'Function Template Reference'
