@@ -1,23 +1,28 @@
 ---
-title: Patterns
+title: "Lecture 4: Modern C++ (3)"
 ---
 
-## Patterns
+## Patterns and Templates
 
 ### The Story So Far
 
-* Git
-* CMake
-* Use libraries
-* C++ features
-* Seeing those C++ in libraries
-
+* Git, CMake, Catch2
+* Recap of Modern C++ features
+* OO concepts
+* C++ Standard Library
+* Smart pointers and move semantics
+* Lambda expressions
 
 ### Todays Lesson
 
-* How to assemble classes
-* Beginner mistakes
-    * 1 class - all functionality
-    * Deep inheritance trees
-* You need
-    * How to assemble / organise classes
+* How to assemble/organise classes
+    * Beginner mistakes
+        * 1 class - all functionality
+        * Deep inheritance trees
+   * Patterns
+       * RAII
+       * Common OO design patterns
+* Templates
+   * Function templates
+   * Class templates
+   * Template specialisation 
