@@ -52,7 +52,7 @@ template <> class MyVector<char> {  // full specialisation
 template <typename T> MyVector<T*> { // partial specialisation
 ```
 
-### Homework 19
+### Homework 20
 
 * Implement the above class `MyPair` template
 * Try out with both Implicit and Explicit instantiation
