@@ -72,7 +72,7 @@ c2(4) = 16
 ### Homework 16
 
 * Create a simple `Student` class that has public member variables storing `string firstname`, `string secondname` and `int age` 
-* Create a vector and fill it with varios instances of the `Student` class 
+* Create a vector and fill it with various instances of the `Student` class 
 * Create a sorting class `StudentSort` and that has a method `vector<Student> SortByAge(vector<Student> vs);` that returns a `vector<Student>` that has been sorted by age
    * Use a `std::sort` and a lambda expression for this
    * Add a `bool` switch to `SortByAge(vector<Student> vs, bool reverse = false)` that reverses the sort
