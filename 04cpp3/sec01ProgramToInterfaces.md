@@ -10,7 +10,7 @@ title: Program To Interfaces
 
 * In research code we often "just start hacking"
 * You tend to mix interface and implementation
-* Results in client of a class having implicit dependency on the implementation
+* Results in client/user of a class having implicit dependency on the implementation
 * So, define a pure virtual class, not for inheritance, but for clean API 
 
 ### Example
@@ -25,7 +25,6 @@ title: Program To Interfaces
     * Logic and Database
 * Is useful in general to force loose connections between areas of code
     * e.g. different libraries that have different dependencies
-    * e.g. camera calibration depends on OpenCV
     * define an interface that just exports standard types
     * stops the spread of dependencies
     * Lookup [Pimpl](http://en.cppreference.com/w/cpp/language/pimpl) idiom

@@ -41,7 +41,7 @@ Aim: Write functions, classes, in terms of future/other/generic types, type prov
 
 ### Book
 
-* You should read ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
+* For more infomation see ["Modern C++ Design"](http://erdani.com/index.php/books/modern-c-design/)
 * 2001, but still excellent text on templates, meta-programming, policy based design etc.
 * This section of course, gives basic introduction for research programmers
 
@@ -62,9 +62,9 @@ Aim: Write functions, classes, in terms of future/other/generic types, type prov
 
 ### Why Templates in Research?
 
-* Generalise 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
+* Minimise code duplication: think about how useful `std::vector` is 
+* For example methods that generalise from 2D, 3D, n-dimensions, (e.g. [ITK](http://www.itk.org) )
 * Test numerical code with simple types, apply to complex/other types
-* Several useful libraries for research
 
 
 ### Why Teach Templates?

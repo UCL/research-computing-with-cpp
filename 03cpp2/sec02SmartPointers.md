@@ -214,9 +214,10 @@ title: Smart Pointers
 
 ### Homework - 14
 
-* Create a memory leak using bare pointers and `new` to heap allocate and then repeat using using smart pointers 
-* Think of a use case where a resource should be uniqely owned and implement as a short application 
+* Create a memory leak using bare pointers and `new` to heap allocate and then repeat using using smart pointers
+* Think of a use case where a resource should be uniquely owned and implement as a short application 
 * Think of a use case where the resource is shared between multiple and implement
+* *Note: in lecture 6 you will learn how to use tools such as `valgrind` to consistently check for memory leaks*
 
 
 {% endidio %}
