@@ -1,0 +1,6 @@
+find_package(OpenMP REQUIRED)
+add_executable(fibdemo fibdemo.cc)
+if(OPENMP_FOUND)
+  target_compile_options(fibdemo PUBLIC "${OpenMP_CXX_FLAGS}")
+  target_link_libraries(fibdemo "${OpenMP_CXX_FLAGS}")
+endif()
