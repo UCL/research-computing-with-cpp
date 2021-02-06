@@ -29,7 +29,7 @@ idio:
 
 include: [ _static, _sources]
 exclude:
-  - 02libraries
+  - 05libraries
   - 02cpp1/sec04*.md
   - 02cpp1/sec05*.md
   - 02cpp1/sec06*.md
