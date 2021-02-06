@@ -1,33 +1,28 @@
 ---
-title: Including Libraries
+title: Lecture 5: Including Libraries
 ---
 
-## Why use Libraries?
+## Lecture 5: Overview
 
-### Scientific Coding
+### The Story So Far
 
-* Explain your science
-    * Should not just distribute binaries and papers
-    * Source code is best description of your science
-* Reproducible science     
-    * Collaborators must know how you build your project and libraries
-* Time is short
-    * Don't re-invent the wheel
-    * Use libraries if they provide bits you need
+* Git, CMake, Catch2
+* Recap of Modern C++ features
+* OO concepts
+* C++ Standard Library
+* Smart pointers and move semantics
+* Lambda expressions
+* Error handling
+* How to assemble/organise classes
+* Templates
 
+### Today's Lesson
 
-### What are libraries?
-
-* Libraries provide collections of useful classes and functions, ready to use
-* C++ libraries can be somewhat harder to use than pure Python modules
-* This lecture will get you started
-
-
-### Aim for this chapter
-
+* What are libraries? Why use them?
 * How to choose a library
     * Licensing, longevity, developer community, technical implementation, **feature list** etc.
 * Working with libraries
     * Including them
     * C++ concepts
     * Not an exhaustive product specific tutorial
+
