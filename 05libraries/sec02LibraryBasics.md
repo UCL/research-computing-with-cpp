@@ -27,7 +27,7 @@ Though normally these steps are invoked by a single command, you can run them on
 Directly using the compiler without a build tool (e.g., [CMake][lesson-cmake]) will eventually become too difficult and cause a mess.
 
 
-Find more details of these steps on the following material:
+Find more details of these steps on the following resources:
 - [The C Preprocessor][CppAdv6] chapter on the [C++: Advanced Topics][CppAdv] course.
 - How the C++ [Compiler][CppChernoCompiler] and [Linker][CppChernoLinker] works videos by [The Cherno][Cherno].
 
@@ -80,22 +80,22 @@ g++ -o main main.o -L /users/me/myproject/lib -l mylib
 
 ### Location Issues
 
-When you use a library:
+When you use a library, keep in mind the following questions:
 
-* Where is it?
-* Header only?
-* System version or your version?
+* Where is it? (do we need to set `I` and `L` when compiling?)
+* Is it a [Header only][header-only-wiki]?
+* System's version or your version?
 * What about bugs? How do I upgrade? Do I need to build it myself?
 
 
 ### Compilation Issues
 
-When you use a library:
+Also, there are some issues related with the compilation:
 
 * Which library version?
 * Which compiler version?
 * Debug or Release?
-* [Static or Dynamic?](http://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/)
+* [Static or Dynamic][lerancpp-static-dynamic]?
 * 32 bit / 64 bit?
 * Platform specific flags?
 * Pre-installed, or did you compile it?
@@ -115,3 +115,5 @@ Due to all those issues shown above, again, the main advice for libraries:
 [CppChernoLinker]: https://www.youtube.com/watch?v=H4s55GgAg0I
 [Cherno]: https://www.youtube.com/channel/UCQ-W1KE9EYfdxhL6S4twUNw
 [lesson-DynVsSt]: ./sec02LinkingLibraries.html
+[header-only-wiki]: https://en.wikipedia.org/wiki/Header-only
+[learncpp-static-dynamic]: http://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/
