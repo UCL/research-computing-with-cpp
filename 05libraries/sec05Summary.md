@@ -6,8 +6,9 @@ title: Summary
 
 ### No Magic Answer
 
-* C++ is more tricky than MATLAB / Python
-* While package managers make it easier, you still need to understand what you're building.
+Managing libraries in C++ is more tricky than other languages.
+
+While package managers make it easier, you still need to understand what you're building.
 
 
 ### A Few Good Libraries
@@ -22,14 +23,14 @@ Main advice for libraries:
 
 * Easiest - header only
     * just include directly in your source code
-    * use cmake ```include_directories()```
+    * use cmake `include_directories()`
     * compile it in
 * use packages from package manager
-    * use cmake to ```find_package```
+    * use cmake to `find_package`
     * set variables to your installed version
 * use build system to build everything
     * you control ALL flags
-    * cmake does ```find_package``` on things you just compiled
+    * cmake does `find_package` on things you just compiled
 
 
 ### Git Submodule Anyone?
