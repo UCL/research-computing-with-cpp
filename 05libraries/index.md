@@ -1,5 +1,5 @@
 ---
-title: Lecture 5: Including Libraries
+title: "Lecture 5: Including Libraries"
 ---
 
 ## Lecture 5: Overview
