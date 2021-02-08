@@ -36,6 +36,7 @@ you still owns the copyright of that work (even when it's not stated that you ow
 > -- [Software Licenses][SL-wiki] -- Wikipedia 2021
 
 You need to consider both:
+
 * License for 3rd party code / dependencies you are using, and
 * License for your code when you distribute it.
 
@@ -46,6 +47,7 @@ Remember: even if you aren't distributing code yet, you need to understand the l
 
 When you distribute your code, the licenses of any libraries you use takes effect.
 For example, a library with license:
+
 * [MIT][MITLicense] or [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
 * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
 
@@ -68,7 +70,8 @@ However, there's still some debate on [GPL/LGPL and derivative works](https://lw
     * Try to pick one of the standard ones for [compatibility][LicesnseCompatibilityWiki].
 
 For an in-depth understanding we recommend you read some works about licenses:
-- [Understanding Open Source and Free Software Licensing][LicenseBookWC] ([web][LicensingBook],[UCL][LicensingBookUCL],[pdf][LicensingBookPDF]),
+
+- [Understanding Open Source and Free Software Licensing][LicensingBookWC] ([web][LicensingBook],[UCL][LicensingBookUCL],[pdf][LicensingBookPDF]),
 - [The public domain][PDBook]
 
 **Note**: Once a 3rd party has your code under a license agreement, their restrictions are determined by that version of the code.
@@ -124,7 +127,8 @@ Shouldn't need to look excessively closely, but consider:
     
 ### Library Features
 
-Then look at features
+Then look at features like:
+
 * Manual, Tutorials, ...
 * Easy to use
 

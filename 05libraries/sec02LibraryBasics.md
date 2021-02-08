@@ -7,27 +7,34 @@ title: Library Basics
 ### Reviewing the build process
 
 When building an application there are three important steps:
+
 - **preprocessing**: follow the directives (lines started by `#`) on the files to combine the units into what's passed to the compiler;
 - **compilation**: translates the program into machine language code - object files;  and
 - **linking**: merges the various object files and links all the referred libraries as needed to create the executable.
 
 Though normally these steps are invoked by a single command, you can run them one at a time.
+
 - preprocessor:
+
   ```bash
   g++ -E -o <output> <input.cpp>
   ```
 - compilation:
+
   ```bash
   g++ -c -o <output.o> <input.cpp>
   ```
 - linking:
+
   ```bash
   g++ -o <executable> <output.o>
   ```
+
 Directly using the compiler without a build tool (e.g., [CMake][lesson-cmake]) will eventually become too difficult and cause a mess.
 
 
 Find more details of these steps on the following resources:
+
 - [The C Preprocessor][CppAdv6] chapter on the [C++: Advanced Topics][CppAdv] course.
 - How the C++ [Compiler][CppChernoCompiler] and [Linker][CppChernoLinker] works videos by [The Cherno][Cherno].
 

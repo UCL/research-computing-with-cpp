@@ -7,10 +7,12 @@ title: Examples
 Let's put in practice all we've learnt about libraries using CMake.
 
 Remember, fundamentally, we need:
+
 * Access to header files - declarations
 * Access to compiled code - definitions
 
 But we also need to take care of all this:
+
 * Static/Dynamic
 * Package Managers / Build your own
 * External build / Internal Build
@@ -28,12 +30,14 @@ There we've include [catch2 test-framework library][catch2] v2.1.2 with the `cat
 file in [`CMakeCatch2/Testing/catch.hpp`][gh-catch-hpp].
 
 This is then include using CMake in `CMakeCatch2/CMakeLists.txt`, from [line 201][gh-cmake-catch]
+
 ```cmake
 if(BUILD_TESTING)
   include_directories(${CMAKE_SOURCE_DIR}/Testing/)
   add_subdirectory(Testing)
 endif()
 ```
+
 Which is adding the `Testing` directory as an include path (`-I`) to find the catch2 library
 and adds that directory too for the building of the tests available there. In this case, tests will
 only be built if the variable `BUILD_TESTING` is enabled.
@@ -48,6 +52,7 @@ CMakeCatchTemplate/3rdParty/libraryA/version1/Class2.hpp
 ```
 
 Then, we can add these to CMake as
+
 ```cmake
 include_directories(${CMAKE_SOURCE_DIR}/3rdParty/libraryA/version1/)
 ```
@@ -76,6 +81,7 @@ include_directories("C:\3rdParty\Eigen\install\include\eigen3")
 ```
 
 This has some problems:
+
 * Hard-coded path, but still usable if you write detailed build instructions
 * Not platform independent
 * Not very flexible
@@ -88,6 +94,7 @@ In general, in CMake, each dependency requires a bit of code to look up include
 directories, and libraries.
 
 For example to add [OpenCV][opencv] using `find_package`:
+
 ```cmake
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -101,6 +108,7 @@ So a 3rd party package can provide information on how you should use it.
 #### Types of `find_package`
 
 [`find_package`][find_package] has several different modes:
+
 * *config* mode: Use 3rd party projects own config, e.g., `VTKConfig.cmake`
 * *module* mode: Use a `FindModule`, some come with CMake
 * *module* mode: Write your own `FindModule`
@@ -118,6 +126,7 @@ find_package(SomeLibrary [REQUIRED])
 ```
 
 CMake will search
+
 * all directories in `CMAKE_MODULE_PATH`
 * for `SomeLibraryConfig.cmake` - does *config* mode - and
 * for `FindSomeLibrary.cmake` - does *module* mode
@@ -146,6 +155,7 @@ set(CMAKE_MODULE_PATH
     ${CMAKE_MODULE_PATH}
    )
 ```
+
 This way, CMake will find your version before the system version.
 
 
@@ -162,11 +172,13 @@ for meta-build (It forces directories to match the package you just compiled).
 #### Provide Build Flags
 
 When a package is found, you can add compiler flags with
+
 ```cmake
 add_definitions(-DBUILD_OpenCV)
 ```
 
 So, you can then optionally include things like:
+
 ```cpp
 #ifdef BUILD_OpenCV
 #include <cv.h>
@@ -180,6 +192,7 @@ Always, before you commit code to git,
 make sure you are compiling what you think you are!
 
 This should fail compilation:
+
 ```cpp
 #ifdef BUILD_OpenCV
 blah blah
@@ -198,6 +211,7 @@ For example check how you can add Eigen to your project either using
 ## Summary
 
 In short:
+
 * `include_directories()` generates `-I`
 * `link_directories()` generates `-L`
 * `target_link_libraries(mylibrary PRIVATE ${libs})` generates `-l` for each library

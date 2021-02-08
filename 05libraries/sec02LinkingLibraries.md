@@ -5,11 +5,13 @@ title: Linking Libraries
 ## Linking libraries
 
 From the [first lecture][lesson-first] we've seen that:
+
 * Code is split into functions/classes
 * Related functions get grouped into libraries
 * Libraries get compiled / archived into one file
 
 And that the End User of a library needs access to:
+
 * Header file = declarations (and implementation if header only)
 * Object code / library file = implementations
 
@@ -25,6 +27,7 @@ static or dynamic linking. Let's see their differences when using one or the oth
   to distribute the executable to run your program).
 
 Find how to create static libraries on the following videos:
+
 - Cave of Programming's C++ Tutorial [Static Creating Libraries][CPPCoPStatic] (MacOS + Eclipse)
 - The Cherno's C++ series [Using Libraries in C++ (Static Linking)][CPPChernoStacic] (Windows + VS2017)
 - iFocus's [How to create a static library][ProgLinIF_static] (Linux + CLI)
@@ -46,6 +49,7 @@ Find how to create static libraries on the following videos:
   changed).
     
 You can see some examples on how to create dynamic libraries at:
+
 - iFocus's [How to use a Dynamic Library][ProgLinIF_dyanmic] (Linux + CLI)
 - The Cherno's C++ series [Using Dynamic Libraries in C++][CPPChernoDynamic] (Windows + VS2017)
     
@@ -69,6 +73,7 @@ automate the process for you. Check this short video about [how to add a library
 ### Space Comparison
 
 If you have many executables linking a common set of libraries:
+
 * Static
     * Code gets copied - each executable becomes bigger
     * Doesn't require searching for libraries at run-time
@@ -82,8 +87,10 @@ However, space is less of a concern these days!
 ### For Scientists
 
 As a scientists, we want that our programs are:
+
 * Easy to use
 * Easy to distribute to collaborators
+
 Therefore, we tend to prefer static if possible for ease of deployment.
 
 
@@ -94,6 +101,7 @@ or Rust), but there are many options available depending of your userbase.
 Note that packaging large apps takes effort!
 
 Some packaging systems available are:
+
 * OS package managers ([`apt`][DebPack], [`brew`][BrewPack], [`chocolatey`][ChocoPack])
 * CMake repositories ([Hunter][HunterPack], [CPM][CPM])
 * C++ package managers ([conan][ConanPack], [vcpkg][vcpkg], [buckaroo][buckPack])

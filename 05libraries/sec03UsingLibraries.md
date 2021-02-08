@@ -10,16 +10,19 @@ see some practicalities about using them.
 ### Package Managers (*nix)
 
 Installing libraries using a Package Manager (Linux/Mac) has some advantages:
+
 * they are pre-compiled,
 * provide a Stable choice, and
 * inter-dependencies work.
 
 For Linux you can use:
+
 * `sudo apt install` for debian based systems,
 * `sudo dnf install` for rpm systems,
 * or whichever [package manager][linux-pm-wiki] your system uses.
 
 macOS has also many options, though they need to be installed, for example:
+
 * [homebrew][homebrew]: `brew install`
 * [MacPorts][macports]: `sudo port install`
 
@@ -27,6 +30,7 @@ macOS has also many options, though they need to be installed, for example:
 ### Windows
 
 On Windows, the libraries typically are:
+
 * on randomly installed locations, or
 * in system folders, or
 * in the developer's folders, or
@@ -60,6 +64,7 @@ An alternative solution to use "stable" libraries provided by your system is
 to build your own.
 
 This can be done on two ways:
+
 * Using External / Individual builds
     * Build each dependencies externally and
     * Point your software at those packages
@@ -118,11 +123,13 @@ Each methods has its own advantages and disadvantages, and you should choose the
 most appropriate for your use case.
 
 External Build:
+
 * Pro's - build each dependency once
 * Con's - collaborators will do this inconsistently
 * Con's - how to manage multiple versions of all dependencies
 
 Meta Build:
+
 * Pro's - all documented, all self-contained, easier to share
 * Con's - Slow build? Not a problem if you only run `make` in sub-folder
   `MyProject-build`. (You can also use [`ccache`][ccache] on clean builds to
