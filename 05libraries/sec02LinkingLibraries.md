@@ -5,13 +5,13 @@ title: Linking Libraries
 ## Linking libraries
 
 From the [first lecture][lesson-first] we've seen that:
-    * Code is split into functions/classes
-    * Related functions get grouped into libraries
-    * Libraries get compiled / archived into one file
+* Code is split into functions/classes
+* Related functions get grouped into libraries
+* Libraries get compiled / archived into one file
 
 And that the End User of a library needs access to:
-    * Header file = declarations (and implementation if header only)
-    * Object code / library file = implementations
+* Header file = declarations (and implementation if header only)
+* Object code / library file = implementations
 
 The pre-compiled libraries usually can be added to our projects via two mechanism, i.e., via
 static or dynamic linking. Let's see their differences when using one or the other:
@@ -27,7 +27,7 @@ static or dynamic linking. Let's see their differences when using one or the oth
 Find how to create static libraries on the following videos:
 - Cave of Programming's C++ Tutorial [Static Creating Libraries][CPPCoPStatic] (MacOS + Eclipse)
 - The Cherno's C++ series [Using Libraries in C++ (Static Linking)][CPPChernoStacic] (Windows + VS2017)
-- iFoucs's [How to create a static library][ProgLinIF_static] (Linux + CLI)
+- iFocus's [How to create a static library][ProgLinIF_static] (Linux + CLI)
 
 
 ### Dynamic Linking
@@ -46,7 +46,7 @@ Find how to create static libraries on the following videos:
   changed).
     
 You can see some examples on how to create dynamic libraries at:
-- iFoucs's [How to use a Dynamic Library][ProgLinIF_dyanmic] (Linux + CLI)
+- iFocus's [How to use a Dynamic Library][ProgLinIF_dyanmic] (Linux + CLI)
 - The Cherno's C++ series [Using Dynamic Libraries in C++][CPPChernoDynamic] (Windows + VS2017)
     
 ### Dynamic Loading
@@ -128,7 +128,7 @@ These tools will help you to see whether your executables require any shared lib
 [HunterPack]: https://hunter.readthedocs.io/en/latest/creating-new.html
 [CPM]: https://github.com/TheLartians/CPM.cmake
 [ConanPack]: https://docs.conan.io/en/latest/creating_packages.html
-[vcpkgPack]: https://docs.microsoft.com/en-us/cpp/build/vcpkg
+[vcpkg]: https://docs.microsoft.com/en-us/cpp/build/vcpkg
 [buckPack]: https://github.com/LoopPerfect/buckaroo/wiki/Creating-a-Package
 [SpackPack]: https://spack.readthedocs.io/en/latest/packaging_guide.html
 [ebPack]: https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html

@@ -75,7 +75,7 @@ g++ -o main main.o -L /users/me/myproject/lib -l mylib
     * C/C++ -> Additional Include Directories.
     * Configuration Properties -> Linker -> Additional Library Directories
     * Linker -> Input -> Additional Dependencies.
-* Check compile line - its equivalent to Linux/Mac, -I, -L, -l
+* Check compile line - its equivalent to Linux/Mac, `-I`, `-L`, `-l`
 
 
 ### Location Issues
@@ -95,7 +95,7 @@ Also, there are some issues related with the compilation:
 * Which library version?
 * Which compiler version?
 * Debug or Release?
-* [Static or Dynamic][lerancpp-static-dynamic]?
+* [Static or Dynamic][learncpp-static-dynamic]?
 * 32 bit / 64 bit?
 * Platform specific flags?
 * Pre-installed, or did you compile it?

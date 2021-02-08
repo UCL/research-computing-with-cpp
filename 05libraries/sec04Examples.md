@@ -152,7 +152,7 @@ This way, CMake will find your version before the system version.
 #### `find_package` - Tailoring
 
 You can write your own instruction for `find_package`. For that you need to write a
-`FindSomelibrary`. For example, check `FindEigen`` in [CMakeCatchTemplate][gh-CatchTemplate-FindEigen].
+`FindSomeLibrary.cmake`. For example, check `FindEigen` in [CMakeCatchTemplate][gh-CatchTemplate-FindEigen].
 
 With this we use CMake to substitute variables and force include/library directories.
 It's useful for vendors API that isn't CMake compatible and
@@ -216,4 +216,4 @@ Try default CMake `find_package` or write your own and add location to `CMAKE_MO
 [find_package]: https://cmake.org/cmake/help/latest/command/find_package.html
 [gh-CatchTemplate-FindEigen]: https://github.com/MattClarkson/CMakeCatchTemplate/blob/master/CMake/FindEigen.cmake
 [hunter-eigen]: https://hunter.readthedocs.io/en/latest/packages/pkg/Eigen.html#pkg-eigen
-[cpem-eigen]: https://github.com/TheLartians/CPM.cmake/wiki/More-Snippets#Eigen
+[cpm-eigen]: https://github.com/TheLartians/CPM.cmake/wiki/More-Snippets#Eigen

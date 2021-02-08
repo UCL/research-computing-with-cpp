@@ -32,11 +32,12 @@ Putting your code on a public website does not grant permissions to anyone to us
 you still owns the copyright of that work (even when it's not stated that you own the copyright).
 
 > Contrary to popular belief, distributed unlicensed software (not in the public domain) is fully copyright protected, and therefore legally unusable (as no usage rights at all are granted by a license) until it passes into public domain after the [copyright term][cterm] has expired.[3]
+>
 > -- [Software Licenses][SL-wiki] -- Wikipedia 2021
 
 You need to consider both:
-    * License for 3rd party code / dependencies you are using, and
-    * License for your code when you distribute it.
+* License for 3rd party code / dependencies you are using, and
+* License for your code when you distribute it.
 
 Remember: even if you aren't distributing code yet, you need to understand the licenses of your dependencies.
 
@@ -45,8 +46,8 @@ Remember: even if you aren't distributing code yet, you need to understand the l
 
 When you distribute your code, the licenses of any libraries you use takes effect.
 For example, a library with license:
-    * [MIT][MITLicense] or [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
-    * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
+* [MIT][MITLicense] or [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
+* [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
 
 
 #### Third Party Licenses
