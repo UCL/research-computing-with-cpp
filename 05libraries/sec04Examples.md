@@ -15,7 +15,7 @@ But we also need to take care of all this:
 * Package Managers / Build your own
 * External build / Internal Build
 * Release / Debug
-* -I, -L, -l flags
+* `-I`, `-L`, `-l` flags
 
 Therefore, header only libraries are very attractive!
 
@@ -23,7 +23,7 @@ Therefore, header only libraries are very attractive!
 
 ### CMake - Header next to code
 
-Check the [CMakeCatch2](https://github.com/UCL/CMakeCatch2) template repository.
+Check the [CMakeCatch2 template repository][gh-catch].
 There we've include [catch2 test-framework library][catch2] v2.1.2 with the `catch.hpp` header only
 file in [`CMakeCatch2/Testing/catch.hpp`][gh-catch-hpp].
 
@@ -72,7 +72,7 @@ C:\build\MyProject-build
 On the `CMakeLists.txt` we could refer to it as:
 
 ```cmake
-include_directories("C:\3rdParty\Eigen\install\include\eigen3\
+include_directories("C:\3rdParty\Eigen\install\include\eigen3")
 ```
 
 This has some problems:
@@ -208,6 +208,7 @@ Try default CMake `find_package` or write your own and add location to `CMAKE_MO
 
 
 [catch2]: https://github.com/catchorg/Catch2
+[gh-catch]: https://github.com/UCL/CMakeCatch2
 [gh-catch-hpp]: https://github.com/UCL/CMakeCatch2/blob/master/Testing/catch.hpp
 [gh-cmake-catch]: https://github.com/UCL/CMakeCatch2/blob/master/CMakeLists.txt#L201
 [eigen]: https://eigen.tuxfamily.org/index.php
