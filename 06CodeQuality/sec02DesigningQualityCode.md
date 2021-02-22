@@ -2,6 +2,8 @@
 title: Designing Quality Code
 ---
 
+## Designing Quality Code
+
 Consider the age-old software-engineering principle:
 
 > Don't repeat yourself (DRY)

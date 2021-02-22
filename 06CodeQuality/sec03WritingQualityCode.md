@@ -2,6 +2,8 @@
 title: Writing Quality Code
 ---
 
+## Writing Quality Code
+
 > Programs are meant to be read by humans and only incidentally for computers to execute
 
 If you leave this lesson with only the above quote from [Donald Knuth][wiki-dk] burned into your brain, I'll be happy. This section is about encouraging you to think about how you write C++ in a readable way. The more readable your code is, the easier it it to spot mistakes, add features, and generally maintain. Let's start with some truly terrible code (courtesy of [Katrina Ward][kat-example]):
@@ -98,6 +100,7 @@ int main()
 ### Exercise
 
 Read the above code and write down a list of **five** things you'd recommend to Kat to improve her code. This could include:
+
 - how comments are used
 - variable names
 - formatting
@@ -106,6 +109,7 @@ Read the above code and write down a list of **five** things you'd recommend to 
 ### Exercise
 
 Read [J. B. Rainsberger's *The Four Elements of Simple Design*][four-elements] and answer the following questions. Keep your answers handy; we'll be discussing this on Friday.
+
 - Do you agree with his 4 elements? What about the 2 elements he ends up with? Why?
 - J codes in an iterative way, renaming functions to `foo` before he knows what they *really* do. How could this impact collaboration if J is writing functions called `foo`?
 - What is the value in this kind of iterative programming?
