@@ -4,7 +4,7 @@ title: Writing Quality Code
 
 > Programs are meant to be read by humans and only incidentally for computers to execute
 
-If you leave this lesson with only the above quote from Donald Knuth burned into your brain, I'll be happy. This section is about encouraging you to think about how you write C++ in a readable way. The more readable your code is, the easier it it to spot mistakes, add features, and generally maintain. Let's start with some truly terrible code (courtesy of [Katrina Ward](https://web.mst.edu/~price/cs53/code_example.html)):
+If you leave this lesson with only the above quote from [Donald Knuth][wiki-dk] burned into your brain, I'll be happy. This section is about encouraging you to think about how you write C++ in a readable way. The more readable your code is, the easier it it to spot mistakes, add features, and generally maintain. Let's start with some truly terrible code (courtesy of [Katrina Ward][kat-example]):
 
 ``` cpp
 // Kat                                                               
@@ -105,9 +105,14 @@ Read the above code and write down a list of **five** things you'd recommend to 
 
 ### Exercise
 
-Read [J. B. Rainsberger's *The Four Elements of Simple Design*](https://blog.jbrains.ca/permalink/the-four-elements-of-simple-design) and answer the following questions. Keep your answers handy; we'll be discussing this on Friday.
+Read [J. B. Rainsberger's *The Four Elements of Simple Design*][four-elements] and answer the following questions. Keep your answers handy; we'll be discussing this on Friday.
 - Do you agree with his 4 elements? What about the 2 elements he ends up with? Why?
 - J codes in an iterative way, renaming functions to `foo` before he knows what they *really* do. How could this impact collaboration if J is writing functions called `foo`?
 - What is the value in this kind of iterative programming?
 - What are the potential downsides?
 - How would you use J's iterative programming style to improve Kat's code from the previous exercise?
+
+
+[wiki-dk]: https://en.wikipedia.org/wiki/Donald_Knuth
+[kat-example]: https://web.mst.edu/~price/cs53/code_example.html
+[four-elements]: https://blog.jbrains.ca/permalink/the-four-elements-of-simple-design

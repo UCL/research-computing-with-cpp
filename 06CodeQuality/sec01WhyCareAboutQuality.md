@@ -2,7 +2,7 @@
 title: Why Care About Code Quality?
 ---
 
-Programming is not just about producing code that works or passes tests. If code is not also usable, it will not be used. If code is not also maintainable, it will become unusable. There are many aspects to code quality, the importance of which depends on the intended use of the code. A very dry list of code quality measures can be found in Steve McConnell's *Code Complete*:
+Programming is not just about producing code that works or passes tests. If code is not also usable, it will not be used. If code is not also maintainable, it will become unusable. There are many aspects to code quality, the importance of which depends on the intended use of the code. A very dry list of code quality measures can be found in [Steve McConnell's *Code Complete*][code-complete]:
 - External qualities
   - Correctness
   - Accuracy
@@ -95,3 +95,6 @@ For each of the following pieces of software, pick one internal and one external
 - Whatsapp messenger
 - A banking app
 - The Eigen library
+
+
+[code-complete]: https://learning.oreilly.com/library/view/code-complete-second/0735619670/
