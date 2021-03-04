@@ -7,14 +7,14 @@ title: "Lecture 7: Performance Programming"
 ### Today's Lesson
 
 - Performance Programming
- - Why?
- - Algorithmic complexity
+  - Why?
+  - Algorithmic complexity
 - Other theoretical considerations
- - When not to program for performance
- - How a computer works
+  - When not to program for performance
+  - How a computer works
 - Parallel Computing 1
- - Threads
+  - Threads
 - Parallel Computing 2
- - Concurrency problems and dining philosophers
+  - Concurrency problems and dining philosophers
 - Parallel Computing 3
- - HPC systems
+  - HPC systems
