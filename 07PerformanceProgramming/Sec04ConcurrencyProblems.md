@@ -16,6 +16,8 @@ A classical computer science analogy to illustrate issues with concurrency and r
 ### The set up
 Five hungry yet contemplative philosophers are seated around a table. In front of each of them is a bowl of noodles. In between each of them is a single chopstick. The philosophers are holding one of their famous _symposia_, a party for eathing and thinking and drinking. Each philosopher will alternate between thinking and eating. To eat, a philosopher needs to have hold of _both_ chopsticks. Crucially, this means that not all of the philosophers can eat at the same time.
 
+ ![Dining philosophers](dining_philosophers2.png)
+
 A fuller explanation of the Dining Philosphers problem can be found on [Wikipedia](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 
 ## Deadlock
@@ -39,6 +41,8 @@ This is called a livelock. Just like a deadlock, it is a situation in which no p
 
 ### Resource hierarchy
 One factor that causes the livelock for our dining philosophers ist that the situation is still symmetric around the table. They can all perform the same action at and end up getting nowhere. A solution to this is to break the symmetry around the table. This can be done be introducing a resource hierarchy. In the case of the philosophers, they are labelled P1 to P5 around the table. The chopsticks are also labelled C1 to C5, so that philosopher P1 is seated between chopsticks C1 and C2, and so on around the table until philosopher P5, who is seated between chopsticks C5 and C1. The rules of the resource hierarchy then state that each philosopher can only pick up their higher numbered chopstick once they have picked up the lower numbered one.
+
+ ![Dining philosophers resource hierarchy](dining_philosophers_n.png)
 
 How does this prevent the livelock? Each philosopher P*i* goes to pick up chopstick C*i*, except P5, who has to pick up C1 before C5. This means that P4 can now pick up both C4 and C5, eat and put down C4, allowing P3 to eat. Eventually P1 is able to eat using C1 and C2, places them down and P5 can finally eat.
 
