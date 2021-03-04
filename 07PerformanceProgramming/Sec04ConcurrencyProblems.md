@@ -14,7 +14,7 @@ Running a program with several concurrent threads of execution can encounter sev
 A classical computer science analogy to illustrate issues with concurrency and resource contention.
 
 ### The set up
-Five hungry yet contemplative philosophers are seated around a table. In front of each of them is a bowl of noodles. In between each of them is a single chopstick. The philosophers are holding one of their famous _symposia_, a party for eathing and thinking and drinking. Each philosopher will alternate between thinking and eating. To eat, a philosopher needs to have hold of _both_ chopsticks. Crucially, this means that not all of the philosophers can eat at the same time.
+Five hungry yet contemplative philosophers are seated around a table. In front of each of them is a bowl of noodles. In between each of them is a single chopstick. The philosophers are holding one of their famous _symposia_, a party for eating and thinking. Each philosopher will alternate between thinking and eating. To eat, a philosopher needs to have hold of _both_ chopsticks. Crucially, this means that not all of the philosophers can eat at the same time.
 
  ![Dining philosophers](dining_philosophers2.png)
 
