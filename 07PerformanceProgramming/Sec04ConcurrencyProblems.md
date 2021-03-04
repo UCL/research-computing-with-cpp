@@ -21,7 +21,7 @@ Five hungry yet contemplative philosophers are seated around a table. In front o
 A fuller explanation of the Dining Philosphers problem can be found on [Wikipedia](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 
 ## Deadlock
-It is easy for the philosophers to get into what is called a deadlocked state. In the analogy, each philosopher is determined to eat, and picks up the chopstick to their right, and is unwilling to put it down until after they have eaten. They are each left holding exactly one chopstick each, and are also left hungry, each unwilling to put down the chopstick the have hold of.
+It is easy for the philosophers to get into what is called a deadlocked state. In the analogy, each philosopher is determined to eat, and picks up the chopstick to their right, and is unwilling to put it down until after they have eaten. They are each left holding exactly one chopstick each, and are also left hungry, each unwilling to put down the chopstick they have hold of.
 
 In a concurrent computer system this same deadlock can also occur. If there are _n_ worker threads, each requesting two of _n_ resources, then they can easily end up in a state where each worker has one of the two resources they need, and no work is done. Because of this, the state is referred to as being locked. The computer system is also not changing state, so this is referred to as a deadlock.
 
@@ -35,7 +35,7 @@ For the computer system, the procedure is very similar. Try to acquire the neces
 In both cases, this breaks the time symmetry of the problem. No longer are all the workers or philosphers in the same state for ever more, something is changing, and work gets done.
 
 ## Livelock
-Or does it? The try-and-wait algorithm might end up with all of the philosophers picking up on chopstick simultaneously, realising the other is not available, and putting it back dowmn again without eating. They all wait for the same length of time, and try again.
+Or does it? The try-and-wait algorithm might end up with all of the philosophers picking up one chopstick simultaneously, realising the other is not available, and putting it back down again without eating. They all wait for the same length of time, and try again.
 
 This is called a livelock. Just like a deadlock, it is a situation in which no productive work is being done, hence a 'lock'. However, the state of the philosophers (or computer system) is continually changing, so it looks to an observer or program user that something is happening.
 
@@ -55,9 +55,9 @@ Another problem that may occur in concurrent programs is that of race conditions
 In the case of our philosophers, P3, wants to eat. They check that chopsticks C3 and C4 are available, and picks up C3. In the meantime, P4 has grabbed C4. What happens when P3 tries to pick up the chopstick that is no longer there? In the case of the philosophers, there would no doubt be a full and frank exchange of views. 
 
 ### Waiter/arbitrator
-One solution that race conditions is to use an arbitrator for access to the contended resources. In the case of the dining philosophers, this can be thought of as a waiter whom the philosophers ask permission to pick up both their chopsticks. One one is allowed to pick up chopsticks at a time, and the waiter will not allow another to attempt to do so until the previous philosopher has their chopsticks firmly in hand.
+One solution that race conditions is to use an arbitrator for access to the contended resources. In the case of the dining philosophers, this can be thought of as a waiter whom the philosophers ask permission to pick up both their chopsticks. Only one is allowed to pick up chopsticks at a time, and the waiter will not allow another to attempt to do so until the previous philosopher has their chopsticks firmly in hand.
 
-The waiter can also resolve the issue of resource starvation by ensuring that not philosopher is allowed to go too long without getting to pick up chopsticks and eat.
+The waiter can also resolve the issue of resource starvation by ensuring that no philosopher is allowed to go too long without getting to pick up chopsticks and eat.
 
 In a real computer system, the arbitrator will do much the same thing, controlling access by the worker threads to ensure that access is performed in an orderely fashion, and potentially preventing resource starvation.
 
@@ -73,13 +73,13 @@ Introduced in C++11.
 
 The `std::mutex` class provides a minimal, portable interface to the underlying operating system mutexes. It can be included in your code using the `#include <mutex>` standard header inclusion. The base C++ version provides the following member functions:
 * `mutex( )`
- * default constructor
+  * default constructor
 * `void lock( )`
- * locks the mutex, blocks the calling code if the mutex is not available
+  * locks the mutex, blocks the calling code if the mutex is not available
 * `bool try_lock( )`
- * tries to lock the mutex, returning false if the mutex is not available
+  * tries to lock the mutex, returning false if the mutex is not available
 * `unlock( )`
- * unlocks the mutex
+  * unlocks the mutex
 
 One important point to consider is that due to the usual implementation, `std::mutex`es cannot be used in a `std::vector` or any other container that requires move or copy semantics. This might seem an obvious way to store several mutexes restricting access to several critical sections, but will cause compilation errors when the compiler tries to generate the templated code for the `std::vector<std::mutex>` type.
 
@@ -91,7 +91,7 @@ An example of a race condition that is prevented by atomic operations is if two 
 ### `std::atomic`
 This is a template that ensures that access to a variable is atomic. It can be included in your code using the `#include <atomic>` standard header inclusion.
 
-The header also includes atmoic versions of the built-in `bool` and integer (`char`, `int`, `long`) types enforcing atomic access, arithmetic and incrementing.
+The header also includes atomic versions of the built-in `bool` and integer (`char`, `int`, `long`) types enforcing atomic access, arithmetic and incrementing.
 
 ## Other standard concurrency problems
 The dining philosophers problem is just one of several used to illustrate issues that might occur in concurrent execution of a computer program. Others include:
