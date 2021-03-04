@@ -95,4 +95,5 @@ The dining philosophers problem is just one of several used to illustrate issues
 * Producers-consumers problem
 * Readers-writers problem
 * Sleeping barber problem
+
 For more details Wikipedia provides a good explanation of these problems at a level appropriate for this course. 
