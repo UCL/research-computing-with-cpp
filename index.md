@@ -137,11 +137,13 @@ This year we propose to cover the following topics. These notes will be updated 
 
 
    <td>
-    <h3>8. Shared memory parallelism (1)</h3>
+    <h3>8. Shared memory parallelism</h3>
     <ul>
      <li>OpenMP</li>
      <li>Parallel sections, Reduction</li>
      <li>Safety, Locks and races</li>
+     <li>Task-oriented parallelism</li>
+     <li>Load balancing</li>
     </ul>
    </td>
 
@@ -150,10 +152,11 @@ This year we propose to cover the following topics. These notes will be updated 
 
 
    <td>
-    <h3>9. Shared memory parallelism (2)</h3>
+    <h3>9. GPGPU programming</h3>
     <ul>
-     <li>Task-oriented parallelism</li>
-     <li>Load balancing</li>
+     <li>Accelerators</li>
+     <li>CUDA</li>
+     <li>GPU programming environments 
     </ul>
    </td>
 
