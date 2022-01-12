@@ -45,7 +45,7 @@ default: _site
 	dot $< -T png -o $@
 
 %.png: %.uml Makefile
-   java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
+	java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
 notes.pdf: combined.md Makefile $(PY_FIGURES)
 	$(PANDOC) -Vdocumentclass=report --toc --from markdown combined.md -o notes.pdf
