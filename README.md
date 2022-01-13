@@ -31,6 +31,8 @@ For Mac:
    * `gem install redcarpet`
 * Other utilities:
    * `brew install wget`
+* Python libraries:
+   * `matplotlib` (plus several other scientific python libraries)
 
 Then in folder _site, you'll have the `html`'s.
 Or, for a shortcut: `make preview`
