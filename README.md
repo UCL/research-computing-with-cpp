@@ -27,7 +27,7 @@ For Mac:
 * Ruby stuff:
    * `brew install ruby`
    * `gem install liquid`
-   * `gem install jekyll`
+   * `gem install jekyll --version '~> 3.0'` (`redcarpet` does not work with Jekyll 4.0 onwards)
    * `gem install redcarpet`
 * Other utilities:
    * `brew install wget`
