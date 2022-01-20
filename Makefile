@@ -15,7 +15,7 @@ RELATIVE=$(MDS:.md=.rmd)
 
 SLIDES=$(MDS:.md=-reveal.html)
 
-EXES=$(shell find build -type f -perm /111 -name *.x)
+EXES=$(shell find build -type f \( -perm -u=x -o -perm -g=x -o -perm -o=x \) -name *.x)
 
 PY_FIGURE_SOURCES= $(shell find 06MPI/figures -name *.py)
 
@@ -45,7 +45,7 @@ default: _site
 	dot $< -T png -o $@
 
 %.png: %.uml Makefile
-   java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
+	java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
 notes.pdf: combined.md Makefile $(PY_FIGURES)
 	$(PANDOC) -Vdocumentclass=report --toc --from markdown combined.md -o notes.pdf
