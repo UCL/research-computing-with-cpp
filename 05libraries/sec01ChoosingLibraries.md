@@ -71,7 +71,7 @@ However, there's still some debate on [GPL/LGPL and derivative works](https://lw
 
 For an in-depth understanding we recommend you read some works about licenses:
 
-- [Understanding Open Source and Free Software Licensing][LicensingBookWC] ([web][LicensingBook],[UCL][LicensingBookUCL],[pdf][LicensingBookPDF]),
+- [Understanding Open Source and Free Software Licensing][LicensingBookWC] ([web][LicensingBook], [UCL][LicensingBookUCL], [pdf][LicensingBookPDF]),
 - [The public domain][PDBook]
 
 **Note**: Once a 3rd party has your code under a license agreement, their restrictions are determined by that version of the code.
@@ -118,7 +118,7 @@ Code that is not maintained rots!
 
 Shouldn't need to look excessively closely, but consider:
 
-* Documentation: does it exists? is it good?
+* Documentation: does it exist? is it good?
 * Number of ToDos: do they keep a track of bugs to fix and future features to implement?
 * Dependencies: does it offer a clear list of dependencies? Are they trusted? (i.e., recursively)
 * Data Structures: is it clear how to import/export data or images to use later?
@@ -135,11 +135,11 @@ Then look at features like:
 
 ## Summary
 
-* In C++ prefer few well chosen libraries (the work to replace them may be harder than in other languages such as MATLAB/Python)
+* In C++ prefer a few well chosen libraries (the work to replace them may be harder than in other languages such as MATLAB/Python)
 * Be aware of their licenses for future use and distribution
 * Keep a log of any changes, patches, etc. that you make
 * Be able to compile all your own code, including libraries
-    * so need common build environment. (eg. CMake, Make, Visual Studio).
+    * so need to work in a commonly used build environment. (e.g. CMake, Make, Visual Studio).
 
 [PythonCourse]: http://github-pages.ucl.ac.uk/rsd-engineeringcourse/
 [Python04Intro]: http://github-pages.ucl.ac.uk/rsd-engineeringcourse/ch04packaging/01Libraries.html
@@ -159,7 +159,7 @@ Then look at features like:
 [UCL Copy]: https://www.ucl.ac.uk/library/ucl-copyright-advice "UCL Copyright advice"
 [LGPLStaticVsDynamic]: https://www.gnu.org/licenses/gpl-faq.en.html#LGPLStaticVsDynamic "Does the LGPL have different requirements for statically vs dynamically linked modules with a covered work?"
 [LicensingBookWC]: https://www.worldcat.org/title/understanding-open-source-free-software-licensing-guide-to-navigating-licensing-issues-in-existing-new-software/oclc/314704943
-[LicensingBookUCL]: "https://ucl-new-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,9780596005818&tab=local&search_scope=CSCOP_UCL&vid=UCL_VU2"
+[LicensingBookUCL]: "https://ucl-new-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=UCL_LMS_DS51341932510004761&context=L&vid=UCL_VU2&lang=en_US&search_scope=CSCOP_UCL&adaptor=Local%20Search%20Engine&tab=local&query=any,contains,Understanding%20open%20source%20%26%20free%20software%20licensing&offset=0"
 [LicensingBookPDF]: https://people.debian.org/~dktrkranz/legal/Understanding%20Open%20Source%20and%20Free%20Software%20Licensing.pdf
 [LicesnseCompatibilityWiki]: https://en.wikipedia.org/wiki/License_compatibility
 [PDBook]: https://www.thepublicdomain.org/download/
