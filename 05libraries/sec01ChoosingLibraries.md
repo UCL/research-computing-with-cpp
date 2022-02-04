@@ -146,7 +146,7 @@ Then look at features like:
 [NatureArticle]: http://www.nature.com/news/2010/101013/full/467753a.html
 [LicensingBook]: http://www.oreilly.com/openbook/osfreesoft/book/
 [Chooselicense]: http://choosealicense.com/
-[OSI]: http://opensource.org/
+[OSI]: http://opensource.org/licenses
 [MITLicense]: http://opensource.org/licenses/MIT
 [BSDLicense]: http://opensource.org/licenses/BSD-3-Clause
 [ApacheLicense]: http://opensource.org/licenses/Apache-2.0
