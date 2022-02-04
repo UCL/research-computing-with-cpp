@@ -15,7 +15,7 @@ RELATIVE=$(MDS:.md=.rmd)
 
 SLIDES=$(MDS:.md=-reveal.html)
 
-EXES=$(shell find build -type f -perm +111 -name *.x)
+EXES=$(shell find build -type f \( -perm -u=x -o -perm -g=x -o -perm -o=x \) -name *.x)
 
 PY_FIGURE_SOURCES= $(shell find 06MPI/figures -name *.py)
 
