@@ -118,5 +118,5 @@ Read [J. B. Rainsberger's *The Four Elements of Simple Design*][four-elements] a
 
 
 [wiki-dk]: https://en.wikipedia.org/wiki/Donald_Knuth
-[kat-example]: https://web.mst.edu/~price/cs53/code_example.html
+[kat-example]: https://web.archive.org/web/20200221210929/web.mst.edu/~price/cs53/code_example.html
 [four-elements]: https://blog.jbrains.ca/permalink/the-four-elements-of-simple-design
