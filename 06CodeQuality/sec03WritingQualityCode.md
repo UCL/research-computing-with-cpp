@@ -6,7 +6,7 @@ title: Writing Quality Code
 
 > Programs are meant to be read by humans and only incidentally for computers to execute
 
-If you leave this lesson with only the above quote from [Donald Knuth][wiki-dk] burned into your brain, I'll be happy. This section is about encouraging you to think about how you write C++ in a readable way. The more readable your code is, the easier it it to spot mistakes, add features, and generally maintain. Let's start with some truly terrible code (courtesy of [Katrina Ward][kat-example]):
+If you leave this lesson with only the above quote from [Donald Knuth][wiki-dk] burned into your brain, I'll be happy. This section is about encouraging you to think about how you write C++ in a readable way. The more readable your code is, the easier it it to spot mistakes, add features, and generally maintain. Let's start with some truly terrible code (courtesy of [Katrina Ward][kat-example] from Missouri University of Science and Technology):
 
 ``` cpp
 // Kat                                                               
@@ -118,5 +118,5 @@ Read [J. B. Rainsberger's *The Four Elements of Simple Design*][four-elements] a
 
 
 [wiki-dk]: https://en.wikipedia.org/wiki/Donald_Knuth
-[kat-example]: https://web.mst.edu/~price/cs53/code_example.html
+[kat-example]: https://web.archive.org/web/20200221210929/web.mst.edu/~price/cs53/code_example.html
 [four-elements]: https://blog.jbrains.ca/permalink/the-four-elements-of-simple-design
