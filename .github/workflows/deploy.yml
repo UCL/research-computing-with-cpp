@@ -1,0 +1,52 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2 # FIXME: add apt (latex)
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', '.github/python/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install TeXLive
+        uses: DanySK/setup-texlive-action@0.1.1
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        uses: py-actions/py-dependency-install@v2
+        with:
+          path: ".github/python/requirements.txt"
+      - name: build lesson
+        run: ITK_DIR=/usr/lib/InsightToolkit ./build.sh
+      - name: Builds website
+        uses: helaili/jekyll-action@v2
+        with:
+          target_branch: 'gh-pages'
+          build_only: true
+      - name: Build website and deploy
+        if: github.ref == 'refs/heads/main'
+        uses: helaili/jekyll-action@v2
+        with:
+          target_branch: 'gh-pages'
+          token: ${{ secrets.GITHUB_TOKEN }}

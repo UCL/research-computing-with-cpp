@@ -1,0 +1,21 @@
+pandoc
+texlive-base
+texlive-latex-base
+texlive-latex-recommended
+texlive-latex-extra
+texlive-fonts-recommended
+texlive-xetex
+liblapack-dev
+# dependencies from Travis
+libboost-all-dev
+openmpi-bin
+libopenmpi-dev
+#openssh-client
+#openssh-server
+libinsighttoolkit3-dev
+libvtk9
+libvtk9-dev
+libvtkgdcm3.0   
+libgdcm-tools
+cmake
+lmodern
