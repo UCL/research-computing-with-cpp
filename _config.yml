@@ -62,3 +62,4 @@ exclude:
   - Makefile
   - CMakeLists.txt
   - cpp
+  - vendor
