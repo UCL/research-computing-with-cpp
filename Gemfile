@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'liquid', '5.0'
-gem 'jekyll', '4.0'
+gem 'liquid', '3.0.6'
+gem 'jekyll', '3.1.6'
 gem 'redcarpet'
