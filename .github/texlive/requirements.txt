@@ -16,3 +16,4 @@ libvtkgdcm3.0
 libgdcm-tools
 cmake
 lmodern
+libarrayfire-dev

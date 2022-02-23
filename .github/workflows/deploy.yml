@@ -37,6 +37,10 @@ jobs:
         uses: py-actions/py-dependency-install@v2
         with:
           path: ".github/python/requirements.txt"
+      - name: Install ruby dependencies
+        run: | 
+          gem install bundler
+          bundle install
       - name: build lesson
         run: ITK_DIR=/usr/lib/InsightToolkit ./build.sh
       - name: Builds website
