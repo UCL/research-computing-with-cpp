@@ -37,10 +37,11 @@ jobs:
         uses: py-actions/py-dependency-install@v2
         with:
           path: ".github/python/requirements.txt"
-      - name: Install ruby dependencies
-        run: | 
-          gem install bundler
-          bundle install
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7 # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: build lesson
         run: ITK_DIR=/usr/lib/InsightToolkit ./build.sh
       - name: Builds website
