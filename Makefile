@@ -51,10 +51,10 @@ notes.pdf: combined.md Makefile $(PY_FIGURES)
 	$(PANDOC) -Vdocumentclass=report --toc --from markdown combined.md -o notes.pdf
 
 %.tmd: %.md liquify.rb _plugins/idio.rb Makefile
-	ruby liquify.rb $< > $@
+	bundle exec ruby liquify.rb $< > $@
 
 %.rmd: %.md liquify.rb _plugins/idio.rb Makefile
-		ruby liquify.rb $< slides > $@
+	bundle exec ruby liquify.rb $< slides > $@
 
 combined.md: $(TEMPLATED) cover.md
 	cat cover.md `echo $^ | sed s/cover.md// ` > $@
