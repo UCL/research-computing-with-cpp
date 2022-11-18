@@ -40,18 +40,20 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.4 # Not needed with a .ruby-version file
+          ruby-version: 2.7 # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: build lesson
         run: ITK_DIR=/usr/lib/InsightToolkit ./build.sh
       - name: Builds website
         uses: helaili/jekyll-action@v2
         with:
+          pre_build_commands: 'bundle update ffi' # to solve helaili/jekyll-action#112
           target_branch: 'gh-pages'
           build_only: true
       - name: Build website and deploy
         if: github.ref == 'refs/heads/main'
         uses: helaili/jekyll-action@v2
         with:
+          pre_build_commands: 'bundle update ffi' # to solve helaili/jekyll-action#112
           target_branch: 'gh-pages'
           token: ${{ secrets.GITHUB_TOKEN }}

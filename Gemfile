@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'liquid', '3.0.6'
-gem 'jekyll', '3.1.6'
-gem 'redcarpet'
+gem 'jekyll', '~> 4.2.1'
+gem 'kramdown', '~> 2.3.1'
