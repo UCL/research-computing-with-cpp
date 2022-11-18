@@ -7,7 +7,7 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
            -V width:'"100%"' -V height:'"100%"' -V margin:0 -V minScale:0.1 -V maxScale:1.5 \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
-MDS=$(filter-out indigo-jekyll-master% _site%, $(wildcard 01research/*.md 02cpp1/index.md 02cpp1/sec01*.md 02cpp1/sec02*.md 02cpp1/sec03EssentialReading-reveal.md 03cpp2/*.md 04cpp3/*.md ))
+MDS=$(filter-out _site%, $(wildcard 01research/*.md 02cpp1/index.md 02cpp1/sec01*.md 02cpp1/sec02*.md 02cpp1/sec03EssentialReading-reveal.md 03cpp2/*.md 04cpp3/*.md ))
 
 TEMPLATED=$(MDS:.md=.tmd)
 
@@ -64,23 +64,8 @@ notes.tex: combined.md Makefile $(OUTS)
 
 master.zip: Makefile
 	rm -f master.zip
-	wget https://github.com/UCL-RITS/indigo-jekyll/archive/master.zip
 
-ready: indigo $(OUTS) notes.pdf $(SLIDES) notes.tex $(PY_FIGURES)
-
-indigo-jekyll-master: Makefile master.zip
-	rm -rf indigo-jekyll-master
-	unzip master.zip
-	touch indigo-jekyll-master
-
-indigo: indigo-jekyll-master Makefile
-	cp -r indigo-jekyll-master/indigo/images .
-	cp -r indigo-jekyll-master/indigo/js .
-	cp -r indigo-jekyll-master/indigo/css .
-	cp -r indigo-jekyll-master/indigo/_includes .
-	cp -r indigo-jekyll-master/indigo/_layouts .
-	cp -r indigo-jekyll-master/indigo/favicon* .
-	touch indigo
+ready: $(OUTS) notes.pdf $(SLIDES) notes.tex $(PY_FIGURES)
 
 .PHONY: ready
 
@@ -92,8 +77,6 @@ preview: ready
 
 clean:
 	rm -rf build
-	rm -rf indigo
-	rm -rf indigo-jekyll-master
 	rm -f master.zip
 	rm -f notes.pdf
 	rm -rf _site
