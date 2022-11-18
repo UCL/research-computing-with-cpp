@@ -7,7 +7,7 @@ PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css
            -V width:'"100%"' -V height:'"100%"' -V margin:0 -V minScale:0.1 -V maxScale:1.5 \
            --default-image-extension=png --highlight-style=zenburn --mathjax -V revealjs-url=http://lab.hakim.se/reveal-js
 
-MDS=$(filter-out _site%, $(wildcard 01research/*.md 02cpp1/index.md 02cpp1/sec01*.md 02cpp1/sec02*.md 02cpp1/sec03EssentialReading-reveal.md 03cpp2/*.md 04cpp3/*.md ))
+MDS=$(filter-out _site%, $(wildcard 01projects/*.md 02cpp1/index.md 02cpp1/sec01*.md 02cpp1/sec02*.md 02cpp1/sec03EssentialReading-reveal.md 03cpp2/*.md 04cpp3/*.md ))
 
 TEMPLATED=$(MDS:.md=.tmd)
 
@@ -48,7 +48,7 @@ default: _site
 	java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
 notes.pdf: combined.md Makefile $(PY_FIGURES)
-	$(PANDOC) -Vdocumentclass=report --toc --from markdown combined.md -o notes.pdf
+	$(PANDOC) --pdf-engine=lualatex -V "monofont:DejaVu Sans Mono" -Vdocumentclass=report --toc --from markdown combined.md -o notes.pdf
 
 %.tmd: %.md liquify.rb _plugins/idio.rb Makefile
 	bundle exec ruby liquify.rb $< > $@

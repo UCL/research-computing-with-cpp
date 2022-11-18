@@ -9,7 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Apparently now this is also needed for ITK-related stuff to compile...
 add_compile_options(-fpermissive)
 
-add_subdirectory(01research/cpp)
+add_subdirectory(01projects/cpp)
 add_subdirectory(02cpp1/cpp)
 add_subdirectory(03cpp2/cpp)
 add_subdirectory(04cpp3/cpp)
