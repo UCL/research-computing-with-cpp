@@ -13,8 +13,7 @@ title: "Lecture 2: Modern C++ (1)"
 
 ### Todays Lesson
 
-* Recap of C++ features 
-* OO concepts: 
-    * Encapsulation and data abstraction
-    * Inheritance
-    * Polymorphism
+* C++ Core Features
+* Standard Library 
+* Passing by Value and by Reference
+* Smart Pointers 
