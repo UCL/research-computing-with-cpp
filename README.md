@@ -5,8 +5,8 @@ Deployed at:
 
 http://github-pages.ucl.ac.uk/research-computing-with-cpp
 
-We normally build these locally on a Mac. We use g++ installed via homebrew. 
-So, for g++ version 7, we would: 
+We normally build these locally on a Mac. We use g++ installed via homebrew.
+So, for g++ version 7, we would:
 
 ``` bash
 git clone https://github.com/UCL-RITS/research-computing-with-cpp
@@ -37,7 +37,4 @@ For Mac:
 Then in folder _site, you'll have the `html`'s.
 Or, for a shortcut: `make preview`
 
-See https://github.com/UCL-RITS/research-computing-with-cpp/blob/master/01cpp/index.md for an example of how to reference a C file, CMake file, and run an executable
-
-And https://github.com/UCL-RITS/research-computing-with-cpp/tree/master/01cpp/cpp/hello
-for the corresponding code
+See [this document](./02cpp1/index.md) for an example of how to reference a C file, CMake file, and run an executable, and [this file](./02cpp1/cpp/hello) for the corresponding code.
