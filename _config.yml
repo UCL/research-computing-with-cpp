@@ -10,6 +10,9 @@ defaults:
 
 baseurl: /research-computing-with-cpp
 
+remote_theme: dpshelio/indigo-jekyll
+
+
 crumbs:
   - link: http://www.ucl.ac.uk/ISD
     text: ISD
@@ -20,9 +23,10 @@ crumbs:
   - link: http://www.ucl.ac.uk/isd/services/research-it/training
     text: Training
 
-markdown: redcarpet
-redcarpet:
-  extensions: ["strikethrough","tables"]
+markdown: kramdown
+
+kramdown:
+  hard_wrap: false
 
 idio:
   fence: True
