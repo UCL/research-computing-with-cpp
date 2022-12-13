@@ -3,10 +3,10 @@ research-computing-with-cpp
 
 Deployed at:
 
-http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp
+http://github-pages.ucl.ac.uk/research-computing-with-cpp
 
-We normally build these locally on a Mac. We use g++ installed via homebrew. 
-So, for g++ version 7, we would: 
+We normally build these locally on a Mac. We use g++ installed via homebrew.
+So, for g++ version 7, we would:
 
 ``` bash
 git clone https://github.com/UCL-RITS/research-computing-with-cpp
@@ -26,13 +26,14 @@ For Mac:
    * `brew install gcc`
 * Ruby stuff:
    * `brew install ruby`
-   * `gem install liquid`
-   * `gem install jekyll --version '~> 3.0'` (`redcarpet` does not work with Jekyll 4.0 onwards)
-   * `gem install redcarpet`
+   * `gem install jekyll`
+   * `gem install jekyll-remote-theme`
 * Other utilities:
    * `brew install wget`
 * Python libraries:
    * `matplotlib` (plus several other scientific python libraries)
+
+A full LaTeX distribution needs to be available to generate a PDF version of the course notes by the build script.
 
 Then in folder _site, you'll have the `html`'s.
 Or, for a shortcut: `make preview`
