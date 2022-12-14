@@ -51,7 +51,6 @@ int main()
 ```
 - Remember that pointers actually store memory addresses, not the values of the variables that they point to. So to get the value of the variable we need to "dereference" the pointer using the `*` operator. `p_int` refers to the smart pointer, but `*p_int` gives us the value of the integer that we are pointing to. 
 - We can make assignments to `*p_int` which will update the value of the integer, but doesn't change the memory location (so `*p_int` will change, but `p_int` won't). 
-- Using `std::make_unique<>` and then declaring an object will create the object on the stack and then copy it to the heap. Declaring a unique pointer by passing `new` to the constructor will create the object directly on the heap, and so can be preferable in circumstances where the object being created it large and copies are computationally expensive. 
 
 You also can't make a copy of a unique pointer, as then there would be a conflict over which one should handle the destruction of the object when it goes out of scope. This means that when we want to pass a unique pointer to a function, we cannot pass it by value, because this would involve making a copy. We can, however, pass a unique pointer by reference. 
 ```cpp
@@ -79,7 +78,7 @@ Since we can't have multiple unique pointers pointing to the same data, if we wa
 std::unique_ptr<int> p1 = std::make_unique<int>(5);
 std::unique_ptr<int> p2 = std::move(p1);
 ```
-- **Avoid doing this if at all possible! After this operation, `p1` will no longer point to valid memory, and will cause a segmentation fault if accessed (i.e. your program will crash).** 
+- **Avoid doing this if at all possible. After this operation, `p1` will no longer point to valid memory, and will cause a segmentation fault if accessed (i.e. your program will crash).** 
 
 This can also apply to functions if not passing a unique pointer by reference. This can lead to extremely dangerous code as we can see in this example:
 ```cpp
@@ -99,8 +98,8 @@ int main()
     return 0;
 }
 ```
-- In this code, the memory is passed from `p1` to `p`, a unique pointer which is local to the function. In order to avoid the memory being deleted when we leave the function scope, we use `std::move` to move the memory from `p` to `p2`. At that point, `p2` points to our useful memory, and `p1` is dangling. We use `swap` to move the memory back to `p1`, which leaves `p2` dangling. **If we access `p2` this program will crash. Do not use `std::move` to pass data around, and only use it is you want a new variable to take control of the destruction of that data.** 
-- A good example of using `std::move` would be if another object, perhaps with a broader scope than the existing data, needed to take ownership of that data as part of its class. Then if that object outlives the current scope, the data will be maintained for as long as that object lives. **In this case we still need to be careful not to access dangling pointers created by `std::move`**. 
+- In this code, the memory ownership is passed from `p1` to `p`, a unique pointer which is local to the function. In order to avoid the memory being deleted when we leave the function scope, we use `std::move` to move the ownership from `p` to `p2`. At that point, `p2` points to our useful memory, and `p1` is dangling. We use `swap` to move the memory back to `p1`, which leaves `p2` dangling. **If we access `p2` this program will crash. Do not use `std::move` to pass data around, and only use it is you want a new variable to take control of the destruction of that data.** 
+- A good example of using `std::move` would be if another object, perhaps with a broader scope than the existing pointer, needed to take ownership of that data as part of its class. Then if that object outlives the current scope, the data will be maintained for as long as that object lives. **In this case we still need to be careful not to access dangling pointers created by `std::move`**. 
 - We can test whether a unique pointer `p` points to valid memory using `(p)` which returns `true` if it points to valid memory and `false` otherwise.
 ```cpp
 if (p2)
@@ -191,9 +190,37 @@ When Alice, for example, goes out of scope then Alice's data stays live because 
 - This is an example of using shared pointers in a situation where it does not correctly model the ownership of the data. In this model a `Person` shouldn't have control over the lifetime of another, since different `Person` objects should be allowed to be created or destroyed independently. One `Person` is not a part of, or owned, by another. 
 - In order to model this concept properly we need to use *non-owning* pointers, that allow objects to point to one another without influencing their lifetime. 
 
+## Aside: Using `make_unique` / `make_shared` or `new` 
+
+There can be some circumstances where the use of `new` when creating a smart pointer can be a problem. Consider the following example:
+```cpp
+int someFunction(const std::shared_ptr<int>& sp_x, const int& i)
+{
+  // Some function
+}
+int riskyFunction()
+{
+ // Something which can throw an exception (an error)
+}
+int main()
+{
+ int result = someFunction(std::shared_ptr<int>(new int(24)),
+                             riskyFunction());
+}
+```
+- In the call to `someFunction` we do three things:
+    1. Make a new integer on the heap (allocates memory).
+    2. Constructs a unique pointer to that integer. 
+    3. Calls the function `riskyFunction` to calculate some other int. 
+- The exact order of these things is not enforced by the C++ standard. 
+- If the `riskyFunction` is called in between allocating the new int and creating the shared pointer to it, then if it throws an exception it will prevent the pointer to that memory being created and thus lead to memory allocated that cannot be accessed or deallocated i.e. a memory leak. 
+- This can be fixed by using `std::make_shared<int>` instead. 
+
+**The `make_unique` and `make_shared` methods are generally preferred to using `new` as they are safer.**
+
 ## Weak Pointers `std::weak_ptr<>`
 
-Weak pointers are a special kind of smart pointer which can only point to memory owned by a shared pointer. You cannot use weak pointers to initialise new objects in memory, point to memory owned by unique pointers, or point to references of ordinary objects. Weak pointers do not contribute to the pointer count for the shared pointer, so they do not impact the lifetime of the object that they are pointing to. They can be used therefore to break the circular reference problem with shared pointers and model situations where there is no ownership relation. 
+Weak pointers are a special kind of smart pointer which can only point to memory owned by a shared pointer. You cannot use weak pointers to initialise new objects in memory, point to memory owned by unique pointers, or point to ordinary stack objects. Weak pointers do not contribute to the pointer count for the shared pointer, so they do not impact the lifetime of the object that they are pointing to. They can be used therefore to break the circular reference problem with shared pointers and model situations where there is no ownership relation. 
 
 Because weak pointers do not own the memory to which they point, that memory can be freed (the object deleted) before the weak pointer is out of scope, leaving the weak pointer to point at invalid memory. You can check whether a weak pointer points to valid memory using the same method as unique or shared pointers: if we have a weak pointer `wpt` then the expression `(wpt)` will evaluate to `true` if `wpt` is pointing to an object which has not been destroyed, and `false` if the object has been deleted. This is especialy important for weak pointers as this can happen even if the programmer does not invoke any `move` or `swap` operations. Although it can slow down execution, it is a good idea to check that the existence of objects pointed to by weak pointers before trying to access them. You can also use `wpt.expired()` which will return `true` if the memory is deleted and `false` otherwise (the opposite of `(wpt)`). 
 
@@ -244,6 +271,7 @@ Bob Destroyed
 Alice Destroyed
 ```
 showing that both destructors are now called and the memory freed. 
+- Note that we can no longer declare `Alice` and `Bob` as ordinary stack variables of type `Person`, but have to declare them as `shared_ptr<Person>` in order to have a `weak_ptr` point to them. The use of `weak_ptr` can therefore impact how a class can be used. 
 
 ## Memory Ownership
 
@@ -259,6 +287,7 @@ You may have come across *raw pointers* before when using C++. These have existe
 - Faster memory access than weak pointers, although unique/shared pointers can match speed of raw pointers if compiled with optimisation.  
 - Lower memory management overheads. 
 - Must manually use `new` and `delete` to manage memory allocation/deallocation: this is a frequent source of bugs. 
+    - If using pointers for arrays as in `int *array = new int[100]` then you must use the `delete[]` keyword to make sure that the whole array is freed.
 - Can't check if memory pointing to has already been freed; if you need to do this then you should use a combination of shared and weak pointers. 
 - **Only use when you know they are safe and have specific performance considerations**
 
