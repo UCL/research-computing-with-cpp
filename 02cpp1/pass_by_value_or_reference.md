@@ -4,7 +4,7 @@ Variables can be passed to functions in two ways in C++: "pass by value" and "pa
 
 ## Pass by Value
 
-Pass by Value means that we copy the value of the variable we want to pass into the function, and the function works on this copy and leaves the original alone. Any changes that the function makes to the variable will not affect the value of that variable once you leave the function's scope. To pass by value you simply list type and name of the variable in the usual way. 
+Pass by Value means that we copy the value of the variable we want to pass into the function, and the function works on this copy and leaves the original alone. Any changes that the function makes to the variable will not affect the value of that variable once you leave the function's scope. To pass by value you simply write the type and name of the variable in the function parameters in the usual way. 
 ```cpp
 int add(int a, int b)
 {
@@ -16,10 +16,10 @@ This function can be safer, but is not time or memory efficient if variables are
 ## Pass by Reference 
 
 Pass by Reference means that we tell the function where the original variable has been stored in memory, and we allow the function to work directly with that original variable. This has two major consequences:
-   * We only pass a memory address -- 4 bytes, the same size as an integer -- to the function, so there is not additional memory allocated to copy the object.
+   * We only pass a memory address -- 4 bytes, the same size as an integer -- to the function, so there is no additional memory allocated to copy the object.
    * The original variable can be changed by the function, and so any changes that happen within the function are retained after we leave the function's scope. 
 
-We indicate that we want a reference to a variable using the `&` operator. The function below will take a reference to an integer and increment that integer by one. Because we have changed the value stored at that memory location, once we leave this function, the variable that we passed to it will retain this increased value. 
+We indicate that we want a reference to a variable using the `&` operator. The function below will take a reference to an integer and increment that integer by one. Because we have changed the value stored at that memory location, once we leave this function the variable that we passed to it will retain this increased value. 
 ```cpp
 void increment(int &x)
 {
@@ -56,13 +56,13 @@ vector<int> makeList(const int &a, const int &b)
 
 int main()
 {
-    vector<int> intList = makeList(7, 1482);
+    vector<int> intList = makeList(1, 100000);
 
     return 0;
 }
 
 ```
-- This code will create a large vector inside the function call, and then copy that vector when the function returns and place the result in the variable `intList`. The original vector is then deleted. 
+- This code will create a large vector inside the function call, and then copy that vector when the function returns and place the result in the variable `intList`. The original vector is then deleted.
 
 Instead of declaring a variable and setting it equal to the return value of a function, we can instead declare the variable and then pass it into the function by reference. 
 ```cpp
@@ -77,7 +77,7 @@ void makeListInPlace(const int &a, const int &b, vector<int> &v)
 int main()
 {
     vector<int> intList;
-    makeListInPlace(7, 1482, intList);
+    makeListInPlace(1, 100000, intList);
 
     return 0;
 }
