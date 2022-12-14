@@ -203,6 +203,36 @@ int main()
     - If you are using multiple vectors you should make sure that they are the same size, or that you don't exceed the bounds of the smaller vector. 
     - It's usually easier and safer to use range based loops (or iterators) if you don't need explicit indexing information. 
 
+## Aside: Namespaces, `using`, and `typedef`
+
+You may have noticed that our code samples so far have had to use `std::` very frequently! The `std` namespace keeps standard names from clashing with our own function, variable, or class definitions, but can also cumbersome when certain types or functions are used very frequently. In some code you may also find nested namespaces and classes, leading to multiple `::` prefixes, which can make code difficult to read. There are two common remedies to this issue.
+
+### The `using` Keyword
+
+We can make all of a namespace available to use directly by using the following syntax:
+```cpp
+using namespace std;
+```
+- Now all the names in `std` are available to use without using `std::` in front, so we can just type `cout`, `endl`, `cin` etc. 
+- **This is generally bad** because `std` is very big and contains lots of names! The whole point of the namespace is to avoid accidental clashes of names. 
+
+A better alternative to using an entire namespace is to just use specific names from that namespace e.g.:
+```cpp
+using std::cout;
+using std::endl;
+```
+- Now `cout` and `endl` are available to use without typing `std::`, but the rest of the `std` namespace will still require it. 
+- Each name needs to be declared separately with another `using` keyword which can lead to a lot of `using` statements. 
+
+### The `typedef` Keyword
+
+Types in C++ can grow to be quite long and complicated for certain kinds of objects, especially when namespaces are also involved. Furthermore, we often wants type names to be more indicative of what we actually want to use them for: the name `IntMatrix` is more helpful than `std::vector< std::vector <int>>`! We can assign an alias for any type by using the `typedef` keyword like so:
+```cpp
+typedef std::vector< std::vector<int> > = IntMatrix; 
+```
+- We can now declare variables to be of type `IntMatrix`, or use it as a return type or parameter type in functions. 
+- It is identical to `std::vector< std::vector<int>>`; the compiler will replace instances of `IntMatrix` with the real type when it comes to compilation. It is just to make the code easier to read and write. 
+
 ## Algorithm
 
 The `<algorithm>` library is an important part of modern C++ code. It contains a variety of commonly used algorithms, many of which operate on containers. These include sorting, searching, counting, maxima, minima, and merge. If there is some functionality that you need then it is usually worth checking if there is a standard library implementation for it already, before trying to implement it yourself or seeking third party libraries. This will save you time on implementation and testing, and keep your code portable by minimising external dependencies.
