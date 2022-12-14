@@ -55,11 +55,13 @@ int main()
 
 ## Containers
 
-Containers are an important part of the C++ standard library; these allow us to keep collections of objects such as lists (`vector`, `array`), sets (`set`), or maps (`map`, `unordered_map`) of key-value pairs, among others. These are some of the most common classes that you will use in C++ programming, so it is a good idea to familiarise yourself with them. We'll discuss `vector` as an example here, but see the section "Using C++ Documentation" for more information on how to learn about the other kinds of containers. 
+Containers are an important part of the C++ standard library; these allow us to keep collections of objects such as lists (`vector`, `array`), sets (`set`), or maps of key-value pairs (`map`, `unordered_map`), among others. These are some of the most common classes that you will use in C++ programming, so it is a good idea to familiarise yourself with them. We'll discuss `vector` as an example here, but see the section "Using C++ Documentation" for more information on how to learn about the other kinds of containers. 
 
-### Vector
+## Vector
 
-The vector class is defined in the `<vector>` header. It is used when you want to keep a list of elements. 
+The vector class is defined in the `<vector>` header. It is used when you want to keep an ordered list of elements. 
+
+### Declaring a Vector:
 
 ```cpp
 #include <vector>
@@ -75,7 +77,9 @@ int main()
 - When we declare a vector we also must place the type of object that the vector holds in angle brackets. So a vector of integers is declared `std::vector<int>`, and a vector of doubles is declared `std::vector<double>`. 
 - We can declare an empty list using `std::vector<int> myIntList`, or we can use the curly-brace notation above to give some initial values. 
 
-Vectors are dynamically sized, which means we change, add, or remove elements. 
+### Adding or Removing Elements
+
+Vectors are dynamically sized, which means we add or remove elements. Here are some example of adding in and removing particular elements:
 ```cpp
 std::vector<int> v = {1,2,3};
 v.push_back(4);  // Add an element to the end of our vector 
@@ -84,10 +88,14 @@ v.pop_back();    // Remove last element from vector
 v.insert(v.end() - 1, 99);  // Insert an element before the last element of the vector
 v.erase(v.begin() + 1);     // Remove the second element of a vector
 ```
-- `v.end()` and `v.begin()` return iterators, special types which can be used to iterate over containers. The methods `begin()` and `end()` return iterators to the start and end of a container respectively, and iterations can be incremented using regular arithmetic. These can also be used for looping e.g. `for(vector<int>::iterator it = myNums.begin(); it != myNums.end(); it++)`. You can use `auto` to infer the iterator type in a loop declaration to make it more succinct.
-- THe memory for a `vector` is assigned in a contiguous block. This helps with performance because the vector class can find the memory location of a given element using pointer arithmetic.
-- A `vector` doesn't have a fixed size, but it does have a certain amount of memory allocated to it. If you add enough elements to outgrow this size, it will have to allocate new memory of a larger size, and copy the elements over to this new memory to keep it contiguous. The cost of this operation scales linearly with the size of your vector; you cannot necessarily predict when this will happen as the amount of memory allocated to a vector by default will be compiler dependent. 
-- If you know how much space you will need for a vector, or can place an appropriate limit on it, then you can use the `.reserve(int)` method to reserve space for for a given number of elements, e.g. `v.reserve(20)` will allocate enough memory to `v` to store 20 elements. 
+- `v.end()` and `v.begin()` return **iterators**, special types which can be used to iterate over containers. The methods `begin()` and `end()` return iterators to the start and end of a container respectively, and iterators can be incremented using regular arithmetic. These can also be used for looping e.g. `for(vector<int>::iterator it = myNums.begin(); it != myNums.end(); it++)`. You can use `auto` to infer the iterator type in a loop declaration to make it more succinct.
+- The memory for a `vector` is assigned in a contiguous block. This helps with performance because the vector class can find the memory location of a given element using pointer arithmetic.
+- A `vector` doesn't have a fixed size, but it does have a certain amount of memory allocated to it. If you add enough elements to outgrow this size, it will have to allocate a new block of memory of a larger size, and copy the elements over to this new memory in order to increase the size and still remain contiguous. 
+    - The cost of this operation scales linearly with the size of your vector. 
+    - You cannot necessarily predict when this will happen as the amount of memory allocated to a vector by default will be compiler dependent. 
+    - If you know how much space you will need for a vector, or can place an appropriate limit on it, then you can use the `.reserve(int)` method to reserve space for for a given number of elements, e.g. `v.reserve(20)` will allocate enough memory to `v` to store 20 elements. 
+
+### Accessing Elements
 
 We can also access elements of a vector in a couple of different ways.
 ```cpp
@@ -107,8 +115,25 @@ int main()
 - We can use the `.at(i)` method on a vector to get the value at that position in the vector. If `i` is outside of the range of the vector then this method will throw an error, which can be handled by your program. (See next week when we discuss exceptions.)
 - We can also access a vector using square brackets: `myVector[i]`. This is substantially faster than using `myVector.at(i)`, but does no bounds checking. If `i` is outside of the size of vector then the behaviour is *undefined*: this means the standard does not define what the program should do in this case, and the result will be compiler dependent. *Undefined behaviour should always be avoided. Only use square brackets if array access performance is important and you can be sure that you will not go outside of the bounds of the vector.*
 - Accessing and modifying vector elements using `[]` has high performance, and can even out-perform traditional C-arrays if compiled with optimisations turned on, which makes `vector` an excellent general purpose class for lists. 
+- Accessing a vector element allows us to change its value just like an ordinary variable e.g. `myVector[3] = 5` sets element `3` of `myVector` equal to `5`. 
 
-We can use *range based loops* with vectors, since the vector object keeps track of the number of elements within it. We could do this e.g. to print out all the elements of a vector.
+### Looping Over Vectors
+
+One of the most important operations we perform on vectors (and other containers) is to loop over the elements of a vector. As mentioned above, we can do this using an iterator:
+```cpp 
+for(auto it = myVector.begin(); it != myVector.end(); it++)
+{
+    std::cout << *it << std::endl; 
+    *it += 5;  // Adds 5 to the element of the vector
+}
+```
+- `it` is an iterator which starts at the beginning of the vector and is incremented until it reaches the end of the vector. Iterating this way means that we know we'll never be out of range for our vector! 
+- Here we can use `auto` to make code more concise, but the type of an iterator for a vector is `vector<type>::iterator` for whatever `type` you hold in your vector (e.g. `vector<int>::iterator`). Iterators for other containers are defined similarly. 
+- In order to get the value held from an iterator you need to use the dereference operator (*) like with a pointer. So we need to use `*it` in order to print out or reassign that value. 
+
+Iterators can be a little cumbersome to use, but there are luckily are other ways of doing the same thing. 
+
+We can use *range based loops*, since the vector object keeps track of the number of elements within it. We could do this e.g. to print out all the elements of a vector.
 ```cpp
 #include <vector>
 
@@ -127,11 +152,10 @@ int main()
 - Declaring a range based loop we use the syntax: `for(type element : list){ loop code }`.
 - Here we have used the `auto` keyword to ask C++ to infer the type for us; this can be useful when we want to avoid writing out lots of types explicitly!
 - This will iterate through all the elements of the list, in order. For each loop iteration, `num` will be initialised with the data for that element in the list. 
-- `num` is initialised the same way as function arguments, so by default the elements of the list are passed by value i.e. a copy of the element is made and stored that in the variable `num`. This means any changes to `num` in the loop code are not reflected in the vector itself. If you want to avoid copy overheads or make changes to your vector, you should make this variable a reference using the `&` operator just like when passing by reference to a function (see Passing by Value & Passing by Reference). In this case we would write `for(auto &num : fibbonacciList)` and our loop code would receive a reference to each element of the list rather than a copy.  
+- `num` is initialised the same way as function arguments, so by default the elements of the list are passed by value i.e. a copy of the element is made and stored that in the variable `num`. This means any changes to `num` in the loop code are not reflected in the vector itself. **If you want to avoid copy overheads or make changes to your vector, you should make this variable a reference using the `&` operator** just like when passing by reference to a function (see Passing by Value & Passing by Reference). In this case we would write `for(auto &num : fibbonacciList)` and our loop code would receive a reference to each element of the list rather than a copy.  
 - Range based loops can be used with other containers which are iterable, like `array` and `map`. 
-- You can also iterate through these containers using traditional `for` loops and iterator types or integers. 
 
-Traditional `for` loops can be useful for iterating through vectors when you need to keep track of the index of an element, for example when assigning a vector a value that depends on its index or when working with multiple vectors at once. 
+Traditional `for` loops with integral types can also be useful for iterating through vectors when you need to keep track of the index of an element, for example when assigning a vector a value that depends on its index or when working with multiple vectors at once. 
 ```cpp
 #include <vector>
 
@@ -141,7 +165,7 @@ int main()
     std::vector<int> b = {5, 6, 7, 8};
     std::vector<int> c(4); // create a vector with size 4
 
-    for(uint i = 0; i < 4; i++)
+    for(size_t i = 0; i < 4; i++)
     {
         c.at(i) = a.at(i) + b.at(i);
     }
@@ -149,10 +173,17 @@ int main()
     return 0;
 }
 ```
+- `size_t` is an unsigned (cannot be negative) inegral numerical type which is often used for the sizes of objects. 
+    - The max value of `size_t` is large enough for the largest objects that can be stored in memory. 
+    - If you know that you won't have too many elements you can use other inegral types like `int` or `uint`.
+- In this case we have to manually make sure that we don't go out of bounds for our vectors. 
+    - You can use things like the size method (`myVector.size()`, which returns a `size_t`) as the upper bound to prevent going outside of the range of the vector. 
+    - If you are using multiple vectors you should make sure that they are the same size, or that you don't exceed the bounds of the smaller vector. 
+    - It's usually easier and safer to use range based loops (or iterators) if you don't need explicit indexing information. 
 
 ## Algorithm
 
-The `<algorithm>` library is an important part of modern C++ code. It contains a variety of commonly used algorithms, many of which operate on containers. These include sorting, searching, counting, maxima, minima, and merge. If there is some functionality that you need then it is usually worth checking if there is a standard library implementation for it already, before trying to implement it yourself or seeking third party libraries. This will save you time on implementation and testing, and keep your code portable. 
+The `<algorithm>` library is an important part of modern C++ code. It contains a variety of commonly used algorithms, many of which operate on containers. These include sorting, searching, counting, maxima, minima, and merge. If there is some functionality that you need then it is usually worth checking if there is a standard library implementation for it already, before trying to implement it yourself or seeking third party libraries. This will save you time on implementation and testing, and keep your code portable by minimising external dependencies.
 
 The functionality in `algorithm` can be made much more flexible and interesting by combining with other functions, as many of the functions in `algorithm` take functions as arguments. One way to do this is to write a function and pass a reference to it. Imagine that we want to count the number of even numbers in a vector of integers. Using `count_if` from the `<algorithm>` library we could write:
 ```cpp
@@ -171,9 +202,17 @@ The functionality in `algorithm` can be made much more flexible and interesting 
     }
 ```
 - Note that here we give `count_if` iterators for the beginning and end of the vector.
-- The third argument given to `count_if` is a reference to a function which takes an integer `x` and returns `true` if `x` is divisible by two. 
+- The third argument given to `count_if` is a pointer to a function which takes an integer `x` and returns `true` if `x` is divisible by two. 
+    - You can also store a function pointer in a variable like so: `auto fnPtr = &isEven`. 
+    - The explicit type declaration of a function pointer looks like this: `bool (*fnPtr) (int) = &isEven` i.e. a function pointer (`fnPtr`) can be dereferenced (`*fnPtr`) to a function that takes an `int` and return a `bool`. If you do need to declare a variable as a function pointer then it's usually easier to use `auto`! 
+    - The `()` operator for evaluating a function like object is also defined for function pointers, so you can evaluate this function pointer using `fnPtr(i)` or `(*fnPtr)(i)`. 
+- In general the third argument can be anything which takes an argument of the correct type and returns a boolean.
+    - In this case we take an `int` because our vector is of type `vector<int>`.
+    - So if our third argument is called `F`, then for any integer `i` we must be able to write `F(i)` and have it evaluate to a `bool`. 
+    - This kind of object is called a **functor**, which in C++ just means that the `()` operator is defined. (The term functor has very different meanings in other programming languages and areas of mathematics!)
 - `count_if` applies the function to each element of the vector and adds to the count only if it evaluates to true. 
 
+Often the pieces of code that we want to pass to `<algorithm>` functions like this are small and not re-used in other parts of our code. Separately declaring small functions like this can also make our code less readable because the implementation for the function is stored somewhere else compared to where it is being used (note we have to define `isEven` outside of `main`). Next we'll look at a way of defining functions that leads to fewer function definitions cluttering up our code!
 
 ## Anonymous Functions
 
@@ -188,16 +227,27 @@ The code above using `count_if` works fine, but if we have many such algorithm c
         return 0;
     }
 ```
-This code achieved the same thing, but there is no named function passed to `count_if`. Instead, we have an anonymous function - an object that we have created for the purposes of providing an argument to `count_if`. We can also use lambda expressions to create named objects, like so:
+- Our function is now defined in-line, inside the arguments list for `count_if`, instead of being declared separately elsewhere. 
+- We'll explain the syntax below, but note the similarities between the expression `[](int x){return x%2 == 0;}` and our definition of `isEven`. 
+
+This code achieves the same thing as previous example using function pointers, but there is no named function passed to `count_if`. Instead, we have an anonymous function - an object that we have created for the purposes of providing an argument to `count_if`. We can also use lambda expressions to create named objects, like so:
 ```cpp
 auto isEven = [](int x){return x%2 == 0;};
 ```
-The object `isEven` can now be passed to functions, copied, overwritten, and so on. 
+- The object `isEven` can now be passed to functions, copied, overwritten, and so on. 
+- If creating a named variable for a lambda expression, **always use `auto`**. Lambda functions cannot be typed unless the square brackets `[]` are empty (in which case they can be typed in the same was as function pointers), so there is no explicit type that you can give when declaring them. 
 
-Lambda expression syntax can look a little confusing at first, but becomes simpler if we understand what the three different kinds of brackets are for:
-- [] Square brackets are for variables to be captured from the environment. These are variables which you want to be available in your function, but are not explicit function arguments. For example, you might want to apply a lambda function to every element of a vector (in which case the vector elements are the function arguments) but also take into account another variable in the environment that will be the same for each function application. 
-- () Round brackets are for function arguments. These are passed into the anonymous function just like arguments are passed to any other function. 
-- {} Curly braces are used to contain the function execution code. This may refer to the variables passed as arguments or captured from the environment. It can involve multiple lines / statements, separated by semicolons (`;`) just like normal code, although lambda expressions are usually used for short code fragments. If there is no return statement then the return type is `void`, as usual. 
+Lambda expressions make our coding style more flexible, because these functions can be defined anywhere that an ordinary variable can be (inside functions or loops, inside argument lists etc.) and can be passed around easily. We'll also see below that the `[]` give us functionality that we don't normally have access to with regular functions which makes lambda expressions very powerful. 
+
+### Syntax for Anonymous Functions
+
+The lambda expression syntax can look a little confusing at first, but becomes simpler if we understand what the three different kinds of brackets are for:
+- `[]` Square brackets are for variables to be captured from the environment. These are variables which you want to be available in your function, but are not explicit function arguments. For example, you might want to apply a lambda function to each element of a vector in turn (in which case the vector elements are the function arguments) but also take into account another variable in the environment that will be the same for each function application. There is no analogue for this in ordinary function definitions, so it is not unusual for these brackets to remain empty! We will see in a moment how we can make use of variable capture to make our functions richer. 
+- `()` Round brackets are for function arguments. These are passed into the anonymous function just like arguments are passed to any other function. 
+- `{}` Curly braces are used to contain the function execution code. This may refer to the variables passed as arguments or captured from the environment. It can involve multiple lines / statements, separated by semicolons (`;`) just like normal code, although lambda expressions are usually used for short code fragments. If there is no return statement then the return type is `void`, as usual. 
+- The brackets are always in this order: `[] () {}`.
+
+Declaring anonymous functions is therefore almost identical to regular functions except that we don't need to give it a name, and we have a set of square brackets `[]` at the front! 
 
 We can see from our previous example the use of the `()` and `{}` brackets to define our function argument `(int x)` and our function body `{return x%2 == 0;}`. So far our variable capture `[]` has been empty, so let's modify our function to make use of this feature. Say we want to count the number of elements in my list, divisible by some number `n`, which we won't know ahead of time. We can write 
 ```cpp
@@ -206,7 +256,7 @@ We can see from our previous example the use of the `()` and `{}` brackets to de
     std::cout << "Number divisible by n = " << numDivisibleN << std::endl;
 ```
 - We use variable capture `[n]` to get the divisor `n` from the the environment and bind it to our function. Now when we call the function on each element (the argument `x` in round brackets) we divide each element by `n` and get the remainder!
-- This variable capture behaviour is harder to replicate using function references, so lambda expressions are extremely useful for this kind of code.  
+- This kind of behaviour is hard to replicate using function references, so lambda expressions are extremely useful for this kind of code.  
 
 ## Using C++ documentation 
 
