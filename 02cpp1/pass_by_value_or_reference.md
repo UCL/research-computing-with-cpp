@@ -1,6 +1,6 @@
 # 'Pass by Value' & 'Pass by Reference' 
 
-Variables can be passed to C++ functions in two ways in C++: "pass by value" and "pass by reference". This choice significantly alters both the behaviour and the performance of a function. 
+Variables can be passed to functions in two ways in C++: "pass by value" and "pass by reference". This choice significantly alters both the behaviour and the performance of a function. 
 
 ## Pass by Value
 
@@ -16,7 +16,7 @@ This function can be safer, but is not time or memory efficient if variables are
 ## Pass by Reference 
 
 Pass by Reference means that we tell the function where the original variable has been stored in memory, and we allow the function to work directly with that original variable. This has two major consequences:
-   * We only pass a memory address -- 4 bytes, the same size as an integer -- to the function and there is additional memory for copying. 
+   * We only pass a memory address -- 4 bytes, the same size as an integer -- to the function, so there is not additional memory allocated to copy the object.
    * The original variable can be changed by the function, and so any changes that happen within the function are retained after we leave the function's scope. 
 
 We indicate that we want a reference to a variable using the `&` operator. The function below will take a reference to an integer and increment that integer by one. Because we have changed the value stored at that memory location, once we leave this function, the variable that we passed to it will retain this increased value. 

@@ -4,7 +4,7 @@ title: C++ Standard Library
 
 ## C++ Standard Library
 
-The C++ standard library is a collection of data-structures and methods which must be provided with any standards-compliant implementation of C++. As a result, using the standard library is portable across different systems and compilers, and does not require downloading and linking additional libraries (which will be a topic we cover in a later week). It does, however, require the use of header files, as we'll see in a moment. 
+The C++ standard library is a collection of data-structures and methods which must be provided with any standard-compliant implementation of C++. As a result, using the standard library is portable across different systems and compilers, and does not require downloading and linking additional libraries (which will be a topic we cover in a later week). It does, however, require the use of header files, as we'll see in a moment. 
 
 The C++ language standard is always evolving, with the most recent version of the standard being C++20 (released 2020), and the next planned to come some time this year (C++23). Sometimes there may be requirements to work with a specific C++ standard (more often, a minimum standard), and so it can be important to check whether a feature that you want to use is available to you in the version of C++ that you will be using. 
 
@@ -49,8 +49,8 @@ int main()
    return 0;
 }
 ```
-- `cin` is an input buffer
-- with `cin` the arrows go the other way, because the information passes from the input buffer into the `name` variable. 
+- `cin` is an input buffer.
+- With `cin` the arrows go the other way, because the information passes from the input buffer into the `name` variable. 
 - There are other kinds of input buffers, like reading from files. 
 
 ## Containers
@@ -71,11 +71,11 @@ int main()
     return 0;
 }
 ```
-- We must include `<vector>` to use the vector class
+- We must include `<vector>` to use the vector class.
 - When we declare a vector we also must place the type of object that the vector holds in angle brackets. So a vector of integers is declared `std::vector<int>`, and a vector of doubles is declared `std::vector<double>`. 
 - We can declare an empty list using `std::vector<int> myIntList`, or we can use the curly-brace notation above to give some initial values. 
 
-Vectors are dynamically sized, which means we change add or remove elements. 
+Vectors are dynamically sized, which means we change, add, or remove elements. 
 ```cpp
 std::vector<int> v = {1,2,3};
 v.push_back(4);  // Add an element to the end of our vector 
@@ -89,7 +89,7 @@ v.erase(v.begin() + 1);     // Remove the second element of a vector
 - A `vector` doesn't have a fixed size, but it does have a certain amount of memory allocated to it. If you add enough elements to outgrow this size, it will have to allocate new memory of a larger size, and copy the elements over to this new memory to keep it contiguous. The cost of this operation scales linearly with the size of your vector; you cannot necessarily predict when this will happen as the amount of memory allocated to a vector by default will be compiler dependent. 
 - If you know how much space you will need for a vector, or can place an appropriate limit on it, then you can use the `.reserve(int)` method to reserve space for for a given number of elements, e.g. `v.reserve(20)` will allocate enough memory to `v` to store 20 elements. 
 
-We can also access elements of vector in a couple of different ways.
+We can also access elements of a vector in a couple of different ways.
 ```cpp
 #include <vector>
 
@@ -103,7 +103,7 @@ int main()
     return 0;
 }
 ```
-- Indexing of vectors (and other array like containers) always starts at 0
+- Indexing of vectors (and other array like containers) always starts at 0.
 - We can use the `.at(i)` method on a vector to get the value at that position in the vector. If `i` is outside of the range of the vector then this method will throw an error, which can be handled by your program. (See next week when we discuss exceptions.)
 - We can also access a vector using square brackets: `myVector[i]`. This is substantially faster than using `myVector.at(i)`, but does no bounds checking. If `i` is outside of the size of vector then the behaviour is *undefined*: this means the standard does not define what the program should do in this case, and the result will be compiler dependent. *Undefined behaviour should always be avoided. Only use square brackets if array access performance is important and you can be sure that you will not go outside of the bounds of the vector.*
 - Accessing and modifying vector elements using `[]` has high performance, and can even out-perform traditional C-arrays if compiled with optimisations turned on, which makes `vector` an excellent general purpose class for lists. 
@@ -154,7 +154,7 @@ int main()
 
 The `<algorithm>` library is an important part of modern C++ code. It contains a variety of commonly used algorithms, many of which operate on containers. These include sorting, searching, counting, maxima, minima, and merge. If there is some functionality that you need then it is usually worth checking if there is a standard library implementation for it already, before trying to implement it yourself or seeking third party libraries. This will save you time on implementation and testing, and keep your code portable. 
 
-The functionality in `algorithm` can be make much more flexible and interesting by combining with other functions, as many of the functions in `algorithm` take functions as arguments. One way to do this is to write a function and pass a reference to it. Imagine that we want to count the number of even numbers in a vector of integers. Using `count_if` from the `<algorithm>` library we could write:
+The functionality in `algorithm` can be made much more flexible and interesting by combining with other functions, as many of the functions in `algorithm` take functions as arguments. One way to do this is to write a function and pass a reference to it. Imagine that we want to count the number of even numbers in a vector of integers. Using `count_if` from the `<algorithm>` library we could write:
 ```cpp
     bool isEven(int x)
     {
@@ -197,7 +197,7 @@ The object `isEven` can now be passed to functions, copied, overwritten, and so 
 Lambda expression syntax can look a little confusing at first, but becomes simpler if we understand what the three different kinds of brackets are for:
 - [] Square brackets are for variables to be captured from the environment. These are variables which you want to be available in your function, but are not explicit function arguments. For example, you might want to apply a lambda function to every element of a vector (in which case the vector elements are the function arguments) but also take into account another variable in the environment that will be the same for each function application. 
 - () Round brackets are for function arguments. These are passed into the anonymous function just like arguments are passed to any other function. 
-- {} Curly braces are used to contain the function execution code. This may refer to the variables passed as arguments or captured from the environment. It can involve multiple lines / statements, separated by semicolons (`;`) just like normal code, although lambda expressions are usually used for short code fragments. If there is not return statement then the return type is `void`, as usual. 
+- {} Curly braces are used to contain the function execution code. This may refer to the variables passed as arguments or captured from the environment. It can involve multiple lines / statements, separated by semicolons (`;`) just like normal code, although lambda expressions are usually used for short code fragments. If there is no return statement then the return type is `void`, as usual. 
 
 We can see from our previous example the use of the `()` and `{}` brackets to define our function argument `(int x)` and our function body `{return x%2 == 0;}`. So far our variable capture `[]` has been empty, so let's modify our function to make use of this feature. Say we want to count the number of elements in my list, divisible by some number `n`, which we won't know ahead of time. We can write 
 ```cpp
@@ -216,7 +216,7 @@ Two common sites for C++ refernce are:
 - https://cplusplus.com/
 - https://en.cppreference.com/ 
 
-Both are extremely useful and give thorough information about how to use classes and methods according to the specification in the C++ standard. Take for example the pages on the `vector` class:  https://cplusplus.com/reference/vector/vector/ or https://en.cppreference.com/w/cpp/container/vector. Each tells us:
+Both are extremely useful and give thorough information about how to use classes and methods according to the specification in the C++ standard. Take for example the pages on the `vector` class: https://cplusplus.com/reference/vector/vector/ or https://en.cppreference.com/w/cpp/container/vector. Each tells us:
 - which header the class is found in 
 - a summary of the class and how it is stored in memory
 - information on performance of basic operations 
