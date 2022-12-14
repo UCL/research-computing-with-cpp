@@ -264,12 +264,20 @@ Lambda expressions make our coding style more flexible, because these functions 
 ### Syntax for Anonymous Functions
 
 The lambda expression syntax can look a little confusing at first, but becomes simpler if we understand what the three different kinds of brackets are for:
-- `[]` Square brackets are for variables to be captured from the environment. These are variables which you want to be available in your function, but are not explicit function arguments. For example, you might want to apply a lambda function to each element of a vector in turn (in which case the vector elements are the function arguments) but also take into account another variable in the environment that will be the same for each function application. There is no analogue for this in ordinary function definitions, so it is not unusual for these brackets to remain empty! We will see in a moment how we can make use of variable capture to make our functions richer. 
-- `()` Round brackets are for function arguments. These are passed into the anonymous function just like arguments are passed to any other function. 
+- `[]` Square brackets are for variables to be captured from the environment. These are variables which you want to be available in your function, but are not explicit function arguments. This list can include any variables which are currently in scope, and variables can be passed by value or by reference.
+    - For example, you might want to apply a lambda function to each element of a vector in turn (in which case the vector elements are the function arguments) but also take into account another variable in the environment that will be the same for each function application. There is no analogue for this in ordinary function definitions, so it is not unusual for these brackets to remain empty! We will see in a moment how we can make use of variable capture to make our functions richer. 
+- `()` Round brackets are for function arguments. These are passed into the anonymous function just like arguments are passed to any other function, and can be passed by value or by reference. 
 - `{}` Curly braces are used to contain the function execution code. This may refer to the variables passed as arguments or captured from the environment. It can involve multiple lines / statements, separated by semicolons (`;`) just like normal code, although lambda expressions are usually used for short code fragments. If there is no return statement then the return type is `void`, as usual. 
 - The brackets are always in this order: `[] () {}`.
 
 Declaring anonymous functions is therefore almost identical to regular functions except that we don't need to give it a name, and we have a set of square brackets `[]` at the front! 
+
+If you want to write an explicit return type you can also use the slightly longer syntax: `[...] (...) {...} -> returnType {...}` as in the following example for our `isEven` function:
+```cpp
+auto isEven = [](int x) -> bool {return x%2 == 0;};
+```
+- This can be useful for other programmers reading your code because it makes the return type clear. 
+- This can also help prevent bugs because if the return from the function body (in `{}`) doesn't match the return type given it will give a compiler error. 
 
 We can see from our previous example the use of the `()` and `{}` brackets to define our function argument `(int x)` and our function body `{return x%2 == 0;}`. So far our variable capture `[]` has been empty, so let's modify our function to make use of this feature. Say we want to count the number of elements in my list, divisible by some number `n`, which we won't know ahead of time. We can write 
 ```cpp
