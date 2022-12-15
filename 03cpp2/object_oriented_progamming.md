@@ -1,12 +1,12 @@
 # Object Oriented Programming (OOP) in C++
 
-As a programming lanaguage, C++ supports multiple styles of programming, but it is generally known for _object oriented programming_, often abbreviated as _OOP_. This is handled in C++, as in many languages, through the use of classes: special datastructures which have both member data (variables that each object of that class contains and which are usually different for each object) and member functions, or _methods_, which are functions which can be called through an object and which have access to both the arguments passed to it _and_ the member variables of that object. 
+As a programming lanaguage, C++ supports multiple styles of programming, but it is generally known for _object oriented programming_, often abbreviated as _OOP_. This is handled in C++, as in many languages, through the use of classes: special datastructures which have both member data (variables that each object of that class contains and which are usually different for each object) and member functions, which are functions which can be called through an object and which have access to both the arguments passed to it _and_ the member variables of that object. 
 
-We have already been making extensive use of classes when working with C++. Indeed, it is difficult not to! Additional of classes was the maign paradigm shift between C, a procedural programming language with no native support for OOP, and C++. 
+We have already been making extensive use of classes when working with C++. Indeed, it is difficult not to! The addition of classes was the main paradigm shift between C, a procedural programming language with no native support for OOP, and C++. 
 
 ## Classes
 
-Classes can be used to declare our own datastructures, which have their own type. We can then declare objects of this type in our program. Apart from a handful of built in types (like `int`, `double`, and `bool`), variables that we decalre in C++ are instances of a class. A number of objects that we've used so far are classes defined in the standard library, like `vector` and `string`. 
+Classes can be used to define our own data-structures, which have their own type. We can then declare objects of this type in our program. Apart from a handful of built in types (like `int`, `double`, and `bool`), variables that we declare in C++ are instances of a class. A number of objects that we've used so far are classes defined in the standard library, like `vector` and `string`. 
 
 Classes achieve two goals in representing concepts in programming: 
 - _Abstraction_
@@ -45,9 +45,9 @@ class myClass
 - `name` is private
 - `z` is protected
 
-If you are writing classes in C++, especially classes that will be used by other people, it's a good idea to only give people access to as much as they and no more than that. In general:
-- Make functions and variables `private` if you can 
-- You can control access to variables in a finer grained way through `get` and `set` methods than by making them public. For example you may want variables that can be inspected (write a `get`) but not changed (no `set`) or vice versa. 
+If you are writing classes in C++, especially classes that will be used by other people, it's a good idea to only give people access to as much as they need and no more than that. In general:
+- Make functions and variables `private` if you can.
+- You can control access to variables in a finer grained way through `get` and `set` methods than by making them public. For example you may want variables that can be inspected (write a `get` function) but not changed (no `set` function) or vice versa. 
 - Constructors and destructors should generally be `public`. 
 
 
@@ -88,8 +88,8 @@ int main()
 - The count is incremented in the constuctor (`countedClass()`), and so increased every time an instance of this type is created. 
 - The count is decremented in the destructor (`~countedClass()`), and so decreased every time an instance of this type is destroyed. 
 - `count` is a static variable, so belongs to the class as a whole. There is one variable `count` for the whole class, regardless of how many instances there are. The class still accesses it as a normal member variable. 
-- `count` also needs to be declared outside of the class definition. (This is also where you should initialise the value.) 
-- A static variable can be accessed in two different ways: through the object (`c1.count`), or through the class namespace (`countedClass::count`) without reference ot any object. Static variables for a class can therefore be accessed by anything which has access to the class definition, regardless of whethere there are any objects of that class. 
+- `count` also needs to be declared outside of the class definition. (This is where you should initialise the value.) 
+- A static variable can be accessed in two different ways: through the object (`c1.count`), or through the class namespace (`countedClass::count`) without reference ot any object. Public static variables for a class can therefore be accessed by anything which has access to the class definition, regardless of whethere there are any objects of that class. 
 
 ## Improving this class with Access Specifiers
 
