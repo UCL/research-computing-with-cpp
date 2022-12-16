@@ -6,7 +6,7 @@ Templates in C++ come in two main kinds:
 - Function Templates
 - Class Templates
 
-When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based polymorphism, where we have one function which takes multiple classes with overlapping definitions, now we use one piece of code two generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in template instantiation at compile time. This is sometimes known as "static polymorphism". 
+When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code two generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
 
 ## Using Templates with Classes
 
@@ -16,7 +16,7 @@ You have already been using templates in this course: `vector<>` is an example o
 - A **class template** is not a class, it is a template which can be used to generate the definition of a class once the template arguments have been filled. For example, `vector<>` is a class template which can be used to generate vector classes which hold different types of data, but you cannot create a vector object with no type in the angle brackets. 
 - A **template class** is a class that has been created from a template. For example `vector<int>` is a template class that has been generated from the `vector` class template by providing the type `int` as a template argument. `vector<int>` is an entirely separate class from `vector<double>`.
 
-The other containers in the standard library are also class templates, which require you to provide template arguments to instantiate concrete classes. Note that some may take more than one template argument, for example `map<>` takes two types: one for the keys and one for the values. 
+The other containers in the standard library are also class templates, which require you to provide template arguments to instantiate concrete classes. Note that some may take more than one template argument, for example `map<>` takes two types: one for the keys and one for the values. Type for a map from strings to integers would be `map<string, int>`. 
 
 We can define a class template using the following syntax:
 ```cpp
@@ -36,7 +36,8 @@ class myClassTemplate
 - `T` is the template parameter, and the `typename` keyword tells us that `T` must denote a type. (You can equivalently use the `class` keyword.)
 - We can then use `T` like any other type inside the body of the class definition. 
 - Additional template parameters can appear in the angle brackets in a comma separated list e.g. `template<typename T1, typename T2>`.
-- Template parameters do not have to be `typename`. You can also have a template parameter that is an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on whether the maximum size of data it wlil accept. This kind of template parameter is much less common. 
+- Template parameters do not have to be `typename`. You can also have a template parameter that is an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on 
+ the maximum size of data it will accept. This kind of template parameter is less common. 
 
 ## Template Classes and Inheritance 
 
@@ -49,7 +50,7 @@ As well as creating templates for classes we can also create templates for funct
 
 Function templates can have the same kinds of template parameters as class templates. 
 
-The syntax for declaring fucntion templates is essentially identical to declaring a class template:
+The syntax for declaring function templates is essentially identical to declaring a class template:
 ```cpp
 template<typename T>
 T templatedAdder(T a, T b)
@@ -58,6 +59,24 @@ T templatedAdder(T a, T b)
     return c;
 }
 ```
+- This function can only be created for a given type if the function body forms valid expressions when the type is substituted for `T`.
+    - In this case the restriction is that the operators `=` and `+` must be defined for type `T`. 
+    - This applies to integers, double, strings etc. (see below on Operator Overloading for more information). 
+
+A common example of a templated function would be a function which acts on a container type but doesn't need to access the data itself. Consider this example which take every other element of a vector:
+```cpp
+template<typename T>
+vector<T> everyOther(vector<T> &v_in)
+{
+    vector<int> v_out;
+    for(size_t i = 0; i < v_in.size(); i++)
+    {
+        if(i % 2 == 0) v_out.push_back(v_in[i]);
+    }
+}
+```
+- The exact details of the type `T` don't matter in this case, since we never access the data of type `T` anyway. The only restriction on `T` is that it can be added to a vector.
+- A function can be generated for every kind of vector in this way. 
 
 ## Using Templates with Overloaded Functions 
 
@@ -65,6 +84,127 @@ One very useful way to make use of templates is to exploit operator / function o
 - The arithmetic operators `+`, `-`, `*`, and `/` are defined for a variety of types including `int`, `float`, and `double`. It's often easy to write numerical functions which operate on generic numerical types using templates. The `templatedAdder` example above will work on any C++ type for which `+` is well defined. 
 - The `[]` operator can be used to access many kinds of data-structures including `vector`, `array`, `map`, and C-style arrays. We can therefore write functions which are agnostic about the precise kind of storage used, as long as the same code will work for all of the types that we are interested in.
 - The pointer dereferencing operator `*` works on unique, shared, and raw pointers, so we can write template code which can be used with any of these types if we don't use functionality that is specific to one or the other of them. 
+
+When we are designing classes we can overload operators ourselves. This can be very important when defining types that we want to be able to use within templated functions. Consider for example a fraction type:
+```cpp
+class Fraction
+{
+    public:
+    Fraction(int a, int b) : numerator(a), denominator(b) {}
+
+    private:
+    int numerator;
+    int denominator;
+};
+```
+- This class represents a rational number: a ratio of two integers. 
+- This is an appropriate arithmetic type, so it would make sense for us to define operators like `+`, `-`, `*`, and `/` for the Fraction type. 
+    - This would allow us to pass it to templated functions that deal with generic arithmetic types. 
+    - This can therefore be more flexible and intuitive than defining member functions for these kinds of operations. 
+
+Let's define the `*` (multiplication) operator. (The others can be defined similarly.) We can do this in one of two ways. 
+1. As a member function:
+```cpp
+class Fraction
+{
+    public:
+    Fraction(int a, int b) : numerator(a), denominator(b) {}
+
+    Fraction operator* (Fraction y)
+    {
+        return Fraction(numerator * y.numerator, denominator * y.denominator);
+    }
+
+    private:
+    int numerator;
+    int denominator;
+};
+```
+- The member function `operator*` _can_ be called like any other member function.
+    - If you have two `Fraction` objects `f1` and `f2` you could calculate a new fraction `Fraction f3 = f1.operator*(f2);`. 
+- However this function also overloads the `*` infix operator.
+    - So we can now write `Fraction f3 = f1 * f2;`.
+- Note that because it is a member function, it has access to the private member variables `numerator` and `denominator`. 
+
+2. Outside the class
+```cpp
+class Fraction
+{
+    public:
+    Fraction(int a, int b) : numerator(a), denominator(b) {}
+
+    int getNumerator(){ return numerator; }
+    int getDenominator(){ return denominator; }
+
+    private:
+    int numerator;
+    int denominator;
+};
+
+Fraction operator*(Fraction x, Fraction y)
+{
+    int numerator = x.getNumerator() * y.getNumerator();
+    int denominator = x.getDenominator() * y.getDenominator();
+    return Fraction(numerator, denominator);
+}
+```
+- This version also overloads the `*` infix operator in the same way. 
+- There is now no member version so we can't call `f1.operator*(f2)`, but we can call the non-member function `operator*(f1, f2)`. 
+- Note that we had to create `get` functions for the private member variables because `operator*` is not a member function in this case and so does not have access to private members. 
+
+## Using Class Members with Templated Types
+
+Writing a templated function which takes type `T` implicitly defines an interface that must be met by `T`. 
+- In the simple adding example we use the `+` operator on objects of type `T`: therefore `T` must implement this operator in order for the function to be successfully generated. 
+- In our vector sampling example we only require that `vector<T>` is a valid type; this places very few restrictions on `T` (although there are some). 
+
+The only restrictions on our templates is that the code is valid once the type substitution has been made. If we have a template parameter `T` then we can access member variables and functions of the class `T`, and this function will be able to be generated for any class which implements those properties. For example, let's take this function:
+```cpp
+template<typename T>
+T& getTheBiggerOne(T &a, T &b)
+{
+    if(a.getArea() >= b.getArea())
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}
+```
+- This function will return whichever of its two inputs has the larger area.
+- This is a valid template for any type which implements the member function `getArea()`.
+- Note we don't specify the return type of `getArea()`; for this code to be valid it is only necessary that `>=` is defined for the return type of `getArea()`.
+
+We can call this function using our `Shape` classes (`Shape`, `Circle`, `Square`) from last week, since they implement `getArea()`. But we could also implement a new class, like this one:
+```cpp
+class Country
+{
+    Country(string n, double a, double p) : name(n), area(a), population(p) {}
+
+    double getName() { return name; }
+    double getArea() { return area; }
+    double getPopulation() { return population; }
+
+    private:
+    string name;
+    double area;
+    int population;
+}
+```
+- This class defines countries by their name, area, and population. 
+- This class also fulfills all the conditions of `getTheBiggerOne`:
+    - `getArea()` is implemented.
+    - `>=` is defined for `double`. 
+
+We can use `getTheBiggerOne` with our `Country` class just as well as our `Shape` class, even though they are not (and certainly should not be) related by any inheritance! Templates allow us to define generic code that is broader than inheritance based polymorphism, but comes at the cost of being _static_. 
+
+- Class inheritance provides run-time polymorphism: I can define one function that takes a base class (e.g. `Shape`) and objects of that class or its derived classes can be passed to it. The compiler does not need to know at compile time whether the function will end up receiving `Shape` or `Circle` or `Square`. 
+- Templates provide static polymorphism. I can define one function template that generates separate functions for each class. If I want to use my function with both `Shape` and `Country`, the compiler needs to know this at run time.
+    - I can't declare a single function or class (such as a container), which can take both `Shape` and `Country`. For example, I can't put a `Shape` object in the same vector as a `Country` object, since it either needs to be a `vector<Shape>` or `vector<Country>`. 
+    - If I use the function with `Shape` and with `Country` in the same program, I will actually generate two functions: `Shape& getTheBiggerOne(Shape&, Shape&)` and `Country& getTheBiggerOne(Country&, Country&)`. These functions are separate because they have different signatures (parameter and return types). 
+- These two can be combined. For example, `getTheBiggerOne` is a template which could be instantiated with the type `Shape`. The resulting fucntion, which takes and returns references to `Shape`, could be used with objects of type `Shape`, `Circle` or `Square` (run time polymorphism based on their inheritance tree) but not `Country` (this is not part of the same inheritance tree). 
 
 ## Organising and Compiling Code with Templates
 
