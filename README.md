@@ -5,12 +5,33 @@ Deployed at:
 
 http://github-pages.ucl.ac.uk/research-computing-with-cpp
 
-We normally build these locally on a Mac. We use g++ installed via homebrew.
-So, for g++ version 7, we would:
 
+How to build the lessons locally
+-----------------------------------
+
+Clone and build the various output files (that step will need some dependencies)
 ``` bash
 git clone https://github.com/UCL-RITS/research-computing-with-cpp
 cd research-computing-with-cpp
+./build.sh
+```
+
+Then you can proceed to build the website locally. The easiest is via docker.
+
+```bash
+mkdir ../bundle # To don't download every single time the ruby dependencies
+docker run --rm --volume="$PWD:/srv/jekyll" --volume="$PWD/../bundle:/usr/local/bundle" -it jekyll/jekyll:4 jekyll build
+python -m http.server -d _site
+```
+
+Dependencies
+-------------
+
+All the dependencies are set in the `.github/{texlive,python}/requirements.txt` for an ubuntu machine.
+
+On a Mac, we use g++ installed via [homebrew](https://brew.sh/). So, for g++ version 7, we would run the build command as:
+
+``` bash
 CC=gcc-7 CXX=g++-7 ./build.sh
 ```
 
@@ -26,8 +47,10 @@ For Mac:
    * `brew install gcc`
 * Ruby stuff:
    * `brew install ruby`
-   * `gem install jekyll`
+   * `gem install jekyll --version '~> 4'`
+   * `gem install kramdown --version '~> 2.3.1'
    * `gem install jekyll-remote-theme`
+`
 * Other utilities:
    * `brew install wget`
 * Python libraries:
@@ -37,6 +60,8 @@ A full LaTeX distribution needs to be available to generate a PDF version of the
 
 Then in folder _site, you'll have the `html`'s.
 Or, for a shortcut: `make preview`
+
+
 
 See https://github.com/UCL-RITS/research-computing-with-cpp/blob/master/01cpp/index.md for an example of how to reference a C file, CMake file, and run an executable
 
