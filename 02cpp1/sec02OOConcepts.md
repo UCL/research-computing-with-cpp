@@ -54,9 +54,9 @@ title: Object Oriented Review
 
 ### Abstraction - Grady Booch
 
-“An abstraction denotes the essential characteristics of an object that distinguish it 
+"An abstraction denotes the essential characteristics of an object that distinguish it 
 from all other kinds of objects and thus provide crisply defined conceptual boundaries, 
-relative to the perspective of the viewer.”
+relative to the perspective of the viewer."
 
 
 ### Class Example

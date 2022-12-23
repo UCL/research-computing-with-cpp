@@ -13,7 +13,7 @@ title: Lambda expressions
    * Useful for varions STL `_if` and comparison functions: `std::find_if`, `std::remove_if`, `std::sort`, `std::lower_bound` etc
    * Can be used for a one off call for a context specific function
 
-* From “Effective Modern C++”, Meyers, p215
+* From "Effective Modern C++", Meyers, p215
    * A game changer for C++ despite bringing no new expressive power to the language
    * Everything you can do with a lambda could be done by hand with a bit more typing
    * But the impact on day to day C++ software development is enormous  
