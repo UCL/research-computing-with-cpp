@@ -58,6 +58,16 @@ For Mac:
 
 A full LaTeX distribution needs to be available to generate a PDF version of the course notes by the build script.
 
+Alternatively, you can build the docker container available and build the site through it:
+
+```
+$ docker build -t rcpp
+$ docker run -it --rm --volume=$PWD:/root rcpp:latest bash
+# cd
+# ITK_DIR=/usr/lib/InsightToolkit ./build.sh
+# make _site
+```
+
 Then in folder _site, you'll have the `html`'s.
 Or, for a shortcut: `make preview`
 
