@@ -1,1 +1,0 @@
-add_executable(pairClassMain.x pairClassMain.cc)

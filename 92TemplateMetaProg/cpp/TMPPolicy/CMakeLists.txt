@@ -1,1 +1,0 @@
-add_executable(TMPPolicy.x TMPPolicy.cc)
