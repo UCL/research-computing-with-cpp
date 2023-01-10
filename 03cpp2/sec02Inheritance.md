@@ -1,3 +1,9 @@
+---
+title: Inheritance and Polymorphism
+---
+
+Estimated Reading Time: 50 minutes
+
 # Inheritance and Polymorphism
 
 Inheritance is one of the most important concepts in C++ classes, which brings a great deal of flexibility to us as programmers. A class defines a type of object, and a class which inherits from it defines a sub-type of that type. For example, we might have a class which represents shapes, and sub-classes which represent squares, circles, and triangles. Each of these are shapes, and so should be able to be used in any context simply requires a shape, but each will have slightly different data needed to define it and different implementations of functions to calculate its perimeter or area. 

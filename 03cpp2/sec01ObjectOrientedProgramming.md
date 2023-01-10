@@ -1,3 +1,9 @@
+---
+title: Object Oriented Programming
+---
+
+Estimated Reading Time: 15 minutes
+
 # Object Oriented Programming (OOP) in C++
 
 As a programming lanaguage, C++ supports multiple styles of programming, but it is generally known for _object oriented programming_, often abbreviated as _OOP_. This is handled in C++, as in many languages, through the use of classes: special datastructures which have both member data (variables that each object of that class contains and which are usually different for each object) and member functions, which are functions which can be called through an object and which have access to both the arguments passed to it _and_ the member variables of that object. 

@@ -1,3 +1,9 @@
+---
+title: Exceptions
+---
+
+Estimated Reading Time: 40 minutes
+
 # Exceptions 
 
 Exceptions are used for error handling in C++ (and many other languages). The standard library provides a variety of exceptions that we can use straight away, although we can also write our own exceptions if we want additional functionality. 
