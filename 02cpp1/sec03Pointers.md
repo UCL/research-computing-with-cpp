@@ -1,3 +1,9 @@
+---
+title: Pointers in C++
+---
+
+Estimated Reading Time: 1 hour
+
 # Pointers
 
 You'll already have used references to refer to objects without copying them. This is very useful for passing objects to functions without copy overheads, or to functions which also change those objects in ways that we want to persist once we've left that function's scope. There are, however, times where we cannot use references and must use pointers. Some limitations of references are:

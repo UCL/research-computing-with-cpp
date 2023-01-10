@@ -2,9 +2,11 @@
 title: C++ Standard Library
 ---
 
+Estimated Reading Time: 1 hour
+
 ## Preamble: C++ Types and Declaring Variables
 
-If you're relatively unfamiliar with C++ you will need to know that C++ is a _statically typed language_, which means that the types of each of your variables is determined at compile time and doesn't change over the course of the program execution. Typically in C++ when declaring variables we do so by first declaring the type, then the name of the variable, and then (optionally) its value. For example:
+If you're relatively unfamiliar with C++ you will need to know that C++ is a _statically typed language_, which means that the type of each of your variables is determined at compile time and doesn't change over the course of the program execution. Typically in C++ when declaring variables we do so by first declaring the type, then the name of the variable, and then (optionally) its value. For example:
 ```cpp
 int x = 5;
 ```
