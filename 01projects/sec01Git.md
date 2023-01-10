@@ -41,7 +41,7 @@ $ git config --global core.editor "code --wait"
 
 You may choose to use another text editor, and the instructions for configuring some popular editors are given [here](https://swcarpentry.github.io/git-novice/02-setup/index.html).
 
-## Git commands
+## Git commands (Exercise 1)
 
 Git is a command-line application, wherein the commands all start with the keyword `git` followed by a sub-command and zero or more options and arguments. The sub-command usually denotes the action to perform. In fact, we just configured Git using the `git config` command in the section above!
 
@@ -196,7 +196,9 @@ The detailed view presented by `git log` consists of each commit's unique identi
 
 Executing `git log --oneline` presents a compact view of the project's history where each commit occupies just one line consisting of just the shortened SHA string and the first line of the commit message.
 
-## Remote repositories and Github (Exercise 2)
+*End of exercise 1*
+
+## Remote repositories and Github 
 
 So far, everything we have done has been local i.e. pertains to project files on the user's computer. The project history is tracked by Git using the contents of the `.git` folder. However, for ease of collaboration as well as for data resilience, it is common practice to have the project tracked in a remote location on the cloud.
 
@@ -220,7 +222,7 @@ $ git remote add origin git@github.com:<github_username>/<github_repo_name>.git
 
 At this stage, the remote repository has been connected to our local repository and we can sync our local commits with the remote. However, to be able to do so requires configuring our computer to make secure connections to GitHub.
 
-### Configuring secure remote connections with SSH
+### Configuring secure remote connections with SSH (Exercise 2)
 
 Note that the below steps may also be performed on the host system (outside the development container) since the devcontainer is able to access the ssh configuration of the host. Teaching assistants shall be available at hand to help with setting up SSH access.
 
