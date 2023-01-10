@@ -1,3 +1,0 @@
-add_library(explicitInstantiation explicitInstantiation.cc)
-add_executable(explicitInstantiationMain.x explicitInstantiationMain.cc)
-target_link_libraries(explicitInstantiationMain.x explicitInstantiation)

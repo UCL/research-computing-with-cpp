@@ -1,3 +1,9 @@
+---
+title: Templates
+---
+
+Estimated Reading Time: 45 Minutes
+
 # Templates
 
 Templates are a way of writing generic code which can be re-used with different types. This is similar to the polymorphism that we have seen previously through class inheritance, except that the typing for a template happens at compile time rather than runtime. 

@@ -2,6 +2,8 @@
 title: Designing Classes & Code 
 ---
 
+Estimated Reading Time: 40 Minutes
+
 # Designing Classes & Code
 
 Classes in C++ are extremely flexible, and there are many different ways that we could design classes for different purposes. We've seen how we can use inheritance and composition to describe relationships between classes and objects, and how to control how information is accessed through access specifiers, but the ways in which we put these concepts to work can have a major impact on our code. These kinds of decisions rarely have a right and wrong answer, and there is a great deal of discussion in the C++ community over what constitutes good practice, but there are some techniques and principles that you will likely find yourself using repeatedly if you work with C++ in the future and are useful to learn about now. 
