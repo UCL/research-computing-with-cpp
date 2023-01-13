@@ -198,7 +198,7 @@ Executing `git log --oneline` presents a compact view of the project's history w
 
 *End of exercise 1*
 
-## Remote repositories and Github 
+## Remote repositories and Github (Exercise 2)
 
 So far, everything we have done has been local i.e. pertains to project files on the user's computer. The project history is tracked by Git using the contents of the `.git` folder. However, for ease of collaboration as well as for data resilience, it is common practice to have the project tracked in a remote location on the cloud.
 
@@ -222,7 +222,7 @@ $ git remote add origin git@github.com:<github_username>/<github_repo_name>.git
 
 At this stage, the remote repository has been connected to our local repository and we can sync our local commits with the remote. However, to be able to do so requires configuring our computer to make secure connections to GitHub.
 
-### Configuring secure remote connections with SSH (Exercise 2)
+### Configuring secure remote connections with SSH 
 
 Note that the below steps may also be performed on the host system (outside the development container) since the devcontainer is able to access the ssh configuration of the host. Teaching assistants shall be available at hand to help with setting up SSH access.
 
