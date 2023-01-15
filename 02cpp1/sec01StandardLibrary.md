@@ -220,6 +220,7 @@ using namespace std;
 ```
 - Now all the names in `std` are available to use without using `std::` in front, so we can just type `cout`, `endl`, `cin` etc. 
 - **This is generally bad** because `std` is very big and contains lots of names! The whole point of the namespace is to avoid accidental clashes of names. 
+    - It is a particularly bad idea to place such `using` statements inside header files, since any files which include this header will also end up using this namespace. Try to limit the scope of `using` statements so that they make your code clearer, but don't affect other parts of your code. 
 
 A better alternative to using an entire namespace is to just use specific names from that namespace e.g.:
 ```cpp
