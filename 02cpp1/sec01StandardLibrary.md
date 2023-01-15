@@ -176,7 +176,10 @@ int main()
 - Declaring a range based loop we use the syntax: `for(type element : list){ loop code }`.
 - Here we have used the `auto` keyword to ask C++ to infer the type for us; this can be useful when we want to avoid writing out lots of types explicitly!
 - This will iterate through all the elements of the list, in order. For each loop iteration, `num` will be initialised with the data for that element in the list. 
-- `num` is initialised the same way as function arguments, so by default the elements of the list are passed by value i.e. a copy of the element is made and stored that in the variable `num`. This means any changes to `num` in the loop code are not reflected in the vector itself. **If you want to avoid copy overheads or make changes to your vector, you should make this variable a reference using the `&` operator** just like when passing by reference to a function (see Passing by Value & Passing by Reference). In this case we would write `for(auto &num : fibbonacciList)` and our loop code would receive a reference to each element of the list rather than a copy.  
+- `num` is initialised the same way as function arguments, so by default the elements of the list are passed by value i.e. a copy of the element is made and stored that in the variable `num`. This means any changes to `num` in the loop code are not reflected in the vector itself. 
+    - **If you want to avoid copy overheads or make changes to your vector, you should make this variable a reference using the `&` operator** just like when passing by reference to a function. In this case we would write `for(auto &num : fibbonacciList)` and our loop code would receive a reference to each element of the list rather than a copy. 
+    - Using a reference to avoid copy overheads can leave your container vulnerable to changes from the code inside the loop! 
+    - You can learn more about these issues and how to navigate them in the notes on passing by value and passing by reference. 
 - Range based loops can be used with other containers which are iterable, like `array` and `map`. 
 
 Traditional `for` loops with integral types can also be useful for iterating through vectors when you need to keep track of the index of an element, for example when assigning a vector a value that depends on its index or when working with multiple vectors at once. 
