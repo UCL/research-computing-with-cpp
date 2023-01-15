@@ -200,9 +200,9 @@ int main()
     return 0;
 }
 ```
-- `size_t` is an unsigned (cannot be negative) inegral numerical type which is often used for the sizes of objects. 
+- `size_t` is an unsigned (cannot be negative) integral numerical type which is often used for the sizes of objects. 
     - The max value of `size_t` is large enough for the largest objects that can be stored in memory. 
-    - If you know that you won't have too many elements you can use other inegral types like `int` or `uint`.
+    - If you know that you won't have too many elements you can use other integral types like `int` or `uint`.
 - In this case we have to manually make sure that we don't go out of bounds for our vectors. 
     - You can use things like the size method (`myVector.size()`, which returns a `size_t`) as the upper bound to prevent going outside of the range of the vector. 
     - If you are using multiple vectors you should make sure that they are the same size, or that you don't exceed the bounds of the smaller vector. 
