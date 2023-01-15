@@ -36,7 +36,7 @@ In this course the language features that we will make use of will be compatible
 
 ## Input / Output
 
-Input and output (often abbreviated to IO or I/O) to the terminal or to a file is important for interacting with users and retrieving the results of programs. It can also be useful for some debugging purposes, although you should use a debugger where you can (more on that in week 6). The standard library has some useful headers for this; we'll make heavy use of `<iostream>` to write to, or receive input from, the terminal. 
+Input and output (often abbreviated to IO or I/O) to the terminal or to a file is important for interacting with users and retrieving the results of programs. It can also be useful for some debugging purposes, although you should use a debugger where you can (more on that later in this course). The standard library has some useful headers for this; we'll make heavy use of `<iostream>` to write to, or receive input from, the terminal. 
 
 ### Output 
 
