@@ -138,7 +138,7 @@ int main()
 - Indexing of vectors (and other array like containers) always starts at 0.
 - We can use the `.at(i)` method on a vector to get the value at that position in the vector. If `i` is outside of the range of the vector then this method will throw an error, which can be handled by your program. (See next week when we discuss exceptions.)
 - We can also access a vector using square brackets: `myVector[i]`. This is substantially faster than using `myVector.at(i)`, but does no bounds checking. If `i` is outside of the size of vector then the behaviour is *undefined*: this means the standard does not define what the program should do in this case, and the result will be compiler dependent. *Undefined behaviour should always be avoided.* Although `[]` is the most common way to access a vector, it is important to only do so if you can be sure that you will not go outside of the bounds of the vector.
-- Accessing and modifying vector elements using `[]` has high performance, and can even out-perform traditional C-arrays if compiled with optimisations turned on, which makes `vector` an excellent general purpose class for lists. 
+- Accessing and modifying vector elements using `[]` has high performance which is competitive with traditional C-arrays (particularly with compiler optimisations turned on), which makes `vector` an excellent general purpose class for lists. 
 - Accessing a vector element allows us to change its value just like an ordinary variable e.g. `myVector[3] = 5` sets element `3` of `myVector` equal to `5`. 
 
 ### Looping Over Vectors
