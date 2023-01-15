@@ -18,7 +18,7 @@ In these cases, we use *pointers*. A pointer is variable which stores an address
 ## Optional Background: The Stack, the Heap, and Variable Scope
 
 We will go into more detail on memory structures later on in the course when we discuss performance programming. It can however be easier to understand the usage of pointers in C++ if we understand the difference between two different kinds of memory: the _stack_ and the _heap_. 
-- **Stack** memory is used to store all local variables, as well as the "call stack". The call stack contains information about the currently active functions, including the value of variables in each scope, and allows us to continue execution at the correct place in the program when we leave a function. Stack memory is fast, but limited in size. The amount of stack memory available is not known to the program at compile time, as stack memory is reserved for the program at runtime by the operating system. Using too much stack memory causes a _stack overflow_ error, which will cause your program to crash. When variables on the stack go out of scope then their destructor is called and their memory is freed. 
+- **Stack** memory is used to store all local variables, as well as the "call stack". The call stack contains information about the currently active functions, including the value of variables in each scope, and allows us to continue execution at the correct place in the program when we leave a function. Stack memory is faster than heap memory, but limited in size. The amount of stack memory available is not known to the program at compile time, as stack memory is reserved for the program at runtime by the operating system. Using too much stack memory causes a _stack overflow_ error, which will cause your program to crash. When variables on the stack go out of scope then their destructor is called and their memory is freed. 
 - **Heap** memory is somewhat slower, but can make use of as much RAM as you have available, so large datasets tend to be declared on the heap. (Heap memory is still faster than reading/writing to hard disk.) Any memory allocated on the heap _must_ be pointed to by something on the stack, otherwise it will be inaccessible to us. 
 
 Data will end up on the stack or the heap depending on how it is declared, and the internal structure of the class itself. 
@@ -84,7 +84,7 @@ Since we can't have multiple unique pointers pointing to the same data, if we wa
 std::unique_ptr<int> p1 = std::make_unique<int>(5);
 std::unique_ptr<int> p2 = std::move(p1);
 ```
-- **Avoid doing this if at all possible. After this operation, `p1` will no longer point to valid memory, and will cause a segmentation fault if accessed (i.e. your program will crash).** 
+- **Be very careful if using `std::move` in this way. After this operation, `p1` will no longer point to valid memory, and will cause a segmentation fault if accessed (i.e. your program will crash). Make sure that no part of your program will attempt to access `p1` until it has been reassigned to new data.**
 
 This can also apply to functions if not passing a unique pointer by reference. This can lead to extremely dangerous code as we can see in this example:
 ```cpp
@@ -97,14 +97,14 @@ std::unique_ptr<int> updatePtrValue(std::unique_ptr<int> p)
 int main()
 {
     std::unique_ptr<int> p1 = std::make_unique<int>(17);
-    auto p2 = updatePtrValue2(std::move(p1));
+    auto p2 = updatePtrValue(std::move(p1));
     p2.swap(p1);
     std::cout << *p1 << std::endl;
 
     return 0;
 }
 ```
-- In this code, the memory ownership is passed from `p1` to `p`, a unique pointer which is local to the function. In order to avoid the memory being deleted when we leave the function scope, we use `std::move` to move the ownership from `p` to `p2`. At that point, `p2` points to our useful memory, and `p1` is dangling. We use `swap` to move the memory back to `p1`, which leaves `p2` dangling. **If we access `p2` this program will crash. Do not use `std::move` to pass data around, and only use it is you want a new variable to take control of the destruction of that data.** 
+- In this code, the memory ownership is passed from `p1` to `p`, a unique pointer which is local to the function. In order to avoid the memory being deleted when we leave the function scope, we use `std::move` to move the ownership from `p` to `p2`. At that point, `p2` points to our useful memory, and `p1` is dangling. We use `swap` to move the memory back to `p1`, which leaves `p2` dangling. **If we access `p2` this program will crash. Do not use `std::move` just to pass data around: only use it if you want a new variable to take control of the destruction of that data.** 
 - A good example of using `std::move` would be if another object, perhaps with a broader scope than the existing pointer, needed to take ownership of that data as part of its class. Then if that object outlives the current scope, the data will be maintained for as long as that object lives. **In this case we still need to be careful not to access dangling pointers created by `std::move`**. 
 - We can test whether a unique pointer `p` points to valid memory using `(p)` which returns `true` if it points to valid memory and `false` otherwise.
 ```cpp
