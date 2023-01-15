@@ -232,7 +232,7 @@ using std::endl;
 
 ### The `typedef` Keyword
 
-Types in C++ can grow to be quite long and complicated for certain kinds of objects, especially when namespaces are also involved. Furthermore, we often wants type names to be more indicative of what we actually want to use them for: the name `IntMatrix` is more helpful than `std::vector< std::vector <int>>`! We can assign an alias for any type by using the `typedef` keyword like so:
+Types in C++ can grow to be quite long and complicated for certain kinds of objects, especially when namespaces are also involved. Furthermore, we often want type names to be more indicative of what we actually want to use them for: the name `IntMatrix` is more helpful than `std::vector< std::vector <int>>`! We can assign an alias for any type by using the `typedef` keyword like so:
 ```cpp
 typedef std::vector< std::vector<int> > = IntMatrix; 
 ```
