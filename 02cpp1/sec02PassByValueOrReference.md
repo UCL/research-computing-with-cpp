@@ -47,48 +47,55 @@ The declaration `int const &x` means that `x` is a reference (`&`) to a constant
 
 ## Using references for output variables
 
-When we use a `return` statement in a function, we are also passing by value, and a copy of the variable that we are returning is made. Just like with inputs to a function, this can be a performance issue if the data that we want to output is large. 
+When we use a `return` statement in a function, we are also passing by value, and a copy of the variable that we are returning is made. Just like with inputs to a function, this can be a performance issue if the data that we want to output is large. There are however a few things to note about the efficiency of `return` statements:
+- Objects are copied using their _copy constructor_, a special function in their class definition which defines how to create a new object and copy the current object's data. (This may be automatically created by the compiler.)
+- Some objects also have a _move constructor_ defined, in which the data is not explicitly copied, but a new object takes control of the data. We'll return to this idea when we talk about pointers in the next section! (The move constructor may also be automatically created by the compiler.) 
+- For such classes an object can be returned without making a copy, since the compiler knows that the original object will immediately go out of scope (and then be destroyed) and can therefore have its data moved without any conflict over which object owns the data. (This is why this optimisation can be used when returning a value but _not_ when passing an object to a function by value: when passing an object to a function the original object will continue to exist.)
+- **The compiler will use a move constructor whenever available, and a copy constructor when not.** Therefore, you may find that returning values is more performant than you expect from the size of the data-structure. 
 
+If a return statement has significant overheads, it may be avoided using references. Let's assume we have a large data class `ImmovableData` with no move constructor.  
 ```cpp
-vector<int> makeList(const int &a, const int &b)
+ImmoveableData GenerateData(const int &a)
 {
-    vector<int> v;
-    for(int i = 0; i < b; i++)
+    ImmovableData D;
+    for(int i = 0; i < a; i++)
     {
-        vector.push_back(a + i);
+        // Do some data generation
+        ...
     }
-    return v;
+    return D;
 }
 
 int main()
 {
-    vector<int> intList = makeList(1, 100000);
+    ImmovableData data = GenerateData(100000);
 
     return 0;
 }
 
 ```
-- This code will create a large vector inside the function call, and then copy that vector when the function returns and place the result in the variable `intList`. The original vector is then deleted.
+- This code will create a large data-structure the function call, and then copy that structure when the function returns and place the result in the variable `data`. The original data-structure is then deleted.
 
 Instead of declaring a variable and setting it equal to the return value of a function, we can instead declare the variable and then pass it into the function by reference. 
 ```cpp
-void makeListInPlace(const int &a, const int &b, vector<int> &v)
+void GenerateInPlace(const int &a, ImmovableData &v)
 {
     for(int i = 0; i < b; i++)
     {
-        v.push_back(a + i);
+        //Do some data generation
+        ...
     }
 }
 
 int main()
 {
-    vector<int> intList;
-    makeListInPlace(1, 100000, intList);
+    ImmovableData data;
+    makeListInPlace(100000, data);
 
     return 0;
 }
 ```
-- In this case, only one vector is made. Its data is updated in the function, but it never has to be copied. Once we exit the function, the changes to `intList` have persisted and we can use the values that we have assigned to it. 
+- In this case, only one data-structure is made. Its data is updated in the function, but it never has to be copied. Once we exit the function, the changes to `data` have persisted and we can use the values that we have assigned to it. 
 
 ## Which should I use?
 
