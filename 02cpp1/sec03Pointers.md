@@ -106,7 +106,7 @@ int main()
 ```
 - In this code, the memory ownership is passed from `p1` to `p`, a unique pointer which is local to the function. In order to avoid the memory being deleted when we leave the function scope, we use `std::move` to move the ownership from `p` to `p2`. At that point, `p2` points to our useful memory, and `p1` is dangling. We use `swap` to move the memory back to `p1`, which leaves `p2` dangling. **If we access `p2` this program will crash. Do not use `std::move` just to pass data around: only use it if you want a new variable to take control of the destruction of that data.** 
 - A good example of using `std::move` would be if another object, perhaps with a broader scope than the existing pointer, needed to take ownership of that data as part of its class. Then if that object outlives the current scope, the data will be maintained for as long as that object lives. **In this case we still need to be careful not to access dangling pointers created by `std::move`**. 
-- We can test whether a unique pointer `p` points to valid memory using `(p)` which returns `true` if it points to valid memory and `false` otherwise.
+- We can test whether a unique pointer `p` points to valid memory using `if (p)`. When placed in this context `(p)` is implicitly converted to a boolean: `true` if `p` points to valid memory and `false` if not.  
 ```cpp
 if (p2)
 {
