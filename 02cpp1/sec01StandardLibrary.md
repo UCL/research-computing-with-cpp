@@ -103,7 +103,7 @@ int main()
 
 ### Adding or Removing Elements
 
-Vectors are dynamically sized, which means we add or remove elements. Here are some example of adding in and removing particular elements:
+Vectors are dynamically sized, which means we can add or remove elements. Here are some example of adding in and removing particular elements:
 ```cpp
 std::vector<int> v = {1,2,3};
 v.push_back(4);  // Add an element to the end of our vector 
