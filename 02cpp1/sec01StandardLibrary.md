@@ -329,16 +329,16 @@ We can see from our previous example the use of the `()` and `{}` brackets to de
 You will often find when programming, especially in a language with such an expansive standard library, that there are things that you need to look up. There are a large number of classes and functions available to C++ programmers, many of which may be new to you or require refreshing at various points. 
 
 Two common sites for C++ refernce are:
-- https://cplusplus.com/
-- https://en.cppreference.com/ 
+- <https://cplusplus.com/>
+- <https://en.cppreference.com/>
 
-Both are extremely useful and give thorough information about how to use classes and methods according to the specification in the C++ standard. Take for example the pages on the `vector` class: https://cplusplus.com/reference/vector/vector/ or https://en.cppreference.com/w/cpp/container/vector. Each tells us:
+Both are extremely useful and give thorough information about how to use classes and methods according to the specification in the C++ standard. Take for example the pages on the `vector` class: <https://cplusplus.com/reference/vector/vector/> or <https://en.cppreference.com/w/cpp/container/vector>. Each tells us:
 - which header the class is found in 
 - a summary of the class and how it is stored in memory
 - information on performance of basic operations 
 - a list of member functions and other information about the class (with links to detailed information and code samples)
 - a list of non member functions which operate on the class 
 
-You can also use these reference sites too look up libraries that make up part of the C++ standard. For example, https://cplusplus.com/reference/algorithm/ contains information about what is contained in the `<algorithm>` library that we briefly discussed above, with links to more detailed information about the functions available and the container types on which they operate (https://cplusplus.com/reference/stl/). 
+You can also use these reference sites too look up libraries that make up part of the C++ standard. For example, <https://cplusplus.com/reference/algorithm/> contains information about what is contained in the `<algorithm>` library that we briefly discussed above, with links to more detailed information about the functions available and the container types on which they operate (<https://cplusplus.com/reference/stl/>). 
 
 You should familiarise yourself with these resources to make the best use of C++ in the future. When writing research code, try to get into the habit of checking whether the C++ standard, or common libraries, already implement the functionality that you need satisfactorily before trying to implement your own. Online searches and forums such as StackOverflow can be a useful resource for this as well, but remember to check the official specification if you do find a class or function that you think will be useful to you, to be sure that you have accurate information about it! 
