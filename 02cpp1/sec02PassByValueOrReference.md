@@ -94,7 +94,7 @@ int main()
 
 - Passing small types like `int` or `float` by value is fine, as they are the same size as a reference.
 - Passing by value is also fine if you need a copy of the argument to work on in the function body without affecting its value outside the function. 
-- Pass larger arguments by `const` reference if you can.
+- Pass larger arguments (> 4 bytes) by `const` reference if you can.
 - Pass by (non const) reference if you need to work on a variable in place i.e. the function should change the value of the argument itself. 
 - Avoid `return` with large data-structures for the same reason. These should be passed in and out by reference as function arguments. 
 - **N.B.** If passing by reference, you can only pass literals (values like numbers and strings which are not assigned to a variable) if using a `const` reference. Consider two function signatures `refAdd(int &a, int &b)` and `constRefAdd(const int &a, const int &b)`: we can call `constRefAdd(5, 12)` just fine, but if we call `refAdd(5, 12)` we will get an error. 
