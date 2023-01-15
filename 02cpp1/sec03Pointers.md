@@ -290,7 +290,7 @@ You may have come across *raw pointers* before when using C++. These have existe
 **Avoid using raw pointers for objects whose memory is not owned by some other resource** (e.g. a stack variable, a container, or a smart pointer). Raw pointers can be used for "non-owning pointers", which have no impact on the lifetime of the object that they point to, **as long as you can be sure that they won't point to invalid memory**. This can be useful for graph like classes where objects can reference one another (including circular references) but do not influence the lifetime of each other, or for referencing objects in container classes like `vector`. Bear in mind however, that we can't check if a raw pointer points to valid memory of not, so if the object that the raw pointer points to is deleted before the raw pointer, then accessing that pointer will cause undefined behaviour.
 - Okay for non-owning pointers 
 - Raw pointers should be used when you need to point to an existing stack variable. **Never point to an existing stack variable using smart pointers as their memory management will conflict.**
-- Faster memory access than weak pointers, although unique/shared pointers can match speed of raw pointers if compiled with optimisation.  
+- Faster memory access than weak pointers, although unique/shared pointers will match the speed of raw pointers if compiled with optimisation.  
 - Lower memory management overheads. 
 - Must manually use `new` and `delete` to manage memory allocation/deallocation: this is a frequent source of bugs. 
     - If using pointers for arrays as in `int *array = new int[100]` then you must use the `delete[]` keyword to make sure that the whole array is freed.
