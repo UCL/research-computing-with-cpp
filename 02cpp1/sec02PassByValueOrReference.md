@@ -1,10 +1,10 @@
 ---
-title: 'Pass by Value' and 'Pass by Reference'
+title: Pass by Value and Pass by Reference
 ---
 
 Estimated Reading Time: 15 minutes
 
-# 'Pass by Value' and 'Pass by Reference' 
+# Pass by Value and Pass by Reference 
 
 Variables can be passed to functions in two ways in C++: "pass by value" and "pass by reference". This choice significantly alters both the behaviour and the performance of a function. 
 
