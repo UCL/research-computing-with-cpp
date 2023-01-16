@@ -16,17 +16,20 @@ Today we'll be covering come core features of the C++ language, in particular as
 This week will cover:
 
 [Common Standard Library Features](./sec01StandardLibrary.md)
+
 - Input / Output
 - Containers & Iterators 
 - Algorithms & Anonymous Functions
 - Understanding C++ Documentation
 
 [Passing by Value and by Reference](./sec02PassByValueOrReference.md)
+
 - Differences between passing arguments to functions by value and by reference
 - Exracting values from functions by return statements or references
 - Usage of the `const` keyword
 
 [Pointers](./sec03Pointers.md)
+
 - Memory in C++ 
 - Data ownership models 
 - Smart pointers for data ownership
