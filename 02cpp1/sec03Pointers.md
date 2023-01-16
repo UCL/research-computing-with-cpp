@@ -342,19 +342,14 @@ which is exactly equivalent, but the `int const` form is preferred because it is
 
 Using `const` with pointers allows us to declare one of two things (or both):
 
-1. The pointer points to a `const` type: we declare the data pointed to constant, and so this pointer cannot be used to update the value of held in the memory location to which it points. In other words, the memory pointed to is declared read-only, and we can deference the pointer to retrieve the data at that location, but we can't update it. We can however change the memory address that the pointer points to, since the pointer itself is not constant (remember the pointer is actually a variable storing a memory address). 
-
+- **The pointer points to a `const` type**: we declare the data pointed to constant, and so this pointer cannot be used to update the value of held in the memory location to which it points. In other words, the memory pointed to is declared read-only, and we can deference the pointer to retrieve the data at that location, but we can't update it. We can however change the memory address that the pointer points to, since the pointer itself is not constant (remember the pointer is actually a variable storing a memory address). 
     - To do this with a smart pointer we need to place the `const` in the angle brackets, e.g. `shared_ptr<const int> readOnlySPtr` or `shared_ptr<int const> readOnlySPtr` which declares a shared pointer to a constant int. The `const` keywork here applies to the type of the data, `int`, so it is the data pointer to, not the pointer itself, which is being declared const. 
     - To do this with a raw pointer use the `const` keyword _before_ the `*` operator, e.g. `int const * readOnlyPtr` or `const int * readOnlyPtr`. This declares a (raw) pointer to a constant int. 
     - A pointer to const data only prohibits the value in memory being changed _through that pointer_, but if the value can be changed another way (e.g. it is a stack variable or there is another pointer to it) then it could still be changed. 
-
-2. The pointer itself is const: the memory location pointed to is a constant. In this case, the value held in the memory can change, but the pointer must always point to the same place and we can't redirect the pointer to look at another place in memory. 
-
+- **The pointer itself is const**: the memory location pointed to is a constant. In this case, the value held in the memory can change, but the pointer must always point to the same place and we can't redirect the pointer to look at another place in memory. 
     - We declare a smart pointer like this by placing the `const` keyword outside of the angle brackets, e.g. `shared_ptr<int> const fixedAddressSPtr` or `const shared_ptr<int> fixedAddressSPtr`. The `const` keyword is applied to the type `shared_ptr<int>` so it is the pointer itself, not the data it points to, which is constant. 
     - We declare a raw pointer in this way by placing the `const` keyword _after_ the `*` operator, e.g. `int * const fixedAddressPtr`. In this case we are applying the `const` to the type `int *` i.e. the pointer type, so the pointer itself is constant. 
-
-3. We can combine these to declare a constant pointer to constant data by using a `const` keyword _before and after_ the `*` operator:
-
+- We can combine these to declare a **constant pointer to constant data** by using a `const` keyword _before and after_ the `*` operator:
     - For smart pointers we can write `shared_ptr<int const> const readOnlyFixedPtr`.
     - For raw pointers we can write `int const * const readOnlyFixedPtr` or `const int * const readOnlyFixedPtr`.
 
