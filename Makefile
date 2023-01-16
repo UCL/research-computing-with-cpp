@@ -66,7 +66,8 @@ master.zip: Makefile
 	rm -f master.zip
 	wget https://github.com/UCL-RITS/indigo-jekyll/archive/master.zip
 
-ready: indigo $(OUTS) notes.pdf $(SLIDES) notes.tex $(PY_FIGURES)
+#ready: indigo $(OUTS) notes.pdf $(SLIDES) notes.tex $(PY_FIGURES)
+ready: indigo
 
 indigo-jekyll-master: Makefile master.zip
 	rm -rf indigo-jekyll-master

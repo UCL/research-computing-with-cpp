@@ -1,6 +1,0 @@
-# add_executable(HelloOpenMP.x HelloOpenMP.cc)
-add_executable(HelloOpenMPSafe.x HelloOpenMPSafe.cc)
-if(OPENMP_FOUND)
-  target_compile_options(HelloOpenMPSafe.x PUBLIC "${OpenMP_CXX_FLAGS}")
-  target_link_libraries(HelloOpenMPSafe.x "${OpenMP_CXX_FLAGS}")
-endif()
