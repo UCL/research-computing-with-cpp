@@ -3,7 +3,7 @@ research-computing-with-cpp
 
 Deployed at:
 
-http://rits.github-pages.ucl.ac.uk/research-computing-with-cpp
+http://github-pages.ucl.ac.uk/research-computing-with-cpp
 
 We normally build these locally on a Mac. We use g++ installed via homebrew. 
 So, for g++ version 7, we would: 

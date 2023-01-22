@@ -1,1 +1,0 @@
-add_executable(TMPFactorial.x TMPFactorial.cc)

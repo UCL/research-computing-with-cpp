@@ -1,1 +1,0 @@
-add_executable(FunctionObject.x FunctionObject.cc)
