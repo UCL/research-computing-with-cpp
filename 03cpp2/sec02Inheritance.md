@@ -56,12 +56,14 @@ Like with access specifiers, a sub-class can inherit from a base class in three 
 ## How is a Derived Object Created and Destroyed?
 
 When a derived object is created:
+
 1. The base class constructor is called. 
     - You can specify the base constructor to use for a given derived class constructor by writing a colon (`:`) followed by the base constructor you wish to call, e.g. `SubClass() : BaseClass(0, 0) { ... }`
     - If you do not specify a base constructor explicitly, e.g. `SubClass(){ ... }`, then the default constructor will be used. (If no default constructor for the base class exists you will get a compiler error.)
 2. The derived class constructor is called second. 
 
 When a derived object is destroyed:
+
 1. The derived class destructor is called first. 
 2. The base class destructor is called second. 
     - You can specify the base class destructor that you wish to use in the same way as the constructor.
@@ -152,6 +154,7 @@ class Square : public Shape
     double width;
 };
 ```
+
 - The `Shape` class has two functions: one to get the area (`getArea`) and one to get the perimeter (`getPerimeter`). 
     - These simply return member variables which store the area and perimeter of the shape, since there is no general formula for calculating the area or perimeter of an arbitrary shape. 
 - The area and perimeter are set in the constructor of the `Shape` class. 
@@ -183,6 +186,7 @@ int main()
     GetShapeAreas(shapes);
 }
 ```
+
 - When a `Circle` or `Square` is placed into the `vector<Shape>` container, it is cast to a `Shape` (the base class).
 - It will lose any additional information or methods associated with the derived class. 
 - The `Circle` and the `Square` both have access to the `perimeter` and `area` member variables, as well as their respective "getters". 
@@ -218,6 +222,7 @@ int main()
 ```
 
 This will result in:
+
 ```
 Circle; Radius = 5.9m, Area = 109.303 m^2, Perimeter = 37.052m.
 Square; Width = 3.1m, Area = 9.61 m^2, Perimeter = 12.4m.
@@ -225,6 +230,7 @@ Square; Width = 3.1m, Area = 9.61 m^2, Perimeter = 12.4m.
 Shape; Area = 109.303 m^2, Perimeter = 37.052m.
 Shape; Area = 9.61 m^2, Perimeter = 12.4m.
 ```
+
 - When we call `printInfo()` from the derived class objects directly, we get their detailed information including the type of shape and the radius or width. 
 - When we do the same on our objects within our vector, we only have access to the base class, and therefore we call the base class version of this method. 
 
@@ -235,12 +241,14 @@ We shall see in the next section how we can make use of polymorphism whilst stil
 ## Virtual Functions 
 
 Our current method of overriding and calling functions in the way described above is clearly insufficient in many cases where we want to use an object of a derived class in a piece of code which deals with the base class. Take for example a function that takes an argument of base type `Shape`:
+
 - We often don't want to pass our derived class by value: this will attempt to copy the object into a new object of type `Shape`, so any overrides will be lost. 
 - We can (and should) pass our argument by reference or as a pointer. However, the function itself will still be treating the object as being of type `Shape` and hence will call the `Shape` versions of any functions. 
 
 We can solve this problem by declaring a member function `virtual` in the base class. In this case, the function is accessed in a different way to normal. Function definitions have addresses, and normally when a member function of a class is called the definition of that function for that is just looked up. So if we are using a `Shape *` pointer to an object, even if that object was created of type `Circle`, we will still look up the definition of any functions for `Shape`, since that's the class that we're using. For virtual functions however, each object will store the address of the definition of the function as part of its data (this data is called a "virtual table"). If the object is created as an instance of the base class, this will be the address of the base function, but if the object is created as an instance of a derived class, then this will be the address of the derived function. When we call the function on the object, it will execute the function at the address stored in the virtual table, which is individual to the instance of the object, rather than using an address which applies to the whole class. This means it doesn't matter if we are using a `Shape *` pointer or `Circle *`, it will still used the derived function for the class `Circle` because that was the address put into the virtual table when the object was created. 
 
 Virtual functions open up fully polymorphic behaviour for our classes, and are important whenever a object of a derived class might be treated as a member of a base class, including:
+
 - Passing objects of derived class to functions which take objects of base class (by reference or pointer).
 - Placing a pointer to an object of derived class in a container (such as `vector`) of pointers to the base class.
 
@@ -249,6 +257,7 @@ Virtual functions open up fully polymorphic behaviour for our classes, and are i
 ## Abstract Classes
 
 Abstract classes are special cases of classes which have _virtual methods with no implementation_. Such functions are called **pure, virtual functions**. Such classes are abstract in the sense that they cannot be instantiated: we cannot create an object which is an instance of an abstract class because it has undefined functions and therefore the object to be instantiated is not fully defined. We can only instantiate objects of _derived classes_ which have implemented _all_ missing functionality. 
+
 - Abstract classes are any class which has at least one pure, virtual function
     - A function declared pure by setting it `= 0` in the definition 
     - e.g. `virtual int myPureVirtualFunction(int a, int b) = 0;`
@@ -259,6 +268,7 @@ Abstract classes are special cases of classes which have _virtual methods with n
 Let's return to our `Shape` class example, which defines shapes as a class of objects which have an area and a perimeter which can be calculated. `Shape` is a good candidate for an abstract class, because area and perimeter have no meaningful implementation until the form of the shape is specified, and thus there is no reasonable base class implementation, but we want this functionality to be available in any actual shapes which are created. We can then create derived classes for triangles, circles, and squares which override these pure virtual methods, and therefore can be instantiated. Now we can treat instantiations of each of the derived classes as objects of type Shape, and pass them to the same functions and containers, without any risk that an invalid and meaningless Shape base object will be created. 
 
 Here's a new definition of `Shape`, `Circle`, and `Square` that makes `Shape` and abstract class, and replaces the `area` and `perimeter` member variables with functions that calculate these properties instead. 
+
 ```cpp
 class Shape
 {
@@ -322,6 +332,7 @@ class Square : public Shape
     double width;
 };
 ```
+
 - We can no longer make objects of type `Shape`, only `Circle` or `Square`. 
 - We can however have pointers (smart pointer or raw pointers) or references to `Shape`, which will use the derived versions of `getArea`, `getPerimeter`, and `printInfo` for each object depending on whether it was created as a `Circle` or `Square`. 
 - The use of virtual functions makes this version more polymorphic than the previous one. 

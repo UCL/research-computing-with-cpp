@@ -9,6 +9,7 @@ Estimated Reading Time: 40 minutes
 Exceptions are used for error handling in C++ (and many other languages). The standard library provides a variety of exceptions that we can use straight away, although we can also write our own exceptions if we want additional functionality. 
 
 The `<stdexcept>` header contains the following exception types:
+
 - `logic_error`
 - `invalid_argument`
 - `domain_error`
@@ -38,11 +39,13 @@ We'll take a look now at how to do this in practice, starting with catching exce
 ## Catching Exceptions
 
 When some code we are running encounters an error and throws an exception, we need a mechanism for responding to that exception. 
+
 - We first need to define the code that might cause the problem. We do this with the `try{...}` keyword.
     - This tells our compiler that we want to monitor the execution of this code for exceptions. 
 - We then need to intercept any exceptions which are thrown and respond to them. We do this with the `catch(){...}` keyword.
 
 Let's take a look at an example of how to catch an exception thrown by a standard library function:
+
 ```cpp
 #include <iostream>
 #include <vector>
@@ -71,6 +74,7 @@ int main()
     return 0;
 }
 ```
+
 - We get the exception definitions from `#include <stdexcept>`.
 - If we think a code block might throw an exception then we can place it inside a `try{ code block }` statement.
     - In this case we are accessing a vector, which may not be long enough. 
@@ -86,10 +90,12 @@ int main()
 - `cerr` is a special output stream for errors; we can use this if we want the error to be written to a different place than standard output (e.g. standard ouput to file and errors to terminal, or vice versa). We can also output exception information to `cout` though. 
 
 We can see in this example that using `try` and `catch` blocks have significant advantages for someone reading our code:
+
 - It is immediately obvious which part of our code we are checking for errors. 
 - It is immediately obvious what is error handling code, and what is normal execution, because error handling code is all contained inside the `catch` statements. This separation of normal and exceptional behaviour can make it easier to understand what the normal operation of the code actually is and therefore what the code should do most of the time. 
 
 As mentioned above, exceptions that aren't caught by the calling function can propagate up the call stack until they are caught (or reach the top and stop program execution). This is useful because not all errors are best handled by the function immediately above in the call stack. Consider an application that takes input from the user, and then performs many nested operations on it. At some point in this process, it may discover an issue that means that the input provided is not viable (which may not be checkable at the point of input), and throw an exception. This would most likely be handled by asking the user for a different input, which means that this is where we should place the `try ... catch` blocks. A simplified example of this kind of structure could look like this:
+
 ```cpp
 #include <iostream>
 #include <cmath>
@@ -157,6 +163,7 @@ int main()
 ## Throwing Exceptions
 
 We can also throw exceptions from our own functions, which allows code which calls our functions to handle errors that might occur within our function code. For example, we might have a function which calculates the inner product of two vectors. In this case, the length of both vectors must be the same for this to make sense! So we could write code like this:
+
 ```cpp
 double InnerProduct(const vector<double> &x, const vector<double> &y)
 {
@@ -175,7 +182,9 @@ double InnerProduct(const vector<double> &x, const vector<double> &y)
     return product;
 }
 ```
+
 This will throw a `range_error` if the two vectors are not the same size. The code which calls this function can catch this exception using `catch(std::range_error e){}`. 
+
 ```cpp
 int main()
 {
@@ -204,15 +213,18 @@ int main()
 We've seen above that we can differentiate between different kinds of exceptions by checking for different expception classes, and then execute different error handling code accordingly. This is a very powerful feature of exceptions that we can extend further by defining our own exception classes to represent cases specific to our own applications. When we define our own exceptions, they should inherit from the `std::exception` class, or from another class which derives from `std::exception` like the standard library exceptions listed above. You should be aware though that if you inherit from a class, for example `runtime_error`, then your exception will be caught by any `catch` statements that catch exceptions of that base class. 
 
 Exceptions that we define should be indicative of the kind of error that occur. Rather than trying to create a different exception for each function that can go wrong, create exception classes that represent kinds of problems, and these exceptions may be thrown by many functions. When creating new exception classes it is a good idea to think about what is useful for you to be able to differentiate between. 
+
 - For example, an arithmetic overflow error is a useful class of errors which can tell us that our values have become too large to be handled. 
 - We don't want a separate arithmetic error class for every numerical function that we write that could go wrong!
 
 When we inherit from the `std::exception` class we inherit a virtual function called `what()`, which can be used to read or print out error messages associated with that exception. 
 
 To override `what()` the type declaration is:
+
 ```cpp
 const char * what() const noexcept {...}
 ```
+
 - The return type is `const char *` i.e. a constant `char` pointer. This is a C-style array of characters, and is how strings were handled in C. 
 - The `const` after the function name enforces that no member variables can be changed inside the function body i.e. `what()` cannot change any of the exception's data.
     - You can mark special variables to be modifiable even in `const` functions, by declaring them `mutable` e.g. `mutable int x`. 
@@ -222,6 +234,7 @@ Derived classes `runtime_error`, `logic_error`, and `failure` all contain constr
 Bear in mind however that you can also add any functionality that would be useful for your exception class, such as additional member variables which store relevant data. 
 
 Here's an example of an exception class that overrides the `what()` method and also returns special data. 
+
 ```cpp
 class FunctionDomainException: public exception
 {
@@ -242,6 +255,7 @@ class FunctionDomainException: public exception
     double bad_input;
 };
 ```
+
 - The constructor takes a `string` (`func_name`) to report the name of the function and a `double` (`value`) to report the value that the function failed at. 
 - It then constructs an error message based on this information and also stores `value` value as a member variable `bad_input`. 
 - The `what()` method is overridden to print out the string that we've constructed. 
@@ -250,5 +264,6 @@ class FunctionDomainException: public exception
 ## Control flow and memory management 
 
 We've discussed above that raising an exception will prematurely halt the execution of a function and return control to the calling function. It will also halt the execution of any calling functions until we find ourselves within a `try` block, at which point the `catch` code is executed. We should always be aware of what our program has not done if an exception is thrown. 
+
 - If you place a try block around a function which may throw exceptions at multiple points (it may have multiple `throw` statements or make calls to a number of other functions which could themselves throw exceptions) and you are passing variables in by reference to be modified, you should be aware of the possible states that your data could be if the function is prematurely halted. Not all the changes that your function is intended to make on your data may have happened!
 - When we reach the catch block, the stack memory for any functions which threw exceptions and were halted is freed (since they are now out of scope). This means that stack variables are cleaned up, and destructors for any stack variables are called (including smart pointers, the destructors for which de-allocate the data to which they point). Be aware though that if there are _raw pointers_ on the stack, the memory that they point to is not deleted (only the pointer itself is) and so if the memory that it points to is not a stack variable or also owned by a smart pointer a memory leak will occur. **This is one of the reasons why we should not use raw pointers for memory ownership.** If you do have an owning raw pointer in a function and you want to throw and exception, it is vital that you use `delete` to free the memory before throwing the exception; likewise you must be aware of any function calls that you make which could themselves throw an exception: these _must_ be caught so that you can free the memory before returning control to the call stack. 
