@@ -15,6 +15,7 @@ We have already been making extensive use of classes when working with C++. Inde
 Classes can be used to define our own data-structures, which have their own type. We can then declare objects of this type in our program. Apart from a handful of built in types (like `int`, `double`, and `bool`), variables that we declare in C++ are instances of a class. A number of objects that we've used so far are classes defined in the standard library, like `vector` and `string`. 
 
 Classes achieve two goals in representing concepts in programming: 
+
 - _Abstraction_
     - Represents the essential elements of a _kind_ of object, as distinct from other kinds of objects. What are the defining properties of a type of object? 
     - Class defines the blueprint for every object of that kind: what information it contains and what it should be able to do. 
@@ -28,11 +29,13 @@ Classes achieve two goals in representing concepts in programming:
 ## Access Specifiers in Classes
 
 When writing a class we can declare a member function or variable using one of three access specifiers:
+
 - `private`: access is private by default. The variable or function is available only within the body of this class. 
 - `protected`: The variable or function can be accessed within the body of this class, or within the body of any class which inherits from this class. 
 - `public`: The variable or function can accessed inside and outside of the definition of the class, by anything which can access the object. 
 
 The access specifiers, `private`, `protected`, and `static`, are keywords which are used within class definitions followed by a colon (`:`) to specify access for all following members until the end of the class or another access specifier is reached. For example:
+
 ```cpp
 class myClass
 {
@@ -47,11 +50,13 @@ class myClass
     double z;
 };
 ```
+
 - `x` and `y` are both public
 - `name` is private
 - `z` is protected
 
 If you are writing classes in C++, especially classes that will be used by other people, it's a good idea to only give people access to as much as they need and no more than that. In general:
+
 - Make functions and variables `private` if you can.
 - You can control access to variables in a finer grained way through `get` and `set` methods than by making them public. For example you may want variables that can be inspected (write a `get` function) but not changed (no `set` function) or vice versa. 
 - Constructors and destructors should generally be `public`. 
@@ -60,6 +65,7 @@ If you are writing classes in C++, especially classes that will be used by other
 ## Static Members 
 
 Static member variables or functions are special members of a class. They belong to the class as a whole, and do not have individual values or implementations for each instance. This can be useful when keeping track of properties that are changeable and may affect the class as a whole, or for keeping track of information about a class. For example, one can use a static variable to count the number of instances of a class which exist using the following:
+
 ```cpp
 class countedClass
 {
@@ -90,6 +96,7 @@ int main()
 
     return 0;
 }
+
 ```
 - The count is incremented in the constuctor (`countedClass()`), and so increased every time an instance of this type is created. 
 - The count is decremented in the destructor (`~countedClass()`), and so decreased every time an instance of this type is destroyed. 
@@ -102,6 +109,7 @@ int main()
 - A variable like `count` shouldn't be able to be changed outside of the class, as that could interfere with our counting! But we do want to be able to access the _value_ of the count, so we can tell how many there are. 
 - We should make `count` _private_ and make a function to retrieve the value _public_
 - Such functions are often called "getters", because they are frequently named `get...()` for some variable
+
 ```cpp
 class countedClass
 {
@@ -139,6 +147,7 @@ int main()
     return 0;
 }
 ```
+
 - `getCount()` is `public` and `static` and so can be accessed just like we accessed `count` before (through an object or through the class definition).
 - `getCount()` returns an integer _by value_, so it returns a copy of `count`. We can't modify `count` through this function or the value we get back from it. 
 - `count` is now private, so if we try to access this directly from outside the class the compiler will raise an error. 
