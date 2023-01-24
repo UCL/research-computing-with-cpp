@@ -1,6 +1,0 @@
-# add_executable(openmpforloop.x openmpforloop.cc)
-add_executable(openmpforloopreduction.x openmpforloopreduction.cc)
-if(OPENMP_FOUND)
-  target_compile_options(openmpforloopreduction.x PUBLIC "${OpenMP_CXX_FLAGS}")
-  target_link_libraries(openmpforloopreduction.x "${OpenMP_CXX_FLAGS}")
-endif()
