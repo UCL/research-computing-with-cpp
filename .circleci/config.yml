@@ -27,16 +27,8 @@ jobs:
           - rubygems-v1-latest
 
       - run:
-          name: install apt dependencies
-          command: sudo apt-get update -y; xargs -0 sudo apt-get install -y < <(tr \\n \\0 < .github/texlive/requirements.txt); sudo apt-get install python3 python3-pip python-is-python3; sudo pip install -r .github/python/requirements.txt
-
-      - run:
           name: install dependencies
           command: bundle check || bundle install --jobs=4 --retry=3
-
-      - run:
-          name: Build lesson
-          command: ITK_DIR=/usr/lib/InsightToolkit ./build.sh
 
       - run:
           name: Jekyll build
