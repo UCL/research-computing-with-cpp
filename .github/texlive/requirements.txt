@@ -10,8 +10,8 @@ libboost-all-dev
 openmpi-bin
 libopenmpi-dev
 libinsighttoolkit4-dev
-libvtk6.3
-libvtk6-dev
+libvtk7.1
+libvtk7-dev
 libvtkgdcm3.0
 libgdcm-tools
 cmake
