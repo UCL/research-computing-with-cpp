@@ -1,0 +1,71 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.7.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.7.6-node
+    environment:
+      BUNDLE_PATH: ~/vendor/bundle
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: a merge PR
+          command: |
+            if [[ -n "${CIRCLE_PR_NUMBER}" ]]; then
+              git fetch origin +refs/pull/$CIRCLE_PR_NUMBER/merge:pr/$CIRCLE_PR_NUMBER/merge
+              git checkout -qf pr/$CIRCLE_PR_NUMBER/merge
+            fi
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - rubygems-v1-latest
+
+      - run:
+          name: install dependencies
+          command: bundle check || bundle install --jobs=4 --retry=3
+
+      - run:
+          name: Jekyll build
+          command: bundle exec jekyll build -d html 2> std.err
+
+      - run:
+          name: Check Jekyll build
+          command: |
+            cat std.err
+            exit $(wc -l std.err | awk '{print $1}')
+
+      - run:
+          name: Jekyll re-build for local
+          command: |
+            echo "url: https://output.circle-artifacts.com" > circle.yml
+            echo 'baseurl: ""' >> circle.yml
+            bundle exec jekyll build -d html -b "/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html"  --config _config.yml,circle.yml 
+            find ./html/ -type f -iname '*html' | xargs -I{} sed -i \
+              -e 's|href="\(\.\/.*\/\)"|href="\1index.html"|g' \
+              -e '/0\/html/ s|href="\(\/.*\/\)"|href="\1index.html"|g' {}
+            # Replace pages ending on `/` from our site to direct to index.html
+
+      - run:
+          name: "Built documentation is available at:"
+          command: DOCS_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html/index.html"; echo $DOCS_URL
+
+
+      - save_cache:
+          paths:
+            - ~/vendor/bundle
+          key: rubygems-v1-latest
+
+      # collect reports
+      - store_artifacts:
+          path: ~/repo/html
+          destination: html
+
+notify:
+  webhooks:
+    - url: https://giles.cadair.dev/circleci
