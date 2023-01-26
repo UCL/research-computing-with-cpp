@@ -46,9 +46,7 @@ jobs:
             echo "url: https://output.circle-artifacts.com" > circle.yml
             echo 'baseurl: ""' >> circle.yml
             bundle exec jekyll build -d html -b "/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html"  --config _config.yml,circle.yml 
-            find ./html/ -type f -iname '*html' | xargs -I{} sed -i \
-              -e 's|href="\(\.\/.*\/\)"|href="\1index.html"|g' \
-              -e '/0\/html/ s|href="\(\/.*\/\)"|href="\1index.html"|g' {}
+            find ./html/ -type f -iname '*html' | xargs -I{} perl -pi -e 's/href="(.*?\/)"/href="\1index.html"/g' {}
             # Replace pages ending on `/` from our site to direct to index.html
 
       - run:
