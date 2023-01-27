@@ -1,5 +1,5 @@
 ---
-title: Designing Classes & Code 
+title: Designing Classes \& Code 
 ---
 
 Estimated Reading Time: 40 Minutes
