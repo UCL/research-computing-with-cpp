@@ -111,7 +111,8 @@ class Fraction
     - This can therefore be more flexible and intuitive than defining member functions for these kinds of operations. 
 
 Let's define the `*` (multiplication) operator. (The others can be defined similarly.) We can do this in one of two ways. 
-1. As a member function:
+
+A) As a member function:
 
 ```cpp
 class Fraction
@@ -136,7 +137,7 @@ class Fraction
     - So we can now write `Fraction f3 = f1 * f2;`.
 - Note that because it is a member function, it has access to the private member variables `numerator` and `denominator`. 
 
-2. Outside the class
+B) Outside the class
 
 ```cpp
 class Fraction
