@@ -98,13 +98,15 @@ Some of these qualities are related; readability and understandability are very 
 
 ## Some Guiding Principles 
 
-In general when programming we want our code to _modular_ in some way: we want our code to exist in independent chunks which achieve a simple tasks, which can then be combined to perform more complex tasks. Writing functions is a good example of this, where each function generally calculates a single thing, but combining functions can process data in very complex ways. We can approach classes in a similar way, breaking structures into smaller classes which represent individual things and building more complex structures from these components through processes like composition or inheritance. This leads to more flexible representations that allow us to make efficient changes to our code. 
+In general when programming we want our code to be _modular_ in some way: we want our code to exist in independent chunks, each of which achieves a simple task, which can then be combined to perform more complex tasks. Writing functions is a good example of this, where each function generally calculates a single thing, but combining functions can process data in very complex ways. We can approach classes in a similar way, breaking structures into smaller classes which represent individual things and building more complex structures from these components through processes like composition or inheritance. This leads to more flexible representations that allow us to make efficient changes to our code. 
 
 Below are some commonly recurring ideas in software design that you may want to consider. Bear in mind however, that there are no strict rules governing "good" or "bad" code design, and therefore no rule is applied 100% of the time. Make sure you always keep the goals of your code in mind when making choices about how to write it. 
 
 ### **Program To Interfaces**
 
-We've seen when discussing inheritance that inferfaces can be created using abstract classes or templates. Interfaces are a key aspect of flexible, extensible class design, as they specify the expected functionality that a class will need without restricting the specific class. This means that if we program to an interface we can change the implementation of that component without changing any of the code for the parts of the program which use it, making updating our code much more efficient and flexible. This is generally a good property of programs that we should strive for when possible. 
+We've seen when discussing inheritance that inferfaces can be created using abstract classes or templates. Interfaces are a key aspect of flexible, extensible class design, as they specify the expected functionality that a class will need without restricting the specific class. This means that if we program to an interface we can change the implementation of that component without changing any of the code for the parts of the program which use it, making updating our code much more efficient and flexible. This is generally a good property of programs that we should strive for when possible.
+
+Suppose, for example, that our program needs to load and display an image. There exists many different file formats for images, which all represent the images in different ways. In a bitmap image the colour values are stored for every pixel individually, and the image can be drawn by going through it pixel by pixel. A jpeg image on the other hand uses a special compression format that breaks the image into blocks (8 pixels by 8 pixels) and stores _fourier components_ for those blocks. In order for the image to be reconstructed and displayed, we have to reconstruct each block by multiplying those fourier components by the basis functions. The functionality for the end user is the same either way: load an image, and display it. Code that the user writes shouldn't have to care what the format of the image is in order to be able to use it, and this is where an interface becomes useful. If we have an `ImageDisplay` interface which promises a `load` and `display` function will be available, then we can write code which works with arbitrary objects which inherit from this class. We can then choose which implementation of the `ImageDisplay` interface to use based on the kind of file we are loading just at one single point (when the object is created), and the rest of the code is completely agnostic about that choice of implementation. 
 
 Different object-oriented languages have different approach to implementing the concepts of interfaces. C++ has no explicit "interface" construct, but interfaces are usually implemented by abstract classes. 
 - An interface is a guarantee that an object will implement a certain set of functionality.
@@ -118,6 +120,24 @@ The principle of _KISS_ is straight-forward: try to keep your programs simple an
 ### **DRY: Don't Repeat Yourself**
 
 The basic principle here is to organise your code into re-usable blocks rather than rewriting the same functionality repeatedly. If you have some calculation that appears multiple times throughout your code, you can place that calculation inside a function which is called in different places to avoid repeating that logic. 
+
+## RAII: Resource Acquisition Is Initialisation
+
+The concept of RAII is of great important in a language like C++ which allows you to manage memory manually. This pattern is designed to make your classes memory safe, and generally entails two key principles:
+
+- Memory allocated by your class should be allocated in the constructor.
+- Memory allocated by your class should be de-allocated in the destructor. 
+
+If the constructor fails to allocate the resources required for the class, then it should throw an exception. 
+
+The goal is to guarantee the following:
+
+- Resources that are required by the object exist for the full lifetime of the object. This will prevent invalid memory access attempts.
+- Resources that are allocated by the object do not exist for longer than the object itself. This will prevent memory leaks. 
+
+Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and accessing or writing resources such as files.  
+
+This pattern generally means wrapping resources that you want to use in some class: rather than accessing a file directly in a function, which could be interrupted by an exception before it can close the file, wrap the file in a class which will automatically close the file in the destructor if the object goes out of scope. Then use that class in your function to access your file: if something goes wrong and a destructor is called, your file will be closed when the stack unwinds and the file wrapper object is deleted. 
 
 ## Decoupling Code with Abstract Classes & Dependency Injection 
 

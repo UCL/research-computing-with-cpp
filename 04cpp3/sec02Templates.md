@@ -40,6 +40,7 @@ class myClassTemplate
 };
 ```
 - `T` is the template parameter, and the `typename` keyword tells us that `T` must denote a type. (You can equivalently use the `class` keyword.)
+    - Do note that you don't need to call your template parameter `T`; like function parameters or other variables, it can have any name. It's good to give it a more meaningful name if the type should represent something in particular, for example `matrixType` could be the name if your templated code deals with arbitrary types represnting matrices. This is especially useful when using templates with multiple template parameters! 
 - We can then use `T` like any other type inside the body of the class definition. 
 - Additional template parameters can appear in the angle brackets in a comma separated list e.g. `template<typename T1, typename T2>`.
 - Template parameters do not have to be `typename`. You can also have a template parameter that is an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on 
@@ -204,7 +205,7 @@ class Country
     - `getArea()` is implemented.
     - `>=` is defined for `double`. 
 
-We can use `getTheBiggerOne` with our `Country` class just as well as our `Shape` class, even though they are not (and certainly should not be) related by any inheritance! Templates allow us to define generic code that is broader than inheritance based polymorphism, but comes at the cost of being _static_. 
+We can use `getTheBiggerOne` with our `Country` class just as well as our `Shape` class, even though they are not (and certainly should not be) related by any inheritance! Templates allow us to define generic code that is broader than inheritance based polymorphism, on the condition that the type can be determined at compile time in order to generate a statically typed function.  
 
 - Class inheritance provides run-time polymorphism: I can define one function that takes a base class (e.g. `Shape`) and objects of that class or its derived classes can be passed to it. The compiler does not need to know at compile time whether the function will end up receiving `Shape` or `Circle` or `Square`. 
 - Templates provide static polymorphism. I can define one function template that generates separate functions for each class. If I want to use my function with both `Shape` and `Country`, the compiler needs to know this at run time.
@@ -236,6 +237,7 @@ namespace utilFunctions
 ```
 - It's usually a good idea to put functions and variables which are defined in a header but not part of a class inside a namespace, to avoid potential name clashes. 
 - The `#ifndef`, `#define` and `#endif` are pre-processor directives. This pattern is called an "include guard": it means that the file's contents will be ignored if it has already been included somewhere else in the same compilation unit, so that the contents are not declared twice (which would cause an error). 
+    - An alternative to these include guards which you will have seen already is `#pragma once`. This is a common pre-processor directive to only include a file once in a compilation unit, but it is not part of the ISO C++ standard and therefore may not be compatible with all platforms and compilers. 
 
 Then the implementation in `implementation.hpp`:
 ```cpp
