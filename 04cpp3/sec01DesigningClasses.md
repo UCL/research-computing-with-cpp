@@ -123,21 +123,21 @@ The basic principle here is to organise your code into re-usable blocks rather t
 
 ## RAII: Resource Acquisition Is Initialisation
 
-The concept of RAII is of great important in a language like C++ which allows you to manage memory manually. This pattern is designed to make your classes memory safe, and generally entails two key principles:
+The concept of RAII is of great importance in a language like C++ which allows you to manage memory manually. This pattern is designed to make your classes memory safe, and generally entails two key principles:
 
 - Memory allocated by your class should be allocated in the constructor.
 - Memory allocated by your class should be de-allocated in the destructor. 
 
-If the constructor fails to allocate the resources required for the class, then it should throw an exception. 
+If the constructor fails to allocate the resources required for the class, then it should throw an exception. Any resources already allocated by the class before reaching the exception should be deallocated by the destructor. 
 
 The goal is to guarantee the following:
 
 - Resources that are required by the object exist for the full lifetime of the object. This will prevent invalid memory access attempts.
 - Resources that are allocated by the object do not exist for longer than the object itself. This will prevent memory leaks. 
 
-Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and accessing or writing resources such as files.  
+Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and reading or writing resources such as files.  
 
-This pattern generally means wrapping resources that you want to use in some class: rather than accessing a file directly in a function, which could be interrupted by an exception before it can close the file, wrap the file in a class which will automatically close the file in the destructor if the object goes out of scope. Then use that class in your function to access your file: if something goes wrong and a destructor is called, your file will be closed when the stack unwinds and the file wrapper object is deleted. 
+RAII typically means wrapping these resources that you want to use in some class: rather than accessing a file directly in a function, which could be interrupted by an exception before it can close the file, wrap the file in a class which will automatically close the file in the destructor if the object goes out of scope. Then use that class in your function to access your file. If something goes wrong and an exception is thrown, your file will be closed when the stack unwinds and the file wrapper object is deleted. 
 
 ## Decoupling Code with Abstract Classes & Dependency Injection 
 
