@@ -9,6 +9,7 @@ Estimated Reading Time: 45 Minutes
 Templates are a way of writing generic code which can be re-used with different types. This is similar to the polymorphism that we have seen previously through class inheritance, except that the typing for a template happens at compile time rather than runtime. 
 
 Templates in C++ come in two main kinds:
+
 - Function Templates
 - Class Templates
 
@@ -111,6 +112,7 @@ class Fraction
 
 Let's define the `*` (multiplication) operator. (The others can be defined similarly.) We can do this in one of two ways. 
 1. As a member function:
+
 ```cpp
 class Fraction
 {
@@ -127,6 +129,7 @@ class Fraction
     int denominator;
 };
 ```
+
 - The member function `operator*` _can_ be called like any other member function.
     - If you have two `Fraction` objects `f1` and `f2` you could calculate a new fraction `Fraction f3 = f1.operator*(f2);`. 
 - However this function also overloads the `*` infix operator.
@@ -134,6 +137,7 @@ class Fraction
 - Note that because it is a member function, it has access to the private member variables `numerator` and `denominator`. 
 
 2. Outside the class
+
 ```cpp
 class Fraction
 {
@@ -155,6 +159,7 @@ Fraction operator*(Fraction x, Fraction y)
     return Fraction(numerator, denominator);
 }
 ```
+
 - This version also overloads the `*` infix operator in the same way. 
 - There is now no member version so we can't call `f1.operator*(f2)`, but we can call the non-member function `operator*(f1, f2)`. 
 - Note that we had to create `get` functions for the private member variables because `operator*` is not a member function in this case and so does not have access to private members. 
@@ -162,10 +167,12 @@ Fraction operator*(Fraction x, Fraction y)
 ## Using Class Members with Templated Types
 
 Writing a templated function which takes type `T` implicitly defines an interface that must be met by `T`. 
+
 - In the simple adding example we use the `+` operator on objects of type `T`: therefore `T` must implement this operator in order for the function to be successfully generated. 
 - In our vector sampling example we only require that `vector<T>` is a valid type; this places very few restrictions on `T` (although there are some). 
 
 The only restrictions on our templates is that the code is valid once the type substitution has been made. If we have a template parameter `T` then we can access member variables and functions of the class `T`, and this function will be able to be generated for any class which implements those properties. For example, let's take this function:
+
 ```cpp
 template<typename T>
 T& getTheBiggerOne(T &a, T &b)
@@ -180,11 +187,13 @@ T& getTheBiggerOne(T &a, T &b)
     }
 }
 ```
+
 - This function will return whichever of its two inputs has the larger area.
 - This is a valid template for any type which implements the member function `getArea()`.
 - Note we don't specify the return type of `getArea()`; for this code to be valid it is only necessary that `>=` is defined for the return type of `getArea()`.
 
 We can call this function using our `Shape` classes (`Shape`, `Circle`, `Square`) from last week, since they implement `getArea()`. But we could also implement a new class, like this one:
+
 ```cpp
 class Country
 {
@@ -200,6 +209,7 @@ class Country
     int population;
 }
 ```
+
 - This class defines countries by their name, area, and population. 
 - This class also fulfills all the conditions of `getTheBiggerOne`:
     - `getArea()` is implemented.
@@ -218,12 +228,14 @@ We can use `getTheBiggerOne` with our `Country` class just as well as our `Shape
 Since templates create concrete classes and functions at compile time, the compiler needs to have access to the template definition and the argument(s) for which it needs to be instantiated together at compile time. 
 
 Well organised C++ code typically organises code into declarations and implementations:
+
 - Declarations are contained in header files, usually ending in `.h` or `.hpp`. (Sometimes `.h` is used to distinguish header files intended for use with C and `.hpp` for header files which are only compatible with C++, but this is just a convention and not uniformly applied.) These are typically there to declare classes, and the variables and functions that they possess, and/or the variables and functions contained in a particular namespace. Function declarations just contain the name and signature (input types and return type) of the function, but not the actual code that it executes. When writing code which uses a class we usually just include the header file in our code to include the declaration: as long as we know the interface for the class we can compile code down to an object file which interfaces with that class. The final code can be created by _linking_ with the class object file which defines the actual implementation that needs to be executed. 
 - Implementations are contained in source files, usually ending in `.cpp` for C++ files. These contain the actual code which is executed by the functions declared in the header. (There may also be functions declared in the source file which aren't in the header if they're only locally needed and therefore don't need to be included elsewhere.) This can then be compiled down to an object file for linking with other object files which interface with each other. 
 
 We have to be a little careful when working with this model in the case of templates. We'll explore this using a function template, although the considerations are the same for a class template as well. Let's declare a function in a header file, and write two source files: one which implements the function in the header, and one which makes use of this function. 
 
 First the declaration in `declaration.hpp`:
+
 ```cpp
 #ifndef DECLARATION_HPP 
 #define DECLARATION_HPP
@@ -235,11 +247,13 @@ namespace utilFunctions
 
 #endif
 ```
+
 - It's usually a good idea to put functions and variables which are defined in a header but not part of a class inside a namespace, to avoid potential name clashes. 
 - The `#ifndef`, `#define` and `#endif` are pre-processor directives. This pattern is called an "include guard": it means that the file's contents will be ignored if it has already been included somewhere else in the same compilation unit, so that the contents are not declared twice (which would cause an error). 
     - An alternative to these include guards which you will have seen already is `#pragma once`. This is a common pre-processor directive to only include a file once in a compilation unit, but it is not part of the ISO C++ standard and therefore may not be compatible with all platforms and compilers. 
 
 Then the implementation in `implementation.hpp`:
+
 ```cpp
 #include "declaration.hpp"
 
@@ -249,9 +263,11 @@ int utilFunctions::add(int a, int b)
     return c;
 }
 ```
+
 - We need to include `declaration.hpp` in order to have access to the namespace and function declaration. 
 
 Finally we have another file which will want to use this function, which we'll call `usage.cpp`. 
+
 ```cpp
 #include "declaration.hpp"
 #include <iostream>
@@ -266,6 +282,7 @@ int main()
     return 0;
 }
 ```
+
 - This also needs to include `declaration.hpp` in order to access the function declaration. 
 - Note that it does **not** need the function implementation: it only needs to know the name of the function and what types it accepts and returns to be able to compile.
 
@@ -274,6 +291,7 @@ We can compile `implementation.cpp` and `usage.cpp` down to two separate object 
 This simple addition function could be made much more flexible by also operating on other numeric types, like `float` or `double` for which the addition operator is defined. In this case, rather than writing three separate functions out, all with essentially identical code, we could use a function template. 
 
 Let's update our declaration to use a template:
+
 ```cpp
 #ifndef DECLARATION_HPP 
 #define DECLARATION_HPP
@@ -288,6 +306,7 @@ namespace utilFunctions
 ```
 
 and our implementation:
+
 ```cpp
 #include "declaration.hpp"
 
@@ -300,9 +319,11 @@ T utilFunctions::add(T a, T b)
 ```
 
 If we try now to compile and link our executable we will find an error like this:
-```
+
+```bash
 undefined reference to `int utilFunctions::add<int>(int, int)'
 ```
+
 - The compiler has been unable to implement a definition of the `add` function for the type `int`, so this definition does not exist for us to use. 
 - This error shows up during linking. You can compile both object files like before, because both match the template declaration and therefore are valid, but neither one can define the specific implementation that we want so when linking it finds that the function isn't defined anywhere. 
 - `implemenation.cpp` cannot define the implementation when compiled down to an object because it has the function template but not the intended type, so it can't come up with any concrete implementation. 
@@ -314,6 +335,7 @@ There are two possible ways to approach this problem.
     - Concrete function is only created from the template if it is actually used. 
     - This is flexible, but breaks the separation of declaration and implementation.
     - Can cause the size of the executable to increase because the definitions will be recreated in different compilation units. 
+
 ```cpp
 #ifndef DECLARATION_HPP 
 #define DECLARATION_HPP
@@ -336,6 +358,7 @@ namespace utilFunctions
     - This is less flexible as you need to anticipate any combination of template arguments that the function  will be used with, but keeps the declaration and the implementation separate.
     - Separate function implementations will be created for each set of types given, even if they are never used. 
     - It can also be useful if you want the function to restrict usage to a sub-set of possible types. 
+
 ```cpp
 #include "declaration.hpp"
 
