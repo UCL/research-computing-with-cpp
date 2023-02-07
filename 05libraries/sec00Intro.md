@@ -4,24 +4,32 @@ title: Libraries
 
 ## Why use Libraries?
 
+> The best code is the code you never write
+
 ### What are libraries?
 
-* Libraries provide collections of useful classes and functions, ready to use
-* C++ libraries can be somewhat harder to use than pure Python modules
-* This lecture will get you started
+- Libraries are collections of useful classes and functions, ready to use
+- C++ libraries can be somewhat harder to use than modules in other languages (e.g. Python)
+- Can save time and effort by providing well-tested, flexible, optimised features
 
-### Libraries from a Scientific Coding perspective
+### Libraries from a scientific coding perspective
 
-* You want to Explain your science
-    * Should not just distribute binaries and papers with the "final" product
-    * Source code is best description of your science (it shows all the step you've followed)
-* Reproducible science
-    * Collaborators must know how you build your project and libraries
-    * Others can reproduce your results and build on top of it
-* Time is short
-    * Don't re-invent the wheel
-    * Use libraries if they provide bits you need
+Libraries help us do science faster
 
+- Write less code (probably)
+- Write better tested code (probably)
+- Write faster code (possibly)
 
+Particular things we scientists don't ever want to build ourselves:
 
+- standard data structures (e.g. arrays, trees, linked lists, etc)
+- file input/output (both for config files and output files)
+- standard numerical algorithms (e.g. sorting, linear solve, FFT, etc)
+- data analysis and plotting
 
+Sometimes we have to build things ourselves, when:
+
+- a library isn't fast enough
+- we don't trust a library's results/methods
+- a library doesn't provide the needed functionality
+- we can't use a library due to licensing issues
