@@ -153,6 +153,7 @@ While you should be asking yourself the above questions to understand how a libr
   - *very* well-documented
   - *very* well-used
   - constantly developed
+  - no need to install anything!
 - Vendor-provided libraries - provided by Intel/Nvidia/AMD/etc
   - well-tested
   - (often) well-documented

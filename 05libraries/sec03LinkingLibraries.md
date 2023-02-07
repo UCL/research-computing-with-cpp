@@ -58,7 +58,7 @@ You can see some examples on how to create dynamic libraries at:
 [Dynamic loading][DynamicLoading-wiki] is a third mechanism that we are not
 covering here. It's normally used for plugins.
 
-To load the libraries you need using system calls with `dlopen` (*nix) or
+To load the libraries you need using system calls with `dlopen` (\*nix) or
 `LoadLibrary` (Windows). This allows for dynamically discovering function names
 and variables.
 
