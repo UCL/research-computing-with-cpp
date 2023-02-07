@@ -1,8 +1,8 @@
 ---
-title: "Lecture 2: Modern C++ (1)"
+title: "Week 2: Modern C++ (1)"
 ---
 
-## Lecture 2: Overview 
+## Week 2: Overview 
 
 ### The Story So Far
 
