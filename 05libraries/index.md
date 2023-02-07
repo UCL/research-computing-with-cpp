@@ -1,22 +1,8 @@
 ---
-title: "Lecture 5: Including Libraries"
+title: "Week 5: Libraries"
 ---
 
-## Lecture 5: Overview
-
-### The Story So Far
-
-* Git, CMake, Catch2
-* Recap of Modern C++ features
-* OO concepts
-* C++ Standard Library
-* Smart pointers and move semantics
-* Lambda expressions
-* Error handling
-* How to assemble/organise classes
-* Templates
-
-### Today's Lesson
+## Week 5: Overview
 
 * What are libraries? Why use them?
 * How to choose a library
