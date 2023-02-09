@@ -92,7 +92,7 @@ class Shape
     Shape(){}
 
     public:
-    Shape(double P, double A)
+    Shape(double in_perimeter, double in_area)
     {
         perimeter = P;
         area = A;
@@ -121,7 +121,7 @@ class Shape
 class Circle : public Shape
 {
     public:
-    Circle(double r) : radius(r)
+    Circle(double in_radius) : radius(r)
     {
         perimeter = 2 * M_PI * radius;
         area = M_PI * radius * radius;
@@ -129,7 +129,7 @@ class Circle : public Shape
 
     void printInfo()
     {
-        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = " << m_perimeter << "m." << endl;
+        cout << "Circle; Radius = " << radius << "m, Area = " << area << " m^2, Perimeter = " << perimeter << "m." << endl;
     }
 
     protected:
@@ -139,7 +139,7 @@ class Circle : public Shape
 class Square : public Shape
 {
     public:
-    Square(double w) : width(w)
+    Square(double in_width) : width(w)
     {
         perimeter = 4 * width;
         area = width * width;
