@@ -32,8 +32,6 @@
 _site
 *.tmd
 *.rmd
-_includes
-_layouts
 combined.md
 combined.pdf
 js
@@ -43,7 +41,6 @@ indigo
 indigo-jekyll-master/
 master.zip
 notes.pdf
-*.html
 
 *~
 #
