@@ -47,3 +47,7 @@ Now try profiling one of your own codes. Since we're using cmake, we can't direc
 ```
 cmake -DCMAKE_CXX_FLAGS=-pg -DCMAKE_EXE_LINKER_FLAGS=-pg -DCMAKE_SHARED_LINKER_FLAGS=-pg ...
 ```
+
+## Compiler warnings
+
+One of the easiest ways to improve your code is to turn on **compiler warnings** and fix each warning. Some companies even require that all compiler warnings are fixed before allowing code to be put into production. Check out [this blog post on Managing Compiler Warnings with CMake](https://www.foonathan.net/2018/10/cmake-warnings/) for details on how to do this in our CMake projects. I recommend you use these warnings to fix potential bugs in your assignment.
