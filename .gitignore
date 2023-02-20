@@ -32,8 +32,6 @@
 _site
 *.tmd
 *.rmd
-_includes
-_layouts
 combined.md
 combined.pdf
 js
