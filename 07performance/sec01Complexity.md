@@ -16,11 +16,11 @@ Most commonly in numerical computing scenarios we are concerned with the time co
 
 "Big O" notation is a common way to express how the output of a function scales with its input. The formal definition is as follows:
 
-$f(n)$ is $O(g(n)) \iff \exist m, \alpha . \forall n > m . |f(n)| \le \alpha g(n)$.
+$f(n)$ is $O(g(n)) \iff \exists m, \alpha . \forall n > m . |f(n)| \le \alpha g(n)$.
 
 Let's break down what this means in words:
 
-- A function $f(n)$ is $O(g(n))$ ("order $g(n)$") if and only if there exists some values $m$ and $\alpha$ such that whenever $n$ is larger than $m$ then $|f(n)|$ (the absolute value of $f(n)$) is less than or equal to $\alpha g(n)$. 
+- A function $f(n)$ is $O(g(n))$ ("order $g(n)$") if and only if there exists some values $m$ and $\alpha$ such that whenever $n$ is larger than $m$ then $|f(n)|$ (the absolute value of $f(n)$ is less than or equal to $\alpha g(n)$. 
     - A function $f(n)$ is $O(g(n))$ if, as $n$ tends to infinity, $f(n)$ is bounded by $g(n)$ with an arbitrary multiplicative constant. 
 - We only require that the comparison holds for all inputs larger than some arbitrarily large value $m$ which means we are looking at **asymptotic behaviour**. We say that $g(n)$ is an **asymptotic upper bound** on $f(n)$. 
     - Practically speaking this means we are generally only interested in _leading terms_. For a quadratic $an^2 + bn + c$, the linear and constant terms will always be overwhelmed by the quadratic term in the asymptotic case, and so are irrelevant. All quadratics are $O(n^2)$, regardless of the values of $a$, $b$, and $c$ (as long as $a \ne 0$).
@@ -95,7 +95,7 @@ For **algorithmic analysis** we can often determine asymptotically tight bounds 
 
 We can define the elements of a product of two matrices as follows:
 
-$(AB)_{ij} = A_{ik}B_{kj}$
+$ (AB)_{ij} = A_{ik} B_{kj} $
 
 The simplest way to implement this is to iterate over $i$ and $j$, and for each element in the product matrix you perform a dot product between the $i$ row of $A$ and $j$ column of $B$.
 
