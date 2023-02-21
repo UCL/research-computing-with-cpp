@@ -212,7 +212,8 @@ Each round of merging takes $O(n)$ operations, so we need to know how many round
 - Algorithms with high complexity can become bottlenecks for your programs if their inputs become large. 
 - More efficient algorithms can often be a trade-off between time and accuracy or other desirable properties. 
 - Algorithms with good asymptotic performance often perform less well on small problems; don't waste time or sacrifice accuracy to use these kinds of methods on small data where they won't benefit!
-- Some algorithms have good average case complexity but very bad performance in special cases like ordered data! Make sure that you're aware of any patterns you expect in your data and that your chosen algorithm is not impacted by them. 
+- Some algorithms have good average case complexity but very bad performance in special cases like ordered data! Make sure that you're aware of any patterns you expect in your data and that your chosen algorithm is not impacted by them.
+- Well implemented methods often switch between algorithms depending on the size and nature of the data input to get the best performance.  
 
 ## Further Reading 
 
