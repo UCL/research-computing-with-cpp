@@ -93,9 +93,7 @@ For **algorithmic analysis** we can often determine asymptotically tight bounds 
 
 ### The Na&iuml;ve Algorithm 
 
-We can define the elements of a product of two matrices as follows:
-
-$ (AB)_{ij} = A_{ik} B_{kj} $
+We can define the elements of a product of two matrices as $(AB)_{ij} = A_{ik}B_{kj}$.
 
 The simplest way to implement this is to iterate over $i$ and $j$, and for each element in the product matrix you perform a dot product between the $i$ row of $A$ and $j$ column of $B$.
 
