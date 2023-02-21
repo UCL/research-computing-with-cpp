@@ -2,7 +2,7 @@
 title: Why Optimise for Performance?
 ---
 
-Estimated Reading Time: ?? minutes
+Estimated Reading Time: 10 minutes
 
 # Performance Optimisation Considerations
 
