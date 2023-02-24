@@ -12,122 +12,43 @@ Computational complexity is a major field in computer science, and we will only 
 
 Most commonly in numerical computing scenarios we are concerned with the time complexity of an algorithm, although there are occasions when you may have to worry about space complexity as well. 
 
-## "Big O" Notation
+## Intuitive Algorithm Analysis
 
-"Big O" notation is a common way to express how the output of a function scales with its input. The formal definition is as follows:
+When analysing an algorithm for its complexity, we are interested in how the time (or space requirements) of an algorithm scale as the input gets larger. We can define this notion in a formal way (see below!) but you can understand the key aspects of algorithmic performance based on a few intuitive concepts. 
 
-$f(n) \in O(g(n)) \iff \exists m, \alpha . \forall n > m . \mid f(n) \mid \le \alpha g(n)$.
+In terms of the input getting larger, this could mean:
 
-Let's break down what this means:
+- The size of a number $n$ for a function $f(n)$. A good example of this would be the time taken to find the prime factors of a number as the number gets larger. 
+- The number of elements in a container. For example, the time to sort a list of $n$ elements, or the time taken to look up a key-value pair in a map / dictionary. 
+- The number of dimensions of an $n$-dimensional space. For example in statistical sampling methods where we sample over many variables, we will be interested in how the algorithm performs as the number of dimensions increases. 
+-nThe size of a matrix: this example is a little unusual. Sometimes, particularly for a square ($n \times n$) matrix, this is expressed just by $n$, even though the number of elements in the matrix (and therefore the total size of the input) is actually $n^2$. On algorithms designed to work on non-square $n \times m$ matrices, you may have complexity in terms of _both_ $n$ and $n$.
+    - Adding two square matrices of the same size together is usually described as $O(n^2)$ with $n$ referring just one dimension of the matrix, whereas adding two lists of the same size is usually described as $O(n)$ with $n$ referring to the total number of elements, even though in both cases there is one operation per element of data. This difference is purely because of the way the input size is labelled in these two cases, so watch out for what people mean by $n$ when they tell you something is $O(g(n))$! 
+    - The general matrix case for addition would usually be written $O(nm)$. 
 
-- A function $f(n)$ is $O(g(n))$ if and only if there exists some values $m$ and $\alpha$ such that whenever $n$ is larger than $m$ then $\mid f(n) \mid$ (the absolute value of $f(n)$ is less than or equal to $\alpha g(n)$. 
-    - **A function $f(n)$ is $O(g(n))$ if, as $n$ tends to infinity, $f(n)$ is bounded by $g(n)$ with an arbitrary multiplicative constant.**
-- We only require that the comparison holds for all inputs larger than some arbitrarily large value $m$, which means we are looking at _asymptotic behaviour_. We say that $g(n)$ is an **asymptotic upper bound** on $f(n)$. 
-    - Practically speaking this means we are generally only interested in _leading terms_. For a quadratic $an^2 + bn + c$, the linear and constant terms will always be overwhelmed by the quadratic term in the asymptotic case, and so are irrelevant. All quadratics are $O(n^2)$, regardless of the values of $a$, $b$, and $c$ (as long as $a \ne 0$).
-    - For example: $\mid an^2 + bn + c \mid \le (a+1)n^2$ will always hold for $n$ large enough so that $n^2 > \mid bn + c \mid$, which we know must exist for any coefficients $b$ and $c$. 
-- We are allowing an arbitrary constant factor $\alpha$, so constant factors are irrelevant. $n^2$ and $50n^2$ are both $O(n^2)$. We are only interested in the **way that the output scales**, not the actual size. This will be a very important point to remember when applying algorithms in practice!
-- For this definition to make sense and be useful, the function $g(n)$ must be asymptotically non-negative.
+The "time" for an algorithm is based on the number of elementary steps that the algorithm has to undertake. 
 
-We can also write $f(n) \in \Omega(g(n))$ if $g(n)$ is an **asymptotic lower bound** of $f(n)$. This is a reciprocal relationship with $O(n)$ i.e. 
+We generally write the complexity in terms of "Big-O" notation, e.g. $T(n)$ (the time as a function of $n$) is $O(f(n))$. For example if our function printed out the elements of a list, the number of steps we take is proportional to the number of elements in the list (linear scaling), so $T(n)$ is $O(n)$. 
 
-$f(n) \in O(g(n)) \iff g(n) \in \Omega(f(n))$. 
+When talking about complexity, we only want to capture information about how the time or space scales as $n$ becomes large i.e. asymptotically as $n \rightarrow \infty$. As a result, we only care about dominant terms. Furthermore, we are only interested in the functional form of the scaling, not the absolute amount of time, so any constant factors are ignored.
 
-There is also a stronger condition:
+- Any cubic is $O(n^3)$, any quadratic is $O(n^2)$ etc. regardless of lower order polynomial terms. 
+- $\log(n)$ is subdominant to $n$. 
+- Constant overheads (additive constants to the time) are ignored as they don't scale with $n$.
+- A function is $O(1)$ if it doesn't scale with $n$ at all. 
+- $O(1) < O(log(n)) < O(n) < O(n log(n)) < O(n^2) < O(n^3) < O(2^n)$
+- Algorithms whose time complexity is $O(p(n))$, where $p(n)$ is a polynomial, or better are called _polynomial time algorithms_. 
 
-$f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n)) \wedge g(n) \in O(f(n))$
+We can also understand algorithms made of smaller parts, for example:
 
-- This means that $g(n)$ is an **asymptotically tight bound** on $f(n)$, because as $n$ tends to infinity $f(n)$ is bounded by a constant multiple of $g(n)$, and $g(n)$ is bounded by a constant multiple of $f(n)$. 
-- Put another way, there are two constants $\alpha$ and $\beta$ for which, as $n$ tends to infinity, $f(n) \ge \alpha g(n)$ and $f(n) \le \beta g(n)$. As such, $f(n)$ is bounded from above and below by multiples of $g(n)$. 
-- $f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n)) \wedge f(n) \in \Omega(g(n))$. 
-
-This relationship is symmetric:
-
-$f(n) \in \Theta(g(n)) \iff g(n) \in \Theta(f(n))$.
-
-Asymptotically tight bounds are particularly useful for understanding the behaviour as a function scales. 
-Take our quadratic example from before: $an^2 + bn + c \in O(n^2)$ is clearly true, but looking at the definition of $O(g(n))$ we can also say that $an^2 + bn + c \in O(n^3)$, since $n^3$ is asymptotically larger than any quadratic function and therefore acts as an upper bound. The same would be true of many functions which grow faster than quadratics! Likewise $O(n^2)$ includes anything that grows slower than a quadratic, such as a linear function. To say that our quadratic is $\Theta(n^2)$ is much stricter, as it says that our function grows as fast as $n^2$ and no faster than $n^2$ (up to multiplicative constants). 
-
-## Why use Big-O Notation for Algorithms and Computational Problems?
-
-For algorithmic analysis, the functions that we are interested in are the time and space useage of an algorithm as a function if its input size. 
-
-- Time useage is usually understood in terms of the number of "steps" that an algorithm needs to reach a result. How exactly that translates into time in the real world depends on how long each kind of operation takes to do (e.g. memory read, comparison, additions etc.), but these are multiplicative factors. 
-    - Note that sometimes things which might appear to be a simple step are more complex. For example, if performing additions with arbitrary precision integers then the time it takes to perform the addition will vary with the size of the number! If using fixed precision then this is not an issue because you know that e.g. a standard `int` is 4 bytes, and so even if the addition is optimised in some way to add smaller numbers quicker they are still bounded by the time it would take to operate on 4 bytes. 
-- Space is usually a bit easier to understand as we can reason more directly about the amount of information that we have to store. 
-    - When analysing space complexity we do not include the input itself, just any memory that must be allocated for working on. 
-- What we mean by the "input size" sometimes needs additional clarification. Traditionally it can be defined in terms of tape size on a Turing machine or bits on a computer, but in practice people may use reason with other things that correspond to this in some way. For example, we may use:
-    - The size of a number for a function which takes a single number as input, for example when looking at factoring a prime number. 
-    - The number of elements of a list, for example when summing or sorting a list. 
-    - The size of a matrix: this example is a little unusual. Sometimes, particularly for a square ($N \times N$) matrix, this is expressed just by $N$, even though the number of elements in the matrix (and therefore the physical input size) is actually $N^2$. On algorithms designed to work on non-square $N \times M$ matrices, you may have complexity in terms of _both_ $N$ and $M$.
-        - Adding two square matrices of the same size together is usually described as $O(N^2)$ with $N$ referring just one dimension of the matrix, whereas adding two lists of the same size is usually described as $O(n)$ with $n$ referring to the total number of elements, even though in both cases there is one operation per element of data. This difference is purely because of the way the input size is labelled in these two cases, so watch out for what people mean by $n$ when they tell you something is $O(g(n))$! 
-        - The general matrix case for addition would usually be written $O(NM)$. 
-
-Big-O notation (or $\Theta$ and $\Omega$) captures the way that these algorithms work without knowing too much detail about how it is physically performed on a computer: things like the exact amount of time for particular operations, the differences in how memory is divided up for reading and writing, and so on get absorbed into multiplicative factors or additive overheads. Big-O notation captures something more fundamental about the way that problems scale. Even things like modern CPUs doing multiple arithmetic operations in parallel don't affect the computational complexity of an algorithm, since there are still a fixed number of operations than can happen concurrently and therefore this can't contribute more than a constant factor. 
-
-Take for example a trivial summation example: 
-
-```cpp=
-double SumVector(const vector<double> &v)
-{
-    double sum = 0;
-    for(auto &x : v)
-    {
-        sum += x;
-    }
-    return sum;
-}
-```
-
-- We're interested here in how we scale with the number of elements in the list, so we'll call this $n$. 
-- There is one addition operation for each element in the list, so $n$ operations total. Time complexity is $\Theta(n)$ i.e. _linear_. 
-- Regardless of the size of the list, we only allocate one `double` (`sum`) for this function, so the space complexity is $\Theta(1)$ i.e. _constant_. 
-
-For **algorithmic analysis** we can often determine asymptotically tight bounds because we know exactly how an algorithm will behave. As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? The **complexity of problems** themselves usually uses asymptotic upper bounds (big O) to class them, because one can't generally prove that there exists no better way to do it than the solutions already known. Hence the best solution we have provides an upper bound on the complexity of the problem itself. Getting more precise knowledge of the inherent complexity of many problems is an active area of research.
-
-## The Complexity of Matrix Multiplication
-
- Let's take as an example the problem of matrix multiplication, an extremely common operation in scientific computing. What is the complexity of matrix multiplication? What algorithms are available to us and how to they get used in practice?
-
-### The Na&iuml;ve Algorithm 
-
-We can define the elements of a product of two matrices as
-
-$C_{ij} = A_{ik} B_{kj}$.
-
-(We have used the [summation convention](https://mathworld.wolfram.com/EinsteinSummation.html).)
-
-The simplest way to implement this is to iterate over $i$ and $j$, and for each element in the product matrix you perform a dot product between the $i$ row of $A$ and $j$ column of $B$ (which iterates over $k$).
-
-- Assuming our matrices are $N \times N$:
-    - There are $N^2$ elements to do this for in the product matrix.
-    - Calculating each element requires $N$ multiplications.
-    - Total number of multiplications is therefore $N^3$.
-        - We can see this immediately because we have nested iterations over $i$, $j$, and $k$, each of which has $N$ values.  
-    - Nothing else (e.g. memory read/writes) exceeds $N^3$ behaviour either. ($N^2$ writes, up to $N^3$ reads.) 
-
-So from a simple solution we can see that matrix multiplication is $O(n^3)$. It can't be _worse_ than asymptotically $n^3$, but it could be _better_, since we haven't shown that it is bounded from below by $n^3$. 
-
-We _can_ say that matrix multiplication must be $\Omega(n^2)$ i.e. bounded from below by $n^2$, since it needs to fill out $n^2$ values in the output matrix! 
-
-### (Asymptotically) Better Matrix Multiplication 
-
-The most common improved matrix multiplication algorithm is the _Strassen algorithm_. We won't go into the details of how the linear algebra works here, but we simply note:
-
-- The Strassen algorithm divides each matrix into four (roughly equal) sub-matrices.
-- Normally a matrix multiplication could be calculated using these sub-matrices by calculating 8 small matrix products. This wouldn't save time: the na&iuml;ve method is $O(n^3)$ and each matrix has size $\sim \frac{n}{2}$, so each sub-matrix multiplication is 8 times as fast, but there are also 8 matrix multiplications to do! 
-- By combining some of these sub-matrices through additions and substractions (which are $O(n^2)$) we can actually express the output matrix with just 7 small matrix products! (Again, some addition and subtraction required to build the output matrix after the products are calculated.) 
-- The additions and subtractions are negligible because there are a fixed number and they are $O(n^2)$ and therefore sub-dominant. 
-- Doing this recursively for submatrices as well leads to an algorithm which is $\sim O(n^{2.8...})$.
-    - Extra: To prove this you can the number of operations as a recurrence relation $T(n) = 7T(\frac{n}{2}) + O(n^2)$ and apply the [Master Theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)). Again the recommended texts for this week are a good place to start! 
-
-This may seem like a small gain, but it becomes increasingly important as matrices get large, and large matrix multiplication can be a bottleneck for many numerical codes!
-
-We should bear in mind:
-
-- This algorithm has more overheads than normal matrix multiplication. Asymptotic improvement does not mean it's better for all sizes of problems! For small matrices, the additional overheads of Strassen multiplication make it slower than the straightforward method. As a result, most implementations actually transition to regular matrix multiplication when the sub-matrices get to be small enough in size that this becomes more efficient. This kind of behavioural change is very common when optimising for performance. 
-- The Strassen algorithm is less numerically stable than the simple method, although not so much so as to be an issue in typical applications. This is again a common trade off with code optimised for speed, and something to bear in mind if you know that you have to deal with unstable edge cases. 
-
-So is this the best known performance for matrix multiplication? Not quite! The best known algorithm for matrix multiplication is $\sim O(n^{2.37...})$, but this are unusable in practice. It is an example of what is called a _galactic algorithm_; algorithms which have better asymptotic behaviour, but whose overheads are so large that they actually perform worse for any input that could physically fit on any plausible machine. It is a good reminder that asymptotic behaviour isn't everything!
+- If an algorithm calculates $f(n)$ which is $O(n^3)$ then $g(n)$ which is $O(n^2)$, then the complexity of the algorithm is $O(n^3)$ since caculating $g(n)$ will become subdominant. 
+- If we make $n$ calls to a function $f(n)$, and $f(n)$ is $O(g(n))$, then the complexity is $O(n g(n))$. For example, making $n$ calls to a quadric-scaling function would lead to a cubic, i.e. $O(n^3)$, algorithm. 
+    - Nested loops and recursions are key areas of your program to look at to see if complexity is piling up! 
+- Recursions or other kinds of branching logic can lead to recurrence relations: the time to calculate a problem can be expressed in terms of the time to calculate a smaller problem. This recurrence relation is directly linked to the complexity:
+    - If $T(n) \sim 2 \times T(\frac{n}{2})$ then $T(n)$ is linear. 
+    - If $T(n) \sim 4 \times T(\frac{n}{2})$ then $T(n)$ is quadric. 
+    - If $T(n) \sim k + T(\frac{n}{2})$ for constant $k$ then $T(n)$ is logarithmic. 
+    - See the [Master Theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)) for more on this if you're interested! 
+    - This is related to our intuition about how the time scales with $n$: if we know that a algorithm is $O(n^2)$ for example, we then know that as the input gets sufficiently large, the time taken to calculate the output will quadruple as $n$ doubles. 
 
 ## Algorithm Analysis: Sorting Algorithm Examples
 
@@ -200,6 +121,7 @@ Each round of merging takes $O(n)$ operations, so we need to know how many round
 
 - $O(n log(n))$ is actually optimal asymptotic behaviour for comparison sorting a list!
 - $O(n log(n))$ is sometimes called "quasi-linear". 
+- We can also approach this problem using a recurrence relation: $T(n) \sim O(n) + 2T(\frac{n}{2})$.
 
 ### *Comparison*
 
@@ -208,9 +130,125 @@ Each round of merging takes $O(n)$ operations, so we need to know how many round
 - Merge sort has the same best, average, and worst case complexity so is very predictable. 
 - Merge sort has higher overheads due to all those recursive function calls. 
 - As a result, we know that merge sort will eventually beat insertion sort as long as $n$ becomes large enough, but insertion sort may provide better performance for small lists. 
-    - Another popular algorithm is _quicksort_, which has $O(n log(n))$ behaviour in the average case (and is usually faster than merge sort), but $O(n^2)$ behaviour in the worst case. Selecting algorithms the best algorithms is not always obvious! 
+    - Another popular algorithm is _quicksort_, which has $O(n log(n))$ behaviour in the average case (and is usually faster than merge sort), but $O(n^2)$ behaviour in the worst case. Selecting algorithms the best algorithms is not always obvious!
 
-## Complexity in Practice
+## The Complexity of a Problem: Matrix Multiplication
+
+ As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? When discussing the instrinsic complexity of a problem, the complexity of best solution we have provides an upper bound since we know we can do it _at least that well_, although we don't know if we could do better. Getting more precise knowledge of the inherent complexity of many problems is an active area of research. (And if you can solve the $P=NP$ problem [you get $1,000,000!](https://en.wikipedia.org/wiki/Millennium_Prize_Problems))
+
+ Let's take as an example the problem of matrix multiplication, an extremely common operation in scientific computing. What is the complexity of matrix multiplication? What algorithms are available to us and how to they get used in practice?
+
+### The Na&iuml;ve Algorithm 
+
+We can define the elements of a product of two matrices as
+
+$C_{ij} = A_{ik} B_{kj}$.
+
+(We have used the [summation convention](https://mathworld.wolfram.com/EinsteinSummation.html).)
+
+The simplest way to implement this is to iterate over $i$ and $j$, and for each element in the product matrix you perform a dot product between the $i$ row of $A$ and $j$ column of $B$ (which iterates over $k$).
+
+- Assuming our matrices are $N \times N$:
+    - There are $N^2$ elements to do this for in the product matrix.
+    - Calculating each element requires $N$ multiplications.
+    - Total number of multiplications is therefore $N^3$.
+        - We can see this immediately because we have nested iterations over $i$, $j$, and $k$, each of which has $N$ values.  
+    - Nothing else (e.g. memory read/writes) exceeds $N^3$ behaviour either. ($N^2$ writes, up to $N^3$ reads.) 
+
+So from a simple solution we can see that matrix multiplication is $O(n^3)$. It can't be _worse_ than asymptotically $n^3$, but it could be _better_, since we haven't shown that it is bounded from below by $n^3$. 
+
+We _can_ say that matrix multiplication must be bounded from below by $n^2$ (written as $\Omega(n^2)$ when it's a _lower_ bound; this is also defined formally below) since it needs to fill out $n^2$ values in the output matrix! 
+
+### (Asymptotically) Better Matrix Multiplication 
+
+The most common improved matrix multiplication algorithm is the _Strassen algorithm_. We won't go into the details of how the linear algebra works here, but we simply note:
+
+- The Strassen algorithm divides each matrix into four (roughly equal) sub-matrices.
+- Normally a matrix multiplication could be calculated using these sub-matrices by calculating 8 small matrix products. This wouldn't save time: the na&iuml;ve method is $O(n^3)$ and each matrix has size $\sim \frac{n}{2}$, so each sub-matrix multiplication is 8 times as fast, but there are also 8 matrix multiplications to do! 
+- By combining some of these sub-matrices through additions and substractions (which are $O(n^2)$) we can actually express the output matrix with just 7 small matrix products! (Again, some addition and subtraction required to build the output matrix after the products are calculated.) 
+- The additions and subtractions are negligible because there are a fixed number and they are $O(n^2)$ and therefore sub-dominant. 
+- Doing this recursively for submatrices as well leads to an algorithm which is $\sim O(n^{2.8...})$.
+    - Extra: To prove this you can the number of operations as a recurrence relation $T(n) = 7T(\frac{n}{2}) + O(n^2)$ and apply the [Master Theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)). Again the recommended texts for this week are a good place to start! 
+
+This may seem like a small gain, but it becomes increasingly important as matrices get large, and large matrix multiplication can be a bottleneck for many numerical codes!
+
+We should bear in mind:
+
+- This algorithm has more overheads than normal matrix multiplication. Asymptotic improvement does not mean it's better for all sizes of problems! For small matrices, the additional overheads of Strassen multiplication make it slower than the straightforward method. As a result, most implementations actually transition to regular matrix multiplication when the sub-matrices get to be small enough in size that this becomes more efficient. This kind of behavioural change is very common when optimising for performance. 
+- The Strassen algorithm is less numerically stable than the simple method, although not so much so as to be an issue in typical applications. This is again a common trade off with code optimised for speed, and something to bear in mind if you know that you have to deal with unstable edge cases. 
+
+So is this the best known performance for matrix multiplication? Not quite! The best known algorithm for matrix multiplication is $\sim O(n^{2.37...})$, but this are unusable in practice. It is an example of what is called a _galactic algorithm_; algorithms which have better asymptotic behaviour, but whose overheads are so large that they actually perform worse for any input that could physically fit on any plausible machine. It is a good reminder that asymptotic behaviour isn't everything! 
+
+## Formal Definition: "Big O" Notation
+
+When writing software much of our reasoning can be done using the kind of intuitions outlined above. In order to have a more thorough grounding in these concepts and why this notation is so useful for classifying algorithms and problems, it is useful to look at how we define the scaling of functions in a more formal way. The definition of "Big-O" notation is as follows:
+
+$f(n)$ is $O(g(n))$ if and only if there exists some minimum value $n_0$ and some constant $\alpha$ such that whenever $n > n_0$,  $\mid f(n) \mid \le \alpha g(n)$.
+
+Let's break down what this means:
+
+- **A function $f(n)$ is $O(g(n))$ if, as $n$ tends to infinity, $f(n)$ is bounded from above by $g(n)$ multiplied by an arbitrary constant.**
+- Because we only require that the comparison holds for all inputs larger than some arbitrarily large value $n_0$, we are looking at _asymptotic behaviour_. We say that $g(n)$ is an **asymptotic upper bound** on $f(n)$. 
+    - Practically speaking this means we are generally only interested in _leading terms_. For a quadratic $an^2 + bn + c$, the linear and constant terms will always be overwhelmed by the quadratic term in the asymptotic case, and so are irrelevant. All quadratics are $O(n^2)$, regardless of the values of $a$, $b$, and $c$ (as long as $a \ne 0$).
+    - For example: $\mid an^2 + bn + c \mid \le (a+1)n^2$ will always hold for $n$ large enough so that $n^2 > \mid bn + c \mid$, which we know must exist for any coefficients $b$ and $c$. 
+- We have an arbitrary constant factor $\alpha$, so constant factors in $f(n)$ are irrelevant. $n^2$ and $50n^2$ are both $O(n^2)$. We are only interested in the **way that the output scales**, not the actual size. This will be a very important point to remember when applying algorithms in practice!
+- For this definition to make sense and be useful, the function $g(n)$ must be asymptotically non-negative.
+- This can also be written treating $O(g(n))$ as the set of functions that asymptotically bounded by $g(n)$.  
+    - $f(n) \in O(g(n)) \iff \exists m, \alpha . \forall n > m . \mid f(n) \mid \le \alpha g(n)$.
+    - Texts can vary quite a bit in notation e.g. $f(n) \in g(n)$ or $f(n) = g(n)$ (a bit of an abuse of notation since it is not an equivalence relation, but fairly common in practice), and in mathematical formality. 
+
+We can also write $f(n)$ is $\Omega(g(n))$ if $g(n)$ is an **asymptotic lower bound** of $f(n)$. This is a reciprocal relationship with $O(n)$ i.e. 
+
+$f(n)$ is $O(g(n))$ if and only if $g(n)$ is $\Omega(f(n))$. 
+
+There is also a stronger condition:
+
+$f(n)$ is $\Theta(g(n))$ if and only if  $f(n)$ is $O(g(n))$ **and** $g(n)$ is $O(f(n))$.
+
+- This means that $g(n)$ is an **asymptotically tight bound** on $f(n)$, because as $n$ tends to infinity $f(n)$ is bounded by a constant multiple of $g(n)$, and $g(n)$ is bounded by a constant multiple of $f(n)$. 
+- Put another way, there are two constants $\alpha$ and $\beta$ for which, as $n$ tends to infinity, $f(n) \ge \alpha g(n)$ and $f(n) \le \beta g(n)$. As such, $f(n)$ is bounded from above and below by multiples of $g(n)$. 
+    - $f(n)$ is $\Theta(g(n))$ if and only if  $f(n)$ is $O(g(n))$ and $f(n)$ is $\Omega(g(n))$. 
+
+This relationship is symmetric:
+
+$f(n)$ is $\Theta(g(n))$ if and only if  $g(n)$ is $\Theta(f(n))$.
+
+Asymptotically tight bounds are particularly useful for understanding the behaviour as a function scales. 
+Take our quadratic example from before: $an^2 + bn + c \in O(n^2)$ is clearly true, but looking at the definition of $O(g(n))$ we can also say that $an^2 + bn + c \in O(n^3)$, since $n^3$ is asymptotically larger than any quadratic function and therefore acts as an upper bound. The same would be true of many functions which grow faster than quadratics! Likewise $O(n^2)$ includes anything that grows slower than a quadratic, such as a linear function. To say that our quadratic is $\Theta(n^2)$ is much stricter, as it says that our function grows as fast as $n^2$ and no faster than $n^2$ (up to multiplicative constants). 
+
+## Why use Big-O Notation for Algorithms and Computational Problems?
+
+For algorithmic analysis, the functions that we are interested in are the time and space useage of an algorithm as a function if its input size. 
+
+- Time useage is usually understood in terms of the number of "steps" that an algorithm needs to reach a result. How exactly that translates into time in the real world depends on how long each kind of operation takes to do (e.g. memory read, comparison, additions etc.), but these are multiplicative factors. 
+    - Note that sometimes things which might appear to be a simple step are more complex. For example, if performing additions with arbitrary precision integers then the time it takes to perform the addition will vary with the size of the number! If using fixed precision then this is not an issue because you know that e.g. a standard `int` is 4 bytes, and so even if the addition is optimised in some way to add smaller numbers quicker they are still bounded by the time it would take to operate on 4 bytes. 
+- Space is usually a bit easier to understand as we can reason more directly about the amount of information that we have to store. 
+    - When analysing space complexity we do not include the input itself, just any memory that must be allocated for working on. 
+- What we mean by the "input size" can be ambiguous. Traditionally it can be more rigorously defined in terms of tape size on a Turing machine (which we we won't have time to cover!) or bits on a computer, but in practice people may typically reason with the kinds of intuitive values mentioned before which would correspond with the input size.
+
+Big-O notation (or $\Theta$ and $\Omega$) captures the way that these algorithms work without knowing too much detail about how it is physically performed on a computer: things like the exact amount of time for particular operations, the differences in how memory is divided up for reading and writing, and so on get absorbed into multiplicative factors or additive overheads. Big-O notation captures something more fundamental about the way that problems scale. Even things like modern CPUs doing multiple arithmetic operations in parallel don't affect the computational complexity of an algorithm, since there are still a fixed number of operations than can happen concurrently and therefore this can't contribute more than a constant factor. 
+
+Take for example a trivial summation example: 
+
+```cpp=
+double SumVector(const vector<double> &v)
+{
+    double sum = 0;
+    for(auto &x : v)
+    {
+        sum += x;
+    }
+    return sum;
+}
+```
+
+- We're interested here in how we scale with the number of elements in the list, so we'll call this $n$. 
+- There is one addition operation for each element in the list, so $n$ operations total. Time complexity is $\Theta(n)$ i.e. _linear_. 
+- Regardless of the size of the list, we only allocate one `double` (`sum`) for this function, so the space complexity is $\Theta(1)$ i.e. _constant_. 
+
+For **algorithmic analysis** we can often determine asymptotically tight bounds because we know exactly how an algorithm will behave.
+
+## Summary of Complexity in Practice
 
 - It's good to be aware of the complexity bounds on problems and algorithms that you will be working with, like matrix multiplication, matrix inversion, data lookups in different kinds of structures etc. 
     - Functions in the standard C++ library will often have known complexity given in the documentation, for example accessing an [ordered map](https://cplusplus.com/reference/map/map/operator[]/) is $O(log(n))$ and accessing an [unordered map](https://cplusplus.com/reference/unordered_map/unordered_map/operator[]/) is $O(1)$ in the average case and $O(n)$ in the worst case.  
