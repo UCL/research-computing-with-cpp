@@ -6,7 +6,7 @@ title: "Week 7: Introduction to Performance"
 
 This week we'll be introducing some concepts for producing high performance programming on a single CPU core, before moving on to parallel programming in the next three weeks. 
 
-Even though parallelism can help us improve our throughput, single core optimisation is still vital for producing good performance on ordinary machine or for maximising the work that each core can do in a parallel program. This week we'll talk about:
+Even though parallelism can help us improve our throughput, single core optimisation is still vital for producing good performance on ordinary machines or for maximising the work that each core can do in a parallel program. This week we'll talk about:
 
 1. [_Why_ and _when_ we should optimise](sec00Motivation)
 2. [Complexity and algorithm analysis](sec01Complexity) 
@@ -35,4 +35,4 @@ Even though parallelism can help us improve our throughput, single core optimisa
 - **Handbook of Floating Point Arithmetic**, Muller et al.
     - Covers just about everything you could want to know about floating point arithmetic including approaches to fast and accurate numerical algorithms, compilers, hardware and software implementation, and the evolution of floating point standards! 
 - **The Art of Computer Programming**, Donald Knuth.
-    - The big famous one. A very thorough (if somewhat dense) discussion of computing from a low level point of view. Great it you want to approach these issues with rigour and a strong relationship to machine implementation - code examples are in a form of assembly. Book 1 (Fundamental Algorithms) and Book 3 (Sorting and Searching) detail algorithm implementations and precise discussions of algorithm preformance. Book 2 (semi-numerical algorithms) has a good discussion of floating point arithmetic, its implementation, and errors. 
+    - The big famous one. A very thorough (if somewhat dense) discussion of computing from a low level point of view. Great if you want to approach these issues with rigour and a strong relationship to machine implementation - code examples are in a form of assembly. Book 1 (Fundamental Algorithms) and Book 3 (Sorting and Searching) detail algorithm implementations and precise discussions of algorithm performance. Book 2 (semi-numerical algorithms) has a good discussion of floating point arithmetic, its implementation, and errors. 

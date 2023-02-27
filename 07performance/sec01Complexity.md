@@ -8,7 +8,7 @@ Estimated Reading Time: 45 minutes
 
 Computational complexity is a major field in computer science, and we will only very briefly touch on the subject here. It is foundational in understanding computation as an idea, and underpins many areas of modern computing such as the theory of cryptography. For our purposes it will be enough to get a flavour of how we can study algorithms for their complexity properties, but you may wish to consult the reference texts for this week (or many other standard computer science texts) if you are interested in understanding complexity in a deeper and more rigorous way. 
 
-**Complexity tells us how the time and space useage of solutions to a problem changes with respect to the size of its input.** 
+**Complexity tells us how the time and space usage of solutions to a problem changes with respect to the size of its input.** 
 
 Most commonly in numerical computing scenarios we are concerned with the time complexity of an algorithm, although there are occasions when you may have to worry about space complexity as well. 
 
@@ -22,7 +22,7 @@ In terms of the input getting larger, this could mean:
 - The number of elements in a container. For example, the time to sort a list of $n$ elements, or the time taken to look up a key-value pair in a map / dictionary. 
 - The number of dimensions of an $n$-dimensional space. For example in statistical sampling methods where we sample over many variables, we will be interested in how the algorithm performs as the number of dimensions increases. 
 -nThe size of a matrix: this example is a little unusual. Sometimes, particularly for a square ($n \times n$) matrix, this is expressed just by $n$, even though the number of elements in the matrix (and therefore the total size of the input) is actually $n^2$. On algorithms designed to work on non-square $n \times m$ matrices, you may have complexity in terms of _both_ $n$ and $n$.
-    - Adding two square matrices of the same size together is usually described as $O(n^2)$ with $n$ referring just one dimension of the matrix, whereas adding two lists of the same size is usually described as $O(n)$ with $n$ referring to the total number of elements, even though in both cases there is one operation per element of data. This difference is purely because of the way the input size is labelled in these two cases, so watch out for what people mean by $n$ when they tell you something is $O(g(n))$! 
+    - Adding two square matrices of the same size together is usually described as $O(n^2)$ with $n$ referring tp just one dimension of the matrix, whereas adding two lists of the same size is usually described as $O(n)$ with $n$ referring to the total number of elements, even though in both cases there is one operation per element of data. This difference is purely because of the way the input size is labelled in these two cases, so watch out for what people mean by $n$ when they tell you something is $O(g(n))$! 
     - The general matrix case for addition would usually be written $O(nm)$. 
 
 The "time" for an algorithm is based on the number of elementary steps that the algorithm has to undertake. 
@@ -56,7 +56,7 @@ Let's take a look at two sorting algorithms and try to understand something abou
 
 ### **Insertion Sort**
 
-Insertion sort is one of the easiest sorting methods. We'll sort from smallest to largest. We'll show an _out of place_ implementation because it is easier to visualise, but this can performed _in place_ (i.e. changing the elements of the list as we go instead of putting them in a new list). 
+Insertion sort is one of the easiest sorting methods. We'll sort from smallest to largest. We'll show an _out of place_ implementation because it is easier to visualise, but this can be performed _in place_ (i.e. changing the elements of the list as we go instead of putting them in a new list). 
 
 1. It starts with an unsorted list, and in our case an empty buffer to place the elements into. This buffer will store the sorted list at the end and has the property that *it is correctly sorted at every step*. Elements are placed into the output list one by one. Since it starts empty, the first element can go straight in.
 
@@ -66,7 +66,7 @@ Insertion sort is one of the easiest sorting methods. We'll sort from smallest t
 
 ![image](img/insert_sort_2.jpg)
 
-3. We then try to insert the next element, again comparing with the last element of the output list. If we find a value that is bigger than the one we want to insert then we need to move along to the next. 
+3. We then try to insert the next element, again comparing with the last element of the output list. If we find a value that is bigger than the one we want to insert then we need to move along to the next element. 
 
 ![image](img/insert_sort_4.jpg)
 
@@ -82,7 +82,7 @@ Insertion sort is one of the easiest sorting methods. We'll sort from smallest t
 
 ![image](img/insert_sort_6.jpg)
 
-7. We continue until the all elements have been inserted into the output list. Since the output list is always sorted so as soon as we have inserted all the elements we are done. 
+7. We continue until the all elements have been inserted into the output list. Since the output list is always sorted, as soon as we have inserted all the elements we are done. 
 
 What is the time complexity of this? Well, the performance of this algorithm depends on the pattern of the input! There are always $n$ insertions but:
 
@@ -95,7 +95,7 @@ These are the best case and worse case scenarios. In practice, the average case 
 
 Merge sort is a "divide and conquer" algorithm: the idea is that we can easily build a sorted list by merging two shorter sorted lists each containing half of the elements.
 
-1. Merging two sorted lists is linear in the size of the list. At each step we comparse the head of the two lists. 
+1. Merging two sorted lists is linear in the size of the list. At each step we compare the head of the two lists. 
 
 ![image](img/merge_sort_1.jpg)
 
@@ -130,13 +130,13 @@ Each round of merging takes $O(n)$ operations, so we need to know how many round
 - Merge sort has the same best, average, and worst case complexity so is very predictable. 
 - Merge sort has higher overheads due to all those recursive function calls. 
 - As a result, we know that merge sort will eventually beat insertion sort as long as $n$ becomes large enough, but insertion sort may provide better performance for small lists. 
-    - Another popular algorithm is _quicksort_, which has $O(n log(n))$ behaviour in the average case (and is usually faster than merge sort), but $O(n^2)$ behaviour in the worst case. Selecting algorithms the best algorithms is not always obvious!
+    - Another popular algorithm is _quicksort_, which has $O(n log(n))$ behaviour in the average case (and is usually faster than merge sort), but $O(n^2)$ behaviour in the worst case. Selecting the best algorithms is not always obvious!
 
 ## The Complexity of a Problem: Matrix Multiplication
 
  As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? When discussing the instrinsic complexity of a problem, the complexity of best solution we have provides an upper bound since we know we can do it _at least that well_, although we don't know if we could do better. Getting more precise knowledge of the inherent complexity of many problems is an active area of research. (And if you can solve the $P=NP$ problem [you get $1,000,000!](https://en.wikipedia.org/wiki/Millennium_Prize_Problems))
 
- Let's take as an example the problem of matrix multiplication, an extremely common operation in scientific computing. What is the complexity of matrix multiplication? What algorithms are available to us and how to they get used in practice?
+ Let's take as an example the problem of matrix multiplication, an extremely common operation in scientific computing. What is the complexity of matrix multiplication? What algorithms are available to us and how do they get used in practice?
 
 ### The Na&iuml;ve Algorithm 
 
@@ -165,10 +165,10 @@ The most common improved matrix multiplication algorithm is the _Strassen algori
 
 - The Strassen algorithm divides each matrix into four (roughly equal) sub-matrices.
 - Normally a matrix multiplication could be calculated using these sub-matrices by calculating 8 small matrix products. This wouldn't save time: the na&iuml;ve method is $O(n^3)$ and each matrix has size $\sim \frac{n}{2}$, so each sub-matrix multiplication is 8 times as fast, but there are also 8 matrix multiplications to do! 
-- By combining some of these sub-matrices through additions and substractions (which are $O(n^2)$) we can actually express the output matrix with just 7 small matrix products! (Again, some addition and subtraction required to build the output matrix after the products are calculated.) 
+- By combining some of these sub-matrices through additions and subtractions (which are $O(n^2)$) we can actually express the output matrix with just 7 small matrix products! (Again, some addition and subtraction required to build the output matrix after the products are calculated.) 
 - The additions and subtractions are negligible because there are a fixed number and they are $O(n^2)$ and therefore sub-dominant. 
-- Doing this recursively for submatrices as well leads to an algorithm which is $\sim O(n^{2.8...})$.
-    - Extra: To prove this you can the number of operations as a recurrence relation $T(n) = 7T(\frac{n}{2}) + O(n^2)$ and apply the [Master Theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)). Again the recommended texts for this week are a good place to start! 
+- Doing this recursively for sub-matrices as well leads to an algorithm which is $\sim O(n^{2.8...})$.
+    - Extra: To prove this you can write the number of operations as a recurrence relation $T(n) = 7T(\frac{n}{2}) + O(n^2)$ and apply the [Master Theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)). Again the recommended texts for this week are a good place to start! 
 
 This may seem like a small gain, but it becomes increasingly important as matrices get large, and large matrix multiplication can be a bottleneck for many numerical codes!
 
@@ -177,7 +177,7 @@ We should bear in mind:
 - This algorithm has more overheads than normal matrix multiplication. Asymptotic improvement does not mean it's better for all sizes of problems! For small matrices, the additional overheads of Strassen multiplication make it slower than the straightforward method. As a result, most implementations actually transition to regular matrix multiplication when the sub-matrices get to be small enough in size that this becomes more efficient. This kind of behavioural change is very common when optimising for performance. 
 - The Strassen algorithm is less numerically stable than the simple method, although not so much so as to be an issue in typical applications. This is again a common trade off with code optimised for speed, and something to bear in mind if you know that you have to deal with unstable edge cases. 
 
-So is this the best known performance for matrix multiplication? Not quite! The best known algorithm for matrix multiplication is $\sim O(n^{2.37...})$, but this are unusable in practice. It is an example of what is called a _galactic algorithm_; algorithms which have better asymptotic behaviour, but whose overheads are so large that they actually perform worse for any input that could physically fit on any plausible machine. It is a good reminder that asymptotic behaviour isn't everything! 
+So is this the best known performance for matrix multiplication? Not quite! The best known algorithm for matrix multiplication is $\sim O(n^{2.37...})$, but this is unusable in practice. It is an example of what is called a _galactic algorithm_; algorithms which have better asymptotic behaviour, but whose overheads are so large that they actually perform worse for any input that could physically fit on any plausible machine. It is a good reminder that asymptotic behaviour isn't everything! 
 
 ## Formal Definition: "Big O" Notation
 
@@ -218,15 +218,15 @@ Take our quadratic example from before: $an^2 + bn + c \in O(n^2)$ is clearly tr
 
 ## Why use Big-O Notation for Algorithms and Computational Problems?
 
-For algorithmic analysis, the functions that we are interested in are the time and space useage of an algorithm as a function if its input size. 
+For algorithmic analysis, the functions that we are interested in are the time and space usage of an algorithm as a function of its input size. 
 
-- Time useage is usually understood in terms of the number of "steps" that an algorithm needs to reach a result. How exactly that translates into time in the real world depends on how long each kind of operation takes to do (e.g. memory read, comparison, additions etc.), but these are multiplicative factors. 
+- Time usage is usually understood in terms of the number of "steps" that an algorithm needs to reach a result. How exactly that translates into time in the real world depends on how long each kind of operation takes to do (e.g. memory read, comparison, additions etc.), but these are multiplicative factors. 
     - Note that sometimes things which might appear to be a simple step are more complex. For example, if performing additions with arbitrary precision integers then the time it takes to perform the addition will vary with the size of the number! If using fixed precision then this is not an issue because you know that e.g. a standard `int` is 4 bytes, and so even if the addition is optimised in some way to add smaller numbers quicker they are still bounded by the time it would take to operate on 4 bytes. 
 - Space is usually a bit easier to understand as we can reason more directly about the amount of information that we have to store. 
     - When analysing space complexity we do not include the input itself, just any memory that must be allocated for working on. 
 - What we mean by the "input size" can be ambiguous. Traditionally it can be more rigorously defined in terms of tape size on a Turing machine (which we we won't have time to cover!) or bits on a computer, but in practice people may typically reason with the kinds of intuitive values mentioned before which would correspond with the input size.
 
-Big-O notation (or $\Theta$ and $\Omega$) captures the way that these algorithms work without knowing too much detail about how it is physically performed on a computer: things like the exact amount of time for particular operations, the differences in how memory is divided up for reading and writing, and so on get absorbed into multiplicative factors or additive overheads. Big-O notation captures something more fundamental about the way that problems scale. Even things like modern CPUs doing multiple arithmetic operations in parallel don't affect the computational complexity of an algorithm, since there are still a fixed number of operations than can happen concurrently and therefore this can't contribute more than a constant factor. 
+Big-O, $\Omega$, and $\Theta$ all capture information about algorithm performance without knowing too much detail about how it is physically performed on a computer: things like the exact amount of time for particular operations, the differences in how memory is divided up for reading and writing, and so on get absorbed into multiplicative factors or additive overheads. Big-O notation captures something more fundamental about the way that problems scale. Even things like modern CPUs doing multiple arithmetic operations in parallel don't affect the computational complexity of an algorithm, since there are still a fixed number of operations than can happen concurrently and therefore this can't contribute more than a constant factor. 
 
 Take for example a trivial summation example: 
 

@@ -23,7 +23,7 @@ Code with optimisations applied will generally run faster, but there are a numbe
 3. Compilation Time.
     - Optimised compilation involves making complex transformations to your code, and depending on the nature and size of your code and the optimisations applicable, this may take a long time. 
 4. Standards Compliance.
-    - Some optimisations are not compliant with standards; in particular they may affect floating point computations by rearranging numerical expressions. Using these can jeopardise the accuracy of your programs. 
+    - Some optimisations are not compliant with floating point standards; in particular they may affect floating point computations by rearranging numerical expressions ("free re-associations"). Using these can jeopardise the accuracy of your programs. 
 
 ## Compiler Optimisation Flags
 
@@ -34,7 +34,7 @@ The GNU compiler (gcc) has a [large number of optimisation options](https://gcc.
 - `-O2` performs all the optimisations from `-O1` but also additional optimisations which may affect compile times more drastically, but which do not have a speed-space trade off (i.e. avoids inflating the size of the executable too much). 
 - `-O3` performs all the `-O2` optimisations and some additional ones which may impact the size of the executable. It does not turn on any optimisations which are not standards compliant. 
 - `-Og` performs some optimisations but keeps compile times short and strictly disables various optimisations that make certain structural changes to the code. This is designed for debugging so that you can step through your code line by line. 
-- `-Ofast` performs aggressive optimisation on numerical code but sacrifices compliance with some standards, meaning that result of your calculation can be affected. 
+- `-Ofast` performs aggressive optimisation on numerical code but sacrifices compliance with some standards, meaning that the result of your calculation can be affected. 
 
 There are others in the documentation linked above which I would recommend that you read. It also describes in detail the optimisations that are turned on at each level. 
 
@@ -77,7 +77,7 @@ A typical CPU (x86 architecture) SIMD register will be 128 bits, meaning that it
 
 and might contain 8 or 16 of these registers.
 
-Compilers can make use of these kinds of units as long as the calculations are independent - we can't calculate two things in parallel if one depends on the output of the other. Determining whether things are independent in this way, especially when there are loops involved, is not always trivial so you may not always get the most useage out of these registers. A loop like the following:
+Compilers can make use of these kinds of units as long as the calculations are independent - we can't calculate two things in parallel if one depends on the output of the other. Determining whether things are independent in this way, especially when there are loops involved, is not always trivial so you may not always get the most usage out of these registers. A loop like the following:
 
 ```cpp
 for(int i = 0; i < 4; i++)
@@ -99,7 +99,7 @@ can't because there is loop dependency.
 
 ### Function Inlining 
 
-Function calls also have overheads, since we must look up the function, create a new stack frame for the function's scope, and return from the function. This can be avoided by function inlining, which effectively replaces a function call with the code for that function. (This is a similar process to the loop unrolling we saw earlier.) This can have a number of [pros and cons which are discussed here](https://cplusplus.com/articles/G3wTURfi/), with the main down sides being to do with compilations size and bloating function code which can itself cause performance issues. As a result, inlining isn't done manually (we generally can't _force_ a compiler to inline a function; there are keywords to encourage inlining but these are not guaranteed), and the compiler will decide whether a function should be inlined for a given function call. This can be influenced by a number of flags 
+Function calls also have overheads, since we must look up the function, create a new stack frame for the function's scope, and return from the function. This can be avoided by function inlining, which effectively replaces a function call with the code for that function. (This is a similar process to the loop unrolling we saw earlier.) This can have a number of [pros and cons which are discussed here](https://cplusplus.com/articles/G3wTURfi/), with the main down sides having to do with executable size and bloating function code which can itself cause performance issues. As a result, inlining isn't done manually (we generally can't _force_ a compiler to inline a function; there are keywords to encourage inlining but these are not guaranteed), and the compiler will decide whether a function should be inlined for a given function call. This can be influenced by a number of flags 
 
 - `-fno-inline`: default for non optimised code, does not inline functions unless explicitly marked. 
 - `-finline-functions`: consider all functions for inlining. (Does not mean that all functions are inlined!)
@@ -149,7 +149,7 @@ Higher precision floating point numbers (like `double` as opposed to `float`) wi
 
 Compilers can optimise numerical code for speed by rearranging arithmetic operations. Most C++ optimisations are designed not to change the results of the calculations as written but some, such as those enabled by `-ffast-math`, allow for rearrangement of arithmetic according to the rules of _real numbers_, for example rearranging associations. 
 
-Suppose we have a large number $N$ and two much smaller numbers $a$ and $b$ and we want to calculate $N + a + b$. We know from the way that floating point numbers work that adding small and large numbers leads to rounding errors, so the best order to add these number is $(a+b) + N$, to keep the precision of $(a+b)$ and maximise the the size of the smaller number that we add to $N$. This is why re-associations in optimisation can cause a problem. Numerical algorithms with factors which compensate for rounding errors can have their error corrections optimised away by fast-math, because for _real_ numbers the error corrections would be zero and the compiler can identify them as redundant! 
+Suppose we have a large number $N$ and two much smaller numbers $a$ and $b$ and we want to calculate $N + a + b$. We know from the way that floating point numbers work that adding small and large numbers leads to rounding errors, so the best order to add these number is $(a+b) + N$, to keep the precision of $(a+b)$ and maximise the size of the smaller number that we add to $N$. This is why re-associations in optimisation can cause a problem. Numerical algorithms with factors which compensate for rounding errors can have their error corrections optimised away by fast-math, because for _real_ numbers the error corrections would be zero and the compiler can identify them as redundant! 
 
 **Do not use fast math optimisations for code containing precise numerical methods unless you have very strictly tested it for sufficient accuracy.**
 
@@ -198,7 +198,7 @@ We won't go into detail on inspecting assembly code but point out some key thing
 - Functions will be labelled, and you can easily find your `main` function.
 - Optimised code is usually significantly shorter than unoptimised code, especially when using structures like smart pointers where overheads can be optimised away.
 - Loops are formed from a combination of `cmp` (compare) and `jmp/jg/jl...` (jump, jump if greater than, jump if less than etc.) statements which test the conditions of the loop and redirect the program counter accordingly. You can therefore see if loops are unrolled or otherwise optimised out, which may lead to longer sections of assembly code. 
-- Function calls are make by `call/callq` statements. Unnecessary function calls can be optimised out by inlining or removing redundant functions. 
+- Function calls are made by `call/callq` statements. Unnecessary function calls can be optimised out by inlining or removing redundant functions. 
 - [SIMD instructions](https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions#SSE_instructions) are recognisable if your compiler has performed this kind of optimisation. 
 - If you assign a constant to a variable like `int x = 5`, you can usually spot this by finding the constant `$0x5` in a `mov` statement (`mov` moves a constant or a value contained in a source memory address/register to a destination memory address/register). 
 
@@ -254,7 +254,7 @@ If I optimise my code however, my loop can look quite different:
     11f2:	48 3d 90 01 00 00    	cmp    $0x190,%rax
     11f8:	75 e6                	jne    11e0 <main+0xa0>
 ```
-- The loop condition is evaluated at the end of the first iteration, and now compares values in two registers a register with the value `0x190` (400). 
+- The loop condition is evaluated at the end of the first iteration, and now compares the value in the `%rax` (64-bit accumulator) register with the value `0x190` (400). 
 - `jne    11e0 <main+0xa0>` jumps back to the start of the loop if the values in these are not equal. 
 - The value in `%rax` which represents the loop iteration variable is now advanced by `0x10` (16), resulting in 25 iterations. This is what we might expect given that we are using an SIMD register which can handle 4 32-bit integers at a time. 
     - Note that although I have multiple SIMD registers, I can still only perform one instruction at a time, which means I can't do more than 4 integer additions at once. 
