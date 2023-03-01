@@ -2,7 +2,7 @@
 title: "Week 7: Introduction to Performance"
 ---
 
-## Week 3: Overview 
+## Week 7: Overview 
 
 This week we'll be introducing some concepts for producing high performance programming on a single CPU core, before moving on to parallel programming in the next three weeks. 
 
