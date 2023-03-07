@@ -4,7 +4,9 @@ title: An introduction to OpenMP
 
 ## An introduction to OpenMP
 
-OpenMP is a way of parallelising C++ and Fortran code for multi-core, shared-memory systems. It can also offload computations to accelerators like GPUs but we won't go into that here. The way we use OpenMP is through **preprocessor directives**, statements that augment our code to give extra information to the compiler, allowing it to parallelise the code automatically. We'll describe the syntax for these directives in a later section but as a very quick example of what OpenMP looks like, this is how we can parallelise a loop using a `parallel for`:
+OpenMP is a way of parallelising C++ and Fortran code for multi-core, shared-memory systems. It can also offload computations to accelerators like GPUs but we won't go into that here.
+
+The way we use OpenMP is through **preprocessor directives**, statements that augment our code to give extra information to the compiler, allowing it to parallelise the code automatically. We'll describe the syntax for these directives in a later section but as a very quick example of what OpenMP looks like, this is how we can parallelise a loop using a `parallel for` directive:
 
 ```cpp
 #pragma omp parallel for
@@ -13,25 +15,25 @@ for(...) {
 }
 ```
 
-That's it! That's how simple OpenMP *can* be. Of course, OpenMP exposes much more functionality, allowing us to parallelise more complex code, and optimise *how* OpenMP parallelises our code. We can also use OpenMP to introduce some subtle and dangerous bugs (this is C++ after all) but at its core, OpenMP is a remarkably accessible way to program for shared-memory machines and has become standard in the HPC world for this purpose.
+That's it! Adding just one line before a loop we want to parallelise is how simple OpenMP *can* be. Of course, OpenMP exposes much more functionality, allowing us to parallelise more complex code, and optimise *how* OpenMP parallelises our code. We can also use OpenMP to introduce some subtle and dangerous bugs (this is C++ after all) but at its core, OpenMP is a remarkably accessible way to program for shared-memory machines and has become standard in the HPC world for this purpose.
 
-OpenMP is a deep and rich way to express parallelism within our code, and the directive-based approach allows us to support a version of our code compiled *without* OpenMP. **If we compile this code without informing the compiler we wish to use OpenMP, it will simply ignore the directives and treat it as sequential code.** If, instead, we use OpenMP's library interface, we have to work a little harder to ensure the code will still compile without OpenMP but it is still possible. Most of the HPC community use the directive-based approach, so that's what we'll focus on here.
+OpenMP is a deep and rich way to express parallelism within our code, and the directive-based approach allows us to support a version of our code compiled *without* OpenMP. **If we compile this code without informing the compiler we wish to use OpenMP, it will simply ignore the directives and treat it as sequential code.** 
 
-I should also note that OpenMP has many more features than the basic functionality I'll discuss here. Much like C++ itself, OpenMP is not a library or a piece of software but a *specification* which is continually evolving, with the latest 5.2 version being released in Nov 2021. Compiler developers will implement parts of the specification as appropriate for their userbases and support in GCC at least is minimal for the very latest features. See the [OpenMP page in the GCC wiki](https://gcc.gnu.org/wiki/openmp) for details.
+I should also note that OpenMP has many more features than the basic functionality I'll discuss here. Much like C++ itself, OpenMP is not a library or a piece of software but a *specification* which is continually evolving, with the latest 5.2 version being released in Nov 2021. Compiler developers will implement parts of the specification as appropriate for their userbases and support in GCC at least is minimal for the very latest features. See the [OpenMP page in the GCC wiki](https://gcc.gnu.org/wiki/openmp) for details on compatibility with the current specification.
 
 ### Compiling OpenMP code
 
-Telling the compiler to parallelise our code using OpenMP is as surprisingly simple as its basic usage. Let's look at how we can use OpenMP using just `g++` and as part of a CMake project.
+Enabling OpenMP is (surprisingly) as simple as its basic usage. Let's look at how we can enabled OpenMP using either `g++` only or as part of a CMake project.
 
 #### Compiling with `g++`
 
-If we're using `g++` to compile our program like `g++ -o hello hello.cpp` then all we need to add is the OpenMP flag:
+If we're using `g++` to compile our program as `g++ -o hello hello.cpp` then all we need to add is the OpenMP flag:
 
 ```bash
 g++ -fopenmp -o hello hello.cpp
 ```
 
-Other compilers have similar flags and, as previously mentioned, support different parts of OpenMP, although all compilers should support the basic features like the `parallel for` we've seen in the earlier example.
+Other compilers have similar flags and, as previously mentioned, support different parts of OpenMP, although all compilers should support the basic features.
 
 #### Compiling with CMake
 
@@ -46,21 +48,21 @@ endif()
 
 ### What is `#pragma omp`?
 
-You will likely only interact with OpenMP through its directives and every directive starts the same way:
+Every OpenMP directive starts the same way:
 
 ```cpp
 #pragma omp ...
 ```
 
-You have already seen a similar kind of preprocessor directive when including header files! `#include <iostream>` tells the C++ **preprocessor**[^preprocessor] to paste the contents of the iostream header directly into the C++ file to make its contents available to that file. When writing your own header files, you may have also come across a pragma directive: `#pragma once`. This tells the preprocessor to *only* include the header file if it has *not* already been included somewhere earlier in the chain of included files, particularly if it was already included inside another header file. If you've seen older header files, you may have also come across `#define` and `#if` to create **include guards** around the contents of header files, which allow the preprocessor to similarly avoid including a header multiple times in one file. 
+You have already seen a similar kind of preprocessor directive when including header files! For example, `#include <iostream>` tells the C++ **preprocessor**[^preprocessor] to paste the contents of the iostream header directly into the C++ file to make the header's contents available to that file. When writing your own headers, you may have also come across a pragma directive: `#pragma once`. This specific directive tells the preprocessor to *only* include the header file if it has *not* already been included somewhere earlier in the chain of included files. If you've seen older headers, you may have also come across `#define` and `#if` to create **include guards** around the contents of headers, which allow the preprocessor to similarly avoid including a header multiple times in one file. 
 
 [^preprocessor]: You may not have had to learn much about the preprocessor while using modern C++. It is used far more widely in older C++ and in C and, really, modern C++ has better built-in ways to provide the same functionality the preprocessor provides. At a high level, it is a text processor that can understand specific directives like `#include` and manipulate the text in C++ files appropriately. In C++ development you likely won't need to know much more than this.
 
-OpenMP uses these `#pragma` directives to describe what pieces of code should be automatically parallelised and, if necessary for optimisation, how the parallelisation should happen. If this is a little confusing at this stage, don't worry, it will become clear as you start playing with the OpenMP constructs through some examples.
+OpenMP uses its `#pragma omp` directives to control automatic parallelisation in code. If this is a little confusing at this stage, don't worry, it will become clear as you start playing with the OpenMP constructs through some examples.
 
 ### Parallelising a loop
 
-We've already seen an example of parallelising a loop:
+We've already seen an example of loop parallelisation:
 
 ```cpp
 #pragma omp parallel for
@@ -71,12 +73,12 @@ for(...) {
 
 This **construct**[^construct] actually combines two ideas:
 
-- creating a `parallel` **region** to spawn some **worker threads**
+- creating a **parallel region** to spawn some **worker threads**
 - splitting up a loop's work between the threads
 
 [^construct]: In OpenMP **construct** is the term for a region of code that OpenMP acts on, including the directive, so here we are using the `parallel for` construct. We'll see a few more OpenMP constructs as we got through more examples.
 
-This `parallel for` is actually shorthand for two separate constructs which we can explicitly write as:
+The `parallel for` is actually shorthand for two separate constructs which we can explicitly write as:
 
 ```cpp
 #pragma omp parallel
@@ -88,19 +90,25 @@ This `parallel for` is actually shorthand for two separate constructs which we c
 }
 ```
 
-Notice the new set of curly brackets which defines a new **scope**. At first this may seem strange, but scope is how OpenMP knows when to end the parallel region (or any other construct that applies to a *region* of code). You should already know about scope from your previous C++ knowledge so I won't explain it here. In C++, loops create their own new scope inside the loop delineated by curly braces, hence why we don't have to add any new braces when using the `parallel for`; it only applies to the duration of the loop. But when using only the `parallel` construct, we have to explicitly tell the compiler where the parallel region starts and ends.
+Notice the new set of curly braces which defines a new **scope**. At first this may seem strange, but scope is how OpenMP knows when to end the parallel region (or any other construct that applies to a *region* of code). You should already know about scope from your previous C++ knowledge so I won't explain it here. In C++, loops create their own new scope inside the loop delineated by curly braces, hence why we don't have to add any new braces when using the `parallel for`; it only applies to the duration of the loop. But when using only the `parallel` construct, we have to explicitly tell the compiler where the parallel region starts and ends with curly braces.
 
-The `parallel` directive tells OpenMP that we want to parallelise the piece of code inside the following scope. What this really means is when execution reaches this parallel region, OpenMP will create a number of threads, allow any constructs inside the parallel region to use those threads, and then destroy those same threads. Strictly, the `parallel` construct *does nothing by itself* except create and destroy threads. Specifically, `parallel` is an example a parallel model called **fork-join parallelism**, illustrated in this diagram from [Westchester University's OpenMP course](https://www.cs.wcupa.edu/lngo/csc466/):
+The `parallel` directive tells OpenMP that we want to parallelise the piece of code inside the following scope. What this really means is when execution reaches this parallel region, OpenMP will create a **team** of threads, allow any constructs inside the parallel region to use those threads. It then destroys those threads at the end of the parallel region. Specifically, `parallel` is an example a parallel model called **fork-join parallelism**, illustrated in the following diagram[^fork-join-source]:
 
 ![](img/fork_join.png)
 
-In short, fork-join means the program starts serially with a single thread of execution, forks into more threads when required (in OpenMP, when a `parallel` region is encountered) and then joins those threads back into the main thread to continue serially until another fork is required.
+[^fork-join-source]: Source: <https://en.wikipedia.org/wiki/en:File:Fork_join.svg>
 
-The `for` construct in this example uses the threads spawned by `parallel` by splitting the iterations of the for loop into chunks and assigning different chunks to different threads. Default behaviour can change based on the compiler and OpenMP runtime but usually the `for` construct will split the loop into as many chunks as there are threads and assign approximately the same number of iterations to each thread. So if there are 16 loop iterations to be performed at 4 threads, you can probably expect one thread to take iterations 0-3, another to take 4-7, and so on. Not all loops are this simple so we'll discuss later how we can optimise the `for` construct by specifying how the iterations are split amongst the threads.
+In short, fork-join means the program starts serially with a single thread of execution, forks into more threads when required (in OpenMP, when a `parallel` directive is encountered) and then joins those threads back into the main thread to continue serially until another fork is required.
+
+The `for` construct in this example uses the threads spawned by `parallel` by splitting the iterations of the for loop into chunks and assigning different chunks to different threads. Default behaviour can change based on the compiler and OpenMP runtime but usually the `for` construct will split the loop into as many chunks as there are threads and assign approximately the same number of iterations to each thread. So if there are 16 loop iterations to be performed by 4 threads, you can probably expect one thread to take iterations 0-3, another to take 4-7, and so on. Not all loops are this simple so we'll discuss later how we can optimise the `for` construct by specifying how the iterations are split amongst the threads.
 
 ### Example 1: Filling an array
 
-Let's apply this `parallel for` to an example where we want to fill an array with values from a moderately expensive function like `sin`:
+Example source: `01_filling_a_array/` in the [examples repository][examples-repository].
+
+[examples-repository]: https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples
+
+Let's apply a `parallel for` construct to an example where we want to fill an array with values from a moderately expensive function like `sin`:
 
 ```cpp
 #include <iostream>
@@ -121,13 +129,13 @@ int main() {
     vec[i] = sin(M_PI*float(i)/N);
   }
 
-  std::cout << timer.elapsed() << '\n';
+  std::cout << "Time: " << timer.elapsed() << '\n';
 
   return 0;
 }
 ```
 
-You can find this example and all further examples in the examples repository TODO. The timer code in the example is relatively simple so I won't explain it in detail, it just starts a timer when it's created and shows the elapsed time when `timer.elapsed()` is called.
+The timer code in the example is relatively simple so I won't explain it in detail, it just starts a timer when it's created and shows the elapsed time when `timer.elapsed()` is called.
 
 Let's build this *without* OpenMP to
 
@@ -142,9 +150,9 @@ and running with
 ```
 ./a.out
 ```
-prints out the time taken to fill this vector. It should take less than a second or so on your machine.
+prints out the time taken to fill this vector. It should take around a second or so on your machine.
 
-Running on my laptop once, I got a time of $0.98$s. Enabling OpenMP, that is compiling with
+Running on my laptop once, I got a time of 0.98s. Enabling OpenMP, i.e. compiling with
 ```
 g++ -fopenmp main.cpp timer.cpp
 ```
@@ -152,28 +160,36 @@ and again running with
 ```
 ./a.out
 ```
-gives me a time of $0.14$s. With just one additional line of code, I've managed to speed up my code by around $700$%! Given I have an 8-core processor, $800$% would be ideal but performance improvements don't usually scaling perfectly with number of cores in parallel computations, but perhaps with some optimisation we could squeeze out a little more performance. What performance increase do you see when running on your machine and does it match what you expect from the number of cores in your CPU?
+gives me a time of 0.14s. With just one additional line of code, I've managed to speed up my code by around 7x! Given I have an 8-core processor, 8x would be ideal but we'll see later that performance improvements don't usually scaling perfectly with number of cores in parallel computations. We'll discuss later what exactly I mean by 7x but for now just read it as "my code is 7 times faster".
 
-I should point out here that this performance is when using the default compiler optimisation level `-O0`. If we switch to using `-O2` with `g++ -fopenmp -O2 main.cpp timer.cpp`, the serial performance drops to $0.74$s and the parallel performance to $0.10$, now giving a speedup of $740$%. While parallelisation can improve our overall performance greatly, single-core optimisations are still crucial to achieving the best performance possible from a code.
+*What performance increase do you see when running on your machine and does it match what you expect from the number of cores in your CPU?*
+
+I should point out here that this performance is when using the default compiler optimisation level `-O0`. If we switch to using `-O2` with 
+```
+g++ -fopenmp -O2 main.cpp timer.cpp
+```
+then the serial performance drops to 0.74s and the parallel performance to 0.10, now giving a speedup of 7x. While parallelisation can improve our overall performance greatly, single-core optimisations are still crucial to achieving the best performance possible from a code.
 
 ### Example 2: Summing an array (naively)
 
-Let's now sum the array from the previous example. I won't go into the maths but the sum of this actually gives us a numerical approximation of the integral of $sin(\pi x)$ from $0$ to $1$. If we sum the array, multiply it by $\pi$ and divide by $N$ we should get *exactly* $2$. The filling of the vector is the same so I'll only print here the code for the sum itself:
+Example source: `02_summing_an_array/` in the [examples repository][examples-repository].
+
+Let's now sum the array from the previous example. I won't go into the maths but the sum of the array gives us a numerical approximation of the integral $\int_0^1 sin(\pi x)\  \text{dx}$. If we sum the array, multiply it by $\pi$ and divide by $N$ we should get *exactly* $2$. The filling of the vector is the same so I'll only print here the code for the sum itself:
 
 ```
-  double sum = 0.;
+double sum = 0.;
 
-  Timer timer;
+Timer timer;
 
 #pragma omp parallel for
-  for(int i=0; i<vec.size(); ++i) {
-    sum += vec[i];
-  }
+for(int i=0; i<vec.size(); ++i) {
+  sum += vec[i];
+}
 
-  double elapsed = timer.elapsed();
+double elapsed = timer.elapsed();
 
-  std::cout << "Time: " << elapsed << '\n';
-  std::cout << "Result: " << M_PI*sum/N << '\n';
+std::cout << "Time: " << elapsed << '\n';
+std::cout << "Result: " << M_PI*sum/N << '\n';
 ```
 
 Compiling and running without OpenMP gives:
@@ -190,32 +206,39 @@ Time: 0.957646
 Result: 0.14947
 ```
 
-I recommend you take a break from reading/coding here and think about the questions, *why has the time increased with more threads* and *why is the answer wrong*? Don't worry if it's not obvious, this is a subtle and tricky bug and requires thinking about what each thread is doing as it accesses each variable inside the loop.
+I recommend you take a break here and think about the questions:
+
+- Why has the time increased with more threads?
+- Why is the answer wrong?
+
+Don't worry if it's not obvious, this is a subtle and tricky bug and requires considering what all threads are doing as they access each variable inside the loop. It might be easier to consider the behaviour of just two threads.
 
 ---
 
-This behaviour is the result of a **data race**. Consider even just two threads working in parallel, one processing the first half of `vec`, and the other the second half. Thread 1 reads, say `vec[2]`. It then needs to add this value into `sum`. It reads `sum`, adds `vec[2]` to it and writes it back into `sum`. This addition takes some time however, and thread 2 is performing the exact same operation but using a different value of `i`, say `i=100`. When thread 1 reads `sum` and is currently spending time adding, thread 2 can easily finish an addition and write a new value to `sum`. Once thread 1 has finished adding, it has no idea that thread 2 contributed to the sum and then unknowingly *overwrites* the updated value of `sum` with its own version, accidentally removing the contribution from thread 2. Not only does this mean the value of `sum` is *incorrect* but threads are not allowed to write to the same variable at the same time, so each thread must wait for the other to finish, adding more time to the overall calculation. This is why the overall time has increased, despite using multiple threads, and why the result is wrong!
+This behaviour is the result of a **data race**. Consider even just two threads working in parallel, one processing the first half of `vec`, and the other, the second half. Thread 1 reads, say `vec[0]`. It then needs to add this value into `sum`. It reads `sum`, adds `vec[0]` to it and writes that back into `sum`. This addition takes some time however, and thread 2 is performing the exact same operation but using a different value of `i`, say `i=100`. As thread 1 reads `sum` and is currently spending time adding, thread 2 can easily finish an addition and write a new value to `sum`. Once thread 1 has finished adding, it has no idea that thread 2 contributed to the sum and then unknowingly *overwrites* the updated value of `sum` with its own version, accidentally removing the contribution from thread 2. Not only does this mean the value of `sum` is *incorrect* but the CPU *does not allow* threads to write to the same variable at the same time, so each thread must wait for the other to finish, adding more time to the overall calculation. This is why the overall time has increased, despite using multiple threads, and why the result is wrong!
 
-So how do we handle a data race in OpenMP? Each example of a data race is unique and must be handled in its own way, but the general solution is to limit threads to writing to variables no other threads will interact with. We'll look later at a few different ways to tackle this particular problem but summing is part of a larger group of operations called **reductions**, where a large data structure (like a vector) is reduced to a smaller number of values, in this case just a single number. Thankfully, OpenMP provides a way to easily deal with these kinds of operations: **reduction clauses**.
+So how do we handle a data race in OpenMP? Each example of a data race is fairly unique and should be handled in its own way, but the general solution is to limit threads to writing to variables no other threads will interact with. We'll look later at how we can avoid this by manually creating private copies of variables but summing is actually part of a larger group of operations called **reductions**, where a large data structure (like a vector) is reduced to a smaller number of values, in this case just a single number. Thankfully, OpenMP provides a way to easily deal with these kinds of operations: **reduction clauses**.
 
 ### Example 3: Summing an array with `reduction`
 
-OpenMP allows constructs to be augmented with **clauses**, extra pieces of information we can add to its directives to further refine the parallelisation. In the above sum example, we can tell OpenMP we're trying to perform a reduction by adding the `reduction` clause to the `parallel for` construct along with the operator we want to reduce using and the variable that is holding the value of the reduction:
+Example source: `03_summing_an_array_reduction/` in the [examples repository][examples-repository].
+
+OpenMP allows constructs to be augmented with **clauses**, extra pieces of information we can add to its directives to further refine the parallelisation. In the above sum example, we can tell OpenMP we're trying to perform a reduction by adding the `reduction` clause to the `parallel for` construct along with the reduction operator and the variable that is holding the value of the reduction:
 
 ```
-  double sum = 0.;
+double sum = 0.;
 
-  Timer timer;
+Timer timer;
 
 #pragma omp parallel for reduction(+:sum)
-  for(int i=0; i<vec.size(); ++i) {
-    sum += vec[i];
-  }
+for(int i=0; i<vec.size(); ++i) {
+  sum += vec[i];
+}
 
-  double elapsed = timer.elapsed();
+double elapsed = timer.elapsed();
 
-  std::cout << "Time: " << elapsed << '\n';
-  std::cout << "Result: " << M_PI*sum/N << '\n';
+std::cout << "Time: " << elapsed << '\n';
+std::cout << "Result: " << M_PI*sum/N << '\n';
 ```
 
 If you run the above example with OpenMP you should get something like:
@@ -227,17 +250,17 @@ Result: 2
 
 ### The reduction clause
 
-A reduction can be applied to a number of constructs but you'll likely only need to use it inside a `parallel for`, certainly in this course. The general syntax looks like:
+A reduction can be applied to a number of constructs but you'll rarely use it outwith a `parallel for`, certainly for this course. The general syntax looks like:
 ```
 reduction(<operator> : <variable>)
 ```
 
 `<operator>` can be replaced with one of:
 
-- the arithmetic operators `+`, `-`, or `*` (notice no division)
+- the arithmetic operators: `+`, `-`, or `*` (notice no division)
 - either `max` or `min`
-- the logical operators `&`, `|`, or `^`
-- the bitwise logical operators `&&` or `||`
+- the logical operators: `&`, `|`, or `^`
+- the bitwise logical operators: `&&` or `||`
 - a custom operator defined through the `declare reduction(...)` directive
 
 While it's useful to know what's available, you'll probably find yourself using only the arithmetic operators and `max` or `min`.
@@ -253,6 +276,8 @@ By default, OpenMP will use as many threads as there are cores. You can find thi
 [^hyperthreading]: You may wonder why hyperthreading exists at all if it doesn't improve performance but it isn't designed for HPC applications, it's designed to better support desktop applications.
 
 ### Example 4: Specifying threads in OpenMP
+
+Example source: `04_changing_num_threads/` in the [examples repository][examples-repository].
 
 The standard way to specify the number of threads OpenMP uses in any parallel region is by setting the `OMP_NUM_THREADS` environment variable. In Bash, the shell you use in the terminal window of VSCode when using the devcontainer, this can be set for the duration of the session with:
 
@@ -313,6 +338,8 @@ While problem size is relatively easy to quantify in the sum example; it's just 
 There are two main kinds of parallel scaling found in HPC literature: **strong scaling**, keeping the problem size constant and changing the number of thread, and **weak scaling**, changing the problem size *and* the number of threads by the same factor. In a strong scaling experiment we decrease the amount of work per thread as we increase the number of threads, but in a weak scaling one the amount of work per thread stays constant.
 
 ### Example 5: Weak scaling
+
+Example source: `05_weak_scaling/` in the [examples repository][examples-repository].
 
 Let's now run a weak scaling experiment using the same code as example 4, but this time we will increase the problem size by the same factor as we increase the number of threads; if we double the number of threads, we will also double `N`. In practice, we will simply multiply the initial problem size by the number of threads inside the code. The code is so similar to the previous example I won't print it here but you should read through it to make sure you understand what's going on. Now, as I increase `OMP_NUM_THREADS` from 1 to 8 I see my time increase slowly from 1 threads to 4 then more quickly from 5 threads to 8:
 
@@ -404,6 +431,8 @@ The default clause can be set to `default(none)` to ensure every single variable
 There are more details on data sharing clauses that will be useful if you use OpenMP beyond this course so do make sure you're aware of the [data sharing clauses section of the specification](https://www.openmp.org/spec-html/5.0/openmpsu106.html). These clauses are relatively simple to understand but can be subtly tricky to use so let's go through a few illustrative examples.
 
 ### Example 6: Data sharing
+
+Example source: `06_data_sharing/` in the [examples repository][examples-repository].
 
 Consider the following snippet from example 6:
 
@@ -551,6 +580,8 @@ This code will print out once the value of `sum1`. This example is loosely based
 
 ### Example 7: Critical
 
+Example source: `07_critical/` in the [examples repository][examples-repository].
+
 A similar construct is `critical`, which guarantees that threads will only run the code in the construct one at a time, i.e. sequentially. We can investigate this with a silly code that prints a very muddled output. Here, each thread prints its own index, calculates and prints a relatively slow function (here, a single value of sin), and then prints its own index again:
 ```cpp
 #pragma omp parallel default(none) shared(std::cout)
@@ -622,6 +653,8 @@ vector<float> data;
 We must be careful when using `barrier` because any threads that reach a barrier construct will wait for *all other threads* to also reach a barrier construct. If just one thread takes an alternative path through the code and doesn't reach a barrier, the other threads may wait forever. This is an example of a **deadlock**.
 
 ### Example 8: Deadlock
+
+Example source: `08_critical/` in the [examples repository][examples-repository].
 
 Consider the following code where the thread with index 0 takes a different path through the `if` statement which *doesn't include a barrier*:
 
@@ -717,6 +750,8 @@ The `runtime` schedule delegates the choice of schedule to the environment varia
 The `auto` schedule delegates the choice of schedule to either the compiler or the runtime.
 
 ### Example 9: Schedules
+
+Example source: `09_schedule/` in the [examples repository][examples-repository].
 
 Let's modify example 1 to unbalance the loop:
 ```

@@ -4,6 +4,8 @@ title: "Example 10: Generating a fractal"
 
 ## Example 10: Generating a fractal
 
+Example source: `10_fractal/` in the [examples repository][examples-repository].
+
 In this example we'll combine much of what we've learned in previous sections and apply it to a real problem: the generation of a Mandelbrot fractal.
 
 [Fractals](https://en.wikipedia.org/wiki/Fractal) are shapes or patterns that in some sense contain infinite complexity. I won't go into their (very interesting) mathematical properties but plotting a fractal like the classic Mandelbrot set can produce some beautiful patterns:
