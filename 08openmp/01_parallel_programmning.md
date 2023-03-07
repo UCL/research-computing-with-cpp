@@ -33,13 +33,13 @@ What I haven't touched on here is the incredible parallelism of **accelerators**
 
 We as researchers turn to parallel computing when our codes either are too slow (even with the best single-core performance) or take up too much memory to fit inside one system's memory space. For a quick motivating example, consider the fastest supercomputer in the world: [Frontier](https://en.wikipedia.org/wiki/Frontier_(supercomputer)). In total it has around 600,000 CPU cores, and several GPUs as well but let's just consider the CPU power here. Codes tend to only use a fraction of a large supercomputer like this at one time, so let's assume a code is only using 10%: 60,000 cores. If a code runs for a single day on this piece of Frontier, a version of that same code where all computation is done on a single core could run for over 150 years. These kinds of codes rarely run for as short a time as a single day, some simulations taking over a month to complete. You can imagine the insignificant size of problems we could solve if we couldn't use parallel computing.
 
-You might be asking, why not just make CPUs faster and process more data per second. Why do we even need parallelism at all? While CPU clock speeds would increase by nearly a thousand times between the first microprocessor (in the 1970s) and now, and clever tricks inside the CPU allows even more instructions per second to be carried out, the fundamental physics of power and frequency in electronic components limit the processing speed of single-core CPUs. See [Wikipedia on Frequency Scaling](https://en.wikipedia.org/wiki/Frequency_scaling) for more details on the power barriers in CPU design.
+You might be asking, why not just make CPUs faster and process more data per second. Why do we even need parallelism at all? While CPU clock speeds would increase by nearly a thousand times between the first microprocessor (in the 1970s) and now, and clever tricks inside the CPU allows even more instructions per second to be carried out, the fundamental physics of power and frequency in electronic components limit the processing speed of single-core CPUs. See [Wikipedia on Frequency Scaling](https://en.wikipedia.org/wiki/Frequency_scaling) for more details on power barriers in CPU design.
 
 ## What problems can be parallelised?
 
 Let's take a moment now to discuss the kinds of problems that *can* be parallelised. Fundamentally, **only problems that can be split into individual chunks and *processed independently* can be parallelised**. If one piece of computation depends on another, it *cannot* happen in parallel. Some examples of parallel tasks include:
 
-- processing individual cells in a grid-based simulation
+- processing individual cells in a grid-based simulations
 - simulating non-interacting particles
 - processing orders in a restaurant
 - searching for strings in a piece of text
