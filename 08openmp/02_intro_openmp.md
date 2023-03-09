@@ -685,6 +685,8 @@ I'm thread 3
 ```
 The executable then hangs, with threads 1-3 waiting for thread 0 to reach a barrier. You might think only thread 0 should print its index because the other threads should be waiting at the their encountered barrier, but this behaviour reveals an **implicit barrier** at the end of the `parallel` construct. When thread 0 reaches this implicit barrier, it releases the barrier on all other threads which then print their indices and wait at the implicit barrier at the end of the parallel block. Since thread 0 has already reached this barrier and finished its execution, the remaining threads will wait indefinitely and the execution stops but never completes, or the execution "hangs".
 
+You should run the same example and see if your code behaves in a different way. Because we have unmatched barriers in the code, this is technically undefined behaviour and we can't rely on OpenMP to perform the same way on different systems.
+
 Helpfully, the compiler will stop you from trying to use barrier in certain circumstances, like inside `single` blocks:
 ```cpp
 #pragma omp single
