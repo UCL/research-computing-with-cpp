@@ -1,3 +1,7 @@
+---
+title: Distributed Memory Model
+---
+
 # The Distributed Memory Model of Parallel Programming 
 
 Last week we looked at the use of shared memory parallel programming. As a reminder, the shared memory model is used when each thread has access to the same memory space. 

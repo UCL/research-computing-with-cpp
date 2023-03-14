@@ -1,3 +1,7 @@
+---
+title: MPI Programming
+---
+
 # Introductory MPI 
 
 In this section we'll take a bit of a look at what MPI allows us to do, and how this relates to the models we've just discussed. 
