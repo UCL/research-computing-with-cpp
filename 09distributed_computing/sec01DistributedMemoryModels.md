@@ -104,7 +104,7 @@ Message passing naturall incurs a performance overhead. Data communication chann
 
 There are some patterns of communication that appear frequently in scientific programming, which often doesn't require the extremely free form approach of more general asynchronous systems!
 
-## Divide, Process, and Aggregate using a Parent process
+### Divide, Process, and Aggregate using a Parent process
 
 A straight-forward way of handling many problems is to assign one process the "Parent" process. This is your main process which will initialise your other processes, divide work amongst them, and aggregate data from them. It may or may not do such tasks itself! 
 
