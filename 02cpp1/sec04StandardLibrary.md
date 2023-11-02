@@ -3,8 +3,7 @@ title: C++ Standard Library
 ---
 
 Estimated Reading Time: 1 hour
-
-## Preamble: 
+ 
 ## C++ Standard Library
 
 The C++ standard library is a collection of data-structures and methods which must be provided with any standard-compliant implementation of C++. As a result, using the standard library is portable across different systems and compilers, and does not require downloading and linking additional libraries (which will be a topic we cover in a later week). It does, however, require the use of header files, as we'll see in a moment. 

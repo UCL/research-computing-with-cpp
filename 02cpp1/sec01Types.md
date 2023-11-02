@@ -1,3 +1,7 @@
+---
+title: Types
+---
+
 # Types in C++
 
 In this section we will cover some core ideas that you will need to understand to program effectively in C++ and similar languages. We will assume that you have some programming experience although not necessarily in C++, with the expectation that Python is the most commonly known language. As a result, a few things may need to be explained before proceeding with writing C++ code. 
