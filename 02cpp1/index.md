@@ -19,25 +19,25 @@ This week we'll be further our knowledge of core features of the C++ language an
 
 This week will cover:
 
-[Type Systems](sec01Types.md)
+[Type Systems](./sec01Types.html)
 
 - A quick introduction to what types are, and how they are used in C++ in particular. 
 - Options for user-defined types. 
 
-[Passing by Value and by Reference](sec02PassByValueOrReference.md)
+[Passing by Value and by Reference](./sec02PassByValueOrReference.html)
 
 - Differences between passing arguments to functions by value and by reference
 - Exracting values from functions by return statements or references
 - Usage of the `const` keyword
 
-[Understanding Classes and Objects](sec03ObjectOrientedProgramming.md)
+[Understanding Classes and Objects](./sec03ObjectOrientedProgramming.html)
 
 - Classes as user-defined types. 
 - Objects as instances of classes.
 - Access Specifiers
 - Inheritance and Introductory Polymorphism
 
-[Common Standard Library Features](sec04StandardLibrary.md)
+[Common Standard Library Features](./sec04StandardLibrary.html)
 
 - Containers & Iterators 
 - Algorithms & Anonymous Functions
