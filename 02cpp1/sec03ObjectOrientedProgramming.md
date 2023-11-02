@@ -270,6 +270,55 @@ If our list were _sorted_, then we can search much more quickly using a [binary 
 
 Of course, we don't want to sort our data before searching it every time (that would be even more wasteful than our linear search), and we want to know with certainty that our list is always sorted, otherwise our binary search could fail. Using an object is a solution: we can define a wrapper class which keeps the list private, and provides an insertion method which guarantees that new entries are inserted into their proper place. Then **we can take advantage of speedier lookup because we know that our catalogue is always in sorted order**. (Incidentally, this would normally be done with a _balanced binary search tree_, an example of which is the C++ `map` type.)
 
+## Aside: Organising Class Code in Headers and Source Files
+
+As we saw last week, C++ code benefits from a separation of function declarations (in header files) and implementations (in source files) when these functions need to be included in other files. A similar principle applies to classes. 
+
+In the header file, we should declare the class as well as:
+1. What all of its member variables are
+2. Function declarations for all of its member functions 
+3. Can also include full definitions for trivial functions such as getter/setter functions
+
+For example:
+**In `ball.h`:**
+```cpp
+class Ball
+{
+    public:
+    Ball(std::array<double, 3> p, double r, double m);
+    
+    std::array<double, 3> position;
+    double getRadius(){return radius;}
+    double getMass(){return mass;}
+    double getDensity(){return density;}
+
+    private:
+    void setDensity();
+
+    double radius;
+    double mass;
+    double density;
+}
+```
+**In `ball.cpp`:**
+```cpp
+// constructor definition
+// Ball:: tells us that the function Ball(...) is part of the Ball class
+Ball::Ball(std::array<double, 3> p, double r, double m): position(p), radius(r), mass(m)
+{
+    setDensity();
+}
+
+// Again, Ball:: tells us that this function is part of the Ball class definition
+// Because this is a member function, it has access to all the data members of this class.
+Ball::setDensity()
+{
+    density =  3 * mass / (4 * M_PI * pow(radius, 3));
+}
+```
+
+We must include declarations for all member functions and variables in the class because any code which makes use of the class needs to know the full interface. It's also very important for C++ compilers to know what data a class needs to hold in order to know how much memory to reserve when constructing it. Because object files can be compiled separately, the information about data members must be in the header. 
+
 ## Creating Sub-types with Inheritance
 
 Inheritance is one of the most important concepts in object oriented design, which brings a great deal of flexibility to us as programmers. A class defines a type of object, and a class which inherits from it defines a sub-type of that type. For example, we might have a class which represents shapes, and sub-classes which represent squares, circles, and triangles. Each of these are shapes, and so should be able to be used in any context that simply requires a shape, but each will have slightly different data needed to define it and different implementations of functions to calculate its perimeter or area. 
