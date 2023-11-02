@@ -4,37 +4,12 @@ title: C++ Standard Library
 
 Estimated Reading Time: 1 hour
 
-## Preamble: C++ Types and Declaring Variables
-
-If you're relatively unfamiliar with C++ you will need to know that C++ is a _statically typed language_, which means that the type of each of your variables is determined at compile time and doesn't change over the course of the program execution. Typically in C++ when declaring variables we do so by first declaring the type, then the name of the variable, and then (optionally) its value. For example:
-
-``` cpp
-int x = 5;
-```
-
-- This declares a variable `x` of type `int` with value `5`. 
-
-Types in C++ can become quite complicated as we shall see, and it is sometimes easier to read and write code which makes use of the `auto` keyword. This keyword tells the C++ compiler to deduce the type for us. This is called _type inference_ and was made a feature of C++ in C++11, so will be absent in older codes.
-
-``` cpp
-auto x = 5;
-auto y = std::abs(-13.4);
-```
-
-- `auto` can usually deduce the type from the result of an expression by looking at the types of all the variables and functions within it.
-    - For example here it interprets `5` as an integer and therefore deduces that `x` is an int. - It will deduce that `y` is a `double`, since `-13.4` must be a floating point type (`double` by default) and `std::abs` returns a `double` when given a `double`.
-    - Be especially careful when values can be ambiguous. Here `5` is being assigned as an int, but `5` is also a valid `float` or `double` - **if you want a specific type in cases like this you should always specify it explicitly**.
-- `auto` doesn't always work: the compiler must be able to deduce the type from contextual information.
-    - You cannot declare an unitialised variable with `auto` e.g. `auto z;` will lead to a compiler error as it won't know what type is intended for `z`, even if `z` is later assigned. 
-- You cannot use `auto` when declaring the return types or parameter types of functions, you must always declare these type explicitly. 
-    - It's generally a good idea therefore to know what the types of variables in your code are, even if you choose to use the `auto` keyword! This will make writing your own functions, and knowing what functions you can pass your data to, much easier. 
-- In an IDE like VSCode you can inspect the type of a variable by hovering the mouse over that variable. If you've used `auto` it will be able to tell you what type has been deduced for it. 
-
+## Preamble: 
 ## C++ Standard Library
 
 The C++ standard library is a collection of data-structures and methods which must be provided with any standard-compliant implementation of C++. As a result, using the standard library is portable across different systems and compilers, and does not require downloading and linking additional libraries (which will be a topic we cover in a later week). It does, however, require the use of header files, as we'll see in a moment. 
 
-The C++ language standard is always evolving, with the most recent version of the standard being C++20 (released 2020), and the next planned to come some time this year (C++23). Sometimes there may be requirements to work with a specific C++ standard (more often, a minimum standard), and so it can be important to check whether a feature that you want to use is available to you in the version of C++ that you will be using. 
+The C++ language standard is always evolving, with the most recent version of the standard being C++23. Sometimes there may be requirements to work with a specific C++ standard (more often, a minimum standard), and so it can be important to check whether a feature that you want to use is available to you in the version of C++ that you will be using. 
 
 In this course the language features that we will make use of will be compatible with C++14 onwards, though we will use C++17 as our standard. This week we will go over some of the most commonly used components of the standard library, but this will only scratch the surface and becoming familiar with the breadth of the library takes time and practice. 
 
@@ -88,7 +63,18 @@ int main()
 
 ## Containers
 
-Containers are an important part of the C++ standard library; these allow us to keep collections of objects such as lists (`vector`, `array`), sets (`set`), or maps of key-value pairs (`map`, `unordered_map`), among others. These are some of the most common classes that you will use in C++ programming, so it is a good idea to familiarise yourself with them. We'll discuss `vector` as an example here, but see the section "Using C++ Documentation" for more information on how to learn about the other kinds of containers. 
+Containers are an important part of the C++ standard library; these allow us to keep collections of objects such as lists (`vector`, `array`), sets (`set`), or maps of key-value pairs (`map`, `unordered_map`), among others. These are some of the most common classes that you will use in C++ programming, so it is a good idea to familiarise yourself with them. We'll discuss `vector` as an example here as it probably the most commonly used, but see the section "Using C++ Documentation" for more information on how to learn about the other kinds of containers. 
+
+**At minimum, you should be comfortable using `vector`, `array`, and `map`.**
+- `vector<T>` is used to hold list of elements of type `T` of dynamic size (where `T` is some arbitrary type). 
+    - It requires `#include <vector>`. 
+- `array<T>` is used to hold a list of elements of type `T` of fixed size. The size must be determined **at compile time**.  
+    - It requires `#include <array>`
+    - Since the size is known at compile time, it can provide a guarantee that array sizes are always compatible with what you expect during runtime. This can be useful for ensuring that lists of data match up in size, or that a vector has the same dimensions as the vector space it is supposed to be in.
+    - Arrays can be more efficient than vectors because you don't need to do manual size checking, and the compiler may be able to make optimisations if the size is known at compile time.
+- `map<T1, T2>` is used to hold key-value pairs with keys of type `T1` and values of type `T2`. (This is known in some languages as a Dictionary.) Maps are dynamic in size; key-value pairs can be added and removed. You can check if a given key is present in a `map`, and you can also iterate over all elements in a map and access both the key and the value. 
+    - It requires `#include <map>`.
+- The fact that all three of these types are _iterable_ means that we can apply some of the same programming techniques to all of them, because we can loop over their elements. 
 
 ## Vector
 

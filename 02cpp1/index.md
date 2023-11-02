@@ -6,21 +6,23 @@ title: "Week 2: Modern C++ (1)"
 
 ### The Story So Far
 
-* Git
-* CMake
+* Intro to C++ 
+* Compiling with g++ and CMake
+* Variables
+* Functions
+* Loops and Conditionals
+* Console Output
 
-### Todays Lesson
+### This Week
 
-Today we'll be covering come core features of the C++ language, in particular aspects of the standard library. We won't be covering the very basics of the language, so if you are unfamiliar with things like variables, loops, and functions in C++ you should look at some introductory C++ material first (for example the LinkedIn Learning course recommended in the Moodle). 
+This week we'll be further our knowledge of core features of the C++ language and how these relate to clear and efficient code design. 
 
 This week will cover:
 
-[Common Standard Library Features](./sec01StandardLibrary.html)
+[Type Systems](./TypesInCpp.md)
 
-- Input / Output
-- Containers & Iterators 
-- Algorithms & Anonymous Functions
-- Understanding C++ Documentation
+- A quick introduction to types, and how they are used in C++ in particular. 
+- Options for user-defined types. 
 
 [Passing by Value and by Reference](./sec02PassByValueOrReference.html)
 
@@ -28,9 +30,15 @@ This week will cover:
 - Exracting values from functions by return statements or references
 - Usage of the `const` keyword
 
-[Pointers](./sec03Pointers.html)
+[Understanding Classes and Objects](./sec01ObjectOrientedProgramming.md)
 
-- Memory in C++ 
-- Data ownership models 
-- Smart pointers for data ownership
-- Raw pointers
+- Classes as user-defined types. 
+- Objects as instances of classes.
+- Access Specifiers
+- Inheritance and Introductory Polymorphism
+
+[Common Standard Library Features](./sec01StandardLibrary.html)
+
+- Containers & Iterators 
+- Algorithms & Anonymous Functions
+- Understanding C++ Documentation
