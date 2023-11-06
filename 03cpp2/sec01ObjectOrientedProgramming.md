@@ -34,7 +34,7 @@ When writing a class we can declare a member function or variable using one of t
 - `protected`: The variable or function can be accessed within the body of this class, or within the body of any class which inherits from this class. 
 - `public`: The variable or function can accessed inside and outside of the definition of the class, by anything which can access the object. 
 
-The access specifiers, `private`, `protected`, and `static`, are keywords which are used within class definitions followed by a colon (`:`) to specify access for all following members until the end of the class or another access specifier is reached. For example:
+The access specifiers, `private`, `protected`, and `public`, are keywords which are used within class definitions followed by a colon (`:`) to specify access for all following members until the end of the class or another access specifier is reached. For example:
 
 ```cpp
 class myClass
