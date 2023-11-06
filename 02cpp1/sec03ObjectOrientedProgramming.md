@@ -598,7 +598,8 @@ class Circle : public Shape
 
     void printInfo()
     {
-        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = " << m_perimeter << "m." << endl;
+        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = "
+             << m_perimeter << "m." << endl;
     }
 
     double getArea()
@@ -632,7 +633,8 @@ class Square : public Shape
 
     void printInfo()
     {
-        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = " << perimeter << "m." << endl;
+        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = "
+             << perimeter << "m." << endl;
     }
 
     protected:
