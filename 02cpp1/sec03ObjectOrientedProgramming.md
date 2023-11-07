@@ -329,7 +329,7 @@ If we have a class to represent shapes, then any function which takes an object 
 
 - Inheritance should be used only when you want to declare that one class is a sub-type of another class. Essentially **`B` may inherit from `A` only if `B` _is a kind of_ `A`.**
 - A common example is that the classes `Circle` and `Square` may both derive from the class `Shape`. But neither `Circle` nor `Square` should inherit from one another! 
-    - Consider for example a class `Country`, which may have both and area and a perimeter. Although it shares some properties with `Shape`, it should almost certainly **not** inherit from `Shape`, because a `Country` is not a kind of `Shape`, and we wouldn't expect a `Country` to be substitutable everywhere that a `Shape` is. This is an example of using the type system to our advantage: we shouldn't allow a `Country` to be passed into a `Shape` function, because we know it is the wrong kind of object even if it shares some (or even all) properties. We are using the type system to impart information that we understand about the objects we are creating and modelling, and discriminate between representations of different kinds of thing. 
+    - Consider for example a class `Country`, which may have both an area and a perimeter. Although it shares some properties with `Shape`, it should almost certainly **not** inherit from `Shape`, because a `Country` is not a kind of `Shape`, and we wouldn't expect a `Country` to be substitutable everywhere that a `Shape` is. This is an example of using the type system to our advantage: we shouldn't allow a `Country` to be passed into a `Shape` function, because we know it is the wrong kind of object even if it shares some (or even all) properties. We are using the type system to impart information that we understand about the objects we are creating and modelling, and discriminate between representations of different kinds of thing. 
 - The **Liskov Substitution Principle** is one good guiding principle. 
     - If `B` is a sub-type of `A`, then replacing an object of type `A` with an object of type `B` should not break your program. 
     - In this case a `B` object can be considered a kind of `A` object, but not the other way around. 
@@ -344,7 +344,7 @@ If we have a class to represent shapes, then any function which takes an object 
 - Don't use inheritance if you want a class to _have_ an instance of another class as a component.
     - It should be achieved by having a member variable of that type, or a pointer to an object of that type. 
         - For example, squares _have_ edges, so a `Square` class could have _members_ which are of an `Edge` type class. But `Edges` aren't squares, so `Edge` shouldn't derive from `Square` (or vice versa). 
-    - This is called *composition* when the lifetime of the component is controlled by the class, and *aggregation* when the the component has an independent lifetime. 
+    - This is called *composition* when the lifetime of the component is controlled by the class, and *aggregation* when the component has an independent lifetime. 
         - A class representing a room has walls, which don't exist independently of the room and so can be represented using composition. The walls could be represented using member variables of type Wall, or pointer to Walls, possibly in a container. 
         - A room can also have a table, which could be moved to another room or thrown away, and hence exists independently of the room and can be represented using aggregation. There should be a pointer to an object of type Table, and some means to check that the Table is still in scope. 
 - Inheritance is only for when you want a class to _be_ a kind of another class. 
@@ -389,7 +389,7 @@ You can observe the creation and destruction of objects of base and derived clas
 
 ## Overriding Inherited Functions
 
-Unlike the constructor and destructor, most functions can be completely overridden by the base class. Calling the function in the derived class will not make any calls to the same function in the base class - the functionality is completely replaced. This is straight-forward to do: if we implement a function with the same name and signature as the base class (same type, name, number of arguments, and types of arguments) then this function will "override" the definition that would be inherited from the base class. 
+Unlike the constructor and destructor, most functions can be completely overridden by the derived class. Calling the function in the derived class will not make any calls to the same function in the base class - the functionality is completely replaced. This is straight-forward to do: if we implement a function with the same name and signature as the base class (same type, name, number of arguments, and types of arguments) then this function will "override" the definition that would be inherited from the base class. 
 
 Function overriding is fundamental to this polymorphic style of programming because this is what allows each sub-class to behave uniquely when placed in the same context.
 
@@ -564,9 +564,9 @@ Virtual functions open up fully polymorphic behaviour for our classes, and are i
 Abstract classes are special cases of classes which have _virtual methods with no implementation_. Such functions are called **pure, virtual functions**. Such classes are abstract in the sense that they cannot be instantiated: we cannot create an object which is an instance of an abstract class because it has undefined functions and therefore the object to be instantiated is not fully defined. We can only instantiate objects of _derived classes_ which have implemented _all_ missing functionality. 
 
 - Abstract classes can be used when we want to define a **type** of object where any instance must be one of a set of **concrete sub-types**.
-    - It often useful for modelling abstract concepts defined by some shared properties. For example, many different things are animals, but every animal alive is a specific species, i.e. sub-type, of animal. So we don't want to be able to instantiate an "animal" type object without declaring its species as well: the derived type is concrete and can exist, but the base type is abstract and merely denotes membership of a broader type class. 
+    - They are often useful for modelling abstract concepts defined by some shared properties. For example, many different things are animals, but every animal alive is a specific species, i.e. sub-type, of animal. So we don't want to be able to instantiate an "animal" type object without declaring its species as well: the derived type is concrete and can exist, but the base type is abstract and merely denotes membership of a broader type class. 
 - Abstract classes are any class which has at least one pure, virtual function
-    - A function declared pure by setting it `= 0` in the definition 
+    - A function is declared pure by setting it `= 0` in the definition 
     - e.g. `virtual int myPureVirtualFunction(int a, int b) = 0;`
 - Abstract classes allow us to model interfaces which have no default (base) implementation but which may have many possible implementations. 
 - Although abstract classes cannot be instantiated on their own, they still have constructors and destructors, which are called in the same way as other base classes. These can be used to set or clean up data present in the definition of the abstract class. 
@@ -598,7 +598,8 @@ class Circle : public Shape
 
     void printInfo()
     {
-        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = " << m_perimeter << "m." << endl;
+        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = "
+             << m_perimeter << "m." << endl;
     }
 
     double getArea()
@@ -632,7 +633,8 @@ class Square : public Shape
 
     void printInfo()
     {
-        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = " << perimeter << "m." << endl;
+        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = "
+             << perimeter << "m." << endl;
     }
 
     protected:
