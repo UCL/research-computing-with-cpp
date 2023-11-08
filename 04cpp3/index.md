@@ -4,19 +4,18 @@ title: "Week 4: Modern C++ (3)"
 
 ### This Week
 
-This week we will continue to explore object oriented programming, delving into design considerations when writing classes for our programs. We'll also look an another method for writing flexible and re-usable code in C++ called _generic programming_ with templates. 
+This week we will look the role of pointers in C++, and some of the different options we have for defining and using them. We'll revisit class design and polymorphism which are greatly enhanced by the functionality of pointers. We'll also discuss templates, sometimes referred to as _compile time polymorphism_, and compare this with the _run-time polymorphism_ that we've already met. 
 
-* [Designing Classes](./sec01DesigningClasses.html)
-    - Properties of high quality code
-    - Guiding principles 
-    - Applications of abstract classes
-* [Templates](./sec02Templates.html) 
-    - Class templates
+* [Pointers](./sec01Pointers.html)
+    - Smart pointers 
+    - Data ownership and memory management
+    - Raw pointers
+* [Classes and Polymorphism with Pointers](./sec02PolymorphismWithPointers.html) 
+    - Aggregation with pointer class members
+    - Polymorphic types in container classes
+    - Polymorphic functions with pointers
+* [Templates](./sec03Templates)
     - Function templates
-    - Function overloading 
+    - Class templates
+    - Operator & function overloading
     - Compiling templated code
-* [C++ Code Design](./sec03CppCodeDesign.html)
-    - General C++ Principles
-    - Run-time and Compile-time Polymorphism
-    - Composition and Inheritance
-    - Useful Resources 
