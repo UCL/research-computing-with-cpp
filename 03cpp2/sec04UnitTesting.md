@@ -146,7 +146,7 @@ You can use `WithinAbs(value, tolerance)` and `WithinRel(value, tolerance)` to c
 
 You should test that exceptions are thrown when they should be, and in some cases you explicitly check that exceptions are not thrown when they shouldn't be. 
 - Test any cases where exceptions should be thrown. 
-    - Use `REQUIRE_THROWS_AS(expression, exception_type)` or `CHECK_THROWS_AS(expression, exception_type)` to check that the correct exception is thrown. For example, if we have a factorial function which throws a `logic_error` if the factorial is undefined (e.g. negative numbers) then you could write `CHECK_THROWS_AS(factorial(-1), std::logic_error)`. 
+    - Use `REQUIRE_THROWS_AS(expression, exception_type)` or `CHECK_THROWS_AS(expression, exception_type)` to check that the correct exception is thrown. For example, if we have a factorial function which throws a `domain_error` if the factorial is undefined (e.g. negative numbers) then you could write `CHECK_THROWS_AS(factorial(-1), std::domain_error)`. 
 - If a constructor can throw an exception, you should check that it does not throw an exception for a valid instantiation using `CHECK_NOTHROW` or `REQUIRE_NOTHROW`. 
 
 **You can consult the Catch2 documentation for even more macros and ways of testing your code.**
