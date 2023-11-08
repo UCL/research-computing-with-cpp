@@ -1,3 +1,7 @@
+---
+title: Classes and Polymorphism with Pointers
+---
+
 # Revisiting Polymorphism using Pointers
 
 Early in the course we saw how we can use inheritance to create sub-types which are substitutable in place of a base type. Recall that:
