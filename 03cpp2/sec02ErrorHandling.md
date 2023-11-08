@@ -115,3 +115,32 @@ The output for this program will be
 ```
 5, nothing
 ```
+
+## Using types to forbid errors
+
+It is sometimes possible to exclude the possibility of certain kinds of errors by making use of the type system. 
+
+Take for example the factorial function, which is only defined for $n >= 0$. One approach is to accept general integers and check for errors:
+```cpp
+int factorial(int n)
+{
+    if(n < 0)
+    {
+        throw std::logic_error("Factorial is undefined for n < 0"); 
+    }
+    ...
+}
+```
+but we can eliminate this possibility entirely by using an unsigned integer type such as `uint` which is always greater than 0:
+```cpp
+uint factorial(uint n)
+{
+    ...
+}
+```
+Sometimes it is necessary (or, at least, more convenient) for us to have a function like `factorial` which takes an `int` rather than `uint` and checks for errors. We may need to pass in a variable that we can't guarantee is non-negative or the variable needs to hold different values at different times including negative values. However, where possible and reasonable, it's a good idea to use restrictive types to enforce properties that you want.
+
+- `uint` and `size_t` are unsigned types that can't be less than 0, so can be useful for mathematical functions which take non-negative integers. 
+- `std::array` variables have their size determined at compile time, so there is no need to check their length as you do with `std::vector`. 
+
+Defining our own classes can also help us to avoid errors. If you write your class' internal logic so that certain properties are always true, then you don't have to check for them in the functions that you pass those objects to. Remember to test those classes thoroughly though! 
