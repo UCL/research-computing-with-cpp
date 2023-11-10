@@ -248,8 +248,8 @@ class FunctionDomainException: public exception
     FunctionDomainException(string func_name, double value) 
     {
         message = "Function Domain error on function " + func_name \
-                 + ". Input " + std::to_string(x) + " invalid.";
-        bad_input = x;
+                 + ". Input " + std::to_string(value) + " invalid.";
+        bad_input = value;
     }
 
     const char * what() const noexcept
