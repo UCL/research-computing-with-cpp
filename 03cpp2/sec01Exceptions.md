@@ -174,7 +174,8 @@ double InnerProduct(const vector<double> &x, const vector<double> &y)
 {
     if(x.size() != y.size())
     {
-        std::string errorMessage = "Inner product vectors different sizes: " + std::to_string(x.size()) + " and " + std::to_string(y.size()); 
+        std::string errorMessage = "Inner product vectors different sizes: " +
+            std::to_string(x.size()) + " and " + std::to_string(y.size()); 
         throw std::range_error(errorMessage);
     }
     
