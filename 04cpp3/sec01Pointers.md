@@ -10,8 +10,9 @@ You'll already have used references to refer to objects without copying them. Th
 
 - References cannot be reassigned to refer to a new place in memory, they can only be assigned at initialisation. 
 - You cannot have references of references.
-- You cannot create circular references e.g. an object A which has a reference to object B, which in turn has a reference to object A. This would require reassignment of references to construct. 
 - References cannot be null. 
+- You cannot create circular references e.g. an object `obj1` which has a reference to object `obj2`, which in turn has a reference to object `obj1`. This would require reassignment of references to construct. 
+- Similarly you cannot have a class `A` which has a member of reference type `&B`, and a class `B` which has a reference of type `&A`.
 - You cannot store references in container types like `vector`, `array`, `set`, or `map`. 
 
 In these cases, we use *pointers*. **A pointer is variable which represents an address in memory** where an object's data is located (we say that it "points to" this object), or the special value `nullptr`. Pointers give us much more flexibility than references, especially when writing classes for objects that need to point to other data (either of the same class, like in graph representation where nodes point to other nodes, or of another class). In modern C++ (since C++11) we usually declare a pointer using a *smart pointer*, of which there are three different kinds: unique pointers, shared pointers, and weak pointers. 
