@@ -13,7 +13,7 @@ Templates in C++ come in two main kinds:
 - Function Templates
 - Class Templates
 
-When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code two generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
+When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code to generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
 
 ## Using Templates with Classes
 
