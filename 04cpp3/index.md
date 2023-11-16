@@ -10,7 +10,7 @@ This week we will look the role of pointers in C++, and some of the different op
     - Smart pointers 
     - Data ownership and memory management
     - Raw pointers
-* [Templates](./sec03Templates)
+* [Templates](./sec03Templates.html)
     - Function templates
     - Class templates
     - Operator & function overloading
