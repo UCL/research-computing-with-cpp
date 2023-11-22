@@ -90,10 +90,11 @@ In functional programming languages, variables are typically _immutable_, meanin
 > If you want to know more about functional programming, some good examples of functional languages are Haskell (purely functional), ML (functional first, but with some support for imperative programming), and F# (similar to ML but with additional support for OOP). 
 
 Although C++ variables _are_ mutable and do permit assignments by default, we can make immutable variables using the `const` keyword:
-```cpp
-const int x = 15;
-// x = x + 1;  Not allowed: this will cause a compiler error!
-```
+
+> ```cpp
+> const int x = 15;
+> // x = x + 1;  Not allowed: this will cause a compiler error!
+> ```
 
 Using `const` is a good way to use the compiler to enforce safety properties any time that you know there is a variable that should not change its value. Leveraging the compiler to check correctness conditions in your code is a key aspect of developing good C++ code. 
 
@@ -113,57 +114,61 @@ There are a few things that we can do to make our functions purer:
 
 You can declare a `const` member function by placing the keywords `const` after the function signature, as in the `Area` function in this `Circle` class:
 
-```cpp
-class Circle
-{
-public:
-Circle(double r) : radius(r) {}
-
-double Area() const
-{
-    return M_PI * radius * radius;
-}
-
-private:
-double radius;
-std::array<double, 3> centre;
-};
-```
+> ```cpp
+> class Circle
+> {
+> public:
+> Circle(double r) : radius(r) {}
+> 
+> double Area() const
+> {
+>     return M_PI * radius * radius;
+> }
+> 
+> private:
+> double radius;
+> std::array<double, 3> centre;
+> };
+> ```
 
 A pure function can be declared as a `constexpr`. `constexpr` stands for "constant expression", and it is an expression which can (in principle) be evaluated at compile-time. The simplest usages for this are to intialise constant variables with simple expressions, such as:
-```cpp
-double y = 1.0/7.0;
-constexpr double x = 1.0/7.0;
-```
+
+> ```cpp
+> double y = 1.0/7.0;
+> constexpr double x = 1.0/7.0;
+> ```
+
 - `y` is calculated at runtime.
 - `x` is calculated at compile-time and the resulting floating point number is inserted directly into the machine code. We don't need to do the division every time we run the program!
 - Your compiler may be able to optimise the calculation of `y` for you, but there are cases that are less clear cut than this which your compiler might miss. 
 
 A pure function can be a `constexpr` because it has no side effects and depends only on its inputs. It can be evaluated at compile time _if its arguments are known are compile time_. 
 Consider the following code snippet:
-```cpp
-int f(const int x)
-{
-    return 4*x*x - 3*x + 2;
-}
 
-constexpr g(const int x)
-{
-    return 4*x*x - 3*x + 2;
-}
+> ```cpp
+> int f(const int x)
+> {
+>     return 4*x*x - 3*x + 2;
+> }
+> 
+> constexpr g(const int x)
+> {
+>     return 4*x*x - 3*x + 2;
+> }
+> 
+> int main()
+> {
+>     const int x = 6;
+>     int y = 5;
+> 
+>     int a = f(x);   // Calculated at runtime
+>     int b = f(y);   // Calculated at runtime
+>     int c = g(x);   // Calculated at compile time
+>     int d = g(y);   // Calculated at runtime
+>     int e = g(5);   // Calculated at compile time
+> }
+> ```
 
-int main()
-{
-    const int x = 6;
-    int y = 5;
-
-    int a = f(x);   // Calculated at runtime
-    int b = f(y);   // Calculated at runtime
-    int c = g(x);   // Calculated at compile time
-    int d = g(y);   // Calculated at runtime
-    int e = g(5);   // Calculated at compile time
-}
-```
 - The function `f` if not a declared a `constexpr` even though it is pure. This will generally need to be executed at runtime for both const and non-const arguments (unless your compiler is able to optimise it). 
 - The function `g` is a `constexpr` and so can be calculated at runtime when its arguments are constant, i.e. for the cases `g(x)` and `g(5)` (since literals like `5` are compile time constants). 
     - These lines are therefore equivalent to writing `int c = 128;` and `int e = 87;` respectively.
@@ -180,12 +185,14 @@ Writing pure functions has some drawbacks: for example it makes sense to update 
 ### Recursion
 
 A recursive function is a function which calls itself as part of its definition. In order to terminate, there needs to be some _base case_ or condition which is met so that it stops calling itself. For example:
-```cpp
-constexpr uint factorial(uint n)
-{
-    return n == 0 ? 1 : n * factorial(n-1);
-}
-```
+
+> ```cpp
+> constexpr uint factorial(uint n)
+> {
+>     return n == 0 ? 1 : n * factorial(n-1);
+> }
+> ```
+
 - The function will return 1 if `n` is zero; this is the base case. 
 - Otherwise the function will return `n*factorial(n-1)`, which is the definition of a factorial. 
 - Recursive functions can still be pure, and still be `constexpr`. We can calculate, for example, `factorial(10)` at compile time and save ourselves the runtime function calls. 
@@ -214,9 +221,11 @@ This kind of functional approach can be extremely powerful and expressive when c
 ### A Function Passing Example
 
 An integrator is a good example of a function which would take another function as input. We can use `std::function`:
-```cpp
-double integrate(std::function<double(double)> f, double x_0, double x_1)
-```
+
+> ```cpp
+> double integrate(std::function<double(double)> f, double x_0, double x_1)
+> ```
+
 - This function takes a function `f` from `double` to `double`.
     - e.g. `double square(double x) {return x*x;}` would be an appropriate function to pass. 
 - It also takes an upper and lower limit to integrate between
@@ -225,9 +234,11 @@ double integrate(std::function<double(double)> f, double x_0, double x_1)
 - Integration methods inevitably have to call the function `f` many times, which may lead to unacceptable overheads. 
 
 Or we can use a function pointer:
-```cpp
-double integrate(double (*f)(double), double x_0, double x_1)
-```
+
+> ```cpp
+> double integrate(double (*f)(double), double x_0, double x_1)
+> ```
+
 - This version can take a free function of type `double f(double)`, but not general `<functional>` types: no using `std::bind` or callable objects or lambda expressions with environment variable capture. You can however use a lambda expression which has no capture (empty square brackets such as `[](double x){return x*x;}`). 
 - This version will run faster but sacrifices some flexibility. For a method such as integration where the function is called in a hot loop it might be the best choice though in a performance critical context. 
 
@@ -236,92 +247,92 @@ We can partially explore this using some code which times the performance of thr
 2. Using a function pointer method with a capture-free lambda.
 3. Using an `std::function` method with a free function. 
 
-```cpp
-#include <functional>
-#include <iostream>
-#include <chrono>
-
-using namespace std;
-
-double integrate_functional(const std::function<double(double)> f, const double x_0, const double x_1, const size_t N)
-{
-    const double delta_x = (x_1 - x_0) / N;
-    double tot{0};
-    for(size_t i = 0; i < N; i++)
-    {
-        double x = x_0 + (i + 0.5) * delta_x;
-        tot += f(x) * delta_x;
-    }
-    return tot;
-}
-
-double integrate_pointer(double (*f)(double), const double x_0, const double x_1, const size_t N)
-{
-    const double delta_x = (x_1 - x_0) / N;
-    double tot{0};
-    for(size_t i = 0; i < N; i++)
-    {
-        double x = x_0 + (i + 0.5) * delta_x;
-        tot += f(x) * delta_x;
-    }
-    return tot;
-}
-
-double quadratic(double x)
-{
-    return x*x;
-}
-
-int main()
-{
-    const size_t N = 1'000'000'000;
-
-    auto t_1 = chrono::high_resolution_clock::now();
-    double v_ptr = integrate_pointer(quadratic, 0, 1, N);
-    auto t_2 = chrono::high_resolution_clock::now();
-    cout << "Value pointer = " << v_ptr << endl;
-    cout << "Time pointer = " <<
-        (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
-
-    t_1 = chrono::high_resolution_clock::now();
-    double v_ptr_lam = integrate_pointer([](double x){return x*x;}, 0, 1, N);
-    t_2 = chrono::high_resolution_clock::now();
-    cout << "Value pointer lambda = " << v_ptr_lam << endl;
-    cout << "Time pointer lambda = " <<
-        (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
-
-    t_1 = chrono::high_resolution_clock::now();
-    double v_fun = integrate_functional(quadratic, 0, 1, N);
-    t_2 = chrono::high_resolution_clock::now();
-    cout << "Value functional = " << v_fun << endl;
-    cout << "Time functional = " <<
-        (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
-
-    return 0;
-}
-```
+> ```cpp
+> #include <functional>
+> #include <iostream>
+> #include <chrono>
+> 
+> using namespace std;
+> 
+> double integrate_functional(const std::function<double(double)> f, const double x_0, const double x_1, const size_t N)
+> {
+>     const double delta_x = (x_1 - x_0) / N;
+>     double tot{0};
+>     for(size_t i = 0; i < N; i++)
+>     {
+>         double x = x_0 + (i + 0.5) * delta_x;
+>         tot += f(x) * delta_x;
+>     }
+>     return tot;
+> }
+> 
+> double integrate_pointer(double (*f)(double), const double x_0, const double x_1, const size_t N)
+> {
+>     const double delta_x = (x_1 - x_0) / N;
+>     double tot{0};
+>     for(size_t i = 0; i < N; i++)
+>     {
+>         double x = x_0 + (i + 0.5) * delta_x;
+>         tot += f(x) * delta_x;
+>     }
+>     return tot;
+> }
+> 
+> double quadratic(double x)
+> {
+>     return x*x;
+> }
+> 
+> int main()
+> {
+>     const size_t N = 1'000'000'000;
+> 
+>     auto t_1 = chrono::high_resolution_clock::now();
+>     double v_ptr = integrate_pointer(quadratic, 0, 1, N);
+>     auto t_2 = chrono::high_resolution_clock::now();
+>     cout << "Value pointer = " << v_ptr << endl;
+>     cout << "Time pointer = " <<
+>         (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
+> 
+>     t_1 = chrono::high_resolution_clock::now();
+>     double v_ptr_lam = integrate_pointer([](double x){return x*x;}, 0, 1, N);
+>     t_2 = chrono::high_resolution_clock::now();
+>     cout << "Value pointer lambda = " << v_ptr_lam << endl;
+>     cout << "Time pointer lambda = " <<
+>         (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
+> 
+>     t_1 = chrono::high_resolution_clock::now();
+>     double v_fun = integrate_functional(quadratic, 0, 1, N);
+>     t_2 = chrono::high_resolution_clock::now();
+>     cout << "Value functional = " << v_fun << endl;
+>     cout << "Time functional = " <<
+>         (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
+> 
+>     return 0;
+> }
+> ```
 
 The results with optimisation off and on:
 
-```
-$ g++ -o int integration.cpp 
-$ ./int
-Value pointer = 0.333333
-Time pointer = 8.67147
-Value pointer lambda = 0.333333
-Time pointer lambda = 10.5195
-Value functional = 0.333333
-Time functional = 11.7649
-
-$ g++ -o int integration.cpp -O3
-$ ./int
-Value pointer = 0.333333
-Time pointer = 0.8935
-Value pointer lambda = 0.333333
-Time pointer lambda = 0.883614
-Value functional = 0.333333
-Time functional = 2.19115
-```
+> ```
+> $ g++ -o int integration.cpp 
+> $ ./int
+> Value pointer = 0.333333
+> Time pointer = 8.67147
+> Value pointer lambda = 0.333333
+> Time pointer lambda = 10.5195
+> Value functional = 0.333333
+> Time functional = 11.7649
+> 
+> $ g++ -o int integration.cpp -O3
+> $ ./int
+> Value pointer = 0.333333
+> Time pointer = 0.8935
+> Value pointer lambda = 0.333333
+> Time pointer lambda = 0.883614
+> Value functional = 0.333333
+> Time functional = 2.19115
+> ```
 
 - We can see that with optimisations off a function pointer to a free function performs best, followed by a pointer to a capture-free lambda, and finally an `std::function` method. 
 - With optimisations turned on the function pointer method produces almost identical timings with a free function or the lambda. The `std::function` approach, although considerably sped up from before, now lags behind at more than double the time of the other method. 
