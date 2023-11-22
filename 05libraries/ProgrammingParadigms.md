@@ -235,6 +235,7 @@ We can partially explore this using some code which times the performance of thr
 1. Using a function pointer method with a free function.
 2. Using a function pointer method with a capture-free lambda.
 3. Using an `std::function` method with a free function. 
+
 ```cpp
 #include <functional>
 #include <iostream>
@@ -279,24 +280,29 @@ int main()
     double v_ptr = integrate_pointer(quadratic, 0, 1, N);
     auto t_2 = chrono::high_resolution_clock::now();
     cout << "Value pointer = " << v_ptr << endl;
-    cout << "Time pointer = " << (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
+    cout << "Time pointer = " <<
+        (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
 
     t_1 = chrono::high_resolution_clock::now();
     double v_ptr_lam = integrate_pointer([](double x){return x*x;}, 0, 1, N);
     t_2 = chrono::high_resolution_clock::now();
     cout << "Value pointer lambda = " << v_ptr_lam << endl;
-    cout << "Time pointer lambda = " << (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
+    cout << "Time pointer lambda = " <<
+        (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
 
     t_1 = chrono::high_resolution_clock::now();
     double v_fun = integrate_functional(quadratic, 0, 1, N);
     t_2 = chrono::high_resolution_clock::now();
     cout << "Value functional = " << v_fun << endl;
-    cout << "Time functional = " << (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
+    cout << "Time functional = " <<
+        (double) chrono::duration_cast<chrono::microseconds>(t_2 - t_1).count() * 1e-6 << endl;
 
     return 0;
 }
 ```
+
 The results with optimisation off and on:
+
 ```
 $ g++ -o int integration.cpp 
 $ ./int
@@ -316,6 +322,7 @@ Time pointer lambda = 0.883614
 Value functional = 0.333333
 Time functional = 2.19115
 ```
+
 - We can see that with optimisations off a function pointer to a free function performs best, followed by a pointer to a capture-free lambda, and finally an `std::function` method. 
 - With optimisations turned on the function pointer method produces almost identical timings with a free function or the lambda. The `std::function` approach, although considerably sped up from before, now lags behind at more than double the time of the other method. 
 - This is just one example and **should not be taken as universally indicative**. You should try things out and time them for yourself, especially when developing performance critical code. 
