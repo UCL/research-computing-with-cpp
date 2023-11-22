@@ -35,7 +35,7 @@ In imperative programming, statements may have _side effects_. For example if we
 int y = f(x);
 ```
 - We can see from the types here that `f(x)` must return an integer. 
-- In addition to this however, it could modify the values of any part of the state to which it has access, including `x` if it is passed by reference or any global variables which are not protected. 
+- In addition to this however, it could modify the values of any part of the state to which it has access, including `x` (if it is passed by reference) or any global variables which are not protected. 
 
 As C++ programmers it is not uncommon to use library code written in C. It is not uncommon for C functions to produce all their meaningful outputs as side-effects, and only return an `int` value indicating either success or error. For example a typical signature might be:
 ```cpp
@@ -48,11 +48,32 @@ Side effects can make it difficult to reason about programs, because we must als
 
 ### Procedural Programming 
 
-Procedural programming is style of imperative programming where programs are broken up into procedure (i.e. function) calls. This is an approach to modularising code. 
+Procedural programming is style of imperative programming where programs are broken up into procedure (i.e. function) calls. This is one approach to modularising code; C has no support for classes and object oriented programming, and so most C code is written procedurally. Although in C++ we have the option to write object oriented code, it's not _necessary_ to do so, and it can be worth thinking about when to use a _free function_ (a function not bound to any class) instead. 
+
+- Classes which do nothing but wrap a single function are often an unnecessary complication to the code. 
+- Free functions do not require an object to be constructed to use, and so also save on pointless overhead if the object has no other purpose.
+    - `static` functions in classes, which belong to the entire class rather than an individual object, are treated essentially as free functions and can be called without any object of that class being declared. 
+- If a function should exist independently of an object, then it may be best to write it as a free function. 
+- Free functions can be called anywhere in the code which has access to the definition, and so can be a good way of code sharing. For example, multiple classes which are unrelated to each other can all call the same free function. 
 
 ### Object Oriented Programming
 
 Object oriented programming is an approach to programming in which functions and data are typically encapsulated in classes, and accessed through _instances_ called objects. Objects generally have a particular purpose, or are intended to reflect a concrete concept in a model. This kind of organisation, if well implemented, can make code easier to understand and more intuitive. 
+
+- Classes should represent a single, clear idea. There's a bit of a judgement call to be made here: we don't want to define classes which have lots of unrelated behaviour or unrelated data elements, but we should it's also possible to find yourself creating too many classes which each do so _little_ that they don't really represent a worthwhile concept on their own. 
+    - Some languages like Java require all code to be part of some class, and thus Java is a hotbed of this kind of design problem. Many OOP examples that you find which originate in Java involve declaring new classes which do very little, and these are sometimes translated directly into C++ examples. Particularly when reading about OOP design patterns, consider whether there are clearer and less wasteful ways to express them.  
+- Classes can be used to represent abstract data types which must fulfil specific properties (sometimes called "invariants"): for example, that a list is always sorted, a binary tree is always balanced, or that two variables are always related by some formula. Most OOP languages provide access specifiers, which can be combined with member functions, to protect data and enforce these rules. 
+- Class members should normally be functions which are inextricable from the class itself, or which require privileged access to the class (access to private members).
+    - For example one were to write a class to represent the abstract data type `Queue`, which is a first-in first-out list, then the class should represent the data held in the queue _and_ the methods to add and remove elements from the queue. It is the responsibility of the class methods to ensure that the rules of the queue are respected: data must be removed from the queue in the same order that they are added.
+    - If a function isn't necessary for the use of some type, then it should be e.g. a free function which takes an argument of that type instead. 
+    - Any member functions which you add to a class increase the amount of code which could in principle violate your class invariants, because they have free access to your member data.
+- Inheritance is a way of expressing type relationships in OOP languages.
+- Composition and aggregation (member variables and pointers) are ways of creating complex types from more basic component types.
+- Design of classes, and the use of inheritance, composition, and aggregation, should reflect your abstract model of your type as well as you can. 
+
+Take a binary tree as an example:
+- A `TreeNode` in a tree can be a `Branch` (a node which has children) or a `Leaf` (a node with no children). This can be expressed by the inheritance relations `class Branch : public TreeNode` and `class Leaf : public TreeNode`, because `Branch` and `Leaf` are both kinds of `TreeNode`.
+- A `Branch` has a value of some type, pointers to its children (`TreeNode` pointer types which could be `Branch` or `Leaf`), and usually a pointer to its parent (`TreeNode` pointer). These relationship are composition (the value) and aggregation (pointers): a `Branch` is made of up of these components and can make use of them, but is not itself any of these things. 
 
 ## Influences from Functional Progamming 
 
