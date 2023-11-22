@@ -13,6 +13,8 @@ This is the end of our coverage of basic C++ language features. In the coming we
 - Check for standard implementations of functions before writing your own: things like sorting are already well covered!
 - The standard library offers performant containers such as `vector`, `array`, and `map`. 
 - Make use of modern C++ features like range based loops, `auto` type inference, and anonymous functions where they make your code easier to understand or more flexible.
+    - Be aware of possible performance issues with anonymous functions / `std::function` due to calling overheads.
+    - Don't use `auto` if it makes it difficult for people to understand what types you are using.
 - Don't import entire large namespaces like `std` as they risk name clashes.  
 - Code should be modularised:
     - Functions should achieve a single task.
