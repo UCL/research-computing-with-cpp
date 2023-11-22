@@ -85,22 +85,87 @@ Pure functions are useful in programming because they offer greater clarity; it 
 C++ is not really suited to pure functional programming, and we cannot stop a function from having access to global state or a member function from having access to the object's state. We can however move towards purer functions by preventing them from making changes to the state.
 
 There are a few things that we can do to make our functions purer:
-- Pass values by `const` reference, or by value. This way the original variables can't be modified by the function. 
-- If you want a member function in an object to be pure, then you should declare it `const`. This way it cannot change the state of the object. 
+- Pass variables by `const` reference, or by value. This way the original variables can't be modified by the function. 
+- If you want a member function in an object to be pure, then you should declare it `const`. A `const` member function cannot change the state of the object, i.e. all the member variables are treated as constants within the body of that function.
 
-Writing pure functions is not always desirable, for example it makes sense to update large matrices and vectors in place to save space and time. You will need to decide when and where to use pure functions, but **you should always mark functions and arguments as const if you don't think that they should change**. This will allow the compiler to enforce `const` correctness, and prevent compilation of any code that would change parts of the state which you have declared should not be changed by that function. This also means that a C++ programmer can tell by looking at the signature of a function in, say, a library that the function will not alter the state. This is extremely useful information for a user to know and will allow them to program more efficiently without having to check up on implementations to look for side effects! 
+You can declare a `const` member function by placing the keywords `const` after the function signature, as in the `Area` function in this `Circle` class:
+
+```cpp
+class Circle
+{
+public:
+Circle(double r) : radius(r) {}
+
+double Area() const
+{
+    return M_PI * radius * radius;
+}
+
+private:
+double radius;
+std::array<double, 3> centre;
+};
+```
+
+A pure function can be declared as a `constexpr`. `constexpr` stands for "constant expression", and it is an expression which can (in principle) be evaluated at compile-time. The simplest usages for this are to intialise constant variables with simple expressions, such as:
+```cpp
+double y = 1.0/7.0;
+constexpr double x = 1.0/7.0;
+```
+- `y` is calculated at runtime.
+- `x` is calculated at compile-time and the resulting floating point number is inserted directly into the machine code. We don't need to do the division every time we run the program!
+- Your compiler may be able to optimise the calculation of `y` for you, but there are cases that are less clear cut than this which your compiler might miss. 
+
+A pure function can be a `constexpr` because it has no side effects and depends only on its inputs. It can be evaluated at compile time _if its arguments are known are compile time_. 
+Consider the following code snippet:
+```cpp
+int f(const int x)
+{
+    return 4*x*x - 3*x + 2;
+}
+
+constexpr g(const int x)
+{
+    return 4*x*x - 3*x + 2;
+}
+
+int main()
+{
+    const int x = 6;
+    int y = 5;
+
+    int a = f(x);   // Calculated at runtime
+    int b = f(y);   // Calculated at runtime
+    int c = g(x);   // Calculated at compile time
+    int d = g(y);   // Calculated at runtime
+    int e = g(5);   // Calculated at compile time
+}
+```
+- The function `f` if not a declared a `constexpr` even though it is pure. This will generally need to be executed at runtime for both const and non-const arguments (unless your compiler is able to optimise it). 
+- The function `g` is a `constexpr` and so can be calculated at runtime when its arguments are constant, i.e. for the cases `g(x)` and `g(5)` (since literals like `5` are compile time constants). 
+    - These lines are therefore equivalent to writing `int c = 128;` and `int e = 87;` respectively.
+
+Using a `constexpr` can have a number of advantages:
+- Code like `int c = g(x)` is more expressive than `int c = 128` because it makes the relationships between variables explicit. We know that if `x` changes then `c` should change as well. 
+- Now if we change `g` or `x`, `c` will be updated accordingly without us having to recalculate it and insert it into the code ourselves. 
+- We still save on runtime costs for anything which can be known at compile time. 
+
+**N.B.** For simple examples like these your compiler will likely be able to optimise away these calculations at compile time if optimisations are turned on, because they are simple enough to be able to see that these variables don't change and that these functions are pure. However the more complex your code gets, the less able the compiler is to catch these for you, so you should still mark these kinds of functions are `constexpr`. It pays to help your compiler out a bit! 
+
+Writing pure functions has some drawbacks: for example it makes sense to update large matrices and vectors in place to save space and time. You will need to decide when and where to use pure functions, but **you should always mark functions and arguments as `const`/`constexpr` where these are applicable**. This will allow the compiler to enforce `const` correctness, optimise your machine code, and prevent compilation of any code that violates the conditions which you have asserted. This also means that a fellow C++ programmer (or yourself, in the future!) can tell by looking at the signature of a function in a library that the function will not alter the state. This is extremely useful information for a user to know and will allow them to program more efficiently without having to check up on implementations to look for side effects.
 
 ### Recursion
 
 A recursive function is a function which calls itself as part of its definition. In order to terminate, there needs to be some _base case_ or condition which is met so that it stops calling itself. For example:
 ```cpp
-uint factorial(uint n)
+constexpr uint factorial(uint n)
 {
     return n == 0 ? 1 : n * factorial(n-1);
 }
 ```
 - The function will return 1 if `n` is zero; this is the base case. 
 - Otherwise the function will return `n*factorial(n-1)`, which is the definition of a factorial. 
+- Recursive functions can still be pure, and still be `constexpr`. We can calculate, for example, `factorial(10)` at compile time and save ourselves the runtime function calls. 
 - Do note that this is just an illustrative example and there are more efficient ways to calculate factorials! 
 
 Recursion is available in both functional and imperative programming languages, and has been a part of C++ since its inception, although in imperative styles it is more common to see loops doing the same job. (Some problems cannot be solved by loops however and _must_ use recursion, although this is comparatively rare.) 

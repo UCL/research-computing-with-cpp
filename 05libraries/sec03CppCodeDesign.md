@@ -55,9 +55,15 @@ There are many differing opinions about what exactly constitutes "good practice"
 
 These guidelines are co-written by the original designer of C++ and are quite extensive, but you can select individual topics to explore when you are unsure of things. 
 
+The following books are also useful, and available through UCL library services.
+
+### A Tour of C++
+
+The book [A Tour of C++](https://www.stroustrup.com/tour2.html) by Bjarne Stroustrup (one of the designers of C++) is a good, practical introduction to the major features of C++. The second edition is up to C++17, and the third edition covers up to C++20. You can check towards the back of the book what features become available in which C++ standard, so you can make sure you stay compatible with your compiler! 
+
 ### Effective Modern C++
 
-The book [Effective Modern C++](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/) is a good introduction to C++ up to the C++14 standard, and may be of help if you want to spend more time working on your C++ fundamentals. (Almost all of the features that we have covered in this course except for `std::function` are present in C++14.)
+The book [Effective Modern C++](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/) is a good introduction to C++ up to the C++14 standard, and may be of help if you want to spend more time working on your C++ fundamentals. (Most, but by no means all, of the features that we have covered in this course are present in C++14.)
 
 ### Design Patterns
 
