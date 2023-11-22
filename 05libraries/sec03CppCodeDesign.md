@@ -49,6 +49,64 @@ Inheritance is sometimes misused by C++ programmers to share functionality betwe
 - Multiple inheritance is generally limited to implementing two distinct, usually abstract, interfaces. An example of multiple inheritance in the C++ standard library is `iostream` (input/output stream) inherits from `istream` (input stream) and `ostream` (output stream). (See [`iostream` documentation](https://cplusplus.com/reference/istream/iostream/) and [C++ core guidelines on multiple inheritance](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rh-mi-interface).) 
 - Inheritance is good at defining what a class _is_, but you can use composition for things that your class _makes use of_. 
 
+## Undefined Behaviour
+
+A quirk of the C++ programming language is that not all source code that compiles is actually a valid C++ program. **Undefined behaviour** refers to situtaions in C++ where the standard offers no guidance and a compiler can more or less do what it likes; as a result we as programmers may have little idea what will happen if such a program is run, and the results will vary from compiler to compiler, and system to system. This means if our program has undefined behaviour then even if we have thoroughly tested it on our own system, it may not be portable to anyone else's. 
+
+You can read more about undefined behaviour on e.g. [cppreference](https://en.cppreference.com/w/cpp/language/ub). 
+
+Much undefined behaviour centres around memory access or modification, for example:
+- Reading values outside the bounds of an array.
+- Reading / modifying an variable with a pointer of a different type (also known as type aliasing).
+    - There is a special exception for the type `char` or `std::byte` which allow us to observe any variable / object data as a sequence of bytes.
+    - You can read about [type aliasing here](https://en.cppreference.com/w/cpp/language/reinterpret_cast#Type_aliasing) which will also describe the concept of _similar types_ which we will not get into in these notes!
+- Modifying a `const` value through a non-const pointer. 
+- There are many more causes of undefined behaviour, but note that many involve doing something to invalidate some aspect of the program's definition: subverting the type system, undermining `const` declarations, accessing private members and so on. It's usually not the case that you will _accidentally_ cause undefined behaviour, but rather it is often because of attempts to use low-level access to memory to get around a high-level construct. 
+
+Undefined behaviour is often the consequence of the meeting of C++'s lower level and higher level features in ways that are not valid. We will just give one simple example to illustrate why this kind of behaviour ends up being undefined: that of undermining `const`.
+
+Consider the following code: what will it do?
+```cpp
+#include <iostream>
+
+int main()
+{
+    const int N = 10;
+
+    // Pointer ptr is a non const pointer to non const data
+    // It is initialised to point to the same address as N is stored
+    int *ptr = (int *) &N;
+    *ptr += 1;
+
+    std::cout << N << std::endl;
+    std::cout << *ptr << std::endl;
+    std::cout << ptr << " " << &N << std::endl;
+
+    return 0;
+}
+```
+The behaviour here is **undefined** since we have used an incompatible pointer type to read and modify the memory which contains the constant integer `N`. 
+
+On my machine, the output is as follows:
+```
+10
+11
+0x7fffd87014cc 0x7fffd87014cc
+```
+- From the third line we can see that the storage address for `N` is the same as that pointed to by `ptr`.
+- `N` is reported as `10`, but `*ptr` is `11`, which appears inconsistent! 
+- This is because my compiler has been told that `N` is a constant, and so in the line `std::cout << N << std::endl` the (time expensive) memory read is replaced by a hard-coded value `10`, which is more efficient and the compiler will assume is valid _because we told it so_. 
+- When printing out the value that the pointer is pointing to however, the memory read is necessary so we get the value `11`, which is the value which is actually stored in RAM. 
+- If we were to use `N` again later in the program, what value we would get would simply depend on whether the compiler optimised out the data read or not!
+- Other compilers may do different things under different circumstances - there are no guarantees!
+
+Part of the price we pay for having this low level memory access is that it is possible to access memory in ways that violate the conditions that we have already stated: we can also set a pointer to look at any given location in memory (that our program has access to), which means it can be set to read or even modify `const` values, `private` members, variables of other types and so on. But in order for the compiler to do its best job, it needs to be able to make assumptions about the behaviour of the program and integrity of data, as we've seen with the above `const` violation example. 
+
+- Make good use of things high level concepts like the type system, `const`, and access specifiers to make your program safer and more expressive. In almost all programming circumstances these things will allow the compiler to catch any violations of your model and prevent them from compiling.
+- **Don't do daft things with low-level memory** to undermine that safety: in C++ _you have some responsibility to make use of the language properly_.
+- Undefined behaviour can be hard to catch because compilers will not necessarily catch or even issue warning for undefined behaviour. (The above example for example will only issue a warning if compiled with the rather niche `-Werror=cast-qual` flag. Even the `-Wall`, "all warnings", and `-Wextra` flags will not be enough to catch this one!)
+- Do learn about some of the causes of undefined behaviour. 
+
 ## Useful References
 
 ### C++ Core Guidelines
