@@ -19,7 +19,7 @@ We have found in previous years that C++ is no longer commonly taught at undergr
 * Arrays and structures
 * Basic object oriented design (classes, inheritance, polymorphism)
 
-This could be obtained through online resources such as the the C++ Essential Training course by Bill Weinman on [LinkedIn Learning](https://www.ucl.ac.uk/isd/linkedin-learning) (accessable using your UCL single sign-on) or via a variety of C++ courses in college, such as [MPHYGB24](https://moodle.ucl.ac.uk).
+This could be obtained through online resources such as the the C++ Essential Training course by Bill Weinman on [LinkedIn Learning](https://www.ucl.ac.uk/isd/linkedin-learning) (accessible using your UCL single sign-on) or via a variety of C++ courses in college, such as [MPHYGB24](https://moodle.ucl.ac.uk).
 
 * Eligibility: This course designed for UCL post-graduate students but with agreement of their course tutor a limited number of undegraduate students can also take it.
 
@@ -27,4 +27,4 @@ This could be obtained through online resources such as the the C++ Essential Tr
 
 Members of doctoral training schools, or Masters courses who offer this module as part of their programme should register through their course organisers.
 
-This course may not be audited without the prior permission of the course organiser Dr. Jamie Quinn as due to the practical nature of the lectures there is a cap on the total number of students who can enrol. 
+This course may not be audited without the prior permission of the course organiser Dr. Jamie Quinn as due to the practical nature of the lectures there is a cap on the total number of students who can enrol.
