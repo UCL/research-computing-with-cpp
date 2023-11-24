@@ -40,7 +40,7 @@ When talking about complexity, we only want to capture information about how the
 
 We can also understand algorithms made of smaller parts, for example:
 
-- If an algorithm calculates $f(n)$ which is $O(n^3)$ then $g(n)$ which is $O(n^2)$, then the complexity of the algorithm is $O(n^3)$ since caculating $g(n)$ will become subdominant. 
+- If an algorithm calculates $f(n)$ which is $O(n^3)$ then $g(n)$ which is $O(n^2)$, then the complexity of the algorithm is $O(n^3)$ since calculating $g(n)$ will become subdominant. 
 - If we make $n$ calls to a function $f(n)$, and $f(n)$ is $O(g(n))$, then the complexity is $O(n g(n))$. For example, making $n$ calls to a quadric-scaling function would lead to a cubic, i.e. $O(n^3)$, algorithm. 
     - Nested loops and recursions are key areas of your program to look at to see if complexity is piling up! 
 - Recursions or other kinds of branching logic can lead to recurrence relations: the time to calculate a problem can be expressed in terms of the time to calculate a smaller problem. This recurrence relation is directly linked to the complexity:
@@ -134,7 +134,7 @@ Each round of merging takes $O(n)$ operations, so we need to know how many round
 
 ## The Complexity of a Problem: Matrix Multiplication
 
- As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? When discussing the instrinsic complexity of a problem, the complexity of best solution we have provides an upper bound since we know we can do it _at least that well_, although we don't know if we could do better. Getting more precise knowledge of the inherent complexity of many problems is an active area of research. (And if you can solve the $P=NP$ problem [you get $1,000,000!](https://en.wikipedia.org/wiki/Millennium_Prize_Problems))
+ As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? When discussing the intrinsic complexity of a problem, the complexity of best solution we have provides an upper bound since we know we can do it _at least that well_, although we don't know if we could do better. Getting more precise knowledge of the inherent complexity of many problems is an active area of research. (And if you can solve the $P=NP$ problem [you get $1,000,000!](https://en.wikipedia.org/wiki/Millennium_Prize_Problems))
 
  Let's take as an example the problem of matrix multiplication, an extremely common operation in scientific computing. What is the complexity of matrix multiplication? What algorithms are available to us and how do they get used in practice?
 

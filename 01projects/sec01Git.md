@@ -132,7 +132,7 @@ Changes to be committed:
     new file:   hello.cpp
 ```
 
-Now, all three files are ready to be committed (i.e. made a permanently referencable entity of the project), and we employ the `git commit` command for this.
+Now, all three files are ready to be committed (i.e. made a permanently referenceable entity of the project), and we employ the `git commit` command for this.
 
 ### `git commit`
 
@@ -276,6 +276,6 @@ In fact, this is how we shall proceed with the devcontainer setup for our upcomi
 
 ## Further resources
 
-We have only covered a very basic overview of the Git version control system that shall enable us to get started with the in-class exercises and course projects. An excellent resource that provides an expanded introduction is the Software Carpentry's [lessons on Git](https://swcarpentry.github.io/git-novice/) which covers some additional topics such as ignoring certain kind of files from being tracked, referencing previous commits in git commands etc. The sofware carpentry lesson material has been taught as a video playlist with live coding/demonstrator by your course instructor and is available [here](https://www.youtube.com/playlist?list=PLn8I4rGvUPf6qxv2KRN_wK7inXHJH6AIJ).
+We have only covered a very basic overview of the Git version control system that shall enable us to get started with the in-class exercises and course projects. An excellent resource that provides an expanded introduction is the Software Carpentry's [lessons on Git](https://swcarpentry.github.io/git-novice/) which covers some additional topics such as ignoring certain kind of files from being tracked, referencing previous commits in git commands etc. The software carpentry lesson material has been taught as a video playlist with live coding/demonstrator by your course instructor and is available [here](https://www.youtube.com/playlist?list=PLn8I4rGvUPf6qxv2KRN_wK7inXHJH6AIJ).
 
 In professional software development, one usually encounters further advanced topics such as branching, rebasing, cherry-picking commits etc for which specialised git resources exist both online and in print. All UCL students have free access to content from LinkedIn Learning, and it is worthwhile to look into some of the [top rated Git courses](https://www.linkedin.com/learning/search?keywords=git&upsellOrderOrigin=default_guest_learning&sortBy=RELEVANCE&entityType=COURSE&softwareNames=Git) there.
