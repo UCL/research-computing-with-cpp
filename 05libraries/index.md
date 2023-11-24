@@ -1,14 +1,11 @@
 ---
-title: "Week 5: Libraries"
+title: "Week 5: Code Design and Programming Paradigms"
 ---
 
 ## Week 5: Overview
 
-* What are libraries? Why use them?
-* How to choose a library
-    * Licensing, longevity, developer community, technical implementation, **feature list** etc.
-* Working with libraries
-    * Including them
-    * C++ concepts
-    * Not an exhaustive product specific tutorial
+This week we will consider code design in C++ in a more general sense. We'll encounter some common coding patterns that appear frequently in object oriented code, explore some of the different programming paradigms that exist and how they have influenced C++, and work towards writing good quality code. 
 
+1. [Designing Classes](sec01DesigningClasses.html)
+2. [Programming Paradigms](ProgrammingParadigms.html)
+2. [Code Design](sec03CppCodeDesign.html)

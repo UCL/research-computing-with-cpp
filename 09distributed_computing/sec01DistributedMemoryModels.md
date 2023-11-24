@@ -156,7 +156,7 @@ We can divide up this region to reduce the number of cells on the boundary by di
 
 Which solution and message passing pattern is most efficient may depend on your system and the message passing latency and bandwidth properties! If your message passing time is dominated by bandwidth, you should try to minimise the amount of data communicated (i.e. smallest number of boundary cells); if your message passing time is dominated by latency, you shoudl try to minimise the number of messages that you send. For problems which have to communicate large amounts of data, the message passing time will likely be bandwidth dominated and so a smaller boundary is the preferable solution. 
 
-## Putting Thing Together: Performance at Every Scale 
+## Putting Things Together: Performance at Every Scale 
 
 Over the last few weeks we've looked at a few different ways of approaching performance programming in isolation, but it's important to remember that we can (and should!) combine these principles where appropriate. 
 

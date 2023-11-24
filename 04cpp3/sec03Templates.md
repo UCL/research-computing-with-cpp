@@ -13,7 +13,7 @@ Templates in C++ come in two main kinds:
 - Function Templates
 - Class Templates
 
-When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code two generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
+When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code to generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
 
 ## Using Templates with Classes
 
@@ -43,9 +43,18 @@ class myClassTemplate
 - `T` is the template parameter, and the `typename` keyword tells us that `T` must denote a type. (You can equivalently use the `class` keyword.)
     - Do note that you don't need to call your template parameter `T`; like function parameters or other variables, it can have any name. It's good to give it a more meaningful name if the type should represent something in particular, for example `matrixType` could be the name if your templated code deals with arbitrary types represnting matrices. This is especially useful when using templates with multiple template parameters! 
 - We can then use `T` like any other type inside the body of the class definition. 
-- Additional template parameters can appear in the angle brackets in a comma separated list e.g. `template<typename T1, typename T2>`.
-- Template parameters do not have to be `typename`. You can also have a template parameter that is an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on 
- the maximum size of data it will accept. This kind of template parameter is less common. 
+- Additional template parameters can appear in the angle brackets in a comma separated list e.g. `template<typename T1, typename T2>`. This is how e.g. `std::map` works. 
+
+**Template parameters do not have to be `typename`, i.e. we are not limited to simply templating types.** You can also have template parameters that are values such as an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on the maximum size of data it will accept.
+- `std::array` is a good example of a class template which take both a type and a value: the type of the elements and the number of elements in the array.
+- Having values as template parameters means that they must be constants known at compile time. 
+- Using template parameters which are values can allow you to leverage to type system to enforce correctness on your program. For example, if your program models objects in 3D space, then you will need a representation of a 3-vector. If you use `std::vector<double>` then these vectors could be any size, so you have to make sure manually that no vectors of other sizes can sneak into your program. If you use `std::array<double, 3>` to represent a 3-vector then the compile will enforce that all positions, velocities, and so on are 3 dimensional. (If you work in general relativity, then this can also help you define different types for 3-vectors (`std::array<double, 3>`) and 4-vectors (`std::array<double, 4>`)!)
+
+**N.B.** Templates which have many parameters (types or values) can make type names quite long, so if there is something that you want to use frequently you may consider giving it an alias using the `using` syntax:
+```cpp
+using Vec3 = std::array<double, 3>;
+```
+This can also make your type names more meaningful to people reading your code. 
 
 ## Template Classes and Inheritance 
 
