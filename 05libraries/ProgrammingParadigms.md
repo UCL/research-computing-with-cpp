@@ -254,7 +254,8 @@ We can partially explore this using some code which times the performance of thr
 > 
 > using namespace std;
 > 
-> double integrate_functional(const std::function<double(double)> f, const double x_0, const double x_1, const size_t N)
+> double integrate_functional(const std::function<double(double)> f,
+>                             const double x_0, const double x_1, const size_t N)
 > {
 >     const double delta_x = (x_1 - x_0) / N;
 >     double tot{0};
@@ -266,7 +267,8 @@ We can partially explore this using some code which times the performance of thr
 >     return tot;
 > }
 > 
-> double integrate_pointer(double (*f)(double), const double x_0, const double x_1, const size_t N)
+> double integrate_pointer(double (*f)(double), const double x_0,
+>                          const double x_1, const size_t N)
 > {
 >     const double delta_x = (x_1 - x_0) / N;
 >     double tot{0};
