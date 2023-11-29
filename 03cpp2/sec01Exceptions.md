@@ -40,7 +40,7 @@ We'll take a look now at how to do this in practice, starting with catching exce
 
 ## Catching Exceptions
 
-We'll start by looking at how to handle an error thrown by an existing function, such as a range error thrown by a vector. When such a function encounters an erorr and _throws_ an exception, it needs to be _caught_. 
+We'll start by looking at how to handle an error thrown by an existing function, such as a range error thrown by a vector. When such a function encounters an error and _throws_ an exception, it needs to be _caught_. 
 
 - We first need to identify the code that could throw the exception. We do this with the `try{...}` keyword.
     - This tells our compiler that we want to monitor the execution of this code block (inside the `{}`) for exceptions. 
@@ -90,7 +90,7 @@ int main()
 - `catch` clauses will be evaluated in order, so you should always list your `catch` statements from most specific to most general i.e. list _derived classes_ before the _base classes_ from which they inherit. For example, `std::out_of_range` is a sub-type of `std::exception` since the `out_of_range` class inherits from `exception`. This means that: 
     - if `catch(std::exception e)` comes before `catch(std::out_of_range e)` then all `out_of_range` errors will be caught by the more general `exception` clause, and the specialised `out_of_range` error handling code will never run. 
     - if `catch(std::out_of_range)` is placed first, then the `catch(std::exception e)` code will only run for exceptions which are not `out_of_range`. 
-- `cerr` is a special output stream for errors; we can use this if we want the error to be written to a different place than standard output (e.g. standard ouput to file and errors to terminal, or vice versa). We can also output exception information to `cout` though. 
+- `cerr` is a special output stream for errors; we can use this if we want the error to be written to a different place than standard output (e.g. standard output to file and errors to terminal, or vice versa). We can also output exception information to `cout` though. 
 
 We can see in this example that using `try` and `catch` blocks have significant advantages for someone reading our code:
 
@@ -215,7 +215,7 @@ int main()
 
 ## Defining Our Own Exceptions 
 
-We've mentioned above that we can differentiate between different kinds of exceptions by checking for different expception classes, and then execute different error handling code accordingly. This is a very powerful feature of exceptions that we can extend further by defining our own exception classes to represent cases specific to our own applications. When we define our own exceptions, they should inherit from the `std::exception` class, or from another class which derives from `std::exception` like the standard library exceptions listed above. You should be aware though that if you inherit from a class, for example `runtime_error`, then your exception will be caught by any `catch` statements that catch exceptions of the base classes (`runtime_error` or `exception`). 
+We've mentioned above that we can differentiate between different kinds of exceptions by checking for different exception classes, and then execute different error handling code accordingly. This is a very powerful feature of exceptions that we can extend further by defining our own exception classes to represent cases specific to our own applications. When we define our own exceptions, they should inherit from the `std::exception` class, or from another class which derives from `std::exception` like the standard library exceptions listed above. You should be aware though that if you inherit from a class, for example `runtime_error`, then your exception will be caught by any `catch` statements that catch exceptions of the base classes (`runtime_error` or `exception`). 
 
 Exceptions that we define should be indicative of the kind of error that occur. Rather than trying to create a different exception for each function that can go wrong, create exception classes that represent kinds of problems, and these exceptions may be thrown by many functions. When creating new exception classes it is a good idea to think about what is useful for you to be able to differentiate between. 
 

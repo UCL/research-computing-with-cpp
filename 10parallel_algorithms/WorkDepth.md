@@ -53,7 +53,7 @@ We can see that every element of the output is independent of every other, since
 - $D \in O(1)$
     - The depth does not scale with the size of the input because all elements can be processed in parallel. 
 
-Constant depth is a feature of so called "embarassingly parallel" problems, where all computations are independent and you can just throw more computing power at them to speed them up. (With come caveats, but this is an idealised algorithm analysis!)
+Constant depth is a feature of so called "embarrassingly parallel" problems, where all computations are independent and you can just throw more computing power at them to speed them up. (With come caveats, but this is an idealised algorithm analysis!)
 
 ## Reduce
 
@@ -89,7 +89,7 @@ The loop dependency is a consequence of the way that the code was written, not t
 - $D \in O(\log n)$
     - The depth is $\log n$ because the number of operators to be applied halves at each level of the diagram. 
 
-This kind of tree diagram is a common data dependency pattern, and places some limitations on the speed-up of our algorithm compared to our embarassingly parallel problem. Even with infinite processors, we still can't do better than $O(\log n)$ serial computations! 
+This kind of tree diagram is a common data dependency pattern, and places some limitations on the speed-up of our algorithm compared to our embarrassingly parallel problem. Even with infinite processors, we still can't do better than $O(\log n)$ serial computations! 
 
 We can also see as we move down the tree that we have fewer operations to do in parallel at each stage. Depending on the size of this tree and the number of processors that you have, this means processing power may end up sitting idle which could be reallocated to other tasks elsewhere while this computation is still going on. (This isn't really going to be the case for something as rapid as an addition, but for workflows with similar tree like structures where computations take a long time, you can end up with resources sitting idle for significant amounts of time as you move down the tree.)
 
@@ -147,7 +147,7 @@ As a result this algorithm has:
 So we can substantially improve the depth (and therefore time) over a serial algorithm with sufficient processing power, but we do approximately _double the total work_ of the serial approach. 
 
 - As a result of the extra work done, having 2 processors tackle this job (using this approach) is unlikely to be very effective: the time you save doing things in parallel would be roughly cancelled out by all the duplicate work you're doing. 
-- With four processors we might expect to get a benefit of roughly a factor of 2 on a large list (so most of our time is spent doing paralell computations), because we'll be doing twice as much work with four times the processing power. 
+- With four processors we might expect to get a benefit of roughly a factor of 2 on a large list (so most of our time is spent doing parallel computations), because we'll be doing twice as much work with four times the processing power. 
 
 
 # Approaches to Parallel Algorithms
