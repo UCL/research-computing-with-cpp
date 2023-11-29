@@ -8,4 +8,4 @@ This week we will consider code design in C++ in a more general sense. We'll enc
 
 1. [Designing Classes](sec01DesigningClasses.html)
 2. [Programming Paradigms](ProgrammingParadigms.html)
-2. [Code Design](sec03CppCodeDesign.html)
+3. [Code Design](sec03CppCodeDesign.html)

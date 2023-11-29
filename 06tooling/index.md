@@ -1,12 +1,51 @@
 ---
-title: "Week 6: Tooling"
+title: "Week 6: Libraries and Tooling"
 ---
 
-## Unit testing
+## Why use Libraries?
 
-Testing single functions, methods or classes is referred to as **unit testing**, i.e. testing single *units* of code. We've already seen some unit tests earlier in this course written with the unit testing framework [Catch2](https://github.com/catchorg/Catch2) so you should have some understanding how to write, compile and run unit tests. However, like many things in programming, there is an art to writing *good* unit tests that provide enough **test coverage**, that is the amount of code tested by unit tests. To dig deeper into the philosophy of testing C++ code, we recommend the following talk from the 2022 Cppcon:
+> The best code is the code you never write
 
-{% include youtube_embed.html id="SAM4rWaIvUQ" %}  
+### What are libraries?
+
+- Libraries are collections of useful classes and functions, ready to use
+- C++ libraries can be somewhat harder to use than modules in other languages (e.g. Python)
+- Can save time and effort by providing well-tested, flexible, optimised features
+
+### Libraries from a scientific coding perspective
+
+Libraries help us do science faster
+
+- Write less code (probably)
+- Write better tested code (probably)
+- Write faster code (possibly)
+
+Particular things we scientists don't ever want to build ourselves:
+
+- standard data structures (e.g. arrays, trees, linked lists, etc)
+- file input/output (both for config files and output files)
+- standard numerical algorithms (e.g. sorting, linear solve, FFT, etc)
+- data analysis and plotting
+
+Sometimes we have to build things ourselves, when:
+
+- a library isn't fast enough
+- we don't trust a library's results/methods
+- a library doesn't provide the needed functionality
+- we can't use a library due to licensing issues
+
+1. [Choosing Libraries](sec01ChoosingLibraries.html)
+2. [Library Basics](sec02LibraryBasics.html)
+3. [Linking Libraries](sec03LinkingLibraries.html)
+4. [Installing Libraries](sec04InstallingLibraries.html)
+5. [Libraries Summary](sec05Summary.html)
+
+
+This week we'll also introduce a number of tools which we can use to develop and improve our code. We'll start using these in the practical but please make sure you install and set up the tools ahead of time, and reach out to us before class if you have trouble doing so.
+
+**N.B.** Please remember that if you are using Windows for this course you will need to install these tools **inside WSL** (Windows Subsystem for Linux) rather than following a normal Windows installation. To do so, you can 
+1. Open a Command Prompt and type `wsl` to go into the WSL command line. From there you can follow Linux instructions for installing command line tools like Valgrind. 
+2. Open VSCode and [connect to WSL using the button in the bottom left hand corner](https://code.visualstudio.com/docs/remote/wsl). From there you can add extensions to VSCode, or open a terminal to access the WSL command line and install command line tools. 
 
 ## Debugging inside VSCode
 
@@ -38,11 +77,13 @@ You can also use [the clang-format VSCode extension](https://marketplace.visuals
 
 As we move towards writing *performant* C++, one essential tool is a **profiler**, a tool that runs your code and measures the time taken in each function. This can be a powerful way to understand which pieces of your code need optimising.
 
-There are many advanced profilers out there but a good, simple profiler is `gprof`. Watch this introductory video on using gprof:
+There are many advanced profilers out there but a good, simple profiler is `gprof`. This also has the advantage of coming with most Linux distributions, so is automatically available with Ubuntu on either a native Linux machine or WSL. 
+
+You can watch this introductory video on using gprof:
 
 {% include youtube_embed.html id="zbTtVW64R_I" %}  
 
-Now try profiling one of your own codes. Since we're using cmake, we can't directly add the required `-pg` flags to the compiler so we'll have to tell cmake to add those flags with:
+and try profiling one of your own codes. Since we're using cmake, we can't directly add the required `-pg` flags to the compiler so we'll have to tell cmake to add those flags with:
 
 ```
 cmake -DCMAKE_CXX_FLAGS=-pg -DCMAKE_EXE_LINKER_FLAGS=-pg -DCMAKE_SHARED_LINKER_FLAGS=-pg ...
