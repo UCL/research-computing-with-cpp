@@ -73,9 +73,13 @@ Again, we'll be peeking into the Clang toolbox and using `clang-format` to autom
 
 You can also use [the clang-format VSCode extension](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format) to automatically format your code on saving.
 
-## Performance profiling with gprof
+## Compiler warnings
 
-As we move towards writing *performant* C++, one essential tool is a **profiler**, a tool that runs your code and measures the time taken in each function. This can be a powerful way to understand which pieces of your code need optimising.
+One of the easiest ways to improve your code is to turn on **compiler warnings** and fix each warning. Some companies even require that all compiler warnings are fixed before allowing code to be put into production. Check out [this blog post on Managing Compiler Warnings with CMake](https://www.foonathan.net/2018/10/cmake-warnings/) for details on how to do this in our CMake projects. I recommend you use these warnings to fix potential bugs in your assignment.
+
+## Optional: Performance profiling with gprof
+
+Although you won't be required to use one on this course, as we move towards *performant* C++, one useful tool is a **profiler**. This is a tool that runs your code and measures the time taken in each function. This can be a powerful way to understand which parts of your code need optimising. 
 
 There are many advanced profilers out there but a good, simple profiler is `gprof`. This also has the advantage of coming with most Linux distributions, so is automatically available with Ubuntu on either a native Linux machine or WSL. 
 
@@ -89,6 +93,7 @@ and try profiling one of your own codes. Since we're using cmake, we can't direc
 cmake -DCMAKE_CXX_FLAGS=-pg -DCMAKE_EXE_LINKER_FLAGS=-pg -DCMAKE_SHARED_LINKER_FLAGS=-pg ...
 ```
 
-## Compiler warnings
+On MacOS you can try using Google's [gperftools](https://github.com/gperftools/gperftools) which is available through homebrew.
 
-One of the easiest ways to improve your code is to turn on **compiler warnings** and fix each warning. Some companies even require that all compiler warnings are fixed before allowing code to be put into production. Check out [this blog post on Managing Compiler Warnings with CMake](https://www.foonathan.net/2018/10/cmake-warnings/) for details on how to do this in our CMake projects. I recommend you use these warnings to fix potential bugs in your assignment.
+- You should target the areas of your code where your application spends the most time for optimisation. 
+- Profilers are excellent for identifying general behaviour and bottlenecks, but you may be able to get more accurate results for specific functions or code fragments by inserting timing code. 
