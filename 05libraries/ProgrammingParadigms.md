@@ -66,7 +66,7 @@ Object oriented programming is an approach to programming in which functions and
 - Class members should normally be functions which are inextricable from the class itself, or which require privileged access to the class (access to private members).
     - For example, if one were to write a class to represent the abstract data type `Queue`, which is a first-in first-out list, then the class should represent the data held in the queue _and_ the methods to add and remove elements from the queue. It is the responsibility of the class methods to ensure that the rules of the queue are respected: data must be removed from the queue in the same order that they are added.
     - If a function isn't necessary for the use of some type, then it should be e.g. a free function which takes an argument of that type instead. 
-    - Any member functions added to a class increases the amount of code which could potentially violate your class invariants, because they have free access to your member data.
+    - Any member functions that you add to a class increase the amount of code which could violate the class invariants, because they have free access to the member data.
 - Inheritance is a way of expressing the type relationship that one type is a sub-type of another in OOP languages.
 - Composition and aggregation (member variables and pointers) are ways of creating complex types from more basic component types.
 - The design of classes, and the use of inheritance, composition, and aggregation, should reflect the abstract model of your type as well as you can. 
@@ -340,4 +340,4 @@ The results with optimisation off and on:
 - With optimisations turned on the function pointer method produces almost identical timings with a free function or the lambda. The `std::function` approach, although considerably sped up from before, now lags behind at more than double the time of the other method. 
 - This is just one example and **should not be taken as universally indicative**. You should try things out and time them for yourself, especially when developing performance critical code. 
 - The function we are integrating is extremely simple, and therefore function call overheads will dominate in this example more than they usually would. When integrating a more complex function, the performance difference may be smaller. 
-- Sometimes flexibility and intuitive code is more useful than speed! Always keep your priorities clearly in mind, and don't assume you _always_ need the fastest possible program just for the sake of it. 
+- Sometimes flexibility and intuitive code are more useful than speed! Always keep your priorities clearly in mind, and don't assume you _always_ need the fastest possible program just for the sake of it. 
