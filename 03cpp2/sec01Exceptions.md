@@ -174,7 +174,8 @@ double InnerProduct(const vector<double> &x, const vector<double> &y)
 {
     if(x.size() != y.size())
     {
-        std::string errorMessage = "Inner product vectors different sizes: " + std::to_string(x.size()) + " and " + std::to_string(y.size()); 
+        std::string errorMessage = "Inner product vectors different sizes: " +
+            std::to_string(x.size()) + " and " + std::to_string(y.size()); 
         throw std::range_error(errorMessage);
     }
     
@@ -247,8 +248,8 @@ class FunctionDomainException: public exception
     FunctionDomainException(string func_name, double value) 
     {
         message = "Function Domain error on function " + func_name \
-                 + ". Input " + std::to_string(x) + " invalid.";
-        bad_input = x;
+                 + ". Input " + std::to_string(value) + " invalid.";
+        bad_input = value;
     }
 
     const char * what() const noexcept
