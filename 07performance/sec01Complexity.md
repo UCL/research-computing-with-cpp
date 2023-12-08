@@ -22,7 +22,7 @@ In terms of the input getting larger, this could mean:
 - The number of elements in a container. For example, the time to sort a list of $n$ elements, or the time taken to look up a key-value pair in a map / dictionary. 
 - The number of dimensions of an $n$-dimensional space. For example in statistical sampling methods where we sample over many variables, we will be interested in how the algorithm performs as the number of dimensions increases. 
 -nThe size of a matrix: this example is a little unusual. Sometimes, particularly for a square ($n \times n$) matrix, this is expressed just by $n$, even though the number of elements in the matrix (and therefore the total size of the input) is actually $n^2$. On algorithms designed to work on non-square $n \times m$ matrices, you may have complexity in terms of _both_ $n$ and $n$.
-    - Adding two square matrices of the same size together is usually described as $O(n^2)$ with $n$ referring tp just one dimension of the matrix, whereas adding two lists of the same size is usually described as $O(n)$ with $n$ referring to the total number of elements, even though in both cases there is one operation per element of data. This difference is purely because of the way the input size is labelled in these two cases, so watch out for what people mean by $n$ when they tell you something is $O(g(n))$! 
+    - Adding two square matrices of the same size together is usually described as $O(n^2)$ with $n$ referring to just one dimension of the matrix, whereas adding two lists of the same size is usually described as $O(n)$ with $n$ referring to the total number of elements, even though in both cases there is one operation per element of data. This difference is purely because of the way the input size is labelled in these two cases, so watch out for what people mean by $n$ when they tell you something is $O(g(n))$! 
     - The general matrix case for addition would usually be written $O(nm)$. 
 
 The "time" for an algorithm is based on the number of elementary steps that the algorithm has to undertake. 
@@ -40,7 +40,7 @@ When talking about complexity, we only want to capture information about how the
 
 We can also understand algorithms made of smaller parts, for example:
 
-- If an algorithm calculates $f(n)$ which is $O(n^3)$ then $g(n)$ which is $O(n^2)$, then the complexity of the algorithm is $O(n^3)$ since caculating $g(n)$ will become subdominant. 
+- If an algorithm calculates $f(n)$ which is $O(n^3)$ then $g(n)$ which is $O(n^2)$, then the complexity of the algorithm is $O(n^3)$ since calculating $g(n)$ will become subdominant. 
 - If we make $n$ calls to a function $f(n)$, and $f(n)$ is $O(g(n))$, then the complexity is $O(n g(n))$. For example, making $n$ calls to a quadric-scaling function would lead to a cubic, i.e. $O(n^3)$, algorithm. 
     - Nested loops and recursions are key areas of your program to look at to see if complexity is piling up! 
 - Recursions or other kinds of branching logic can lead to recurrence relations: the time to calculate a problem can be expressed in terms of the time to calculate a smaller problem. This recurrence relation is directly linked to the complexity:
@@ -134,7 +134,7 @@ Each round of merging takes $O(n)$ operations, so we need to know how many round
 
 ## The Complexity of a Problem: Matrix Multiplication
 
- As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? When discussing the instrinsic complexity of a problem, the complexity of best solution we have provides an upper bound since we know we can do it _at least that well_, although we don't know if we could do better. Getting more precise knowledge of the inherent complexity of many problems is an active area of research. (And if you can solve the $P=NP$ problem [you get $1,000,000!](https://en.wikipedia.org/wiki/Millennium_Prize_Problems))
+ As well as analysing the performance of a specific algorithm, one can look at the inherent complexity of a problem itself: with what asymptotic behaviour is it _possible_ to solve a problem? When discussing the intrinsic complexity of a problem, the complexity of best solution we have provides an upper bound since we know we can do it _at least that well_, although we don't know if we could do better. Getting more precise knowledge of the inherent complexity of many problems is an active area of research. (And if you can solve the $P=NP$ problem [you get $1,000,000!](https://en.wikipedia.org/wiki/Millennium_Prize_Problems))
 
  Let's take as an example the problem of matrix multiplication, an extremely common operation in scientific computing. What is the complexity of matrix multiplication? What algorithms are available to us and how do they get used in practice?
 
