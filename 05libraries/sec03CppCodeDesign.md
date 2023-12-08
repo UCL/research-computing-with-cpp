@@ -51,7 +51,7 @@ Inheritance is sometimes misused by C++ programmers to share functionality betwe
 
 ## Undefined Behaviour
 
-A quirk of the C++ programming language is that not all source code that compiles is actually a valid C++ program. **Undefined behaviour** refers to situtaions in C++ where the standard offers no guidance and a compiler can more or less do what it likes; as a result we as programmers may have little idea what will happen if such a program is run, and the results will vary from compiler to compiler, and system to system. This means if our program has undefined behaviour then even if we have thoroughly tested it on our own system, it may not be portable to anyone else's. 
+A quirk of the C++ programming language is that not all source code that compiles is actually a valid C++ program. **Undefined behaviour** refers to situations in C++ where the standard offers no guidance and a compiler can more or less do what it likes; as a result we as programmers may have little idea what will happen if such a program is run, and the results will vary from compiler to compiler, and system to system. This means if our program has undefined behaviour then even if we have thoroughly tested it on our own system, it may not be portable to anyone else's. 
 
 You can read more about undefined behaviour on e.g. [cppreference](https://en.cppreference.com/w/cpp/language/ub). 
 
@@ -127,4 +127,4 @@ The book [Effective Modern C++](https://www.oreilly.com/library/view/effective-m
 
 ### Design Patterns
 
-The book [Design Patterns](https://www.oreilly.com/library/view/design-patterns-elements/0201633612/) provides many examples of frequently occuring design solutions in object oriented programming that we have not covered in these notes. If you're comfortable with the ideas we've covered in C++ and want to improve your object-oriented software engineering skills, this book may be helpful. 
+The book [Design Patterns](https://www.oreilly.com/library/view/design-patterns-elements/0201633612/) provides many examples of frequently occurring design solutions in object oriented programming that we have not covered in these notes. If you're comfortable with the ideas we've covered in C++ and want to improve your object-oriented software engineering skills, this book may be helpful. 

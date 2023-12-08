@@ -106,7 +106,7 @@ void Transpose(vector<vector<float>> &A, vector<vector<float>> &B)
     }
 }
 ```
-We'll assume that our matrices are in row major order, so rows in each matrix are contiguous in memory, and we will be focusing just on reading the data from the source matrix, and ignoring writing the operations to the output matrix, since the output matrix will be filled in order so that part of the algorithm is already cache efficient. (If they were in column major order the logic would be the same except exchanging write for read: reading the source matrix would be cache efficient, but writing the output matrix woudl be inefficient.)
+We'll assume that our matrices are in row major order, so rows in each matrix are contiguous in memory, and we will be focusing just on reading the data from the source matrix, and ignoring writing the operations to the output matrix, since the output matrix will be filled in order so that part of the algorithm is already cache efficient. (If they were in column major order the logic would be the same except exchanging write for read: reading the source matrix would be cache efficient, but writing the output matrix would be inefficient.)
 
 This is an illustrative example using a single cache of very small capacity; we won't concern ourselves with the exact cache-mapping strategy since this varies, but will just fill in our cache in order. In the diagrams _red_ blocks will be blocks in system memory but not in the cache, and _blue_ blocks are data which are also stored in the cache. 
 

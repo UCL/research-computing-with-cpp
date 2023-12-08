@@ -77,7 +77,7 @@ Take a binary tree as an example:
 
 ![image](images/TreeInheritanceComposition.png)
 
-## Influences from Functional Progamming 
+## Influences from Functional Programming 
 
 Functional programming is an alternative approach to imperative programming. Although C++ is not a functional language in the sense that Haskell or ML are, it has taken some influence from functional programming in the last decade or so, and we can try to enforce some of the functional style in C++ by applying some conventions. 
 
@@ -131,7 +131,7 @@ You can declare a `const` member function by placing the keywords `const` after 
 > };
 > ```
 
-A pure function can be declared as a `constexpr`. `constexpr` stands for "constant expression", and it is an expression which can (in principle) be evaluated at compile-time. The simplest usages for this are to intialise constant variables with simple expressions, such as:
+A pure function can be declared as a `constexpr`. `constexpr` stands for "constant expression", and it is an expression which can (in principle) be evaluated at compile-time. The simplest usages for this are to initialise constant variables with simple expressions, such as:
 
 > ```cpp
 > double y = 1.0/7.0;

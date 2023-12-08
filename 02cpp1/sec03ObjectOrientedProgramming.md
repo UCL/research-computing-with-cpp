@@ -6,7 +6,7 @@ Estimated Reading Time: 60 minutes
 
 # Custom Types and Object Oriented Programming (OOP) in C++
 
-As a programming lanaguage, C++ supports multiple styles of programming, but it is generally known for _object oriented programming_, often abbreviated as _OOP_. This is handled in C++, as in many languages, through the use of classes: special datastructures which have both member data (variables that each object of that class contains and which are usually different for each object) and member functions, which are functions which can be called through an object and which have access to both the arguments passed to it _and_ the member variables of that object. 
+As a programming language, C++ supports multiple styles of programming, but it is generally known for _object oriented programming_, often abbreviated as _OOP_. This is handled in C++, as in many languages, through the use of classes: special datastructures which have both member data (variables that each object of that class contains and which are usually different for each object) and member functions, which are functions which can be called through an object and which have access to both the arguments passed to it _and_ the member variables of that object. 
 
 We have already been making extensive use of classes when working with C++. Indeed, it is difficult not to! The addition of classes was the main paradigm shift between C, a procedural programming language with no native support for OOP, and C++. 
 
@@ -98,7 +98,7 @@ int main()
 }
 
 ```
-- The count is incremented in the constuctor (`countedClass()`), and so increased every time an instance of this type is created. 
+- The count is incremented in the constructor (`countedClass()`), and so increased every time an instance of this type is created. 
 - The count is decremented in the destructor (`~countedClass()`), and so decreased every time an instance of this type is destroyed. 
 - `count` is a static variable, so belongs to the class as a whole. There is one variable `count` for the whole class, regardless of how many instances there are. The class still accesses it as a normal member variable. 
 - `count` also needs to be declared outside of the class definition. (This is where you should initialise the value.) 
@@ -250,7 +250,7 @@ class Ball
 ```
 We now have a ball class that can be instantiated with any mass and radius, and can have its mass or radius changed, but **always satisfies the property that the density field is correct for the given radius and mass of the object**. Being able to guarantee properties of objects of a given type makes the type system far more powerful and gives users the opportunity to use objects in more efficient ways without having to check for conditions that are already guaranteed by the object's design. 
 
-### Maintaining Desireable Properties
+### Maintaining Desirable Properties
 
 Consider another example where we have a catalogue for a library. To keep things simple, we'll say that we just store the title of each book. Very simply, we could define this as a vector:
 ```cpp
@@ -395,9 +395,9 @@ Function overriding is fundamental to this polymorphic style of programming beca
 
 ## Polymorphism 
 
-Polymorphism is the ability to use multiple types in the same context in our program; in order to achieve this we must only access the common properties of those types through some shared interface. The most common way to do this is to define a base class which defines the necessary common properties, and then have sub-classes which inherit from the base class which represent different kinds of objects which can implement this interface. This is caled *sub-type polymorphism*, and is one of the most common forms of polymorphism. 
+Polymorphism is the ability to use multiple types in the same context in our program; in order to achieve this we must only access the common properties of those types through some shared interface. The most common way to do this is to define a base class which defines the necessary common properties, and then have sub-classes which inherit from the base class which represent different kinds of objects which can implement this interface. This is called *sub-type polymorphism*, and is one of the most common forms of polymorphism. 
 
-By exploring polymorphism we can also understand the behaviour, and some of the limitations, of the straightforward model of inheritence that we have used so far. 
+By exploring polymorphism we can also understand the behaviour, and some of the limitations, of the straightforward model of inheritance that we have used so far. 
 
 Let's assume that we have some class `Shape`, and derived classes `Circle` and `Square`.
 
