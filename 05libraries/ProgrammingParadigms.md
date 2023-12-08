@@ -60,20 +60,20 @@ Procedural programming is style of imperative programming where programs are bro
 
 Object oriented programming is an approach to programming in which functions and data are typically encapsulated in classes, and accessed through _instances_ called objects. Objects generally have a particular purpose, or are intended to reflect a concrete concept in a model. This kind of organisation, if well implemented, can make code easier to understand and more intuitive. 
 
-- Classes should represent a single, clear idea. There's a bit of a judgement call to be made here: we don't want to define classes which have lots of unrelated behaviour or unrelated data elements, but we should it's also possible to find yourself creating too many classes which each do so _little_ that they don't really represent a worthwhile concept on their own. 
+- Classes should represent a single, clear idea. There's a bit of a judgement call to be made here: we don't want to define classes which have lots of unrelated behaviour or unrelated data elements, but it's also possible to find yourself creating too many classes which each do so _little_ that they don't really represent a worthwhile concept on their own. 
     - Some languages like Java require all code to be part of some class, and thus Java is a hotbed of this kind of design problem. Many OOP examples that you find which originate in Java involve declaring new classes which do very little, and these are sometimes translated directly into C++ examples. Particularly when reading about OOP design patterns, consider whether there are clearer and less wasteful ways to express them.  
 - Classes can be used to represent abstract data types which must fulfil specific properties (sometimes called "invariants"): for example, that a list is always sorted, a binary tree is always balanced, or that two variables are always related by some formula. Most OOP languages provide access specifiers, which can be combined with member functions, to protect data and enforce these rules. 
 - Class members should normally be functions which are inextricable from the class itself, or which require privileged access to the class (access to private members).
-    - For example one were to write a class to represent the abstract data type `Queue`, which is a first-in first-out list, then the class should represent the data held in the queue _and_ the methods to add and remove elements from the queue. It is the responsibility of the class methods to ensure that the rules of the queue are respected: data must be removed from the queue in the same order that they are added.
+    - For example, if one were to write a class to represent the abstract data type `Queue`, which is a first-in first-out list, then the class should represent the data held in the queue _and_ the methods to add and remove elements from the queue. It is the responsibility of the class methods to ensure that the rules of the queue are respected: data must be removed from the queue in the same order that they are added.
     - If a function isn't necessary for the use of some type, then it should be e.g. a free function which takes an argument of that type instead. 
-    - Any member functions which you add to a class increase the amount of code which could in principle violate your class invariants, because they have free access to your member data.
+    - Any member functions that you add to a class increase the amount of code which could violate the class invariants, because they have free access to the member data.
 - Inheritance is a way of expressing the type relationship that one type is a sub-type of another in OOP languages.
 - Composition and aggregation (member variables and pointers) are ways of creating complex types from more basic component types.
-- Design of classes, and the use of inheritance, composition, and aggregation, should reflect your abstract model of your type as well as you can. 
+- The design of classes, and the use of inheritance, composition, and aggregation, should reflect the abstract model of your type as well as you can. 
 
 Take a binary tree as an example:
 - A `TreeNode` in a tree can be a `Branch` (a node which has children) or a `Leaf` (a node with no children). This can be expressed by the inheritance relations `class Branch : public TreeNode` and `class Leaf : public TreeNode`, because `Branch` and `Leaf` are both kinds of `TreeNode`.
-- A `Branch` has a value of some type, pointers to its children (`TreeNode` pointer types which could be `Branch` or `Leaf`), and usually a pointer to its parent (`TreeNode` pointer). These relationship are composition (the value) and aggregation (pointers): a `Branch` is made of up of these components and can make use of them, but is not itself any of these things. 
+- A `Branch` has a value of some type, pointers to its children (`TreeNode` pointer types which could be `Branch` or `Leaf`), and usually a pointer to its parent (`TreeNode` pointer). These relationships are composition (the value) and aggregation (pointers): a `Branch` is made of up of these components and can make use of them, but is not itself any of these things. 
 
 ![image](images/TreeInheritanceComposition.png)
 
@@ -254,7 +254,8 @@ We can partially explore this using some code which times the performance of thr
 > 
 > using namespace std;
 > 
-> double integrate_functional(const std::function<double(double)> f, const double x_0, const double x_1, const size_t N)
+> double integrate_functional(const std::function<double(double)> f,
+>                             const double x_0, const double x_1, const size_t N)
 > {
 >     const double delta_x = (x_1 - x_0) / N;
 >     double tot{0};
@@ -266,7 +267,8 @@ We can partially explore this using some code which times the performance of thr
 >     return tot;
 > }
 > 
-> double integrate_pointer(double (*f)(double), const double x_0, const double x_1, const size_t N)
+> double integrate_pointer(double (*f)(double), const double x_0,
+>                          const double x_1, const size_t N)
 > {
 >     const double delta_x = (x_1 - x_0) / N;
 >     double tot{0};
@@ -338,4 +340,4 @@ The results with optimisation off and on:
 - With optimisations turned on the function pointer method produces almost identical timings with a free function or the lambda. The `std::function` approach, although considerably sped up from before, now lags behind at more than double the time of the other method. 
 - This is just one example and **should not be taken as universally indicative**. You should try things out and time them for yourself, especially when developing performance critical code. 
 - The function we are integrating is extremely simple, and therefore function call overheads will dominate in this example more than they usually would. When integrating a more complex function, the performance difference may be smaller. 
-- Sometimes flexibility and intuitive code is more useful than speed! Always keep your priorities in clearly in mind, and don't assume you _always_ need the fastest possible program just for the sake of it. 
+- Sometimes flexibility and intuitive code are more useful than speed! Always keep your priorities clearly in mind, and don't assume you _always_ need the fastest possible program just for the sake of it. 
