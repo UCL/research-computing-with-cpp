@@ -1,3 +1,7 @@
+---
+title: "Cache Perforance in Shared Memory"
+---
+
 # Cache Performance in Shared Memory 
 
 The need for cache efficiency hasn't gone away just because we've started parallelising things; in fact, it may be more important than ever! Generally for distributed systems we just need to worry about the cache efficiency of each process in isolation, but if memory is shared then that means our cache gets shared too. The way that our cache behaves when shared is a little different though, so we'll need to re-think how we do things a bit. 

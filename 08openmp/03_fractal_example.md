@@ -1,5 +1,5 @@
 ---
-title: "Example 10: Generating a fractal"
+title: "Example: Generating a fractal"
 ---
 
 ## Example 10: Generating a fractal
