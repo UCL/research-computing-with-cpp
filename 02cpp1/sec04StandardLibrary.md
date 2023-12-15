@@ -350,7 +350,7 @@ We can see from our previous example the use of the `()` and `{}` brackets to de
 
 You will often find when programming, especially in a language with such an expansive standard library, that there are things that you need to look up. There are a large number of classes and functions available to C++ programmers, many of which may be new to you or require refreshing at various points. 
 
-Two common sites for C++ refernce are:
+Two common sites for C++ reference are:
 
 - <https://cplusplus.com/>
 - <https://en.cppreference.com/>

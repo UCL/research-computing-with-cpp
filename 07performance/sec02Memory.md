@@ -84,7 +84,7 @@ We know now that:
 An algorithm which exploits the cache but which does not depend on the exact details of the cache is called a _cache oblivious algorithm_. Some good patterns for cache oblivious algorithms include:
 
 - Tiling: breaking the problem into small chunks.
-- Recursion can be a good way to make your solution cache oblivious. Recursion expresses the solution in terms of solutions to smaller sub-problems, down to a base case. The cache will start to be used effectively once the size of the sub-problems start to fit inside the cache, which means you don't have to tune the algorithm to the size of the cache to take advantage of it.  
+- Recursion can be a good way to make your solution cache oblivious. Recursion expresses the solution in terms of solutions to smaller sub-problems, down to a base case. The cache will start to be used effectively once the size of the sub-problems start to fit inside the cache, which means you don't have to tune the algorithm to the size of the cache to take advantage of it.
 - Stencil algorithms are algorithms which calculate a value at a data point based on the values around it in a grid (common in simulations of e.g. flows) and fit naturally into efficient memory structures provided the stencil moves sensibly through memory.
 - Rearrange data in memory to fit your access patterns. For example a matrix may be stored with elements in the same row next to each other (row major order) _or_ with elements in the same column next to each other (column major order). Accessing memory in sequence will take advantage of your cache well regardless of the size of your cache.
 
@@ -105,6 +105,8 @@ void Transpose(vector<vector<float>> &A, vector<vector<float>> &B)
     }
 }
 ```
+
+We'll assume that our matrices are in row major order, so rows in each matrix are contiguous in memory, and we will be focusing just on reading the data from the source matrix, and ignoring writing the operations to the output matrix, since the output matrix will be filled in order so that part of the algorithm is already cache efficient. (If they were in column major order the logic would be the same except exchanging write for read: reading the source matrix would be cache efficient, but writing the output matrix would be inefficient.)
 
 We'll assume that our matrices are in row major order, so rows in each matrix are contiguous in memory, and we will be focusing just on reading the data from the source matrix, and ignoring writing the operations to the output matrix, since the output matrix will be filled in order so that part of the algorithm is already cache efficient. (If they were in column major order the logic would be the same except exchanging write for read: reading the source matrix would be cache efficient, but writing the output matrix would be inefficient.)
 
