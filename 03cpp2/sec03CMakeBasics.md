@@ -12,7 +12,9 @@ For most of the exercises and assignments we will provide the basic `CMake` file
 
 ## A Simple CMake File
 
-We tell `CMake` what to do by using a file called `CMakeLists.txt`. A project with a more complex directory structure will involve multiple `CMakeLists.txt` files in different folders, but let's start with the assumption that all our files are in one folder. 
+We tell `CMake` what to do by using a file called `CMakeLists.txt`. A project with a more complex directory structure will involve multiple `CMakeLists.txt` files in different folders, but let's start with the assumption that all our files are in one folder.
+
+In the same folder with your sources, you could have a file called `CMakeLists.txt` which looks as follows:
 
 ```
 cmake_minimum_required(VERSION 3.21)
