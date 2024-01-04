@@ -251,7 +251,7 @@ One way that we can make use of this kind of class structure is to be able to se
 
 ## Example: Factory Pattern 
 
-When dealing with abstract classes it is sometimes useful to be able to make objects of different sub-classes depending on runtime considerations. In this case, we can define another class or method, sometimes known as a "factory", which returns something of the base type. Let's say we have a system that allows a person to register with the University as either a `Student` or an `Employee`, both of which inherit from a generic `Person` class. Whether or not we create `Student` or `Employee` object will depend on the input that the person gives us, which we cannot know before run time. We can then create a class or function which returns a `Person` type, but which, depending on the information input, may create a `Student` or `Employee` object and return that.  
+When dealing with abstract classes it is sometimes useful to be able to make objects of different sub-classes depending on runtime considerations. In this case, we can define another class or method, sometimes known as a "factory", which returns something of the base type. Let's say we have a system that allows a person to register with the University as either a `Student` or an `Employee`, both of which inherit from a generic `Person` class. Whether or not we create `Student` or `Employee` object will depend on the input that the person gives us, which we cannot know before run time. We can then create a class or function which returns a `Person` type, but which, depending on the information input, may create a `Student` or `Employee` object and return a pointer to that. 
 
 ## Implementing Multiple Interfaces 
 

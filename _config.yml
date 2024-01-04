@@ -1,8 +1,8 @@
 contact: http://www.ucl.ac.uk/research-it-services/partner-with-us
 
-title: "PHAS0100: Research Computing with C++"
+title: "COMP0210: Research Computing with C++"
 includeleftnav: True
-short: PHAS0100
+short: COMP0210
 
 defaults:
   - scope: {path: ""}
@@ -34,11 +34,6 @@ idio:
 include: [ _static, _sources]
 exclude:
   - 05libraries/sec05CMake*.md
-  - 02cpp1/sec04*.md
-  - 02cpp1/sec05*.md
-  - 02cpp1/sec06*.md
-  - 02cpp1/sec07*.md
-  - 02cpp1/sec03TemplatesIntro.md
   - 03cpppatterns
   - 04HPC
   - 05OpenMP

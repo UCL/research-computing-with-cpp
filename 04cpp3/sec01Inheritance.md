@@ -1,19 +1,18 @@
 ---
-title: Inheritance and Polymorphism
+title: Inheritance
 ---
 
-Estimated Reading Time: 50 minutes
+# Creating Sub-types with Inheritance
 
-# Inheritance and Polymorphism
+Inheritance is one of the most important concepts in object oriented design, which brings a great deal of flexibility to us as programmers. A class defines a type of object, and a class which inherits from it defines a sub-type of that type. For example, we might have a class which represents shapes, and sub-classes which represent squares, circles, and triangles. Each of these are shapes, and so should be able to be used in any context that simply requires a shape, but each will have slightly different data needed to define it and different implementations of functions to calculate its perimeter or area. 
 
-Inheritance is one of the most important concepts in C++ classes, which brings a great deal of flexibility to us as programmers. A class defines a type of object, and a class which inherits from it defines a sub-type of that type. For example, we might have a class which represents shapes, and sub-classes which represent squares, circles, and triangles. Each of these are shapes, and so should be able to be used in any context simply requires a shape, but each will have slightly different data needed to define it and different implementations of functions to calculate its perimeter or area. 
-
-If we have a class to represent shapes, then any function which takes an object of our shape class should be able to take a circle, a square, or a triangle. This ability to use different types in the same context is called **polymorphism** and is a key concept in many programming paradigms. In C++ we will achieve it using inheritance. 
+If we have a class to represent shapes, then any function which takes an object of our shape class should be able to take a circle, a square, or a triangle. This ability to use different types in the same context is called **polymorphism** and is a key concept in many programming paradigms. In C++ one of the key ways we will achieve it is by using inheritance. 
 
 ## When Should Inheritance Be Used?
 
-- Inheritance should be used only when you want to declare that one class is a sub-type of another class. Essentially `B` may inherit from `A` only if `B` is a kind of `A`.
+- Inheritance should be used only when you want to declare that one class is a sub-type of another class. Essentially **`B` may inherit from `A` only if `B` _is a kind of_ `A`.**
 - A common example is that the classes `Circle` and `Square` may both derive from the class `Shape`. But neither `Circle` nor `Square` should inherit from one another! 
+    - Consider for example a class `Country`, which may have both an area and a perimeter. Although it shares some properties with `Shape`, it should almost certainly **not** inherit from `Shape`, because a `Country` is not a kind of `Shape`, and we wouldn't expect a `Country` to be substitutable everywhere that a `Shape` is. This is an example of using the type system to our advantage: we shouldn't allow a `Country` to be passed into a `Shape` function, because we know it is the wrong kind of object even if it shares some (or even all) properties. We are using the type system to impart information that we understand about the objects we are creating and modelling, and discriminate between representations of different kinds of thing. 
 - The **Liskov Substitution Principle** is one good guiding principle. 
     - If `B` is a sub-type of `A`, then replacing an object of type `A` with an object of type `B` should not break your program. 
     - In this case a `B` object can be considered a kind of `A` object, but not the other way around. 
@@ -28,7 +27,7 @@ If we have a class to represent shapes, then any function which takes an object 
 - Don't use inheritance if you want a class to _have_ an instance of another class as a component.
     - It should be achieved by having a member variable of that type, or a pointer to an object of that type. 
         - For example, squares _have_ edges, so a `Square` class could have _members_ which are of an `Edge` type class. But `Edges` aren't squares, so `Edge` shouldn't derive from `Square` (or vice versa). 
-    - This is called *composition* when the lifetime of the component is controlled by the class, and *aggregation* when the the component has an independent lifetime. 
+    - This is called *composition* when the lifetime of the component is controlled by the class, and *aggregation* when the component has an independent lifetime. 
         - A class representing a room has walls, which don't exist independently of the room and so can be represented using composition. The walls could be represented using member variables of type Wall, or pointer to Walls, possibly in a container. 
         - A room can also have a table, which could be moved to another room or thrown away, and hence exists independently of the room and can be represented using aggregation. There should be a pointer to an object of type Table, and some means to check that the Table is still in scope. 
 - Inheritance is only for when you want a class to _be_ a kind of another class. 
@@ -73,15 +72,15 @@ You can observe the creation and destruction of objects of base and derived clas
 
 ## Overriding Inherited Functions
 
-Unlike the constructor and destructor, most functions can be completely overridden by the base class. Calling the function in the derived class will not make any calls to the same function in the base class - the functionality is completely replaced. This is straight-forward to do: if we implement a function with the same name and signature as the base class (same type, name, number of arguments, and types of arguments) then this function will "override" the definition that would be inherited from the base class. 
+Unlike the constructor and destructor, most functions can be completely overridden by the derived class. Calling the function in the derived class will not make any calls to the same function in the base class - the functionality is completely replaced. This is straight-forward to do: if we implement a function with the same name and signature as the base class (same type, name, number of arguments, and types of arguments) then this function will "override" the definition that would be inherited from the base class. 
 
 Function overriding is fundamental to this polymorphic style of programming because this is what allows each sub-class to behave uniquely when placed in the same context.
 
 ## Polymorphism 
 
-Polymorphism is the ability to use multiple types in the same context in our program; in order to achieve this we must only access the common properties of those types through some shared interface. The most common way to do this is to define a base class which defines the necessary common properties, and then have sub-classes which inherit from the base class which represent different kinds of objects which can implement this interface. This is caled *sub-type polymorphism*, and is one of the most common forms of polymorphism. 
+Polymorphism is the ability to use multiple types in the same context in our program; in order to achieve this we must only access the common properties of those types through some shared interface. The most common way to do this is to define a base class which defines the necessary common properties, and then have sub-classes which inherit from the base class which represent different kinds of objects which can implement this interface. This is called *sub-type polymorphism*, and is one of the most common forms of polymorphism. 
 
-By exploring polymorphism we can also understand the behaviour, and some of the limitations, of the straightforward model of inheritence that we have used so far. 
+By exploring polymorphism we can also understand the behaviour, and some of the limitations, of the straightforward model of inheritance that we have used so far. 
 
 Let's assume that we have some class `Shape`, and derived classes `Circle` and `Square`.
 
@@ -92,7 +91,7 @@ class Shape
     Shape(){}
 
     public:
-    Shape(double in_perimeter, double in_area)
+    Shape(double P, double A)
     {
         perimeter = P;
         area = A;
@@ -121,7 +120,7 @@ class Shape
 class Circle : public Shape
 {
     public:
-    Circle(double in_radius) : radius(r)
+    Circle(double r) : radius(r)
     {
         perimeter = 2 * M_PI * radius;
         area = M_PI * radius * radius;
@@ -133,13 +132,13 @@ class Circle : public Shape
     }
 
     protected:
-    double m_radius;
+    double radius;
 };
 
 class Square : public Shape
 {
     public:
-    Square(double in_width) : width(w)
+    Square(double w) : width(w)
     {
         perimeter = 4 * width;
         area = width * width;
@@ -166,12 +165,9 @@ class Square : public Shape
 Now let's say that we want to have a list of shapes, in the form of a vector, and get the area for each one. 
 
 ```cpp
-void GetShapeAreas(vector<Shape> shapes)
+void PrintShapeArea(Shape shape)
 {
-    for(auto &shape : shapes)
-    {
-        cout << shape.getArea() << endl;
-    }
+    cout << shape.getArea() << endl;
 }
 
 int main()
@@ -179,15 +175,12 @@ int main()
     Circle C = Circle(5.9);
     Square S = Square(3.1);
 
-    vector<Shape> shapes;
-    shapes.push_back(C);
-    shapes.push_back(S);
-
-    GetShapeAreas(shapes);
+    PrintShapeArea(C);
+    PrintShapeArea(S);
 }
 ```
 
-- When a `Circle` or `Square` is placed into the `vector<Shape>` container, it is cast to a `Shape` (the base class).
+- When a `Circle` or `Square` is passed into `PrintShapeArea`, it is cast to a `Shape` type (the base class).
 - It will lose any additional information or methods associated with the derived class. 
 - The `Circle` and the `Square` both have access to the `perimeter` and `area` member variables, as well as their respective "getters". 
 - The correct area will reported because the `area` member variable is set in the constructor, and the derived constructor has been called when the object was instantiated. 
@@ -195,12 +188,9 @@ int main()
 Whenever we use a derived class in place of a base class, we implicitly cast to the base type and therefore can lose important information and behaviour defined in the derived class. In this example, we have separate `printInfo` functions for each of our classes. We run into a problem if we want to print this information for a list of `Shape` objects containing both `Circle` and `Square` objects. 
 
 ```cpp
-void GetShapeInfo(vector<Shape> shapes)
+void GetShapeInfo(Shape shape)
 {
-    for(auto &shape : shapes)
-    {
-        shape.printInfo();
-    }
+    shape.printInfo();
 }
 
 int main()
@@ -208,16 +198,13 @@ int main()
     Circle C = Circle(5.9);
     Square S = Square(3.1);
 
-    vector<Shape> shapes;
-    shapes.push_back(C);
-    shapes.push_back(S);
-    
-    std::cout << std::endl;
-
     C.printInfo();
     S.printInfo();
 
-    GetShapeInfo(shapes);
+    std::cout << std::endl;
+
+    GetShapeInfo(C);
+    GetShapeInfo(S);
 }
 ```
 
@@ -234,7 +221,7 @@ Shape; Area = 9.61 m^2, Perimeter = 12.4m.
 - When we call `printInfo()` from the derived class objects directly, we get their detailed information including the type of shape and the radius or width. 
 - When we do the same on our objects within our vector, we only have access to the base class, and therefore we call the base class version of this method. 
 
-In this case we have lost our specialised functionality for our derived classes when placed in a polymorphic context! In order for polymorphism to be really useful in C++, we need a way to retain the overriddent functions for the derived classes, even when we are treating them in the more generalised context of a function or container which takes their base class. 
+In this case we have lost our specialised functionality for our derived classes when placed in a polymorphic context! In order for polymorphism to be really useful in C++, we need a way to retain the overridden functions for the derived classes, even when we are treating them in the more generalised context of a function or container which takes their base class. 
 
 We shall see in the next section how we can make use of polymorphism whilst still accessing the functions of the derived class! 
 
@@ -243,14 +230,15 @@ We shall see in the next section how we can make use of polymorphism whilst stil
 Our current method of overriding and calling functions in the way described above is clearly insufficient in many cases where we want to use an object of a derived class in a piece of code which deals with the base class. Take for example a function that takes an argument of base type `Shape`:
 
 - We often don't want to pass our derived class by value: this will attempt to copy the object into a new object of type `Shape`, so any overrides will be lost. 
-- We can (and should) pass our argument by reference or as a pointer. However, the function itself will still be treating the object as being of type `Shape` and hence will call the `Shape` versions of any functions. 
+- We should instead pass our argument by reference (or as a pointer, which we'll discuss in a later week). This will avoid the copying into a fresh object and instead will just pass the address in memory where the object we want to pass is stored. However, the function itself will still be treating the object as being of type `Shape` and hence will call the `Shape` versions of any functions. 
 
-We can solve this problem by declaring a member function `virtual` in the base class. In this case, the function is accessed in a different way to normal. Function definitions have addresses, and normally when a member function of a class is called the definition of that function for that is just looked up. So if we are using a `Shape *` pointer to an object, even if that object was created of type `Circle`, we will still look up the definition of any functions for `Shape`, since that's the class that we're using. For virtual functions however, each object will store the address of the definition of the function as part of its data (this data is called a "virtual table"). If the object is created as an instance of the base class, this will be the address of the base function, but if the object is created as an instance of a derived class, then this will be the address of the derived function. When we call the function on the object, it will execute the function at the address stored in the virtual table, which is individual to the instance of the object, rather than using an address which applies to the whole class. This means it doesn't matter if we are using a `Shape *` pointer or `Circle *`, it will still used the derived function for the class `Circle` because that was the address put into the virtual table when the object was created. 
+We can solve this problem by declaring a member function `virtual` in the base class. In this case, the function is accessed in a different way to normal. Function definitions have addresses, and normally when a member function of a class is called the definition of that function for that is just looked up. So if we are using a `Shape &` reference to an object, even if that object was created as type `Circle`, we will still look up the definition of any functions for `Shape`, since that's the class that we're using. For virtual functions however, each object will store the address of the definition of the function as part of its data (this data is called a "virtual table"). If the object is created as an instance of the base class, this will be the address of the base function, but if the object is created as an instance of a derived class, then this will be the address of the derived function. When we call the function on the object, it will execute the function at the address stored in the virtual table, which is individual to the instance of the object, rather than using an address which applies to the whole class. This means it doesn't matter if we are using a `Shape &` reference or `Circle &`, it will still used the derived function for the class `Circle` because that was the address put into the virtual table when the object was created. This is also why **passing a reference (or pointer) is necessary for this to work**. If we pass by value we will create a _new_ object of type `Shape`, and because it is of type `Shape` the new object's virtual table will link to the `Shape` implementation. If we pass a _reference_, then the function will instead look at the memory location of the original object, and therefore look in the original object's virtual table, and thus find the implementation for the derived class. 
 
 Virtual functions open up fully polymorphic behaviour for our classes, and are important whenever a object of a derived class might be treated as a member of a base class, including:
 
 - Passing objects of derived class to functions which take objects of base class (by reference or pointer).
-- Placing a pointer to an object of derived class in a container (such as `vector`) of pointers to the base class.
+- Defining a container of objects which can be of different derived classes by declaring a container using the base class. 
+    - We will return to this technique later when we discuss pointers, you cannot have a container, such as `vector`, of references. Nevertheless it is good to be aware of this use case now as it is a very common way for polymorphism to come in handy! 
 
 **N.B.** Special consideration should be given to _virtual destructors_. **If your class is inherited from, the destructor should usually be virtual.** We can point to an object of the derived class using a pointer of the type of `Base *`. If we `delete` this base pointer to free the memory then _only the base class destructor will be called_, and anything that needs to be cleaned up by the derived destructor will not happen. If the destructor is virtual, then the derived destructor will be called (which also calls the base destructor), and so any necessary clean up will happen. If you use _Smart Pointers_ to initialise your object then the correct (derived) destructor should be used even if the base destructor is not virtual. 
 
@@ -258,8 +246,10 @@ Virtual functions open up fully polymorphic behaviour for our classes, and are i
 
 Abstract classes are special cases of classes which have _virtual methods with no implementation_. Such functions are called **pure, virtual functions**. Such classes are abstract in the sense that they cannot be instantiated: we cannot create an object which is an instance of an abstract class because it has undefined functions and therefore the object to be instantiated is not fully defined. We can only instantiate objects of _derived classes_ which have implemented _all_ missing functionality. 
 
+- Abstract classes can be used when we want to define a **type** of object where any instance must be one of a set of **concrete sub-types**.
+    - They are often useful for modelling abstract concepts defined by some shared properties. For example, many different things are animals, but every animal alive is a specific species, i.e. sub-type, of animal. So we don't want to be able to instantiate an "animal" type object without declaring its species as well: the derived type is concrete and can exist, but the base type is abstract and merely denotes membership of a broader type class. 
 - Abstract classes are any class which has at least one pure, virtual function
-    - A function declared pure by setting it `= 0` in the definition 
+    - A function is declared pure by setting it `= 0` in the definition 
     - e.g. `virtual int myPureVirtualFunction(int a, int b) = 0;`
 - Abstract classes allow us to model interfaces which have no default (base) implementation but which may have many possible implementations. 
 - Although abstract classes cannot be instantiated on their own, they still have constructors and destructors, which are called in the same way as other base classes. These can be used to set or clean up data present in the definition of the abstract class. 
@@ -291,7 +281,8 @@ class Circle : public Shape
 
     void printInfo()
     {
-        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = " << m_perimeter << "m." << endl;
+        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = "
+             << m_perimeter << "m." << endl;
     }
 
     double getArea()
@@ -325,7 +316,8 @@ class Square : public Shape
 
     void printInfo()
     {
-        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = " << perimeter << "m." << endl;
+        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = "
+             << perimeter << "m." << endl;
     }
 
     protected:

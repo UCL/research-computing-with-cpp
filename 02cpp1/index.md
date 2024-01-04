@@ -1,26 +1,28 @@
 ---
-title: "Week 2: Modern C++ (1)"
+title: "Week 2: Custom Data Types and (a glimpse of) the Standard Library"
 ---
 
 ## Week 2: Overview 
 
 ### The Story So Far
 
-* Git
-* CMake
+* Intro to C++ 
+* Compiling with g++ and CMake
+* Variables
+* Functions
+* Loops and Conditionals
+* Console Output
 
-### Todays Lesson
+### This Week
 
-Today we'll be covering come core features of the C++ language, in particular aspects of the standard library. We won't be covering the very basics of the language, so if you are unfamiliar with things like variables, loops, and functions in C++ you should look at some introductory C++ material first (for example the LinkedIn Learning course recommended in the Moodle). 
+This week we'll be further our knowledge of core features of the C++ language and how these relate to clear and efficient code design. 
 
 This week will cover:
 
-[Common Standard Library Features](./sec01StandardLibrary.html)
+[Type Systems](./sec01Types.html)
 
-- Input / Output
-- Containers & Iterators 
-- Algorithms & Anonymous Functions
-- Understanding C++ Documentation
+- A quick introduction to what types are, and how they are used in C++ in particular. 
+- Options for user-defined types. 
 
 [Passing by Value and by Reference](./sec02PassByValueOrReference.html)
 
@@ -28,9 +30,21 @@ This week will cover:
 - Exracting values from functions by return statements or references
 - Usage of the `const` keyword
 
-[Pointers](./sec03Pointers.html)
+[Understanding Classes and Objects](./sec03ObjectOrientedProgramming.html)
 
-- Memory in C++ 
-- Data ownership models 
-- Smart pointers for data ownership
-- Raw pointers
+- Classes as user-defined types. 
+- Objects as instances of classes.
+- Access Specifiers
+- Inheritance and Introductory Polymorphism
+
+[Common Standard Library Features](./sec04StandardLibrary.html)
+
+- Containers & Iterators 
+- Algorithms & Anonymous Functions
+- Understanding C++ Documentation
+
+[Pointers](./sec05Pointers.html)
+
+- Unique, shared, weak, and raw pointers
+- Introductory memory management
+- Concepts of data ownership

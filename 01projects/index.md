@@ -1,19 +1,14 @@
 ---
-title: "Week 1: C++ projects"
+title: "Introduction to C++"
 author:
   - Krishnakumar Gopalakrishnan
 ---
 
 ## Contents
 
-In Week 1, we cover the following topics:
+This week we will introduce you to the basics of writing, compiling, and running a program using C++. We will go through most things for this class with live demonstrations, but you may find it helpful to read over the notes ahead of class anyway, and you can refer back to them throughout the course. 
+
+In this section we also provide notes on how to use **git** if you have not done so before. Git is a version control system that we will use throughout the course and for your coursework assignments, so be sure to read this through. 
 
 - [Version control with Git](./sec01Git.html)
-- [Building research software](./sec02SoftwareBuilds.html) (**mandatory pre-reading** material before in-class session)
-- [CMake background](./sec03CMakeBackground.html) (**mandatory pre-reading** material before in-class session)
-- [HelloWorld with CMake](./sec04CMakeHelloWorld.html)
-- [Building 'HelloWorld'](./sec05BuildHelloWorld.html)
-
-## Programming environment
-
-Please note that those who chose not to use the provided devcontainer in VSCode or GitHub codespaces shall have to install a text editor, a suitable compiler toolchain e.g. gcc/g++ (> 9.4.0), CMake (> 3.21), and git 2.x.
+- [Introduction to C++](./sec02IntroToCpp.html) 

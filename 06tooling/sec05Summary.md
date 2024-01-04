@@ -6,7 +6,7 @@ title: Summary
 
 ### No Magic Answer
 
-Managing libraries in C++ is more tricky than other languages.
+Managing libraries in C++ is more tricky than some other languages.
 
 While package managers make it easier, you still need to understand what you're building.
 

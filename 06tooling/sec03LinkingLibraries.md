@@ -4,7 +4,7 @@ title: Linking Libraries
 
 ## Linking libraries
 
-From the [first lecture][lesson-first] we've seen that:
+So far in the course we've seen that:
 
 * Code is split into functions/classes
 * Related functions get grouped into libraries
@@ -12,8 +12,11 @@ From the [first lecture][lesson-first] we've seen that:
 
 And that the End User of a library needs access to:
 
-* Header file = declarations (and implementation if header only)
-* Object code / library file = implementations
+* Header files
+  - These contain required declarations 
+  - May also include implementation if the library is _header only_. This is relatively common for heavily templated code that must be so general that the templates cannot be explicitly instantiated in source files in the library.
+* Object code / library file
+  - This is usually where the implementation is found.
 
 The pre-compiled libraries usually can be added to our projects via two mechanism, i.e., via
 static or dynamic linking. Let's see their differences when using one or the other:
@@ -25,13 +28,6 @@ static or dynamic linking. Let's see their differences when using one or the oth
 * Therefore, it uses more disk space compared with dynamic linking.
 * Current translation unit then does not depend on that library (i.e., only have
   to distribute the executable to run your program).
-
-Find how to create static libraries on the following videos:
-
-- Cave of Programming's C++ Tutorial [Static Creating Libraries][CPPCoPStatic] (MacOS + Eclipse)
-- The Cherno's C++ series [Using Libraries in C++ (Static Linking)][CPPChernoStacic] (Windows + VS2017)
-- iFocus's [How to create a static library][ProgLinIF_static] (Linux + CLI)
-
 
 ### Dynamic Linking
 
@@ -48,17 +44,12 @@ Find how to create static libraries on the following videos:
   recompilation of the executables that uses it (if the interfaces haven't
   changed).
     
-You can see some examples on how to create dynamic libraries at:
-
-- iFocus's [How to use a Dynamic Library][ProgLinIF_dyanmic] (Linux + CLI)
-- The Cherno's C++ series [Using Dynamic Libraries in C++][CPPChernoDynamic] (Windows + VS2017)
-    
 ### Dynamic Loading
 
 [Dynamic loading][DynamicLoading-wiki] is a third mechanism that we are not
 covering here. It's normally used for plugins.
 
-To load the libraries you need using system calls with `dlopen` (\*nix) or
+To load the libraries you need using system calls with `dlopen` (Linux or Mac) or
 `LoadLibrary` (Windows). This allows for dynamically discovering function names
 and variables.
 
@@ -66,9 +57,17 @@ and variables.
 ## Linking in practice
 
 Though you can do all the linking manually as seen in the [previous
-page][lesson-LibBasics], as your project grows it's better to use some tool that
-automate the process for you. Check this short video about [how to add a library using CMake][CPPVoBCMakeAddLib].
+page][lesson-LibBasics], as your project grows it's better to use a build tool like CMake.
 
+We'll explore building static and shared libraries in the exercises in class, but here are some key pointers:
+- The [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html) in their official docs has chapters on creating libraries as part of your CMake projects. This is a good starting point for creating an internal library. 
+  - You can switch declare a library `STATIC` or `SHARED` when you add it
+- You can compile a library without creating an executable if you want a library to be a separate project: simply use the [`add_library`](https://cmake.org/cmake/help/latest/command/add_library.html) command! You don't need to have an `add_executable`. 
+- You should probably set the `CMAKE_LIBRARY_OUTPUT_DIRECTORY` variable in your top level CMake so that your compiled library is easy to find, similar to how our executables are placed in `CMAKE_RUNTIME_OUTPUT_DIRECTORY`.  
+- You can also [import a library into a project](https://cmake.org/cmake/help/latest/command/add_library.html#imported-libraries). If you have compiled your library as a separate project and you want to use it in an executable, you'll need to import it. 
+  - You'll want to set the [`IMPORTED_LOCATION`](https://cmake.org/cmake/help/latest/prop_tgt/IMPORTED_LOCATION.html) property in `set_target_properties` to the location of your compiled (shared or static) library file. 
+  - Make sure to set the executable's include path so it can find the headers for your imported library! 
+- In practice we often use CMake's [find_package](https://cmake.org/cmake/help/latest/command/find_package.html) command to find libraries that are installed in standard locations, so that the same CMake will work on multiple people's computers who may have libraries in slightly different locations. This saves them having to edit their CMake files to provide an exact location unless necessary. 
 
 ### Space Comparison
 
@@ -77,21 +76,13 @@ If you have many executables linking a common set of libraries:
 * Static
     * Code gets copied - each executable becomes bigger
     * Doesn't require searching for libraries at run-time
+    * Code needs to be re-compiled to reflect changes in libraries
+    * Executables are independent of one another even if they use the same libraries.
 * Dynamic
     * Code gets referenced - smaller executable
     * Requires finding libraries at run-time
-
-However, space is less of a concern these days!
-
-
-### For Scientists
-
-As a scientists, we want that our programs are:
-
-* Easy to use
-* Easy to distribute to collaborators
-
-Therefore, we tend to prefer static if possible for ease of deployment.
+    * Library code can be updated without re-compiling executables
+    * Executables which use the same shared library object are all affected by changes to that library, so you need to avoid breaking any interfaces or functionality that other programs rely on. 
 
 
 ### Packaging
@@ -107,7 +98,7 @@ Some packaging systems available are:
 * C++ package managers ([conan][ConanPack], [vcpkg][vcpkg], [buckaroo][buckPack])
 * General package managers ([spack][SpackPack], [easybuild][ebPack], [conda][condaPack])
 
-Packaging is not easy, but there are some [things you can do to make package managers cry][make-PM-cry] 😭
+Packaging is not easy, but here is a humorous and enlightening talk about [things you can do to make package managers cry][make-PM-cry]. 
 
 
 ### Checking the dependencies

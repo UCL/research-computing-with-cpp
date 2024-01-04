@@ -1,53 +1,47 @@
 ---
-title: "Week 6: Tooling"
+title: "Week 6: Libraries and Tooling"
 ---
 
-## Unit testing
+This week we'll learn about some of the tools that we can use to improve our code, and how to link with external libraries. 
 
-Testing single functions, methods or classes is referred to as **unit testing**, i.e. testing single *units* of code. We've already seen some unit tests earlier in this course written with the unit testing framework [Catch2](https://github.com/catchorg/Catch2) so you should have some understanding how to write, compile and run unit tests. However, like many things in programming, there is an art to writing *good* unit tests that provide enough **test coverage**, that is the amount of code tested by unit tests. To dig deeper into the philosophy of testing C++ code, we recommend the following talk from the 2022 Cppcon:
+You should look over and install the following tools, and familiarise yourself a little with the timing statements available in C++. 
 
-{% include youtube_embed.html id="SAM4rWaIvUQ" %}  
+1. [Timing and Tooling](sec00TimingAndTooling.html)
 
-## Debugging inside VSCode
+## Why use Libraries?
 
-We can debug our code from inside VSCode but it requires a little setup to make sure we're correctly using CMake when debugging. Follow [this tutorial to set up your VSCode properly with CMake](https://code.visualstudio.com/docs/cpp/CMake-linux).
+> The best code is the code you never write
 
-## Debugging memory issues with Valgrind
+### What are libraries?
 
-If you're unlucky enough to have to resort to unsafe memory management with raw pointers, you will almost certainly meet a **segmentation fault** or segfault, if your program tries to access memory it doesn't strictly have access to. This can happen due to many different types of bugs; stack overflows, freeing already freed pointers, off-by-one bugs in loops, etc, but can be notoriously tricky to debug.
+- Libraries are collections of useful classes and functions, ready to use
+- C++ libraries can be somewhat harder to use than modules in other languages (e.g. Python)
+- Can save time and effort by providing well-tested, flexible, optimised features
 
-Valgrind is a **memory profiler and debugger** which can do many useful things involving memory but we just want to introduce its ability to find and diagnose segfaults by tracking memory allocations, deallocations and accesses.
+### Libraries from a scientific coding perspective
 
-You should follow [Valgrind's Quickstart Guide](https://valgrind.org/docs/manual/quick-start.html).
+Libraries help us do science faster
 
-## Linting with clang-tidy
+- Write less code (probably)
+- Write better tested code (probably)
+- Write faster code (possibly)
 
-**Linters** are tools that statically analyse code to find common bugs or unsafe practices. We'll be playing with the linter from the Clang toolset, `clang-tidy` so follow this tutorial on setting up clang-tidy with VSCode:
+Particular things we scientists don't ever want to build ourselves:
 
-{% include youtube_embed.html id="8RSxQ8sluG0" %}  
+- standard data structures (e.g. arrays, trees, linked lists, etc)
+- file input/output (both for config files and output files)
+- standard numerical algorithms (e.g. sorting, linear solve, FFT, etc)
+- data analysis and plotting
 
-## Formatting with clang-format
+Sometimes we have to build things ourselves, when:
 
-If you've done much Python programming you probably already know the power of good formatters, tools that reformat your code to a specification. This can help standardise code style across codebases and avoid horrid debates about spaces vs tabs, where curly braces should go, or how many new lines should separate functions.
+- a library isn't fast enough
+- we don't trust a library's results/methods
+- a library doesn't provide the needed functionality
+- we can't use a library due to licensing issues
 
-Again, we'll be peeking into the Clang toolbox and using `clang-format` to automatically format our code. Follow [this guide on setting up a basic .clang-format file](https://leimao.github.io/blog/Clang-Format-Quick-Tutorial/) and see clang-format's [list of common style guides](https://clang.llvm.org/docs/ClangFormatStyleOptions.html#basedonstyle) for more information about what styles are available. Look at a few, choose one you like and use that style to format your assignment code.
-
-You can also use [the clang-format VSCode extension](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format) to automatically format your code on saving.
-
-## Performance profiling with gprof
-
-As we move towards writing *performant* C++, one essential tool is a **profiler**, a tool that runs your code and measures the time taken in each function. This can be a powerful way to understand which pieces of your code need optimising.
-
-There are many advanced profilers out there but a good, simple profiler is `gprof`. Watch this introductory video on using gprof:
-
-{% include youtube_embed.html id="zbTtVW64R_I" %}  
-
-Now try profiling one of your own codes. Since we're using cmake, we can't directly add the required `-pg` flags to the compiler so we'll have to tell cmake to add those flags with:
-
-```
-cmake -DCMAKE_CXX_FLAGS=-pg -DCMAKE_EXE_LINKER_FLAGS=-pg -DCMAKE_SHARED_LINKER_FLAGS=-pg ...
-```
-
-## Compiler warnings
-
-One of the easiest ways to improve your code is to turn on **compiler warnings** and fix each warning. Some companies even require that all compiler warnings are fixed before allowing code to be put into production. Check out [this blog post on Managing Compiler Warnings with CMake](https://www.foonathan.net/2018/10/cmake-warnings/) for details on how to do this in our CMake projects. I recommend you use these warnings to fix potential bugs in your assignment.
+1. [Choosing Libraries](sec01ChoosingLibraries.html)
+2. [Library Basics](sec02LibraryBasics.html)
+3. [Linking Libraries](sec03LinkingLibraries.html)
+4. [Installing Libraries](sec04InstallingLibraries.html)
+5. [Libraries Summary](sec05Summary.html)

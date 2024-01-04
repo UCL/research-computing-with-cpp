@@ -13,7 +13,7 @@ Templates in C++ come in two main kinds:
 - Function Templates
 - Class Templates
 
-When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code two generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
+When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code to generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as "static polymorphism". 
 
 ## Using Templates with Classes
 
@@ -41,11 +41,20 @@ class myClassTemplate
 };
 ```
 - `T` is the template parameter, and the `typename` keyword tells us that `T` must denote a type. (You can equivalently use the `class` keyword.)
-    - Do note that you don't need to call your template parameter `T`; like function parameters or other variables, it can have any name. It's good to give it a more meaningful name if the type should represent something in particular, for example `matrixType` could be the name if your templated code deals with arbitrary types represnting matrices. This is especially useful when using templates with multiple template parameters! 
+    - Do note that you don't need to call your template parameter `T`; like function parameters or other variables, it can have any name. It's good to give it a more meaningful name if the type should represent something in particular, for example `matrixType` could be the name if your templated code deals with arbitrary types representing matrices. This is especially useful when using templates with multiple template parameters! 
 - We can then use `T` like any other type inside the body of the class definition. 
-- Additional template parameters can appear in the angle brackets in a comma separated list e.g. `template<typename T1, typename T2>`.
-- Template parameters do not have to be `typename`. You can also have a template parameter that is an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on 
- the maximum size of data it will accept. This kind of template parameter is less common. 
+- Additional template parameters can appear in the angle brackets in a comma separated list e.g. `template<typename T1, typename T2>`. This is how e.g. `std::map` works. 
+
+**Template parameters do not have to be `typename`, i.e. we are not limited to simply templating types.** You can also have template parameters that are values such as an `int`, or a `bool`, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have `template<int maxSize>` to define different classes depending on the maximum size of data it will accept.
+- `std::array` is a good example of a class template which take both a type and a value: the type of the elements and the number of elements in the array.
+- Having values as template parameters means that they must be constants known at compile time. 
+- Using template parameters which are values can allow you to leverage to type system to enforce correctness on your program. For example, if your program models objects in 3D space, then you will need a representation of a 3-vector. If you use `std::vector<double>` then these vectors could be any size, so you have to make sure manually that no vectors of other sizes can sneak into your program. If you use `std::array<double, 3>` to represent a 3-vector then the compile will enforce that all positions, velocities, and so on are 3 dimensional. (If you work in general relativity, then this can also help you define different types for 3-vectors (`std::array<double, 3>`) and 4-vectors (`std::array<double, 4>`)!)
+
+**N.B.** Templates which have many parameters (types or values) can make type names quite long, so if there is something that you want to use frequently you may consider giving it an alias using the `using` syntax:
+```cpp
+using Vec3 = std::array<double, 3>;
+```
+This can also make your type names more meaningful to people reading your code. 
 
 ## Template Classes and Inheritance 
 
@@ -222,7 +231,7 @@ We can use `getTheBiggerOne` with our `Country` class just as well as our `Shape
 - Templates provide static polymorphism. I can define one function template that generates separate functions for each class. If I want to use my function with both `Shape` and `Country`, the compiler needs to know this at run time.
     - I can't declare a single function or class (such as a container), which can take both `Shape` and `Country`. For example, I can't put a `Shape` object in the same vector as a `Country` object, since it either needs to be a `vector<Shape>` or `vector<Country>`. 
     - If I use the function with `Shape` and with `Country` in the same program, I will actually generate two functions: `Shape& getTheBiggerOne(Shape&, Shape&)` and `Country& getTheBiggerOne(Country&, Country&)`. These functions are separate because they have different signatures (parameter and return types). 
-- These two can be combined. For example, `getTheBiggerOne` is a template which could be instantiated with the type `Shape`. The resulting fucntion, which takes and returns references to `Shape`, could be used with objects of type `Shape`, `Circle` or `Square` (run time polymorphism based on their inheritance tree) but not `Country` (this is not part of the same inheritance tree). 
+- These two can be combined. For example, `getTheBiggerOne` is a template which could be instantiated with the type `Shape`. The resulting function, which takes and returns references to `Shape`, could be used with objects of type `Shape`, `Circle` or `Square` (run time polymorphism based on their inheritance tree) but not `Country` (this is not part of the same inheritance tree). 
 
 ## Organising and Compiling Code with Templates
 
@@ -327,7 +336,7 @@ undefined reference to `int utilFunctions::add<int>(int, int)'
 
 - The compiler has been unable to implement a definition of the `add` function for the type `int`, so this definition does not exist for us to use. 
 - This error shows up during linking. You can compile both object files like before, because both match the template declaration and therefore are valid, but neither one can define the specific implementation that we want so when linking it finds that the function isn't defined anywhere. 
-- `implemenation.cpp` cannot define the implementation when compiled down to an object because it has the function template but not the intended type, so it can't come up with any concrete implementation. 
+- `implementation.cpp` cannot define the implementation when compiled down to an object because it has the function template but not the intended type, so it can't come up with any concrete implementation. 
 - `usage.cpp` cannot define the implementation when compiled down to an object because it knows what type it should be used for, but it doesn't have the templated implementation (this is in `implementation.cpp`, and we have only included `declaration.hpp`). 
 
 There are two possible ways to approach this problem.
@@ -355,7 +364,7 @@ namespace utilFunctions
 ```
 
 2. We can keep our header file with just the declaration, and tell the compiler which types to implement the function for in the source file (`implementation.cpp`). 
-    - In this case, `usage.cpp` will only be able to use `add` for the types which are explicitly instantiated in `implemenation.cpp`. 
+    - In this case, `usage.cpp` will only be able to use `add` for the types which are explicitly instantiated in `implementation.cpp`. 
     - This is less flexible as you need to anticipate any combination of template arguments that the function  will be used with, but keeps the declaration and the implementation separate.
     - Separate function implementations will be created for each set of types given, even if they are never used. 
     - It can also be useful if you want the function to restrict usage to a sub-set of possible types. 

@@ -14,9 +14,9 @@ Now that we understand what libraries are and how we use them in our code, let's
 
 ### Package managers (C++)
 
-Package managers like [conan][conan] can make installing C++ packages as simple as installing Python packages with `pip`. Take a look at the excellent [CMake tutorial with Conan](https://docs.conan.io/en/2.0/tutorial/consuming_packages/build_simple_cmake_project.html).
+Package managers like [conan](https://blog.conan.io/2023/02/22/Conan-2.0.html) can make installing C++ packages as simple as installing Python packages with `pip`. Take a look at the excellent [CMake tutorial with Conan](https://docs.conan.io/en/2.0/tutorial/consuming_packages/build_simple_cmake_project.html).
 
-### Package managers (\*nix)
+### Package managers (Linux / MacOS)
 
 Installing libraries using a package manager (Linux/Mac) has some advantages:
 

@@ -42,7 +42,7 @@ Remember: even if you aren't distributing code yet, you need to understand the l
 
 When you distribute your code, the licenses of any libraries you use takes effect. For example, a library with license:
 
-* [MIT][MITLicense] or [BSD][BSDLicense] are permissive. So you can do what you want, including sell it on.
+* [MIT][MITLicense] or [BSD][BSDLicense] are permissive. So you can do what you want with the resulting software you write, including sell it on.
 * [Apache][ApacheLicense] handles multiple contributors and patent rights, but is basically permissive.
 
 Some libraries can affect how you yourself must license your code:
@@ -67,7 +67,7 @@ For an in-depth understanding we recommend you read some works about licenses:
 
 **Note**: Once a 3rd party has your code under a license agreement, their restrictions are determined by that version of the code.
 
-### Stability: Is a license stable?
+### Stability: Is a library stable?
 
 Some libraries are so new their *public API* or *interface* is still subject to change. This is usually signalled by the project being in *alpha* or *beta* stages, either before an initial 1.0.0 release, or before a new major x.0.0 release. Some projects (like Python itself) ensure that all *minor* versions will not intentionally introduce breaking changes (i.e. you can use the same code moving from 3.10 to 3.11) but keep *breaking changes* to new major versions (i.e. moving from Python 2 to Python 3). If you haven't come across this idea, read about [semantic versioning](https://www.geeksforgeeks.org/introduction-semantic-versioning/).
 
@@ -75,9 +75,9 @@ When choosing a library to use with your own project, try to use a *stable* vers
 
 ### Efficiency: Is the library fast enough?
 
-Libraries, particularly the good ones, tend to be well-optimised, that is their algorithms and data structures have been tweaked to get the best performance. For performance-critical libraries (like many used in numerical computations) the library developers should include some details about the performance of the library in its documentation. This is where you should ideally look for information about the performance. Otherwise, try to find comparisons with other, similar libraries to understand the performance.
+Good scientific libraries tend to be _well-optimised_, that is their algorithms and data structures have been designed in an attempt to get the maximise performance for the functionality that they want to provide. For performance-critical libraries (like many used in numerical computations) the library developers should include some details about the performance of the library in its documentation. This is where you should ideally look for information about the performance. Otherwise, try to find comparisons with other, similar libraries to understand the performance. Try to understand your own needs when looking at performance: optimisation can mean trade-offs between being fast, being memory efficient, or being flexible. (Recall that our highly flexible `std::function` integrator was slower than our more narrow function pointer version.)
 
-While you are unlikely to beat a library's performance with a custom algorithm, sometimes custom code can be faster due to a tradeoff between flexibility and performance. If you have already used the library but think you might be able to beat a library's performance:
+Many popular libraries have been researched, developed, and maintained over many years, with intense focus placed on the correctness and performance of their algorithms. As such, you are unlikely to beat a mature library's performance with a like-for-like custom algorithm, but sometimes custom code can be faster due to a tradeoff between flexibility and performance. (Libraries, in order to be useful to large numbers of people, often provide fairly general methods, which can sometimes be improved upon using detailed knowledge of your precise problem.) If you have already used the library but think you might be able to beat a library's performance:
 
 1. test the performance of the library's implementation
 2. write some unit tests using the library's implementation
@@ -97,24 +97,24 @@ Libraries that are not regularly maintained can "rot", that is:
 - newer, safer language features don't get introduced
 - advances in packaging make it more difficult to install
 
-In general though, we want to avoid these issues, so consider these questions when deciding if the library is suitably up-to-date:
+In general, we want to avoid these issues, so consider these questions when deciding if the library is suitably up-to-date:
 
 * When was the last release?
 * Is there a sensible versioning scheme (e.g. [semantic versioning][semver])?
 * Is a [changelog][changelog] provided with each new release?
 * Is there a suitable release schedule?
-* Is the code developed on the open (e.g., on GitHub)?
+* Is the code developed in the open (e.g., on GitHub)?
   * How often are there commits?
 
-You should develop your own intuition for what you consider "suitably up-to-date" but here are some heuristics of mine:
+You should develop your own intuition for what you consider "suitably up-to-date" but here are some heuristics:
 
 - If a library has been updated within the last year, it's probably good.
 - If a library is very small, it probably doesn't need many updates, so longer releases are fine.
-- If a library is very old (like some numerical libraries) then it is so well-used, there probably aren't many bugs left, so a release over ten years ago is still probably okay (but might not be very efficient on modern hardware).
+- If a library is very old and hasn't been introducing new features (like some numerical libraries) and has been very well-used, there may simply be fewer bugs left to deal with, so a release over ten years ago is still probably okay (but might not be as well optimised on recent hardware).
 
 ### Ownership: Who develops the library?
 
-Libraries must be developed by someone; if there is no community or company responsible for a library's development, it is considered *abandoned* and should probably be avoided. Consider some of the following questions:
+Libraries must be developed by someone: if there is no community or company responsible for a library's development, it is considered *abandoned* and should probably be avoided. Consider some of the following questions:
 
 - Is the library obviously developed by a person, community, company or other organisation?
 - If a company:
@@ -130,7 +130,7 @@ Libraries must be developed by someone; if there is no community or company resp
 ### Correctness: Is the library well-tested?
 
 * Are there many unit tests, do they run, do they pass?
-  * Are they run automatically (i.e. through continuous integration)?
+  * Are they run automatically? _Continuous integration_ is a good practice in which code is built and tested automatically when it is updated; this can be automated through e.g. github. 
 * Does the library depend on other libraries?
 * Are the build tools common?
 
@@ -140,9 +140,9 @@ Beyond the things we've already discussed, there are a few more minor points tha
 
 * Documentation: does it exist? is it good?
 * Number of ToDos: do they keep a track of bugs to fix and future features to implement?
-* Dependencies: does it offer a clear list of dependencies? Are they trusted? (i.e., recursively)
-* Data Structures: is it clear how to import/export data or images to use later?
-* Clear API: can you write a convenient wrapper?
+* Dependencies: does it offer a clear list of dependencies? Are they trusted?
+* Data Structures: is it clear how to import/export data or images to use later? Do you understand what you need to put in and what you will get out when you use the library's functions? Do you know which functions have side effects (e.g. in place updates?) and what they are?
+* Clear API: can you write a convenient wrapper? Is it clear how to use the library's features? 
 
 ## Libraries you should be using
 
@@ -153,7 +153,7 @@ While you should be asking yourself the above questions to understand how a libr
   - *very* well-documented
   - *very* well-used
   - constantly developed
-  - no need to install anything!
+  - all compiler vendors are required to provide it so there are no dependencies to install!
 - Vendor-provided libraries - provided by Intel/Nvidia/AMD/etc
   - well-tested
   - (often) well-documented
@@ -163,7 +163,9 @@ While you should be asking yourself the above questions to understand how a libr
   - well-tested
   - well-used
   - (often) well-documented
+  - typically well optimised
   - strong communities
+  - you may find that discussion with your particular research communities will help lead you to appropriate library choices
 
 [NatureArticle]: http://www.nature.com/news/2010/101013/full/467753a.html
 [LicensingBook]: http://www.oreilly.com/openbook/osfreesoft/book/

@@ -4,19 +4,15 @@ title: "Week 4: Modern C++ (3)"
 
 ### This Week
 
-This week we will continue to explore object oriented programming, delving into design considerations when writing classes for our programs. We'll also look an another method for writing flexible and re-usable code in C++ called _generic programming_ with templates. 
+This week we will look at, compare, and contrast two approaches to polymorphism in C++. We'll look at **runtime polymorphism**, also known as **dynamic polymorphism**, through the use of _inheritance_ to define sub-types with special behaviours. We'll also discuss **compile-time polymorphism**, also known as **static polymorphism**, through the use of _templates_ (and sometimes therefore referred to as _template meta-programming_) to define generic code which compiler can use to automatically generate specialised code for different types.
 
-* [Designing Classes](./sec01DesigningClasses.html)
-    - Properties of high quality code
-    - Guiding principles 
-    - Applications of abstract classes
-* [Templates](./sec02Templates.html) 
-    - Class templates
+* [Inheritance](./sec01Inheritance.html)
+    - Creating sub-types using inheritance
+    - Overriding functions
+    - Runtime polymorphism with virtual functions
+    - Abstract classes for interfaces
+* [Templates](./sec03Templates.html)
     - Function templates
-    - Function overloading 
+    - Class templates
+    - Operator & function overloading
     - Compiling templated code
-* [C++ Code Design](./sec03CppCodeDesign.html)
-    - General C++ Principles
-    - Run-time and Compile-time Polymorphism
-    - Composition and Inheritance
-    - Useful Resources 
