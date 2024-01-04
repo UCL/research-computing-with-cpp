@@ -42,3 +42,9 @@ This week will cover:
 - Containers & Iterators 
 - Algorithms & Anonymous Functions
 - Understanding C++ Documentation
+
+[Pointers](./sec05Pointers.html)
+
+- Unique, shared, weak, and raw pointers
+- Introductory memory management
+- Concepts of data ownership
