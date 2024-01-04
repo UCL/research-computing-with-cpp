@@ -4,12 +4,13 @@ title: "Week 4: Modern C++ (3)"
 
 ### This Week
 
-This week we will look the role of pointers in C++, and some of the different options we have for defining and using them. We'll revisit class design and polymorphism which are greatly enhanced by the functionality of pointers. We'll also discuss templates, sometimes referred to as _compile time polymorphism_, and compare this with the _run-time polymorphism_ that we've already met. 
+This week we will look at, compare, and contrast two approaches to polymorphism in C++. We'll look at **runtime polymorphism**, also known as **dynamic polymorphism**, through the use of _inheritance_ to define sub-types with special behaviours. We'll also discuss **compile-time polymorphism**, also known as **static polymorphism**, through the use of _templates_ (and sometimes therefore referred to as _template meta-programming_) to define generic code which compiler can use to automatically generate specialised code for different types.
 
-* [Pointers](./sec01Pointers.html)
-    - Smart pointers 
-    - Data ownership and memory management
-    - Raw pointers
+* [Inheritance](./sec01Inheritance.html)
+    - Creating sub-types using inheritance
+    - Overriding functions
+    - Runtime polymorphism with virtual functions
+    - Abstract classes for interfaces
 * [Templates](./sec03Templates.html)
     - Function templates
     - Class templates
