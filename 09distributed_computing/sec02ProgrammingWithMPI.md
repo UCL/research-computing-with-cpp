@@ -205,7 +205,7 @@ We send a message using [MPI_Send](https://www.open-mpi.org/doc/v4.0/man3/MPI_Se
     - `tag` is an integer identifier which can be used to distinguish between types of messages. This is useful for more complex programs where processes might have multiple things they could request from or send to one another. 
     - `comm` is the communicator that you are sending the message within. 
 
-Okay, so let's try sending to our other processes. Our `comm` is just `MPI_COMM_WORLD`, our datatype is `MPI::DOUBLE`, our `count` is `listSize`, our `tag` is arbitrary (let's just say `0`). The only thing to be careful of is `buf` and `destination`: for each destination process we'll need to move `buf`. 
+Okay, so let's try sending to our other processes. Our `comm` is just `MPI_COMM_WORLD`, our datatype is `MPI_DOUBLE`, our `count` is `listSize`, our `tag` is arbitrary (let's just say `0`). The only thing to be careful of is `buf` and `destination`: for each destination process we'll need to move `buf`. 
 
 ```cpp
 #include <mpi.h>
@@ -241,7 +241,7 @@ int main(int argc, char** argv) {
             double * buffer_start = master_list + listSize*i;
             MPI_Send(buffer_start,
                      listSize,
-                     MPI::DOUBLE,
+                     MPI_DOUBLE,
                      i,
                      0,
                      MPI_COMM_WORLD);
@@ -302,7 +302,7 @@ int main(int argc, char** argv) {
             double * buffer_start = master_list + listSize*i;
             MPI_Send(buffer_start,
                      listSize,
-                     MPI::DOUBLE,
+                     MPI_DOUBLE,
                      i,
                      0,
                      MPI_COMM_WORLD);
@@ -314,7 +314,7 @@ int main(int argc, char** argv) {
         double sub_list[listSize]; // Only needs to be big enough to hold our sub list 
         MPI_Recv(sub_list,
                  listSize,
-                 MPI::DOUBLE,
+                 MPI_DOUBLE,
                  0,
                  0,
                  MPI_COMM_WORLD,
@@ -410,7 +410,7 @@ int main(int argc, char** argv) {
             double * buffer_start = master_list + listSize*i;
             MPI_Send(buffer_start,
                      listSize,
-                     MPI::DOUBLE,
+                     MPI_DOUBLE,
                      i,
                      0,
                      MPI_COMM_WORLD);
@@ -426,7 +426,7 @@ int main(int argc, char** argv) {
             // messages. 
             MPI_Recv(buffer_start,
                      listSize,
-                     MPI::DOUBLE,
+                     MPI_DOUBLE,
                      MPI_ANY_SOURCE,
                      1,
                      MPI_COMM_WORLD,
@@ -458,7 +458,7 @@ int main(int argc, char** argv) {
         double sub_list[listSize]; // Only needs to be big enough to hold our sub list 
         MPI_Recv(sub_list,
                  listSize,
-                 MPI::DOUBLE,
+                 MPI_DOUBLE,
                  0,
                  0,
                  MPI_COMM_WORLD,
@@ -469,7 +469,7 @@ int main(int argc, char** argv) {
         
         MPI_Send(sub_list,
                  listSize, 
-                 MPI::DOUBLE,
+                 MPI_DOUBLE,
                  0,
                  1,
                  MPI_COMM_WORLD);
