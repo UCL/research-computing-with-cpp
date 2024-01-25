@@ -16,7 +16,7 @@ This week we'll be looking at how to work with larger and more complex C++ proje
 * [Other Error Handling Mechanisms](./sec02ErrorHandling.html)
     - Error return codes
     - Optional types
-* [CMake Basics](/sec03CMakeBasics.html)
+* [CMake Basics](./sec03CMakeBasics.html)
     - Basics of CMake files
     - Project directory structure
     - Setting C++ standards
