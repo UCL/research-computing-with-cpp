@@ -1,0 +1,44 @@
+/* 
+* Pattern name: Blurb
+* Use: Blocked media (image and text)
+* Note: N/A
+-------------------------------------------------------------- */
+
+.blurb {
+	position: relative;
+	padding-bottom: 1em;
+	overflow: hidden;
+}
+
+.blurb__title {
+	font-size: 16px;
+	margin-top: 0;
+	font-weight: 700;
+}
+
+.blurb__img {
+	margin-bottom: 0.5em;
+	width: 100%;
+	.blurb--wide & {
+		@include gs-span(dc, 1);
+		@include gs-media(m, max) {
+			@include gs-span(m, all);
+		}
+	}
+}
+
+.blurb__video {
+	margin-bottom: 1em;
+}
+
+.blurb__body {
+	@include guttering;
+	.blurb--wide & {
+		top: -4px;
+		position: relative;
+		@include gs-span(dc, 2, 4);
+		@include gs-media(m, max) {
+			@include gs-span(m, all);
+		}
+	}
+}

@@ -1,0 +1,46 @@
+/* 
+* Pattern name: Footer
+* Use: Handling links, credits and footnotes
+* Note: N/A
+-------------------------------------------------------------- */
+
+.footer {}
+
+.footer__inner {
+	background-color: #40403e;
+	padding: 40px 35px;
+	margin-left: -35px;
+	margin-right: -35px;
+	color: #fff;
+	clear: left;
+	h2{
+		font-size: 1.6rem;
+		text-transform: none;
+	}
+	a {
+		color: #eee;
+		@include on-interaction {
+			color: $white;
+		}
+	}
+}
+
+.footer__list {	
+	@include list-unstyled;
+}
+
+.footer__item {
+	padding-bottom: 4px;
+	padding-top: 4px;
+	display: block;
+	margin-bottom: 0;
+	@include rem(font-size, $font-size-sm);
+}
+
+.footer__links {
+	margin-top: 0.5em;
+	@include rem(font-size, $font-size-sm);
+	@include respond-max($screen-lg) {
+		@include rem(font-size, $font-size-xs);
+	}
+}

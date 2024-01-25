@@ -1,0 +1,739 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="http://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Example: Generating a fractal</title>
+
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min",
+        googleAnalyticsIdsArray: [] //specify array of site specific id's NOT UCL generic UA-943297-1
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, people and more" class="search-form__input search-form__input--search" value="">
+						</div>
+						<input type="submit" name="sumbit" value="Go" class="btn search-form__input search-form__input--submit" />
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="index.php" class="masthead__link">UCL Home</a>
+						</li>
+						<li class="masthead__item"><a href="prospective-students.php" class="masthead__link">Prospective students</a>
+						</li>
+						<li class="masthead__item"><a href="current-students.php" class="masthead__link">Current students</a>
+						</li>
+						<li class="masthead__item"><a href="staff.php" class="masthead__link">Staff</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+ <li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01Git.html">Version control with Git</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02IntroToCpp.html">Introduction to C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul><li class="active"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/03_fractal_example.html">Example: Generating a fractal</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+ <li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01Git.html">Version control with Git</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02IntroToCpp.html">Introduction to C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul><li class="active"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/03_fractal_example.html">Example: Generating a fractal</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/">UCL</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/ISD">ISD</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services">Our services</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it">Research IT</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it/training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h2 id="example-10-generating-a-fractal">Example 10: Generating a fractal</h2>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">10_fractal/</code> in the [examples repository][examples-repository].</p>
+
+<p>In this example we’ll combine much of what we’ve learned in previous sections and apply it to a real problem: the generation of a Mandelbrot fractal.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Fractal">Fractals</a> are shapes or patterns that in some sense contain infinite complexity. I won’t go into their (very interesting) mathematical properties but plotting a fractal like the classic Mandelbrot set can produce some beautiful patterns:</p>
+
+<p><img src="img/mandelbrot.jpg" alt="" /></p>
+
+<p>The above plot is made by:</p>
+
+<ol>
+  <li>Turning each pixel with coordinates $(p,q)$ into a complex number $c = p + iq$ where $i^2 = -1$ is the imaginary unit.</li>
+  <li>Using $c$ in the iterative equation $z_{n+1} = z_n^2 + c$ starting from $z_0 = 0$.</li>
+  <li>Iteratively updating $z_n$ until either
+    <ul>
+      <li>$|z_n| &gt; 2$ or</li>
+      <li>some maximum number of iterations is reached.</li>
+    </ul>
+  </li>
+  <li>If the maximum is reached, we consider it <em>inside</em> the fractal and if $|z_n| &gt; 2$, we consider it <em>outside</em> the fractal.</li>
+</ol>
+
+<p>Since we haven’t used a graphics program yet, we will reproduce the first ever published image of the Mandelbrot fractal, produced by Robert W. Brooks and Peter Matelski in 1978:</p>
+
+<p><img src="img/text_mandel.png" alt="" /></p>
+
+<p>We can compile and run the serial code in <code class="language-plaintext highlighter-rouge">10_fractal</code> with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ 01_serial.cpp
+</code></pre></div></div>
+<p>Running with <code class="language-plaintext highlighter-rouge">./a.out</code> you should see a printout of the fractal!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                                    *               
+                                                  *****             
+                                                  *****             
+                                                  ****              
+                                                *********  *        
+                                         ** *****************  *    
+                                          ***********************   
+                                        ************************    
+                                       **************************   
+                                     ****************************** 
+                                    ******************************  
+                        *******     ******************************* 
+                     * **********   ******************************  
+                      ************ *******************************  
+                  ** ********************************************   
+***************************************************************     
+                  ** ********************************************   
+                      ************ *******************************  
+                     * **********   ******************************  
+                        *******     ******************************* 
+                                    ******************************  
+                                     ****************************** 
+                                       **************************   
+                                        ************************    
+                                          ***********************   
+                                         ** *****************  *    
+                                                *********  *        
+                                                  ****              
+                                                  *****             
+                                                  *****             
+                                                    *              +
+Area of Mandlebrot set = 1.47347
+Error = 0.0330163
+Time = 34 ms
+</code></pre></div></div>
+<p>You’ll notice we’re not just printing out the fractal but also computing its area and comparing to a known value to get an error estimate.</p>
+
+<p>Let’s take a moment to walk through the major pieces of the code starting with the options:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Options for plotting Brooks &amp; Matelski</span>
+<span class="k">const</span> <span class="kt">bool</span> <span class="n">PLOT_ENABLED</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">NPOINTS_X</span> <span class="o">=</span> <span class="mi">68</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">NPOINTS_Y</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+
+<span class="c1">// Options for measuring large-scale performance</span>
+<span class="c1">//const bool PLOT_ENABLED = false;</span>
+<span class="c1">//const int NPOINTS_X = 1024;</span>
+<span class="c1">//const int NPOINTS_Y = NPOINTS_X;</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">MAXITER</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">x_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">x_max</span> <span class="o">=</span> <span class="mf">0.42</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">y_max</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">y_min</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_max</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">NPOINTS_X</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">NPOINTS_Y</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n_outside</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">plot</span><span class="p">(</span><span class="n">NPOINTS_X</span><span class="o">*</span><span class="n">NPOINTS_Y</span><span class="p">);</span>
+</code></pre></div></div>
+<p>Here I’ve defined two sets of options, one that plots the fractal and sets suitable numbers of points in each direction, and another that disables plotting and scales up the number of points in the fractal to <code class="language-plaintext highlighter-rouge">1024</code>. We also set the maximum number of iterations per point <code class="language-plaintext highlighter-rouge">MAXITER</code>, some bounds on the fractal area, and calculate the steps in $x$ and $y$ between each point in the grid. This is one way we can use to scale the points in integer, coordinate space to the required domain space. We then create a few variables to be used in the main loop, which is:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">start</span> <span class="o">=</span> <span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+
+<span class="c1">// Iterate over entire domain</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NPOINTS_X</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">NPOINTS_Y</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Set c to point inside domain</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">(</span><span class="n">x_min</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">dx</span><span class="p">);</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">imag</span><span class="p">(</span><span class="n">y_min</span> <span class="o">+</span> <span class="n">j</span><span class="o">*</span><span class="n">dy</span><span class="p">);</span>
+
+    <span class="c1">// Initial condition for z is c</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">is_outside</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">iter</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">iter</span><span class="o">&lt;</span><span class="n">MAXITER</span><span class="p">;</span> <span class="n">iter</span><span class="o">++</span><span class="p">){</span>
+      <span class="c1">// Iterate z = z^2 + c</span>
+      <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+
+      <span class="c1">// If |z| &gt; 2, point is outside Mandelbrot set</span>
+      <span class="n">is_outside</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2.0</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">is_outside</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">n_outside</span><span class="o">++</span><span class="p">;</span> 
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">PLOT_ENABLED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">is_outside</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">plot</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">NPOINTS_Y</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="sc">' '</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">plot</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">NPOINTS_Y</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'*'</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">auto</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">duration</span> <span class="o">=</span> <span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">milliseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">).</span><span class="n">count</span><span class="p">();</span>
+</code></pre></div></div>
+<p>Here we start a timer and then enter the main loop. We loop over every point in the domain, setting the value of <code class="language-plaintext highlighter-rouge">c</code> accordingly. We then set <code class="language-plaintext highlighter-rouge">z=c</code>, equivalent to $z_n = 0$, and start iterating the equation $z_{n+1} = z_n^2 + c$, checking every time to see if one of our two conditions are met. If the modulus of <code class="language-plaintext highlighter-rouge">z</code> is greater than 2 then we know that particular point is outside the fractal, otherwise we must iterate until <code class="language-plaintext highlighter-rouge">MAXITER</code> is reached before deciding this particular point is inside the fractal. If it’s considered outside then we increment <code class="language-plaintext highlighter-rouge">n_outside</code>, used later to calculate the area. If plotting is enabled we also set an appropriate character at that point in the <code class="language-plaintext highlighter-rouge">plot</code> array depending on whether we’ve decided the point is inside or outside the fractal. <code class="language-plaintext highlighter-rouge">i*NPOINTS_Y + j</code> is just the way we address a 2D grid inside a 1D vector. Once the loop has gone through every point, we stop the timer. At the end of this loop what we’ve really done is go through a large 2D grid of points, testing each one to decide if it is in the fractal or not. This will be the portion of the code we later parallelise.</p>
+
+<p>The final section calculates the approximate area of the fractal by multiplying the <em>proportion</em> of points that were found to be inside the fractal by the total area of our domain, and compares to a known value. We also plot the grid at this point if enabled, then print our results:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">prop_inside</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">NPOINTS_X</span><span class="o">*</span><span class="n">NPOINTS_Y</span><span class="o">-</span><span class="n">n_outside</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">NPOINTS_X</span><span class="o">*</span><span class="n">NPOINTS_Y</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_max</span><span class="o">-</span><span class="n">x_min</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_max</span><span class="o">-</span><span class="n">y_min</span><span class="p">)</span><span class="o">*</span><span class="n">prop_inside</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">area</span> <span class="o">-</span> <span class="mf">1.506484</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">PLOT_ENABLED</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">NPOINTS_Y</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NPOINTS_X</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">plot</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">NPOINTS_Y</span> <span class="o">+</span> <span class="n">j</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Area of Mandlebrot set = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Error = "</span> <span class="o">&lt;&lt;</span> <span class="n">error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Time = "</span> <span class="o">&lt;&lt;</span> <span class="n">duration</span> <span class="o">&lt;&lt;</span> <span class="s">" ms"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Phew! After all that, we’re only going to add a single line to parallelise it! The dominant part of our code is the main loop. The iteration over a single point can’t easily be parallelised so we’ll leave the innermost loop but we should be able to test multiple points at once by parallelising the two outermost loops. Indeed, these are totally independent so we should test if <code class="language-plaintext highlighter-rouge">collapse</code> improves performance.</p>
+
+<h3 id="version-1a-serial">Version 1a: Serial</h3>
+
+<p>Just for completeness I’ll include the results from the serial code again here, without the plot:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Area of Mandlebrot set = 1.47347
+Error = 0.0330163
+Time = 34 ms
+</code></pre></div></div>
+
+<h3 id="version-1b-enabling--o2">Version 1b: Enabling -O2</h3>
+
+<p>Before we even try parallelising, let’s see what kind of speedup we get by simply enabling compiler optimisations through <code class="language-plaintext highlighter-rouge">g++ -O2 01_serial.cpp</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Area of Mandlebrot set = 1.47347
+Error = 0.0330163
+Time = 4 ms
+</code></pre></div></div>
+
+<p>In fact, even <code class="language-plaintext highlighter-rouge">-O1</code> gave a similar level of performance improvements.</p>
+
+<h3 id="version-2-naive-parallel-for">Version 2: Naive parallel for</h3>
+
+<p>Let’s try a naive parallelisation using just a <code class="language-plaintext highlighter-rouge">parallel for</code>:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for
+</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NPOINTS_X</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">NPOINTS_Y</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">...</span>
+</code></pre></div></div>
+
+<p>Uh oh:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                                                    
+                                                                    
+                                                   *          *     
+                                       *           *           *    
+                                                  *                 
+                                       *          *            *    
+                                                  *           *     
+                                                  *           **    
+                                    *             *                 
+                                     **           *          *      
+                                    ***           **                
+                                      *            *                
+                                    * **           *           *    
+                               *      **                            
+                                     **          *           *      
+                              *     * **         ***                
+                               *    **                              
+                                     *             *                
+                               *     *            *           *     
+                               *                 * *          *     
+                              *        *          **          *     
+                                     ***         * *          *     
+                                       *         * *          **    
+                                      **       * * *          **    
+                                                * **          **    
+                                       *       **  *           *    
+                                      **        ****                
+                                               *   *                
+                                                * **         *      
+                                                  **                
+                                                  *                +
+Area of Mandlebrot set = 3.41337
+Error = 1.90689
+Time = 2 ms
+</code></pre></div></div>
+
+<p>It’s certainly faster but it’s pretty useless if it gives us an incorrect result. Remember we need to ensure any variables that <em>should</em> be private are!</p>
+
+<h3 id="version-3-correct-data-sharing">Version 3: Correct data sharing</h3>
+
+<p>We need add a data sharing clause to our <code class="language-plaintext highlighter-rouge">parallel for</code> to ensure <code class="language-plaintext highlighter-rouge">c</code> and <code class="language-plaintext highlighter-rouge">z</code> are appropriately private to each thread. These are set inside the loop so we don’t need <code class="language-plaintext highlighter-rouge">firstprivate</code>, <code class="language-plaintext highlighter-rouge">private</code> will do:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#pragma omp parallel for private(z, c)
+</code></pre></div></div>
+
+<p>This gives:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                                    *               
+                                                  *****             
+                                                  *****             
+                                                  ****              
+                                                *********  *        
+                                         ** *****************  *    
+                                          ***********************   
+                                        ************************    
+                                       **************************   
+                                     ****************************** 
+                                    ******************************  
+                        *******     ******************************* 
+                     * **********   ******************************  
+                      ************ *******************************  
+                  ** ********************************************   
+***************************************************************     
+                  ** ********************************************   
+                      ************ *******************************  
+                     * **********   ******************************  
+                        *******     ******************************* 
+                                    ******************************  
+                                     ****************************** 
+                                       **************************   
+                                        ************************    
+                                          ***********************   
+                                         ** *****************  *    
+                                                *********  *        
+                                                  ****              
+                                                  *****             
+                                                  *****             
+                                                    *               
+Area of Mandlebrot set = 4.08668
+Error = 2.58019
+Time = 3 ms
+</code></pre></div></div>
+
+<p>This has given us the correct plot but an incorrect area. This is because we haven’t yet handled the required reduction for <code class="language-plaintext highlighter-rouge">n_outside</code>!</p>
+
+<h3 id="version-4-reduction">Version 4: Reduction</h3>
+
+<p>We add a reduction clause to ensure <code class="language-plaintext highlighter-rouge">n_outside</code> is summed correctly across all threads:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for private(z, c) reduction(+:n_outside)
+</span></code></pre></div></div>
+
+<p>This gives both a correct plot and a much more accurate area:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Area of Mandlebrot set = 1.47347
+Error = 0.0330163
+Time = 3 ms
+</code></pre></div></div>
+
+<h3 id="version-5-testing-collapse">Version 5: Testing collapse</h3>
+
+<p>Now that we’re suitably happy our parallelisation is correct, let’s see if collapsing the loop can improve performance:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for private(z, c) reduction(+:n_outside) collapse(2)
+</span></code></pre></div></div>
+
+<p>Looks somewhat better and our area calculation still looks correct:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Area of Mandlebrot set = 1.47347
+Error = 0.0330163
+Time = 2 ms
+</code></pre></div></div>
+
+<h3 id="version-6a-changing-the-schedule">Version 6a: Changing the schedule</h3>
+
+<p>We know different points require different numbers of iterations to complete, so we should expect this loop to be some what unbalanced. Let’s try the different schedules, again by first experimenting with the <code class="language-plaintext highlighter-rouge">runtime</code> schedule:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for private(z, c) reduction(+:n_outside) collapse(2) schedule(runtime)
+</span></code></pre></div></div>
+
+<p>By running with <code class="language-plaintext highlighter-rouge">OMP_SCHEDULE=... ./a.out</code> and testing the three schedules <code class="language-plaintext highlighter-rouge">static</code>, <code class="language-plaintext highlighter-rouge">dynamic</code> and <code class="language-plaintext highlighter-rouge">guided</code> we get the following runtimes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>static</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>dynamic</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>guided</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This small a problem isn’t allowing us to really see much difference between the schedules so let’s disable plotting and increase the number of points in each direction to 1024. Compiling and running the same experiment:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>static</td>
+      <td>312</td>
+    </tr>
+    <tr>
+      <td>dynamic</td>
+      <td>312</td>
+    </tr>
+    <tr>
+      <td>guided</td>
+      <td>307</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here I’ve run each schedule 5 times and reported the minimum time in the above table. In your own experiments you can either use the minimum or average time, representing the best case or average runtime, respectively; both are useful quantities.</p>
+
+<p>The data suggest there actually isn’t much different between each schedule, and you’ll notice if you vary the chunk size for each schedule, you probably can’t beat the time you get for the default guided schedule.</p>
+
+<h3 id="version-6b-scaling">Version 6b: Scaling</h3>
+
+<p>This is a relatively simple code so the changes we’ve made are really all we can do with our current knowledge of OpenMP. If I were to optimise this code further, I would turn to profiling tools to get more information about how many CPU cycles different parts are taking, I’d perhaps look at utilising SIMD instructions, or other CPU-specific optimisations. This kind of algorithm is well suited to GPU architectures so I’d consider porting the code.</p>
+
+<p>Let’s see first how our code has improved through all our (correct) versions using the larger domain size:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Time</th>
+      <th>Speedup over optimised serial</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1a (unoptimised: -O0)</td>
+      <td>18056</td>
+      <td>0.135</td>
+    </tr>
+    <tr>
+      <td>1b (optimised: -O2)</td>
+      <td>2435</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <td>4 (reduction)</td>
+      <td>795</td>
+      <td>3.06</td>
+    </tr>
+    <tr>
+      <td>5 (collapse)</td>
+      <td>789</td>
+      <td>3.09</td>
+    </tr>
+    <tr>
+      <td>6 (schedule)</td>
+      <td>307</td>
+      <td>7.93</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Firstly, just by enabling compiler optimisations we’ve improved our runtime by nearly 8x. This is astounding and you should always experiment with your compiler options before even considering making your code more complex by parallelising it. However, by just adding a single line of OpenMP and experimenting with a few clauses, the code is now running an <em>additional</em> 8x faster on my laptop. That’s a total speed up of 58.8x.</p>
+
+<p>If I were running this code to actually run some computational experiments, I’d want to know how well I can expect it to run on larger machines, so let’s perform a scaling experiment. Still using the domain size of 1024 per dimension, I’ll increase the number of threads from 1 to 16 in powers of 2. This produces:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code></th>
+      <th>Time (ms)</th>
+      <th>Speedup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>2439</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1240</td>
+      <td>1.97</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>645</td>
+      <td>3.78</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>339</td>
+      <td>7.19</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>306</td>
+      <td>7.97</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>What’s curious about this data is my laptop only has 8 cores, so I’m surprised (but pleased!) to get an additional speedup when using <em>more</em> threads than I have cores. I can only guess my OS is still requiring some use of the CPU and having more threads dedicated to the fractal calculation makes it more likely that it runs over the OS, but I’m not sure.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Facilities</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/departments/faculties">Faculties and departments</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/library/">Library</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/museums">Museums and Collections</a></li>
+					<li class="footer__item"><a href="http://www.thebloomsbury.com/">UCL Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/maps">Maps and buildings</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+                <h2 class="as-h5">Locations</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/australia">UCL Australia</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/qatar">UCL Qatar</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/global">UCL Global</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-3">
+                <h2 class="as-h5">Connect with us</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/enterprise">Businesses</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/media">Media Relations</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/hr/jobs/">Jobs</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/makeyourmark">Give to UCL</a></li>
+				</ul>
+
+      </article>
+  
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2024-01-25 12:12:01 +0000 UCL</li>
+      <li class="text-muted small"><a href="#">Disclaimer</a>
+      </li>
+      <li class="text-muted small"><a href="#">Freedom of Information</a>
+      </li>
+      <li class="text-muted small"><a href="#">Accessibility</a>
+      </li>
+      <li class="text-muted small"><a href="#">Privacy</a>
+      </li>
+      <li class="text-muted small"><a href="#">Cookies</a>
+      </li>
+      <li class="text-muted small"><a href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

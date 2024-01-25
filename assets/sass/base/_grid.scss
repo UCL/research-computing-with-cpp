@@ -1,0 +1,258 @@
+/* 
+* Base name: Grid
+* Note: Applying Indigo grid to custom breakpoints. See - http://www.ucl.ac.uk/indigo/grid.php
+-------------------------------------------------------------- */
+
+.col {
+	@include respond-max($screen-sm) {
+		clear: both;
+	}
+}
+
+/* Mobile content grid (2 columns)
+-------------------------------------------------------------- */
+
+.col--1-2-sm {
+	@include respond-max($screen-sm) {
+		@include gs-span(m, all);
+	}
+}
+
+.col--1-sm {
+	@include respond-max($screen-sm) {
+		@include gs-span(m, 1);
+	}
+}
+
+.col--2-sm {
+	@include respond-max($screen-sm) {
+		@include gs-span(m, 2);
+	}
+}
+
+/* Tablet grid (3 columns)
+-------------------------------------------------------------- */
+
+.col--1-md {
+	@include respond-min($screen-md) {
+		@include gs-span(t, 1);
+	}
+}
+
+.col--2-md {
+	@include respond-min($screen-md) {
+		@include gs-span(t, 2);
+	}
+}
+
+.col--3-md {
+	@include respond-min($screen-md) {
+		@include gs-span(t, 3);
+	}
+}
+
+.col--1-2-md {
+	@include respond-min($screen-md) {
+		@include gs-span(t, 1, 2);
+	}
+}
+
+.col--2-3-md {
+	@include respond-min($screen-md) {
+		@include gs-span(t, 2, 3);
+	}
+}
+
+.col--1-3-md {
+	@include respond-min($screen-md) {
+		@include gs-span(t, all);
+	}
+}
+
+/* Desktop layout grid (5 columns)
+-------------------------------------------------------------- */
+
+.col--1-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 1);
+	}
+}
+
+.col--1-2-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 1, 2);
+	}
+}
+
+.col--1-3-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 1, 3);
+	}
+}
+
+.col--1-4-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 1, 4);
+	}
+}
+
+.col--1-5-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, all);
+	}
+}
+
+.col--2-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 2);
+	}
+}
+
+.col--2-3-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 2, 3);
+	}
+}
+
+.col--2-4-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 2, 4);
+	}
+}
+
+.col--2-5-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 2, 5);
+	}
+}
+
+.col--3-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 3);
+	}
+}
+
+.col--3-4-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 3, 4);
+	}
+}
+
+.col--3-5-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 3, 5);
+	}
+}
+
+.col--4-5-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 4, 5);
+	}
+}
+
+.col--5-lg-layout {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, 5);
+	}
+}
+
+/* Desktop content grid (4 columns)
+-------------------------------------------------------------- */
+
+.col--1-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 1);
+	}
+}
+
+.col--2-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 2);
+	}
+}
+
+.col--3-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 3);
+	}
+}
+
+.col--4-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 4);
+	}
+}
+
+.col--1-2-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 1, 2);
+	}
+}
+
+.col--2-3-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 2, 3);
+	}
+}
+
+.col--2-4-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 2, 4);
+	}
+}
+
+.col--3-4-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dc, 3, 4);
+	}
+}
+
+.col--1-4-lg-content {
+	@include respond-min($screen-lg) {
+		@include gs-span(dl, all);
+	}
+}
+
+/* Column floats
+-------------------------------------------------------------- */
+
+.col--float {
+	@include respond-max($screen-md) {
+		@include gs-float(m, left);
+	}
+
+	@include respond-min-max($screen-md, $screen-lg) {
+		@include gs-float(t, left);
+	}
+
+	@include respond-min($screen-lg) {
+		@include gs-float(dl, left);
+	}
+}
+
+.col--float-content {
+	@include respond-min($screen-lg) {
+		@include gs-float(dl, left);
+	}
+}
+
+/* Column last child
+-------------------------------------------------------------- */
+
+.col--sm-last {
+	@include respond-max($screen-sm) {
+		margin-right: 0;
+	}
+}
+
+.col--md-last {
+	@include respond-min-max($screen-md, $screen-lg) {
+		margin-right: 0;
+	}
+}
+
+.col--lg-last {
+	@include respond-min($screen-lg) {
+		margin-right: 0;
+	}
+}
