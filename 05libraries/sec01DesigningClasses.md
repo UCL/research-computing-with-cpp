@@ -135,115 +135,220 @@ The goal is to guarantee the following:
 - Resources that are required by the object exist for the full lifetime of the object. This will prevent invalid memory access attempts.
 - Resources that are allocated by the object do not exist for longer than the object itself. This will prevent memory leaks. 
 
-Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and reading or writing resources such as files.  
+Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and reading or writing resources such as files. However, RAII can also be very useful for interfacing with C libraries which deal with raw pointers and which have specialised methods for creating and freeing them (rather than using `new` and `delete`); it can also often be easier to deal with C-style arrays rather than vectors when programming with MPI or interfacing to other devices like GPUs. 
 
 RAII typically means wrapping these resources that you want to use in some class: rather than accessing a file directly in a function, which could be interrupted by an exception before it can close the file, wrap the file in a class which will automatically close the file in the destructor if the object goes out of scope. Then use that class in your function to access your file. If something goes wrong and an exception is thrown, your file will be closed when the stack unwinds and the file wrapper object is deleted. 
+
+### RAII and Copying
+
+Special care needs to be taken when objects that implement the RAII pattern are allowed to be copied. C++ will, where possible, implement a _default_ [copy constructor](https://en.cppreference.com/w/cpp/language/copy_constructor), which allows the object to be copied, e.g. 
+
+```cpp
+MyObj obj1;
+MyObj obj2 = obj1;  // calls copy constructor to build obj2 by copying data from obj1
+```
+
+The trouble with copies comes when we have classes which contain resources like raw pointers or file handles that need to be deleted or closed.
+
+```cpp
+class MyObj
+{
+public:
+    MyObj()
+    {
+        p = new int(5);
+    }
+
+    ~MyObj()
+    {
+        delete p;
+    }
+
+private:
+    int *p;
+};
+```
+- This class very responsibly places the allocation for the pointer in the constructor and the deallocation in the destructor, so creating a `MyObj` and letting it go out of scope will not cause any leaks.
+
+The problem with the raw pointer is that the default copy will simply copy the pointer across. This means that **both** `obj1` and `obj2` will contain a pointer **to the same address**, and consequenctly **both destructors will attempt to free it**. This is a double free error and will cause our program to crash! We have failed to properly model _ownership_ of the resources in the case of the copy: we must always know which objects own what resources. 
+
+When smart pointers are not appropriate, we can control this copy behaviour by overriding or disabling the copy constructor. 
+
+#### Overriding the Copy Constructor
+
+The copy constructor for a given type looks like this:
+
+```cpp
+class MyObj
+{
+public:
+    // copy constructor
+    MyObj(const MyObj &other)
+    {
+        ...
+    }
+
+...
+```
+- It takes a (possibly `const`) _reference_ to an object of the same class as its argument. It's usually a good idea to make this a `const` reference since you probably don't want your copy operation to be able to alter the original object!
+- It can take other parameters if you want **but** they must have default values supplied in the argument list. E.g. `MyObj(const MyObj &other, int i=2){...}`.
+
+We can override this to make a deep copy by having the new object's pointer point to a different memory location, and instead copy the _data_ that the first object points to into the new location as well. 
+
+```cpp
+class MyObj
+{
+public:
+    // copy constructor
+    MyObj(const MyObj &other)
+    {
+        p = new int(*other.p);
+    }
+
+...
+```
+
+Note that this deep copy means that the data that these two objects point to is now independent: changing one won't change the other because they are looking at different addresses. 
+
+#### Disabling the Copy Constructor
+
+We can prevent copying entirely by disabling the copy constructor. 
+
+```cpp
+class MyObj
+{
+public:
+    // copy constructor
+    MyObj(const MyObj &other) = delete;
+
+...
+```
+This makes it a compilation error to try to copy the object, and therefore the our code `MyObj obj2 = obj1;` won't compile at all. 
+
+There are more approaches that one can take to this problem depending on exactly what ownership behaviour you want, just **always remember to consider ownership when implementing classes with RAII**. 
 
 ## Decoupling Code with Abstract Classes & Dependency Injection 
 
 Dependency injection is a commonly used technique to make a pair of classes which depend on one another _loosely coupled_, i.e. to make changes to one class as independent of the other class as possible. 
 
-Consider for example the case where we have one class which contains an instance of another.
+Consider for example the case where we have one class which contains an instance of another. In this case, a `Simulation` class which contains a simple `Data` class. 
+
 ```cpp
-class Bar
+class Data
 {
     public:
     void print()
     {
-        cout << "BAR" << endl;
-    }
-};
-
-class Foo
-{
-    public:
-    Foo()
-    {
-        myBar = std::unique_ptr<Bar>(new Bar());
-    }
-
-    void printBar()
-    {
-        myBar->print();
+        for(auto x: data)
+        {
+            std::cout << x << " ";
+        }
+        std::cout << std::endl;
     }
 
     private:
-        std::unique_ptr<Bar> myBar;
+    vector<int> data;
+};
+
+class Simulation
+{
+    public:
+    Simulation()
+    {
+        data = std::unique_ptr<Data>(new Data());
+    }
+
+    void printData()
+    {
+        data->print();
+    }
+
+    private:
+        std::unique_ptr<Data> data;
 };
 ```
-- The definition of class `Foo` is dependent on the definition of class `Bar`. 
-- The constructor for `Foo` calls the constructor of `Bar` directly; if the constructor of `Bar` changes then the class `Foo` must also be changed. 
-- The class `Bar` may develop and contain functionality that is irrelevant to what `Foo` needs. 
+- The definition of class `Simulation` is dependent on the definition of class `Data`. 
+- The constructor for `Simulation` calls the constructor of `Data` directly; if the constructor of `Data` changes (because we have changed something about our data representation) then the class `Simulation` must also be changed. 
+- The class `Data` may develop and contain functionality that is irrelevant to what `Simulation` needs. 
 
 Dependency injection is generally achieved by using an abstract class in place of a concrete type for a component of a class. The abstract class defines a interface that must be met by any class that you want to use, but does not enforce what exactly that class should be. This allows you to design a class which can be reused with different components which fulfil the same functionality depending on what you need it for. 
 
 ```cpp
-class AbstractBar
+class AbstractSimData
 {
     public:
     virtual void print() = 0;
 };
 
-class Bar : public AbstractBar
+class Data : public AbstractSimData
 {
     public:
     void print()
     {
-        cout << "BAR" << endl;
+        for(auto x: data)
+        {
+            std::cout << x << " ";
+        }
+        std::cout << std::endl;
     }
+
+    private:
+    vector<int> data;
 };
 ```
-- `AbstractBar` is an abstract class, because its function `print` is not implemented. 
+- `AbstractSimData` is an abstract class, because its function `print` is not implemented. It defines the interface that any data class that wants to be used with the `Simulation` class would need to implement.
 - `print` is _pure_ and _virtual_ which means that it will always be overridden by a derived class. This defines a "contract": a set of functionality that anything which inherits from this abstract class _must_ implement. We can use such abstract classes to define minimal functionality required by other classes: this is sometimes referred to as an "interface". 
     - Interfaces are a core language feature of some other languages like Java and C#, but are not explicitly implemented in C++. 
     - In C++ we generally implement interfaces using abstract classes containing only pure virtual functions and variables. 
 
-The trick with dependency injection is to the then pass (or "inject") the component you want to use to a constructor or setter function. This is done at runtime rather than compile time, and means that different instances of the class can be instantiated with different components based on run-time considerations. 
+The trick with dependency injection is to then pass (a.k.a. "inject") the component you want to use to a constructor or setter function. This is done at runtime rather than compile time, and means that different instances of the class can be instantiated with different components based on run-time considerations. 
 ```cpp
-class Foo
+class Simulation
 {
-    Foo(unique_ptr<AbstractBar> &inBar)
+    Simulation(unique_ptr<AbstractSimData> &inData)
     {
-        myBar = std::move(inBar);
+        data = std::move(inData);
     }
 
-    void printBar()
+    void printData()
     {
-        myBar->print();
+        data->print();
     }
 
     private:
-        std::unique_ptr<AbstractBar> myBar;
+        std::unique_ptr<AbstractSimData> data;
 };
 ```
 
-- Now `Foo` works with an abstract class `AbstractBar`, which does not itself contain an implementation of `print`. 
-- Note that the `Foo` class now does not call the constructor for the `myBar` object: the `Bar` implementation can change completely as long as it still implements the `print` method, which is the only thing that we need from it in this example. 
+- Now `Simulation` works with an abstract class `AbstractSimData`, which does not itself contain an implementation of `print`. It doesn't care _how_ it gets done, just that it _can_ be done.
+- Note that the `Simulation` class now does not call the constructor for the `data` object: the `Data` implementation can change completely as long as it still implements the `print` method, which is the only thing that we need from it in this example. The `Simulation` class is now _decoupled_ from any elements of the `Data` class that it does not directly need to know about and use. 
 
 We gain even more flexibility by using a setter function. With this kind of structure we can also create classes that allow components to be swapped out during the lifetime of the object, meaning that the functionality of the object can be changed during runtime. 
 ```cpp
-class Foo
+class Simulation
 {
     public:
-    Foo(unique_ptr<AbstractBar> &inBar)
+    Simulation(unique_ptr<AbstractSimData> &inData)
     {
-        myBar = std::move(inBar);
+        data = std::move(inData);
     }
 
-    void setBar(unique_ptr<AbstractBar> &inBar)
+    void setData(unique_ptr<AbstractSimData> &inData)
     {
-        myBar = std::move(inBar);
+        data = std::move(inData);
     }
 
-    void printBar()
+    void printData()
     {
-        myBar->print();
+        data->print();
     }
 
     private:
-        std::unique_ptr<AbstractBar> myBar;
+        std::unique_ptr<AbstractSimData> data;
 };
 ```
+- If we have two data sets `dataSet1` and `dataSet2` we can now change the data that the `Simulation` object looks at runtime without creating a new `Simulation` object. 
+- `dataSet1` and `dataSet2` don't even need to be the same type, as long as they are both of a type which inherits from `AbstractSimData`!
 
 ## Example: Strategy Pattern
 
