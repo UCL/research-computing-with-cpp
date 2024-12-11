@@ -135,9 +135,97 @@ The goal is to guarantee the following:
 - Resources that are required by the object exist for the full lifetime of the object. This will prevent invalid memory access attempts.
 - Resources that are allocated by the object do not exist for longer than the object itself. This will prevent memory leaks. 
 
-Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and reading or writing resources such as files.  
+Since it's good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to `delete` in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and reading or writing resources such as files. However, RAII can also be very useful for interfacing with C libraries which deal with raw pointers and which have specialised methods for creating and freeing them (rather than using `new` and `delete`); it can also often be easier to deal with C-style arrays rather than vectors when programming with MPI or interfacing to other devices like GPUs. 
 
 RAII typically means wrapping these resources that you want to use in some class: rather than accessing a file directly in a function, which could be interrupted by an exception before it can close the file, wrap the file in a class which will automatically close the file in the destructor if the object goes out of scope. Then use that class in your function to access your file. If something goes wrong and an exception is thrown, your file will be closed when the stack unwinds and the file wrapper object is deleted. 
+
+### RAII and Copying
+
+Special care needs to be taken when objects that implement the RAII pattern are allowed to be copied. C++ will, where possible, implement a _default_ [copy constructor](https://en.cppreference.com/w/cpp/language/copy_constructor), which allows the object to be copied, e.g. 
+
+```cpp
+MyObj obj1;
+MyObj obj2 = obj1;  // calls copy constructor to build obj2 by copying data from obj1
+```
+
+The trouble with copies comes when we have classes which contain resources like raw pointers or file handles that need to be deleted or closed.
+
+```cpp
+class MyObj
+{
+public:
+    MyObj()
+    {
+        p = new int(5);
+    }
+
+    ~MyObj()
+    {
+        delete p;
+    }
+
+private:
+    int *p;
+};
+```
+- This class very responsibly places the allocation for the pointer in the constructor and the deallocation in the destructor, so creating a `MyObj` and letting it go out of scope will not cause any leaks.
+
+The problem with the raw pointer is that the default copy will simply copy the pointer across. This means that **both** `obj1` and `obj2` will contain a pointer **to the same address**, and consequenctly **both destructors will attempt to free it**. This is a double free error and will cause our program to crash! We have failed to properly model _ownership_ of the resources in the case of the copy: we must always know which objects own what resources. 
+
+When smart pointers are not appropriate, we can control this copy behaviour by overriding or disabling the copy constructor. 
+
+#### Overriding the Copy Constructor
+
+The copy constructor for a given type looks like this:
+
+```cpp
+class MyObj
+{
+public:
+    // copy constructor
+    MyObj(const MyObj &other)
+    {
+        ...
+    }
+
+...
+```
+- It takes a (possibly `const`) _reference_ to an object of the same class as its argument. It's usually a good idea to make this a `const` reference since you probably don't want your copy operation to be able to alter the original object!
+- It can take other parameters if you want **but** they must have default values supplied in the argument list. E.g. `MyObj(const MyObj &other, int i=2){...}`.
+
+We can override this to make a deep copy by having the new object's pointer point to a different memory location, and instead copy the _data_ that the first object points to into the new location as well. 
+
+```cpp
+class MyObj
+{
+public:
+    // copy constructor
+    MyObj(const MyObj &other)
+    {
+        p = new int(*other.p);
+    }
+
+...
+```
+
+Note that this deep copy means that the data that these two objects point to is now independent: changing one won't change the other because they are looking at different addresses. 
+
+#### Disabling the Copy Constructor
+
+We can prevent copying entirely by disabling the copy constructor. 
+
+```cpp
+class MyObj
+{
+public:
+    // copy constructor
+    MyObj(const MyObj &other) = delete;
+
+...
+```
+This makes it a compilation error to try to copy the object, and therefore the our code `MyObj obj2 = obj1;` won't compile at all. 
+
+There are more approaches that one can take to this problem depending on exactly what ownership behaviour you want, just **always remember to consider ownership when implementing classes with RAII**. 
 
 ## Decoupling Code with Abstract Classes & Dependency Injection 
 
