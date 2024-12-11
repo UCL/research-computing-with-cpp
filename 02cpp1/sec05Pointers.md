@@ -19,7 +19,7 @@ In these cases, we use *pointers*. **A pointer is variable which represents an a
 
 Throughout the following sections, and whenever you are working with pointers, it is useful to bear in mind that the value of a pointer is a memory address. We can get the data at that memory address by _dereferencing_ the pointer, but that is not the same as the pointer's value.
 
-## Optional Background: The Stack, the Heap, and Variable Scope
+## Background: The Stack, the Heap, and Variable Scope
 
 We will go into more detail on memory structures later on in the course when we discuss performance programming. It can however be easier to understand the usage of pointers in C++ if we understand the difference between two different kinds of memory: the _stack_ and the _heap_. 
 
