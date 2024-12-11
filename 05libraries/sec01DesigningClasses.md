@@ -231,107 +231,124 @@ There are more approaches that one can take to this problem depending on exactly
 
 Dependency injection is a commonly used technique to make a pair of classes which depend on one another _loosely coupled_, i.e. to make changes to one class as independent of the other class as possible. 
 
-Consider for example the case where we have one class which contains an instance of another.
+Consider for example the case where we have one class which contains an instance of another. In this case, a `Simulation` class which contains a simple `Data` class. 
+
 ```cpp
-class Bar
+class Data
 {
     public:
     void print()
     {
-        cout << "BAR" << endl;
-    }
-};
-
-class Foo
-{
-    public:
-    Foo()
-    {
-        myBar = std::unique_ptr<Bar>(new Bar());
-    }
-
-    void printBar()
-    {
-        myBar->print();
+        for(auto x: data)
+        {
+            std::cout << x << " ";
+        }
+        std::cout << std::endl;
     }
 
     private:
-        std::unique_ptr<Bar> myBar;
+    vector<int> data;
+};
+
+class Simulation
+{
+    public:
+    Simulation()
+    {
+        data = std::unique_ptr<Data>(new Data());
+    }
+
+    void printData()
+    {
+        data->print();
+    }
+
+    private:
+        std::unique_ptr<Data> data;
 };
 ```
-- The definition of class `Foo` is dependent on the definition of class `Bar`. 
-- The constructor for `Foo` calls the constructor of `Bar` directly; if the constructor of `Bar` changes then the class `Foo` must also be changed. 
-- The class `Bar` may develop and contain functionality that is irrelevant to what `Foo` needs. 
+- The definition of class `Simulation` is dependent on the definition of class `Data`. 
+- The constructor for `Simulation` calls the constructor of `Data` directly; if the constructor of `Data` changes (because we have changed something about our data representation) then the class `Simulation` must also be changed. 
+- The class `Data` may develop and contain functionality that is irrelevant to what `Simulation` needs. 
 
 Dependency injection is generally achieved by using an abstract class in place of a concrete type for a component of a class. The abstract class defines a interface that must be met by any class that you want to use, but does not enforce what exactly that class should be. This allows you to design a class which can be reused with different components which fulfil the same functionality depending on what you need it for. 
 
 ```cpp
-class AbstractBar
+class AbstractSimData
 {
     public:
     virtual void print() = 0;
 };
 
-class Bar : public AbstractBar
+class Data : public AbstractSimData
 {
     public:
     void print()
     {
-        cout << "BAR" << endl;
+        for(auto x: data)
+        {
+            std::cout << x << " ";
+        }
+        std::cout << std::endl;
     }
+
+    private:
+    vector<int> data;
 };
 ```
-- `AbstractBar` is an abstract class, because its function `print` is not implemented. 
+- `AbstractSimData` is an abstract class, because its function `print` is not implemented. It defines the interface that any data class that wants to be used with the `Simulation` class would need to implement.
 - `print` is _pure_ and _virtual_ which means that it will always be overridden by a derived class. This defines a "contract": a set of functionality that anything which inherits from this abstract class _must_ implement. We can use such abstract classes to define minimal functionality required by other classes: this is sometimes referred to as an "interface". 
     - Interfaces are a core language feature of some other languages like Java and C#, but are not explicitly implemented in C++. 
     - In C++ we generally implement interfaces using abstract classes containing only pure virtual functions and variables. 
 
-The trick with dependency injection is to the then pass (or "inject") the component you want to use to a constructor or setter function. This is done at runtime rather than compile time, and means that different instances of the class can be instantiated with different components based on run-time considerations. 
+The trick with dependency injection is to then pass (a.k.a. "inject") the component you want to use to a constructor or setter function. This is done at runtime rather than compile time, and means that different instances of the class can be instantiated with different components based on run-time considerations. 
 ```cpp
-class Foo
+class Simulation
 {
-    Foo(unique_ptr<AbstractBar> &inBar)
+    Simulation(unique_ptr<AbstractSimData> &inData)
     {
-        myBar = std::move(inBar);
+        data = std::move(inData);
     }
 
-    void printBar()
+    void printData()
     {
-        myBar->print();
+        data->print();
     }
 
     private:
-        std::unique_ptr<AbstractBar> myBar;
+        std::unique_ptr<AbstractSimData> data;
 };
 ```
 
-- Now `Foo` works with an abstract class `AbstractBar`, which does not itself contain an implementation of `print`. 
-- Note that the `Foo` class now does not call the constructor for the `myBar` object: the `Bar` implementation can change completely as long as it still implements the `print` method, which is the only thing that we need from it in this example. 
+- Now `Simulation` works with an abstract class `AbstractSimData`, which does not itself contain an implementation of `print`. It doesn't care _how_ it gets done, just that it _can_ be done.
+- Note that the `Simulation` class now does not call the constructor for the `data` object: the `Data` implementation can change completely as long as it still implements the `print` method, which is the only thing that we need from it in this example. The `Simulation` class is now _decoupled_ from any elements of the `Data` class that it does not directly need to know about and use. 
 
 We gain even more flexibility by using a setter function. With this kind of structure we can also create classes that allow components to be swapped out during the lifetime of the object, meaning that the functionality of the object can be changed during runtime. 
 ```cpp
-class Foo
+class Simulation
 {
     public:
-    Foo(unique_ptr<AbstractBar> &inBar)
+    Simulation(unique_ptr<AbstractSimData> &inData)
     {
-        myBar = std::move(inBar);
+        data = std::move(inData);
     }
 
-    void setBar(unique_ptr<AbstractBar> &inBar)
+    void setData(unique_ptr<AbstractSimData> &inData)
     {
-        myBar = std::move(inBar);
+        data = std::move(inData);
     }
 
-    void printBar()
+    void printData()
     {
-        myBar->print();
+        data->print();
     }
 
     private:
-        std::unique_ptr<AbstractBar> myBar;
+        std::unique_ptr<AbstractSimData> data;
 };
 ```
+- If we have two data sets `dataSet1` and `dataSet2` we can now change the data that the `Simulation` object looks at runtime without creating a new `Simulation` object. 
+- `dataSet1` and `dataSet2` don't even need to be the same type, as long as they are both of a type which inherits from `AbstractSimData`!
 
 ## Example: Strategy Pattern
 
