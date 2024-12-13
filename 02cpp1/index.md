@@ -21,8 +21,8 @@ This week will cover:
 
 [Type Systems](./sec01Types.html)
 
-- A quick introduction to what types are, and how they are used in C++ in particular. 
-- Options for user-defined types. 
+- A quick introduction to what types are, and how they are used in C++ in particular
+- Options for user-defined types
 
 [Passing by Value and by Reference](./sec02PassByValueOrReference.html)
 
@@ -32,10 +32,10 @@ This week will cover:
 
 [Understanding Classes and Objects](./sec03ObjectOrientedProgramming.html)
 
-- Classes as user-defined types. 
-- Objects as instances of classes.
+- Classes as user-defined types
+- Objects as instances of classes
 - Access Specifiers
-- Inheritance and Introductory Polymorphism
+- Class Memory Layout
 
 [Common Standard Library Features](./sec04StandardLibrary.html)
 
