@@ -17,6 +17,5 @@ This week we'll be focusing on speeding up our code by taking advantage of **par
   - Thread control
   - Schedules
   - Parallelising nested loops
-- [OpenMP example: Fractals](03_fractal_example.html)
 - [Cache Performance in Shared Memory](04_cache_performance.html)
 - [Summary](05_summary.html)

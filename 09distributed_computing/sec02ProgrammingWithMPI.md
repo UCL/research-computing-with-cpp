@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-Okay, this program is super interesting yet, but we should be able to compile it. 
+Okay, this program is not super interesting yet, but we should be able to compile it. 
 
 ## Compiling and Running MPI 
 
