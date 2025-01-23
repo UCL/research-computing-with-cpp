@@ -1,0 +1,35 @@
+// Modernizr mixin to create html.modernizr selector
+
+/*
+    By default this mixin is to be used for creating html.no-CSS3Thing .element fallbacks.
+
+    For example:
+
+      .selector {
+        @include modernizr(cssanimations) {
+          left: 400px;
+        }
+      }
+
+    Which gives:
+
+      html.no-cssanimations .selector {
+        left: 400px;
+      }
+
+*/
+
+@mixin modernizr($test, $no: false) {
+  // if false then give the html.no-modernizr selector
+  @if $no == false {
+    html.no-#{$test} & {
+      @content;
+    }
+  }
+  // else give html.modernizr selector
+  @if $no == true {
+    html.#{$test} & {
+      @content;
+    }
+  }
+}

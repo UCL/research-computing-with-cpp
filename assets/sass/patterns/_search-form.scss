@@ -1,0 +1,62 @@
+/* 
+* Pattern name: Search form
+* Use: Inline search form used within the UCL masthead (used for global site search)
+* Note: N/A
+-------------------------------------------------------------- */
+
+.search-form {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAMAAADHVLbdAAAANlBMVEUAAAD///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZkiXNL4AAAAEXRSTlMAABAgMEBQYHCAj5+vv8/f7/4ucL8AAABtSURBVAjXTc9JFsQgCARQHEhi2xDq/pcNQxZh5Qd9lNQaEXXmSVXuvuF1z9ddsZmXgcsLZxym3WXTennlhdawyoyrvMvHO//bSAtGmqE+8KU2a/9pUIkI0Yh8Y4nsQ7ORebM8F+TjaPy+9m/RA8R7BAiqV590AAAAAElFTkSuQmCC) no-repeat scroll 95% center;
+	padding: 0;
+	background-color: $white;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	position: absolute;
+	top: 0;
+	left: 15%;
+	width: 75%;
+	box-sizing: border-box;
+	@include gs-media(m, max) {
+		left: 0;
+		width: 80%;
+	}
+}
+
+.search-form__input {
+	margin-right: 0;
+	padding-left: 10px;
+	width: 85%;
+	box-sizing: border-box;
+	height: 30px;
+	@include gs-media(m, max) {
+		width: 80%;
+	}
+	.lt-ie9 & {
+		height: 27px;
+		line-height: 27px;
+	}
+}
+
+.search-form__input--search {
+	background: none repeat scroll 0 0 transparent;
+	border: none;
+	color: #666;
+}
+
+.search-form__input--submit {
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 92%;
+	width: 3.5em;
+	margin: 7px 0 3px;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: #4693ea;
+	@include on-interaction {
+		background: darken(#4693ea, 5%);
+	}
+	@include gs-media(m, max) {
+		left: 80%;
+		width: 20%;
+	}
+}

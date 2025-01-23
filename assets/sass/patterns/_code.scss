@@ -1,0 +1,19 @@
+/* 
+* Base name: Code
+* Use: Displaying markup and code
+* Note: N/A
+-------------------------------------------------------------- */
+
+.code {
+	font: 400 1em / 1.5 $font-line-numbers;
+	margin: 1em 0 1.5em 2.5em;
+	li {
+		background: none repeat scroll 0 0 #F6F6F6;
+		border-top: 1px solid #FFFFFF;
+		list-style: decimal-leading-zero outside none;
+		padding: 0 0.5em;
+		.tab1 {
+			padding-left: 4ex;
+		}
+	}
+}

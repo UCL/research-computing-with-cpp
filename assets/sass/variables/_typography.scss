@@ -1,0 +1,20 @@
+/* Font stacks
+-------------------------------------------------------------- */
+
+$font-serif: "Georgia", "Times New Roman", serif;
+$font-san-serif: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font-code: "consolas", "andale mono", "lucida console", monospace;
+$font-line-numbers: "source-code-pro", monospace;
+
+$font-size-base: 1.6; // 16px
+
+$font-size-lg: 1.8; // 18px
+$font-size-sm: 1.4; // 14px
+$font-size-xs: 1.2; // 12px
+
+$font-size-h1: 3.6; // 36px
+$font-size-h2: 3; // 30px
+$font-size-h3: 2.4; // 24px
+$font-size-h4: $font-size-lg; // 18px
+$font-size-h5: $font-size-sm; // 14px
+$font-size-h6: $font-size-xs; // 12px
