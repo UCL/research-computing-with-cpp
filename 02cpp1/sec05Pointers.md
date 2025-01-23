@@ -218,9 +218,9 @@ When Alice, for example, goes out of scope then Alice's data stays live because 
 - This is an example of using shared pointers in a situation where it does not correctly model the ownership of the data. In this model a `Person` shouldn't have control over the lifetime of another, since different `Person` objects should be allowed to be created or destroyed independently. One `Person` is not a part of, or owned, by another. 
 - In order to model this concept properly we need to use *non-owning* pointers, that allow objects to point to one another without influencing their lifetime. 
 
-## Aside: Using `make_unique` / `make_shared` or `new` 
+## Aside: Using `make_unique` / `make_shared` or `new` in older C++ versions (before C++17)
 
-There can be some circumstances where the use of `new` when creating a smart pointer can be a problem. Consider the following example:
+If you need to work on a project using C++11 or C++14, there can be some circumstances where the use of `new` when creating a smart pointer can be a problem. Consider the following example:
 
 ```cpp
 int someFunction(const std::shared_ptr<int>& sp_x, const int& i)
@@ -246,7 +246,9 @@ int main()
 - If the `riskyFunction` is called in between allocating the new int and creating the shared pointer to it, then if it throws an exception it will prevent the pointer to that memory being created and thus lead to memory allocated that cannot be accessed or deallocated i.e. a memory leak. 
 - This can be fixed by using `std::make_shared<int>` instead. 
 
-**The `make_unique` and `make_shared` methods are generally preferred to using `new` as they are safer.**
+**The `make_unique` and `make_shared` methods are generally preferred to using `new` in older versions of C++ as they are safer.**
+
+In C++ 17 this potential leak doesn't happen any more, because the evaluation order of arguments to functions has been fixed, and each argument must be fully evaluated in turn. 
 
 ## Weak Pointers `std::weak_ptr<>`
 
