@@ -128,7 +128,7 @@ The concept of RAII is of great importance in a language like C++ which allows y
 - Memory allocated by your class should be allocated in the constructor.
 - Memory allocated by your class should be de-allocated in the destructor. 
 
-If the constructor fails to allocate the resources required for the class, then it should throw an exception. Any resources already allocated by the class before reaching the exception should be deallocated by the destructor. 
+If the constructor fails to allocate the resources required for the class, then it should throw an exception. Any resources already allocated by the class before reaching the exception should be deallocated. 
 
 The goal is to guarantee the following:
 
