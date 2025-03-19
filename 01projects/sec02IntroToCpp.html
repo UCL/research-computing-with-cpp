@@ -1,0 +1,891 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="http://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Introduction to C++</title>
+
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min",
+        googleAnalyticsIdsArray: [] //specify array of site specific id's NOT UCL generic UA-943297-1
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+ <li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul><li class="active"> <a href="/research-computing-with-cpp/01projects/sec01Git.html">Version control with Git</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec02IntroToCpp.html">Introduction to C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+ <li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul><li class="active"> <a href="/research-computing-with-cpp/01projects/sec01Git.html">Version control with Git</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec02IntroToCpp.html">Introduction to C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/">UCL</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/ISD">ISD</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services">Our services</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it">Research IT</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it/training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="week-1-introduction-to-c">Week 1: Introduction to C++</h1>
+
+<h2 id="what-is-c">What is C++?</h2>
+
+<p>C++ is a relatively low-level*, relatively old, general-purpose programming language, commonly used for programs that require high performance. First released in 1985 by Bjarne Stroustrup, it was intended as a successor to C, primarily to add object-oriented features. Now, C++ is multi-paradigm, meaning that it includes features that enable object-oriented, functional, and procedural programming. It inherits many characteristics from C: it is compiled, has a static type system, and allows manual memory management. All these features ultimately enable C++ to perform extremely well; these same features can be tricky to use effectively and can be a source of bugs. It is the balance between programmer productivity and performance that allows C++ to be used to build large, complex, fast applications and libraries.</p>
+
+<p>Since 1998, C++’s development has been governed by an ISO working group that collates and develops new C++ features into a <em>standard</em>. Since 2011, a new standard has been released every 3 years, with compiler support for new features lagging behind by up to 3 years.</p>
+
+<p>This course will assume the use of the <code class="language-plaintext highlighter-rouge">C++17</code> standard, which is presently widely supported by compilers. (Compiler support tends to lag behind the release of the C++ standard, since the compiler developers need time to implement it and check that the new compilers work properly!)</p>
+
+<blockquote>
+  <p>* The exact meaning of “low level” depends on whom you ask, but in general <em>lower level</em> languages are languages more directly represent the way that the machine works, or give you control over more aspects of the machine, and <em>higher level</em> languages abstract more of that away, and focus on declaring the behaviour that you want. Traditionally, a “low level” language refers to <em>assembly code</em>, which is where the instructions that you write are (a human readable version of) the instruction set of the machine itself! This code is by its nature specific to a given kind of machine and therefore not portable between systems, and doesn’t express things in a way that is intuitive to most people. High level languages were introduced to make code easier to understand and more independent of the hardware; the highest level languages, like Haskell, are highly mathematical in their structure and give hardly any indication of how the computer works at all! C++ falls somewhere in the middle, with plenty of high level abstractions and portability, but it still gives us some features associated with low level programming like direct addressing of memory. This extra degree of control is very valuable when you need to get the best out of systems that require high performance or have limited resources.</p>
+</blockquote>
+
+<h2 id="why-are-we-using-c">Why are we using C++?</h2>
+
+<p>The most common language for students to learn at present is probably Python, and many of you may have taken the Python based software engineering course last term. So why are we now changing to C++?</p>
+
+<ol>
+  <li>C++ is the standard language for high performance computing, both in research and industry.</li>
+  <li>C++ code runs much faster than native Python code. Those fast running Python libraries are written in C! As scientific programmers, we sometimes have to implement our own novel methods, which need to run efficiently. We can’t always rely on someone else having implemented the tools that we need for us.</li>
+  <li>C++ is a great tool for starting to understand memory management better.
+    <ul>
+      <li>Most code that we write will not need us to allocate and free resources manually, but C++ gives us a clear understanding of when resources are allocated and freed, and this is important for writing effective and safe programs.</li>
+      <li>Many structures in C++ have easy to understand and well defined layouts in memory. The way that data is laid out in memory can have a major impact on performance as we shall see later, and interacting with some high performance libraries requires directly referencing contiguous blocks of memory.</li>
+    </ul>
+  </li>
+  <li>C++ has strong support for object-oriented programming, including a number of features not present in Python. These features allow us to create programs that are safer and more correct, by allowing us to define objects which have properties that have particular properties (called <em>invariants</em>). For example, defining a kind of list that is always sorted, and can’t be changed into an un-sorted state, means that we can use faster algorithms that rely on sorted data <em>without having to check that the data is sorted</em>.</li>
+  <li>C++ is multi-paradigm and gives us a lot of freedom in how we write our programs, making it a great language to explore styles and different programming patterns.</li>
+  <li>C++ has a static type system (as do many other languages), which is quite a big shift from Python’s dynamic typing. Familiarity with this kind of type system is extremely useful if you haven’t used it before, and as we will see it can help us to write faster code with fewer bugs.</li>
+</ol>
+
+<h3 id="why-is-c-fast">Why is C++ fast?</h3>
+
+<p>Because a C++ program is compiled before the program runs, it can be much faster than interpreted languages. Not only is the program compiled to native machine code, the lowest-level representation of a program possible with today’s CPUs, compilers are capable of performing clever optimisations to vastly improve runtimes. With C++, C, Rust, Fortran, and other natively compiled languages, there is no virtual machine (like in Java) or interpreter (like in Python) that could introduce overheads that affect performance.</p>
+
+<p>Many languages use a process called <em>garbage collection</em> to free memory resources, which adds run-time overheads and is less predictable than C++’s memory management system. In C++ we know when resources will be allocated and freed, and we can run with less computational overhead, at the cost of having to be careful to free any resources that we manually allocate. (Manually allocating memory is relatively rare in modern C++ practices! This is more common in legacy code or C code, with which you will sometimes need to interact.)</p>
+
+<p>Static type checking also helps to improve performance, because it means that the types of variables do not need to be checked during run-time, and that extra type data doesn’t need to be stored.</p>
+
+<h3 id="should-i-just-use-c-for-everything">Should I just use C++ for everything?</h3>
+
+<p>Probably not!</p>
+
+<p>Choosing a programming language is a mixture of picking the right tool for the job, and the right tool for you (or your team). Consider some of the pros and cons for a given project you are working on.</p>
+
+<p>C++ Pros:</p>
+<ul>
+  <li>Can produce code which is both fast and memory efficient.</li>
+  <li>Very flexible multi-paradigm language supports a lot of different approaches.</li>
+  <li>Gives you direct control of memory if you need it.</li>
+  <li>Large ecosystem of libraries.</li>
+  <li>Can write code which runs on exciting and powerful hardware like supercomputing clusters, GPUs, FPGAs, and more!</li>
+  <li>Can program for “bare metal”, i.e. architectures with no operating system, making it appropriate for extremely high performance or restrictive environments such as embedded systems.</li>
+  <li>Static typing makes programs safer and easier to reason about.</li>
+  <li>C++ is well known in high performance computing (HPC) communities, which is useful for collaborative work.</li>
+</ul>
+
+<p>C++ Cons:</p>
+<ul>
+  <li>Code can be more verbose than a language like Python.</li>
+  <li>C++ is a very large language, so there can be a lot to learn.</li>
+  <li>More control also means more responsibility: it’s very possible to cause memory leaks or undefined behaviour if you misuse C++.</li>
+  <li>Compilation and program structure means there’s a bit of overhead to starting a C++ project, and you can’t run it interactively. This makes it harder to jump into experimenting and plotting things the way you can in the Python terminal.</li>
+  <li>C++ is less well known in more general research communities, so isn’t always the most accessible choice for collaboration outside of HPC. (You can also consider creating Python bindings to C or C++ code if you need the performance but your collaborators don’t want to deal with the language!)</li>
+</ul>
+
+<p>For larger scale scientific projects where performance and correctness are critical, then C++ can be a great choice. This makes C++ an excellent choice for numerical simulations, low-level libraries, machine learning backends, system utilities, browsers, high-performance games, operating systems, embedded system software, renderers, audio workstations, etc, but a poor choice for simple scripts, small data analyses, frontend development, etc. If you want to do some scripting, or a bit of basic data processing and plotting, then it’s probably not the best way to go (this is where Python shines). For interactive applications with GUIs other languages, like C# or Java, are often more desirable (although C++ has some options for this too).</p>
+
+<p>I’d also like to emphasise that while we <em>use</em> C++, the goal of this course is not to simply teach you how to write C++. <strong>This is a course on software engineering in science, and the lessons should be transferable to other languages.</strong> Languages will differ in the features and control that they offer you, but understanding how to write well structured, efficient, and safe programs should inform all the programming that you do.</p>
+
+<h1 id="writing-in-c-hello-world">Writing in C++: Hello World!</h1>
+
+<p>Here’s a little snippet of C++:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We’ll go through exactly what each line and symbol mean in a moment, but let’s first run this program. Since C++ is a <em>compiled</em> language, we must use a compiler to turn this code into an executable that the computer can run. In this course we’ll nearly always be using the GNU C++ compiler, <code class="language-plaintext highlighter-rouge">g++</code>. We can compile the above code pasted into a file called <code class="language-plaintext highlighter-rouge">main.cpp</code> into an executable called <code class="language-plaintext highlighter-rouge">hello_world</code> by running in the terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ main.cpp <span class="nt">-o</span> hello_world
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">.cpp</code> is the standard suffix for C++ files. You will also encounter <code class="language-plaintext highlighter-rouge">.h</code> and <code class="language-plaintext highlighter-rouge">.hpp</code> suffixes, which describe <em>header files</em> (we’ll come to those later) and sometimes <code class="language-plaintext highlighter-rouge">.c</code>, describing just a C file.</p>
+</blockquote>
+
+<p>Now we can actually <em>run</em> the program with <code class="language-plaintext highlighter-rouge">./hello_world</code>[^dot_slash]. You should see output similar to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[my_username@my_hostname my_current_folder]$ ./hello_world
+Hello World!
+</code></pre></div></div>
+
+<blockquote>
+  <p>The <code class="language-plaintext highlighter-rouge">./</code> syntax before the executable name is required because when a command (or executable name) is entered in Linux, it does not automatically search the current directory for the entered command. We need to tell the Linux shell that the command is inside the current directory, which is labelled <code class="language-plaintext highlighter-rouge">.</code>, hence the full command <code class="language-plaintext highlighter-rouge">./hello_world</code> is telling the Linux shell to “run the executable <code class="language-plaintext highlighter-rouge">hello_world</code> in the current directory”.</p>
+</blockquote>
+
+<p>Congratulations, you have just run your first C++ program!</p>
+
+<h2 id="deconstructing-hello-world">Deconstructing Hello World</h2>
+
+<p>At the highest level, this C++ code has 3 parts, an include statement, a using statement and a single function called <code class="language-plaintext highlighter-rouge">main</code>. Let’s go through each piece individually.</p>
+
+<p><strong>The include statement</strong></p>
+
+<p>The first line we see in Hello World is an <em>include statement</em>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></code></pre></div></div>
+
+<p>We’ll go into what <em>exactly</em> this line is doing later but all you need to know at this stage is that include statements are how we import external code into the current file so we can use the included functions, classes, etc in our code. This is similar to <code class="language-plaintext highlighter-rouge">import</code> in Python, Java and Matlab. In the specific line above we’re including the code from <code class="language-plaintext highlighter-rouge">iostream</code>, the piece of the C++ standard library that provides input-output functionality. We require this to use <code class="language-plaintext highlighter-rouge">cout</code> later. The <em>hash</em> or <em>pound</em> symbol <code class="language-plaintext highlighter-rouge">#</code> and the angle brackets <code class="language-plaintext highlighter-rouge">&lt;...&gt;</code> will be explained later when we get into the <em>preprocessor</em>.</p>
+
+<p><strong>The using statement</strong></p>
+
+<p>The next line is a <em>using statement</em>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Again, we’ll explore what this whole line actually does later but the short version is it allows us to access functions and classes inside the standard library without typing <code class="language-plaintext highlighter-rouge">std::</code> everywhere. I recommend you use it but <strong>only in .cpp files</strong>.</p>
+
+<p>There’s also an interesting bit of punctuation here; you have probably noticed the line ends in a semicolon <code class="language-plaintext highlighter-rouge">;</code>. C++, and many other languages, require this because the language doesn’t care about (most) <em>whitespace</em>. Technically we can write our whole program all on one line, ignoring all indentation and newlines:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="c1"> using namespace std; int main() {cout &lt;&lt; "Hello World!\n"; return 0;}</span><span class="cp">
+</span></code></pre></div></div>
+
+<p>But this looks horrible so we use newlines and indentation in appropriate places to make our code more <em>readable</em>.</p>
+
+<p>This is very different to languages where whitespace has meaning, like Python, where a <em>newline</em> usually denotes the end of a <em>statement</em>, and indentation denotes a new code block or scope. Because of this, C++ requires all <em>statements</em> to end with a semicolon so that the compiler knows exactly where a line is meant to end. In practice this means nearly every line will end with a semicolon, except lines starting with <code class="language-plaintext highlighter-rouge">#</code> (we’ll come back to that) and lines that open or close <em>scopes</em> with the curly braces <code class="language-plaintext highlighter-rouge">{}</code>.</p>
+
+<p><strong>Functions</strong></p>
+
+<p>Here’s our <code class="language-plaintext highlighter-rouge">main</code> function again:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+<span class="p">{</span>
+  <span class="p">...</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is made up of three main parts:</p>
+
+<ol>
+  <li>The <em>function signature</em>, <code class="language-plaintext highlighter-rouge">int main()</code></li>
+  <li>The <em>function body</em>, the code inside the curly braces <code class="language-plaintext highlighter-rouge">{}</code>, and</li>
+  <li>The <em>return statement</em> inside the function body.</li>
+</ol>
+
+<p>We’ll go through each of these pieces.</p>
+
+<p><strong>The function signature</strong></p>
+
+<p>The line <code class="language-plaintext highlighter-rouge">int main() {</code> begins a <em>function definition</em> and includes the <em>function signature</em> (the piece without the curly brace). Here we’re describing a function called <code class="language-plaintext highlighter-rouge">main</code> that returns a single value of type <code class="language-plaintext highlighter-rouge">int</code>, and takes no parameters or arguments, which we know because the brackets <code class="language-plaintext highlighter-rouge">()</code> are empty. A C++ program that is intended to be compiled into an executable (as opposed to a library; more on that later) must contain a function called <code class="language-plaintext highlighter-rouge">main</code>: this is the entry-point to our program. <strong><code class="language-plaintext highlighter-rouge">main</code> is the function which is executed when the program starts.</strong></p>
+
+<p>The signatures of other functions might look like:</p>
+
+<p>A function called <code class="language-plaintext highlighter-rouge">to_string</code> that takes an <code class="language-plaintext highlighter-rouge">int</code> called <code class="language-plaintext highlighter-rouge">x</code> and returns a <code class="language-plaintext highlighter-rouge">string</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="n">to_string</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A function called <code class="language-plaintext highlighter-rouge">is_larger</code> that takes two <code class="language-plaintext highlighter-rouge">float</code>s and returns a <code class="language-plaintext highlighter-rouge">bool</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">is_larger</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A function called <code class="language-plaintext highlighter-rouge">save_to_file</code> that takes a <code class="language-plaintext highlighter-rouge">vector</code> (a kind of array) of <code class="language-plaintext highlighter-rouge">int</code>s  and has <em>no return value</em>, which we denote with <code class="language-plaintext highlighter-rouge">void</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">save_to_file</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">my_data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>The function body</strong></p>
+
+<p>The function body is simply all code within the curly braces. This is the code which defines what the function actually does, and what value(s) (if any) it returns. Let’s look at the statement that prints “Hello World!”:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>First, <code class="language-plaintext highlighter-rouge">cout</code> is an example of what is called an <em>output stream</em>; <code class="language-plaintext highlighter-rouge">cout</code> will normally write to your terminal. (Other kinds of streams exist, including for reading and writing files.) In essence, <code class="language-plaintext highlighter-rouge">cout &lt;&lt; string</code> is equivalent to <code class="language-plaintext highlighter-rouge">print(string)</code> in Python, although there are some nuances that will be discussed when we discuss <em>operators</em> like <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> in more detail. For now, all you need to know is <code class="language-plaintext highlighter-rouge">cout &lt;&lt; ...</code> is how we print to the standard output in C++.</p>
+
+<p>You’ll notice the string that we want to print is surrounded by double-quotes <code class="language-plaintext highlighter-rouge">"</code>. These are used to write <em>string literals</em> in code, while single-quotes <code class="language-plaintext highlighter-rouge">'</code> are used to write <em>character literals</em> like <code class="language-plaintext highlighter-rouge">'a'</code>, <code class="language-plaintext highlighter-rouge">'/'</code> or <code class="language-plaintext highlighter-rouge">'@'</code>. When inside the string literal, we use the special <em>newline character</em> <code class="language-plaintext highlighter-rouge">'\n'</code> to make the program print a newline. Although we type this as two characters, a <code class="language-plaintext highlighter-rouge">\</code> and an <code class="language-plaintext highlighter-rouge">n</code>, C++ interprets this as a character with special meaning. See <a href="https://en.wikipedia.org/wiki/Escape_character">Escape Characters</a> for more information.</p>
+
+<p><strong>The return statement</strong></p>
+
+<p>In our main function, the return statement is:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+<p>This statement is required in every function, except functions with a <code class="language-plaintext highlighter-rouge">void</code> return type (however even then a function can use <code class="language-plaintext highlighter-rouge">return;</code> without a value to end the function early). If we reach a <code class="language-plaintext highlighter-rouge">return</code> statement our function will terminate and our program will continue executing from the place where we called our function, even if there is more code after the <code class="language-plaintext highlighter-rouge">return</code> statement.</p>
+
+<p>This particular return statement is inside our <code class="language-plaintext highlighter-rouge">main</code> function which expects to return an <code class="language-plaintext highlighter-rouge">int</code> to its calling code. Since this is the return value from the special function <code class="language-plaintext highlighter-rouge">main</code>, this value is interpreted by the operating system as a <em>status code</em>, a number between 0 and 255 that gives some information about the success or failure of the application.</p>
+
+<p>Like most common languages, functions are called like:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+<span class="p">{</span>
+  <span class="n">string</span> <span class="n">x_as_string</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>where the <em>return value</em> is, here, assigned to the variable <code class="language-plaintext highlighter-rouge">x_as_string</code>. We can call functions without using the return value by just not assigning the function call:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+<span class="p">{</span>
+  <span class="n">to_string</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Types</strong></p>
+
+<p>We’ve already come across, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">bool</code> and other keywords that define the <em>type</em> of variables and parameters. C++ is a <em>strongly-typed</em> and <em>statically-typed</em> language, so the <em>types</em> of every single variable or function parameter must be known at <em>compile time</em>, and those types cannot change during runtime.</p>
+
+<blockquote>
+  <p><strong>Compile time</strong> refers to the time at which the code is compiled. It’s used in contrast to <strong>runtime</strong> or <strong>run time</strong> which refers to the time at which the program is run. For example, if a program requires a number to do some computation and you can write that number in the source code itself, that number is known at <em>compile time</em>. If, say, the user needs to input that number, the value is only known at <em>run time</em>.</p>
+</blockquote>
+
+<p>This is in contrast to the <em>weakly-typed</em> and <em>dynamically-typed</em> Python where we can define a variable <code class="language-plaintext highlighter-rouge">x</code> and assign it the integer value <code class="language-plaintext highlighter-rouge">2</code>, then reassign a string <code class="language-plaintext highlighter-rouge">"2"</code> to the same variable!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s">"2"</span>
+</code></pre></div></div>
+
+<p>In C++ this kind of code will produce an error because, to reiterate:</p>
+
+<ol>
+  <li>We must give all variables a type, and</li>
+  <li>We cannot change the type of a variable</li>
+</ol>
+
+<p>Again, we’ll explore later what types are available in C++ (and how we can create our own) but a useful initial list is:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bool</code>: a boolean value, i.e. <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code></li>
+  <li><code class="language-plaintext highlighter-rouge">int</code>: an integer value, e.g. <code class="language-plaintext highlighter-rouge">-4, 0, 100</code></li>
+  <li><code class="language-plaintext highlighter-rouge">float</code>: a 32-bit floating-point value <code class="language-plaintext highlighter-rouge">-0.2, 0.0, 1.222, 2e-3</code></li>
+  <li><code class="language-plaintext highlighter-rouge">double</code>: a 64-bit floating-point value (same as <code class="language-plaintext highlighter-rouge">float</code> but can represent a greater range and precision of real numbers)</li>
+  <li><code class="language-plaintext highlighter-rouge">char</code>: a single character, e.g. <code class="language-plaintext highlighter-rouge">'a', 'l', ';'</code></li>
+  <li><code class="language-plaintext highlighter-rouge">string</code>: a kind of list of characters, used to represent text.
+    <ul>
+      <li>Not to be confused with a <em>character array</em> which can be difficult to deal with.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">std::vector&lt;T&gt;</code>: a kind of array of elements of type <code class="language-plaintext highlighter-rouge">T</code>, e.g. <code class="language-plaintext highlighter-rouge">std::vector&lt;int&gt; {1, 100, -1}</code> declares a vector of integers.
+    <ul>
+      <li>Not to be confused with a <em>mathematical</em> vector, this is similar to a Python <code class="language-plaintext highlighter-rouge">list</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">std::</code> means that the vector type is part of the <strong>C++ Standard Library</strong> namespace. If you have the line <code class="language-plaintext highlighter-rouge">using namepsace std;</code> in your code then you don’t need to use the <code class="language-plaintext highlighter-rouge">std::</code> prefix after that. Just bear in mind that this could cause name clashes if you delare another type or function which has the same name as something in the standard library!</li>
+      <li><strong>N.B.</strong> you need to add <code class="language-plaintext highlighter-rouge">#include &lt;vector&gt;</code> to the top of your program to use the vector type.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="basic-control-structures">Basic control structures</h2>
+
+<p>C++ contains many of the same control structures as other programming languages that you have used previously.</p>
+
+<h3 id="conditional-logic-using-ifelse-statements">Conditional logic using <code class="language-plaintext highlighter-rouge">if</code>/<code class="language-plaintext highlighter-rouge">else</code> statements</h3>
+
+<p>A true/false value is called a Boolean value, or <code class="language-plaintext highlighter-rouge">bool</code>. Conditional statements test the value of a Boolean value or expression and execute the following code block if it is <code class="language-plaintext highlighter-rouge">true</code>. (Remember that a code block is contained within curly braces <code class="language-plaintext highlighter-rouge">{}</code>, and can be as large as you like.)</p>
+
+<pre><code class="language-cpp=">// if statement with a Boolean variable
+if(condition)
+{
+    std::cout &lt;&lt; "Condition was true!" &lt;&lt; std::endl;
+}
+
+// if statement with a Boolean expression
+if(x &lt; 10)
+{
+    std::cout &lt;&lt; "x is too small." &lt;&lt; std::endl;
+}
+
+// can also be a function which returns a bool!
+if(f(x))
+{
+    std::cout &lt;&lt; "f(x) was true!" &lt;&lt; std::endl;
+}
+</code></pre>
+<p>In the examples above, nothing will happen if the statement inside the brackets is not true.</p>
+
+<p>If you want something to happen when the statement is false, you can also use <code class="language-plaintext highlighter-rouge">else</code> and/or <code class="language-plaintext highlighter-rouge">else if</code> statements.</p>
+
+<pre><code class="language-cpp=">if(x &lt; 10)
+{
+    std::cout &lt;&lt; "x is small" &lt;&lt; std::endl;
+}
+else if(x &gt; 50)
+{
+    std::cout &lt;&lt; "x is large" &lt;&lt; std::endl;
+}
+else
+{
+    std::cout &lt;&lt; "x is neither large nor small." &lt;&lt; std::endl;
+}
+</code></pre>
+
+<h3 id="loops-for-and-while">Loops (<code class="language-plaintext highlighter-rouge">for</code> and <code class="language-plaintext highlighter-rouge">while</code>)</h3>
+
+<pre><code class="language-cpp=">for(uint i = 0; i &lt; 100; ++i)
+{
+    // loop code goes here
+}
+</code></pre>
+<ul>
+  <li>The brackets after the <code class="language-plaintext highlighter-rouge">for</code> set up three things:
+    <ul>
+      <li>first we declare a variable, if any, that we want to use for the loop.</li>
+      <li>next we have the loop condition; the loop continues while this is still true.</li>
+      <li>finally we have a statement which should execute at the end of each loop iteration.</li>
+      <li>In this case, we execute the loop 100 times, with <code class="language-plaintext highlighter-rouge">i</code> taking the values <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">99</code>.</li>
+      <li>The variable <code class="language-plaintext highlighter-rouge">i</code> is available inside the loop.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">uint</code> is a type for <em>unsigned integers</em>, which are integers that cannot be negative. It’s a good idea to use these for counting and other values which shouldn’t be less than 0.</li>
+  <li><code class="language-plaintext highlighter-rouge">++i</code> increments the value of <code class="language-plaintext highlighter-rouge">i</code> by 1.</li>
+</ul>
+
+<p>If we have a <code class="language-plaintext highlighter-rouge">vector</code> or similar container, we can loop over its elements without writing our own loop conditions:</p>
+<pre><code class="language-cpp=">#include &lt;vector&gt;
+
+int main()
+{
+
+    std::vector&lt;int&gt; v(10); // declare a vector of ints with 10 elements.
+
+    for(int &amp;x : v)
+    {
+        std::cout &lt;&lt; x &lt;&lt; std::endl;
+    }
+    
+}
+</code></pre>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">for</code> loop iterates over the elements of <code class="language-plaintext highlighter-rouge">v</code>.</li>
+  <li>At each iteration, the variable <code class="language-plaintext highlighter-rouge">x</code> is given the value of the current element.</li>
+  <li>This is a good way to iterate over containers when we don’t need to refer to indices explicitly, as it avoids possible programmer errors!</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">while</code> loops have simpler syntax than <code class="language-plaintext highlighter-rouge">for</code> loops; they depend only on a condition, and the code block executes over and over until the condition is met. This is useful for situations where the number of iterations is not clear from the outset, for example running an iterative method until some convergence criterion is met.</p>
+
+<pre><code class="language-cpp=">while( (x_new - x_old) &gt; 0.1)  // convergence criterion
+{
+    x_old = x_new;
+    x_new = f(x_old);    //iteratively call function f on x until it converges
+}
+</code></pre>
+
+<h2 id="programs-with-multiple-files">Programs With Multiple Files</h2>
+
+<p>Like other programming languages, it is possible (and good practice!) to break up C++ programs into multiple files. C and C++ however have a slightly unusual approach to this compared to some other languages. Let’s consider that we have two C++ files, our <code class="language-plaintext highlighter-rouge">main.cpp</code> which contains our <code class="language-plaintext highlighter-rouge">main</code> function (the entry point for execution of our program), and another which defines some function that we want to use in <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p><strong>main.cpp:</strong></p>
+<pre><code class="language-cpp=">#include &lt;iostream&gt;
+
+int main()
+{
+    // Call function f
+    int x = f(5, 2);
+    
+    std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl; // endl stands for end line
+    
+    return 0;
+}
+</code></pre>
+
+<p><strong>function.cpp:</strong></p>
+<pre><code class="language-cpp=">int f(int a, int b)
+{
+    return (a+2) * (b-3);
+}
+</code></pre>
+
+<p>We could try to just compile these files together:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -o ftest main.cpp function.cpp
+</code></pre></div></div>
+<p>but this won’t work! 
+In order to compile <code class="language-plaintext highlighter-rouge">main.cpp</code>, we need to know some information about the function <code class="language-plaintext highlighter-rouge">f</code> that we are calling.</p>
+
+<p>Let’s take a moment to understand C++’s compilation process a little better.</p>
+<ul>
+  <li>C++ is designed so that different source files can be compiled <strong>independently, in parallel</strong>.
+    <ul>
+      <li>This helps to keep compilation times down.</li>
+      <li>It also means that if we only change one part of the program, we only need to re-compile that part. The rest of the program doesn’t need to be compiled again!</li>
+    </ul>
+  </li>
+  <li>Remember though that C++ is <em>statically typed</em>, which means <strong>the compiler needs to know the types of all variables and functions used in the code it is compiling, at compile time</strong>. Otherwise it cannot check that the code you have written is correctly typed!
+    <ul>
+      <li>Take for example the statement <code class="language-plaintext highlighter-rouge">int x = f(5, 2);</code> in <code class="language-plaintext highlighter-rouge">main.cpp</code>. In order for this to be correctly typed, we need to know that <code class="language-plaintext highlighter-rouge">f</code> can accept two numbers as its arguments, and it must return an integer, because <code class="language-plaintext highlighter-rouge">x</code> is declared to be an <code class="language-plaintext highlighter-rouge">int</code>. If we don’t know the type of <code class="language-plaintext highlighter-rouge">f</code>, we can’t be sure that this is true!</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Let’s use this simple example program to explore how the compiler deals with our code, and what information it needs to do its job.</p>
+
+<h3 id="code-order-and-declarations">Code Order and Declarations</h3>
+
+<p>We’ll start with a single file and work towards a multiple file version. Consider the following two versions of the same program:</p>
+
+<p><strong>Version 1</strong></p>
+<pre><code class="language-cpp=">#include &lt;iostream&gt;
+
+int f(int a, int b)
+{
+    return (a + 2) * (b - 3);
+}
+
+int main()
+{
+    int x = f(5, 2);
+
+    std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl;
+
+    return 0;
+}
+
+</code></pre>
+
+<p><strong>Version 2</strong></p>
+<pre><code class="language-cpp=">#include &lt;iostream&gt;
+
+int main()
+{
+    int x = f(5, 2);
+
+    std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl;
+
+    return 0;
+}
+
+int f(int a, int b)
+{
+    return (a + 2) * (b - 3);
+}
+</code></pre>
+
+<p>Only the first of these two programs will compile!</p>
+<ul>
+  <li><strong>C++ will parse your file in order</strong>, and so in the second version it comes across the function <code class="language-plaintext highlighter-rouge">f</code> <em>before</em> it has been defined. The compiler doesn’t know what to do! It can’t know what <code class="language-plaintext highlighter-rouge">f</code> is supposed to be, and if this is a valid &amp; type-safe statement.</li>
+  <li>C++ does <strong>not</strong> need to know everything about <code class="language-plaintext highlighter-rouge">f</code> ahead of time though; it just need to know <em>what</em> it is and what its type is. This is the job of <strong>forward declaration</strong>: something that tells us what the type of the symbol is without telling us exactly what it does. In this case, this would be a <strong>function declaration</strong>, but we can also have declarations for other things in C++, as we shall see later on in the course.</li>
+</ul>
+
+<p><strong>With a function declaration:</strong></p>
+<pre><code class="language-cpp=">#include &lt;iostream&gt;
+
+// Function declaration for f
+int f(int a, int b);
+
+int main()
+{
+    int x = f(5, 2);
+
+    std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl;
+
+    return 0;
+}
+
+int f(int a, int b)
+{
+    return (a + 2) * (b - 3);
+}
+</code></pre>
+
+<ul>
+  <li>Line 4 is the <strong>function declaration</strong>.
+    <ul>
+      <li>This defines the name <code class="language-plaintext highlighter-rouge">f</code> as a function that will be used in this program.</li>
+      <li>It tells us that <code class="language-plaintext highlighter-rouge">f</code> takes two <code class="language-plaintext highlighter-rouge">int</code> arguments, and returns an <code class="language-plaintext highlighter-rouge">int</code>.</li>
+      <li>It does not define <em>what</em> <code class="language-plaintext highlighter-rouge">f</code> will do or how its output is calculated. That can happen later!</li>
+      <li>It’s worth knowing that the names <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> aren’t required in a declaration; since we’re not defining the behaviour here, we don’t need to be able to refer to the arguments individually. <code class="language-plaintext highlighter-rouge">int f(int, int);</code> is an equally valid function declaration. Nevertheless, we usually include argument names in declarations because it makes them easier to understand and use, especially if the arguments have informative names!</li>
+    </ul>
+  </li>
+  <li>Line 15-18 is the <strong>function definition</strong>.
+    <ul>
+      <li>This contains the actual code which is executed when the function is called. The compiler doesn’t need to know how the function <code class="language-plaintext highlighter-rouge">f</code> works in order to compile <code class="language-plaintext highlighter-rouge">main</code> because it knows that the types are correct, but in order to finish building the program it will need a definition for <code class="language-plaintext highlighter-rouge">f</code>!</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This program <em>will</em> compile, because the compiler knows when it reaches main that <code class="language-plaintext highlighter-rouge">f</code> is a symbol which stands for a function which takes two <code class="language-plaintext highlighter-rouge">int</code>s and returns an <code class="language-plaintext highlighter-rouge">int</code>. This means that it can deduce that <code class="language-plaintext highlighter-rouge">int x = f(5, 2);</code> is a valid statement. When it reachs the definition on <code class="language-plaintext highlighter-rouge">f</code> at line 15 it is then able to create the code for that function.</p>
+
+<p>This might seem like a rather pointless thing to do in a program as trivial as this, but it’s a very important step towards writing programs in multiple files.</p>
+
+<p>Now that we know that we can write function declarations, we can move the function definition to a different file, and compile both files separately.</p>
+
+<p><strong>main.cpp</strong>:</p>
+<pre><code class="language-cpp=">#include &lt;iostream&gt;
+
+int f(int a, int b);
+
+int main()
+{
+    int x = f(5, 2);
+
+    std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+<p><strong>function.cpp</strong>:</p>
+<pre><code class="language-cpp=">int f(int a, int b)
+{
+    return (a + 2) * (b - 3);
+}
+</code></pre>
+
+<p>To compile these files separately we can use the <code class="language-plaintext highlighter-rouge">-c</code> flag:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -c main.cpp
+</code></pre></div></div>
+<p>will compile the code for <code class="language-plaintext highlighter-rouge">main</code> into a <code class="language-plaintext highlighter-rouge">.o</code> file (<code class="language-plaintext highlighter-rouge">main.o</code>), known as an <strong>object file</strong>. We can compile <code class="language-plaintext highlighter-rouge">function.cpp</code> into an object file, <code class="language-plaintext highlighter-rouge">function.o</code>, in the same way.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -c function.cpp
+</code></pre></div></div>
+<ul>
+  <li><strong>Object files</strong> are code which has been compiled but which only form partial programs. We can’t execute <code class="language-plaintext highlighter-rouge">main.o</code> because the definition of <code class="language-plaintext highlighter-rouge">f</code> is missing from <code class="language-plaintext highlighter-rouge">main.cpp</code>! The program wouldn’t know what to do when it reaches <code class="language-plaintext highlighter-rouge">f</code>.</li>
+  <li>In order to create an executable which we can run, we need to <strong>link</strong> the object files, using the <strong>linker</strong>. This gives the compiler the definition of all the functions it needs, so then it can create the machine commands to jump to the executable code for <code class="language-plaintext highlighter-rouge">f</code> whenever it is called, and jump back when it has finished.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -o test_f main.o function.o
+</code></pre></div></div>
+<p>This command will produce an executable, <code class="language-plaintext highlighter-rouge">test_f</code>, by linking the two object files <code class="language-plaintext highlighter-rouge">main.o</code> and <code class="language-plaintext highlighter-rouge">function.o</code>. In the final compiled executable, the code from <code class="language-plaintext highlighter-rouge">function.o</code> is run when <code class="language-plaintext highlighter-rouge">f</code> is called in <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>For a simple project like this, we can compile an executable in one step by providing both source files to the compiler at the same time:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -o test_f main.cpp function.cpp
+</code></pre></div></div>
+
+<h3 id="header-files">Header Files</h3>
+
+<p>Forward declarations for functions are helpful, but they can still clutter up our code if we are making use of large numbers of functions! Instead, we put these declarations in <strong>header files</strong>, which usually end in <code class="language-plaintext highlighter-rouge">.h</code> or <code class="language-plaintext highlighter-rouge">.hpp</code>. We use <code class="language-plaintext highlighter-rouge">#include</code> to add header files to a <code class="language-plaintext highlighter-rouge">.cpp</code> file: this allows the file to get the declaration from the header file. The definitions are not kept in the header file, they are in a separate <code class="language-plaintext highlighter-rouge">.cpp</code> file.</p>
+
+<p>In this case the files look as follows:</p>
+
+<p><strong>function.h</strong>:</p>
+<pre><code class="language-cpp=">int f(int a, int b);  // function declaration
+</code></pre>
+
+<p><strong>function.cpp</strong>:</p>
+<pre><code class="language-cpp=">int f(int a, int b)
+{
+    return (a + 2) * (b - 3);
+}
+</code></pre>
+
+<p><strong>main.cpp</strong>:</p>
+<pre><code class="language-cpp=">#include &lt;iostream&gt;
+#include "function.h"  // include our header file with the declaration
+
+int main()
+{
+    int x = f(5, 2);
+    
+    std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl;
+    
+    return 0;
+}
+</code></pre>
+
+<p>You can compile as before, if your include file is in the same folder:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -o test_f main.cpp function.cpp
+</code></pre></div></div>
+
+<p>If your include file is in a different folder, your need to tell the compiler where to find it using the <code class="language-plaintext highlighter-rouge">-I</code> option:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -o test_f main.cpp function.cpp -Iinclude_folder/
+</code></pre></div></div>
+
+<h2 id="useful-references">Useful References</h2>
+
+<ul>
+  <li>I’d highly recommend Bjarne Stroustrup’s <em>A Tour of C++</em>. This comes in many different editions, covering different standards of the language, so try to use one from <code class="language-plaintext highlighter-rouge">C++17</code> onwards! This is available online from the UCL library services.</li>
+  <li>The <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ core guidelines</a> are a fantastic resource for learning more about writing good quality C++ code, and some of the nitty gritty details of the language that can easily trip people up. It’s rather dense, so it’s best to use this to search for answers to questions you already have than just trying to read it through!!</li>
+  <li>The <a href="https://google.github.io/styleguide/cppguide.html">Google C++ style guide</a> is also interesting, and offers good explanations for their choices. If you do use this as a resource, <strong>don’t simply adopt their practices, but read their reasons first!</strong> Some of their reasons will absolutely not apply to you and the projects that you work on, so make sure that you’re always making informed choices.</li>
+</ul>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2025 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+
