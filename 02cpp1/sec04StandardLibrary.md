@@ -109,7 +109,7 @@ v.insert(v.end() - 1, 99);  // Insert an element before the last element of the 
 v.erase(v.begin() + 1);     // Remove the second element of a vector
 ```
 
-- `v.end()` and `v.begin()` return **iterators**, special types which can be used to iterate over containers. The methods `begin()` and `end()` return iterators to the start and end of a container respectively, and iterators can be incremented using regular arithmetic. These can also be used for looping e.g. `for(vector<int>::iterator it = myNums.begin(); it != myNums.end(); it++)`. You can use `auto` to infer the iterator type in a loop declaration to make it more succinct, e.g. `for(auto it = myNums.begin(); it != myNums.end(); it++)`.
+- `v.end()` and `v.begin()` return **iterators**, special types which can be used to iterate over containers. The methods `begin()` and `end()` return iterators to the start and end of a container respectively, and `vector` (and several other) iterators can be incremented using regular arithmetic. These can also be used for looping e.g. `for(vector<int>::iterator it = myNums.begin(); it != myNums.end(); it++)`. You can use `auto` to infer the iterator type in a loop declaration to make it more succinct, e.g. `for(auto it = myNums.begin(); it != myNums.end(); it++)`.
 - The memory for a `vector` is assigned in a contiguous block. This helps with performance because the vector class can find the memory location of a given element using pointer arithmetic.
 - A `vector` doesn't have a fixed size, but it does have a certain amount of memory allocated to it. If you add enough elements to outgrow this size, it will have to allocate a new block of memory of a larger size, and copy the elements over to this new memory in order to increase the size and still remain contiguous. 
     - The cost of this operation scales linearly with the size of your vector. 
@@ -244,7 +244,7 @@ using std::endl;
 Types in C++ can grow to be quite long and complicated for certain kinds of objects, especially when namespaces are also involved. Furthermore, we often want type names to be more indicative of what we actually want to use them for: the name `IntMatrix` is more helpful than `std::vector< std::vector <int>>`! We can assign an alias for any type by using the `typedef` keyword like so:
 
 ```cpp
-typedef std::vector< std::vector<int> > = IntMatrix; 
+typedef std::vector< std::vector<int> > IntMatrix; 
 ```
 
 - We can now declare variables to be of type `IntMatrix`, or use it as a return type or parameter type in functions. 
@@ -264,8 +264,8 @@ The functionality in `algorithm` can be made much more flexible and interesting 
 
     int main()
     {
-        vector<int> myNums = {1, 6, 5, 8, 3, 5, 4, 2, 8, 9, 9, 7, 6};
-        int numEvens = std::count_if(myNums.begin(), myNums.end(), &isEven)
+        std::vector<int> myNums = {1, 6, 5, 8, 3, 5, 4, 2, 8, 9, 9, 7, 6};
+        int numEvens = std::count_if(myNums.begin(), myNums.end(), &isEven);
         std::cout << "num evens = " << numEvens << std::endl; 
 
         return 0;
@@ -292,8 +292,8 @@ The code above using `count_if` works fine, but if we have many such algorithm c
 ```cpp
     int main()
     {
-        vector<int> myNums = {1, 6, 5, 8, 3, 5, 4, 2, 8, 9, 9, 7, 6};
-        int numEvens = std::count_if(myNums.begin(), myNums.end(), [](int x){return x%2 == 0;})
+        std::vector<int> myNums = {1, 6, 5, 8, 3, 5, 4, 2, 8, 9, 9, 7, 6};
+        int numEvens = std::count_if(myNums.begin(), myNums.end(), [](int x){return x%2 == 0;});
         std::cout << "num evens = " << numEvens << std::endl; 
 
         return 0;
