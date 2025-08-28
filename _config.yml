@@ -10,7 +10,7 @@ defaults:
 
 baseurl: /research-computing-with-cpp
 
-remote_theme: dpshelio/indigo-jekyll
+remote_theme: UCL-ARC/indigo-jekyll
 
 
 crumbs:
