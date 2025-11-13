@@ -1,0 +1,61 @@
+/* 
+* Pattern name: Brand
+* Use: The UCL banner area
+* Note: The UCL logo is made clickable via using an absolutely positioned link. (see .brand__link)
+-------------------------------------------------------------- */
+
+.brand {
+	position: absolute;
+	z-index: $zindex-brand;
+	overflow: visible;
+	width: 100%;
+	max-width: 1470px;
+	left: 0;
+	@include gs-media(m, max) {
+		position: static;
+		padding-left: 0;
+		p {
+			left: 0;
+			top: 50%;
+		}
+	}
+}
+
+.brand__link {
+	position: absolute;
+	height: 50%;
+	width: 18%;
+	right: 0;
+	display: block;
+	bottom: 0;
+
+	.lt-ie9 & {
+		display: none;
+	}
+}
+
+.brand__heading {
+	position: absolute;
+	left: 35px;
+	top: 25%;
+	color: $white;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	font-weight: 400;
+	@include rem(font-size, $font-size-sm);
+	@include gs-media(m, max) {
+		position: relative;
+		left: 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+
+.brand__logo {
+	display: block;
+	margin-bottom: 0;
+	width: 100%;
+	@include gs-media(m, max) {
+		display: none;
+	}
+}

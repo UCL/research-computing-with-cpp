@@ -1,0 +1,79 @@
+/* 
+* Base name: Images
+* Note: N/A
+-------------------------------------------------------------- */
+
+figcaption {
+	color: #666666;
+	font-size: 0.9em;
+}
+
+figcaption h4 {
+	margin-top: 0.2em;
+}
+
+figure img {
+	width: 100%;
+	margin-bottom: .5em;
+}
+
+figure + figure, figure + p {
+	margin-top: 1em;
+}
+
+/* Image options
+-------------------------------------------------------------- */
+
+.img-pull-left {
+	margin-bottom: 1em;
+	margin-top: 1em;
+	@include gs-span(dc, 1, 2);
+	@include gs-float(dc, left);
+}
+
+.img-pull-right {
+	margin-bottom: 1em;
+	margin-top: 1em;
+	@include gs-span(dc, 3, 4);
+	@include gs-float(dc, right);
+}
+
+.img-rounded {
+	border-radius: 50em;
+}
+
+.img-sm {
+	max-width: $image-max-width-sm;
+}
+
+.img-md {
+	max-width: $image-max-width-md;
+}
+
+.img-lg {
+	max-width: $image-max-width-lg;
+}
+
+.img-xl {
+	max-width: $image-max-width-xl;
+}
+
+.img-xxl {
+	max-width: $image-max-width-xxl;
+}
+
+@include gs-media(m, max) {
+	.img-lg,.img-xl,.img-xxl {
+		width: 100%;
+	}
+	.decorative {
+		display: none !important;
+	}
+	.img-pull-left, .img-pull-right {
+		&.large-image,
+		&.xl-image,
+		&.xxl-image {
+			width: 100%;
+		}
+	}
+}

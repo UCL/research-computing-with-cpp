@@ -1,0 +1,13 @@
+/* 
+* Mixin name: Unit
+* Use: 
+* 		1. Set REM value with pixel value fallback
+* Note: N/A
+-------------------------------------------------------------- */
+
+/* 1
+-------------------------------------------------------------- */
+@mixin rem($property, $sizeValue: 1.6) {
+  #{$property}: ($sizeValue * 10) + px;
+  #{$property}: $sizeValue + rem;
+}
