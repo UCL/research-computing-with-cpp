@@ -86,7 +86,7 @@ In the `source` folder we then need a `CMakeLists.txt` file, and it should decla
 
 ```
 add_executable(project_executable source1.cpp source2.cpp)
-target_include_directories(project_executable ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(project_executable PUBLIC ${CMAKE_SOURCE_DIR}/include)
 ```
 
 - `add_executable` is as before.
