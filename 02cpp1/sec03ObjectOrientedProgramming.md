@@ -167,7 +167,7 @@ class Ball
     std::array<double, 3> position;
     double radius;
     double mass;
-}
+};
 ```
 
 These fields define the sphere well, but physically the behaviour of the sphere in the fluid will depend on its _density_. So perhaps we want to write a member function `double density(double radius, double mass)` which calculates the density of the sphere. But this would mean we need to call the density function and re-calculate it when we want to use it, which isn't ideal. So instead, we can add density to our list of fields, 
@@ -179,7 +179,7 @@ class Ball
     double radius;
     double mass;
     double density;
-}
+};
 ```
 
 and then we can call the density directly without another calculation. The problem that we now have is that in order for our data to be self-consistent, **a relationship between the radius, mass, and density must be satisfied**. 
@@ -207,7 +207,7 @@ class Ball
     double radius;
     double mass;
     double density;
-}
+};
 ```
 
 Now we can even make our code **more flexible without sacrificing safety**. Let's say the ball can change _mass_ or _radius_. We can't just make these variables public and change them independently, because then the _density_ will no longer be consistent with the new mass / radius. We need to add **setter** functions which **maintain the integrity of the object**:
@@ -246,7 +246,7 @@ class Ball
     double radius;
     double mass;
     double density;
-}
+};
 ```
 We now have a ball class that can be instantiated with any mass and radius, and can have its mass or radius changed, but **always satisfies the property that the density field is correct for the given radius and mass of the object**. Being able to guarantee properties of objects of a given type makes the type system far more powerful and gives users the opportunity to use objects in more efficient ways without having to check for conditions that are already guaranteed by the object's design. 
 
@@ -298,7 +298,7 @@ class Ball
     double radius;
     double mass;
     double density;
-}
+};
 ```
 **In `ball.cpp`:**
 ```cpp
@@ -311,7 +311,7 @@ Ball::Ball(std::array<double, 3> p, double r, double m): position(p), radius(r),
 
 // Again, Ball:: tells us that this function is part of the Ball class definition
 // Because this is a member function, it has access to all the data members of this class.
-Ball::setDensity()
+void Ball::setDensity()
 {
     density =  3 * mass / (4 * M_PI * pow(radius, 3));
 }
