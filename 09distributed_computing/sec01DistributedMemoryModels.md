@@ -95,7 +95,7 @@ Message passing naturally incurs a performance overhead. Data communication chan
 - The frequency of message passing should be kept down where possible. 
 - The size of messages should be kept down where possible. 
 - In general, a smaller number of large messages is better than a large number of small messages _for a given amount of data_. 
-    - This is true in general of data movement, whether through message passing or memory reads to RAM or hard disks. Loosely speaking, data movement general involves a latency ($L$) and bandwidth ($B$), such that the time for $N$ bytes of data to be transferred is $\sim BN + L$. If we send this data in $k$ separate messages, we will incur a $kL$ latency penalty instead of just $L$. 
+    - This is true in general of data movement, whether through message passing or memory reads to RAM or hard disks. Loosely speaking, data movement general involves a latency ($L$) and bandwidth ($B$), such that the time for $N$ bytes of data to be transferred is $\sim N/B + L$. If we send this data in $k$ separate messages, we will incur a $kL$ latency penalty instead of just $L$. 
     - If you have to choose between sending a smaller amount of total data in a larger number of messages, or a larger amount of data using a smaller number of messages, then which you should pick will depend on which term in this expression becomes dominant! 
 
 
