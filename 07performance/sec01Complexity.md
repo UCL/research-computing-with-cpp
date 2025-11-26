@@ -230,7 +230,7 @@ Big-O, $\Omega$, and $\Theta$ all capture information about algorithm performanc
 
 Take for example a trivial summation example:
 
-```cpp=
+```cpp
 double SumVector(const vector<double> &v)
 {
     double sum = 0;
