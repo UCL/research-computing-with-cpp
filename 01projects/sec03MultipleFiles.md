@@ -90,7 +90,7 @@ int f(int a, int b)
 
 Only the first of these two programs will compile! 
 - **C++ will parse your file in order**, and so in the second version it comes across the function `f` _before_ it has been defined. The compiler doesn't know what to do! It can't know what `f` is supposed to be, and if this is a valid & type-safe statement. 
-- C++ does **not** need to know everything about `f` ahead of time though; it just need to know _what_ it is and what its type is. This is the job of **forward declaration**: something that tells us what the type of the symbol is without telling us exactly what it does. In this case, this would be a **function declaration**, but we can also have declarations for other things in C++, as we shall see later on in the course. 
+- C++ does **not** need to know everything about `f` ahead of time though; it just need to know _what_ it is and what its type is. This is the job of **forward declaration**: something that tells us that there will be a function with this signature defined somewhere in the program is without telling us exactly what it does. We can also have declarations for things other than functions in C++, as we shall see later on in the course. 
 
 **With a function declaration:**
 ```cpp=
