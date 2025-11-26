@@ -2,6 +2,8 @@
 title: Inheritance
 ---
 
+[ToC]
+
 # Creating Sub-types with Inheritance
 
 Inheritance is one of the most important concepts in object oriented design, which brings a great deal of flexibility to us as programmers. A class defines a type of object, and a class which inherits from it defines a sub-type of that type. For example, we might have a class which represents shapes, and sub-classes which represent squares, circles, and triangles. Each of these are shapes, and so should be able to be used in any context that simply requires a shape, but each will have slightly different data needed to define it and different implementations of functions to calculate its perimeter or area. 
@@ -232,7 +234,11 @@ Our current method of overriding and calling functions in the way described abov
 - We often don't want to pass our derived class by value: this will attempt to copy the object into a new object of type `Shape`, so any overrides will be lost. 
 - We should instead pass our argument by reference (or as a pointer, which we'll discuss in a later week). This will avoid the copying into a fresh object and instead will just pass the address in memory where the object we want to pass is stored. However, the function itself will still be treating the object as being of type `Shape` and hence will call the `Shape` versions of any functions. 
 
-We can solve this problem by declaring a member function `virtual` in the base class. In this case, the function is accessed in a different way to normal. Function definitions have addresses, and normally when a member function of a class is called the definition of that function for that is just looked up. So if we are using a `Shape &` reference to an object, even if that object was created as type `Circle`, we will still look up the definition of any functions for `Shape`, since that's the class that we're using. For virtual functions however, each object will store the address of the definition of the function as part of its data (this data is called a "virtual table"). If the object is created as an instance of the base class, this will be the address of the base function, but if the object is created as an instance of a derived class, then this will be the address of the derived function. When we call the function on the object, it will execute the function at the address stored in the virtual table, which is individual to the instance of the object, rather than using an address which applies to the whole class. This means it doesn't matter if we are using a `Shape &` reference or `Circle &`, it will still used the derived function for the class `Circle` because that was the address put into the virtual table when the object was created. This is also why **passing a reference (or pointer) is necessary for this to work**. If we pass by value we will create a _new_ object of type `Shape`, and because it is of type `Shape` the new object's virtual table will link to the `Shape` implementation. If we pass a _reference_, then the function will instead look at the memory location of the original object, and therefore look in the original object's virtual table, and thus find the implementation for the derived class. 
+We can solve this problem by declaring a member function `virtual` in the base class. In this case, the function is accessed in a different way to normal. 
+
+Function definitions have addresses, and when an ordinary (not virtual) member function of a class is called the definition of that function can be straight-forwardly looked up for that class. So if we are using a `Shape &` reference to an object, even if that object was created as type `Circle`, we will still look up the definition of any functions for `Shape`, since that's the class that we're using. 
+
+For classes with virtual functions however, each object will store an additional pointer as part of its data that points to a special table for that class (called a "virtual table" or "v-table"). The v-table contains pointers to the virtual function definitions for that class (amongst other things, as we'll see later); there will be one of these v-tables for each class with virtual functions. If the object is created as an instance of the base class, this it will have a pointer to the v-table for the base class, which contains the addresses of the base function implementation(s). If the object is created as an instance of a derived class, then it will carry the address of the v-table for the derived type, which contains addresses for the derived type's function(s). When we call a virtual function on an object, it will first follow the pointer to the correct virtual table and then will execute the function at the relevant address stored in the virtual table. Since the pointer to the v-table is part of the object's data rather than part of its type information, it doesn't matter if we are using a `Shape &` reference or `Circle &`, it will still be directed to use the derived function for the class `Circle` because that is the virtual table that the object was pointed to when it was created. This is also why **passing a reference (or pointer) is necessary for this to work**. If we pass by value we will create a _new_ object of type `Shape`, and because it is of type `Shape` the new object will point to the `Shape` v-table. If we pass a _reference_, then the function will instead look at the memory location of the original object, and therefore look in the original object's virtual table, and thus find the implementation for the derived class. 
 
 Virtual functions open up fully polymorphic behaviour for our classes, and are important whenever a object of a derived class might be treated as a member of a base class, including:
 
@@ -331,3 +337,178 @@ class Square : public Shape
 - The use of pure virtual functions means that the `Shape` class more closely corresponds to our abstract notion of a shape as being something that we can't implement without more information. 
 - Note that we don't have to design the class so that we re-calculate the area and perimeter every time we call `getArea` and `getPerimeter`; we could store them in member variables like in our previous example. Think about the pros and cons of these two approaches! 
 
+## Runtime Type Information (RTTI)
+
+In addition to the locations of virtual functions, the v-table also contains type identification information. This means that C++ can find out if a `Shape` pointer is pointing to a `Circle` or a `Square` by the same mechanism as it finds the overrides for virtual functions: it follows the pointer from the object to its v-table, and then it can look up the type information. In our programs we can access this using [`typeid`](https://en.cppreference.com/w/cpp/language/typeid.html). 
+
+```cpp
+#include<typeinfo>
+...
+
+int main()
+{
+    std::unique_ptr<Shape> C = std::make_unique<Circle>(2.1);
+    std::unique_ptr<Shape> S = std::make_unique<Square>(1.8);
+
+    std::cout << typeid(*C).name() << std::endl;
+    std::cout << typeid(*S).name() << std::endl; 
+
+    return 0;
+}
+```
+
+`typeid` returns an `std::type_info`, which requires the `<typeinfo>` include. The `name()` member function just makes it more human readable. Note that we dereference the pointers first: the types of the _pointers_ are the same, but the types of the _data_ that they point to are not. `typeid` can also be used with a _type_ as an argument instead of an object, as we shall see in the example below:
+
+```cpp
+#include<typeinfo>
+...
+
+int main()
+{
+    std::unique_ptr<Shape> C = std::make_unique<Circle>(2.1);
+    std::unique_ptr<Shape> S = std::make_unique<Square>(1.8);
+
+    bool same_pointer_type = (typeid(C) == typeid(S));  // True
+    bool same_underlying_type = (typeid(*C) == typeid(*S)); // False 
+    bool is_Circle_type = (typeid(*C) == typeid(Circle));  // True
+    bool is_Shape_type = (typeid(*C) == typeid(Shape));  // False
+
+    return 0;
+}
+```
+
+Note that `typeid` will return the specific type of the object, so checking where your `Circle` object is a `Shape` will return false, since these are distinct types. 
+
+Run time type information is rarely needed in C++, since the types are usually known and most polymorphic behaviour can (and should) be handled by overriding member functions. However, there are some times where we are dealing with polymorphic types and we need to ascertain what type something is. For example, lets say I have a `vector<Shape>` and I need to get all the `Circle` objects from this list. Rather than forcing every sub-class of `Shape` to implement some kind of `isCircle()` function or carry extra data around, it is better to just use `typeid`. 
+
+`typeid` works well when you just need to check some precise type information, like to check if an object is a `Circle` or not. Inheritance trees however can be a little more complex; let's consider an example with an addition _polygon_ subclass. Circles are not polygons, but triangles, squares, pentagons and so on are.
+
+```cpp
+class Shape
+{
+    public:
+    Shape()
+    {
+    }
+
+    virtual double getArea() = 0;
+
+    virtual double getPerimeter() = 0;
+
+    virtual void printInfo() = 0;
+};
+
+class Circle : public Shape
+{
+    public:
+    Circle(double r) : radius(r){}
+
+    void printInfo()
+    {
+        cout << "Circle; Radius = " << m_radius << "m, Area = " << m_area << " m^2, Perimeter = "
+             << m_perimeter << "m." << endl;
+    }
+
+    double getArea()
+    {
+        return M_PI * radius * radius;
+    }
+
+    double getPerimeter()
+    {
+        return 2 * M_PI * radius;
+    }
+
+    protected:
+    double radius;
+};
+
+class Polygon : public Shape
+{
+
+}
+
+class Square : public Polygon
+{
+    public:
+    Square(double w) : width(w){}
+
+    double getArea()
+    {
+        return width * width;
+    }
+
+    double getPerimeter()
+    {
+        return 4 * width;
+    }
+
+    void printInfo()
+    {
+        cout << "Square; Width = " << width << "m, Area = " << area << " m^2, Perimeter = "
+             << perimeter << "m." << endl;
+    }
+
+    protected:
+    double width;
+};
+
+class IsocelesTriangle : public Polygon
+{
+    public:
+    Square(double b, double h) : base(w), height(h){}
+
+    double getArea()
+    {
+        return 0.5*base*height;
+    }
+
+    double getPerimeter()
+    {
+        return base + sqrt(4*height*height + base*base);
+    }
+
+    void printInfo()
+    {
+        cout << "Triangle; Base = " << base << "m, Height = " << height << "m, Area = " << area << " m^2, Perimeter = "
+             << perimeter << "m." << endl;
+    }
+
+    protected:
+    double base;
+    double height;
+};
+```
+
+Now if we turn back to our `vector<Shape>`, suppose we want to do something with only the objects that are _polygons_? Writing a manual check for each kind of polygon like:
+
+```cpp
+bool isPolygon(std::unique_ptr<Shape> &S)
+{
+    return (typeid(*S) == typeid(Square)) || (typeid(*S) == typeid(IsocelesTriangle));
+}
+```
+
+since this is not extensible. Instead we can use C++'s `dynamic_cast` to check whether something can be safely cast to the `Polygon` type, which would mean that it is a sub-class of that type:
+
+```cpp
+bool isPolygon(Shape &S)
+{
+    return dynamic_cast<Polygon*>(S.get()) != nullptr;
+}
+```
+
+Note that `dynamic_cast` requires us to work with pointer types (or reference types), so we no longer dereference `S` but extract the pointer from it. If the `dynamic_cast` fails then the result is a `nullptr`. This can be very effectively used in `if` statements since a pointer in a conditional statement implicitly converts to false if `nullptr` and true otherwise.
+
+```cpp
+if(dynamic_cast<Polygon*>(S.get()))
+{
+    // do something polygon specific
+}
+else
+{
+    // do something else
+}
+```
+
+Dynamic casting can also be used to safely convert `Shape` pointers into new `Predator`, `Fox` or any other subclass pointer that's required for e.g. passing to another function that takes a more specific type. **You absolutely must check for null pointers if you are going to do this, and make sure to think carefully about any ownership issues when you generate new pointers.** 
