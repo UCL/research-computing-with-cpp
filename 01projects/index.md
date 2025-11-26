@@ -13,7 +13,6 @@ In this section we also provide notes on how to use the **command line terminal*
 - [Introduction to C++ and "Hello World" Program](./sec01IntroToCpp.md)
 - [Further C++ Syntax](./sec02CppSyntax.md)
 - [C++ Programs with Multiple Files](./sec03MultipleFiles.md)
-- [Using the terminal](./sec04Terminal.md)
 - [Version control with Git](./sec05Git.html)
 
 ## Useful References
