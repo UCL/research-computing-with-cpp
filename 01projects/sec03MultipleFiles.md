@@ -7,7 +7,7 @@ title: C++ Programs with Multiple Files
 Like other programming languages, it is possible (and good practice!) to break up C++ programs into multiple files. C and C++ however have a slightly unusual approach to this compared to some other languages. Let's consider that we have two C++ files, our `main.cpp` which contains our `main` function (the entry point for execution of our program), and another which defines some function that we want to use in `main`. 
 
 **main.cpp:**
-```cpp=
+```cpp
 #include <iostream>
 
 int main()
@@ -22,7 +22,7 @@ int main()
 ```
 
 **function.cpp:**
-```cpp=
+```cpp
 int f(int a, int b)
 {
     return (a+2) * (b-3);
@@ -50,7 +50,7 @@ Let's use this simple example program to explore how the compiler deals with our
 We'll start with a single file and work towards a multiple file version. Consider the following two versions of the same program:
 
 **Version 1**
-```cpp=
+```cpp
 #include <iostream>
 
 int f(int a, int b)
@@ -70,7 +70,7 @@ int main()
 ```
 
 **Version 2**
-```cpp=
+```cpp
 #include <iostream>
 
 int main()
@@ -93,7 +93,7 @@ Only the first of these two programs will compile!
 - C++ does **not** need to know everything about `f` ahead of time though; it just need to know _what_ it is and what its type is. This is the job of **forward declaration**: something that tells us that there will be a function with this signature defined somewhere in the program is without telling us exactly what it does. We can also have declarations for things other than functions in C++, as we shall see later on in the course. 
 
 **With a function declaration:**
-```cpp=
+```cpp
 #include <iostream>
 
 // Function declaration for f
@@ -129,7 +129,7 @@ This might seem like a rather pointless thing to do in a program as trivial as t
 Now that we know that we can write function declarations, we can move the function definition to a different file, and compile both files separately. 
 
 **main.cpp**:
-```cpp=
+```cpp
 #include <iostream>
 
 int f(int a, int b);
@@ -145,7 +145,7 @@ int main()
 ```
 
 **function.cpp**:
-```cpp=
+```cpp
 int f(int a, int b)
 {
     return (a + 2) * (b - 3);
@@ -180,12 +180,12 @@ Forward declarations for functions are helpful, but they can still clutter up ou
 In this case the files look as follows:
 
 **function.h**:
-```cpp=
+```cpp
 int f(int a, int b);  // function declaration
 ```
 
 **function.cpp**:
-```cpp=
+```cpp
 int f(int a, int b)
 {
     return (a + 2) * (b - 3);
@@ -193,7 +193,7 @@ int f(int a, int b)
 ```
 
 **main.cpp**:
-```cpp=
+```cpp
 #include <iostream>
 #include "function.h"  // include our header file with the declaration
 
