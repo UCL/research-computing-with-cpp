@@ -19,7 +19,7 @@ A straight-forward example of a memory bound problem would be a matrix transposi
 
 To keep things simple, let's look at this "out of place" matrix transpose:
 
-```cpp=
+```cpp
 void Transpose(vector<vector<float>> &A, vector<vector<float>> &B)
 {
     int N = A.size();
@@ -92,7 +92,7 @@ An algorithm which exploits the cache but which does not depend on the exact det
 
 Let's take a look again at our example of a memory bound problem, matrix transposition, and see how it can be impacted by good and bad use of the cache. Let's start with our simple matrix transpose code and see how it might behave:
 
-```cpp=
+```cpp
 void Transpose(vector<vector<float>> &A, vector<vector<float>> &B)
 {
     int N = A.size();
