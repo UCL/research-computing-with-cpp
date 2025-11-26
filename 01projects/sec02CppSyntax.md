@@ -77,6 +77,32 @@ double y = 7;
 
 Here the compiler will interpret the literal `7` as an `int` and then convert it to `double` to be assigned to the variable `y`. 
 
+## Comments
+
+Comments are extremely useful for explanatory notes in your code. You can begin a comment with `//` for a comment on a single line. 
+
+```cpp
+// This is a comment.
+
+double r = 5.0;  // Comments can also be on the same line as some code.
+```
+
+Longer comments begin with `/*` and can stretch over multiple lines, until we reach `*/`. This can be used for long comments or to temporarily comment out functionality. 
+
+```cpp
+/* This is a longer comment
+over multiple lines. The code in this comment will not execute.
+
+int x = 5*5;
+int y = x + 17;
+
+*/
+
+int z = 2*12;  // this code does execute.
+```
+
+Be careful when commenting out code that you don't comment out definitions that you are relying on elsewhere! 
+
 ## Defining and Calling Functions
 
 We've already seen function signatures and the `main` function, let's look at how to define a simple function which will get used in our main.
@@ -84,7 +110,6 @@ We've already seen function signatures and the `main` function, let's look at ho
 ```cpp
 #include <iostream>
 
-// 
 int square(int x)
 {
     return x*x;
