@@ -207,56 +207,79 @@ This statement is required in every function, except functions with a `void` ret
 
 This particular return statement is inside our `main` function which expects to return an `int` to its calling code. Since this is the return value from the special function `main`, this value is interpreted by the operating system as a *status code*, a number between 0 and 255 that gives some information about the success or failure of the application. 
 
-Like most common languages, functions are called like:
-```cpp
-int main() 
-{
-  string x_as_string = to_string(3);
-}
-```
-where the *return value* is, here, assigned to the variable `x_as_string`. We can call functions without using the return value by just not assigning the function call:
-```cpp
-int main() 
-{
-  to_string(3);
-}
-```
+## C++ Syntax
 
-**Types**
+Let's dive a litte more into C++ syntax by looking at how to declare variables, call functions, and make use of control structures. Before we go any further though, we should first take a quick look at _types_ in C++, since these are going to come up a lot. 
 
-We've already come across, `int`, `float`, `bool` and other keywords that define the *type* of variables and parameters. C++ is a *strongly-typed* and *statically-typed* language, so the *types* of every single variable or function parameter must be known at *compile time*, and those types cannot change during runtime. 
+### Types
 
-> **Compile time** refers to the time at which the code is compiled. It's used in contrast to **runtime** or **run time** which refers to the time at which the program is run. For example, if a program requires a number to do some computation and you can write that number in the source code itself, that number is known at *compile time*. If, say, the user needs to input that number, the value is only known at *run time*.
+We've already come across, `int`, `float`, `bool` and other keywords that define the *type* of variables and parameters. C++ is a *statically-typed* language, so the *types* of every single variable or function parameter must be known at *compile time*, and those types cannot change during runtime. 
 
-This is in contrast to the *weakly-typed* and *dynamically-typed* Python where we can define a variable `x` and assign it the integer value `2`, then reassign a string `"2"` to the same variable!
+> **Compile time** refers to the time at which the code is compiled. It's used in contrast to **runtime** (or **run time**) which refers to the time while the programming is actually running. For example, if a program requires a number to do some computation and you can write that number in the source code itself, that number is known at *compile time*. If, say, the user needs to input that number, the value is only known at *run time*.
+
+This is in contrast to the *dynamically-typed* Python where we can define a variable `x` and assign it the integer value `2`, then reassign a string `"2"` to the same variable!
 
 ```python
 x = 2
 x = "2"
 ```
 
-In C++ this kind of code will produce an error because, to reiterate:
+In C++ this kind of code will produce a compiler error.
 
-1. We must give all variables a type, and
-2. We cannot change the type of a variable
-
-Again, we'll explore later what types are available in C++ (and how we can create our own) but a useful initial list is:
+We'll explore later what types are available in C++ (and how we can create our own) but a useful initial list of basic types is:
 
 - `bool`: a boolean value, i.e. `true` or `false`
 - `int`: an integer value, e.g. `-4, 0, 100`
 - `float`: a 32-bit floating-point value `-0.2, 0.0, 1.222, 2e-3`
 - `double`: a 64-bit floating-point value (same as `float` but can represent a greater range and precision of real numbers)
 - `char`: a single character, e.g. `'a', 'l', ';'`
-- `string`: a kind of list of characters, used to represent text. 
-  - Not to be confused with a *character array* which can be difficult to deal with.
-- `std::vector<T>`: a kind of array of elements of type `T`, e.g. `std::vector<int> {1, 100, -1}` declares a vector of integers.
-  - Not to be confused with a *mathematical* vector, this is similar to a Python `list`.
-  - `std::` means that the vector type is part of the **C++ Standard Library** namespace. If you have the line `using namepsace std;` in your code then you don't need to use the `std::` prefix after that. Just bear in mind that this could cause name clashes if you delare another type or function which has the same name as something in the standard library!
-  - **N.B.** you need to add `#include <vector>` to the top of your program to use the vector type. 
 
-## Basic control structures
+The _stardard library_ also defines many important types that we will use very frequently in C++; these are made available through `#include` statements and are prefixed by `std::` because they are part of the standard library _namespace_. Some common examples are given below including the necessary includes:
 
-C++ contains many of the same control structures as other programming languages that you have used previously. 
+- `std::size_t`: stands for "size type", and is machine dependent but will likely be 64 bits (8 bytes) on the machines you work on. It is unsigned (i.e. only represents values $\ge 0$) and is large enough to handle the largest size that an object can be in C++ on a given architecture; as such it is commonly used for indexing arrays and other data structures. 
+  - `#include<cstddef>` 
+- `std::string`: text represented as a string of characters. Characters in a string can be iterated over similarly to lists. 
+  - `#include<string>`
+- `std::array<T, n>`: a kind of array with `n` elements of type `T`, e.g. `std::array<double, 3>` is an array of three doubles which could be used to represent a position in 3D space $(x, y, z)$. The size of the array must be known at compile time and cannot change.
+  - `#include<array>`
+- `std::vector<T>`: a kind of array of elements of type `T`, e.g. `std::vector<int> {1, 100, -1}` declares a vector of integers. The size of a vector can be determined at runtime, and it can also grow and shrink as desired. 
+  - `#include<vector>`
+
+### Declaring Variables
+
+A variable is declared by first declaring its _type_, then its _name_, and then (optionally) its _value_. A variable which is not assigned a value may be _uninitialised_ and contain an unknown value, so this should generally be avoided where possible. 
+
+Some examples are given below; not the use of the `#include` and `std::` for the `string` type. 
+
+```cpp
+#include<string>
+
+int main() 
+{
+  int x = 5;
+  double y = 7.2;
+  std::string greeting = "Hello!";
+}
+```
+
+### Calling Functions
+
+Like most common languages, functions are called like:
+```cpp
+int main() 
+{
+  int x = 5;
+  string x_as_string = to_string(x);
+  string three_as_string = to_string(3);
+}
+```
+where the *return value* is, here, assigned to the variable `x_as_string`. We can call functions without keeping the return value by just not assigning the function call:
+```cpp
+int main() 
+{
+  to_string(3);
+}
+```
 
 ### Conditional logic using `if`/`else` statements
 
