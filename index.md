@@ -17,9 +17,8 @@ We have found in previous years that C++ is no longer commonly taught at undergr
 * Basic containers like arrays / vectors / lists / dictionaries
 * Basic object oriented design (classes, member variables / functions)
 
-You may find the C++ Essential Training course by Bill Weinman on [LinkedIn Learning](https://www.ucl.ac.uk/isd/linkedin-learning) (accessible using your UCL single sign-on) to be a useful resource throughout the course if you want to spend more time on your introduction to C++.
 
-* Eligibility: This course designed for UCL post-graduate students but with agreement of their course tutor a limited number of undegraduate students can also take it. Due to the introductory nature of some of the computing material, this course is not appropriate for those who have undertaken undergraduate studies in Computer Science.
+This course designed for UCL post-graduate students but with agreement of their course tutor a limited number of undegraduate students can also take it. Due to the introductory nature of some of the computing material, this course is not appropriate for those who have undertaken undergraduate studies in Computer Science.
 
 ## Registration
 
