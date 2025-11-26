@@ -55,7 +55,7 @@ C++ Cons:
 - Code can be more verbose than a language like Python.
 - C++ is a very large language, so there can be a lot to learn.
 - More control also means more responsibility: it's very possible to cause memory leaks or undefined behaviour if you misuse C++.
-- Compilation and program structure means there's a bit of overhead to starting a C++ project, and you can't run it interactively. This makes it harder to jump into experimenting and plotting things the way you can in the Python terminal. 
+- Compilation and program structure means there's a bit of overhead to starting a C++ project, and you can't run it interactively. This makes it harder to jump into experimenting and plotting things the way you can in the Python terminal or notebooks.
 - C++ is less well known in more general research communities, so isn't always the most accessible choice for collaboration outside of HPC. (You can also consider creating Python bindings to C or C++ code if you need the performance but your collaborators don't want to deal with the language!)
 
 For larger scale scientific projects where performance and correctness are critical, then C++ can be a great choice. This makes C++ an excellent choice for numerical simulations, low-level libraries, machine learning backends, system utilities, browsers, high-performance games, operating systems, embedded system software, renderers, audio workstations, etc, but a poor choice for simple scripts, small data analyses, frontend development, etc. If you want to do some scripting, or a bit of basic data processing and plotting, then it's probably not the best way to go (this is where Python shines). For interactive applications with GUIs other languages, like C# or Java, are often more desirable (although C++ has some options for this too). 
@@ -88,7 +88,7 @@ g++ main.cpp -o hello_world
 
 > `.cpp` is the standard suffix for C++ files. You will also encounter `.h` and `.hpp` suffixes, which describe *header files* (we'll come to those later) and sometimes `.c`, describing just a C file.
 
-Now we can actually *run* the program with `./hello_world`[^dot_slash]. You should see output similar to:
+Now we can actually *run* the program with `./hello_world`. You should see output similar to:
 
 ```
 [my_username@my_hostname my_current_folder]$ ./hello_world
