@@ -10,6 +10,9 @@ This week we will introduce you to the basics of writing, compiling, and running
 
 In this section we also provide notes on how to use the **command line terminal** and **git** if you have not done so before. We will be using the terminal every week (including the first week) to compile and run programs, among other things, and Git is a version control system that we will use throughout the course and for your coursework assignments. Be sure to read these through if you are not familiar with either of these topics! 
 
-- [Introduction to C++](./sec02IntroToCpp.html) 
-- [Version control with Git](./sec01Git.html)
-- [Using the terminal](./sec03Terminal.md)
+- [Introduction to C++](./sec01IntroToCpp.md)
+- [Further C++ Syntax](./sec02CppSyntax.md)
+- [C++ Programs with Multiple Files](./sec03MultipleFiles.md)
+- [Using the terminal](./sec04Terminal.md)
+- [Version control with Git](./sec05Git.html)
+
