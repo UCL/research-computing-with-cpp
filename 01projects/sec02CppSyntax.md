@@ -77,6 +77,32 @@ double y = 7;
 
 Here the compiler will interpret the literal `7` as an `int` and then convert it to `double` to be assigned to the variable `y`. 
 
+## Comments
+
+Comments are extremely useful for explanatory notes in your code. You can begin a comment with `//` for a comment on a single line. 
+
+```cpp
+// This is a comment.
+
+double r = 5.0;  // Comments can also be on the same line as some code.
+```
+
+Longer comments begin with `/*` and can stretch over multiple lines, until we reach `*/`. This can be used for long comments or to temporarily comment out functionality. 
+
+```cpp
+/* This is a longer comment
+over multiple lines. The code in this comment will not execute.
+
+int x = 5*5;
+int y = x + 17;
+
+*/
+
+int z = 2*12;  // this code does execute.
+```
+
+Be careful when commenting out code that you don't comment out definitions that you are relying on elsewhere! 
+
 ## Defining and Calling Functions
 
 We've already seen function signatures and the `main` function, let's look at how to define a simple function which will get used in our main.
@@ -84,7 +110,6 @@ We've already seen function signatures and the `main` function, let's look at ho
 ```cpp
 #include <iostream>
 
-// 
 int square(int x)
 {
     return x*x;
@@ -121,7 +146,7 @@ This would of course be a waste of time with a function like this, but is occasi
 
 A true/false value is called a Boolean value, or `bool`. Conditional statements test the value of a Boolean value or expression and execute the following code block if it is `true`. (Remember that a code block is contained within curly braces `{}`, and can be as large as you like.)
 
-```cpp=
+```cpp
 // if statement with a Boolean variable
 if(condition)
 {
@@ -144,7 +169,7 @@ In the examples above, nothing will happen if the statement inside the brackets 
 
 If you want something to happen when the statement is false, you can also use `else` and/or `else if` statements.
 
-```cpp=
+```cpp
 if(x < 10)
 {
     std::cout << "x is small" << std::endl;
@@ -161,7 +186,7 @@ else
 
 ## Loops (`for` and `while`)
 
-```cpp=
+```cpp
 for(unsigned int i = 0; i < 100; ++i)
 {
     // loop code goes here
@@ -177,7 +202,7 @@ for(unsigned int i = 0; i < 100; ++i)
 - `++i` increments the value of `i` by 1. 
 
 If we have a `vector` or similar container, we can loop over its elements without writing our own loop conditions:
-```cpp=
+```cpp
 #include <vector>
 
 int main()
@@ -198,7 +223,7 @@ int main()
 
 `while` loops have simpler syntax than `for` loops; they depend only on a condition, and the code block executes over and over until the condition is met. This is useful for situations where the number of iterations is not clear from the outset, for example running an iterative method until some convergence criterion is met. 
 
-```cpp=
+```cpp
 while( (x_new - x_old) > 0.1)  // convergence criterion
 {
     x_old = x_new;
