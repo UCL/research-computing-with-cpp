@@ -155,7 +155,15 @@ We'll go through each of these pieces.
 
 **The function signature**
 
-The line `int main() {` begins a *function definition* and includes the *function signature* (the piece without the curly brace). Here we're describing a function called `main` that returns a single value of type `int`, and takes no parameters or arguments, which we know because the brackets `()` are empty. A C++ program that is intended to be compiled into an executable (as opposed to a library; more on that later) must contain a function called `main`: this is the entry-point to our program. **`main` is the function which is executed when the program starts.**
+The line `int main()` is a *function signature*, and it is being used to begin a *function definition* (which is a function signature combined with the "body" which defines what the function actually does). Function signatures have three mandatory parts, presented in this order:
+
+- Return type; this can be `void` if the function returns nothing.
+- Function name.
+- Function arguments; these go inside the brackets `()` and must include the type of each argument. A function which takes no arguments can have empty brackets.
+
+Function signatures can be more complex than this as we shall see later on, but these are the components that must always be present. 
+
+Here we're describing a function called `main` that returns a single value of type `int`, and takes no parameters or arguments, which we know because the brackets `()` are empty. A C++ program that is intended to be compiled into an executable (as opposed to a library; more on that later) must contain a function called `main`: this is the entry-point to our program. **`main` is the function which is executed when the program starts.**
 
 The signatures of other functions might look like:
 
