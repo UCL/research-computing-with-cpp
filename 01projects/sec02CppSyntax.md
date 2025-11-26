@@ -146,7 +146,7 @@ This would of course be a waste of time with a function like this, but is occasi
 
 A true/false value is called a Boolean value, or `bool`. Conditional statements test the value of a Boolean value or expression and execute the following code block if it is `true`. (Remember that a code block is contained within curly braces `{}`, and can be as large as you like.)
 
-```cpp=
+```cpp
 // if statement with a Boolean variable
 if(condition)
 {
@@ -169,7 +169,7 @@ In the examples above, nothing will happen if the statement inside the brackets 
 
 If you want something to happen when the statement is false, you can also use `else` and/or `else if` statements.
 
-```cpp=
+```cpp
 if(x < 10)
 {
     std::cout << "x is small" << std::endl;
@@ -186,7 +186,7 @@ else
 
 ## Loops (`for` and `while`)
 
-```cpp=
+```cpp
 for(unsigned int i = 0; i < 100; ++i)
 {
     // loop code goes here
@@ -202,7 +202,7 @@ for(unsigned int i = 0; i < 100; ++i)
 - `++i` increments the value of `i` by 1. 
 
 If we have a `vector` or similar container, we can loop over its elements without writing our own loop conditions:
-```cpp=
+```cpp
 #include <vector>
 
 int main()
@@ -223,7 +223,7 @@ int main()
 
 `while` loops have simpler syntax than `for` loops; they depend only on a condition, and the code block executes over and over until the condition is met. This is useful for situations where the number of iterations is not clear from the outset, for example running an iterative method until some convergence criterion is met. 
 
-```cpp=
+```cpp
 while( (x_new - x_old) > 0.1)  // convergence criterion
 {
     x_old = x_new;
