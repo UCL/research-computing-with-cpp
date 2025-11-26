@@ -77,24 +77,45 @@ double y = 7;
 
 Here the compiler will interpret the literal `7` as an `int` and then convert it to `double` to be assigned to the variable `y`. 
 
-## Calling Functions
+## Defining and Calling Functions
 
-Like most common languages, functions are called like:
+We've already seen function signatures and the `main` function, let's look at how to define a simple function which will get used in our main.
+
+```cpp
+#include <iostream>
+
+// 
+int square(int x)
+{
+    return x*x;
+}
+
+int main()
+{
+    int a = 5;
+    int b = 7;
+
+    int a_squared = square(a);
+
+    std::cout << "a squared = " << a_squared << ", and b squared = " << square(b) << std::endl;
+
+    return 0;
+}
+```
+
+We have put the definition of `square` _above_ `main` so that the compiler knows that this function exists before it tries to compile `main`. We will talk more about this in the section on writing C++ with multiple files. 
+
+The result of calling the function `square(a)` is assigned to the integer variable `a_squared`, whereas the result of `square(b)` is not assigned to a variable but is streamed directly to `cout`. 
+
+We can call functions without keeping the return value by just not assigning the function call:
 ```cpp
 int main() 
 {
-  int x = 5;
-  string x_as_string = to_string(x);
-  string three_as_string = to_string(3);
+  int a = 5;
+  square(a);
 }
 ```
-where the *return value* is, here, assigned to the variable `x_as_string`. We can call functions without keeping the return value by just not assigning the function call:
-```cpp
-int main() 
-{
-  to_string(3);
-}
-```
+This would of course be a waste of time with a function like this, but is occasionally useful when a function is primarily used for its _side-effects_ and the returned information isn't important to you. 
 
 ## Conditional logic using `if`/`else` statements
 
