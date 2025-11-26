@@ -175,7 +175,7 @@ g++ -o test_f main.cpp function.cpp
 
 ## Header Files
 
-Forward declarations for functions are helpful, but they can still clutter up our code if we are making use of large numbers of functions! Instead, we put these declarations in **header files**, which usually end in `.h` or `.hpp`. We use `#include` to add header files to a `.cpp` file: this allows the file to get the declaration from the header file. The definitions are not kept in the header file, they are in a separate `.cpp` file. 
+Forward declarations for functions are helpful, but they can still clutter up our code if we are making use of large numbers of functions. We would also need to rewrite these forward declarations for _every_ source file that needs to use them! Instead, we put these declarations in **header files**, which usually end in `.h` or `.hpp`. We use `#include` to add header files to a `.cpp` file: this allows the file to get all the declaration from the header file. The definitions are not kept in the header file, they are in a separate `.cpp` file so that they can be compiled separately.  
 
 In this case the files look as follows:
 
