@@ -182,7 +182,7 @@ class Ball
 };
 ```
 
-and then we can call the density directly without another calculation. The problem that we now have is that in order for our data to be self-consistent, **a relationship between the radius, mass, and density must be satisfied**. 
+and then we can call the density directly without another calculation. The problem that we now have is that in order for our data to be self-consistent, **a relationship between the radius, mass, and density must be satisfied**. This kind of relationship is called an **invariant**: a property that must be maintained by all instances of a class. Invariants are very important for writing safe programs, and for being able to reason about the behaviour of programs. 
 
 We could approach this problem by calculating the density in the constructor, and making the radius, mass, and density **private**. This means that external code can't change any of these values, and therefore they can't become inconsistent with one another. But we still need to be able to _read_ these variables for our physics simulation, so we'll need to write **getter** functions for them:
 ```cpp
@@ -250,7 +250,7 @@ class Ball
 ```
 We now have a ball class that can be instantiated with any mass and radius, and can have its mass or radius changed, but **always satisfies the property that the density field is correct for the given radius and mass of the object**. Being able to guarantee properties of objects of a given type makes the type system far more powerful and gives users the opportunity to use objects in more efficient ways without having to check for conditions that are already guaranteed by the object's design. 
 
-### Maintaining Desirable Properties
+### Maintaining and Reasoning about Invariants
 
 Consider another example where we have a catalogue for a library. To keep things simple, we'll say that we just store the title of each book. Very simply, we could define this as a vector:
 ```cpp
@@ -268,7 +268,13 @@ This is particularly bad because we'd expect people to look up books far more of
 
 If our list were _sorted_, then we can search much more quickly using a [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm). A binary search on a sorted list starts by looking at the element in the middle of the list and checks if the item we're looking for should come before or after that. We then only need to search the half of the list that would contain the book we're looking for. We then apply the same thing again to narrow the list down by half again, and so on. At every step we half the size of the list and therefore the number of titles we have to check is proportional to _the logarithm of the size of the list_. This is much, much better performance, especially if the size of the list is large. A binary search with 21 comparisons could search a list of over a million books! 
 
-Of course, we don't want to sort our data before searching it every time (that would be even more wasteful than our linear search), and we want to know with certainty that our list is always sorted, otherwise our binary search could fail. Using an object is a solution: we can define a wrapper class which keeps the list private, and provides an insertion method which guarantees that new entries are inserted into their proper place. Then **we can take advantage of speedier lookup because we know that our catalogue is always in sorted order**. (Incidentally, this would normally be done with a _balanced binary search tree_, an example of which is the C++ `map` type.)
+Of course, we don't want to sort our data before searching it every time (that would be even more wasteful than our linear search), and we want to know with certainty that our list is always sorted, otherwise our binary search could fail. Using an object is a solution: we can define a wrapper class which keeps the list private, and provides an insertion method which guarantees that new entries are inserted into their proper place. Then **we can take advantage of speedier lookup because we know that our catalogue is always in sorted order**. In this case our _invariant_ is the property of being sorted, or put more explicitly $i < j \implies x_i \le x_j$. (Incidentally, this would normally be done with a _balanced binary search tree_, an example of which is the C++ `map` type.)
+
+From this example we can see an important pattern arise: an object will maintain the desired property (invariant) if it is constructed in a state which has that property, and if all other permissible operations on the object maintain that property. This is a form of _inductive reasoning_, where the initial construction of the object serves as a base case, and all other possible states of the object are found by the operations on that object (calling member functions or manipulating public data). To design a class where any object of that class maintain a property $P$ then you should:
+
+- Write you constructor so that $P$ is guaranteed for any constructed object. Be wary of uninitialised variable within your class. 
+- Make any variables `private` is a modification of that variable can alter the property $P$. For example, to maintain a list as being sorted we made the underlying `vector` private because any modification of the data in the array could violate the sorting property. To protect our ball class we made the `mass`, `radius`, and `density` private since modifying any one of these could violate the physical relationship between these parameters.
+- Ensure that any functions that modify the state of the class do not violate the property. In the case of our sorted list, this means that the insertion must update the list in a way that it remains sorted. Be sure to check any setters, as with the `Ball` class: modifying any one of the properties of the ball has consequences for the others. It's a good idea to mark any functions that should not modify the state as `const` so that the compiler can spot any potential risks. 
 
 ## Aside: Organising Class Code in Headers and Source Files
 
