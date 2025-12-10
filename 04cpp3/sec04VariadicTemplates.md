@@ -205,7 +205,18 @@ T unary_sum(Ts... args)
     return sum;
 }
 ```
+The _unary_ in this case means that we don't have anything on the other side of the `+ ...`. A unary left fold is defined similarly:
 
-Since there is no special element $i$ in the expression, this function is undefined for an empty parameter pack, and therefore will not compile if called with no arguments. This is another way of enforcing a non-empty argument list without needing to separate out the first argument. 
+```cpp
+template<typename T, typename... Ts>
+T unary_sum(Ts... args)
+{
+    T sum = (... + args);  // Unary right fold
+
+    return sum;
+}
+```
+
+Since there is no special element $i$ in the expression, **this function is undefined for an empty parameter pack**, and therefore will not compile if called with no arguments. This is another way of enforcing a non-empty argument list without needing to separate out the first argument. 
 
 
