@@ -206,6 +206,6 @@ T unary_sum(Ts... args)
 }
 ```
 
-Because there is no special element $i$ defined, this function is undefined for an empty parameter pack, and therefore will not compile if called with no arguments. This is another way of enforcing a non-empty argument list without needing to separate out the first argument. 
+Since there is no special element $i$ in the expression, this function is undefined for an empty parameter pack, and therefore will not compile if called with no arguments. This is another way of enforcing a non-empty argument list without needing to separate out the first argument. 
 
 
