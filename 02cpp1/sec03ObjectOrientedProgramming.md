@@ -276,7 +276,26 @@ From these examples we can see an important pattern arise: an object will mainta
 
 - Write you constructor so that $P$ is guaranteed for any constructed object. Be wary of uninitialised variable within your class. 
 - Make any variables `private` if a modification of that variable can alter the property $P$. For example, to maintain a list as being sorted we made the underlying `vector` private because any modification of the data in the array could violate the sorting property. To protect our `Ball` class we made the `mass`, `radius`, and `density` private since modifying any one of these could violate the physical relationship between these parameters.
-- Ensure that any functions that modify the state of the class do not violate the property. In the case of our sorted list, this means that the insertion must update the list in a way that it remains sorted. Be sure to check any setters, as with the `Ball` class: modifying any one of the properties of the ball has consequences for the others. It's a good idea to mark any functions that should not modify the state as `const` so that the compiler can spot any potential risks. 
+- Make sure that getters don't return private member variables by reference or through pointers unless there are appropriate `const` protections on the data, as this would otherwise allow unguarded modifications to the state. 
+- Ensure that any functions that modify the state of the class do not violate the property. In the case of our sorted list, this means that the insertion must update the list in a way that it remains sorted. Be sure to check any setters, as with the `Ball` class: modifying any one of the properties of the ball has consequences for the others. It's a good idea to mark any functions that should not modify the state as `const` so that the compiler can spot any potential risks (see below).
+
+### Protecting State with `const` Members
+
+A member function that is declared `const` cannot modify the state of any member variables in that object. This is a very useful guarantee when reasoning about objects of a given class, and the compiler can help us enforce this. 
+
+Consider the getter functions from our `Ball` class, or if we wanted to add a function to print the ball's state. Functions like these should never change the state of the ball itself, so we can mark them as const. We can see an example of this in the following code (the rest of the class definition is omitted for brevity).
+
+```cpp
+class Ball
+{
+    public:
+    double getRadius() const {return radius;}
+    double getMass() const {return mass;}
+    double getDensity() const {return density;}
+};
+```
+- The `const` keyword comes after the function name and arguments but before the code block.
+- A `const` member function cannot call any other member functions which are not `const`. 
 
 ## Aside: Organising Class Code in Headers and Source Files
 
@@ -285,7 +304,8 @@ As we saw last week, C++ code benefits from a separation of function declaration
 In the header file, we should declare the class as well as:
 1. What all of its member variables are
 2. Function declarations for all of its member functions 
-3. Can also include full definitions for trivial functions such as getter/setter functions
+3. Can also include full definitions for trivial functions such as getter/setter functions if marked `inline`. This can help the compiler optimise these function calls. 
+4. If a member is marked `const` the keyword needs to appear in both the declaration (header file) and implementation (source file).
 
 For example:
 **In `ball.h`:**
@@ -296,9 +316,9 @@ class Ball
     Ball(std::array<double, 3> p, double r, double m);
     
     std::array<double, 3> position;
-    double getRadius(){return radius;}
-    double getMass(){return mass;}
-    double getDensity(){return density;}
+    inline double getRadius() const {return radius;}
+    inline double getMass() const {return mass;}
+    inline double getDensity() const {return density;}
 
     private:
     void setDensity();
