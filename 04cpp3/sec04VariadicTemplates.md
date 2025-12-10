@@ -112,19 +112,19 @@ int main()
 
 ## Fold Expressions
 
-A more concise way of writing functions over parameter packs can often be found by using C++17 fold expressions. A fold is a kind of _reduction_ expression. A _reduction_ takes a list of elements $(x_0, x_1, ..., x_{N-1})$ and applies a binary operator $\oplus$ to each of the elements. For an associative operator, a reduction looks like this:
+A more concise way of writing functions over parameter packs can often be found by using C++17 fold expressions. A fold is a kind of _reduction_ expression. A fold takes a list of elements $(x_0, x_1, ..., x_{N-1})$, a binary operator $\oplus$, and a special element $i$ and applies a binary operator $\oplus$ to each of the elements. For an associative operator, a reduction looks like this:
 
-$x_0 \oplus x_1 \oplus ... \oplus x_{N-1}$.
+$i \oplus x_0 \oplus x_1 \oplus ... \oplus x_{N-1}$.
 
-However, if the operator is non-associative, that is $x \oplus (y \oplus z) \neq (x \oplus y) \oplus z$, then we can distinguish between right folds
+However, if the operator is non-associative, that is if $x \oplus (y \oplus z) \neq (x \oplus y) \oplus z$, then we can distinguish between right folds
 
-$(x_0 \oplus (x_1 \oplus (... \oplus(x_{N-1}) ...)))$,
+$(x_0 \oplus (x_1 \oplus (... \oplus(x_{N-1} \oplus i) ...)))$,
 
 and left folds
 
-$(...((x_0 \oplus x_1) \oplus x_2) \oplus ... ) \oplus x_{N-1}$,
+$(...((i \oplus x_0) \oplus x_1) \oplus x_2) \oplus ... ) \oplus x_{N-1}$,
 
-by their order of operations.
+by their order of operations and by whether the special element $i$ appears is applied to the first or last element. ($i$ is usually the _identity_ element of $\oplus$, so it usually does not matter whether this element goes, and the concern between right and left folds is generally the order of operations for non-associative operators.)
 
 Fold expressions allow us to apply an operator across all elements of a parameter pack in a single, compact expression. This is particularly useful for numerical operations like sums and products. 
 
@@ -141,7 +141,7 @@ T variadic_sum(Ts... args)
 ```
 The fold expression `(0 + ... + args)` automatically expands depending on how many arguments are provided. This avoids writing separate overlaods for 2, 3 or more inputs, and significantly reduces boilerplate.
 
-Note that we have started our reduction with `0`, which is the _identity_ element of the addition operator ($x + 0 = x$ for all $x$). This is very common in reduction expressions, for example in products you will often start with `1` which is the multiplicative identity. You can, of course, start with any element you like, for example `T sum = (5 + ... + args);` would give $5 + \Sigma_i y_i$. 
+Note that we have started fold with `0`, which is the _identity_ element of the addition operator ($x + 0 = x$ for all $x$). This is very common in reduction expressions, for example in products you will often start with `1` which is the multiplicative identity. You can, of course, start with any element you like, for example `T sum = (5 + ... + args);` would give $5 + \Sigma_i y_i$. 
 
 We can also write this as a right fold expression:
 
@@ -155,7 +155,7 @@ T variadic_sum(Ts... args)
 }
 ```
 
-Mathematical addition is associative, but remember that on a computer _floating point addition is not perfectly associative due to rounding errors_, and therefore your results may vary depending on your order of summation. 
+Mathematical addition is associative, but remember that on a computer _floating point addition is not perfectly associative due to rounding errors_, and therefore your results may vary depending on your order of summation (i.e. left vs right fold). 
 
 There is a [list of operators available for use in fold expressions](https://en.cppreference.com/w/cpp/language/fold.html), however we can also make our expressions can be more complex than a simple reductions; as an example in scientific computing it is common to combine independent uncertainties ($\sigma_i$) by adding them in quadrature:
 $$
@@ -171,17 +171,17 @@ constexpr T quadrature(T x, Ts... xs) {
   return std::sqrt(sumsq);
 }
 ```
-Note that by separating off the first argument we are forcing this function to take at least one argument, and can therefore also dispense with any initial element like the identity. 
+Note that by separating off the first argument we are forcing this function to take at least one argument, and can therefore also dispense with any speical element $i$ like the identity. 
 
 Here the binary operator is again addition but we are squaring the elements before they are added. You can use folds to calculate expressions of the form
 
-$(f(x_0) \oplus (f(x_1) \oplus (... \oplus(f(x_{N-1})) ...)))$,
+$(f(x_0) \oplus (f(x_1) \oplus (... \oplus(f(x_{N-1} \oplus i)) ...)))$,
 
 or
 
-$(...((f(x_0) \oplus f(x_1)) \oplus f(x_2)) \oplus ... ) \oplus f(x_{N-1})$
+$(...(((i \oplus f(x_0)) \oplus f(x_1)) \oplus f(x_2)) \oplus ... ) \oplus f(x_{N-1})$
 
-for some function $f$, or more generally you can replace $f(x)$ with an _expression_ which depends on $x$, for example `(std::cout << x)` is an expression but not a function. The following variadic function prints out whatever arguments are supplied.
+for some function $f$, or more generally you can replace $f(x)$ with an _expression_ which depends on $x$. For example `(std::cout << x)` is an expression but not a function; the following variadic function prints out whatever arguments are supplied.
 
 ```cpp
 void print_args(Ts... args)
@@ -190,7 +190,7 @@ void print_args(Ts... args)
 }
 ```
 
-In this case ["`,`" is the operator](https://en.cppreference.com/w/cpp/language/operator_other.html#Built-in_comma_operator), which just evaluates expressions separated by a comma left-to-right, and `std::cout << args << " "` is the expression that is applied to each variable, and `std::cout << std::endl` is the special element (in this case it is also an expression because `,` operates on expressions). 
+In this case ["`,`" is the operator](https://en.cppreference.com/w/cpp/language/operator_other.html#Built-in_comma_operator), which just evaluates expressions separated by a comma left-to-right, and `std::cout << args << " "` is the expression that is applied to each variable, and `std::cout << std::endl` is the special element (which is also an expression because `,` operates on expressions). 
 
 
 
