@@ -152,9 +152,9 @@ int main()
 - `getCount()` returns an integer _by value_, so it returns a copy of `count`. We can't modify `count` through this function or the value we get back from it. 
 - `count` is now private, so if we try to access this directly from outside the class the compiler will raise an error. 
 
-## Using Objects for Data Integrity
+## Class Invariants and Using OOP for Data Integrity
 
-An extremely useful aspect of defining a new type via a class is the ability to provide guarantees that any object of that type satisfies certain properties. These properties allow programmers to write programs that are more efficient and correct with less overhead for error checking. 
+An extremely useful aspect of defining a new type via a class is the ability to provide guarantees that any object of that type satisfies certain properties; such properties are often referred to as class _invariants_. These properties allow programmers to write programs that are more efficient and correct with less overhead for error checking. 
 
 Let's explore this with some examples. 
 
@@ -250,7 +250,7 @@ class Ball
 ```
 We now have a ball class that can be instantiated with any mass and radius, and can have its mass or radius changed, but **always satisfies the property that the density field is correct for the given radius and mass of the object**. Being able to guarantee properties of objects of a given type makes the type system far more powerful and gives users the opportunity to use objects in more efficient ways without having to check for conditions that are already guaranteed by the object's design. 
 
-### Maintaining and Reasoning about Invariants
+### Maintaining Desirable Properties
 
 Consider another example where we have a catalogue for a library. To keep things simple, we'll say that we just store the title of each book. Very simply, we could define this as a vector:
 ```cpp
@@ -270,7 +270,9 @@ If our list were _sorted_, then we can search much more quickly using a [binary 
 
 Of course, we don't want to sort our data before searching it every time (that would be even more wasteful than our linear search), and we want to know with certainty that our list is always sorted, otherwise our binary search could fail. Using an object is a solution: we can define a wrapper class which keeps the list private, and provides an insertion method which guarantees that new entries are inserted into their proper place. Then **we can take advantage of speedier lookup because we know that our catalogue is always in sorted order**. In this case our _invariant_ is the property of being sorted, or put more explicitly $i < j \implies x_i \le x_j$. (Incidentally, this would normally be done with a _balanced binary search tree_, an example of which is the C++ `map` type.)
 
-From this example we can see an important pattern arise: an object will maintain the desired property (invariant) if it is constructed in a state which has that property, and if all other permissible operations on the object maintain that property. This is a form of _inductive reasoning_, where the initial construction of the object serves as a base case, and all other possible states of the object are found by the operations on that object (calling member functions or manipulating public data). To design a class where any object of that class maintain a property $P$ then you should:
+### Reasoning About Class Invariants
+
+From these examples we can see an important pattern arise: an object will maintain the desired property if it is constructed in a state which has that property, and if all permissible operations on the object maintain that property. This is a form of _inductive reasoning_, where the initial construction of the object serves as a base case, and all other possible states of the object are found by the operations on that object (calling member functions or manipulating public data). To design a class where any object of that class maintain a property $P$ then you should:
 
 - Write you constructor so that $P$ is guaranteed for any constructed object. Be wary of uninitialised variable within your class. 
 - Make any variables `private` if a modification of that variable can alter the property $P$. For example, to maintain a list as being sorted we made the underlying `vector` private because any modification of the data in the array could violate the sorting property. To protect our `Ball` class we made the `mass`, `radius`, and `density` private since modifying any one of these could violate the physical relationship between these parameters.
