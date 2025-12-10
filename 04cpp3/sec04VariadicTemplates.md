@@ -192,6 +192,20 @@ void print_args(Ts... args)
 
 In this case ["`,`" is the operator](https://en.cppreference.com/w/cpp/language/operator_other.html#Built-in_comma_operator), which just evaluates expressions separated by a comma left-to-right, and `std::cout << args << " "` is the expression that is applied to each variable, and `std::cout << std::endl` is the special element (which is also an expression because `,` operates on expressions). 
 
+### "Unary" Fold Expressions
 
+We can also write left and right fold expressions as a so-called "unary fold" expression. This does _not_ mean that the operator is a unary operator: $\oplus$ is always a binary operator! Instead it means that we don't supply the special element $i$, like this:
+
+```cpp
+template<typename T, typename... Ts>
+T unary_sum(Ts... args)
+{
+    T sum = (args + ...);  // Unary right fold
+
+    return sum;
+}
+```
+
+Because there is no special element $i$ defined, this function is undefined for an empty parameter pack, and therefore will not compile if called with no arguments. This is another way of enforcing a non-empty argument list without needing to separate out the first argument. 
 
 
