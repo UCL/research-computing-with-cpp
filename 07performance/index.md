@@ -14,13 +14,18 @@ Even though parallelism can help us improve our throughput, single core optimisa
     - Big-O notation.
     - How to determine complexity and examples with some common algorithms.
     - How does complexity impact our choices as software designers?
-3. [Memory management and caching](sec02Memory.html)
+3. [Common Data-Structures](DataStructures.html)
+    - Random Access Arrays
+    - Linked Lists
+    - Binary Search Trees
+    - Hash Tables
+4. [Memory management and caching](sec02Memory.html)
     - Memory bound problems. 
     - How memory is structured in a typical machine.
     - Speed of different kinds of memory access.
     - Cache structure and operation. 
     - Writing algorithms to effectively exploit the cache. 
-4. [Compiler Optimisation](sec03Optimisation.html)
+5. [Compiler Optimisation](sec03Optimisation.html)
     - Automated optimisation by the compiler. 
     - Compiler flags for optimisation.
     - Examples of optimisations, pros and cons.

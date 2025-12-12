@@ -248,39 +248,6 @@ double SumVector(const vector<double> &v)
 
 For **algorithmic analysis** we can often determine asymptotically tight bounds because we know exactly how an algorithm will behave.
 
-## Important Data-Structures
-
-There are some key data-structures with which you will need to be familiar. We will discuss the complexity of data access and insertion for some of these in class.
-
-### Random Access Arrays
-
-A _random access array_ is the kind of array with which you are already familiar. Data is laid out sequentially and contiguously in memory, and so it is easy to calculate the memory location of any given element from the starting memory location and the index $i$ of the element. This is why they are called _random access_: we can access any element of the array in $O(1)$ time and no elements are harder to find than any others. `std::vector`, `std::array`, and C-style arrays are all examples of random access arrays. 
-
-### Linked Lists
-
-A _linked list_ is a representation of a list that is stored like a graph: each element of the list consists of its data and a pointer to the next element of the list. A linked list has no guarantees of being stored contiguously, so the only way to navigate the linked list is to follow the pointers from one node to the next; this is in contrast to random access arrays. A common extension of the linked list is the doubly-linked list, which has pointers to the next _and_ previous element in a list. 
-
-Accessing element $i$ of the list requires us to read and follow $i$ pointers, and the amount of work done to find elements increases linearly as the we get further into the list. The advantage of a linked list however is that we can add or remove elements more straightforwardly by simply modifying the relevant pointers. This is much simpler than removing or inserting elements in the middle of a random access array, which requires copying memory to keep all the elements correctly in order.
-
-`std::list` is usually implemented as a doubly-linked list, and `std::forward_list` is usually implemented as a singly-linked list. 
-
-### Binary Search Trees
-
-A _binary search tree_ (BST) is another graph based structure, where each node consists of its data, and pointers to a left and right sub-tree (the "left child" and "right child"). The data stored in a BST must admit a comparison operator $<$, so that for a given node with data $d$:
-
-- for all data $d_L$ in the left sub-tree, $d_L < d$, and
-- for all data $d_R$ in the right sub-tree, $d_R >= d$. 
-
-A BST is therefore always _sorted_. It is often used to implement _associative arrays_, which is a set of key-value pairs that allow look-up of values based on key. You may be familiar with this concept as a _dictionary_ in Python. If the data in a BST is a key-value pair $(k,v)$, then the ordering is just on the key $k$. Looking up a value based on a key requires traversing the tree from its root and comparing the keys to determine whether to look up the left or right sub-tree at each node. 
-
-`std::map` is usually implemented as a BST. 
-
-### Hash Tables 
-
-A _hash table_ is an alternative implementation for an associative array. It consists of a "table" in the form of a random access array. In order to find at which index $i$ of the table a key-value pair $(k,v)$ is stored, we have function $i = h(k)$. An ideal hash function is constant time on all keys and minimises the chance of collisions. A _collision_ between two keys $k_1$ and $k_2$ is when $h(k_1) = h(k_2)$. Note that it is not possible for $h$ to be completely collisionless unless you have at least as many rows in your hash table as elements you want to insert. Generally the table stores some kind of list at each index in order to resolve collisions, so in practice you will typically have a random access array of _pointers_, and each pointer will point to an array (or list, or similar structure) containing all the key-value pairs which hash to that index. 
-
-`std::unordered_map` is usually implemented as a hash table. 
-
 ## Summary of Complexity in Practice
 
 - It's good to be aware of the complexity bounds on problems and algorithms that you will be working with, like matrix multiplication, matrix inversion, data lookups in different kinds of structures etc.
