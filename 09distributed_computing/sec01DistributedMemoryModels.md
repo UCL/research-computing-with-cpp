@@ -89,13 +89,14 @@ Let's illustrate this game of life example using just two processes, $P$ and $Q$
 - We cannot say which process will begin or complete its update first, or send its boundary cell data first. It does not matter! The processes are kept synchronised as much as is necessary by the message passing. 
 - If one process is faster than the other or the message passing latency is high, then one or more process will stall while waiting to receive the data that it needs. 
 
-## Performance and Message Passing 
+## Estimating Performance in Message Passing 
 
 Message passing naturally incurs a performance overhead. Data communication channels between processes are generally speaking much slower than straight-forward reads to RAM. As such, when designing distributed systems we should bear in mind:
 - The frequency of message passing should be kept down where possible. 
 - The size of messages should be kept down where possible. 
 - In general, a smaller number of large messages is better than a large number of small messages _for a given amount of data_. 
-    - This is true in general of data movement, whether through message passing or memory reads to RAM or hard disks. Loosely speaking, data movement general involves a latency ($L$) and bandwidth ($B$), such that the time for $N$ bytes of data to be transferred is $\sim N/B + L$. If we send this data in $k$ separate messages, we will incur a $kL$ latency penalty instead of just $L$. 
+    - This is true in general of data movement, whether through message passing or memory reads to RAM or hard disks. Data movement generally involves a latency ($L$), which is a time overhead for every message regardless of size, and bandwidth ($B$), which is the amount of data that can be transferred in a given time. 
+- The time for $N$ bytes of data to be transferred in $k$ messages can be estimated using $t \approx N/B + kL$. 
     - If you have to choose between sending a smaller amount of total data in a larger number of messages, or a larger amount of data using a smaller number of messages, then which you should pick will depend on which term in this expression becomes dominant! 
 
 
