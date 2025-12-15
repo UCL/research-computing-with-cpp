@@ -8,6 +8,8 @@ Up to now, we have only worked with templates that take a fixed number of parame
 
 As with all template code, the compiler must see the full template definition wherever it is instantiated, so **functions using variadic templates and fold expressions are normally placed in header files**.
 
+A consideration that applies to all variadic functions (and template functions in general) is the potential for "code bloat" in the machine code, that is for compilation to result in large binaries. This is because the compiler will generate a new function for every new matching signature: that means any variation in the number or types of arguments. Code bloat is not always a major problem if you have the available memory, but it is an important consideration for more restricted circumstances like small devices. 
+
 ## Parameter Packs
 
 A _parameter pack_ allows a function template to take an arbitrary number of arguments of the same logical category. For example, we might want a function that computes an operation over several numbers. We will look at two examples which use common patterns for writing variadic template functions:
@@ -219,4 +221,35 @@ T unary_sum(Ts... args)
 
 Since there is no special element $i$ in the expression, **this function is undefined for an empty parameter pack**, and therefore will not compile if called with no arguments. This is another way of enforcing a non-empty argument list without needing to separate out the first argument. 
 
+### Advanced Reductions
 
+C++ supports a limited number of binary operators for its fold syntax. What if we want to use something outside of this list? In principle we can use an arbitrary function $f: A \times A \rightarrow A$ for a left or right fold. These however have to be implemented manually, which we can do with a _recursion_. 
+
+```cpp
+template<typename Op, typename T, typename... Ts>
+constexpr T foldf(Op f, T x1, T x2, Ts... xs)
+{
+    T y = f(x1, x2);
+    if constexpr (sizeof...(Ts) == 0)
+    {
+        return y;
+    }
+    else
+    {
+        return foldf(f, y, xs...);
+    }
+}
+```
+
+- Since f is a binary function we have stipulated at least two arguments so that we can evaluate the function. 
+- Note the function call `foldf(f, y, xs...)`. In this call `y` will become the new `x1` and the first element of `xs` (i.e. the next element of the list) becomes `x2`. We know that there is at least one element in `xs` because we checked in the `if` statement.
+- Note the use of `constexpr` in the `if` statement. The purpose of this is to allow the `if` statement to be evaluated at _compile time_ instead of at runtime; in this way the compiler will generate different code depending on whether there are elements of `xs` left or not. If it couldn't do this at compile time we would have a problem when the size of `xs` reaches 0, since `foldf(f, y, xs...)` can't be compiled unless there is at least one argument in `xs` since `foldf` takes a minimum of three arguments.
+    - You can find out more about `constexpr` in the notes for week 7, where we will look at them in the context of compiler optimisation. 
+
+This kind of recursive approach to variadic functions can give us access to much more expressive and powerful functions, but there is a risk of code bloat if you provide a large number of arguments. As an example let's see what happens when we call this function on a simple addition function for a sequence of numbers:
+
+```cpp
+std::cout << foldf(f, 1, 2, 3, 4, 5, 6, 7, 8, 9) << std::endl;
+```
+
+If you look at the generated assembly code for the compiled program (you can use `objdump -d <executable>`) you will find that there are 8 different implementations for `foldf`, one for each number of arguments that has been passed! Since `foldf` is in this case recursive we have called `foldf` with 10 arguments, 9 arguments, and so on down to 3 arguments.
