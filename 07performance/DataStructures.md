@@ -59,9 +59,13 @@ The diagram below shows a BST; the first piece of data (in the blue cell) is the
 
 ![image](img/BinarySearchTree.png)
 
+The complexity of many operations on BSTs is determined by the _height_ of the tree. The height of a tree (or subtree) is the maximum length of path that we can take from the top node until we reach a node with no children and can go no further. The diagram above shows a tree of height 3; the subtree starting at the node with $k=4$ has height 2. 
+
 Like a linked list, a BST is not necessarily contiguous, and different nodes may be located anywhere in memory. In order to explore a BST for look-up or insertion we have to follow a chain of pointers to find the memory locations of the nodes.
 
-`std::map` is usually implemented as a BST. 
+There are variations on BSTs, such as red-black trees, called _balanced_ BSTs. A balanced BST guarantees that the left and right sub-trees of any given node are similar in size. (More precisely, that the _height_ of the left and right sub-tree differ by no more than 1.) These structures avoid the worst case scenarios that we will discuss in class!
+
+`std::map` is usually implemented as a balanced BST. 
 
 ## Hash Tables 
 
@@ -74,3 +78,9 @@ The diagram below gives an example of a hash table for the same data as the BST 
 How quick it is to look up an element in this list will depend on the kind of structure used (for example, all of the above structures could be used!) but the key to a hash table's performance is that **collisions should be rare** so that the size of these lists remains small. If the number of colliding keys is bounded by a constant then the look-up/insertion in the list will constant time, and since the hash function and checking the random access array are also constant time, hash tables have $O(1)$ operations for insertion, look-up, and removal. Just because the complexity is $O(1)$ (under appropriate circumstances) doesn't necessarily mean that hash tables are faster than other methods though: there are overheads to think about as well, especially from the hash function! Often a BST will be faster for moderately sized data. Hash tables can also require allocating more memory than you need.
 
 `std::unordered_map` is usually implemented as a hash table. 
+
+## Cache Performance of Data-Structures
+
+As we've seen from the above, structures like linked lists, binary search trees, and hash tables can be highly fragmented in memory (i.e. they are not necessarily contiguous). This prevents us from getting substantial performance advantage from hardware caching the way that we do when iterating over contiguous arrays. When we can, it is desirable to store data in a so-called "flat" datastructure, i.e. a contiguous block of memory with data stored in an appropriate order. This makes iterating over data faster due to the cache benefits, and also makes data easier to send to external devices such as GPUs or other CPUs (as we'll see when we explore MPI in weeks 9 and 10). 
+
+This does not mean that we shouldn't use data structures like linked lists or BSTs, but its important to understand the advantages and disadvantages to make informed choices. For example, if we need an associative array of key-value pairs, simply storing them in a random access array would make it very hard to look up the value for a given key. Having a structure like a BST makes this look up fast even though the data is more fragmented. 
