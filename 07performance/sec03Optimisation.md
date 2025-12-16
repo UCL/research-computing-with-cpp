@@ -337,10 +337,10 @@ In general, you shouldn't worry too much about how optimised objects like these 
 
 Floating point arithmetic is how we typically deal with approximating the real numbers in code. Floating point numbers can in principle have any level of precision, but the most common are:
 
-- `float`: 32 bits
-- `double`: 64 bits
+- `float`: 32 bits (4 bytes)
+- `double`: 64 bits (8 bytes)
 - `long double`: Usually 80 or 128 bits depending on processor
-- `half`: 16 bits, not part of the C/C++ standard!
+- `half`: 16 bits, not part of the C/C++ standard but often used on hardware like GPUs
 
 The data for floating point numbers are split into two parts, the mantissa and the exponent. It is comparable to scientific notation except that it usually uses powers of 2 instead of 10. 
 
@@ -357,7 +357,7 @@ Floating point computation **is not exact**.
 
 - Adding values of very different sizes leads to significant loss of precision since values must be converted to have the same exponent to be added together. This means the difference in scale is pushed into the mantissa, which then loses precision due to leading `0` digits on the smaller number. In some cases the smaller number may be so small that the closest representable number with that exponent is `0` and so the addition is lost completely. 
 - Subtracting values which are close in size leads to cancellation of many digits and a result with far fewer significant digits and therefore lower precision. 
-- Identities from real arithmetic do not necessarily hold, in particular addition and multiplication are not associative, so $(a + b) + c \neq a + (b + c)$ in floating point! 
+- Identities from real arithmetic do not necessarily hold, in particular **addition and multiplication are not associative**, so $(a + b) + c \neq a + (b + c)$ in floating point! 
 - Handling these difficulties in numerical methods is a major field in and of itself. Many numerical algorithms are specially crafted to correct rounding errors in floating point arithmetic.  
 
 ### Floating Point Precision
