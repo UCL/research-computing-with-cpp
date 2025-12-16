@@ -265,7 +265,7 @@ reduction(<operator> : <variables>)
 
 While it's useful to know what's available, you'll probably find yourself using only the arithmetic operators and `max` or `min`.
 
-`<variables>` can be a variable of any type *that supports the given operator*; you can list **multiple variables in a comma-separated list** if you multiple reductions happening in the same loop. I tend to limit these variables to built-in types mainly because the reduction operator implicitly copies the given variable which can be tricky to handle for complex types or classes. If you want to use complex types, you must be careful to make sure the type has copy constructors that manage any type-owned resources appropriately.
+`<variables>` can be a variable of any type *that supports the given operator*; you can list **multiple variables in a comma-separated list** if you multiple reductions with the same operator happening in the same loop. If you have reductions over different variables _and_ with different reduction operators then you can add more than one reduction clause, one after the other. I tend to limit these variables to built-in types mainly because the reduction operator implicitly copies the given variable which can be tricky to handle for complex types or classes. If you want to use complex types, you must be careful to make sure the type has copy constructors that manage any type-owned resources appropriately.
 
 For (much) more detailed information on everything I haven't mentioned about the reduction clause, see [the reduction clause in the specification](https://www.openmp.org/spec-html/5.0/openmpsu107.html).
 
