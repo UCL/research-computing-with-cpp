@@ -1,0 +1,139 @@
+/* 
+* Base name: Tables
+* Note: N/A
+-------------------------------------------------------------- */
+
+table {
+	display: table;
+	table-layout: auto;
+	width: 100%;
+	border: 1px solid #e6e6e6;
+	border-collapse: collapse;
+	clear: left;
+	float: left;
+	border-spacing: 0;
+	font-size: 0.8em;
+}
+
+thead, tbody, tfoot {
+	display: table-row-group;
+}
+
+thead {
+	display: table-header-group;
+}
+
+tbody {
+	display: table-row-group;
+}
+
+tfoot {
+	display: table-footer-group;
+}
+
+tr {
+	display: table-row;
+}
+
+th, td {
+	display: table-cell;
+	text-align: left;
+	width: auto;
+	border-bottom: 1px solid #e6e6e6;
+	border-top: none;
+	vertical-align: middle;
+	padding: 0.25em 1em 0.25em 0;
+}
+
+th {
+	border-right: 1px solid #e6e6e6;
+	border-bottom-color: #e6e6e6;
+	color: #333333;
+	font-weight: 700;
+	background-color: #eee;
+}
+
+th,td,caption {
+	padding: 4px 10px 4px 5px;
+}
+
+tr.even td {
+	background: #e5ecf9;
+}
+
+tfoot {
+	font-style: italic;
+}
+
+caption {
+	caption-side: bottom;
+	color: #666666;
+	font-size: 0.875em;
+	line-height: 1.4286;
+	padding: 0.8571em 0 0.2857em;
+	text-align: left;
+}
+
+td, td img {
+	vertical-align: top;
+}
+
+/* Responsive Tables
+-------------------------------------------------------------- */
+
+.table-responsive {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table-responsive th, .table-responsive td {
+	margin: 0;
+	vertical-align: top;
+	border: 1px solid #e6e6e6;
+}
+
+.table-responsive th {
+	text-align: left;
+}
+
+@include respond-max($screen-lg) {
+	.table-responsive {
+		display: block;
+		position: relative;
+		width: 100%;
+		border-top: 0;
+		thead {
+			display: block;
+			float: left;
+			tr {
+				display: block;
+			}
+		}
+		tbody {
+			display: block;
+			width: auto;
+			position: relative;
+			overflow-x: auto;
+			overflow-y: hidden;
+			-webkit-overflow-scrolling: touch;
+			white-space: nowrap;
+			tr {
+				vertical-align: top;
+				border-right: 1px solid #eee;
+				@include inline-block;
+			}
+		}
+		th {
+			display: block;
+			border-bottom: 0;
+		}
+		td {
+			display: block;
+			min-height: 1.25em;
+			border-left: 0;
+			border-right: 0;
+			border-bottom: 0;
+		}
+	}
+}
