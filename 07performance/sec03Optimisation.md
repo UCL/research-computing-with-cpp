@@ -4,13 +4,15 @@ title: Compiler Optimisation
 
 Estimated Reading Time: 45 minutes
 
-# Compiler Optimisation 
+# Compiler Optimisation and Compile-Time Evaluation
 
-Compilation is the translation of our high level code (in this case C++) into machine code that reflects the instruction set of the specific hardware for which it is compiled. This machine code can closely reflect the C++ code, implementing everything explicitly the way that it's written, or it can be quite different from the structure and form of the C++ code **as long as it produces an equivalent program**. The purpose of this restructuring is to provide optimisations, usually for speed. Modern compilers have a vast array of optimisations which can be applied to code as it is compiled to the extent that few people could write better optimised assembly code manually, a task that rapidly becomes infeasible and forbiddingly time consuming as projects become larger and more complex. 
+Compilation is the translation of our high level code (in this case C++) into machine code that reflects the instruction set of the specific hardware for which it is compiled. This machine code can closely reflect the C++ code, implementing everything explicitly the way that it's written, or it can be quite different from the structure and form of the C++ code **as long as it produces an equivalent program***. The purpose of this restructuring is to provide optimisations, usually for speed. Modern compilers have a vast array of optimisations which can be applied to code as it is compiled to the extent that few people could write better optimised assembly code manually, a task that rapidly becomes infeasible and forbiddingly time consuming as projects become larger and more complex. 
 
 There is another benefit to automated compiler optimisation. Compilers, by necessity, do produce hardware specific output, as they must translate programs into the instruction set of a given processor. This means that even if we have written highly portable code which makes no hardware specific optimisations, we can still benefit from these optimisations if they can be done by the compiler when compiling our code for different targets! As we shall see below, some processors may have different features such as machine level instructions for vectorised arithmetic which can be implemented by the compiler without changing the C++ code, producing different optimised programs for different hardware from a single, generic C++ code.   
 
 As such, to get the best out of our C++ code we need to rely to some extent on automated optimisation by the compiler. This does not mean that we should not choose effective algorithms -- the compiler will not simply replace a slow sorting algorithm with a better one! -- but rather compiler optimisation should be used in conjunction with our own best practices for writing efficient software. 
+
+> *_What is considered an "equivalent program" is beyond the scope of this course, and falls under the field of programming language semantics (the study of the meaning of programs). For now you can take equivalence to mean that the results of two computations are the same whenever they provided with the same external inputs. Things like the CPU clock, and therefore timing information, would qualify as external inputs, and so changing the timing results of a computation doesn't change the meaning of the program._
 
 ## Optimisation Trade Offs
 
@@ -24,6 +26,113 @@ Code with optimisations applied will generally run faster, but there are a numbe
     - Optimised compilation involves making complex transformations to your code, and depending on the nature and size of your code and the optimisations applicable, this may take a long time. 
 4. Standards Compliance.
     - Some optimisations are not compliant with floating point standards; in particular they may affect floating point computations by rearranging numerical expressions ("free re-associations"). Using these can jeopardise the accuracy of your programs. 
+
+## Constant Expressions and Compile-Time Evaluation
+
+We can tell the compiler to do some computations at compile-time instead of during run-time. Consider some simple code like this:
+
+```cpp
+int x = 5;
+int y = x*x + 12;
+int z = factorial(5);
+```
+
+The variables $y$ and $z$ are the result of simple, deterministic expressions that depend only on information that we have at compile time. An equivalent program could look like this:
+
+```cpp
+int x = 5;
+int y = 37;
+int z = 120;
+```
+
+This program clearly doesn't need to do any work at run-time in order to assign values to `y` and `z`, but we have lost the expressiveness of our original version (which makes the relationships between `x`, `y`, and `z` clear), and we would have to update `y` and `z` manually if we changed the initialisation of `x`. 
+
+**Constant expressions** provide us with a way of ensuring that we can write expressive code like the first example _and_ forcing the compiler to evaluate the expressions and replace them with their results at compile time. This is in particular useful for more complex functions that could be time-consuming and runtime and are less likely to be automatically optimised by the compiler. 
+
+### Constant Expression Syntax
+
+A variable or a function can be declared as a constant expression using `constexpr`. For example:
+
+```cpp
+constexpr int add(int a, int b)
+{
+    int c = a + b;
+    return c;
+}
+
+int main()
+{
+    constexpr int x = 5;                  
+    constexpr int y = add(x, 18);
+
+    return 0;
+}
+```
+
+The initialization of `x` is essentially equivalent to `const x = 5` in this case. There is an additional restriction on `constexpr` compared to `const` however, which is that the initialisation of a `const` variable can happen at runtime, and depend on the run-time state, whereas the initialisation of a `constexpr` variable must be able to be performed at compile time.  
+
+The use of `constexpr` for the function `add` enforces that this function can be evaluated on compile time and will not rely on any runtime information. This means that the variable assignment for `y` does not require runtime calculation, but the compiler will simplify `add(x, 18)` to `23` and simply assign the value to `y` without ever calling the function when the program is run.
+
+### Limitations of Constant Expressions
+
+Not all computations can be done at compile-time, and therefore there are a number of conditions that constant expressions must fulfil. The [complete list of conditions](https://en.cppreference.com/w/cpp/language/constexpr.html) is quite involved, but here are some key points to remember:
+
+- A `constexpr` function cannot contain `try` statements, since handling exceptions would require run-time state. 
+    - You can _write_ a `throw` statement in a `constexpr` function but if the `throw` statement is reached during the compile time evaluation you will get a compiler error. This is useful because it will warn you if there is an error case in a compile-time evaluation, and because you can also call `constexpr` functions at run-time as well which can then handle the exception. 
+- A `constexpr` function cannot include uninitialised variables (e.g. `int z;`).
+- A `constexpr` function cannot declare `static` variables, since they require maintaining a state between function calls. 
+- A `constexpr` function cannot call a non-`constexpr` function. This includes things like dynamic memory allocation with `new`. However since a `constexpr` function can call other `constexpr` functions, you can also write a _recursive_ `constexpr` function!
+- A `constexpr` function cannot declare a _non-literal_ type variable. [Literal types](https://en.cppreference.com/w/cpp/language/constant_expression.html#Literal_type) need to fulfil a variety of conditions, in essence they are simple types that can be worked with at compile time, so they must be able to be constructed using a `constexpr`, have trivial destructors (no custom destructor logic needs to be called), and not contain member variables of non-literal types. An example of a non-literal type is `std::vector` since it has non-trivial destruction logic (heap memory deallocation), but `std::array` _is_ a literal type since its size is known at compile time and so it can be stack-allocated and doesn't require any specialised destruction logic.
+- A `constexpr` variable must be a literal type, and must be initialised by a constant expression e.g. a call to a `constexpr` function with argument _known at compile time_ (e.g. an explicit number like `2.4` or a `const`/`constexpr` variable known at compile-time).
+
+If your function is a _pure function_ that doesn't involve exception handling, dynamic memory allocation/deallocation, or calls to non-`constexpr` functions, then you can probably turn it into a `constexpr` function. 
+
+**N.B. We are using C++17 on this course. The conditions for acceptable constant expressions vary across different C++ standards, so if you use a newer or older standard you may find some differences in what you are able to write and compile.**
+
+### Revisiting the Factorial Example
+
+Consider the following `constexpr` definition of `factorial`, where we have omitted `#include` statements and `std::` namespacing for brevity.
+
+```cpp
+constexpr int factorial(int x)
+{
+    if(x < 0)
+    {
+        throw domain_error("Value " + to_string(x) + " is not within the domain of factorial (x >= 0).");
+    }
+    else if(x == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return x*factorial(x-1);
+    }
+}
+```
+Notice that we are able to make use of branching logic with separate `return` statements and recursion in this definition.
+
+Now consider the following statements that could appear in main, and whether or not they will compile:
+
+```cpp
+int main()
+{
+    const int x = 5;                  
+    int y = 3;
+
+    constexpr int z = factorial(x);   // Compiles okay: x is const
+    constexpr int r = factorial(y);   // Doesn't compile: y is not const
+    constexpr int p = factorial(-3);  // Doesn't compile: throw is reached
+    int q = factorial(-3);            // Compiles okay: throws an exception at runtime
+
+    return 0;
+}
+```
+Notice that we can only initialise a `constexpr int` variable with a call to `factorial` if the **argument is `const` and the function evaluation does not `throw`**. If we initialise a non-`const` variable using `factorial` then it will be treated as a runtime expression and so these conditions don't apply. 
+
+### Other Uses of Constant Expressions
+
+Constant expressions are not just useful for run-time optimisation; they also allow use to write more expressive code anywhere where we need to know information at compile time, such as constant template arguments (e.g. the length of an `std::array`) and static memory allocation (e.g. `int x[...];`).
 
 ## Compiler Optimisation Flags
 

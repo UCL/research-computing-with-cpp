@@ -95,6 +95,43 @@ vector<T> everyOther(vector<T> &v_in)
 - The exact details of the type `T` don't matter in this case, since we never access the data of type `T` anyway. The only restriction on `T` is that it can be added to a vector.
 - A function can be generated for every kind of vector in this way. 
 
+### Using `auto` with Function Templates
+
+The keyword `auto` can be very useful in function templates. It can be used for variable declarations as well as the output type of a function template where the types will not be known until template substitution takes place. This is particularly useful when you are functions that template over callable objects. A trivial example would be:
+
+```cpp
+template<typename F, typename In>
+auto apply(F f, In x)
+{
+    auto y = f(x);
+    return y;
+}
+```
+
+Here the template parameter `F` can stand in for something callable: a function, `std::function`, lambda-expression, or callable object. From this code we cannot immediately tell what type the result of applying the function to `x` will be, and therefore what the return type of this function is. Using `auto` allows us to write code like this while leaving it to the compiler to infer this type as well as it is able. 
+
+
+In principle we could try to explicitly template over this additional unknown type, as in the code example below. 
+
+```cpp
+template<typename F, typename In, typename Out>
+Out apply2(F f, In x)
+{
+    Out y = f(x);
+    return y;
+}
+```
+
+In this case the compiler will fail to infer the type of `Out`. The reason for this is that the compiler needs to be able to deduce all the template parameters _at the call site_. Now that we've introduced an additional parameter `Out`, we would be calling a function like this:
+
+```cpp
+int z = apply2(f, x);
+```
+
+which would allow the compiler to deduce the types `F` and `In`, but gives no information about `Out` since it does not appear in the arguments. In order to make this version work, we need would need to supply the template parameter explicitly using `<>`. 
+
+By contrast, when we use `auto` the compiler can determine at the call site the types of `F` and `In` from the arguments supplied, and can then immediately find or generate the appropriate `apply` function. The type of `y` and the output of the function are then determined with full information about the function rather than just with the limited information at the call site. 
+
 ## Using Templates with Overloaded Functions 
 
 One very useful way to make use of templates is to exploit operator / function overloading. Operators or functions which are "overloaded" can operate on multiple types, for example:
