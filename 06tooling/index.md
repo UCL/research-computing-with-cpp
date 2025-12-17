@@ -10,7 +10,7 @@ You should look over and install the following tools, and familiarise yourself a
 
 ## Why use Libraries?
 
-> The best code is the code you never write
+Many programming tasks are shared between a wide variety of projects, especially within particular communities and fields. Reusing code that has already been written not only saves precious time, but also allows us to use code that has been widely and thoroughly tested. A large community of people using a library can also help to ensure that bugs in that library are spotted and reported. 
 
 ### What are libraries?
 
@@ -20,25 +20,21 @@ You should look over and install the following tools, and familiarise yourself a
 
 ### Libraries from a scientific coding perspective
 
-Libraries help us do science faster
+Some things that scientists in research generally ought not to build themselves:
 
-- Write less code (probably)
-- Write better tested code (probably)
-- Write faster code (possibly)
-
-Particular things we scientists don't ever want to build ourselves:
-
-- standard data structures (e.g. arrays, trees, linked lists, etc)
-- file input/output (both for config files and output files)
-- standard numerical algorithms (e.g. sorting, linear solve, FFT, etc)
-- data analysis and plotting
+- standard data structures (most of these are actually provided for us in the C++ standard library),
+- file input/output for standard file formats,
+- common but non-trivial numerical algorithms (e.g. sorting, linear solvers, FFT, etc),
+- graphical outputs like plots, gui and so on.
 
 Sometimes we have to build things ourselves, when:
 
-- a library isn't fast enough
-- we don't trust a library's results/methods
-- a library doesn't provide the needed functionality
-- we can't use a library due to licensing issues
+- a library isn't fast enough,
+- we don't trust a library's results/methods,
+- a library doesn't provide the needed functionality,
+- we can't use a library due to licensing issues,
+
+It's also worth bearing in mind that having multiple implementations can be important for science. Bugs exist in almost all software and can be very subtle, and numerical inaccuracies can be even subtler. If everyone in a field uses the same library for some key scientific calculation then problems with that library may be very difficult to spot: having multiple libraries in a scientific community can be useful as independent checks of one anothers results. 
 
 1. [Choosing Libraries](sec01ChoosingLibraries.html)
 2. [Library Basics](sec02LibraryBasics.html)
