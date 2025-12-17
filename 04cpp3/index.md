@@ -16,3 +16,7 @@ This week we will look at, compare, and contrast two approaches to polymorphism 
     - Class templates
     - Operator & function overloading
     - Compiling templated code
+* [Variadic Templates](./sec04VariadicTemplates.md)
+    - Variadic templates and functions
+    - Fold expressions
+    - Recursive variadic functions
