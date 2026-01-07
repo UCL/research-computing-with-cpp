@@ -1,5 +1,5 @@
 ---
-title: Computational Complexity
+title: Data Structures
 ---
 
 # Common Data-Structures
