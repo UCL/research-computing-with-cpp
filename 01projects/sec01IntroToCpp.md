@@ -70,7 +70,7 @@ Here's a little snippet of C++:
 ```cpp
 #include <iostream>
 
-using namespace std;
+using std::cout;
 
 int main() 
 {
@@ -118,10 +118,16 @@ We'll go into what *exactly* this line is doing later but all you need to know a
 The next line is a *using statement*:
 
 ```cpp
+using std::cout;
+```
+
+Classes (types of object) and functions from the standard library are prefaced with `std::`. This is called a _namespace_; it's used to avoid name clashes in large programs, and the standard library especially has a large amount in it with common names like `vector`, `map`, and `array` that could easily be used in other ways by other libraries or parts of your program! If you want to avoid writing `std::` all the time, you can use the `using` to make the class or function available without namespacing. You can also import an entire namespace, for example:
+
+```cpp
 using namespace std;
 ```
 
-Again, we'll explore what this whole line actually does later but the short version is it allows us to access functions and classes inside the standard library without typing `std::` everywhere. I recommend you use it but **only in .cpp files**.
+This can avoid writing lists of `using` statements but runs the risk of name clashes. It's not usually good practice to import the entire `std` namespace because the potential for clashes is high, although it can be fine for small programs. 
 
 There's also an interesting bit of punctuation here; you have probably noticed the line ends in a semicolon `;`. C++, and many other languages, require this because the language doesn't care about (most) *whitespace*. Technically we can write our whole program all on one line, ignoring all indentation and newlines:
 
