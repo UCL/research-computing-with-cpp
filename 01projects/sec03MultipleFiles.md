@@ -217,3 +217,6 @@ If your include file is in a different folder, your need to tell the compiler wh
 g++ -o test_f main.cpp function.cpp -Iinclude_folder/
 ```
 
+### A note on `using` statements
+
+You should generally restrict your use of `using` statements to source (.cpp) files rather than header files. The reason for this is that the `using` statement will be imported along with the rest of your header, so any source file that includes your header will end up using that namespacing, and this can significantly increase the risk of clashes when you don't know where that header end up being imported!
