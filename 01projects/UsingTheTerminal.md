@@ -16,6 +16,7 @@ You will need to use the terminal on your machine every week for cloning code re
 - `mv <source> <destination>`: The same as `cp` but it _moves_ the file instead of copying it. 
 - `rm <file>`: Remove (i.e. delete) a file.
 - `rm -rf <directory>`: Remove an entire directory.
+- `code <directory>`: Open a folder with VSCode. Use `code .` to open the current directory in VSCode. 
 
 ## Git 
 
