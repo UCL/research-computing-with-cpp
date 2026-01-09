@@ -31,6 +31,8 @@ You will need to use the terminal on your machine every week for cloning code re
 
 ## Compiling and Running Programs
 
+These commands are a quick reference for a number of tools that will be introduced over this course. They will be discussed more fully in their respective sections, so do not worry if you do not know what these are and do not expect to be able to use these right away. However, you may find it helpful to come back here to quickly look up useful commands. 
+
 - `g++ -o <output> -std=c++17 -I<include_directory> <sources>`: Compile a C++ program using the C++17 standard using `g++`. Use `-g` as well when you want to compile with debug symbols. 
 - `cmake -B <build_folder>`: Create a build folder and initialise cmake therein.
 - `cmake --build <build_folder>`: Build a CMake project in the build folder.
