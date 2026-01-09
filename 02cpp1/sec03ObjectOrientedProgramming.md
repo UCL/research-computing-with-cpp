@@ -210,6 +210,8 @@ class Ball
 };
 ```
 
+- The syntax `: position(p), radius(r), mass(m)` after the constructor signature is called an initialiser list. This can be used to initialise member variable with simple expressions. It's very useful when just assigning constructor arguments to member variables.
+
 Now we can even make our code **more flexible without sacrificing safety**. Let's say the ball can change _mass_ or _radius_. We can't just make these variables public and change them independently, because then the _density_ will no longer be consistent with the new mass / radius. We need to add **setter** functions which **maintain the integrity of the object**:
 ```cpp
 class Ball
