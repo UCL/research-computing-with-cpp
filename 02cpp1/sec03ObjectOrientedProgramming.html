@@ -1,0 +1,672 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Object Oriented Programming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 60 minutes</p>
+
+<h1 id="custom-types-and-object-oriented-programming-oop-in-c">Custom Types and Object Oriented Programming (OOP) in C++</h1>
+
+<p>As a programming language, C++ supports multiple styles of programming, but it is generally known for <em>object oriented programming</em>, often abbreviated as <em>OOP</em>. This is handled in C++, as in many languages, through the use of classes: special datastructures which have both member data (variables that each object of that class contains and which are usually different for each object) and member functions, which are functions which can be called through an object and which have access to both the arguments passed to it <em>and</em> the member variables of that object.</p>
+
+<p>We have already been making extensive use of classes when working with C++. Indeed, it is difficult not to! The addition of classes was the main paradigm shift between C, a procedural programming language with no native support for OOP, and C++.</p>
+
+<h2 id="classes">Classes</h2>
+
+<p>Classes can be used to define our own data-structures, which have their own type. We can then declare objects of this type in our program. Apart from a handful of built in types (like <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, and <code class="language-plaintext highlighter-rouge">bool</code>), variables that we declare in C++ are instances of a class. A number of objects that we’ve used so far are classes defined in the standard library, like <code class="language-plaintext highlighter-rouge">vector</code> and <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>Classes achieve two goals in representing concepts in programming:</p>
+
+<ul>
+  <li><em>Abstraction</em>
+    <ul>
+      <li>Represents the essential elements of a <em>kind</em> of object, as distinct from other kinds of objects. What are the defining properties of a type of object?</li>
+      <li>Class defines the blueprint for every object of that kind: what information it contains and what it should be able to do.</li>
+      <li>Objects are individual instances of a class.</li>
+      <li><em>“An abstraction denotes the essential characteristics of an object that distinguish it from all other kinds of objects and thus provide crisply defined conceptual boundaries, relative to the perspective of the viewer.”</em> - Grady Booch</li>
+    </ul>
+  </li>
+  <li><em>Encapsulation</em>
+    <ul>
+      <li>Methods and data that belong together and kept together.</li>
+      <li>Provide public interface to class: how other things should be able to interact with it.</li>
+      <li>Protects and hides data to which other things should not have access.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="access-specifiers-in-classes">Access Specifiers in Classes</h2>
+
+<p>When writing a class we can declare a member function or variable using one of three access specifiers:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">private</code>: access is private by default. The variable or function is available only within the body of this class.</li>
+  <li><code class="language-plaintext highlighter-rouge">protected</code>: The variable or function can be accessed within the body of this class, or within the body of any class which inherits from this class.</li>
+  <li><code class="language-plaintext highlighter-rouge">public</code>: The variable or function can accessed inside and outside of the definition of the class, by anything which can access the object.</li>
+</ul>
+
+<p>The access specifiers, <code class="language-plaintext highlighter-rouge">private</code>, <code class="language-plaintext highlighter-rouge">protected</code>, and <code class="language-plaintext highlighter-rouge">static</code>, are keywords which are used within class definitions followed by a colon (<code class="language-plaintext highlighter-rouge">:</code>) to specify access for all following members until the end of the class or another access specifier is reached. For example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">myClass</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span><span class="p">;</span>
+
+    <span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+
+    <span class="nl">protected:</span> 
+    <span class="kt">double</span> <span class="n">z</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> are both public</li>
+  <li><code class="language-plaintext highlighter-rouge">name</code> is private</li>
+  <li><code class="language-plaintext highlighter-rouge">z</code> is protected</li>
+</ul>
+
+<p>If you are writing classes in C++, especially classes that will be used by other people, it’s a good idea to only give people access to as much as they need and no more than that. In general:</p>
+
+<ul>
+  <li>Make functions and variables <code class="language-plaintext highlighter-rouge">private</code> if you can.</li>
+  <li>You can control access to variables in a finer grained way through <code class="language-plaintext highlighter-rouge">get</code> and <code class="language-plaintext highlighter-rouge">set</code> methods than by making them public. For example you may want variables that can be inspected (write a <code class="language-plaintext highlighter-rouge">get</code> function) but not changed (no <code class="language-plaintext highlighter-rouge">set</code> function) or vice versa.</li>
+  <li>Constructors and destructors should generally be <code class="language-plaintext highlighter-rouge">public</code>.</li>
+</ul>
+
+<h2 id="static-members">Static Members</h2>
+
+<p>Static member variables or functions are special members of a class. They belong to the class as a whole, and do not have individual values or implementations for each instance. This can be useful when keeping track of properties that are changeable and may affect the class as a whole, or for keeping track of information about a class. For example, one can use a static variable to count the number of instances of a class which exist using the following:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">countedClass</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+
+    <span class="n">countedClass</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">~</span><span class="n">countedClass</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">countedClass</span><span class="o">::</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">countedClass</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">countedClass</span><span class="o">::</span><span class="n">count</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">countedClass</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c2</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<ul>
+  <li>The count is incremented in the constructor (<code class="language-plaintext highlighter-rouge">countedClass()</code>), and so increased every time an instance of this type is created.</li>
+  <li>The count is decremented in the destructor (<code class="language-plaintext highlighter-rouge">~countedClass()</code>), and so decreased every time an instance of this type is destroyed.</li>
+  <li><code class="language-plaintext highlighter-rouge">count</code> is a static variable, so belongs to the class as a whole. There is one variable <code class="language-plaintext highlighter-rouge">count</code> for the whole class, regardless of how many instances there are. The class still accesses it as a normal member variable.</li>
+  <li><code class="language-plaintext highlighter-rouge">count</code> also needs to be declared outside of the class definition. (This is where you should initialise the value.)</li>
+  <li>A static variable can be accessed in two different ways: through the object (<code class="language-plaintext highlighter-rouge">c1.count</code>), or through the class namespace (<code class="language-plaintext highlighter-rouge">countedClass::count</code>) without reference ot any object. Public static variables for a class can therefore be accessed by anything which has access to the class definition, regardless of whethere there are any objects of that class.</li>
+</ul>
+
+<h2 id="improving-this-class-with-access-specifiers">Improving this class with Access Specifiers</h2>
+
+<ul>
+  <li>A variable like <code class="language-plaintext highlighter-rouge">count</code> shouldn’t be able to be changed outside of the class, as that could interfere with our counting! But we do want to be able to access the <em>value</em> of the count, so we can tell how many there are.</li>
+  <li>We should make <code class="language-plaintext highlighter-rouge">count</code> <em>private</em> and make a function to retrieve the value <em>public</em></li>
+  <li>Such functions are often called “getters”, because they are frequently named <code class="language-plaintext highlighter-rouge">get...()</code> for some variable</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">countedClass</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+
+    <span class="n">countedClass</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">~</span><span class="n">countedClass</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">getCount</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">countedClass</span><span class="o">::</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">countedClass</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">countedClass</span><span class="o">::</span><span class="n">getCount</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">countedClass</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c2</span><span class="p">.</span><span class="n">getCount</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">getCount()</code> is <code class="language-plaintext highlighter-rouge">public</code> and <code class="language-plaintext highlighter-rouge">static</code> and so can be accessed just like we accessed <code class="language-plaintext highlighter-rouge">count</code> before (through an object or through the class definition).</li>
+  <li><code class="language-plaintext highlighter-rouge">getCount()</code> returns an integer <em>by value</em>, so it returns a copy of <code class="language-plaintext highlighter-rouge">count</code>. We can’t modify <code class="language-plaintext highlighter-rouge">count</code> through this function or the value we get back from it.</li>
+  <li><code class="language-plaintext highlighter-rouge">count</code> is now private, so if we try to access this directly from outside the class the compiler will raise an error.</li>
+</ul>
+
+<h2 id="class-invariants-and-using-oop-for-data-integrity">Class Invariants and Using OOP for Data Integrity</h2>
+
+<p>An extremely useful aspect of defining a new type via a class is the ability to provide guarantees that any object of that type satisfies certain properties; such properties are often referred to as class <em>invariants</em>. These properties allow programmers to write programs that are more efficient and correct with less overhead for error checking.</p>
+
+<p>Let’s explore this with some examples.</p>
+
+<h3 id="ensuring-objects-are-self-consistent">Ensuring Objects Are Self-Consistent</h3>
+
+<p>Let’s suppose we have a physical simulation, which involves a ball suspended in some fluid. A ball will probably have the following fields:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ball</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">mass</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>These fields define the sphere well, but physically the behaviour of the sphere in the fluid will depend on its <em>density</em>. So perhaps we want to write a member function <code class="language-plaintext highlighter-rouge">double density(double radius, double mass)</code> which calculates the density of the sphere. But this would mean we need to call the density function and re-calculate it when we want to use it, which isn’t ideal. So instead, we can add density to our list of fields,</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ball</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">mass</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">density</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>and then we can call the density directly without another calculation. The problem that we now have is that in order for our data to be self-consistent, <strong>a relationship between the radius, mass, and density must be satisfied</strong>. This kind of relationship is called an <strong>invariant</strong>: a property that must be maintained by all instances of a class. Invariants are very important for writing safe programs, and for being able to reason about the behaviour of programs.</p>
+
+<p>We could approach this problem by calculating the density in the constructor, and making the radius, mass, and density <strong>private</strong>. This means that external code can’t change any of these values, and therefore they can’t become inconsistent with one another. But we still need to be able to <em>read</em> these variables for our physics simulation, so we’ll need to write <strong>getter</strong> functions for them:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ball</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Ball</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">m</span><span class="p">)</span><span class="o">:</span> <span class="n">position</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">mass</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">setDensity</span><span class="p">();</span>
+    <span class="p">}</span>
+    
+    <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">getRadius</span><span class="p">(){</span><span class="k">return</span> <span class="n">radius</span><span class="p">;}</span>
+    <span class="kt">double</span> <span class="n">getMass</span><span class="p">(){</span><span class="k">return</span> <span class="n">mass</span><span class="p">;}</span>
+    <span class="kt">double</span> <span class="n">getDensity</span><span class="p">(){</span><span class="k">return</span> <span class="n">density</span><span class="p">;}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">void</span> <span class="n">setDensity</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">density</span> <span class="o">=</span>  <span class="mi">3</span> <span class="o">*</span> <span class="n">mass</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">mass</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">density</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The syntax <code class="language-plaintext highlighter-rouge">: position(p), radius(r), mass(m)</code> after the constructor signature is called an initialiser list. This can be used to initialise member variable with simple expressions. It’s very useful when just assigning constructor arguments to member variables.</li>
+</ul>
+
+<p>Now we can even make our code <strong>more flexible without sacrificing safety</strong>. Let’s say the ball can change <em>mass</em> or <em>radius</em>. We can’t just make these variables public and change them independently, because then the <em>density</em> will no longer be consistent with the new mass / radius. We need to add <strong>setter</strong> functions which <strong>maintain the integrity of the object</strong>:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ball</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Ball</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">m</span><span class="p">)</span><span class="o">:</span> <span class="n">position</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">mass</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">setDensity</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">getRadius</span><span class="p">(){</span><span class="k">return</span> <span class="n">radius</span><span class="p">;}</span>
+    <span class="kt">double</span> <span class="n">getMass</span><span class="p">(){</span><span class="k">return</span> <span class="n">mass</span><span class="p">;}</span>
+    <span class="kt">double</span> <span class="n">getDensity</span><span class="p">(){</span><span class="k">return</span> <span class="n">density</span><span class="p">;}</span>
+
+    <span class="kt">double</span> <span class="n">setRadius</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+        <span class="n">setDensity</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">setMass</span><span class="p">(</span><span class="kt">double</span> <span class="n">m</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mass</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+        <span class="n">setDensity</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">void</span> <span class="n">setDensity</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">density</span> <span class="o">=</span>  <span class="mi">3</span> <span class="o">*</span> <span class="n">mass</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">mass</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">density</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p>We now have a ball class that can be instantiated with any mass and radius, and can have its mass or radius changed, but <strong>always satisfies the property that the density field is correct for the given radius and mass of the object</strong>. Being able to guarantee properties of objects of a given type makes the type system far more powerful and gives users the opportunity to use objects in more efficient ways without having to check for conditions that are already guaranteed by the object’s design.</p>
+
+<h3 id="maintaining-desirable-properties">Maintaining Desirable Properties</h3>
+
+<p>Consider another example where we have a catalogue for a library. To keep things simple, we’ll say that we just store the title of each book. Very simply, we could define this as a vector:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">catalogue</span><span class="p">;</span>
+</code></pre></div></div>
+<p>and every time we want to add a new title we can simply stick it on the end of the list:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">catalogue</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"Of Mice and Men"</span><span class="p">);</span>
+</code></pre></div></div>
+<p>Adding books to our catalogue is certainly very simple! But what happens when we want to <em>look up</em> a book, to see if it’s in the catalogue?</p>
+
+<p>In an unordered list, the only thing we can do is go through the entire list one by one until we find it or reach the end of the list. The amount of time that we take searching will be proportional to the length of our catalogue, which isn’t great performance.</p>
+
+<p>This is particularly bad because we’d expect people to look up books far more often than we add new ones! How can we do better?</p>
+
+<p>If our list were <em>sorted</em>, then we can search much more quickly using a <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>. A binary search on a sorted list starts by looking at the element in the middle of the list and checks if the item we’re looking for should come before or after that. We then only need to search the half of the list that would contain the book we’re looking for. We then apply the same thing again to narrow the list down by half again, and so on. At every step we half the size of the list and therefore the number of titles we have to check is proportional to <em>the logarithm of the size of the list</em>. This is much, much better performance, especially if the size of the list is large. A binary search with 21 comparisons could search a list of over a million books!</p>
+
+<p>Of course, we don’t want to sort our data before searching it every time (that would be even more wasteful than our linear search), and we want to know with certainty that our list is always sorted, otherwise our binary search could fail. Using an object is a solution: we can define a wrapper class which keeps the list private, and provides an insertion method which guarantees that new entries are inserted into their proper place. Then <strong>we can take advantage of speedier lookup because we know that our catalogue is always in sorted order</strong>. In this case our <em>invariant</em> is the property of being sorted, or put more explicitly $i &lt; j \implies x_i \le x_j$. (Incidentally, this would normally be done with a <em>balanced binary search tree</em>, an example of which is the C++ <code class="language-plaintext highlighter-rouge">map</code> type.)</p>
+
+<h3 id="reasoning-about-class-invariants">Reasoning About Class Invariants</h3>
+
+<p>From these examples we can see an important pattern arise: an object will maintain the desired property if it is constructed in a state which has that property, and if all permissible operations on the object maintain that property. This is a form of <em>inductive reasoning</em>, where the initial construction of the object serves as a base case, and all other possible states of the object are found by the operations on that object (calling member functions or manipulating public data). To design a class where any object of that class maintain a property $P$ then you should:</p>
+
+<ul>
+  <li>Write you constructor so that $P$ is guaranteed for any constructed object. Be wary of uninitialised variable within your class.</li>
+  <li>Make any variables <code class="language-plaintext highlighter-rouge">private</code> if a modification of that variable can alter the property $P$. For example, to maintain a list as being sorted we made the underlying <code class="language-plaintext highlighter-rouge">vector</code> private because any modification of the data in the array could violate the sorting property. To protect our <code class="language-plaintext highlighter-rouge">Ball</code> class we made the <code class="language-plaintext highlighter-rouge">mass</code>, <code class="language-plaintext highlighter-rouge">radius</code>, and <code class="language-plaintext highlighter-rouge">density</code> private since modifying any one of these could violate the physical relationship between these parameters.</li>
+  <li>Make sure that getters don’t return private member variables by reference or through pointers unless there are appropriate <code class="language-plaintext highlighter-rouge">const</code> protections on the data, as this would otherwise allow unguarded modifications to the state.</li>
+  <li>Ensure that any functions that modify the state of the class do not violate the property. In the case of our sorted list, this means that the insertion must update the list in a way that it remains sorted. Be sure to check any setters, as with the <code class="language-plaintext highlighter-rouge">Ball</code> class: modifying any one of the properties of the ball has consequences for the others. It’s a good idea to mark any functions that should not modify the state as <code class="language-plaintext highlighter-rouge">const</code> so that the compiler can spot any potential risks (see below).</li>
+</ul>
+
+<h3 id="protecting-state-with-const-members">Protecting State with <code class="language-plaintext highlighter-rouge">const</code> Members</h3>
+
+<p>A member function that is declared <code class="language-plaintext highlighter-rouge">const</code> cannot modify the state of any member variables in that object. This is a very useful guarantee when reasoning about objects of a given class, and the compiler can help us enforce this.</p>
+
+<p>Consider the getter functions from our <code class="language-plaintext highlighter-rouge">Ball</code> class, or if we wanted to add a function to print the ball’s state. Functions like these should never change the state of the ball itself, so we can mark them as const. We can see an example of this in the following code (the rest of the class definition is omitted for brevity).</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ball</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">double</span> <span class="n">getRadius</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">radius</span><span class="p">;}</span>
+    <span class="kt">double</span> <span class="n">getMass</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">mass</span><span class="p">;}</span>
+    <span class="kt">double</span> <span class="n">getDensity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">density</span><span class="p">;}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">const</code> keyword comes after the function name and arguments but before the code block.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">const</code> member function cannot call any other member functions which are not <code class="language-plaintext highlighter-rouge">const</code>.</li>
+</ul>
+
+<h2 id="aside-organising-class-code-in-headers-and-source-files">Aside: Organising Class Code in Headers and Source Files</h2>
+
+<p>As we saw last week, C++ code benefits from a separation of function declarations (in header files) and implementations (in source files) when these functions need to be included in other files. A similar principle applies to classes.</p>
+
+<p>In the header file, we should declare the class as well as:</p>
+<ol>
+  <li>What all of its member variables are</li>
+  <li>Function declarations for all of its member functions</li>
+  <li>Can also include full definitions for trivial functions such as getter/setter functions if marked <code class="language-plaintext highlighter-rouge">inline</code>. This can help the compiler optimise these function calls.</li>
+  <li>If a member is marked <code class="language-plaintext highlighter-rouge">const</code> the keyword needs to appear in both the declaration (header file) and implementation (source file).</li>
+</ol>
+
+<p>For example:
+<strong>In <code class="language-plaintext highlighter-rouge">ball.h</code>:</strong></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ball</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Ball</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">m</span><span class="p">);</span>
+    
+    <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">;</span>
+    <span class="kr">inline</span> <span class="kt">double</span> <span class="n">getRadius</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">radius</span><span class="p">;}</span>
+    <span class="kr">inline</span> <span class="kt">double</span> <span class="n">getMass</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">mass</span><span class="p">;}</span>
+    <span class="kr">inline</span> <span class="kt">double</span> <span class="n">getDensity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">density</span><span class="p">;}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">void</span> <span class="n">setDensity</span><span class="p">();</span>
+
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">mass</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">density</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p><strong>In <code class="language-plaintext highlighter-rouge">ball.cpp</code>:</strong></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// constructor definition</span>
+<span class="c1">// Ball:: tells us that the function Ball(...) is part of the Ball class</span>
+<span class="n">Ball</span><span class="o">::</span><span class="n">Ball</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">m</span><span class="p">)</span><span class="o">:</span> <span class="n">position</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">mass</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">setDensity</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Again, Ball:: tells us that this function is part of the Ball class definition</span>
+<span class="c1">// Because this is a member function, it has access to all the data members of this class.</span>
+<span class="kt">void</span> <span class="n">Ball</span><span class="o">::</span><span class="n">setDensity</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">density</span> <span class="o">=</span>  <span class="mi">3</span> <span class="o">*</span> <span class="n">mass</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We must include declarations for all member functions and variables in the class because any code which makes use of the class needs to know the full interface. It’s also very important for C++ compilers to know what data a class needs to hold in order to know how much memory to reserve when constructing it. Because object files can be compiled separately, the information about data members must be in the header.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

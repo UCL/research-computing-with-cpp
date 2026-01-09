@@ -1,0 +1,71 @@
+/* 
+* Pattern name: Pull quote
+* Use: Stylised blockquote with increased spacing and speech marks
+* Note: Modifiers allow for floating left/right within the grid
+-------------------------------------------------------------- */
+
+.pull-quote {
+	margin-top: 0;
+	margin-bottom: 2em;
+}
+
+.pull-quote__wrap {
+	line-height: 1.5em;
+	font-size: 20px;
+	font-family: $font-serif;
+	font-style: italic;
+	color: rgba($black, 0.7);
+}
+
+.pull-quote__meta {
+	border-top: 1px dotted;
+	padding-top: 1em;
+	border-color: rgba($black, 0.2);
+	float: left;
+	margin-top: 1em;
+	width: 100%;
+	@include rem(font-size, $font-size-xs);
+}
+
+.pull-quote--left, .pull-quote--right {
+	@include gs-media(m, max) {
+		@include gs-span(m, all);
+	}
+}
+
+.pull-quote--left {
+	@include gs-span(dc, 1, 2);
+	@include gs-float(dc, left);
+}
+
+.pull-quote--right {
+	@include gs-span(dc, 3, 4);
+	@include gs-float(dc, right);
+}
+
+.pull-quote__start, .pull-quote__end {
+	color: #c2c2ba;
+	font-size: 400%;
+	font-style: normal;
+	line-height: 0;
+	top: 37.5px;
+	position: relative;
+	@include respond-max($screen-md) {
+		font-size: 350%;
+		top: 25px;
+	}
+}
+
+.pull-quote__start {
+	padding-right: 10px;
+	@include respond-max($screen-md) {
+		padding-right: 5px;
+	}
+}
+
+.pull-quote__end {
+	padding-left: 10px;
+	@include respond-max($screen-md) {
+		padding-left: 5px;
+	}
+}

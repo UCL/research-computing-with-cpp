@@ -1,0 +1,736 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>C++ Standard Library</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 1 hour</p>
+
+<h2 id="c-standard-library">C++ Standard Library</h2>
+
+<p>The C++ standard library is a collection of data-structures and methods which must be provided with any standard-compliant implementation of C++. As a result, using the standard library is portable across different systems and compilers, and does not require downloading and linking additional libraries (which will be a topic we cover in a later week). It does, however, require the use of header files, as we’ll see in a moment.</p>
+
+<p>The C++ language standard is always evolving, with the most recent version of the standard being C++23. Sometimes there may be requirements to work with a specific C++ standard (more often, a minimum standard), and so it can be important to check whether a feature that you want to use is available to you in the version of C++ that you will be using.</p>
+
+<p>In this course the language features that we will make use of will be compatible with C++14 onwards, though we will use C++17 as our standard. This week we will go over some of the most commonly used components of the standard library, but this will only scratch the surface and becoming familiar with the breadth of the library takes time and practice.</p>
+
+<h2 id="input--output">Input / Output</h2>
+
+<p>Input and output (often abbreviated to IO or I/O) to the terminal or to a file is important for interacting with users and retrieving the results of programs. It can also be useful for some debugging purposes, although you should use a debugger where you can (more on that later in this course). The standard library has some useful headers for this; we’ll make heavy use of <code class="language-plaintext highlighter-rouge">&lt;iostream&gt;</code> to write to, or receive input from, the terminal.</p>
+
+<h3 id="output">Output</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>This short program prints <code class="language-plaintext highlighter-rouge">Hello World!</code> to the terminal.</p>
+
+<ul>
+  <li>
+    <p>We use <code class="language-plaintext highlighter-rouge">std::</code> to indicate that a function is part of the <code class="language-plaintext highlighter-rouge">std</code> (standard) namespace, which prevents named functions, classes, and variables in the library from clashing with our own.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">std::cout</code> is a stream: this is an output buffer than can take a variety of types including strings, integers, and floating point numbers, and turns them into output.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">std::endl</code> is a special marker for the line end in the output stream.</p>
+  </li>
+</ul>
+
+<h3 id="input">Input</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>   
+
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"What is your name?"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+   <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello "</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">"!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cin</code> is an input buffer.</li>
+  <li>With <code class="language-plaintext highlighter-rouge">cin</code> the arrows go the other way, because the information passes from the input buffer into the <code class="language-plaintext highlighter-rouge">name</code> variable.</li>
+  <li>There are other kinds of input buffers, like reading from files.</li>
+</ul>
+
+<h2 id="containers">Containers</h2>
+
+<p>Containers are an important part of the C++ standard library; these allow us to keep collections of objects such as lists (<code class="language-plaintext highlighter-rouge">vector</code>, <code class="language-plaintext highlighter-rouge">array</code>), sets (<code class="language-plaintext highlighter-rouge">set</code>), or maps of key-value pairs (<code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">unordered_map</code>), among others. These are some of the most common classes that you will use in C++ programming, so it is a good idea to familiarise yourself with them. We’ll discuss <code class="language-plaintext highlighter-rouge">vector</code> as an example here as it probably the most commonly used, but see the section “Using C++ Documentation” for more information on how to learn about the other kinds of containers.</p>
+
+<p><strong>At minimum, you should be comfortable using <code class="language-plaintext highlighter-rouge">vector</code>, <code class="language-plaintext highlighter-rouge">array</code>, and <code class="language-plaintext highlighter-rouge">map</code>.</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">vector&lt;T&gt;</code> is used to hold list of elements of type <code class="language-plaintext highlighter-rouge">T</code> of dynamic size (where <code class="language-plaintext highlighter-rouge">T</code> is some arbitrary type).
+    <ul>
+      <li>It requires <code class="language-plaintext highlighter-rouge">#include &lt;vector&gt;</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">array&lt;T&gt;</code> is used to hold a list of elements of type <code class="language-plaintext highlighter-rouge">T</code> of fixed size. The size must be determined <strong>at compile time</strong>.
+    <ul>
+      <li>It requires <code class="language-plaintext highlighter-rouge">#include &lt;array&gt;</code></li>
+      <li>Since the size is known at compile time, it can provide a guarantee that array sizes are always compatible with what you expect during runtime. This can be useful for ensuring that lists of data match up in size, or that a vector has the same dimensions as the vector space it is supposed to be in.</li>
+      <li>Arrays can be more efficient than vectors because you don’t need to do manual size checking, and the compiler may be able to make optimisations if the size is known at compile time.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">map&lt;T1, T2&gt;</code> is used to hold key-value pairs with keys of type <code class="language-plaintext highlighter-rouge">T1</code> and values of type <code class="language-plaintext highlighter-rouge">T2</code>. (This is known in some languages as a Dictionary.) Maps are dynamic in size; key-value pairs can be added and removed. You can check if a given key is present in a <code class="language-plaintext highlighter-rouge">map</code>, and you can also iterate over all elements in a map and access both the key and the value.
+    <ul>
+      <li>It requires <code class="language-plaintext highlighter-rouge">#include &lt;map&gt;</code>.</li>
+    </ul>
+  </li>
+  <li>The fact that all three of these types are <em>iterable</em> means that we can apply some of the same programming techniques to all of them, because we can loop over their elements.</li>
+</ul>
+
+<h2 id="vector">Vector</h2>
+
+<p>The vector class is defined in the <code class="language-plaintext highlighter-rouge">&lt;vector&gt;</code> header. It is used when you want to keep an ordered list of elements.</p>
+
+<h3 id="declaring-a-vector">Declaring a Vector:</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fibbonacciList</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We must include <code class="language-plaintext highlighter-rouge">&lt;vector&gt;</code> to use the vector class.</li>
+  <li>When we declare a vector we also must place the type of object that the vector holds in angle brackets. So a vector of integers is declared <code class="language-plaintext highlighter-rouge">std::vector&lt;int&gt;</code>, and a vector of doubles is declared <code class="language-plaintext highlighter-rouge">std::vector&lt;double&gt;</code>.</li>
+  <li>We can declare an empty list using <code class="language-plaintext highlighter-rouge">std::vector&lt;int&gt; myIntList</code>, or we can use the curly-brace notation above to give some initial values.</li>
+</ul>
+
+<h3 id="adding-or-removing-elements">Adding or Removing Elements</h3>
+
+<p>Vectors are dynamically sized, which means we can add or remove elements. Here are some example of adding in and removing particular elements:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>  <span class="c1">// Add an element to the end of our vector </span>
+<span class="n">v</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>    <span class="c1">// Remove last element from vector</span>
+
+<span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">);</span>  <span class="c1">// Insert an element before the last element of the vector</span>
+<span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>     <span class="c1">// Remove the second element of a vector</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">v.end()</code> and <code class="language-plaintext highlighter-rouge">v.begin()</code> return <strong>iterators</strong>, special types which can be used to iterate over containers. The methods <code class="language-plaintext highlighter-rouge">begin()</code> and <code class="language-plaintext highlighter-rouge">end()</code> return iterators to the start and end of a container respectively, and <code class="language-plaintext highlighter-rouge">vector</code> (and several other) iterators can be incremented using regular arithmetic. These can also be used for looping e.g. <code class="language-plaintext highlighter-rouge">for(vector&lt;int&gt;::iterator it = myNums.begin(); it != myNums.end(); it++)</code>. You can use <code class="language-plaintext highlighter-rouge">auto</code> to infer the iterator type in a loop declaration to make it more succinct, e.g. <code class="language-plaintext highlighter-rouge">for(auto it = myNums.begin(); it != myNums.end(); it++)</code>.</li>
+  <li>The memory for a <code class="language-plaintext highlighter-rouge">vector</code> is assigned in a contiguous block. This helps with performance because the vector class can find the memory location of a given element using pointer arithmetic.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">vector</code> doesn’t have a fixed size, but it does have a certain amount of memory allocated to it. If you add enough elements to outgrow this size, it will have to allocate a new block of memory of a larger size, and copy the elements over to this new memory in order to increase the size and still remain contiguous.
+    <ul>
+      <li>The cost of this operation scales linearly with the size of your vector.</li>
+      <li>You cannot necessarily predict when this will happen as the amount of memory allocated to a vector by default will be compiler dependent.</li>
+      <li>If you know how much space you will need for a vector, or can place an appropriate limit on it, then you can use the <code class="language-plaintext highlighter-rouge">.reserve(int)</code> method to reserve space for for a given number of elements, e.g. <code class="language-plaintext highlighter-rouge">v.reserve(20)</code> will allocate enough memory to <code class="language-plaintext highlighter-rouge">v</code> to store 20 elements.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="accessing-elements">Accessing Elements</h3>
+
+<p>We can also access elements of a vector in a couple of different ways.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fibbonacciList</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
+
+    <span class="kt">int</span> <span class="n">element0</span> <span class="o">=</span> <span class="n">fibbonacciList</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">element3</span> <span class="o">=</span> <span class="n">fibbonacciList</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Indexing of vectors (and other array like containers) always starts at 0.</li>
+  <li>We can use the <code class="language-plaintext highlighter-rouge">.at(i)</code> method on a vector to get the value at that position in the vector. If <code class="language-plaintext highlighter-rouge">i</code> is outside of the range of the vector then this method will throw an error, which can be handled by your program. (See next week when we discuss exceptions.)</li>
+  <li>We can also access a vector using square brackets: <code class="language-plaintext highlighter-rouge">myVector[i]</code>. This is substantially faster than using <code class="language-plaintext highlighter-rouge">myVector.at(i)</code>, but does no bounds checking. If <code class="language-plaintext highlighter-rouge">i</code> is outside of the size of vector then the behaviour is <em>undefined</em>: this means the standard does not define what the program should do in this case, and the result will be compiler dependent. <em>Undefined behaviour should always be avoided.</em> Although <code class="language-plaintext highlighter-rouge">[]</code> is the most common way to access a vector, it is important to only do so if you can be sure that you will not go outside of the bounds of the vector.</li>
+  <li>Accessing and modifying vector elements using <code class="language-plaintext highlighter-rouge">[]</code> has high performance which is competitive with traditional C-arrays (particularly with compiler optimisations turned on), which makes <code class="language-plaintext highlighter-rouge">vector</code> an excellent general purpose class for lists.</li>
+  <li>Accessing a vector element allows us to change its value just like an ordinary variable e.g. <code class="language-plaintext highlighter-rouge">myVector[3] = 5</code> sets element <code class="language-plaintext highlighter-rouge">3</code> of <code class="language-plaintext highlighter-rouge">myVector</code> equal to <code class="language-plaintext highlighter-rouge">5</code>.</li>
+</ul>
+
+<h3 id="looping-over-vectors">Looping Over Vectors</h3>
+
+<p>One of the most important operations we perform on vectors (and other containers) is to loop over the elements of a vector. As mentioned above, we can do this using an iterator:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">myVector</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">myVector</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">it</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> 
+    <span class="o">*</span><span class="n">it</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// Adds 5 to the element of the vector</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">it</code> is an iterator which starts at the beginning of the vector and is incremented until it reaches the end of the vector. Iterating this way means that we know we’ll never be out of range for our vector!</li>
+  <li>Here we can use <code class="language-plaintext highlighter-rouge">auto</code> to make code more concise, but the type of an iterator for a vector is <code class="language-plaintext highlighter-rouge">vector&lt;type&gt;::iterator</code> for whatever <code class="language-plaintext highlighter-rouge">type</code> you hold in your vector (e.g. <code class="language-plaintext highlighter-rouge">vector&lt;int&gt;::iterator</code>). Iterators for other containers are defined similarly.</li>
+  <li>In order to get the value held from an iterator you need to use the dereference operator (*) like with a pointer. So we need to use <code class="language-plaintext highlighter-rouge">*it</code> in order to print out or reassign that value.</li>
+</ul>
+
+<p>Iterators can be a little cumbersome to use, but there are luckily are other ways of doing the same thing.</p>
+
+<p>We can use <em>range based loops</em>, since the vector object keeps track of the number of elements within it. We could do this e.g. to print out all the elements of a vector.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fibbonacciList</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">num</span> <span class="o">:</span> <span class="n">fibbonacciList</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Declaring a range based loop we use the syntax: <code class="language-plaintext highlighter-rouge">for(type element : list){ loop code }</code>.</li>
+  <li>Here we have used the <code class="language-plaintext highlighter-rouge">auto</code> keyword to ask C++ to infer the type for us; this can be useful when we want to avoid writing out lots of types explicitly!</li>
+  <li>This will iterate through all the elements of the list, in order. For each loop iteration, <code class="language-plaintext highlighter-rouge">num</code> will be initialised with the data for that element in the list.</li>
+  <li><code class="language-plaintext highlighter-rouge">num</code> is initialised the same way as function arguments, so by default the elements of the list are passed by value i.e. a copy of the element is made and stored that in the variable <code class="language-plaintext highlighter-rouge">num</code>. This means any changes to <code class="language-plaintext highlighter-rouge">num</code> in the loop code are not reflected in the vector itself.
+    <ul>
+      <li><strong>If you want to avoid copy overheads or make changes to your vector, you should make this variable a reference using the <code class="language-plaintext highlighter-rouge">&amp;</code> operator</strong> just like when passing by reference to a function. In this case we would write <code class="language-plaintext highlighter-rouge">for(auto &amp;num : fibbonacciList)</code> and our loop code would receive a reference to each element of the list rather than a copy.</li>
+      <li>Using a reference to avoid copy overheads can leave your container vulnerable to changes from the code inside the loop!</li>
+      <li>You can learn more about these issues and how to navigate them in the notes on passing by value and passing by reference.</li>
+    </ul>
+  </li>
+  <li>Range based loops can be used with other containers which are iterable, like <code class="language-plaintext highlighter-rouge">array</code> and <code class="language-plaintext highlighter-rouge">map</code>.</li>
+</ul>
+
+<p>Traditional <code class="language-plaintext highlighter-rouge">for</code> loops with integral types can also be useful for iterating through vectors when you need to keep track of the index of an element, for example when assigning a vector a value that depends on its index or when working with multiple vectors at once.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// create a vector with size 4</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">c</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">size_t</code> is an unsigned (cannot be negative) integral numerical type which is often used for the sizes of objects.
+    <ul>
+      <li>The max value of <code class="language-plaintext highlighter-rouge">size_t</code> is large enough for the largest objects that can be stored in memory.</li>
+      <li>If you know that you won’t have too many elements you can use other integral types like <code class="language-plaintext highlighter-rouge">int</code> or <code class="language-plaintext highlighter-rouge">uint</code>.</li>
+    </ul>
+  </li>
+  <li>In this case we have to manually make sure that we don’t go out of bounds for our vectors.
+    <ul>
+      <li>You can use things like the size method (<code class="language-plaintext highlighter-rouge">myVector.size()</code>, which returns a <code class="language-plaintext highlighter-rouge">size_t</code>) as the upper bound to prevent going outside of the range of the vector.</li>
+      <li>If you are using multiple vectors you should make sure that they are the same size, or that you don’t exceed the bounds of the smaller vector.</li>
+      <li>It’s usually easier and safer to use range based loops (or iterators) if you don’t need explicit indexing information.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="aside-namespaces-using-and-typedef">Aside: Namespaces, <code class="language-plaintext highlighter-rouge">using</code>, and <code class="language-plaintext highlighter-rouge">typedef</code></h2>
+
+<p>You may have noticed that our code samples so far have had to use <code class="language-plaintext highlighter-rouge">std::</code> very frequently! The <code class="language-plaintext highlighter-rouge">std</code> namespace keeps standard names from clashing with our own function, variable, or class definitions, but can also cumbersome when certain types or functions are used very frequently. In some code you may also find nested namespaces and classes, leading to multiple <code class="language-plaintext highlighter-rouge">::</code> prefixes, which can make code difficult to read. There are two common remedies to this issue.</p>
+
+<h3 id="the-using-keyword">The <code class="language-plaintext highlighter-rouge">using</code> Keyword</h3>
+
+<p>We can make all of a namespace available to use directly by using the following syntax:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Now all the names in <code class="language-plaintext highlighter-rouge">std</code> are available to use without using <code class="language-plaintext highlighter-rouge">std::</code> in front, so we can just type <code class="language-plaintext highlighter-rouge">cout</code>, <code class="language-plaintext highlighter-rouge">endl</code>, <code class="language-plaintext highlighter-rouge">cin</code> etc.</li>
+  <li><strong>This is generally bad</strong> because <code class="language-plaintext highlighter-rouge">std</code> is very big and contains lots of names! The whole point of the namespace is to avoid accidental clashes of names.
+    <ul>
+      <li>It is a particularly bad idea to place such <code class="language-plaintext highlighter-rouge">using</code> statements inside header files, since any files which include this header will also end up using this namespace. Try to limit the scope of <code class="language-plaintext highlighter-rouge">using</code> statements so that they make your code clearer, but don’t affect other parts of your code.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A better alternative to using an entire namespace is to just use specific names from that namespace e.g.:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Now <code class="language-plaintext highlighter-rouge">cout</code> and <code class="language-plaintext highlighter-rouge">endl</code> are available to use without typing <code class="language-plaintext highlighter-rouge">std::</code>, but the rest of the <code class="language-plaintext highlighter-rouge">std</code> namespace will still require it.</li>
+  <li>Each name needs to be declared separately with another <code class="language-plaintext highlighter-rouge">using</code> keyword which can lead to a lot of <code class="language-plaintext highlighter-rouge">using</code> statements.</li>
+</ul>
+
+<h3 id="the-typedef-keyword">The <code class="language-plaintext highlighter-rouge">typedef</code> Keyword</h3>
+
+<p>Types in C++ can grow to be quite long and complicated for certain kinds of objects, especially when namespaces are also involved. Furthermore, we often want type names to be more indicative of what we actually want to use them for: the name <code class="language-plaintext highlighter-rouge">IntMatrix</code> is more helpful than <code class="language-plaintext highlighter-rouge">std::vector&lt; std::vector &lt;int&gt;&gt;</code>! We can assign an alias for any type by using the <code class="language-plaintext highlighter-rouge">typedef</code> keyword like so:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">IntMatrix</span><span class="p">;</span> 
+</code></pre></div></div>
+
+<ul>
+  <li>We can now declare variables to be of type <code class="language-plaintext highlighter-rouge">IntMatrix</code>, or use it as a return type or parameter type in functions.</li>
+  <li>It is identical to <code class="language-plaintext highlighter-rouge">std::vector&lt; std::vector&lt;int&gt;&gt;</code>; the compiler will replace instances of <code class="language-plaintext highlighter-rouge">IntMatrix</code> with the real type when it comes to compilation. It is just to make the code easier to read and write.</li>
+</ul>
+
+<h2 id="algorithm">Algorithm</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code> library is an important part of modern C++ code. It contains a variety of commonly used algorithms, many of which operate on containers. These include sorting, searching, counting, maxima, minima, and merge. If there is some functionality that you need then it is usually worth checking if there is a standard library implementation for it already, before trying to implement it yourself or seeking third party libraries. This will save you time on implementation and testing, and keep your code portable by minimising external dependencies.</p>
+
+<p>The functionality in <code class="language-plaintext highlighter-rouge">algorithm</code> can be made much more flexible and interesting by combining with other functions, as many of the functions in <code class="language-plaintext highlighter-rouge">algorithm</code> take functions as arguments. One way to do this is to write a function and pass a reference to it. Imagine that we want to count the number of even numbers in a vector of integers. Using <code class="language-plaintext highlighter-rouge">count_if</code> from the <code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code> library we could write:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">bool</span> <span class="nf">isEven</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">myNums</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>
+        <span class="kt">int</span> <span class="n">numEvens</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">myNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">myNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">isEven</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"num evens = "</span> <span class="o">&lt;&lt;</span> <span class="n">numEvens</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> 
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Note that here we give <code class="language-plaintext highlighter-rouge">count_if</code> iterators for the beginning and end of the vector.</li>
+  <li>The third argument given to <code class="language-plaintext highlighter-rouge">count_if</code> is a pointer to a function which takes an integer <code class="language-plaintext highlighter-rouge">x</code> and returns <code class="language-plaintext highlighter-rouge">true</code> if <code class="language-plaintext highlighter-rouge">x</code> is divisible by two.
+    <ul>
+      <li>You can also store a function pointer in a variable like so: <code class="language-plaintext highlighter-rouge">auto fnPtr = &amp;isEven</code>.</li>
+      <li>The explicit type declaration of a function pointer looks like this: <code class="language-plaintext highlighter-rouge">bool (*fnPtr) (int) = &amp;isEven</code> i.e. a function pointer (<code class="language-plaintext highlighter-rouge">fnPtr</code>) can be dereferenced (<code class="language-plaintext highlighter-rouge">*fnPtr</code>) to a function that takes an <code class="language-plaintext highlighter-rouge">int</code> and return a <code class="language-plaintext highlighter-rouge">bool</code>. If you do need to declare a variable as a function pointer then it’s usually easier to use <code class="language-plaintext highlighter-rouge">auto</code>!</li>
+      <li>The <code class="language-plaintext highlighter-rouge">()</code> operator for evaluating a function like object is also defined for function pointers, so you can evaluate this function pointer using <code class="language-plaintext highlighter-rouge">fnPtr(i)</code> or <code class="language-plaintext highlighter-rouge">(*fnPtr)(i)</code>.</li>
+    </ul>
+  </li>
+  <li>In general the third argument can be anything which takes an argument of the correct type and returns a boolean.
+    <ul>
+      <li>In this case we take an <code class="language-plaintext highlighter-rouge">int</code> because our vector is of type <code class="language-plaintext highlighter-rouge">vector&lt;int&gt;</code>.</li>
+      <li>So if our third argument is called <code class="language-plaintext highlighter-rouge">F</code>, then for any integer <code class="language-plaintext highlighter-rouge">i</code> we must be able to write <code class="language-plaintext highlighter-rouge">F(i)</code> and have it evaluate to a <code class="language-plaintext highlighter-rouge">bool</code>.</li>
+      <li>This kind of object is called a <strong>functor</strong>, which in C++ just means that the <code class="language-plaintext highlighter-rouge">()</code> operator is defined. (The term functor has very different meanings in other programming languages and areas of mathematics!)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">count_if</code> applies the function to each element of the vector and adds to the count only if it evaluates to true.</li>
+</ul>
+
+<p>Often the pieces of code that we want to pass to <code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code> functions like this are small and not re-used in other parts of our code. Separately declaring small functions like this can also make our code less readable because the implementation for the function is stored somewhere else compared to where it is being used (note we have to define <code class="language-plaintext highlighter-rouge">isEven</code> outside of <code class="language-plaintext highlighter-rouge">main</code>). Next we’ll look at a way of defining functions that leads to fewer function definitions cluttering up our code!</p>
+
+<h2 id="anonymous-functions">Anonymous Functions</h2>
+
+<p>The code above using <code class="language-plaintext highlighter-rouge">count_if</code> works fine, but if we have many such algorithm calls, which employ different tests, we can end up with code that has a lot of function definitions that are only used once. We can express this more succinctly using <em>anonymous functions</em>, also known as <em>lambda expressions</em>. These are function objects which can be defined without the usual C++ function declaration, and passed around like ordinary objects (including being copied). Compare the following code with the sample above:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">myNums</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>
+        <span class="kt">int</span> <span class="n">numEvens</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">myNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">myNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;});</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"num evens = "</span> <span class="o">&lt;&lt;</span> <span class="n">numEvens</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> 
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Our function is now defined in-line, inside the arguments list for <code class="language-plaintext highlighter-rouge">count_if</code>, instead of being declared separately elsewhere.</li>
+  <li>We’ll explain the syntax below, but note the similarities between the expression <code class="language-plaintext highlighter-rouge">[](int x){return x%2 == 0;}</code> and our definition of <code class="language-plaintext highlighter-rouge">isEven</code>.</li>
+</ul>
+
+<p>This code achieves the same thing as previous example using function pointers, but there is no named function passed to <code class="language-plaintext highlighter-rouge">count_if</code>. Instead, we have an anonymous function - an object that we have created for the purposes of providing an argument to <code class="language-plaintext highlighter-rouge">count_if</code>. We can also use lambda expressions to create named objects, like so:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">isEven</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The object <code class="language-plaintext highlighter-rouge">isEven</code> can now be passed to functions, copied, overwritten, and so on.</li>
+  <li>If creating a named variable for a lambda expression, <strong>always use <code class="language-plaintext highlighter-rouge">auto</code></strong>. Lambda functions cannot be typed unless the square brackets <code class="language-plaintext highlighter-rouge">[]</code> are empty (in which case they can be typed in the same was as function pointers), so there is no explicit type that you can give when declaring them.</li>
+</ul>
+
+<p>Lambda expressions make our coding style more flexible, because these functions can be defined anywhere that an ordinary variable can be (inside functions or loops, inside argument lists etc.) and can be passed around easily. We’ll also see below that the <code class="language-plaintext highlighter-rouge">[]</code> give us functionality that we don’t normally have access to with regular functions which makes lambda expressions very powerful.</p>
+
+<h3 id="syntax-for-anonymous-functions">Syntax for Anonymous Functions</h3>
+
+<p>The lambda expression syntax can look a little confusing at first, but becomes simpler if we understand what the three different kinds of brackets are for:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[]</code> Square brackets are for variables to be captured from the environment. These are variables which you want to be available in your function, but are not explicit function arguments. This list can include any variables which are currently in scope, and variables can be passed by value or by reference.
+    <ul>
+      <li>For example, you might want to apply a lambda function to each element of a vector in turn (in which case the vector elements are the function arguments) but also take into account another variable in the environment that will be the same for each function application. There is no analogue for this in ordinary function definitions, so it is not unusual for these brackets to remain empty! We will see in a moment how we can make use of variable capture to make our functions richer.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">()</code> Round brackets are for function arguments. These are passed into the anonymous function just like arguments are passed to any other function, and can be passed by value or by reference.</li>
+  <li><code class="language-plaintext highlighter-rouge">{}</code> Curly braces are used to contain the function execution code. This may refer to the variables passed as arguments or captured from the environment. It can involve multiple lines / statements, separated by semicolons (<code class="language-plaintext highlighter-rouge">;</code>) just like normal code, although lambda expressions are usually used for short code fragments. If there is no return statement then the return type is <code class="language-plaintext highlighter-rouge">void</code>, as usual.</li>
+  <li>The brackets are always in this order: <code class="language-plaintext highlighter-rouge">[] () {}</code>.</li>
+</ul>
+
+<p>Declaring anonymous functions is therefore almost identical to regular functions except that we don’t need to give it a name, and we have a set of square brackets <code class="language-plaintext highlighter-rouge">[]</code> at the front!</p>
+
+<p>If you want to write an explicit return type you can also use the slightly longer syntax: <code class="language-plaintext highlighter-rouge">[...] (...) {...} -&gt; returnType {...}</code> as in the following example for our <code class="language-plaintext highlighter-rouge">isEven</code> function:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">isEven</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">bool</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This can be useful for other programmers reading your code because it makes the return type clear.</li>
+  <li>This can also help prevent bugs because if the return from the function body (in <code class="language-plaintext highlighter-rouge">{}</code>) doesn’t match the return type given it will give a compiler error.</li>
+</ul>
+
+<p>We can see from our previous example the use of the <code class="language-plaintext highlighter-rouge">()</code> and <code class="language-plaintext highlighter-rouge">{}</code> brackets to define our function argument <code class="language-plaintext highlighter-rouge">(int x)</code> and our function body <code class="language-plaintext highlighter-rouge">{return x%2 == 0;}</code>. So far our variable capture <code class="language-plaintext highlighter-rouge">[]</code> has been empty, so let’s modify our function to make use of this feature. Say we want to count the number of elements in my list, divisible by some number <code class="language-plaintext highlighter-rouge">n</code>, which we won’t know ahead of time. We can write</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">getSomeNumber</span><span class="p">();</span>  <span class="c1">// Don't know the number n at compile time</span>
+    <span class="kt">int</span> <span class="n">numDivisibleN</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">myNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">myNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="n">n</span><span class="p">](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;});</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Number divisible by n = "</span> <span class="o">&lt;&lt;</span> <span class="n">numDivisibleN</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We use variable capture <code class="language-plaintext highlighter-rouge">[n]</code> to get the divisor <code class="language-plaintext highlighter-rouge">n</code> from the the environment and bind it to our function. Now when we call the function on each element (the argument <code class="language-plaintext highlighter-rouge">x</code> in round brackets) we divide each element by <code class="language-plaintext highlighter-rouge">n</code> and get the remainder!</li>
+  <li>This kind of behaviour is hard to replicate using function references, so lambda expressions are extremely useful for this kind of code.</li>
+</ul>
+
+<h2 id="using-c-documentation">Using C++ documentation</h2>
+
+<p>You will often find when programming, especially in a language with such an expansive standard library, that there are things that you need to look up. There are a large number of classes and functions available to C++ programmers, many of which may be new to you or require refreshing at various points.</p>
+
+<p>Two common sites for C++ reference are:</p>
+
+<ul>
+  <li><a href="https://cplusplus.com/">https://cplusplus.com/</a></li>
+  <li><a href="https://en.cppreference.com/">https://en.cppreference.com/</a></li>
+</ul>
+
+<p>Both are extremely useful and give thorough information about how to use classes and methods according to the specification in the C++ standard. Take for example the pages on the <code class="language-plaintext highlighter-rouge">vector</code> class: <a href="https://cplusplus.com/reference/vector/vector/">https://cplusplus.com/reference/vector/vector/</a> or <a href="https://en.cppreference.com/w/cpp/container/vector">https://en.cppreference.com/w/cpp/container/vector</a>. Each tells us:</p>
+
+<ul>
+  <li>which header the class is found in</li>
+  <li>a summary of the class and how it is stored in memory</li>
+  <li>information on performance of basic operations</li>
+  <li>a list of member functions and other information about the class (with links to detailed information and code samples)</li>
+  <li>a list of non member functions which operate on the class</li>
+</ul>
+
+<p>You can also use these reference sites too look up libraries that make up part of the C++ standard. For example, <a href="https://cplusplus.com/reference/algorithm/">https://cplusplus.com/reference/algorithm/</a> contains information about what is contained in the <code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code> library that we briefly discussed above, with links to more detailed information about the functions available and the container types on which they operate (<a href="https://cplusplus.com/reference/stl/">https://cplusplus.com/reference/stl/</a>).</p>
+
+<p>You should familiarise yourself with these resources to make the best use of C++ in the future. When writing research code, try to get into the habit of checking whether the C++ standard, or common libraries, already implement the functionality that you need satisfactorily before trying to implement your own. Online searches and forums such as StackOverflow can be a useful resource for this as well, but remember to check the official specification if you do find a class or function that you think will be useful to you, to be sure that you have accurate information about it!</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

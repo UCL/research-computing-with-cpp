@@ -1,0 +1,423 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Types</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="types-in-c">Types in C++</h1>
+
+<p>In this section we will cover some core ideas that you will need to understand to program effectively in C++ and similar languages. We will assume that you have some programming experience although not necessarily in C++, with the expectation that Python is the most commonly known language. As a result, a few things may need to be explained before proceeding with writing C++ code.</p>
+
+<h2 id="type-systems">Type Systems</h2>
+
+<p>Type systems are an enormous topic, but we should understand a little bit about types in order to know how to program in different languages. Almost every high-level programming language is typed in some way.</p>
+
+<ul>
+  <li>Types denote what kind of data a variable represents. All data in a computer is just <code class="language-plaintext highlighter-rouge">1</code>s and <code class="language-plaintext highlighter-rouge">0</code>s, so we need to know how to <em>interpret</em> data in order to use it. Types can make this process easier, since we don’t have to manually remember what each memory location is supposed to be representing and enforce that it is treated appropriately.
+    <ul>
+      <li>Consider for example how to print some data to the screen. The same sequence of bits at a memory location has a very different meaning if it’s an integer or a series of characters.</li>
+    </ul>
+  </li>
+  <li>An important property in many languages is <strong>type safety</strong>. This is a property of programs that essentially tells us that we are never using data meant to represent one type in a place where data of another type is expected. For example, we are never passing a string to a function which is meant to manipulate integer. This eliminates a large class of bugs!</li>
+  <li>Programming languages may be statically or dynamically typed.
+    <ul>
+      <li>In a <strong>statically typed</strong> language the type of a variable is decided at the declaration and it cannot be changed. To change a variable from one type to another requires another variable to be declared and an appropriate conversion to be defined. This is how typing works in C++, C, Rust, and many others.</li>
+      <li>In a <strong>dynamically typed</strong> language the type of a variable can change throughout the program run-time. (Remember that a <em>variable</em> is a handle, generally for some <em>data</em> which resides in memory.) Instead of applying a type to the variable, the data itself is tagged with a type. A variable can have its data changed, including its type, for example from an <code class="language-plaintext highlighter-rouge">int</code> to a <code class="language-plaintext highlighter-rouge">string</code>. This is how typing works in a language like Python, Javascript, or Julia.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="c-types">C++ Types</h3>
+
+<p>Types in C++ are static, and type correctness is checked at <em>compile time</em>. This means that if your program compiles correctly, you will not encounter type errors at runtime.*</p>
+
+<p>Although dynamically typed programming languages like Python will prevent poorly typed statements from executing at runtime, there is no way to know whether your program contains type errors until you crash into one. Part of the problem is that functions can return different types depending the input or program state, meaning that you can’t necessarily be sure that the thing that you think is calculating an integer is definitely going to give you an integer every time. Variables may also have their type changed by side effects after being passed to a function in a dynamically typed language.</p>
+<ul>
+  <li>These problems are not uncommon: conversion of a variable from an integer type to a floating point type under some circumstances is easy to do in Python. Floating point and integer types are interchangeable in most Python code but behave differently (integer arithmetic is exact while floating point is approximate, for example) and you may not discover the conversion has happened until you try to use the variable somewhere that a float cannot be used, such as indexing an array. Because the conversion is silent and valid in a dynamically typed language, it can be extremely hard to find <em>where</em> the conversion happened in a large program, as the problem could originate a long way away from where the type error gets raised!</li>
+</ul>
+
+<p>Type systems can be leveraged to ensure many kinds of safety properties in programs because information can be built into custom types. Examples of this might be ensuring at compile time that matrices in matrix multiplications are compatible (recall that a $X \times Y$ matrix can be multiplied by a $Y \times Z$ matrix), or that physical dimensions are consistent (e.g. a velocity has units $\text{Length} \times \text{Time}^{-1}$, so $v = \frac{d}{t}$ is a valid expression but $v = \frac{d^2}{t^2}$ is not).</p>
+
+<blockquote>
+  <p>* Technically C++, like a number of other languages, has some features which are not type-safe. It is possible in C++ to subvert the type system by using some low level memory operations, but there is almost never a reason to do this so you’re unlikely to see this in practice and you shouldn’t do it in your own code. Attempting to do this kind of manipulation usually results in <strong>undefined behaviour</strong>, so you won’t necessarily even be able to predict what your program will do unless you know exactly how your compiler turns your source into machine code!</p>
+</blockquote>
+
+<h2 id="c-types-and-declaring-variables">C++ Types and Declaring Variables</h2>
+
+<p>In C++ when declaring variables we do so by first declaring the type, then the name of the variable, and then its value. For example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This declares a variable <code class="language-plaintext highlighter-rouge">x</code> of type <code class="language-plaintext highlighter-rouge">int</code> with value <code class="language-plaintext highlighter-rouge">5</code>.</li>
+  <li>Some types have default initial values, which would mean that you don’t have to supply the value explicitly.</li>
+  <li>Some types can be declared <em>unitialised</em>, which means that the memory for that variable is reserved but not initialised. It will contain whatever bits were already there! It’s a good idea to initialise variables explicitly.</li>
+</ul>
+
+<p>Types in C++ can sometimes be verbose or complicated, and it is sometimes easier to read and write code which makes use of the <code class="language-plaintext highlighter-rouge">auto</code> keyword. This keyword tells the C++ compiler to deduce the type for us. This is called <em>type inference</em> and was made a feature of C++ in C++11, so will be absent in older codes.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="o">-</span><span class="mf">13.4</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">auto</code> can usually deduce the type from the result of an expression by looking at the types of all the variables and functions within it.
+    <ul>
+      <li>For example here it interprets <code class="language-plaintext highlighter-rouge">5</code> as an integer and therefore deduces that <code class="language-plaintext highlighter-rouge">x</code> is an int.</li>
+      <li>It will deduce that <code class="language-plaintext highlighter-rouge">y</code> is a <code class="language-plaintext highlighter-rouge">double</code>, since <code class="language-plaintext highlighter-rouge">-13.4</code> must be a floating point type (<code class="language-plaintext highlighter-rouge">double</code> by default) and <code class="language-plaintext highlighter-rouge">std::abs</code> returns a <code class="language-plaintext highlighter-rouge">double</code> when given a <code class="language-plaintext highlighter-rouge">double</code>.</li>
+      <li>Be especially careful when values can be ambiguous. Here <code class="language-plaintext highlighter-rouge">5</code> is being assigned as an int, but <code class="language-plaintext highlighter-rouge">5</code> is also a valid <code class="language-plaintext highlighter-rouge">float</code> or <code class="language-plaintext highlighter-rouge">double</code>. <strong>If you want a specific type in cases like this you should always specify it explicitly</strong>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">auto</code> doesn’t always work: the compiler must be able to deduce the type from contextual information.
+    <ul>
+      <li>You cannot declare an unitialised variable with <code class="language-plaintext highlighter-rouge">auto</code> e.g. <code class="language-plaintext highlighter-rouge">auto z;</code> will lead to a compiler error as it won’t know what type is intended for <code class="language-plaintext highlighter-rouge">z</code>, even if <code class="language-plaintext highlighter-rouge">z</code> is later assigned.</li>
+    </ul>
+  </li>
+  <li>You cannot use <code class="language-plaintext highlighter-rouge">auto</code> when declaring the return types or parameter types of functions, you must always declare these type explicitly.
+    <ul>
+      <li>It’s generally a good idea therefore to know what the types of variables in your code are, even if you choose to use the <code class="language-plaintext highlighter-rouge">auto</code> keyword! This will make writing your own functions, and knowing what functions you can pass your data to, much easier.</li>
+    </ul>
+  </li>
+  <li>In an IDE like VSCode you can inspect the type of a variable by hovering the mouse over that variable. If you’ve used <code class="language-plaintext highlighter-rouge">auto</code> it will be able to tell you what type has been deduced for it.</li>
+  <li>Bear in mind that <code class="language-plaintext highlighter-rouge">auto</code> can make your code more concise, but can also make your code harder to understand. Sometimes it’s better to write your type explicitly so that people reading your code can immediately understand what the types of your variables are.</li>
+</ul>
+
+<h2 id="defining-custom-types">Defining Custom Types</h2>
+
+<p>Custom types are an important feature in typed languages in order to be able to represent and manipulate more complex data in a type-safe way. In C++ the most common way to define a new type is to declare a <code class="language-plaintext highlighter-rouge">class</code> (or equivalently a <code class="language-plaintext highlighter-rouge">struct</code>). Classes are a common feature of <strong>Object Oriented Programming</strong>, which is a popular approach to programming in C++. (Some examples of other languages with classes for object oriented programming are C#, Java, and Python.) We’ll discuss the design and use of classes in the next section, so for now let the following suffice:</p>
+<ul>
+  <li>A class is a custom data type which is defined by the programmer. It can contain any number of variables and functions.</li>
+  <li>Once it is defined it can be used like any other type, e.g. it can be accepted as an argument in, or returned from, a function. Type safety rules still apply.</li>
+  <li>Classes give us a way of defining sub-types which are <em>substitutable</em>. For example we can define a <code class="language-plaintext highlighter-rouge">Shape</code> type, and then have <code class="language-plaintext highlighter-rouge">Circle</code> and <code class="language-plaintext highlighter-rouge">Square</code> sub-types which are accepted by the type system anywhere where a <code class="language-plaintext highlighter-rouge">Shape</code> type is accepted. This makes our type system more flexible and expressive. We discuss classes in detail in a later section of this week’s notes.</li>
+</ul>
+
+<p>We will focus overwhelmingly on classes as our means of defining custom types, but for those who are interested there are two further ways of declaring custom types in C++:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">enum</code>: This stands for <em>enumeration</em>. An <code class="language-plaintext highlighter-rouge">enum</code> is a type which can take one of a finite set of values (i.e. the values are <em>enumerable</em>). Each of these values must have a name, for example let’s say we want a <code class="language-plaintext highlighter-rouge">Colour</code> enum which can take the values <code class="language-plaintext highlighter-rouge">red</code>, <code class="language-plaintext highlighter-rouge">green</code>, and <code class="language-plaintext highlighter-rouge">blue</code>. We can declare a new <code class="language-plaintext highlighter-rouge">enum</code> called <code class="language-plaintext highlighter-rouge">Colour</code> in two ways:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">enum Colour {red, green, blue};</code>. This kind of enum implicitly converts the values <code class="language-plaintext highlighter-rouge">red</code>, <code class="language-plaintext highlighter-rouge">green</code>, and <code class="language-plaintext highlighter-rouge">blue</code>, to <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, and <code class="language-plaintext highlighter-rouge">3</code> respectively, and the <code class="language-plaintext highlighter-rouge">Colour</code> type can be used interchangeably with <code class="language-plaintext highlighter-rouge">int</code>.
+        <ul>
+          <li>Because this type of <code class="language-plaintext highlighter-rouge">enum</code> is interchangeable with <code class="language-plaintext highlighter-rouge">int</code>, it can be used to e.g. index an array. This can be useful when you want to efficiently store data based on categorisations. For example, say you have data about some population, split up by gender and age group. By turning your gender categories and age groups into enums, you can then store your data as a matrix which is indexed like <code class="language-plaintext highlighter-rouge">data[gender][age_group]</code>.</li>
+          <li>For this kind of enum we can just reference these values using the names <code class="language-plaintext highlighter-rouge">red</code>, <code class="language-plaintext highlighter-rouge">green</code>, and <code class="language-plaintext highlighter-rouge">blue</code>.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">enum class Colour {red, green, blue};</code>. This kind of enum (called an <code class="language-plaintext highlighter-rouge">enum class</code>) cannot be used interchangeably with <code class="language-plaintext highlighter-rouge">int</code>, and therefore <code class="language-plaintext highlighter-rouge">Colour</code> can only be used in places that are explicitly expecting a <code class="language-plaintext highlighter-rouge">Colour</code> type. <strong>We usually want to use an <code class="language-plaintext highlighter-rouge">enum class</code> so that we don’t accidentally mix it up with integer types!</strong>
+        <ul>
+          <li>This cannot be used to index arrays (because it is not an int), but it can be used as a key in <code class="language-plaintext highlighter-rouge">map</code> types. <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">unordered_map</code> provide C++ equivalents to Python’s dictionary type.</li>
+          <li>In order to use these values we have to also include the class name, so we have to write <code class="language-plaintext highlighter-rouge">Colour::red</code>, <code class="language-plaintext highlighter-rouge">Colour::green</code>, or <code class="language-plaintext highlighter-rouge">Colour::blue</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">union</code>: Union types are types which represent a value which is one of a finite set of types. A <code class="language-plaintext highlighter-rouge">union</code> is declared with a list of members of different types, for example <code class="language-plaintext highlighter-rouge">union IntOrString { int i; string s; };</code> can store an <code class="language-plaintext highlighter-rouge">int</code> or a <code class="language-plaintext highlighter-rouge">string</code>. When a variable of type <code class="language-plaintext highlighter-rouge">IntOrString</code> is declared, it is only allocated enough memory to store <em>one</em> of its members at a time, so it cannot store both <code class="language-plaintext highlighter-rouge">i</code> and <code class="language-plaintext highlighter-rouge">s</code> at the same time. The programmer needs to manually keep track of which type is present, often using an auxiliary variable, in order to safely use union types. Given this additional difficulty, <strong>I wouldn’t recommend using union types without a very strong reason.</strong></li>
+</ul>
+
+<p>Microsoft has excellent, and accessible, resources on <a href="https://learn.microsoft.com/en-us/cpp/cpp/enumerations-cpp?view=msvc-170"><code class="language-plaintext highlighter-rouge">enum</code></a> and <a href="https://learn.microsoft.com/en-us/cpp/cpp/unions?view=msvc-170"><code class="language-plaintext highlighter-rouge">union</code></a> types if you are interested in learning more about them.</p>
+
+<p><strong>N.B.</strong> C++17 onwards also has a special class called <code class="language-plaintext highlighter-rouge">std::variant</code> which is designed to replace <code class="language-plaintext highlighter-rouge">union</code> types in a more type-safe way, because the <code class="language-plaintext highlighter-rouge">variant</code> can be checked to see which type it is currently holding. (That said, checking which type the variant has is still rather clunky, and you have to check for each type manually so if there are many cases it can be easy to miss one and the compiler will not warn you!) Ultimately, union / variant types are not terribly common in C++ code in practice, although some languages (especially functional languages like ML and Haskell) handle these concepts much more naturally. If you’re interested in this kind of approach to types, I recommend reading up on <a href="https://en.wikipedia.org/wiki/Algebraic_data_type">algebraic datatypes</a>.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

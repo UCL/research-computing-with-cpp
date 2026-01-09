@@ -1,0 +1,51 @@
+/* 
+* Pattern name: Photograph banner
+* Use: Background photo/colour to be displayed behind UCL banner
+* Note: Modifier gives .photograph more space as well as making the optional photography description visible.
+-------------------------------------------------------------- */
+
+.photograph {
+	background-color: $primary-colour;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	position: relative;
+	left: -35px;
+	padding: 0 35px;
+	padding-bottom: 10.5%;
+	@include gs-media(m, max) {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 2em 0 0em 0;
+		left: 0;
+		background-color: transparent;
+	}
+}
+
+.photograph__description {
+	background-color: rgba($black, 0.7);
+	position: absolute;
+	bottom: 5%;
+	right: 35px;
+	padding: 10px;
+	font-style: italic;
+	color: $white;
+	display: none;
+	@include rem(font-size, $font-size-xs);
+}
+
+.photograph--show {
+	padding-bottom: 30%;
+	.photograph__description {
+		display: block;
+	}
+}
+@include gs-media(m) {
+	.photograph--show {
+		display: none;
+		.photograph__description{
+			display: none;
+		}
+	}
+}

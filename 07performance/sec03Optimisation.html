@@ -1,0 +1,844 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Compiler Optimisation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="active"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="active"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 45 minutes</p>
+
+<h1 id="compiler-optimisation-and-compile-time-evaluation">Compiler Optimisation and Compile-Time Evaluation</h1>
+
+<p>Compilation is the translation of our high level code (in this case C++) into machine code that reflects the instruction set of the specific hardware for which it is compiled. This machine code can closely reflect the C++ code, implementing everything explicitly the way that it’s written, or it can be quite different from the structure and form of the C++ code <strong>as long as it produces an equivalent program</strong>*. The purpose of this restructuring is to provide optimisations, usually for speed. Modern compilers have a vast array of optimisations which can be applied to code as it is compiled to the extent that few people could write better optimised assembly code manually, a task that rapidly becomes infeasible and forbiddingly time consuming as projects become larger and more complex.</p>
+
+<p>There is another benefit to automated compiler optimisation. Compilers, by necessity, do produce hardware specific output, as they must translate programs into the instruction set of a given processor. This means that even if we have written highly portable code which makes no hardware specific optimisations, we can still benefit from these optimisations if they can be done by the compiler when compiling our code for different targets! As we shall see below, some processors may have different features such as machine level instructions for vectorised arithmetic which can be implemented by the compiler without changing the C++ code, producing different optimised programs for different hardware from a single, generic C++ code.</p>
+
+<p>As such, to get the best out of our C++ code we need to rely to some extent on automated optimisation by the compiler. This does not mean that we should not choose effective algorithms – the compiler will not simply replace a slow sorting algorithm with a better one! – but rather compiler optimisation should be used in conjunction with our own best practices for writing efficient software.</p>
+
+<blockquote>
+  <p>*<em>What is considered an “equivalent program” is beyond the scope of this course, and falls under the field of programming language semantics (the study of the meaning of programs). For now you can take equivalence to mean that the results of two computations are the same whenever they provided with the same external inputs. Things like the CPU clock, and therefore timing information, would qualify as external inputs, and so changing the timing results of a computation doesn’t change the meaning of the program.</em></p>
+</blockquote>
+
+<h2 id="optimisation-trade-offs">Optimisation Trade Offs</h2>
+
+<p>Code with optimisations applied will generally run faster, but there are a number of other impacts that it can also have that are worth bearing in mind when selecting appropriate optimisations to apply.</p>
+
+<ol>
+  <li>Executable Size.
+    <ul>
+      <li>The size of the compiled code can be increased by optimisation. Although one might expect code which is optimised to also be simplified and smaller, there are many optimisations which increase the size of the resulting machine code. An example of this would be <em>loop unrolling</em>. (See below)</li>
+    </ul>
+  </li>
+  <li>Debugging Experience.
+    <ul>
+      <li>One of the most useful tools for debugging code is the ability to step through a program and check the values in variables as you execute line-by-line. Optimised code can make many changes, removing redundant variables, changing branching logic, restructuring or removing loops etc., that affect the correspondence between the C++ code and the compiled machine code. As a result, it may not always be possible to step through an optimised code, or be meaningful to ask about the value of a specific variable at a particular point in the execution of a code.</li>
+    </ul>
+  </li>
+  <li>Compilation Time.
+    <ul>
+      <li>Optimised compilation involves making complex transformations to your code, and depending on the nature and size of your code and the optimisations applicable, this may take a long time.</li>
+    </ul>
+  </li>
+  <li>Standards Compliance.
+    <ul>
+      <li>Some optimisations are not compliant with floating point standards; in particular they may affect floating point computations by rearranging numerical expressions (“free re-associations”). Using these can jeopardise the accuracy of your programs.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="constant-expressions-and-compile-time-evaluation">Constant Expressions and Compile-Time Evaluation</h2>
+
+<p>We can tell the compiler to do some computations at compile-time instead of during run-time. Consider some simple code like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">12</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The variables $y$ and $z$ are the result of simple, deterministic expressions that depend only on information that we have at compile time. An equivalent program could look like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">120</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>This program clearly doesn’t need to do any work at run-time in order to assign values to <code class="language-plaintext highlighter-rouge">y</code> and <code class="language-plaintext highlighter-rouge">z</code>, but we have lost the expressiveness of our original version (which makes the relationships between <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, and <code class="language-plaintext highlighter-rouge">z</code> clear), and we would have to update <code class="language-plaintext highlighter-rouge">y</code> and <code class="language-plaintext highlighter-rouge">z</code> manually if we changed the initialisation of <code class="language-plaintext highlighter-rouge">x</code>.</p>
+
+<p><strong>Constant expressions</strong> provide us with a way of ensuring that we can write expressive code like the first example <em>and</em> forcing the compiler to evaluate the expressions and replace them with their results at compile time. This is in particular useful for more complex functions that could be time-consuming and runtime and are less likely to be automatically optimised by the compiler.</p>
+
+<h3 id="constant-expression-syntax">Constant Expression Syntax</h3>
+
+<p>A variable or a function can be declared as a constant expression using <code class="language-plaintext highlighter-rouge">constexpr</code>. For example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">constexpr</span> <span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                  
+    <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The initialization of <code class="language-plaintext highlighter-rouge">x</code> is essentially equivalent to <code class="language-plaintext highlighter-rouge">const x = 5</code> in this case. There is an additional restriction on <code class="language-plaintext highlighter-rouge">constexpr</code> compared to <code class="language-plaintext highlighter-rouge">const</code> however, which is that the initialisation of a <code class="language-plaintext highlighter-rouge">const</code> variable can happen at runtime, and depend on the run-time state, whereas the initialisation of a <code class="language-plaintext highlighter-rouge">constexpr</code> variable must be able to be performed at compile time.</p>
+
+<p>The use of <code class="language-plaintext highlighter-rouge">constexpr</code> for the function <code class="language-plaintext highlighter-rouge">add</code> enforces that this function can be evaluated on compile time and will not rely on any runtime information. This means that the variable assignment for <code class="language-plaintext highlighter-rouge">y</code> does not require runtime calculation, but the compiler will simplify <code class="language-plaintext highlighter-rouge">add(x, 18)</code> to <code class="language-plaintext highlighter-rouge">23</code> and simply assign the value to <code class="language-plaintext highlighter-rouge">y</code> without ever calling the function when the program is run.</p>
+
+<h3 id="limitations-of-constant-expressions">Limitations of Constant Expressions</h3>
+
+<p>Not all computations can be done at compile-time, and therefore there are a number of conditions that constant expressions must fulfil. The <a href="https://en.cppreference.com/w/cpp/language/constexpr.html">complete list of conditions</a> is quite involved, but here are some key points to remember:</p>
+
+<ul>
+  <li>A <code class="language-plaintext highlighter-rouge">constexpr</code> function cannot contain <code class="language-plaintext highlighter-rouge">try</code> statements, since handling exceptions would require run-time state.
+    <ul>
+      <li>You can <em>write</em> a <code class="language-plaintext highlighter-rouge">throw</code> statement in a <code class="language-plaintext highlighter-rouge">constexpr</code> function but if the <code class="language-plaintext highlighter-rouge">throw</code> statement is reached during the compile time evaluation you will get a compiler error. This is useful because it will warn you if there is an error case in a compile-time evaluation, and because you can also call <code class="language-plaintext highlighter-rouge">constexpr</code> functions at run-time as well which can then handle the exception.</li>
+    </ul>
+  </li>
+  <li>A <code class="language-plaintext highlighter-rouge">constexpr</code> function cannot include uninitialised variables (e.g. <code class="language-plaintext highlighter-rouge">int z;</code>).</li>
+  <li>A <code class="language-plaintext highlighter-rouge">constexpr</code> function cannot declare <code class="language-plaintext highlighter-rouge">static</code> variables, since they require maintaining a state between function calls.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">constexpr</code> function cannot call a non-<code class="language-plaintext highlighter-rouge">constexpr</code> function. This includes things like dynamic memory allocation with <code class="language-plaintext highlighter-rouge">new</code>. However since a <code class="language-plaintext highlighter-rouge">constexpr</code> function can call other <code class="language-plaintext highlighter-rouge">constexpr</code> functions, you can also write a <em>recursive</em> <code class="language-plaintext highlighter-rouge">constexpr</code> function!</li>
+  <li>A <code class="language-plaintext highlighter-rouge">constexpr</code> function cannot declare a <em>non-literal</em> type variable. <a href="https://en.cppreference.com/w/cpp/language/constant_expression.html#Literal_type">Literal types</a> need to fulfil a variety of conditions, in essence they are simple types that can be worked with at compile time, so they must be able to be constructed using a <code class="language-plaintext highlighter-rouge">constexpr</code>, have trivial destructors (no custom destructor logic needs to be called), and not contain member variables of non-literal types. An example of a non-literal type is <code class="language-plaintext highlighter-rouge">std::vector</code> since it has non-trivial destruction logic (heap memory deallocation), but <code class="language-plaintext highlighter-rouge">std::array</code> <em>is</em> a literal type since its size is known at compile time and so it can be stack-allocated and doesn’t require any specialised destruction logic.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">constexpr</code> variable must be a literal type, and must be initialised by a constant expression e.g. a call to a <code class="language-plaintext highlighter-rouge">constexpr</code> function with argument <em>known at compile time</em> (e.g. an explicit number like <code class="language-plaintext highlighter-rouge">2.4</code> or a <code class="language-plaintext highlighter-rouge">const</code>/<code class="language-plaintext highlighter-rouge">constexpr</code> variable known at compile-time).</li>
+</ul>
+
+<p>If your function is a <em>pure function</em> that doesn’t involve exception handling, dynamic memory allocation/deallocation, or calls to non-<code class="language-plaintext highlighter-rouge">constexpr</code> functions, then you can probably turn it into a <code class="language-plaintext highlighter-rouge">constexpr</code> function.</p>
+
+<p><strong>N.B. We are using C++17 on this course. The conditions for acceptable constant expressions vary across different C++ standards, so if you use a newer or older standard you may find some differences in what you are able to write and compile.</strong></p>
+
+<h3 id="revisiting-the-factorial-example">Revisiting the Factorial Example</h3>
+
+<p>Consider the following <code class="language-plaintext highlighter-rouge">constexpr</code> definition of <code class="language-plaintext highlighter-rouge">factorial</code>, where we have omitted <code class="language-plaintext highlighter-rouge">#include</code> statements and <code class="language-plaintext highlighter-rouge">std::</code> namespacing for brevity.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">constexpr</span> <span class="kt">int</span> <span class="nf">factorial</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">domain_error</span><span class="p">(</span><span class="s">"Value "</span> <span class="o">+</span> <span class="n">to_string</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">" is not within the domain of factorial (x &gt;= 0)."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">factorial</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Notice that we are able to make use of branching logic with separate <code class="language-plaintext highlighter-rouge">return</code> statements and recursion in this definition.</p>
+
+<p>Now consider the following statements that could appear in main, and whether or not they will compile:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                  
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// Compiles okay: x is const</span>
+    <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>   <span class="c1">// Doesn't compile: y is not const</span>
+    <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">);</span>  <span class="c1">// Doesn't compile: throw is reached</span>
+    <span class="kt">int</span> <span class="n">q</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">);</span>            <span class="c1">// Compiles okay: throws an exception at runtime</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Notice that we can only initialise a <code class="language-plaintext highlighter-rouge">constexpr int</code> variable with a call to <code class="language-plaintext highlighter-rouge">factorial</code> if the <strong>argument is <code class="language-plaintext highlighter-rouge">const</code> and the function evaluation does not <code class="language-plaintext highlighter-rouge">throw</code></strong>. If we initialise a non-<code class="language-plaintext highlighter-rouge">const</code> variable using <code class="language-plaintext highlighter-rouge">factorial</code> then it will be treated as a runtime expression and so these conditions don’t apply.</p>
+
+<h3 id="other-uses-of-constant-expressions">Other Uses of Constant Expressions</h3>
+
+<p>Constant expressions are not just useful for run-time optimisation; they also allow use to write more expressive code anywhere where we need to know information at compile time, such as constant template arguments (e.g. the length of an <code class="language-plaintext highlighter-rouge">std::array</code>) and static memory allocation (e.g. <code class="language-plaintext highlighter-rouge">int x[...];</code>).</p>
+
+<h2 id="compiler-optimisation-flags">Compiler Optimisation Flags</h2>
+
+<p>The GNU compiler (gcc) has a <a href="https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html">large number of optimisation options</a>, but for the most part one uses a smaller set of flags which enable batches of these options. These batches are selected to give you control over some of the downsides of optimisation procedures discussed above.</p>
+
+<ul>
+  <li>No flag is equivalent to <code class="language-plaintext highlighter-rouge">-O0</code>, which means that the optimisations are turned off. This results in machine code that most closely matches your C++ code as you have written it.</li>
+  <li><code class="language-plaintext highlighter-rouge">-O1</code> performs a basic set of optimisations for speed, skipping optimisations which tend to inflate compilation times significantly.</li>
+  <li><code class="language-plaintext highlighter-rouge">-O2</code> performs all the optimisations from <code class="language-plaintext highlighter-rouge">-O1</code> but also additional optimisations which may affect compile times more drastically, but which do not have a speed-space trade off (i.e. avoids inflating the size of the executable too much).</li>
+  <li><code class="language-plaintext highlighter-rouge">-O3</code> performs all the <code class="language-plaintext highlighter-rouge">-O2</code> optimisations and some additional ones which may impact the size of the executable. It does not turn on any optimisations which are not standards compliant.</li>
+  <li><code class="language-plaintext highlighter-rouge">-Og</code> performs some optimisations but keeps compile times short and strictly disables various optimisations that make certain structural changes to the code. This is designed for debugging so that you can step through your code line by line.</li>
+  <li><code class="language-plaintext highlighter-rouge">-Ofast</code> performs aggressive optimisation on numerical code but sacrifices compliance with some standards, meaning that the result of your calculation can be affected.</li>
+</ul>
+
+<p>There are others in the documentation linked above which I would recommend that you read. It also describes in detail the optimisations that are turned on at each level.</p>
+
+<h2 id="some-optimisation-examples">Some Optimisation Examples</h2>
+
+<p>In the following sections we will look at a few common compiler optimisations and their implications. It’s important to bear in mind however that these optimisations are not <em>guaranteed</em> to happen, and optimisation is usually a heuristic process. Analysing programs is complex, and you are certainly not guaranteed to get the optimal version of your compiled code out of the compiler, and the compiler will make decisions about what optimisations to apply where based on various rules of thumb that are different for each compiler (and target architecture). If you <em>need</em> an optimisation to be applied that isn’t guaranteed by the C++ standard then you should consider implementing it yourself directly in your source code.</p>
+
+<h3 id="compile-time-calculations-and-redundancy">Compile-time Calculations and Redundancy</h3>
+
+<p>If the compiler is given an expression which it can calculate and replace with a value at compile time, then it may do so without changing the meaning of the program. As a simple example:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The compiler knows the values of <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code>, and they can’t have been changed (partly because there is no intervening code, and also because they are declared <code class="language-plaintext highlighter-rouge">const</code>). So at compile time the compiler can deduce that the initial value of <code class="language-plaintext highlighter-rouge">z</code> will be <code class="language-plaintext highlighter-rouge">20</code>. The compiler can replace the addition operation with a hard coded initialisation value.</li>
+</ul>
+
+<p>The compiler may also notice that certain variables are not accessed or used, or that the result of a calculation is thrown away, and therefore that some calculation can be avoided. In general it’s good practice to remove any redundant variables or calculations yourself! (Remember that you can turn on compiler warnings to help with this.)</p>
+
+<p>You may find that this kind of optimisation can negatively affect simple benchmarks that you write. Let’s say we want to benchmark a sorting algorithm:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">unsorted</span> <span class="o">=</span> <span class="n">gen_list</span><span class="p">(</span><span class="mi">1000'000</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">t_start</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sorted</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">unsorted</span><span class="p">);</span> 
+<span class="k">auto</span> <span class="n">t_end</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>If our program never accesses <code class="language-plaintext highlighter-rouge">sorted</code> before it terminates (because we were only interested in the timing information), and the compiler can tell that <code class="language-plaintext highlighter-rouge">sort</code> does not have side-effects, then the compiler may recognise that this calculation is redundant and skip it entirely! When benchmarking with optimisations on you may have to force the program to actually do the work you’re interested in, e.g. by accessing the result directly afterwards and making sure that the result won’t be pre-calculated at compile time. When you benchmark things, make sure that you’re getting sensible results and check how they scale with the problem size to make sure that work is actually being done.</p>
+
+<h3 id="loop-unrolling">Loop Unrolling</h3>
+
+<p>Loops in C++ are usually directly modelled in the machine code as well, using conditional tests and “jump” statements (essentially <code class="language-plaintext highlighter-rouge">goto</code> statements). This means that when we have a loop in our code like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>it does more than just execute the lines inside the loop, in this case eight assignment statements. At every iteration it has to keep track of the counter <code class="language-plaintext highlighter-rouge">i</code>, and test the conditional statement <code class="language-plaintext highlighter-rouge">i &lt; 8</code>, and assign the program counter (this is what tells the CPU which instruction to execute next) to the correct line to jump to depending on the outcome of that test. For loops where the number of iterations can be determined at compile time, this overhead can be eliminated by making copies of the statements inside the loop. This effectively transforms your code into something like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</code></pre></div></div>
+<p>(In practice this change is in the machine code, not the C++!) This can make your code execute faster, but it also makes your final machine code, and therefore the size of your executable on disk, larger.</p>
+
+<h3 id="single-instruction-multiple-data-simd">Single Instruction Multiple Data (SIMD)</h3>
+
+<p>Modern CPUs typically contain units specially designed for SIMD, or “Single Instruction Multiple Data”, workflows. As the name suggests, SIMD refers to performing the same operation on multiple pieces of data at the same time. (This kind of behaviour is done at a much larger scale on accelerated devices like GPUs!)</p>
+
+<p>A typical CPU (x86 architecture or ARM) SIMD register will be 128 bits, meaning that it can operate simultaneously on:</p>
+
+<ul>
+  <li>2 x <code class="language-plaintext highlighter-rouge">double</code> (each 64 bits)</li>
+  <li>4 x <code class="language-plaintext highlighter-rouge">float</code>  (32 bit)</li>
+  <li>4 x <code class="language-plaintext highlighter-rouge">int</code>    (32 bit)</li>
+</ul>
+
+<p>and might contain 8 or 16 of these registers. Many x86 processors will also have 256-bit or even 512-bit registers; making use of these requires compiling with additional flags since they are less common and therefore the code generated will be less portable.</p>
+
+<h4 id="data-alignment-for-simd">Data Alignment for SIMD</h4>
+
+<p>To get the best performance out of SIMD operations we need to consider data <em>alignment</em>. When loading, for example, four <code class="language-plaintext highlighter-rouge">float</code> values into a 16-byte (128-bit) SIMD register, then we load 16 contiguous bytes in memory. The most efficient loading mechanism doesn’t just load 16-byte pieces of memory starting at <em>any</em> address, but rather the view of RAM is broken up into 16-byte sections, and you can load any one of these sections quickly. Loading four floats that crosses one of these boundaries is less efficient than being <em>aligned</em> with these boundaries. Luckily we can align our data with specific boundaries in memory using the following syntax:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Aligned stack allocations@</span>
+<span class="c1">//4 floats aligned to 16 byte boundary</span>
+<span class="k">alignas</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="kt">float</span> <span class="n">f16</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+
+<span class="c1">//24 floats aligned to 32 byte boundary. </span>
+<span class="k">alignas</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="kt">float</span> <span class="n">f32</span><span class="p">[</span><span class="mi">24</span><span class="p">];</span>
+
+<span class="c1">// Algined heap allocations</span>
+<span class="c1">// four floats aligned to 16-byte boundary</span>
+<span class="kt">float</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">align_val_t</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span> <span class="kt">float</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="c1">// four doubles aligned to 32-byte boundary</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">align_val_t</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span> <span class="kt">double</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span> 
+</code></pre></div></div>
+
+<ul>
+  <li>For 128-bit registers in x86 and ARM processors you want to be aligned with 16-byte boundaries</li>
+  <li>For 256-bit registers as in AVX you want to be aligned with 32-byte boundaries.
+    <ul>
+      <li>32-byte alignment will also work with 128-bit registers, which means it can allow for efficient vectorisation whether or not you have the larger SIMD registers, but is not necessary if you are worried about packing data as densely as possible in memory.</li>
+    </ul>
+  </li>
+  <li>In the example above the first value of each array is aligned to the boundary. If we look at <code class="language-plaintext highlighter-rouge">f32</code>, which contains 24 floats aligned to a 32-byte boundary, then <code class="language-plaintext highlighter-rouge">f32[0]</code>, <code class="language-plaintext highlighter-rouge">f32[8]</code>, and <code class="language-plaintext highlighter-rouge">f32[16]</code> will all be aligned with 32-byte boundaries, because each float is 4-bytes and therefore there are 8 floats to a 32-byte block. This means that we can efficient load the blocks <code class="language-plaintext highlighter-rouge">f32[0] ... f32[7]</code>, <code class="language-plaintext highlighter-rouge">f32[8] ... f32[15]</code>, and <code class="language-plaintext highlighter-rouge">f32[16] ... f32[23]</code> into registers for SIMD operations.</li>
+  <li>We <em>can</em> load unaligned data into registers for SIMD operations, it just isn’t quite as efficient.</li>
+</ul>
+
+<h4 id="simd-optimisation-and-loop-dependency">SIMD Optimisation and Loop Dependency</h4>
+
+<p>Compilers can make use of these kinds of units as long as the calculations are independent - we can’t calculate two things in parallel if one depends on the output of the other. Determining whether things are independent in this way, especially when there are loops complicated, is not always trivial so you may not always get the most usage out of these registers. A loop like the following:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>should be able to be calculated in a parallelised way, but</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>can’t because there is loop dependency. Calculating a sum like this in parallel would require reformulating the problem in a way that the compiler will not do by itself. Remember that <strong>re-ordering floating point operations changes the result</strong> and so many arithmetic processes cannot be automatically vectorised by the compiler, even if the vectorisation appears obvious.</p>
+
+<h4 id="manual-simd">Manual SIMD</h4>
+
+<p>SIMD can be manually implemented using <a href="https://learn.microsoft.com/en-us/cpp/intrinsics/compiler-intrinsics?view=msvc-170">C++ intrinsics</a>, which map very closely onto specific assembly level instructions. These are easier to use than writing directly in assembly, and can be used to enforce that you get the exact vectorisation strategy that you want, but because of their close relationship with low-level instructions these are not as portable as normal C++ code. x86 and ARM processors have similar functionality for the most part, but a completely different set of intrinsics. In order to write portable code with this kind of approach, programmers usually detect or specify the architecture at build time and use pre-processor directives to determine which intrinsics are used, what data alignments are required, and so on. That however is beyond the scope of this course!</p>
+
+<p>To see how intrinsics work, consider the example of adding floats in parallel using SIMD.</p>
+<ol>
+  <li>You load 4 (or 8) floats into a 16 (or 32) byte register from your first memory address.</li>
+  <li>You load 4 (or 8) floats into a 16 (or 32) byte register from your second memory address.</li>
+  <li>You perform a vectorised addition operation.</li>
+  <li>You place the resulting 4 (or 8) floats into your destination memory address.</li>
+</ol>
+
+<p>For x86 we need the commands / includes:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// 128 bit definitions</span>
+    <span class="cp">#include</span> <span class="cpf">&lt;xmmintrin.h&gt;</span><span class="cp">
+</span>
+    <span class="c1">// 256 bit definitions</span>
+    <span class="cp">#include</span> <span class="cpf">&lt;immintrin.h&gt;</span><span class="cp">
+</span>
+    <span class="c1">// _mm_load_ps takes a pointer to the first float of a pack of four floats</span>
+    <span class="n">__m128</span> <span class="n">loaded_floats</span> <span class="o">=</span> <span class="n">_mm_load_ps</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
+        
+    <span class="c1">// vectorised addition, takes 2 __mm128 arguments</span>
+    <span class="n">__mm128</span> <span class="n">result</span> <span class="o">=</span> <span class="n">_mm_add_ps</span><span class="p">(</span><span class="n">loaded_x</span><span class="p">,</span> <span class="n">loaded_y</span><span class="p">);</span>
+
+    <span class="c1">// store value into memory address, takes a pointer and an __mm128</span>
+    <span class="n">_mm_store_ps</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+    <span class="c1">//256 bit intrinsics</span>
+    <span class="c1">// load a float buffer. __mm256 i</span>
+    <span class="n">__m256</span> <span class="n">loaded_floats</span> <span class="o">=</span> <span class="n">_mm256_load_ps</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
+
+    <span class="c1">// performing a vector addition</span>
+    <span class="n">__mm256</span> <span class="n">result</span> <span class="o">=</span> <span class="n">_mm256_add_ps</span><span class="p">(</span><span class="n">loaded_x</span><span class="p">,</span> <span class="n">loaded_y</span><span class="p">)</span>
+            
+    <span class="c1">//store</span>
+    <span class="n">_mm256_store_ps</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>for ARM we need the commands / includes:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cp">#include</span> <span class="cpf">&lt;arm_neon.h&gt;</span><span class="cp">
+</span>
+    <span class="c1">// Load data: takes a pointer to the first of the four floats</span>
+    <span class="c1">// float32x4_t is for 4 floats i.e. 128 bit</span>
+    <span class="n">float32x4_t</span> <span class="n">loaded_floats</span> <span class="o">=</span> <span class="n">vld1q_f32</span><span class="p">(</span><span class="n">addres</span><span class="p">);</span>
+        
+    <span class="c1">// Vectorised add: takes 2 float32x4_t type arguments</span>
+    <span class="n">float32x4_t</span> <span class="n">result</span> <span class="o">=</span> <span class="n">vaddq_f32</span><span class="p">(</span><span class="n">loaded_x</span><span class="p">,</span> <span class="n">loaded_y</span><span class="p">);</span>
+
+    <span class="c1">// store in memory: takes a pointer and a float32x4_t argument and stores the result at that address</span>
+    <span class="n">vst1q_f32</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="function-inlining">Function Inlining</h3>
+
+<p>Function calls also have overheads, since we must look up the function, create a new stack frame for the function’s scope, and return from the function. This can be avoided by function inlining, which effectively replaces a function call with the code for that function. (This is a similar process to the loop unrolling we saw earlier.) This can have a number of <a href="https://cplusplus.com/articles/G3wTURfi/">pros and cons which are discussed here</a>, with the main down sides having to do with executable size and bloating function code which can itself cause performance issues. As a result, inlining isn’t done manually (we generally can’t <em>force</em> a compiler to inline a function; there are keywords to encourage inlining but these are not guaranteed), and the compiler will decide whether a function should be inlined for a given function call. This can be influenced by a number of flags</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-fno-inline</code>: default for non optimised code, does not inline functions unless explicitly marked.</li>
+  <li><code class="language-plaintext highlighter-rouge">-finline-functions</code>: consider all functions for inlining. (Does not mean that all functions are inlined!)</li>
+  <li><code class="language-plaintext highlighter-rouge">-finline-small-functions</code>: consider functions for inlining if inlining will decrease program size i.e. function is smaller than the machine code required to make the function call (function call overheads).</li>
+  <li>And many more in the documentation!</li>
+</ul>
+
+<h2 id="optimising-standard-library-objects">Optimising Standard Library Objects</h2>
+
+<p>Many of the standard library objects that we use such as smart pointers are more complex than their less safe C-style counterparts (like raw pointers). In unoptimised code this can lead to a substantial performance hit for using these structures, but this does not need to be the case. Under the hood, smart pointers are wrappers for raw pointers that enforce desirable properties. These wrappers often lead to additional function calls for basic things like data accesses, even though the <code class="language-plaintext highlighter-rouge">*</code> operator works in the same way as their C style counterpart. An optimising compiler can eliminate the middle man in these cases and access data more directly, reducing the overheads of these structures without affecting their safety properties (memory management functionality will still be inserted for example when objects need to be destroyed).</p>
+
+<p>In general, you shouldn’t worry too much about how optimised objects like these are unless you can demonstrate that interacting with them is a bottleneck in your program (e.g. using profiling) and have a strong argument that using a lower level, faster structure is worth the trade-off.</p>
+
+<p><strong>Don’t worry about using modern C++ features like smart pointers and containers, but do turn on the optimisations for production code!</strong></p>
+
+<h2 id="floating-point-arithmetic">Floating Point Arithmetic</h2>
+
+<p>Floating point arithmetic is how we typically deal with approximating the real numbers in code. Floating point numbers can in principle have any level of precision, but the most common are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">float</code>: 32 bits (4 bytes)</li>
+  <li><code class="language-plaintext highlighter-rouge">double</code>: 64 bits (8 bytes)</li>
+  <li><code class="language-plaintext highlighter-rouge">long double</code>: Usually 80 or 128 bits depending on processor</li>
+  <li><code class="language-plaintext highlighter-rouge">half</code>: 16 bits, not part of the C/C++ standard but often used on hardware like GPUs</li>
+</ul>
+
+<p>The data for floating point numbers are split into two parts, the mantissa and the exponent. It is comparable to scientific notation except that it usually uses powers of 2 instead of 10.</p>
+
+<p>$n = m \times 2^e$</p>
+
+<p>where $m$ is the mantissa and $e$ is the exponent. The mantissa is usually represented so there is a radix point after the first significant (non zero) digit. In other words, the binary <code class="language-plaintext highlighter-rouge">001011</code> would represent the mantissa <code class="language-plaintext highlighter-rouge">1.011</code> (again, in base 2). The exponent is a signed integer.</p>
+
+<p>The size of the data affects both the precision of the mantissa and the range of values for the exponent (and therefore how large and small the values represented can be).</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">float</code> has around 7 significant figures</li>
+  <li><code class="language-plaintext highlighter-rouge">double</code> has around 16 significant figures</li>
+</ul>
+
+<p>Floating point computation <strong>is not exact</strong>.</p>
+
+<ul>
+  <li>Adding values of very different sizes leads to significant loss of precision since values must be converted to have the same exponent to be added together. This means the difference in scale is pushed into the mantissa, which then loses precision due to leading <code class="language-plaintext highlighter-rouge">0</code> digits on the smaller number. In some cases the smaller number may be so small that the closest representable number with that exponent is <code class="language-plaintext highlighter-rouge">0</code> and so the addition is lost completely.</li>
+  <li>Subtracting values which are close in size leads to cancellation of many digits and a result with far fewer significant digits and therefore lower precision.</li>
+  <li>Identities from real arithmetic do not necessarily hold, in particular <strong>addition and multiplication are not associative</strong>, so $(a + b) + c \neq a + (b + c)$ in floating point!</li>
+  <li>Handling these difficulties in numerical methods is a major field in and of itself. Many numerical algorithms are specially crafted to correct rounding errors in floating point arithmetic.</li>
+</ul>
+
+<h3 id="floating-point-precision">Floating Point Precision</h3>
+
+<p>Higher precision floating point numbers (like <code class="language-plaintext highlighter-rouge">double</code> as opposed to <code class="language-plaintext highlighter-rouge">float</code>) will give more accurate results when doing numerical work, but may also be slower to perform operations. Historically <code class="language-plaintext highlighter-rouge">double</code> operations have taken more time to compute than <code class="language-plaintext highlighter-rouge">float</code> operations, although this is no longer typically the case on modern CPUs. Nevertheless, if you are exploiting SIMD registers for maximal performance, fewer <code class="language-plaintext highlighter-rouge">double</code> values can fit in an available register and therefore fewer operations can be performed in a given amount of time. Some fast algorithms use single precision <code class="language-plaintext highlighter-rouge">float</code> or even half precision floating point numbers in areas where the results will not be significantly impacted by this. This is particularly common in areas like statistics and machine learning where the statistical variance is much larger than the precision of the floating point numbers. You must always bear in mind that the use of lower precision floating point types can lead to numerical instability from cancellation errors or division/multiplication by extreme values causing under or overflow. You should always have tests for robustness and precision to check that any compromises made to precision are acceptable.</p>
+
+<h3 id="optimisation-of-floating-point-arithmetic">Optimisation of Floating Point Arithmetic</h3>
+
+<p>Since floating point computation is not exact, many statements which are mathematically equivalent using real numbers are not equivalent in floating point. As mentioned above, compiler optimisations should not change the meaning of the code - the outcome of a calculation. Floating point operations therefore place limitations on the kinds of optimisations that can be applied, and if performance is a major consideration you should try to write out your floating point operations in the most efficient way possible to begin with.</p>
+
+<p>Nevertheless, compilers can optimise numerical code for speed by rearranging arithmetic operations, even floating point operations. (Integer arithmetic can be rearranged by the compiler because it is exact.) While C++ optimisations are generally designed not to change the results of the calculations as written there are some, such as those enabled by <code class="language-plaintext highlighter-rouge">-ffast-math</code>, that allow for rearrangement of arithmetic according to the rules of <em>real numbers</em>. This allows for example the rearranging associations. This can be a powerful tool in some cases, not only allowing your numerical code to be rearranged into a more efficient format but also permitting the compiler to make the necessary reorderings of operations for vectorising floating point algorithms. There are however, significant drawbacks to using fast-math optimisations due to the way that it can change the meaning of your program.</p>
+
+<p>Suppose we have a large number $N$ and two much smaller numbers $a$ and $b$ and we want to calculate $N + a + b$. We know from the way that floating point numbers work that adding small and large numbers leads to rounding errors, so the best order to add these number is $(a+b) + N$, to keep the precision of $(a+b)$ and maximise the size of the smaller number that we add to $N$. This is why re-associations in optimisation can cause a problem. Numerical algorithms with factors which compensate for rounding errors can have their error corrections optimised away by fast-math, because for <em>real</em> numbers the error corrections would be zero and the compiler can identify them as redundant!</p>
+
+<p><strong>Do not use fast math optimisations for code containing precise numerical methods unless you have very strictly tested it for sufficient accuracy.</strong></p>
+
+<h2 id="inspecting-optimised-code">Inspecting Optimised Code</h2>
+
+<p>The process of optimisation, and the optimised executable at the end of it, can feel rather confusing and obscure given that we are not directly in control of it. Nevertheless, we still need to make sure that our debugging and testing of our programs is thorough, and there are ways to get a better understanding of what the compiler has done to our code if we’re willing to look at a lower level!</p>
+
+<h3 id="debugging-and-testing">Debugging and Testing</h3>
+
+<p>As we have mentioned already, debugging optimised code can be substantially more difficult than debugging unoptimised code. Generally, optimised code should work in the same way as unoptimised code, and therefore:</p>
+
+<ul>
+  <li>Compile code without optimisations (or with <code class="language-plaintext highlighter-rouge">-Og</code>) for debugging and most development purposes other than profiling / benchmarking.</li>
+  <li>Turn on appropriate optimisations when compiling for actual deployment.</li>
+  <li>Run your unit tests on both unoptimised and optimised code.
+    <ul>
+      <li>If you have tests which pass when unoptimised but fail when optimised, then the chances are you have a bug in your code causing <a href="https://en.cppreference.com/w/cpp/language/ub"><strong>undefined behaviour</strong></a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="optional-dumping-executables-and-inspecting-assembly-code">Optional: Dumping Executables and Inspecting Assembly Code</h3>
+
+<p>This course is certainly not about assembly or low level programming, but you can understand something about what optimising compilers are doing if you take a look at the end result of your compilation. This can be instructive when working with small examples to better understand what the compiler is doing to your code.</p>
+
+<p>We can use the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>objdump <span class="nt">-d</span> &lt;myexe&gt; <span class="o">&gt;&gt;</span> &lt;output_file&gt;
+</code></pre></div></div>
+
+<p>to convert the contents of the executable into a human readable assembly code.</p>
+
+<p>In order to understand assembly code, we need a basic understanding of <a href="https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture">the registers on our CPU</a> and <a href="https://flint.cs.yale.edu/cs421/papers/x86-asm/asm.html">some typical assembly instructions</a>. Values are also written as <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimals</a> with the prefix <code class="language-plaintext highlighter-rouge">0x</code>.</p>
+
+<ul>
+  <li>Registers on the CPU store data which you are working with. These include:
+    <ul>
+      <li>Pointers to the bottom and top of the stack.</li>
+      <li>Registers for arithmetic operations, I/O etc.</li>
+      <li>Registers for SIMD.</li>
+    </ul>
+  </li>
+  <li>We won’t have variables or types, just data in memory and in registers. This is much more closely aligned to how the machine actually works!</li>
+  <li>The program counter tells the CPU which instruction to read and execute.</li>
+  <li>Data is moved from memory to registers to be worked on and then back to memory again.
+    <ul>
+      <li>This is important to understand how certain race conditions work in shared memory parallel programming, which we’ll go over next week! You might want to think about what could happen if two processes both want to work on the same piece of memory and copy it into their own registers to work on.</li>
+      <li>Assembly code also refers to virtual memory for the same reasons as C++, so the physical address and whether the memory is in RAM or cache are still unknown to us and handled by the OS/hardware.</li>
+    </ul>
+  </li>
+  <li>Mostly the code deals with memory addresses and registers:
+    <ul>
+      <li>A register is denoted with a <code class="language-plaintext highlighter-rouge">%</code> e.g. <code class="language-plaintext highlighter-rouge">%rax</code> is the location of the 64-bit accumulator register.</li>
+      <li>The value held at a location is indicated by <code class="language-plaintext highlighter-rouge">()</code> e.g. <code class="language-plaintext highlighter-rouge">(%rax)</code> refers to the value in the <code class="language-plaintext highlighter-rouge">rax</code> register rather than the register itself.</li>
+      <li>Constants are denoted with <code class="language-plaintext highlighter-rouge">$</code> e.g <code class="language-plaintext highlighter-rouge">$0x0</code> is the constant <code class="language-plaintext highlighter-rouge">0</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>We won’t go into detail on inspecting assembly code but point out some key things that can be observed:</p>
+
+<ul>
+  <li>Functions will be labelled, and you can easily find your <code class="language-plaintext highlighter-rouge">main</code> function.</li>
+  <li>Optimised code is usually significantly shorter than unoptimised code, especially when using structures like smart pointers where overheads can be optimised away.</li>
+  <li>Loops are formed from a combination of <code class="language-plaintext highlighter-rouge">cmp</code> (compare) and <code class="language-plaintext highlighter-rouge">jmp/jg/jl...</code> (jump, jump if greater than, jump if less than etc.) statements which test the conditions of the loop and redirect the program counter accordingly. You can therefore see if loops are unrolled or otherwise optimised out, which may lead to longer sections of assembly code.</li>
+  <li>Function calls are made by <code class="language-plaintext highlighter-rouge">call/callq</code> statements. Unnecessary function calls can be optimised out by inlining or removing redundant functions.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions#SSE_instructions">SIMD instructions</a> are recognisable if your compiler has performed this kind of optimisation.</li>
+  <li>If you assign a constant to a variable like <code class="language-plaintext highlighter-rouge">int x = 5</code>, you can usually spot this by finding the constant <code class="language-plaintext highlighter-rouge">$0x5</code> in a <code class="language-plaintext highlighter-rouge">mov</code> statement (<code class="language-plaintext highlighter-rouge">mov</code> moves a constant or a value contained in a source memory address/register to a destination memory address/register).</li>
+</ul>
+
+<p>As a simple example consider the code:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">int</span> <span class="n">u</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Summation loop</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>My unoptimised code has the following assembly for the summation loop:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    123f:	83 bd 38 fb ff ff 63 	cmpl   $0x63,-0x4c8(%rbp)
+    1246:	7f 38                	jg     1280 &lt;main+0xb7&gt;
+    1248:	8b 85 38 fb ff ff    	mov    -0x4c8(%rbp),%eax
+    124e:	48 98                	cltq   
+    1250:	8b 94 85 40 fb ff ff 	mov    -0x4c0(%rbp,%rax,4),%edx
+    1257:	8b 85 38 fb ff ff    	mov    -0x4c8(%rbp),%eax
+    125d:	48 98                	cltq   
+    125f:	8b 84 85 d0 fc ff ff 	mov    -0x330(%rbp,%rax,4),%eax
+    1266:	01 c2                	add    %eax,%edx
+    1268:	8b 85 38 fb ff ff    	mov    -0x4c8(%rbp),%eax
+    126e:	48 98                	cltq   
+    1270:	89 94 85 60 fe ff ff 	mov    %edx,-0x1a0(%rbp,%rax,4)
+    1277:	83 85 38 fb ff ff 01 	addl   $0x1,-0x4c8(%rbp)
+    127e:	eb bf                	jmp    123f &lt;main+0x76&gt;
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cmpl   $0x63,-0x4c8(%rbp)</code> compares the value that holds the iteration variable <code class="language-plaintext highlighter-rouge">i</code> with <code class="language-plaintext highlighter-rouge">99</code></li>
+  <li><code class="language-plaintext highlighter-rouge">jg     1280 &lt;main+0xb7&gt;</code> jumps past the loop if <code class="language-plaintext highlighter-rouge">i</code> was greater than <code class="language-plaintext highlighter-rouge">99</code></li>
+  <li><code class="language-plaintext highlighter-rouge">jmp    123f &lt;main+0x76&gt;</code> jumps back to the start of the loop.</li>
+  <li>We add see that we are using the normal integer <code class="language-plaintext highlighter-rouge">add</code> inside the loop after moving the values from memory to the registers <code class="language-plaintext highlighter-rouge">%eax</code> and <code class="language-plaintext highlighter-rouge">%edx</code>.</li>
+  <li>It also adds one (<code class="language-plaintext highlighter-rouge">$0x1</code>) to the iteration variable each time (<code class="language-plaintext highlighter-rouge">addl</code>).</li>
+  <li>Basically this works exactly as you would expect it to!</li>
+</ul>
+
+<p>If I optimise my code however, my loop can look quite different:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    11e0:	66 0f 6f 04 02       	movdqa (%rdx,%rax,1),%xmm0
+    11e5:	66 0f fe 04 01       	paddd  (%rcx,%rax,1),%xmm0
+    11ea:	0f 29 04 03          	movaps %xmm0,(%rbx,%rax,1)
+    11ee:	48 83 c0 10          	add    $0x10,%rax
+    11f2:	48 3d 90 01 00 00    	cmp    $0x190,%rax
+    11f8:	75 e6                	jne    11e0 &lt;main+0xa0&gt;
+</code></pre></div></div>
+<ul>
+  <li>The loop condition is evaluated at the end of the first iteration, and now compares the value in the <code class="language-plaintext highlighter-rouge">%rax</code> (64-bit accumulator) register with the value <code class="language-plaintext highlighter-rouge">0x190</code> (400).</li>
+  <li><code class="language-plaintext highlighter-rouge">jne    11e0 &lt;main+0xa0&gt;</code> jumps back to the start of the loop if the values in these are not equal.</li>
+  <li>The value in <code class="language-plaintext highlighter-rouge">%rax</code> which represents the loop iteration variable is now advanced by <code class="language-plaintext highlighter-rouge">0x10</code> (16), resulting in 25 iterations. This is what we might expect given that we are using an SIMD register which can handle 4 32-bit integers at a time.
+    <ul>
+      <li>Note that although I have multiple SIMD registers, I can still only perform one instruction at a time, which means I can’t do more than 4 integer additions at once.</li>
+    </ul>
+  </li>
+  <li>We’re now making use of SIMD instructions like <code class="language-plaintext highlighter-rouge">movdqa</code>, <code class="language-plaintext highlighter-rouge">paddd</code>, and <code class="language-plaintext highlighter-rouge">movaps</code> for <em>packed integers</em> i.e. multiple integers stored as one string of data.
+    <ul>
+      <li>Note that compiled programs will often use the vectorised registers <code class="language-plaintext highlighter-rouge">xmm_</code> and <code class="language-plaintext highlighter-rouge">ymm_</code> for sequential floating point arithmetic as well as vectorised arithmetic, so you need to look out specifically for the vectorised arithmetic instructions rather than just what registers are being used.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>There are many other changes made to this program due to the high level of optimisation asked for (<code class="language-plaintext highlighter-rouge">-03</code>), but this should illustrate the impact that compiler optimisation can have on the actual machine operation, and how we can inspect and understand this.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

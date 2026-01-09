@@ -1,0 +1,881 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Inheritance</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="creating-sub-types-with-inheritance">Creating Sub-types with Inheritance</h1>
+
+<p>Inheritance is one of the most important concepts in object oriented design, which brings a great deal of flexibility to us as programmers. A class defines a type of object, and a class which inherits from it defines a sub-type of that type. For example, we might have a class which represents shapes, and sub-classes which represent squares, circles, and triangles. Each of these are shapes, and so should be able to be used in any context that simply requires a shape, but each will have slightly different data needed to define it and different implementations of functions to calculate its perimeter or area.</p>
+
+<p>If we have a class to represent shapes, then any function which takes an object of our shape class should be able to take a circle, a square, or a triangle. This ability to use different types in the same context is called <strong>polymorphism</strong> and is a key concept in many programming paradigms. In C++ one of the key ways we will achieve it is by using inheritance.</p>
+
+<h2 id="when-should-inheritance-be-used">When Should Inheritance Be Used?</h2>
+
+<ul>
+  <li>Inheritance should be used only when you want to declare that one class is a sub-type of another class. Essentially <strong><code class="language-plaintext highlighter-rouge">B</code> may inherit from <code class="language-plaintext highlighter-rouge">A</code> only if <code class="language-plaintext highlighter-rouge">B</code> <em>is a kind of</em> <code class="language-plaintext highlighter-rouge">A</code>.</strong></li>
+  <li>A common example is that the classes <code class="language-plaintext highlighter-rouge">Circle</code> and <code class="language-plaintext highlighter-rouge">Square</code> may both derive from the class <code class="language-plaintext highlighter-rouge">Shape</code>. But neither <code class="language-plaintext highlighter-rouge">Circle</code> nor <code class="language-plaintext highlighter-rouge">Square</code> should inherit from one another!
+    <ul>
+      <li>Consider for example a class <code class="language-plaintext highlighter-rouge">Country</code>, which may have both an area and a perimeter. Although it shares some properties with <code class="language-plaintext highlighter-rouge">Shape</code>, it should almost certainly <strong>not</strong> inherit from <code class="language-plaintext highlighter-rouge">Shape</code>, because a <code class="language-plaintext highlighter-rouge">Country</code> is not a kind of <code class="language-plaintext highlighter-rouge">Shape</code>, and we wouldn’t expect a <code class="language-plaintext highlighter-rouge">Country</code> to be substitutable everywhere that a <code class="language-plaintext highlighter-rouge">Shape</code> is. This is an example of using the type system to our advantage: we shouldn’t allow a <code class="language-plaintext highlighter-rouge">Country</code> to be passed into a <code class="language-plaintext highlighter-rouge">Shape</code> function, because we know it is the wrong kind of object even if it shares some (or even all) properties. We are using the type system to impart information that we understand about the objects we are creating and modelling, and discriminate between representations of different kinds of thing.</li>
+    </ul>
+  </li>
+  <li>The <strong>Liskov Substitution Principle</strong> is one good guiding principle.
+    <ul>
+      <li>If <code class="language-plaintext highlighter-rouge">B</code> is a sub-type of <code class="language-plaintext highlighter-rouge">A</code>, then replacing an object of type <code class="language-plaintext highlighter-rouge">A</code> with an object of type <code class="language-plaintext highlighter-rouge">B</code> should not break your program.</li>
+      <li>In this case a <code class="language-plaintext highlighter-rouge">B</code> object can be considered a kind of <code class="language-plaintext highlighter-rouge">A</code> object, but not the other way around.</li>
+      <li>Sub-types are more specific than base types.</li>
+    </ul>
+  </li>
+  <li>Derived classes should generally <em>extend</em> classes rather than restrict classes. Having a subclass that is simpler than the base class can cause problems if the object is substituted into a part of the program that expects a base class, as functionality expected for the base class may not be appropriately defined in the derived class.
+    <ul>
+      <li>This is commonly referred to as the Square/Rectangle problem or the Circle/Ellipse Problem.</li>
+      <li>In this case the square (or circle) is a special case of a rectangle (or ellipse) which is more restricted an contains less information, because it only requires one length to be defined instead of two.</li>
+      <li>Functionality that manipulates the height and width of the rectangle individually don’t make sense for a square, because it should only have one.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="composition-when-not-to-use-inheritance">Composition: When <strong>not</strong> to use Inheritance</h2>
+
+<ul>
+  <li>Don’t use inheritance if you want a class to <em>have</em> an instance of another class as a component.
+    <ul>
+      <li>It should be achieved by having a member variable of that type, or a pointer to an object of that type.
+        <ul>
+          <li>For example, squares <em>have</em> edges, so a <code class="language-plaintext highlighter-rouge">Square</code> class could have <em>members</em> which are of an <code class="language-plaintext highlighter-rouge">Edge</code> type class. But <code class="language-plaintext highlighter-rouge">Edges</code> aren’t squares, so <code class="language-plaintext highlighter-rouge">Edge</code> shouldn’t derive from <code class="language-plaintext highlighter-rouge">Square</code> (or vice versa).</li>
+        </ul>
+      </li>
+      <li>This is called <em>composition</em> when the lifetime of the component is controlled by the class, and <em>aggregation</em> when the component has an independent lifetime.
+        <ul>
+          <li>A class representing a room has walls, which don’t exist independently of the room and so can be represented using composition. The walls could be represented using member variables of type Wall, or pointer to Walls, possibly in a container.</li>
+          <li>A room can also have a table, which could be moved to another room or thrown away, and hence exists independently of the room and can be represented using aggregation. There should be a pointer to an object of type Table, and some means to check that the Table is still in scope.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Inheritance is only for when you want a class to <em>be</em> a kind of another class.</li>
+  <li>A mini-cooper <strong>is</strong> a type of car, so the class <code class="language-plaintext highlighter-rouge">MiniCooper</code> can <strong>inherit</strong> from the class <code class="language-plaintext highlighter-rouge">Car</code>.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">Car</code> <strong>has</strong> an <code class="language-plaintext highlighter-rouge">Engine</code>, so the <code class="language-plaintext highlighter-rouge">Car</code> class should have a <strong>member</strong> of type (or pointer to type) <code class="language-plaintext highlighter-rouge">Engine</code>.</li>
+</ul>
+
+<h2 id="what-is-inherited">What is Inherited?</h2>
+
+<ul>
+  <li>
+    <p>If we simply define a sub-class as inheriting from a base class, then it will inherit all of the member functions and variables which are not <code class="language-plaintext highlighter-rouge">private</code> from the base class definition.</p>
+  </li>
+  <li>
+    <p>Functions and member variables which exist in the base class don’t need to be declared again in the derived class, unless you want to change how the function works in the derived class.</p>
+  </li>
+  <li>
+    <p>A function which is defined in the base class and the derived class is said to be <em>overridden</em> in the derived class. In this case when we call the function from an object of the derived class, the new function definition is used instead of the original definition in the base class.</p>
+  </li>
+  <li>
+    <p>The derived class has no access to private members of the base class, whether they are variables or functions. This does not mean that the derived class does not have these members: they are still part of the object’s data because they are part of the base class. Private members of the base class could be indirectly manipulated, for example by public/protected functions defined in the base class (which are therefore available to the derived class) which act on or call private members of the base class.</p>
+  </li>
+</ul>
+
+<h2 id="private-protected-and-public-inheritance">Private, Protected, and Public Inheritance</h2>
+
+<p>Like with access specifiers, a sub-class can inherit from a base class in three different ways. These kinds of inheritance have to do with how the sub-class controls access to members which it inherits from the base class.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">public</code>: Public inheritance is the most common form. When using public inheritance the access specifiers for members of the base class that are available to the derived class remain unchanged in the derived class. (Public members and protected members are still public and protected respectively; remember that private members in the base class are not available to the derived class.)</li>
+  <li><code class="language-plaintext highlighter-rouge">protected</code>: Protected inheritance converts public members of the base class to protected members of the derived class, so if you create an object of the derived type these member variables / functions will not be available outside the class unless it is converted to an instance of the base class. Protected members of the base class remain protected in the derived class.</li>
+  <li><code class="language-plaintext highlighter-rouge">private</code>: Private inheritance converts public and protected members in the base class to private members in the derived class.</li>
+</ul>
+
+<h2 id="how-is-a-derived-object-created-and-destroyed">How is a Derived Object Created and Destroyed?</h2>
+
+<p>When a derived object is created:</p>
+
+<ol>
+  <li>The base class constructor is called.
+    <ul>
+      <li>You can specify the base constructor to use for a given derived class constructor by writing a colon (<code class="language-plaintext highlighter-rouge">:</code>) followed by the base constructor you wish to call, e.g. <code class="language-plaintext highlighter-rouge">SubClass() : BaseClass(0, 0) { ... }</code></li>
+      <li>If you do not specify a base constructor explicitly, e.g. <code class="language-plaintext highlighter-rouge">SubClass(){ ... }</code>, then the default constructor will be used. (If no default constructor for the base class exists you will get a compiler error.)</li>
+    </ul>
+  </li>
+  <li>The derived class constructor is called second.</li>
+</ol>
+
+<p>When a derived object is destroyed:</p>
+
+<ol>
+  <li>The derived class destructor is called first.</li>
+  <li>The base class destructor is called second.
+    <ul>
+      <li>You can specify the base class destructor that you wish to use in the same way as the constructor.</li>
+      <li>As always, you must be extremely careful if you are doing any manual memory management. Memory must be freed, but must only be freed once. Don’t free the same memory in the destructor of both the derived class and the destructor of the base class!</li>
+    </ul>
+  </li>
+</ol>
+
+<p>You can observe the creation and destruction of objects of base and derived classes by writing output in their constructor/destructor functions.</p>
+
+<h2 id="overriding-inherited-functions">Overriding Inherited Functions</h2>
+
+<p>Unlike the constructor and destructor, most functions can be completely overridden by the derived class. Calling the function in the derived class will not make any calls to the same function in the base class - the functionality is completely replaced. This is straight-forward to do: if we implement a function with the same name and signature as the base class (same type, name, number of arguments, and types of arguments) then this function will “override” the definition that would be inherited from the base class.</p>
+
+<p>Function overriding is fundamental to this polymorphic style of programming because this is what allows each sub-class to behave uniquely when placed in the same context.</p>
+
+<h2 id="polymorphism">Polymorphism</h2>
+
+<p>Polymorphism is the ability to use multiple types in the same context in our program; in order to achieve this we must only access the common properties of those types through some shared interface. The most common way to do this is to define a base class which defines the necessary common properties, and then have sub-classes which inherit from the base class which represent different kinds of objects which can implement this interface. This is called <em>sub-type polymorphism</em>, and is one of the most common forms of polymorphism.</p>
+
+<p>By exploring polymorphism we can also understand the behaviour, and some of the limitations, of the straightforward model of inheritance that we have used so far.</p>
+
+<p>Let’s assume that we have some class <code class="language-plaintext highlighter-rouge">Shape</code>, and derived classes <code class="language-plaintext highlighter-rouge">Circle</code> and <code class="language-plaintext highlighter-rouge">Square</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Shape</span>
+<span class="p">{</span>
+    <span class="nl">protected:</span>
+    <span class="n">Shape</span><span class="p">(){}</span>
+
+    <span class="nl">public:</span>
+    <span class="n">Shape</span><span class="p">(</span><span class="kt">double</span> <span class="n">P</span><span class="p">,</span> <span class="kt">double</span> <span class="n">A</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">perimeter</span> <span class="o">=</span> <span class="n">P</span><span class="p">;</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">area</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">perimeter</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Shape; Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span> <span class="o">&lt;&lt;</span> <span class="n">perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">perimeter</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">area</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Circle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Circle</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">perimeter</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Circle; Radius = "</span> <span class="o">&lt;&lt;</span> <span class="n">radius</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span> <span class="o">&lt;&lt;</span> <span class="n">perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Square</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Square</span><span class="p">(</span><span class="kt">double</span> <span class="n">w</span><span class="p">)</span> <span class="o">:</span> <span class="n">width</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">perimeter</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">width</span><span class="p">;</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">width</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Square; Width = "</span> <span class="o">&lt;&lt;</span> <span class="n">width</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span> <span class="o">&lt;&lt;</span> <span class="n">perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">width</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">Shape</code> class has two functions: one to get the area (<code class="language-plaintext highlighter-rouge">getArea</code>) and one to get the perimeter (<code class="language-plaintext highlighter-rouge">getPerimeter</code>).
+    <ul>
+      <li>These simply return member variables which store the area and perimeter of the shape, since there is no general formula for calculating the area or perimeter of an arbitrary shape.</li>
+    </ul>
+  </li>
+  <li>The area and perimeter are set in the constructor of the <code class="language-plaintext highlighter-rouge">Shape</code> class.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Shape</code> also has a default constructor with no parameters. This is <code class="language-plaintext highlighter-rouge">protected</code> since it is used by the derived classes (which set the <code class="language-plaintext highlighter-rouge">area</code> and <code class="language-plaintext highlighter-rouge">perimeter</code> themselves) but can’t be used outside of the class or derived classes: this means that we can’t instantiate an object of type <code class="language-plaintext highlighter-rouge">Shape</code> using this constructor i.e. we cannot create a <code class="language-plaintext highlighter-rouge">Shape</code> with no area or perimeter.</li>
+    </ul>
+  </li>
+  <li>The <code class="language-plaintext highlighter-rouge">Circle</code> and <code class="language-plaintext highlighter-rouge">Square</code> set the area / perimeter appropriately in their own constructors based on their relevant dimensions.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">M_PI</code> is a constant defined in the header <code class="language-plaintext highlighter-rouge">&lt;cmath&gt;</code>.</li>
+    </ul>
+  </li>
+  <li>We also have a <code class="language-plaintext highlighter-rouge">printInfo</code> method which displays information about the shape to the terminal. This is overridden in the derived classes to display specialised information for each shape.</li>
+</ul>
+
+<p>Now let’s say that we want to have a list of shapes, in the form of a vector, and get the area for each one.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">PrintShapeArea</span><span class="p">(</span><span class="n">Shape</span> <span class="n">shape</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">shape</span><span class="p">.</span><span class="n">getArea</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Circle</span> <span class="n">C</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="mf">5.9</span><span class="p">);</span>
+    <span class="n">Square</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="mf">3.1</span><span class="p">);</span>
+
+    <span class="n">PrintShapeArea</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
+    <span class="n">PrintShapeArea</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>When a <code class="language-plaintext highlighter-rouge">Circle</code> or <code class="language-plaintext highlighter-rouge">Square</code> is passed into <code class="language-plaintext highlighter-rouge">PrintShapeArea</code>, it is cast to a <code class="language-plaintext highlighter-rouge">Shape</code> type (the base class).</li>
+  <li>It will lose any additional information or methods associated with the derived class.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Circle</code> and the <code class="language-plaintext highlighter-rouge">Square</code> both have access to the <code class="language-plaintext highlighter-rouge">perimeter</code> and <code class="language-plaintext highlighter-rouge">area</code> member variables, as well as their respective “getters”.</li>
+  <li>The correct area will reported because the <code class="language-plaintext highlighter-rouge">area</code> member variable is set in the constructor, and the derived constructor has been called when the object was instantiated.</li>
+</ul>
+
+<p>Whenever we use a derived class in place of a base class, we implicitly cast to the base type and therefore can lose important information and behaviour defined in the derived class. In this example, we have separate <code class="language-plaintext highlighter-rouge">printInfo</code> functions for each of our classes. We run into a problem if we want to print this information for a list of <code class="language-plaintext highlighter-rouge">Shape</code> objects containing both <code class="language-plaintext highlighter-rouge">Circle</code> and <code class="language-plaintext highlighter-rouge">Square</code> objects.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">GetShapeInfo</span><span class="p">(</span><span class="n">Shape</span> <span class="n">shape</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">shape</span><span class="p">.</span><span class="n">printInfo</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Circle</span> <span class="n">C</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="mf">5.9</span><span class="p">);</span>
+    <span class="n">Square</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="mf">3.1</span><span class="p">);</span>
+
+    <span class="n">C</span><span class="p">.</span><span class="n">printInfo</span><span class="p">();</span>
+    <span class="n">S</span><span class="p">.</span><span class="n">printInfo</span><span class="p">();</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">GetShapeInfo</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
+    <span class="n">GetShapeInfo</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This will result in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Circle; Radius = 5.9m, Area = 109.303 m^2, Perimeter = 37.052m.
+Square; Width = 3.1m, Area = 9.61 m^2, Perimeter = 12.4m.
+
+Shape; Area = 109.303 m^2, Perimeter = 37.052m.
+Shape; Area = 9.61 m^2, Perimeter = 12.4m.
+</code></pre></div></div>
+
+<ul>
+  <li>When we call <code class="language-plaintext highlighter-rouge">printInfo()</code> from the derived class objects directly, we get their detailed information including the type of shape and the radius or width.</li>
+  <li>When we do the same on our objects within our vector, we only have access to the base class, and therefore we call the base class version of this method.</li>
+</ul>
+
+<p>In this case we have lost our specialised functionality for our derived classes when placed in a polymorphic context! In order for polymorphism to be really useful in C++, we need a way to retain the overridden functions for the derived classes, even when we are treating them in the more generalised context of a function or container which takes their base class.</p>
+
+<p>We shall see in the next section how we can make use of polymorphism whilst still accessing the functions of the derived class!</p>
+
+<h2 id="virtual-functions">Virtual Functions</h2>
+
+<p>Our current method of overriding and calling functions in the way described above is clearly insufficient in many cases where we want to use an object of a derived class in a piece of code which deals with the base class. Take for example a function that takes an argument of base type <code class="language-plaintext highlighter-rouge">Shape</code>:</p>
+
+<ul>
+  <li>We often don’t want to pass our derived class by value: this will attempt to copy the object into a new object of type <code class="language-plaintext highlighter-rouge">Shape</code>, so any overrides will be lost.</li>
+  <li>We should instead pass our argument by reference (or as a pointer, which we’ll discuss in a later week). This will avoid the copying into a fresh object and instead will just pass the address in memory where the object we want to pass is stored. However, the function itself will still be treating the object as being of type <code class="language-plaintext highlighter-rouge">Shape</code> and hence will call the <code class="language-plaintext highlighter-rouge">Shape</code> versions of any functions.</li>
+</ul>
+
+<p>We can solve this problem by declaring a member function <code class="language-plaintext highlighter-rouge">virtual</code> in the base class. In this case, the function is accessed in a different way to normal.</p>
+
+<p>Function definitions have addresses, and when an ordinary (not virtual) member function of a class is called the definition of that function can be straight-forwardly looked up for that class. So if we are using a <code class="language-plaintext highlighter-rouge">Shape &amp;</code> reference to an object, even if that object was created as type <code class="language-plaintext highlighter-rouge">Circle</code>, we will still look up the definition of any functions for <code class="language-plaintext highlighter-rouge">Shape</code>, since that’s the class that we’re using.</p>
+
+<p>For classes with virtual functions however, each object will store an additional pointer as part of its data that points to a special table for that class (called a “virtual table” or “v-table”). The v-table contains pointers to the virtual function definitions for that class (amongst other things, as we’ll see later); there will be one of these v-tables for each class with virtual functions. If the object is created as an instance of the base class, this it will have a pointer to the v-table for the base class, which contains the addresses of the base function implementation(s). If the object is created as an instance of a derived class, then it will carry the address of the v-table for the derived type, which contains addresses for the derived type’s function(s). When we call a virtual function on an object, it will first follow the pointer to the correct virtual table and then will execute the function at the relevant address stored in the virtual table. Since the pointer to the v-table is part of the object’s data rather than part of its type information, it doesn’t matter if we are using a <code class="language-plaintext highlighter-rouge">Shape &amp;</code> reference or <code class="language-plaintext highlighter-rouge">Circle &amp;</code>, it will still be directed to use the derived function for the class <code class="language-plaintext highlighter-rouge">Circle</code> because that is the virtual table that the object was pointed to when it was created. This is also why <strong>passing a reference (or pointer) is necessary for this to work</strong>. If we pass by value we will create a <em>new</em> object of type <code class="language-plaintext highlighter-rouge">Shape</code>, and because it is of type <code class="language-plaintext highlighter-rouge">Shape</code> the new object will point to the <code class="language-plaintext highlighter-rouge">Shape</code> v-table. If we pass a <em>reference</em>, then the function will instead look at the memory location of the original object, and therefore look in the original object’s virtual table, and thus find the implementation for the derived class.</p>
+
+<p>Virtual functions open up fully polymorphic behaviour for our classes, and are important whenever a object of a derived class might be treated as a member of a base class, including:</p>
+
+<ul>
+  <li>Passing objects of derived class to functions which take objects of base class (by reference or pointer).</li>
+  <li>Defining a container of objects which can be of different derived classes by declaring a container using the base class.
+    <ul>
+      <li>We will return to this technique later when we discuss pointers, you cannot have a container, such as <code class="language-plaintext highlighter-rouge">vector</code>, of references. Nevertheless it is good to be aware of this use case now as it is a very common way for polymorphism to come in handy!</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>N.B.</strong> Special consideration should be given to <em>virtual destructors</em>. <strong>If your class is inherited from, the destructor should usually be virtual.</strong> We can point to an object of the derived class using a pointer of the type of <code class="language-plaintext highlighter-rouge">Base *</code>. If we <code class="language-plaintext highlighter-rouge">delete</code> this base pointer to free the memory then <em>only the base class destructor will be called</em>, and anything that needs to be cleaned up by the derived destructor will not happen. If the destructor is virtual, then the derived destructor will be called (which also calls the base destructor), and so any necessary clean up will happen. If you use <em>Smart Pointers</em> to initialise your object then the correct (derived) destructor should be used even if the base destructor is not virtual.</p>
+
+<h2 id="abstract-classes">Abstract Classes</h2>
+
+<p>Abstract classes are special cases of classes which have <em>virtual methods with no implementation</em>. Such functions are called <strong>pure, virtual functions</strong>. Such classes are abstract in the sense that they cannot be instantiated: we cannot create an object which is an instance of an abstract class because it has undefined functions and therefore the object to be instantiated is not fully defined. We can only instantiate objects of <em>derived classes</em> which have implemented <em>all</em> missing functionality.</p>
+
+<ul>
+  <li>Abstract classes can be used when we want to define a <strong>type</strong> of object where any instance must be one of a set of <strong>concrete sub-types</strong>.
+    <ul>
+      <li>They are often useful for modelling abstract concepts defined by some shared properties. For example, many different things are animals, but every animal alive is a specific species, i.e. sub-type, of animal. So we don’t want to be able to instantiate an “animal” type object without declaring its species as well: the derived type is concrete and can exist, but the base type is abstract and merely denotes membership of a broader type class.</li>
+    </ul>
+  </li>
+  <li>Abstract classes are any class which has at least one pure, virtual function
+    <ul>
+      <li>A function is declared pure by setting it <code class="language-plaintext highlighter-rouge">= 0</code> in the definition</li>
+      <li>e.g. <code class="language-plaintext highlighter-rouge">virtual int myPureVirtualFunction(int a, int b) = 0;</code></li>
+    </ul>
+  </li>
+  <li>Abstract classes allow us to model interfaces which have no default (base) implementation but which may have many possible implementations.</li>
+  <li>Although abstract classes cannot be instantiated on their own, they still have constructors and destructors, which are called in the same way as other base classes. These can be used to set or clean up data present in the definition of the abstract class.</li>
+  <li>Destructors for abstract classes should be virtual, since instances of abstract classes are <em>always</em> derived classes and so we should make sure that the derived destructor is always called.</li>
+</ul>
+
+<p>Let’s return to our <code class="language-plaintext highlighter-rouge">Shape</code> class example, which defines shapes as a class of objects which have an area and a perimeter which can be calculated. <code class="language-plaintext highlighter-rouge">Shape</code> is a good candidate for an abstract class, because area and perimeter have no meaningful implementation until the form of the shape is specified, and thus there is no reasonable base class implementation, but we want this functionality to be available in any actual shapes which are created. We can then create derived classes for triangles, circles, and squares which override these pure virtual methods, and therefore can be instantiated. Now we can treat instantiations of each of the derived classes as objects of type Shape, and pass them to the same functions and containers, without any risk that an invalid and meaningless Shape base object will be created.</p>
+
+<p>Here’s a new definition of <code class="language-plaintext highlighter-rouge">Shape</code>, <code class="language-plaintext highlighter-rouge">Circle</code>, and <code class="language-plaintext highlighter-rouge">Square</code> that makes <code class="language-plaintext highlighter-rouge">Shape</code> and abstract class, and replaces the <code class="language-plaintext highlighter-rouge">area</code> and <code class="language-plaintext highlighter-rouge">perimeter</code> member variables with functions that calculate these properties instead.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Shape</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Circle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Circle</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">){}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Circle; Radius = "</span> <span class="o">&lt;&lt;</span> <span class="n">m_radius</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">m_area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">m_perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Square</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Square</span><span class="p">(</span><span class="kt">double</span> <span class="n">w</span><span class="p">)</span> <span class="o">:</span> <span class="n">width</span><span class="p">(</span><span class="n">w</span><span class="p">){}</span>
+
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">width</span> <span class="o">*</span> <span class="n">width</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">width</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Square; Width = "</span> <span class="o">&lt;&lt;</span> <span class="n">width</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">width</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We can no longer make objects of type <code class="language-plaintext highlighter-rouge">Shape</code>, only <code class="language-plaintext highlighter-rouge">Circle</code> or <code class="language-plaintext highlighter-rouge">Square</code>.</li>
+  <li>We can however have pointers (smart pointer or raw pointers) or references to <code class="language-plaintext highlighter-rouge">Shape</code>, which will use the derived versions of <code class="language-plaintext highlighter-rouge">getArea</code>, <code class="language-plaintext highlighter-rouge">getPerimeter</code>, and <code class="language-plaintext highlighter-rouge">printInfo</code> for each object depending on whether it was created as a <code class="language-plaintext highlighter-rouge">Circle</code> or <code class="language-plaintext highlighter-rouge">Square</code>.</li>
+  <li>The use of virtual functions makes this version more polymorphic than the previous one.</li>
+  <li>The use of pure virtual functions means that the <code class="language-plaintext highlighter-rouge">Shape</code> class more closely corresponds to our abstract notion of a shape as being something that we can’t implement without more information.</li>
+  <li>Note that we don’t have to design the class so that we re-calculate the area and perimeter every time we call <code class="language-plaintext highlighter-rouge">getArea</code> and <code class="language-plaintext highlighter-rouge">getPerimeter</code>; we could store them in member variables like in our previous example. Think about the pros and cons of these two approaches!</li>
+</ul>
+
+<h2 id="runtime-type-information-rtti">Runtime Type Information (RTTI)</h2>
+
+<p>In addition to the locations of virtual functions, the v-table also contains type identification information. This means that C++ can find out if a <code class="language-plaintext highlighter-rouge">Shape</code> pointer is pointing to a <code class="language-plaintext highlighter-rouge">Circle</code> or a <code class="language-plaintext highlighter-rouge">Square</code> by the same mechanism as it finds the overrides for virtual functions: it follows the pointer from the object to its v-table, and then it can look up the type information. In our programs we can access this using <a href="https://en.cppreference.com/w/cpp/language/typeid.html"><code class="language-plaintext highlighter-rouge">typeid</code></a>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;typeinfo&gt;</span><span class="cp">
+</span><span class="p">...</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shape</span><span class="o">&gt;</span> <span class="n">C</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Circle</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">2.1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shape</span><span class="o">&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Square</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">1.8</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">C</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">S</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> 
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">typeid</code> returns an <code class="language-plaintext highlighter-rouge">std::type_info</code>, which requires the <code class="language-plaintext highlighter-rouge">&lt;typeinfo&gt;</code> include. The <code class="language-plaintext highlighter-rouge">name()</code> member function just makes it more human readable. Note that we dereference the pointers first: the types of the <em>pointers</em> are the same, but the types of the <em>data</em> that they point to are not. <code class="language-plaintext highlighter-rouge">typeid</code> can also be used with a <em>type</em> as an argument instead of an object, as we shall see in the example below:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;typeinfo&gt;</span><span class="cp">
+</span><span class="p">...</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shape</span><span class="o">&gt;</span> <span class="n">C</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Circle</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">2.1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shape</span><span class="o">&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Square</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">1.8</span><span class="p">);</span>
+
+    <span class="kt">bool</span> <span class="n">same_pointer_type</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">S</span><span class="p">));</span>  <span class="c1">// True</span>
+    <span class="kt">bool</span> <span class="n">same_underlying_type</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">C</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">S</span><span class="p">));</span> <span class="c1">// False </span>
+    <span class="kt">bool</span> <span class="n">is_Circle_type</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">C</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">Circle</span><span class="p">));</span>  <span class="c1">// True</span>
+    <span class="kt">bool</span> <span class="n">is_Shape_type</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">C</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">Shape</span><span class="p">));</span>  <span class="c1">// False</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">typeid</code> will return the specific type of the object, so checking where your <code class="language-plaintext highlighter-rouge">Circle</code> object is a <code class="language-plaintext highlighter-rouge">Shape</code> will return false, since these are distinct types.</p>
+
+<p>Run time type information is rarely needed in C++, since the types are usually known and most polymorphic behaviour can (and should) be handled by overriding member functions. However, there are some times where we are dealing with polymorphic types and we need to ascertain what type something is. For example, lets say I have a <code class="language-plaintext highlighter-rouge">vector&lt;Shape&gt;</code> and I need to get all the <code class="language-plaintext highlighter-rouge">Circle</code> objects from this list. Rather than forcing every sub-class of <code class="language-plaintext highlighter-rouge">Shape</code> to implement some kind of <code class="language-plaintext highlighter-rouge">isCircle()</code> function or carry extra data around, it is better to just use <code class="language-plaintext highlighter-rouge">typeid</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">typeid</code> works well when you just need to check some precise type information, like to check if an object is a <code class="language-plaintext highlighter-rouge">Circle</code> or not. Inheritance trees however can be a little more complex; let’s consider an example with an addition <em>polygon</em> subclass. Circles are not polygons, but triangles, squares, pentagons and so on are.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Shape</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Circle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Circle</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">){}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Circle; Radius = "</span> <span class="o">&lt;&lt;</span> <span class="n">m_radius</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">m_area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">m_perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Polygon</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Square</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Polygon</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Square</span><span class="p">(</span><span class="kt">double</span> <span class="n">w</span><span class="p">)</span> <span class="o">:</span> <span class="n">width</span><span class="p">(</span><span class="n">w</span><span class="p">){}</span>
+
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">width</span> <span class="o">*</span> <span class="n">width</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">width</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Square; Width = "</span> <span class="o">&lt;&lt;</span> <span class="n">width</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">width</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">IsocelesTriangle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Polygon</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Square</span><span class="p">(</span><span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">double</span> <span class="n">h</span><span class="p">)</span> <span class="o">:</span> <span class="n">base</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">height</span><span class="p">(</span><span class="n">h</span><span class="p">){}</span>
+
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">base</span><span class="o">*</span><span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getPerimeter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">base</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">height</span><span class="o">*</span><span class="n">height</span> <span class="o">+</span> <span class="n">base</span><span class="o">*</span><span class="n">base</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Triangle; Base = "</span> <span class="o">&lt;&lt;</span> <span class="n">base</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Height = "</span> <span class="o">&lt;&lt;</span> <span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="s">"m, Area = "</span> <span class="o">&lt;&lt;</span> <span class="n">area</span> <span class="o">&lt;&lt;</span> <span class="s">" m^2, Perimeter = "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">perimeter</span> <span class="o">&lt;&lt;</span> <span class="s">"m."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">protected:</span>
+    <span class="kt">double</span> <span class="n">base</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">height</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Now if we turn back to our <code class="language-plaintext highlighter-rouge">vector&lt;Shape&gt;</code>, suppose we want to do something with only the objects that are <em>polygons</em>? Writing a manual check for each kind of polygon like:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isPolygon</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shape</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">S</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">Square</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">S</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">IsocelesTriangle</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>since this is not extensible. Instead we can use C++’s <code class="language-plaintext highlighter-rouge">dynamic_cast</code> to check whether something can be safely cast to the <code class="language-plaintext highlighter-rouge">Polygon</code> type, which would mean that it is a sub-class of that type:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isPolygon</span><span class="p">(</span><span class="n">Shape</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Polygon</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">get</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">dynamic_cast</code> requires us to work with pointer types (or reference types), so we no longer dereference <code class="language-plaintext highlighter-rouge">S</code> but extract the pointer from it. If the <code class="language-plaintext highlighter-rouge">dynamic_cast</code> fails then the result is a <code class="language-plaintext highlighter-rouge">nullptr</code>. This can be very effectively used in <code class="language-plaintext highlighter-rouge">if</code> statements since a pointer in a conditional statement implicitly converts to false if <code class="language-plaintext highlighter-rouge">nullptr</code> and true otherwise.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Polygon</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">get</span><span class="p">()))</span>
+<span class="p">{</span>
+    <span class="c1">// do something polygon specific</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="c1">// do something else</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Dynamic casting can also be used to safely convert <code class="language-plaintext highlighter-rouge">Shape</code> pointers into new <code class="language-plaintext highlighter-rouge">Predator</code>, <code class="language-plaintext highlighter-rouge">Fox</code> or any other subclass pointer that’s required for e.g. passing to another function that takes a more specific type. <strong>You absolutely must check for null pointers if you are going to do this, and make sure to think carefully about any ownership issues when you generate new pointers.</strong></p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

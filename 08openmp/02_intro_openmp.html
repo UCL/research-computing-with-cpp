@@ -1,0 +1,1247 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>An introduction to OpenMP</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="active"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="active"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="active"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h2 id="an-introduction-to-openmp">An introduction to OpenMP</h2>
+
+<p>OpenMP is a way of parallelising C++ and Fortran code for multi-core, shared-memory systems. It can also offload computations to accelerators like GPUs but we won’t go into that here.</p>
+
+<p>The way we use OpenMP is through <strong>preprocessor directives</strong>, statements that augment our code to give extra information to the compiler, allowing it to parallelise the code automatically. We’ll describe the syntax for these directives in a later section but as a very quick example of what OpenMP looks like, this is how we can parallelise a loop using a <code class="language-plaintext highlighter-rouge">parallel for</code> directive:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for
+</span><span class="k">for</span><span class="p">(...)</span> <span class="p">{</span>
+  <span class="c1">// perform some independent loop iterations</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That’s it! Adding just one line before a loop we want to parallelise is how simple OpenMP <em>can</em> be. Of course, OpenMP exposes much more functionality, allowing us to parallelise more complex code, and optimise <em>how</em> OpenMP parallelises our code. We can also use OpenMP to introduce some subtle and dangerous bugs (this is C++ after all) but at its core, OpenMP is a remarkably accessible way to program for shared-memory machines and has become standard in the HPC world for this purpose.</p>
+
+<p>OpenMP is a deep and rich way to express parallelism within our code, and the directive-based approach allows us to support a version of our code compiled <em>without</em> OpenMP. <strong>If we compile this code without informing the compiler we wish to use OpenMP, it will simply ignore the directives and treat it as sequential code.</strong></p>
+
+<p>I should also note that OpenMP has many more features than the basic functionality I’ll discuss here. Much like C++ itself, OpenMP is not a library or a piece of software but a <em>specification</em> which is continually evolving, with the latest 5.2 version being released in Nov 2021. Compiler developers will implement parts of the specification as appropriate for their userbases and support in GCC at least is minimal for the very latest features. See the <a href="https://gcc.gnu.org/wiki/openmp">OpenMP page in the GCC wiki</a> for details on compatibility with the current specification.</p>
+
+<h3 id="compiling-openmp-code">Compiling OpenMP code</h3>
+
+<p>Enabling OpenMP is (surprisingly) as simple as its basic usage. Let’s look at how we can enabled OpenMP using either <code class="language-plaintext highlighter-rouge">g++</code> only or as part of a CMake project.</p>
+
+<h4 id="compiling-with-g">Compiling with <code class="language-plaintext highlighter-rouge">g++</code></h4>
+
+<p>If we’re using <code class="language-plaintext highlighter-rouge">g++</code> to compile our program as <code class="language-plaintext highlighter-rouge">g++ -o hello hello.cpp</code> then all we need to add is the OpenMP flag:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-fopenmp</span> <span class="nt">-o</span> hello hello.cpp
+</code></pre></div></div>
+
+<p>Other compilers have similar flags and, as previously mentioned, support different parts of OpenMP, although all compilers should support the basic features.</p>
+
+<h4 id="compiling-with-cmake">Compiling with CMake</h4>
+
+<p>Stealing this snippet from the excellent <a href="https://cliutils.gitlab.io/modern-cmake/chapters/packages/OpenMP.html">Modern CMake</a>, we can add OpenMP to a CMake project (using CMake 3.9+) with:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>OpenMP<span class="p">)</span>
+<span class="nb">if</span><span class="p">(</span>OpenMP_CXX_FOUND<span class="p">)</span>
+    <span class="nb">target_link_libraries</span><span class="p">(</span>MyTarget PUBLIC OpenMP::OpenMP_CXX<span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="what-is-pragma-omp">What is <code class="language-plaintext highlighter-rouge">#pragma omp</code>?</h3>
+
+<p>Every OpenMP directive starts the same way:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp ...
+</span></code></pre></div></div>
+
+<p>You have already seen a similar kind of preprocessor directive when including header files! For example, <code class="language-plaintext highlighter-rouge">#include &lt;iostream&gt;</code> tells the C++ <strong>preprocessor</strong><sup id="fnref:preprocessor" role="doc-noteref"><a href="#fn:preprocessor" class="footnote" rel="footnote">1</a></sup> to paste the contents of the iostream header directly into the C++ file to make the header’s contents available to that file. When writing your own headers, you may have also come across a pragma directive: <code class="language-plaintext highlighter-rouge">#pragma once</code>. This specific directive tells the preprocessor to <em>only</em> include the header file if it has <em>not</em> already been included somewhere earlier in the chain of included files. If you’ve seen older headers, you may have also come across <code class="language-plaintext highlighter-rouge">#define</code> and <code class="language-plaintext highlighter-rouge">#if</code> to create <strong>include guards</strong> around the contents of headers, which allow the preprocessor to similarly avoid including a header multiple times in one file.</p>
+
+<p>OpenMP uses its <code class="language-plaintext highlighter-rouge">#pragma omp</code> directives to control automatic parallelisation in code. If this is a little confusing at this stage, don’t worry, it will become clear as you start playing with the OpenMP constructs through some examples.</p>
+
+<h3 id="parallelising-a-loop">Parallelising a loop</h3>
+
+<p>We’ve already seen an example of loop parallelisation:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for
+</span><span class="k">for</span><span class="p">(...)</span> <span class="p">{</span>
+  <span class="c1">// perform some independent loop iterations</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This <strong>construct</strong><sup id="fnref:construct" role="doc-noteref"><a href="#fn:construct" class="footnote" rel="footnote">2</a></sup> actually combines two ideas:</p>
+
+<ul>
+  <li>creating a <strong>parallel region</strong> to spawn some <strong>worker threads</strong></li>
+  <li>splitting up a loop’s work between the threads</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">parallel for</code> is actually shorthand for two separate constructs which we can explicitly write as:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel
+</span><span class="p">{</span>
+  <span class="cp">#pragma omp for
+</span>  <span class="k">for</span><span class="p">(...)</span> <span class="p">{</span>
+    <span class="c1">// perform some independent loop iterations</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice the new set of curly braces which defines a new <strong>scope</strong>. At first this may seem strange, but scope is how OpenMP knows when to end the parallel region (or any other construct that applies to a <em>region</em> of code). You should already know about scope from your previous C++ knowledge so I won’t explain it here. In C++, loops create their own new scope inside the loop delineated by curly braces, hence why we don’t have to add any new braces when using the <code class="language-plaintext highlighter-rouge">parallel for</code>; it only applies to the duration of the loop. But when using only the <code class="language-plaintext highlighter-rouge">parallel</code> construct, we have to explicitly tell the compiler where the parallel region starts and ends with curly braces.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">parallel</code> directive tells OpenMP that we want to parallelise the piece of code inside the following scope. What this really means is when execution reaches this parallel region, OpenMP will create a <strong>team</strong> of threads, allow any constructs inside the parallel region to use those threads. It then destroys those threads at the end of the parallel region. Specifically, <code class="language-plaintext highlighter-rouge">parallel</code> is an example a parallel model called <strong>fork-join parallelism</strong>, illustrated in the following diagram<sup id="fnref:fork-join-source" role="doc-noteref"><a href="#fn:fork-join-source" class="footnote" rel="footnote">3</a></sup>:</p>
+
+<p><img src="img/fork_join.png" alt="" /></p>
+
+<p>In short, fork-join means the program starts serially with a single thread of execution, forks into more threads when required (in OpenMP, when a <code class="language-plaintext highlighter-rouge">parallel</code> directive is encountered) and then joins those threads back into the main thread to continue serially until another fork is required.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">for</code> construct in this example uses the threads spawned by <code class="language-plaintext highlighter-rouge">parallel</code> by splitting the iterations of the for loop into chunks and assigning different chunks to different threads. Default behaviour can change based on the compiler and OpenMP runtime but usually the <code class="language-plaintext highlighter-rouge">for</code> construct will split the loop into as many chunks as there are threads and assign approximately the same number of iterations to each thread. So if there are 16 loop iterations to be performed by 4 threads, you can probably expect one thread to take iterations 0-3, another to take 4-7, and so on. Not all loops are this simple so we’ll discuss later how we can optimise the <code class="language-plaintext highlighter-rouge">for</code> construct by specifying how the iterations are split amongst the threads.</p>
+
+<h3 id="example-1-filling-an-array">Example 1: Filling an array</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">01_filling_a_array/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>Let’s apply a <code class="language-plaintext highlighter-rouge">parallel for</code> construct to an example where we want to fill an array with values from a moderately expensive function like <code class="language-plaintext highlighter-rouge">sin</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+#include</span> <span class="cpf">"timer.hpp"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100'000'000</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+
+  <span class="n">Timer</span> <span class="n">timer</span><span class="p">;</span>
+
+<span class="cp">#pragma omp parallel for
+</span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">vec</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">M_PI</span><span class="o">*</span><span class="kt">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Time: "</span> <span class="o">&lt;&lt;</span> <span class="n">timer</span><span class="p">.</span><span class="n">elapsed</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The timer code in the example is relatively simple so I won’t explain it in detail, it just starts a timer when it’s created and shows the elapsed time when <code class="language-plaintext highlighter-rouge">timer.elapsed()</code> is called.</p>
+
+<p>Let’s build this <em>without</em> OpenMP to</p>
+
+<ol>
+  <li>show that the compiler will simply ignore the pragmas if we don’t explicitly tell it to use OpenMP and</li>
+  <li>measure the time of the serial code.</li>
+</ol>
+
+<p>Building this with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ main.cpp timer.cpp
+</code></pre></div></div>
+<p>and running with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./a.out
+</code></pre></div></div>
+<p>prints out the time taken to fill this vector. It should take around a second or so on your machine.</p>
+
+<p>Running on my laptop once, I got a time of 0.98s. Enabling OpenMP, i.e. compiling with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -fopenmp main.cpp timer.cpp
+</code></pre></div></div>
+<p>and again running with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./a.out
+</code></pre></div></div>
+<p>gives me a time of 0.14s. With just one additional line of code, I’ve managed to speed up my code by around 7x! Given I have an 8-core processor, 8x would be ideal but we’ll see later that performance improvements don’t usually scaling perfectly with number of cores in parallel computations. We’ll discuss later what exactly I mean by 7x but for now just read it as “my code is 7 times faster”.</p>
+
+<p><em>What performance increase do you see when running on your machine and does it match what you expect from the number of cores in your CPU?</em></p>
+
+<p>I should point out here that this performance is when using the default compiler optimisation level <code class="language-plaintext highlighter-rouge">-O0</code>. If we switch to using <code class="language-plaintext highlighter-rouge">-O2</code> with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -fopenmp -O2 main.cpp timer.cpp
+</code></pre></div></div>
+<p>then the serial performance drops to 0.74s and the parallel performance to 0.10, now giving a speedup of 7x. While parallelisation can improve our overall performance greatly, single-core optimisations are still crucial to achieving the best performance possible from a code.</p>
+
+<h3 id="example-2-summing-an-array-naively">Example 2: Summing an array (naively)</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">02_summing_an_array/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>Let’s now sum the array from the previous example. I won’t go into the maths but the sum of the array gives us a numerical approximation of the integral $\int_0^1 sin(\pi x)\  \text{dx}$. If we sum the array, multiply it by $\pi$ and divide by $N$ we should get <em>exactly</em> $2$. The filling of the vector is the same so I’ll only print here the code for the sum itself:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double sum = 0.;
+
+Timer timer;
+
+#pragma omp parallel for
+for(int i=0; i&lt;vec.size(); ++i) {
+  sum += vec[i];
+}
+
+double elapsed = timer.elapsed();
+
+std::cout &lt;&lt; "Time: " &lt;&lt; elapsed &lt;&lt; '\n';
+std::cout &lt;&lt; "Result: " &lt;&lt; M_PI*sum/N &lt;&lt; '\n';
+</code></pre></div></div>
+
+<p>Compiling and running without OpenMP gives:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Time: 0.276116
+Result: 2
+</code></pre></div></div>
+
+<p>This is exactly what we expect. If you enable OpenMP however, you’ll probably get something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Time: 0.957646
+Result: 0.14947
+</code></pre></div></div>
+
+<p>I recommend you take a break here and think about the questions:</p>
+
+<ul>
+  <li>Why has the time increased with more threads?</li>
+  <li>Why is the answer wrong?</li>
+</ul>
+
+<p>Don’t worry if it’s not obvious, this is a subtle and tricky bug and requires considering what all threads are doing as they access each variable inside the loop. It might be easier to consider the behaviour of just two threads.</p>
+
+<hr />
+
+<p>This behaviour is the result of a <strong>data race</strong>. Consider even just two threads working in parallel, one processing the first half of <code class="language-plaintext highlighter-rouge">vec</code>, and the other, the second half. Thread 1 reads, say <code class="language-plaintext highlighter-rouge">vec[0]</code>. It then needs to add this value into <code class="language-plaintext highlighter-rouge">sum</code>. It reads <code class="language-plaintext highlighter-rouge">sum</code>, adds <code class="language-plaintext highlighter-rouge">vec[0]</code> to it and writes that back into <code class="language-plaintext highlighter-rouge">sum</code>. This addition takes some time however, and thread 2 is performing the exact same operation but using a different value of <code class="language-plaintext highlighter-rouge">i</code>, say <code class="language-plaintext highlighter-rouge">i=100</code>. As thread 1 reads <code class="language-plaintext highlighter-rouge">sum</code> and is currently spending time adding, thread 2 can easily finish an addition and write a new value to <code class="language-plaintext highlighter-rouge">sum</code>. Once thread 1 has finished adding, it has no idea that thread 2 contributed to the sum and then unknowingly <em>overwrites</em> the updated value of <code class="language-plaintext highlighter-rouge">sum</code> with its own version, accidentally removing the contribution from thread 2. Not only does this mean the value of <code class="language-plaintext highlighter-rouge">sum</code> is <em>incorrect</em> but the CPU <em>does not allow</em> threads to write to the same variable at the same time, so each thread must wait for the other to finish, adding more time to the overall calculation. This is why the overall time has increased, despite using multiple threads, and why the result is wrong!</p>
+
+<p>So how do we handle a data race in OpenMP? Each example of a data race is fairly unique and should be handled in its own way, but the general solution is to limit threads to writing to variables no other threads will interact with. We’ll look later at how we can avoid this by manually creating private copies of variables but summing is actually part of a larger group of operations called <strong>reductions</strong>, where a large data structure (like a vector) is reduced to a smaller number of values, in this case just a single number. Thankfully, OpenMP provides a way to easily deal with these kinds of operations: <strong>reduction clauses</strong>.</p>
+
+<h3 id="example-3-summing-an-array-with-reduction">Example 3: Summing an array with <code class="language-plaintext highlighter-rouge">reduction</code></h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">03_summing_an_array_reduction/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>OpenMP allows constructs to be augmented with <strong>clauses</strong>, extra pieces of information we can add to its directives to further refine the parallelisation. In the above sum example, we can tell OpenMP we’re trying to perform a reduction by adding the <code class="language-plaintext highlighter-rouge">reduction</code> clause to the <code class="language-plaintext highlighter-rouge">parallel for</code> construct along with the reduction operator and the variable that is holding the value of the reduction:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double sum = 0.;
+
+Timer timer;
+
+#pragma omp parallel for reduction(+:sum)
+for(int i=0; i&lt;vec.size(); ++i) {
+  sum += vec[i];
+}
+
+double elapsed = timer.elapsed();
+
+std::cout &lt;&lt; "Time: " &lt;&lt; elapsed &lt;&lt; '\n';
+std::cout &lt;&lt; "Result: " &lt;&lt; M_PI*sum/N &lt;&lt; '\n';
+</code></pre></div></div>
+
+<p>If you run the above example with OpenMP you should get something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Time: 0.0667325
+Result: 2
+</code></pre></div></div>
+
+<h3 id="the-reduction-clause">The reduction clause</h3>
+
+<p>A reduction can be applied to a number of constructs but you’ll rarely use it outwith a <code class="language-plaintext highlighter-rouge">parallel for</code>, certainly for this course. The general syntax looks like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reduction(&lt;operator&gt; : &lt;variables&gt;)
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;operator&gt;</code> can be replaced with one of:</p>
+
+<ul>
+  <li>the arithmetic operators: <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, or <code class="language-plaintext highlighter-rouge">*</code> (notice no division)</li>
+  <li>either <code class="language-plaintext highlighter-rouge">max</code> or <code class="language-plaintext highlighter-rouge">min</code></li>
+  <li>the logical operators: <code class="language-plaintext highlighter-rouge">&amp;</code>, <code class="language-plaintext highlighter-rouge">|</code>, or <code class="language-plaintext highlighter-rouge">^</code></li>
+  <li>the bitwise logical operators: <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> or <code class="language-plaintext highlighter-rouge">||</code></li>
+  <li>a custom operator defined through the <code class="language-plaintext highlighter-rouge">declare reduction(...)</code> directive</li>
+</ul>
+
+<p>While it’s useful to know what’s available, you’ll probably find yourself using only the arithmetic operators and <code class="language-plaintext highlighter-rouge">max</code> or <code class="language-plaintext highlighter-rouge">min</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;variables&gt;</code> can be a variable of any type <em>that supports the given operator</em>; you can list <strong>multiple variables in a comma-separated list</strong> if you multiple reductions with the same operator happening in the same loop. If you have reductions over different variables <em>and</em> with different reduction operators then you can add more than one reduction clause, one after the other. I tend to limit these variables to built-in types mainly because the reduction operator implicitly copies the given variable which can be tricky to handle for complex types or classes. If you want to use complex types, you must be careful to make sure the type has copy constructors that manage any type-owned resources appropriately.</p>
+
+<p>For (much) more detailed information on everything I haven’t mentioned about the reduction clause, see <a href="https://www.openmp.org/spec-html/5.0/openmpsu107.html">the reduction clause in the specification</a>.</p>
+
+<h3 id="how-many-threads-does-openmp-create">How many threads does OpenMP create?</h3>
+
+<p>By default, OpenMP will use as many threads as there are cores. You can find this information out on Linux machines by running the command <code class="language-plaintext highlighter-rouge">nproc</code> and on other systems you should be able to find this out from the System Information part of your settings. Some CPUs support a technology called hyperthreading which can convince the OS there are twice as many cores as there are physically located in the CPU. For example, on my 8-core laptop, <code class="language-plaintext highlighter-rouge">nproc</code> returns <code class="language-plaintext highlighter-rouge">16</code> because of hyperthreading and OpenMP will use 16 threads as a result. Strictly, the CPU cannot perform more tasks in parallel than available cores so we almost never gain performance by using more threads than available cores<sup id="fnref:hyperthreading" role="doc-noteref"><a href="#fn:hyperthreading" class="footnote" rel="footnote">4</a></sup>. Regardless, we can tell OpenMP how many threads to use manually, either in code or through environment variables.</p>
+
+<h3 id="example-4-specifying-threads-in-openmp">Example 4: Specifying threads in OpenMP</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">04_changing_num_threads/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>The standard way to specify the number of threads OpenMP uses in any parallel region is by setting the <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code> environment variable. In Bash, the shell you use in the terminal window of VSCode when using the devcontainer, this can be set for the duration of the session with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span>2   <span class="c"># For two threads</span>
+./my_openmp_program        <span class="c"># will run with 2 threads</span>
+</code></pre></div></div>
+
+<p>Or it can be set only for the duration of a single program:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span>4 ./my_openmp_program <span class="c"># will run with 4 threads</span>
+</code></pre></div></div>
+
+<p>You can set the number of threads in code with the function <code class="language-plaintext highlighter-rouge">omp_set_num_threads(int)</code> but unless you have a good reason to do so, I recommend using the above environment variable method. This is much more standard in the OpenMP community.</p>
+
+<p>Let’s use this in our previous example and see how our program behaves with different numbers of threads. I’ve started with the same code from example 3 but now we print out the maximum number of threads available to OpenMP with <code class="language-plaintext highlighter-rouge">omp_get_max_threads()</code>. I’ve also had to include <code class="language-plaintext highlighter-rouge">omp.h</code> to gain access to that function.</p>
+
+<p>You should compile with <code class="language-plaintext highlighter-rouge">g++ -fopenmp -O2 main.cpp timer.cpp</code> and test the serial performance, this time not by removing <code class="language-plaintext highlighter-rouge">-fopenmp</code> but by running <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS=1 ./a.out</code>. On my machine that gives:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| 1 | 0.0704976 |
+</code></pre></div></div>
+
+<p>Without recompiling, I can run <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS=2 ./a.out</code> and get:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| 2 | 0.0372252 |
+</code></pre></div></div>
+
+<p>Setting <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code> to every value up to 8 gives the following table of data on my 8-core laptop:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code></th>
+      <th>Time (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0.0704976</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.0372252</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.0257015</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.0206777</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.0216401</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.023578</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.0253431</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.0270154</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>What we’ve actually done here is a <strong>parallel scaling</strong> experiment, testing how well our parallelisation performs as we gradually add more processing elements. Clearly on my machine, I get some good improvements up to 4 threads, then the performance gets worse if I add any more. How does the performance scale on your machine?</p>
+
+<h3 id="parallel-scaling-strong-scaling">Parallel scaling: Strong scaling</h3>
+
+<p>In example 4 we were able to measure the <strong>parallel scaling</strong> of our parallelisation. In particular, we measured the code’s <strong>strong scaling</strong> performance, that is keeping the <strong>problem size</strong> constant and measuring how the runtime changes with the number of threads. We can experiment with other kinds of important measures like memory and power scaling instead of runtime but most scaling experiments focus on measuring the runtime performance so that is what we’ll focus on here.</p>
+
+<p>A useful measure when measuring scaling is <strong>speedup</strong>, a measure of how much faster a code completes when run with a higher number of threads. In parallel programming this is usually calculated as the ratio of the single-core time to a higher-core time. In the previous example the speedup I achieved moving from 1 to 4 threads was approximately $0.07/0.021 = 3.33$. This can be written as “3.33x” as in “3.33 times the single-core speed” or even just $3.33$ when it’s obvious it’s referring to a speedup.<sup id="fnref:speedup" role="doc-noteref"><a href="#fn:speedup" class="footnote" rel="footnote">5</a></sup></p>
+
+<p>While problem size is relatively easy to quantify in the sum example; it’s just <code class="language-plaintext highlighter-rouge">N</code>, the number of items in our vector, it’s not always so straightforward. In my own experience, there tends to be one or two obvious numbers that represent the overall problem size but unfortunately there is a bit of an art to identifying a variable within a complex code that can act as a measure of “problem size”. Many problems will have multiple ways to measure their size in some sense, so scaling experiments may be run by varying different variables to understand how the parallelisation affects different aspects of a given problem.</p>
+
+<h4 id="strong-scaling">Strong scaling</h4>
+
+<p>There are two main kinds of parallel scaling found in HPC literature: <strong>strong scaling</strong>, keeping the problem size constant and changing the number of thread, and <strong>weak scaling</strong>, changing the problem size <em>and</em> the number of threads by the same factor. In a strong scaling experiment we decrease the amount of work per thread as we increase the number of threads, but in a weak scaling one the amount of work per thread stays constant.</p>
+
+<h3 id="example-5-weak-scaling">Example 5: Weak scaling</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">05_weak_scaling/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>Let’s now run a weak scaling experiment using the same code as example 4, but this time we will increase the problem size by the same factor as we increase the number of threads; if we double the number of threads, we will also double <code class="language-plaintext highlighter-rouge">N</code>. In practice, we will simply multiply the initial problem size by the number of threads inside the code. The code is so similar to the previous example I won’t print it here but you should read through it to make sure you understand what’s going on. Now, as I increase <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code> from 1 to 8 I see my time increase slowly from 1 threads to 4 then more quickly from 5 threads to 8:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code></th>
+      <th><code class="language-plaintext highlighter-rouge">N</code></th>
+      <th>Time (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>100000000</td>
+      <td>0.0704839</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>200000000</td>
+      <td>0.0727549</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>300000000</td>
+      <td>0.0746549</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>400000000</td>
+      <td>0.0785764</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>500000000</td>
+      <td>0.101448</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>600000000</td>
+      <td>0.135992</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>700000000</td>
+      <td>0.185243</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>800000000</td>
+      <td>0.205911</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>What does this data say about the parallelisation or even my hardware? We see <em>nearly</em> ideal scaling changing the number of threads from 1 to 4 (remember ideal weak scaling looks like constant time with increasing threads and problem size). Nearly ideal in this case means it only increases very slowly, i.e. the speedup is just larger than $1$. This is good, we now know we can run problems 4 times as large in nearly the same amount of time if we use 4 times as many threads (for smaller number of threads). The frankly terrible scaling after that, when using 5 threads to 8, suggests that there is possibly some fundamental difference between some of the cores in my CPU, where using them slows down the overall computation. Or, perhaps my CPU is throttling its speed to control its temperature as I try and use more cores. If I were measuring a real code, at this point I would probably run a similar experiment on a different CPU to try and understand better what is happening.</p>
+
+<h3 id="why-measure-scaling-performance">Why measure scaling performance?</h3>
+
+<p>In example 4 we saw that, on my machine at least, providing 4 threads gave us the best runtime performance. In fact, if I naively assumed my code runs fastest with the most number of threads, I’d end up waiting nearly 30% longer for my results. I couldn’t have known that information without performing some scaling experiment. So if I’m not making any changes to my code, I know I should just run this with 4 thread for the best performance. If I am willing to do more work, I could start with this data and begin optimising my code for higher thread counts. Perhaps there is a different sum algorithm I can use that works better for high thread counts, or perhaps there are some options within OpenMP I haven’t considered. Performing a parallel scaling experiment is the first step to improving the overall performance of my code. This data also tells me something about how I should expect my code to run on other machines. If I didn’t have the data I could (again) naively assume my code could be faster on a machine with more cores, perhaps leading me to waste resources on gaining access to a machine with cores my code can’t even use.</p>
+
+<p>In short parallel scaling experiments allow us to:</p>
+
+<ol>
+  <li>Find the ideal number of threads for the best performance on a given machine.</li>
+  <li>Inform optimisation efforts.</li>
+  <li>Suggest how the code will run on different hardware.</li>
+</ol>
+
+<p>We measure <em>both</em> strong and weak scaling because they help us better understand how we can use our code to achieve our science goals <em>in different ways</em>. If I have very good strong scaling, that is my code gets significantly faster when I add more threads, I know I can run similarly sized problems in less time if I just have a bigger computer. If I have very good weak scaling, I know I can run much larger problems on a larger machine and they should run in about the same amount of time. Strong and weak scaling characteristics can vary independently; some codes will scale very well in a strong sense, but not well in a weak sense, and vice versa. If your code doesn’t scale well in either I suggest you rewrite your algorithm or look at your parallelisation.</p>
+
+<p>Scaling itself can even change as a function of problem size or number of threads. Many linear algorithm packages will use different algorithms for different problem sizes because the scaling changes with the problem size. Similarly, you may find an algorithm that performs poorly at lower thread counts actually becomes better than alternatives with higher thread counts.</p>
+
+<h3 id="ideal-scaling-a-fantasy">Ideal scaling: a fantasy?</h3>
+
+<p>The <strong>ideal scaling</strong> or <strong>perfect scaling</strong> in a strong scaling experiment would be a linear improvement in performance with an increase in threads, i.e. if I double the number of threads I use to run my perfectly scaling code, I should expect it to run in half the time, or twice as fast. In terms of speedup, perfect strong scaling implies that the speedup with $N$ threads should be $N$.</p>
+
+<p>In a weak scaling experiment, perfect scaling would result in the code taking exactly the same amount of time as we increase thread count and problem size by the same factor<sup id="fnref:superlinear-scaling" role="doc-noteref"><a href="#fn:superlinear-scaling" class="footnote" rel="footnote">6</a></sup>. In a perfectly weak scaling code, the speedup should be exactly $1$ with any number of threads<sup id="fnref:problem-size-weak" role="doc-noteref"><a href="#fn:problem-size-weak" class="footnote" rel="footnote">7</a></sup>.</p>
+
+<p>For most real problems, ideal scaling is impossible to achieve due to most problems containing fundamentally <em>serial</em> sections. Even in our sum example, although each thread sums its own piece of the loop, at the end of the loop OpenMP must still add up those individual sums into the final result sequentially. We can quantify the impact of this serial part on our parallel performance through <strong>Amdahl’s law</strong>:</p>
+
+<p>$\text{speedup}_{\text{ideal}} = \frac{1}{s + \frac{1-s}{N}}$</p>
+
+<p>Here, $s$ is a measure of the proportion of the code’s runtime that <em>must</em> happen serially, $N$ is the number of threads, and $\text{speedup}_{\text{ideal}}$ is the best possible speedup we can achieve using $N$ threads. I recommend you convince yourself this is correct. The way I do this myself is my considering that if my runtime is $1$s, it is split between $s$ seconds spent serially and $1-s$ spend possibly in parallel. With perfect strong scaling, that $1-s$ runtime should decrease as $(1-s)/N$ for $N$ threads, but my serial portion takes the same amount of time, so my total runtime becomes $s + (1-s)/N$. My speedup is then the inverse of this, which is Amdahl’s law.</p>
+
+<p>So, for example, if I’m able to parallelise a portion of my code I <em>know</em> takes 80% of the runtime, leaving 20% running serially, $s=0.2$. If I have $4$ cores available, Amdahl’s law tells me I can achieve <em>at best</em> a speedup of 2.5x. This is significantly lower than the ideal speedup of 4x using 4 threads. With 16 threads, I can achieve a maximum speedup of 4x.</p>
+
+<p>You can see that if only 80% of your code’s runtime is parallelised, we reach a point of diminishing returns very quickly in terms of the number of threads we can offer our code. Because of the nonlinear nature of Amdahl’s law, for <em>any</em> value of $s$ we will eventually reach a point where adding more threads doesn’t provide a meaningful improvement in performance. In fact, if we imagine $N$ going to infinity in the above equation, we see the parallel part of Amdahl’s law, $(1-s)/N$, becomes insignificant compared to $s$, and so the ideal speedup with infinite threads is $1/s$. You can begin to see that in the following plot of Amdahl’s law for different values of $s$:</p>
+
+<p><img src="img/strong_scaling.png" alt="" /></p>
+
+<p>Just like our scaling experiments, Amdahl’s law provides a useful guide in helping us understand the limits of our code’s parallelisation. With a code that spends a significant amount of time performing work serially, we’re better off spending our time trying to parallelise the dominant serial parts or trying to at least optimise them to reduce their contribution to the runtime, rather than trying to run our code on a machine with more threads.</p>
+
+<h3 id="data-sharing">Data sharing</h3>
+
+<p>We’ve seen an example of a data-race in the earlier naive sum example. As discussed, these happen when multiple threads try to write to the exact same memory location. Data-races are part of a larger problem in parallel programming of ensuring threads access memory <em>safely</em>. Reductions avoid threads touching the same memory locations by implicitly creating <strong>private</strong> variables for each thread. In the reduction example, what OpenMP actually does is make one copy of <code class="language-plaintext highlighter-rouge">sum</code> per thread and that private copy is the variable the thread interacts with.</p>
+
+<p>To be clear, memory safety is only really a problem if any threads are writing to a location while others are trying to either read from or write to it. Even if one thread is writing and all others are reading, you can still create subtle bugs when reading and writing happen in an unspecified order. If all threads are only reading from the same memory location, it’s nearly always fine to allow those shared access. This also only applies to <em>entire</em> variables. <em>It is perfectly safe to have different threads accessing different parts of a container, for example a vector, as long as they do not access the same items.</em> In general, if any threads write to a memory location that others will access, you should consider declaring the associated variable private, or controlling access to it in another way through thread control clauses, which we will discuss later.</p>
+
+<p>We can declare variables private manually with the <code class="language-plaintext highlighter-rouge">private</code> clause added onto a <code class="language-plaintext highlighter-rouge">parallel</code> construct. This clause lets OpenMP know that each thread should have its own copy of the data. <code class="language-plaintext highlighter-rouge">private</code> is just one of several <strong>data sharing clauses</strong> that allow us to give OpenMP more information about how variables will be used in a parallel region. These commonly used clauses are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">shared</code> - threads access the exact same variable (default)</li>
+  <li><code class="language-plaintext highlighter-rouge">private</code> - threads access copies of the variable (uninitialised)</li>
+  <li><code class="language-plaintext highlighter-rouge">firstprivate</code> - same as <code class="language-plaintext highlighter-rouge">private</code> but initialised from value before clause</li>
+  <li><code class="language-plaintext highlighter-rouge">lastprivate</code> - same as <code class="language-plaintext highlighter-rouge">private</code> but <em>last</em> iteration of loop gives value to variable after the loop ends</li>
+</ul>
+
+<p>These clauses are attached to <code class="language-plaintext highlighter-rouge">parallel</code> constructs like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#pragma omp parallel private(i, j, my_var, other_var)
+{
+  ...
+}
+</code></pre></div></div>
+<p>or</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#pragma omp parallel for firstprivate(my_var, other_var) private(my_var2)
+for(...) {
+</code></pre></div></div>
+
+<p>We can also change the default behaviour by specifying it with <code class="language-plaintext highlighter-rouge">default(&lt;clause&gt;)</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#pragma omp parallel for default(private) firstprivate(my_var, other_var)
+for(int i=0; i&lt;10; ++i)) {
+</code></pre></div></div>
+
+<p>The default clause can be set to <code class="language-plaintext highlighter-rouge">default(none)</code> to ensure every single variable used in a parallel region is explicitly listed in a data sharing clause. It can be useful to be explicit with your data sharing to make debugging easier (and you will be debugging). There’s another subtle default behaviour: <em>variables defined inside a parallel region are, by default, private</em>. For instance, the loop variable, <code class="language-plaintext highlighter-rouge">i</code> in the above example, will be private to each thread.</p>
+
+<p>There are more details on data sharing clauses that will be useful if you use OpenMP beyond this course so do make sure you’re aware of the <a href="https://www.openmp.org/spec-html/5.0/openmpsu106.html">data sharing clauses section of the specification</a>. These clauses are relatively simple to understand but can be subtly tricky to use so let’s go through a few illustrative examples.</p>
+
+<h3 id="example-6-data-sharing">Example 6: Data sharing</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">06_data_sharing/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>Consider the following snippet from example 6:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="cp">#pragma omp parallel
+</span><span class="p">{</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Here we’ve used <code class="language-plaintext highlighter-rouge">omp_get_thread_num()</code> inside a parallel region to fetch the <strong>thread number</strong>, an integer uniquely identifying each thread. Compile this with <code class="language-plaintext highlighter-rouge">g++ -fopenmp main.cpp</code> and run <code class="language-plaintext highlighter-rouge">./a.out</code>. What do you expect to happen? Run the code <em>multiple times</em> and you should see something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./a.out
+-1
+6
+
+$ ./a.out
+-1
+2
+
+$ ./a.out
+-1
+4
+
+$ ./a.out
+-1
+14
+</code></pre></div></div>
+
+<p>Because the default behaviour is shared, all threads write to the same memory location but the order in which they write is unspecified, so <code class="language-plaintext highlighter-rouge">a</code> holds the index of the last thread to access it.</p>
+
+<p>What if we remove the default behaviour?</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="cp">#pragma omp parallel default(none)
+</span><span class="p">{</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>You shouldn’t even be able to compile the code! I get an error using g++ 12.2.1 that looks like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main.cpp: In function ‘int main()’:
+main.cpp:14:7: error: ‘a’ not specified in enclosing ‘parallel’
+   14 |     a = omp_get_thread_num();
+      |     ~~^~~~~~~~~~~~~~~~~~~~~~
+</code></pre></div></div>
+
+<p>Let’s make sure <code class="language-plaintext highlighter-rouge">a</code> is included in a data sharing clause:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="cp">#pragma omp parallel default(none) private(a)
+</span><span class="p">{</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Now compiling and running this code should print:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1
+-1
+</code></pre></div></div>
+
+<p>So why hasn’t <code class="language-plaintext highlighter-rouge">a</code> been changed at all? By declaring it private, we’ve asked OpenMP to create a whole new copy and give that to each thread, we haven’t told OpenMP to do anything with those copies afterwards, so it simply destroys them and the code after the loop uses the untouched, original variable <code class="language-plaintext highlighter-rouge">a</code>.</p>
+
+<p>We can even see what’s going on inside the parallel loop by printing out <code class="language-plaintext highlighter-rouge">a</code>:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel default(none) private(a) shared(std::cout)
+</span><span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice we’ve had to declare <code class="language-plaintext highlighter-rouge">std::cout</code> as shared so our threads can access it. On my machine, if I run with <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS=2</code> I get:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1
+3272332723
+
+0
+1
+-1
+</code></pre></div></div>
+
+<p>Running multiple times will give different variations on this output, all of which look a little… <em>weird</em>. The first and last line are our original printing of <code class="language-plaintext highlighter-rouge">a</code>, and the lines <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">1</code> are the printing of the correct thread indices, but the line <code class="language-plaintext highlighter-rouge">3272332723</code> reveals two things: the threads are printing out of order so quickly that their output has been interleaved on the same line, this is actually each thread printing <code class="language-plaintext highlighter-rouge">32723</code> once. It also reveals that the value of <code class="language-plaintext highlighter-rouge">a</code> before it is set by each thread is nonsense, indeed <code class="language-plaintext highlighter-rouge">private</code> data sharing is defined so that the variable is <em>uninitialised</em> at the start of the parallel region. We can modify this behaviour using the related <code class="language-plaintext highlighter-rouge">firstprivate</code> clause:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel default(none) firstprivate(a) shared(std::cout)
+</span><span class="p">...</span>
+</code></pre></div></div>
+
+<p>Now the output from the threads will still print out-of-order but we can see the first printing of <code class="language-plaintext highlighter-rouge">a</code> by each thread shows that OpenMP copied the original value when it created the private copies of <code class="language-plaintext highlighter-rouge">a</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1
+-1
+1
+-1
+0
+-1
+</code></pre></div></div>
+
+<h3 id="thread-control-single">Thread control: Single</h3>
+
+<p>Sometimes when we run parallel programs we want to be able to control precisely when or how often our threads perform certain operations. A good example is printing output. Let’s say we need to print <em>inside</em> a parallel region. We’ve already seem examples where different threads all trying to print at once can produce unhelpful results. Instead, we can using the <code class="language-plaintext highlighter-rouge">single</code> construct to tell OpenMP that <em>only one thread</em> should run the code inside the construct. For example if we want to print out a value inside a parallel region before we’re finished with the full computation:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">sum2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="cp">#pragma omp parallel
+</span><span class="p">{</span>
+  <span class="cp">#pragma omp for reduction(+:sum1)
+</span>  <span class="k">for</span><span class="p">(...)</span> <span class="p">{...}</span>
+
+  <span class="cp">#pragma omp single
+</span>  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum1</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cp">#pragma omp for reduction(+:sum2)
+</span>  <span class="k">for</span><span class="p">(...)</span> <span class="p">{...}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This code will print out once the value of <code class="language-plaintext highlighter-rouge">sum1</code>. This example is loosely based on <a href="http://jakascorner.com/blog/2016/06/omp-single.html">Jaka Špeh’s blog post on single</a> so check that out for a more detailed example and some alternative ways to program this particular situation.</p>
+
+<h3 id="example-7-critical">Example 7: Critical</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">07_critical/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>A similar construct is <code class="language-plaintext highlighter-rouge">critical</code>, which guarantees that threads will only run the code in the construct one at a time, i.e. sequentially. We can investigate this with a silly code that prints a very muddled output. Here, each thread prints its own index, calculates and prints a relatively slow function (here, a single value of sin), and then prints its own index again:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel default(none) shared(std::cout)
+</span>  <span class="p">{</span>
+<span class="c1">//#pragma omp critical</span>
+    <span class="p">{</span>
+      <span class="k">const</span> <span class="kt">int</span> <span class="n">thread_num</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">thread_num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">M_PI</span><span class="o">*</span><span class="p">(</span><span class="n">thread_num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">thread_num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Running with 4 threads, we should see the numbers 0, 1, 2, 3 printed twice each, and 4 different floats printed as well. On my machine this prints:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+2
+1
+31
+1
+
+0.7071071.22465e-16
+3
+
+0
+0.707107
+2
+</code></pre></div></div>
+<p>Indeed, we seem to have all the numbers expected somewhere in the output but it’s a mess and running this multiple times shows the output changes each time, as we’ve come to expect from the unspecified order in which the threads print. Uncommenting the <code class="language-plaintext highlighter-rouge">critical</code> clause tells OpenMP to run the piece inside the scope <em>one thread at a time</em>. The output now looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+0.707107
+0
+2
+0.707107
+2
+1
+1
+1
+3
+1.22465e-16
+3
+</code></pre></div></div>
+
+<p>Although the order in which each thread runs is still unspecified, and this order will change each time we run this code, we can clearly see that each thread completely finishes printing before the next begins. Of course, in this example we’re now running our code entirely serially but in real code <code class="language-plaintext highlighter-rouge">critical</code> can be useful.</p>
+
+<h3 id="thread-control-barrier">Thread control: Barrier</h3>
+
+<p>Another useful control directive is <code class="language-plaintext highlighter-rouge">barrier</code> which allows each thread to <strong>synchronise</strong> at the point each thread reaches the construct. For example, if we need to dump some simulation data to a file, we may need to ensure all threads have finished updating that data before it’s saved. We can do this by specifying a single <code class="language-plaintext highlighter-rouge">barrier</code> construct at the point we need the threads to wait:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vector&lt;float&gt; data;
+
+#pragma omp parallel
+{
+  #pragma omp for
+  for(...) {
+    data[...] = ... // update data as part of the simulation
+  }
+
+  #pragma omp barrier // ensure all threads synchronise here
+
+  save(data);
+}
+</code></pre></div></div>
+
+<p>We must be careful when using <code class="language-plaintext highlighter-rouge">barrier</code> because any threads that reach a barrier construct will wait for <em>all other threads</em> to also reach a barrier construct. If just one thread takes an alternative path through the code and doesn’t reach a barrier, the other threads may wait forever. This is an example of a <strong>deadlock</strong>.</p>
+
+<h3 id="example-8-deadlock">Example 8: Deadlock</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">08_critical/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>Consider the following code where the thread with index 0 takes a different path through the <code class="language-plaintext highlighter-rouge">if</code> statement which <em>doesn’t include a barrier</em>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel default(none) shared(std::cout)
+</span><span class="p">{</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">thread_num</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">thread_num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"I've caused a deadlock!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="cp">#pragma omp barrier
+</span>  <span class="p">}</span>
+
+<span class="cp">#pragma omp critical
+</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"I'm thread "</span> <span class="o">&lt;&lt;</span> <span class="n">thread_num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Compiling with <code class="language-plaintext highlighter-rouge">g++ -fopenmp main.cpp</code> and running with 4 threads prints:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I've caused a deadlock!
+I'm thread 0
+I'm thread 1
+I'm thread 2
+I'm thread 3
+
+</code></pre></div></div>
+<p>The executable then hangs, with threads 1-3 waiting for thread 0 to reach a barrier. You might think only thread 0 should print its index because the other threads should be waiting at the their encountered barrier, but this behaviour reveals an <strong>implicit barrier</strong> at the end of the <code class="language-plaintext highlighter-rouge">parallel</code> construct. When thread 0 reaches this implicit barrier, it releases the barrier on all other threads which then print their indices and wait at the implicit barrier at the end of the parallel block. Since thread 0 has already reached this barrier and finished its execution, the remaining threads will wait indefinitely and the execution stops but never completes, or the execution “hangs”.</p>
+
+<p>You should run the same example and see if your code behaves in a different way. Because we have unmatched barriers in the code, this is technically undefined behaviour and we can’t rely on OpenMP to perform the same way on different systems.</p>
+
+<p>Helpfully, the compiler will stop you from trying to use barrier in certain circumstances, like inside <code class="language-plaintext highlighter-rouge">single</code> blocks:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp single
+</span><span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"I've caused a deadlock!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="cp">#pragma omp barrier // This won't compile!!
+</span><span class="p">}</span>
+</code></pre></div></div>
+<p>The compiler will only catch these kinds of bad uses of <code class="language-plaintext highlighter-rouge">barrier</code> in particular circumstances however; you should be very careful using barriers in situations where some <em>but not all</em> threads may reach a barrier.</p>
+
+<h3 id="thread-control-implicit-barriers-and-nowait">Thread control: Implicit barriers and <code class="language-plaintext highlighter-rouge">nowait</code></h3>
+
+<p>In the previous example we encountered an <strong>implicit barrier</strong> which synchronises threads at the end of certain blocks. The constructs that include implicit barriers include:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">for</code></li>
+  <li><code class="language-plaintext highlighter-rouge">single</code></li>
+  <li><code class="language-plaintext highlighter-rouge">sections</code></li>
+  <li><code class="language-plaintext highlighter-rouge">parallel</code></li>
+</ul>
+
+<p>If it’s not crucial to the correctness of the program, this implicit barrier can be removed by including the <code class="language-plaintext highlighter-rouge">nowait</code> clause:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp single nowait
+</span><span class="p">...</span>
+</code></pre></div></div>
+
+<p>This is often a good way to improve performance in certain sections of code where some threads may take significantly longer than others to complete, but do be careful to ensure correctness when removing any barriers.</p>
+
+<h3 id="paralleling-loops-schedules">Paralleling loops: Schedules</h3>
+
+<p>While simple examples of parallel loops tend to be <strong>well-balanced</strong> in that every loop iteration takes a similar amount of time, in real codes some iterations may take longer than others. When parallelising these kinds of unbalanced loops, we can improve our parallel performance by specifying a <strong>schedule</strong> in a <code class="language-plaintext highlighter-rouge">for</code> construct:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#pragma omp parallel for schedule(static)
+for(...)
+</code></pre></div></div>
+
+<p>OpenMP does not have a universal default schedule; it is implementation-dependent. Let’s go through each one:</p>
+
+<p><strong>static</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">static</code> schedule is probably the simplest to conceptualise. The loop iterations are split into chunks of equal size. Each thread is assigned its chunks <em>before the execution begins</em>. If we do not specify a chunk size, OpenMP will split the loop into approximately equal pieces and assign, at <em>most</em>, one chunk to each thread. We can specify the chunk size in the <code class="language-plaintext highlighter-rouge">schedule</code> clause:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for schedule(static, &lt;chunk_size&gt;)
+</span></code></pre></div></div>
+
+<p>Because the threads are assigned their chunks prior to execution, there is no easy way to balance the loop as it’s running. This motivates the next schedule.</p>
+
+<p><strong>dynamic</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">dynamic</code> schedule operates nearly the same as <code class="language-plaintext highlighter-rouge">static</code> but threads are assigned chunks one at a time. Each thread will process its chunk and request a new one once it has completed. This means if certain chunks take significantly longer than others to process, threads that finish quicker can process chunks that would have been assigned to a slower thread by the static schedule. The dynamic schedule is slightly slower than <code class="language-plaintext highlighter-rouge">static</code> due to the runtime overhead so should only be used if it’s known that the loop could be unbalanced.</p>
+
+<p><strong>guided</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">guided</code> schedule is similar to the dynamic schedule in that chunks are assigned to threads as the loop runs, but the chunk size actually decreases as the loop progresses. The chunk size given to the schedule clause is used as the <em>minimum</em> chunk size. This can be useful in balancing loops but, as with dynamic, can be slower than a well-balanced, static schedule.</p>
+
+<p><strong>runtime</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">runtime</code> schedule delegates the choice of schedule to the environment variable <code class="language-plaintext highlighter-rouge">OMP_SCHEDULE</code>.</p>
+
+<p><strong>auto</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">auto</code> schedule delegates the choice of schedule to either the compiler or the runtime.</p>
+
+<h3 id="example-9-schedules">Example 9: Schedules</h3>
+
+<p>Example source: <code class="language-plaintext highlighter-rouge">09_schedule/</code> in the <a href="https://github.com/UCL-PHAS0100-22-23/week8_openmp_examples">examples repository</a>.</p>
+
+<p>Let’s modify example 1 to unbalance the loop:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main() {
+  const int N = 100'000;
+  vector&lt;double&gt; vec(N);
+
+  Timer timer;
+
+#pragma omp parallel for schedule(runtime)
+  for(int i=0; i&lt;vec.size(); ++i) {
+    vec[i] = sin(M_PI*float(i)/N);
+
+    bool is_thread_even = (omp_get_thread_num()%2 == 0);
+    if (is_thread_even) {
+      std::this_thread::sleep_for(std::chrono::microseconds(1));;
+    }
+  }
+
+  std::cout &lt;&lt; timer.elapsed() &lt;&lt; '\n';
+
+  return 0;
+}
+</code></pre></div></div>
+
+<p>While the computation is the same as in example 1, in this example all threads with an even index will now sleep for a microsecond per iteration, artificially slowing those threads down. I’ve also added the <code class="language-plaintext highlighter-rouge">runtime</code> schedule to the <code class="language-plaintext highlighter-rouge">parallel for</code> so we can experiment with the different schedules, and lowered <code class="language-plaintext highlighter-rouge">N</code> to ensure the code runs in an appropriate time. Compiling with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ -fopenmp -O2 main.cpp timer.cpp
+</code></pre></div></div>
+<p>and running with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OMP_NUM_THREADS=4 OMP_SCHEDULE=static ./a.out
+</code></pre></div></div>
+<p>prints a runtime of <code class="language-plaintext highlighter-rouge">1.53</code>. Changing <code class="language-plaintext highlighter-rouge">static</code> to <code class="language-plaintext highlighter-rouge">dynamic</code> and <code class="language-plaintext highlighter-rouge">guided</code> gives the following data:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Time (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>static</td>
+      <td>1.53</td>
+    </tr>
+    <tr>
+      <td>dynamic</td>
+      <td>0.00421</td>
+    </tr>
+    <tr>
+      <td>guided</td>
+      <td>0.664</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It’s clear that, for this specific problem with a particularly unbalanced loop the dynamic schedule works best.</p>
+
+<p>If we comment out the sleep to re-balance the loop, and set <code class="language-plaintext highlighter-rouge">N=10'000'000</code> to allow the code to run for long enough that the runtimes are meaningful, the schedules offer distinctly different performances:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Time (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>static</td>
+      <td>0.0513</td>
+    </tr>
+    <tr>
+      <td>dynamic</td>
+      <td>0.178</td>
+    </tr>
+    <tr>
+      <td>guided</td>
+      <td>0.0226</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now, the overhead when using the dynamic schedule is prohibitively expensive compared to either the static or dynamic schedules, but (perhaps surprisingly) the guided schedules proves nearly twice as effective as the static schedule. I reran the experiment 10 times and got roughly the same runtimes so I do trust these results!</p>
+
+<h3 id="tuning">Tuning</h3>
+
+<p>You’ll notice throughout previous examples that we’ve encountered some surprises. Sometimes our examples worked better with 4 threads than 8. Sometimes our choice of schedule had a surprising impact on performance. The process of testing and discovering optimal settings for particular hardware is called <strong>tuning</strong>. It is often the case that spending time optimising settings and not code on a supercomputer can improve the performance without having to change a single line of code. It can be a better use of time than optimising the code itself.</p>
+
+<h3 id="nested-loops">Nested loops</h3>
+
+<p>OpenMP also provides different methods of parallelising nested or multi-dimensional loops. If we have the following nested loop:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Then we can parallelise this in only one dimension, i.e. the outer loop:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for
+</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In this case each thread will take a chunk of the <code class="language-plaintext highlighter-rouge">i</code> iterations but perform every single <code class="language-plaintext highlighter-rouge">j</code> iteration. Alternatively, if each loop iteration is completely independent, we can use the <code class="language-plaintext highlighter-rouge">collapse(&lt;n&gt;)</code> clause, with <code class="language-plaintext highlighter-rouge">&lt;n&gt;</code> replaced with the number of loops to collapse, to inform OpenMP that it can safely parallelised across <em>both loops</em>:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for collapse(2)
+</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The two loops in this case will be collapsed into one large loop, the iterations split into chunks and given to threads to process, just like in a non-nested loop. Schedules, reductions and data sharing clauses all work with collapse exactly as you expect.</p>
+
+<p>I would caution against parallelising only the inner loop, for example:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="cp">#pragma omp parallel for
+</span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>The parallel construct incurs some overhead when as it creates and destroys teams of threads so in this case, it would incur that overhead for every single iteration of the outer loop. If the <code class="language-plaintext highlighter-rouge">j</code> loop <em>must</em> be parallelised for some reason, it would be better to reorder the two loops if possible:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel for
+</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:preprocessor" role="doc-endnote">
+      <p>You may not have had to learn much about the preprocessor while using modern C++. It is used far more widely in older C++ and in C and, really, modern C++ has better built-in ways to provide the same functionality the preprocessor provides. At a high level, it is a text processor that can understand specific directives like <code class="language-plaintext highlighter-rouge">#include</code> and manipulate the text in C++ files appropriately. In C++ development you likely won’t need to know much more than this. <a href="#fnref:preprocessor" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:construct" role="doc-endnote">
+      <p>In OpenMP <strong>construct</strong> is the term for a region of code that OpenMP acts on, including the directive, so here we are using the <code class="language-plaintext highlighter-rouge">parallel for</code> construct. We’ll see a few more OpenMP constructs as we got through more examples. <a href="#fnref:construct" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:fork-join-source" role="doc-endnote">
+      <p>Source: <a href="https://en.wikipedia.org/wiki/en:File:Fork_join.svg">https://en.wikipedia.org/wiki/en:File:Fork_join.svg</a> <a href="#fnref:fork-join-source" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:hyperthreading" role="doc-endnote">
+      <p>You may wonder why hyperthreading exists at all if it doesn’t improve performance but it isn’t designed for HPC applications, it’s designed to better support desktop applications. <a href="#fnref:hyperthreading" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:speedup" role="doc-endnote">
+      <p>Speedup doesn’t just refer to speedup due to adding more threads to a parallel code. Any time we change a code and make it run faster, we can measure the speedup as the old runtime divided by the new runtime. <a href="#fnref:speedup" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:superlinear-scaling" role="doc-endnote">
+      <p>There are some circumstances where we can actually achieve better than perfect scaling, or superlinear scaling. It’s rather rare so I won’t discuss further but look out for the excitement surrounding superlinear parallel codes and (somewhat related) superlinear algorithms. <a href="#fnref:superlinear-scaling" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:problem-size-weak" role="doc-endnote">
+      <p>Actually perfect weak scaling may look different for different definitions of problem size, particularly if the problem scales nonlinearly with a chosen measure of problem size. <a href="#fnref:problem-size-weak" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

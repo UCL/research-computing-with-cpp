@@ -1,0 +1,594 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Work Depth Models and Parallel Strategy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="work-depth-models">Work Depth Models</h1>
+
+<p>Work depth models are an approach to understanding how parallelisable a computation is in principle, using some of the ideas that we saw earlier when talking about algorithmic complexity.</p>
+
+<p>With a fixed number of processors, an algorithm may speed up but its complexity won’t change, because a fixed number of processors can at best speed up a serial algorithm by a constant factor.</p>
+
+<p>When looking at the concept of parallelism in general it is often useful to consider what could be done if you had <em>infinitely many</em> processors, and could therefore in principle do arbitrarily many computations in parallel.</p>
+
+<p>The limitations then reduce to the data dependencies in the algorithm itself: if one computation depends on the result of another, then these have to be done serially. Only independent computations can be done concurrently.</p>
+
+<p>The point of work-depth models is to understand these data dependencies. We can visualise these dependencies in terms of a <strong>circuit diagram</strong> which maps inputs and outputs of individual computations. Consider the following diagram:</p>
+
+<p><img src="images/SimpleCircuit.png" alt="image" /></p>
+
+<ul>
+  <li>Each box is a computation, we have given these the labels <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">f</code>.</li>
+  <li>Each arrow represents data flow i.e. input/output. The arrow into <code class="language-plaintext highlighter-rouge">a</code> represents an initial input.</li>
+</ul>
+
+<p>In this circuit diagram we can see, for example:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">b</code> depends on the output of <code class="language-plaintext highlighter-rouge">a</code>, so cannot execute until <code class="language-plaintext highlighter-rouge">a</code> has.</li>
+  <li><code class="language-plaintext highlighter-rouge">b</code>, <code class="language-plaintext highlighter-rouge">c</code>, and <code class="language-plaintext highlighter-rouge">d</code> can all occur in parallel since none of them depend on the outputs of the others.</li>
+  <li>The total number of computations here is 6.</li>
+  <li>Paths through this graph represent a series of computations that cannot be performed in parallel, e.g. $a \rightarrow b \rightarrow f$, or $a \rightarrow c \rightarrow e \rightarrow f$.
+    <ul>
+      <li>This means we must take at least as much time as it takes to calculate 4 computations in series, since these are in a serial path.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>We can use these ideas to define two important quantities for parallel algorithms:</p>
+<ul>
+  <li><strong>Work</strong> ($W$) is the total number of computations that need to be done.</li>
+  <li><strong>Depth</strong> ($D$) is the length of the longest chain of computations, and represents how much of our algorithm must still happen in serial <em>even with infinite processors</em>.</li>
+</ul>
+
+<p>As we saw when looking at computational complexity, the actual amount of time taken and work done will depend on the time to do each of these computational steps.</p>
+
+<blockquote>
+  <p>In the example above, if the computation <code class="language-plaintext highlighter-rouge">b</code> takes a long time then the computation <code class="language-plaintext highlighter-rouge">c</code>, <code class="language-plaintext highlighter-rouge">d</code>, and <code class="language-plaintext highlighter-rouge">e</code> could all complete and the computation <code class="language-plaintext highlighter-rouge">f</code> will be waiting for <code class="language-plaintext highlighter-rouge">b</code> even though the other chains are longer. Usually however we are dealing with chains of computations often representing the same operations (such as arithmetic operations) so the limiting factor becomes the longest chain, but this is not always the case and the circuit diagram just represents the dependencies of each piece of the computation.</p>
+</blockquote>
+
+<p>As with our analysis of serial algorithms, it is more useful to use Big-O notation to look at how parallelism <em>scales</em>, in which case constant factors become irrelevant.</p>
+
+<p>Let’s look at some concrete examples to understand what we mean. We will look at three related operations on lists: <em>map</em>, <em>reduce</em>, and <em>scan</em>.</p>
+
+<h2 id="map">Map</h2>
+
+<p>Map applies a (pure) function to every element of a list:</p>
+
+<p>$\text{map} (f,  [x_0, …, x_n]) = [f(x_0), …, f(x_n)]$.</p>
+
+<p>We can see that every element of the output is independent of every other, since each only depends on one element of input.</p>
+
+<p><img src="images/MapCircuit.png" alt="image" /></p>
+
+<ul>
+  <li>$W \in O(n)$
+    <ul>
+      <li>The work is just proportional to the number of elements because we do one computation per element.</li>
+    </ul>
+  </li>
+  <li>$D \in O(1)$
+    <ul>
+      <li>The depth does not scale with the size of the input because all elements can be processed in parallel.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Constant depth is a feature of so called “embarrassingly parallel” problems, where all computations are independent and you can just throw more computing power at them to speed them up. (With come caveats, but this is an idealised algorithm analysis!)</p>
+
+<h2 id="reduce">Reduce</h2>
+
+<p>Reduce is used to calculate things like sums or products of lists. It applies an associative binary operation to the first pair of elements, and then takes the result and applies the binary operation to that result and the next element, and so on until the end of the list until we’re left with a single value. For a binary operator $\bigoplus$:</p>
+
+<p>$\text{Reduce}\,(\bigoplus, [x_0, x_1, …, x_n]) = x_0 \bigoplus x_1 \bigoplus x_2 \bigoplus … \bigoplus x_n$,</p>
+
+<p>or, in terms of a binary function $f$:<br />
+$\text{Reduce}\,(\bigoplus, [x_0, x_1, …, x_n]) = f(f(…f(f(x_0, x_1), x_2)…), x_n)$,</p>
+
+<ul>
+  <li>Calculating a reduction with $+$ gives the sum of a list, and with $\times$ gives the product of a list.</li>
+</ul>
+
+<p>The simplest approach to a serial reduction would look like this:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>This has a <strong>loop dependency</strong>, where each iteration of the loop depends on the result of the previous.</li>
+  <li>This is why <code class="language-plaintext highlighter-rouge">parallel for</code> doesn’t work well. Instead we have a <code class="language-plaintext highlighter-rouge">reduce</code> pragma in openMP. Why is this?</li>
+</ul>
+
+<p>The trick is that our binary operator is <strong>associative</strong>:</p>
+<ul>
+  <li>This means we can change the order that we apply the operator.</li>
+  <li>We can’t change the order of the elements in the list though; that’s <em>commutativity</em>.</li>
+</ul>
+
+<p>The loop dependency is a consequence of the way that the code was written, not the problem itself. With an associate operator, we can instead choose to do pairwise operations (e.g. summing a list by pairwise additions), as shown in the diagram below.</p>
+
+<p><img src="images/ReduceCircuit.png" alt="image" /></p>
+
+<ul>
+  <li>$W \in O(n)$
+    <ul>
+      <li>The work is linear in the size of the input list because there is still exactly $n-1$ applications of the operator.</li>
+    </ul>
+  </li>
+  <li>$D \in O(\log n)$
+    <ul>
+      <li>The depth is $\log n$ because the number of operators to be applied halves at each level of the diagram.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This kind of tree diagram is a common data dependency pattern, and places some limitations on the speed-up of our algorithm compared to our embarrassingly parallel problem. Even with infinite processors, we still can’t do better than $O(\log n)$ serial computations!</p>
+
+<p>We can also see as we move down the tree that we have fewer operations to do in parallel at each stage. Depending on the size of this tree and the number of processors that you have, this means processing power may end up sitting idle which could be reallocated to other tasks elsewhere while this computation is still going on. (This isn’t really going to be the case for something as rapid as an addition, but for workflows with similar tree like structures where computations take a long time, you can end up with resources sitting idle for significant amounts of time as you move down the tree.)</p>
+
+<blockquote>
+  <p>Floating point <code class="language-plaintext highlighter-rouge">+</code> and <code class="language-plaintext highlighter-rouge">*</code> is, unlike real $+$ and $\times$, actually non-associative due to the representation issues that we talked about in week 7. We actually have less errors when performing additions pairwise than when performing additions sequentially, because if the inputs are each of similar size then the partials sums will all remain similar size as well. So this pair-wise approach is both better for parallelism <strong>and</strong> better for precision!</p>
+</blockquote>
+
+<blockquote>
+  <p>You may also see <code class="language-plaintext highlighter-rouge">foldl</code> and <code class="language-plaintext highlighter-rouge">foldr</code>. These are variations for non-associative operators:<br />
+$\text{foldl} \, (\bigoplus, [x_0, x_1, …, x_n]) = (…((x_0 \bigoplus x_1) \bigoplus x_2) \bigoplus … \bigoplus x_n) $<br />
+$\text{foldr} \, (\bigoplus, [x_0, x_1, …, x_n]) = (x_0 \bigoplus (x_1 \bigoplus (x_2 \bigoplus (… \bigoplus x_n)))…) $<br />
+These data dependencies don’t parallelise well because the order of application of the binary operator is fixed!</p>
+</blockquote>
+
+<h2 id="scan">Scan</h2>
+
+<p>Scan is similar to reduce, but instead of returning a single scalar result it returns a list containing the cumulative result, for example a cumulative sum or cumulative product. Applying a Scan with $+$ to the list $[1,2,3,4,5]$ for example would give $[1,3,6,10,15]$.</p>
+
+<p><strong>Note that we have to be more careful of our order of operations now, since we need to find not just the total, but also the well defined sequence of sums from left to right.</strong></p>
+
+<p>This is another case where it <em>looks</em> like we have a severe loop dependency which would force us to work in series, but we can in fact parallelise this algorithm as well, <em>at the cost of repeating some work</em>.</p>
+
+<ul>
+  <li>It is not uncommon for parallel algorithms to have to repeat work in order to increase the independence of computations to allow for them to be done in parallel. This is where a more detailed work-depth analysis can be useful, to understand the trade offs that we expect to see.</li>
+</ul>
+
+<p>To find a parallel solution to this problem, let’s start by using the same pairwise operations that we used for the reduction. We’ll look at a summation with 8 elements, and rearrange the diagram so that the outputs that are already computed are clearly shown.</p>
+
+<p><img src="images/PartialScan.png" alt="image" /></p>
+<ul>
+  <li>Inputs are marked $x_0 … x_7$</li>
+  <li>Outputs are marked $S_0 … S_7$</li>
+</ul>
+
+<p>We can see that the output indices 0, 1, 3, and 7 are computed as part of the pairwise sum process.</p>
+
+<p>We can see that there are gaps in our cumulative sum that need to be computed. We can also see that the gaps get progressively larger; in fact they double in size each time. (We can see the spacing double clearly by noting that in general indices $2^i - 1$ will be calculated by pairwise sums.)</p>
+
+<p>The trick to this algorithm is to work out how to fill in the gaps. Let’s start by filling in index 2, the first gap in our sequence.</p>
+
+<p><img src="images/PartialScan2.png" alt="image" /></p>
+
+<ul>
+  <li>We need to add one more addition, which reuses our result for $S_1$ and adds $x_2$.</li>
+</ul>
+
+<p>Now let’s try filling in the bigger gap between $S_3$ and $S_7$. We don’t want to fill this in sequentially because then we’ll just be back in the territory of algorithms and we’ll end up with $O(n)$ depth. Instead, we want to construct a similar tree that we had before for the pairwise sum, but now with increasing nodes at each step.</p>
+
+<p><img src="images/PartialScan3.png" alt="image" /></p>
+<ul>
+  <li>Note that when calculating $S_6$ we’ve re-used the result that we computed for $S_5$.</li>
+  <li>We can also spot a pattern here: there is a tree structure in the lower half of this graph for each gap that gets filled.
+    <ul>
+      <li>At the lowest level, half of the outputs have an additional computation node.</li>
+      <li>Above that, only half again need an extra node.</li>
+      <li>This pattern continues up for larger gaps to fill in.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>So to do the parallel scan we find that we have 2 tree structures:</p>
+<ul>
+  <li>Each does $O(n)$ work</li>
+  <li>Each has depth $O(\log n)$</li>
+</ul>
+
+<p>As a result this algorithm has:</p>
+<ul>
+  <li>$W \in O(n)$</li>
+  <li>$D \in O(\log n)$</li>
+</ul>
+
+<p>So we can substantially improve the depth (and therefore time) over a serial algorithm with sufficient processing power, but we do approximately <em>double the total work</em> of the serial approach.</p>
+
+<ul>
+  <li>As a result of the extra work done, having 2 processors tackle this job (using this approach) is unlikely to be very effective: the time you save doing things in parallel would be roughly cancelled out by all the duplicate work you’re doing.</li>
+  <li>With four processors we might expect to get a benefit of roughly a factor of 2 on a large list (so most of our time is spent doing parallel computations), because we’ll be doing twice as much work with four times the processing power.</li>
+</ul>
+
+<h1 id="approaches-to-parallel-algorithms">Approaches to Parallel Algorithms</h1>
+
+<h2 id="divide-and-conquer">Divide and Conquer</h2>
+
+<p>We’ve talked a little about divide and conquer algorithms in the past, for example in our discussion of <em>merge sort</em> in week 7. These algorithms express the solution of a problem in terms of the results from some independent sub-problems. This naturally leads to a parallelised approach with a tree like structure.</p>
+
+<ul>
+  <li>We can once again use recurrence relations and the Master Theorem from complexity theory to understand the depth of these algorithms.</li>
+</ul>
+
+<h2 id="pipelining">Pipelining</h2>
+
+<p>Pipelining is an approach to task based parallelism where we process a series of data as each piece of data arrives.</p>
+<ul>
+  <li>Data is provided serially
+    <ul>
+      <li>This could be from an input stream e.g. series of real-time measurements.</li>
+      <li>Could be produced by some inherently serial computation that can’t be paralallelised.</li>
+      <li>Even when reading from memory we can only read a small amount at a time, so sometimes pipelining can be an effective tactic to overlap the memory read/write overheads with the computation itself.</li>
+    </ul>
+  </li>
+  <li>We start processing each piece of data as it arrives.</li>
+  <li>We process data in parallel, but pieces of data will be at different stages of the computation.
+    <ul>
+      <li>The “pipeline” refers to the fact that the data is being pushed through a series of computations, with each piece of data following another rather than overlapping.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The simplest scenario is when the processing of different pieces of data are independent. In order to visualise the benefits of pipelining, it is better to use a different kind of diagram which takes time into account explicitly.</p>
+
+<p>We’ll split time into discrete units (for high performance applications this may be individual CPU clock cycles!); in the diagram below time runs along the horizontal direction with each unit of time being shown in the boxes at the top of the diagram. For this example we’ll say that we <strong>receive one piece of data in each unit of time</strong>.</p>
+
+<p><img src="images/Pipeline.png" alt="image" /></p>
+
+<ul>
+  <li>The coloured boxes represent computations which can be performed. Boxes that overlap in the vertical direction happen concurrently.</li>
+  <li><code class="language-plaintext highlighter-rouge">Get</code> represents retrieving data from our stream. Because data input is sequential these can’t overlap with one another, but they <em>can</em> overlap with data processing.</li>
+  <li>Each piece of data read is fed through the series of functions $f$, $g$, $h$. These overlap in time for different data elements but with an offset.</li>
+</ul>
+
+<p>The time to process a stream of $N$ pieces of data is:</p>
+
+<p>$T = t_0 + (N-1) \times I $<br />
+where:</p>
+<ul>
+  <li>$t_0$ is the time to process one piece of pieces of data. In our example, this is the time for <code class="language-plaintext highlighter-rouge">Get</code>, $f$, $g$, and $h$, which we can see from the diagram is 9 of our time units.</li>
+  <li>$I$ is the “initiation interval”, which is the time delay between starting to process one piece of data and beginning on the next. In this example it is 1, which is the ideal, although there are times when data dependencies can force this to be larger than 1.</li>
+</ul>
+
+<p>We can see how to arrive at this formula because due to the overlap of our computations, after finishing processing the first piece of data ($t_0$), we only need to take another $I$ units of time for each additional piece of data ($N-1$ in total).</p>
+
+<ul>
+  <li>Pipelines can be implemented using threads on multi-core CPUs.</li>
+  <li>Pipelines are a key form of data parallelism for devices such as ASICs and FPGAs.</li>
+  <li>They are an extremely efficient way of moving from serial processes into parallel computations.</li>
+</ul>
+
+<h3 id="comparison-with-batching">Comparison with Batching</h3>
+
+<p>Another approach to processing data in parallel is to load as much data as you can parallelise over, and then process this data all at the same time instead of using the staggered approach of pipelining. You’d then end up with a workflow that looks like the one below:</p>
+
+<p><img src="images/Batch1.png" alt="image" /></p>
+
+<p>This is the kind of approach that is used for devices such as GPUs.</p>
+
+<p>If you have enough parallel channels to process <em>all</em> of your elements in parallel, then this gives the same total execution time as the perfect pipelining solution: just the time to load all data plus the time to process one element.</p>
+
+<p>The difference between these approaches comes when you have more data than you have parallel channels.</p>
+
+<ul>
+  <li>Perfect pipelining only requires as many parallel channels as there can be data elements overlapping. If we look at our pipelining diagram above, our processing ($f$, $g$, and $h$) takes 9 units of time, and we get a new element every time unit, so we can only 9 data processes will overlap before the first channel is free to receive data again. This means <em>no matter how many data elements are in our stream</em> we can achieve our best pipelining performance with just 9 parallel channels in this example.
+    <ul>
+      <li>This makes pipelines extremely powerful for optimising parallel performance with minimal resources, especially when dealing with very long or potentially indefinite streams.</li>
+    </ul>
+  </li>
+  <li>When batching, if there are not enough channel to process everything in one parallel batch, then we need to run multiple processing steps, which will add time. If we have $P$ parallel channels and $N$ data elements, we will have to take at least $\frac{N}{P} t_0$ steps to process our data.
+    <ul>
+      <li>Depending on the device you use you may be able to keep the time down by reading the next batch of data while processing the current one.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>One should note however that devices such as GPUs manage to be very fast by having both a very large number of parallel channels and very fast hardware. These kinds of considerations can be more important than pure parallelism which only analyses what can be done at the same time: always consider the time things would take in the real world!</strong></p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

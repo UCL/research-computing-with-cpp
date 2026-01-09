@@ -1,0 +1,567 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Version control with Git</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="active"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="active"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="active"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated reading time: 35 minutes</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Professional software projects employ version control systems for detailed tracking of a project’s history. Version control systems is a large topic. In this short introduction, we cover just the bare minimum essentials on using a popular version control system known as <code class="language-plaintext highlighter-rouge">git</code>.</p>
+
+<h2 id="installing-and-configuring-git">Installing and configuring <code class="language-plaintext highlighter-rouge">git</code></h2>
+
+<h3 id="installation">Installation</h3>
+
+<p>Git is a cross-platform software, and can be installed on most major operating systems and processor architectures. One method to install Git is from the project’s <a href="https://git-scm.com/">official website</a>. Git has already been pre-installed within the official <a href="https://github.com/UCL/rc-cpp-vscode-dev-container">devcontainer image</a> provided to you for this class. Please follow the Moodle page on how to set up VS Code with the provided development container (devcontainer).</p>
+
+<p>For any reason, if you are not using the provided VSCode devcontainer image, please attempt to install and configure <code class="language-plaintext highlighter-rouge">git</code> for your preferred development environment before attending the in-person session for Week 1. In case of difficulties, instructors and teaching assistants are available in the class, to help set this up.</p>
+
+<p>The following command verifies that Git has been successfully installed in your development environment (note that the <code class="language-plaintext highlighter-rouge">$</code> sign merely represents the shell prompt, which could be different in your environment, and should not be typed in any of the snippets from these notes).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>The above command should display <code class="language-plaintext highlighter-rouge">git version 2.xx.y</code> (2.39.0 for the official devcontainer for this class), where <code class="language-plaintext highlighter-rouge">xx</code> and <code class="language-plaintext highlighter-rouge">y</code> represents the minor and patch revisions that has been installed. Note that the major revision must be <code class="language-plaintext highlighter-rouge">2</code>, since <code class="language-plaintext highlighter-rouge">git 1.x</code> is too antiquated at this point and is not recommended anymore.</p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>Prior to using Git for version control, it requires to be set up with basic user configuration. At a minimum, the following two commands need to be run.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Full name"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"email address"</span>
+</code></pre></div></div>
+
+<p>In this class, we shall use VSCode as our official editor for writing meta-information about changes to the tracked files in our project, we set it up as follows:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> core.editor <span class="s2">"code --wait"</span>
+</code></pre></div></div>
+
+<p>You may choose to use another text editor, and the instructions for configuring some popular editors are given <a href="https://swcarpentry.github.io/git-novice/02-setup/index.html">here</a>.</p>
+
+<h2 id="git-commands-exercise-1">Git commands (Exercise 1)</h2>
+
+<p>Git is a command-line application, wherein the commands all start with the keyword <code class="language-plaintext highlighter-rouge">git</code> followed by a sub-command and zero or more options and arguments. The sub-command usually denotes the action to perform. In fact, we just configured Git using the <code class="language-plaintext highlighter-rouge">git config</code> command in the section above!</p>
+
+<p>Here, we briefly describe a few basic Git commands to help you get started with version controlling a typical software project.</p>
+
+<h3 id="git-init"><code class="language-plaintext highlighter-rouge">git init</code></h3>
+
+<p>Let us say we are ready to start version controlling the files in our project which is structured as following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./my_app/
+├── hello.cpp
+├── LICENSE.txt
+└── README.md
+</code></pre></div></div>
+
+<p>The files listed in this example project hierarchy are available to download as a compressed archive <a href="https://liveuclac-my.sharepoint.com/:u:/g/personal/uccagop_ucl_ac_uk/ESoVCHLdn4ZKiQEVxE_vVTwBqP9r6aOgcusKsPii7nN50w?e=wyyt8M">here</a>. This shall serve as the starting point for the first in-class exercise on <code class="language-plaintext highlighter-rouge">git</code>. We first initialise Git on the project by moving into the <code class="language-plaintext highlighter-rouge">my_app</code> folder (i.e. the project’s root directory), and typing:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git init
+</code></pre></div></div>
+<p>This will create a hidden <code class="language-plaintext highlighter-rouge">.git</code> folder at the project root (the contents of which is managed by Git and should never be edited by hand). You may verify the presence of this hidden <code class="language-plaintext highlighter-rouge">.git</code> folder by passing the <code class="language-plaintext highlighter-rouge">-a</code> (short for <code class="language-plaintext highlighter-rouge">all</code>) option to the <code class="language-plaintext highlighter-rouge">ls</code> command as follows:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-a</span>
+</code></pre></div></div>
+
+<h3 id="git-status"><code class="language-plaintext highlighter-rouge">git status</code></h3>
+
+<p>We shall frequently employ the <code class="language-plaintext highlighter-rouge">git status</code> command to check the tracked status of project files. At this stage, running <code class="language-plaintext highlighter-rouge">git status</code> returns:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
+
+No commits yet
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+    LICENSE.txt
+    README.md
+    hello.cpp
+</code></pre></div></div>
+
+<p>As seen in the above output, it is clear that there are untracked files present in the project. There is a helpful hint suggesting the use of <code class="language-plaintext highlighter-rouge">git add &lt;file&gt;</code> to track files, and we shall look at this next.</p>
+
+<h3 id="git-add"><code class="language-plaintext highlighter-rouge">git add</code></h3>
+
+<p>Once we are ready to start tracking files, the first step is to add them to Git’s internal staging area.  This is done with the <code class="language-plaintext highlighter-rouge">git add</code> command to which we pass in the list of files as arguments.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add hello.cpp
+</code></pre></div></div>
+<p>will add the <code class="language-plaintext highlighter-rouge">hello.cpp</code> file to Git’s staging index. Running <code class="language-plaintext highlighter-rouge">git status</code> will now return:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
+
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">"git rm --cached &lt;file&gt;..."</span> to unstage<span class="o">)</span>
+    new file:   hello.cpp
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+    LICENSE.txt
+    README.md
+
+</code></pre></div></div>
+
+<p>This indicates that the file <code class="language-plaintext highlighter-rouge">hello.cpp</code> is ready to be committed. A ‘commit’ is a permanent version of record that is maintained by Git, and can be referenced in the future by other Git commands.</p>
+
+<p>Shell wildcards may be used for easily adding multiple files with a similar pattern, e.g. <code class="language-plaintext highlighter-rouge">git add *.cpp</code> shall add all the C++ source files from the current folder, and <code class="language-plaintext highlighter-rouge">git add *.md</code> will add all the markdown files from the current folder, to the staging area. We may also pass file paths, e.g. <code class="language-plaintext highlighter-rouge">git add &lt;dir_name&gt;/</code> shall add all the files within the directory <code class="language-plaintext highlighter-rouge">&lt;dir_name&gt;</code>. A common pattern is to use at the project root:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nb">.</span>
+</code></pre></div></div>
+<p>where <code class="language-plaintext highlighter-rouge">.</code> is the reference to the current working directory. When executed at the project root, it adds all files under the project to the staging index. After running <code class="language-plaintext highlighter-rouge">git add .</code> for our example folder, <code class="language-plaintext highlighter-rouge">git status</code> returns:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">"git rm --cached &lt;file&gt;..."</span> to unstage<span class="o">)</span>
+    new file:   LICENSE.txt
+    new file:   README.md
+    new file:   hello.cpp
+</code></pre></div></div>
+
+<p>Now, all three files are ready to be committed (i.e. made a permanently referenceable entity of the project), and we employ the <code class="language-plaintext highlighter-rouge">git commit</code> command for this.</p>
+
+<h3 id="git-commit"><code class="language-plaintext highlighter-rouge">git commit</code></h3>
+
+<p>Now, invoking <code class="language-plaintext highlighter-rouge">git commit</code> on the command line opens up a text editor (configured in the earlier section), and shall wait for a <em>commit message</em> from the user. A good commit message shall describe the changes that have happened in this particular commit. By convention, the very first commit for a project usually has the commit message string “Initial commit”, and we shall do the same here. After this, the very first version of record (i.e. a commit) has been created.</p>
+
+<p>Invoking <code class="language-plaintext highlighter-rouge">git status</code> now produces the output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
+nothing to commit, working tree clean
+</code></pre></div></div>
+<p>and we have a clean working directory with no further git-related actions needed at this point.</p>
+
+<h2 id="making-changes-to-tracked-files-and-viewing-differences">Making changes to tracked files and viewing differences</h2>
+
+<p>Let us now edit <code class="language-plaintext highlighter-rouge">README.md</code> to add a new line of text (with the content of your choice) at the bottom of this file. Running <code class="language-plaintext highlighter-rouge">git status</code> now results in the following output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+    modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre></div></div>
+
+<p>Git is now tracking changes to our README.md, and detects that it has been modified! To view the actual changes to the file, we may use the <code class="language-plaintext highlighter-rouge">git diff</code> command discussed next.</p>
+
+<h3 id="git-diff"><code class="language-plaintext highlighter-rouge">git diff</code></h3>
+
+<p>In its most basic form of invocation, <code class="language-plaintext highlighter-rouge">git diff</code> presents a list of changes between the file(s) in the current working directory and the version of record in the most recent commit. Running <code class="language-plaintext highlighter-rouge">git diff</code> here results in</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff --git i/README.md w/README.md
+index 909b915..7c3dae9 100644
+--- i/README.md
++++ w/README.md
+@@ -1 +1,2 @@
+ This project contains a simple "Hello World" C++ source code, which when compiled and run, prints "Hello, World!" to the cons
+ole.
++This file serves as an example to demonstrate version tracking by git
+</code></pre></div></div>
+
+<p>Ignoring the first few lines of the command’s output, the changeset information is presented in Unix’s unified diff format, wherein the <code class="language-plaintext highlighter-rouge">+</code> sign indicates that a new line has been added. <a href="https://unix.stackexchange.com/a/216131">This</a> StackOverflow answer provides more details about Unix’s unified diff output syntax.</p>
+
+<p>The usual procedure to commit this change to the repository is through the <code class="language-plaintext highlighter-rouge">git add &lt;filename&gt;</code> followed by <code class="language-plaintext highlighter-rouge">git commit</code> commands in sequence. However, adding and committing is so frequently used that Git provides a convenient  shortcut for this with the <code class="language-plaintext highlighter-rouge">-am</code> flag to <code class="language-plaintext highlighter-rouge">git commit</code>,  where the <code class="language-plaintext highlighter-rouge">-a</code> flag stands for <code class="language-plaintext highlighter-rouge">add</code>, and the <code class="language-plaintext highlighter-rouge">-m</code> flag indicates that the commit message shall be supplied right at the command-line surrounded by double quotes, rather than having to invoke a text editor application. An example usage is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git commit -am "Adds an explantory line to README.md"
+</code></pre></div></div>
+
+<p>Next, we shall view the project’s history with the <code class="language-plaintext highlighter-rouge">git log</code> command.</p>
+
+<h3 id="git-log"><code class="language-plaintext highlighter-rouge">git log</code></h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">git log</code> command shows the project’s commit history. Invoking <code class="language-plaintext highlighter-rouge">git log</code> all by itself provides a detailed log of the commit history of the project.</p>
+
+<p>The detailed view presented by <code class="language-plaintext highlighter-rouge">git log</code> consists of each commit’s unique identifier (a 40 character unique hexadecimal string known as the commit SHA), followed by author and date information, followed by the commit message. For a large project with many changes, sometimes a quick glance at the project’s history is helpful wherein the command-line option <code class="language-plaintext highlighter-rouge">--oneline</code> comes handy.</p>
+
+<p>Executing <code class="language-plaintext highlighter-rouge">git log --oneline</code> presents a compact view of the project’s history where each commit occupies just one line consisting of just the shortened SHA string and the first line of the commit message.</p>
+
+<p><em>End of exercise 1</em></p>
+
+<h2 id="remote-repositories-and-github-exercise-2">Remote repositories and Github (Exercise 2)</h2>
+
+<p>So far, everything we have done has been local i.e. pertains to project files on the user’s computer. The project history is tracked by Git using the contents of the <code class="language-plaintext highlighter-rouge">.git</code> folder. However, for ease of collaboration as well as for data resilience, it is common practice to have the project tracked in a remote location on the cloud.</p>
+
+<p>Several services are available that can remotely host Git repositories. Examples include GitHub, Bitbucket, and Gitlab. In this class, we shall be using Github as the central location of our remote repository.</p>
+
+<p>Firstly, we shall navigate to GitHub’s landing page on our browser, create an account, and login to it. Then we shall create a new public repository and assign a name to it. The name of the project on GitHub can be different to the Git folder on the local machine, although it is conventional to use the same name. During this process, it is important to choose <code class="language-plaintext highlighter-rouge">ssh</code> as the remote connection protocol (the other choice usually presented is <code class="language-plaintext highlighter-rouge">https</code>, which has been deprecated for a while on GitHub). GitHub shall provide instructions to add the newly created local repository to our local Git repository, which resembles the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add &lt;local_reference_name_for_remote_repo&gt; &lt;remote_url&gt;
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">&lt;local_reference_name_for_remote_repo&gt;</code> is the name that the local Git instance shall use for referring to the remote repository (instead of the full URL) each time a remote operation needs to be performed. It is conventional to use the name <code class="language-plaintext highlighter-rouge">origin</code> for a remote repository.</p>
+
+<p>Since we are using the SSH connection protocol, the <code class="language-plaintext highlighter-rouge">&lt;remote_url&gt;</code> shall be of the form <code class="language-plaintext highlighter-rouge">git@github.com:&lt;github_username&gt;/&lt;github_repo_name&gt;.git</code></p>
+
+<p>Thus the above command is typically written as:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add origin git@github.com:&lt;github_username&gt;/&lt;github_repo_name&gt;.git
+</code></pre></div></div>
+
+<p>At this stage, the remote repository has been connected to our local repository and we can sync our local commits with the remote. However, to be able to do so requires configuring our computer to make secure connections to GitHub.</p>
+
+<h3 id="configuring-secure-remote-connections-with-ssh">Configuring secure remote connections with SSH</h3>
+
+<p>Note that the below steps may also be performed on the host system (outside the development container) since the devcontainer is able to access the ssh configuration of the host. Teaching assistants shall be available at hand to help with setting up SSH access.</p>
+
+<p>Firstly, we need to authenticate ourselves with GitHub through an SSH keypair handshake mechanism. An SSH keypair consists of two separate keys - 1) a <em>private</em> key, and 2) a <em>public</em> key. Firstly, we generate a keypair on our local machine by running the <code class="language-plaintext highlighter-rouge">ssh-keygen</code> command. This command is provided by the OpenSSH client software, and can be installed on Debian/Ubuntu operating systems with the command <code class="language-plaintext highlighter-rouge">sudo apt install openssh-client</code> (this has already been pre-installed on the official devcontainer provided).</p>
+
+<p>First, we run <code class="language-plaintext highlighter-rouge">ssh-keygen</code> command. The default prompt answers may be accepted. The keypair will be generated, and shall be located in the <code class="language-plaintext highlighter-rouge">/home/username/.ssh/</code> folder for regular users, and under <code class="language-plaintext highlighter-rouge">/root/.ssh/</code> in the official development container. The private key shall be named <code class="language-plaintext highlighter-rouge">id_rsa</code> by default (note the absence of any file extension), and the public key shall be named <code class="language-plaintext highlighter-rouge">id_rsa.pub</code> (i.e. has the same name as the private key followed by a <code class="language-plaintext highlighter-rouge">.pub</code> extension). It should be noted that the private key should not be shared with anyone else (including your instructors!), but the public key may be freely distributed anywhere.</p>
+
+<p>Next, open the public key file in a text editor, and copy its entire contents to the system clipboard. On GitHub login to your user account, and under user settings, set up SSH key access to repositories by pasting the public key string from clipboard.</p>
+
+<p>Your local laptop/devcontainer is now ready to synchronise any local git repository with its remote counterpart on github and the commands to do that are discussed next.</p>
+
+<h3 id="git-push-and-git-pull"><code class="language-plaintext highlighter-rouge">git push</code> and <code class="language-plaintext highlighter-rouge">git pull</code></h3>
+
+<p>At this stage, we are ready to push our local git history to the remote repository that we created earlier. To do this, run the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git push -u origin main
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">git push</code> command facilities pushing of local changes to the remote. However, we need to specify the local reference name for the remote repository (i.e. <code class="language-plaintext highlighter-rouge">origin</code> by convention as we set it up earlier) and the current branch (<code class="language-plaintext highlighter-rouge">main</code> in newer versions of Git). Note that we do not cover Git branches in depth in this introductory lesson. The <code class="language-plaintext highlighter-rouge">-u</code> flag indicates that the specified local branch (<code class="language-plaintext highlighter-rouge">main</code>) shall always be considered to correspond to the same branch in the specified remote. From now on, further commits in the local repository can be pushed by simply invoking <code class="language-plaintext highlighter-rouge">git push</code> without additional arguments.</p>
+
+<p>If we work on another computer and push commits to GitHub (or a collaborator pushes commits to GitHub), it is required to first pull down and merge these remote updates to our local repository before we can push. The simplest command to achieve this is <code class="language-plaintext highlighter-rouge">git pull</code> (provided that the current branch has been set to correspond to its remote counterpart as explained above).</p>
+
+<p>Note that it is important to <code class="language-plaintext highlighter-rouge">git pull</code> as frequently as possible to minimise the possibilities of merge conflicts. The topic of merge conflicts is not covered in this introductory lesson, but is quite important to understand in professional software development.</p>
+
+<h2 id="accessing-public-open-source-repositories-on-local-machine-without-ssh">Accessing public open source repositories on local machine without SSH</h2>
+
+<h3 id="git-clone"><code class="language-plaintext highlighter-rouge">git clone</code></h3>
+
+<p>It should be mentioned that setting up SSH access is required only for pushing commits to a remote repository. However, if we are merely interested in pulling down the complete project history of a public remote repository, a standard HTTPS access without any special setup shall suffice. The first ‘download’ of the project files along with its revision history is called a <em>clone</em> and can be achieved with the <code class="language-plaintext highlighter-rouge">git clone</code> command, whose typical invocation is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/&lt;username&gt;/&lt;repo_name&gt;.git
+</code></pre></div></div>
+
+<p>This works only for publicly accessible repositories hosted on remote hosting platforms like GitHub. The above command shall fetch the current version of the project files along with its complete git history into a folder titled <code class="language-plaintext highlighter-rouge">repo_name</code> on the user’s local computer as a standard local repository. Then onwards, further commits to the remote repository can be obtained by using the standard <code class="language-plaintext highlighter-rouge">git pull</code> command.</p>
+
+<h3 id="git-submodules">Git Submodules</h3>
+
+<p>Projects tracked in git repositories could depend on logically independent third party files, which themselves might be under version control. For example, a medical image processing software for a particular application area could depend on a custom domain-specific file compression library that is co-developed in the same project and is reasonable to keep the library’s files in a subfolder within the main project tree. Since the file compression library itself is logically distinct from the application within which it is embedded into, it is meaningful to track versions of the library as a separate Git project from the main application (which itself is version controlled in Git). Yet another example is where our application code depends on a third party project which is not located within the project tree, but rather is tracked separately as an independently developed project. In both these scenarios, we make use of Git <em>submodules</em>.</p>
+
+<p>The path to the submodule (either a local folder or a remote repository) is configured in a <code class="language-plaintext highlighter-rouge">.gitmodules</code> file at the root of the main project tree (i.e. the ‘outer’ repository), and the relevant submodule code is brought in through the <code class="language-plaintext highlighter-rouge">--recurse-submodules</code> flag to commands like <code class="language-plaintext highlighter-rouge">git clone</code> and <code class="language-plaintext highlighter-rouge">git pull</code>.</p>
+
+<p>As an example for cloning a remote repository along with relevant submodule files, we invoke:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone --recurse-submodules https://github.com/&lt;username&gt;/&lt;remote_repo&gt;.git
+</code></pre></div></div>
+
+<p>In fact, this is how we shall proceed with the devcontainer setup for our upcoming CMake exercises. The devcontainer configuration is maintained in a separate repository which has been configured in a relevant <code class="language-plaintext highlighter-rouge">.gitmodules</code> file in our CMake exercise repository.</p>
+
+<h2 id="further-resources">Further resources</h2>
+
+<p>We have only covered a very basic overview of the Git version control system that shall enable us to get started with the in-class exercises and course projects. An excellent resource that provides an expanded introduction is the Software Carpentry’s <a href="https://swcarpentry.github.io/git-novice/">lessons on Git</a> which covers some additional topics such as ignoring certain kind of files from being tracked, referencing previous commits in git commands etc. The software carpentry lesson material has been taught as a video playlist with live coding/demonstrator by your course instructor and is available <a href="https://www.youtube.com/playlist?list=PLn8I4rGvUPf6qxv2KRN_wK7inXHJH6AIJ">here</a>.</p>
+
+<p>In professional software development, one usually encounters further advanced topics such as branching, rebasing, cherry-picking commits etc for which specialised git resources exist both online and in print. All UCL students have free access to content from LinkedIn Learning, and it is worthwhile to look into some of the <a href="https://www.linkedin.com/learning/search?keywords=git&amp;upsellOrderOrigin=default_guest_learning&amp;sortBy=RELEVANCE&amp;entityType=COURSE&amp;softwareNames=Git">top rated Git courses</a> there.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+
