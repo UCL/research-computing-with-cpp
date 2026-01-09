@@ -129,10 +129,11 @@ using namespace std;
 
 This can avoid writing lists of `using` statements but runs the risk of name clashes. It's not usually good practice to import the entire `std` namespace because the potential for clashes is high, although it can be fine for small programs. 
 
-There's also an interesting bit of punctuation here; you have probably noticed the line ends in a semicolon `;`. C++, and many other languages, require this because the language doesn't care about (most) *whitespace*. Technically we can write our whole program all on one line, ignoring all indentation and newlines:
+There's also an interesting bit of punctuation here; you have probably noticed the line ends in a semicolon `;`. C++, and many other languages, require this because the language doesn't care about (most) *whitespace*. Technically we can write our whole program all on one line, ignoring all indentation and most newlines:
 
 ```cpp
-#include <iostream> using namespace std; int main() {cout << "Hello World!\n"; return 0;}
+#include <iostream>
+using namespace std; int main() {cout << "Hello World!\n"; return 0;}
 ```
 
 But this looks horrible so we use newlines and indentation in appropriate places to make our code more *readable*.
