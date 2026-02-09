@@ -58,7 +58,9 @@ Procedural programming is style of imperative programming where programs are bro
 
 ### Object Oriented Programming
 
-Object oriented programming is an approach to programming in which functions and data are typically encapsulated in classes, and accessed through _instances_ called objects. Objects generally have a particular purpose, or are intended to reflect a concrete concept in a model. This kind of organisation, if well implemented, can make code easier to understand and more intuitive. 
+Object oriented programming (OOP) is an approach to programming in which data and functionality are typically bundled together into _objects_. The core concept of OOP is that an object has a _public interface_ through which all other parts of the program interact with it, and that no information about how the object works under the hood should be necessary for another object to interact with it. For example, you can implement an [associative array](https://en.wikipedia.org/wiki/Associative_array) (a _dictionary in Python) as a binary search tree or a hash table, but that implementation choice should be entirely hidden behind the interface and should not affect any other part of the program. This abstraction through an interface provides the mechanism in various OOP languages by which different kinds of objects which implement the same interface can be swapped with one another (in C++, we do this through inheritance). This approach also allows us to protect the object's data from interference by other parts of the program, allowing us to reason about the state of objects in our program more independently. 
+
+Objects generally have a particular purpose, or are intended to reflect a concrete concept in a model. This kind of organisation, if well implemented, can make code easier to understand and more intuitive. 
 
 - Classes should represent a single, clear idea. There's a bit of a judgement call to be made here: we don't want to define classes which have lots of unrelated behaviour or unrelated data elements, but it's also possible to find yourself creating too many classes which each do so _little_ that they don't really represent a worthwhile concept on their own. 
     - Some languages like Java require all code to be part of some class, and thus Java is a hotbed of this kind of design problem. Many OOP examples that you find which originate in Java involve declaring new classes which do very little, and these are sometimes translated directly into C++ examples. Particularly when reading about OOP design patterns, consider whether there are clearer and less wasteful ways to express them.  
@@ -67,15 +69,13 @@ Object oriented programming is an approach to programming in which functions and
     - For example, if one were to write a class to represent the abstract data type `Queue`, which is a first-in first-out list, then the class should represent the data held in the queue _and_ the methods to add and remove elements from the queue. It is the responsibility of the class methods to ensure that the rules of the queue are respected: data must be removed from the queue in the same order that they are added.
     - If a function isn't necessary for the use of some type, then it should be e.g. a free function which takes an argument of that type instead. 
     - Any member functions that you add to a class increase the amount of code which could violate the class invariants, because they have free access to the member data.
-- Inheritance is a way of expressing the type relationship that one type is a sub-type of another in OOP languages.
+- Inheritance is a way of expressing the type relationship that one type is a sub-type of another in many OOP languages.
 - Composition and aggregation (member variables and pointers) are ways of creating complex types from more basic component types.
 - The design of classes, and the use of inheritance, composition, and aggregation, should reflect the abstract model of your type as well as you can. 
 
 Take a binary tree as an example:
 - A `TreeNode` in a tree can be a `Branch` (a node which has children) or a `Leaf` (a node with no children). This can be expressed by the inheritance relations `class Branch : public TreeNode` and `class Leaf : public TreeNode`, because `Branch` and `Leaf` are both kinds of `TreeNode`.
 - A `Branch` has a value of some type, pointers to its children (`TreeNode` pointer types which could be `Branch` or `Leaf`), and usually a pointer to its parent (`TreeNode` pointer). These relationships are composition (the value) and aggregation (pointers): a `Branch` is made of up of these components and can make use of them, but is not itself any of these things. 
-
-![image](images/TreeInheritanceComposition.png)
 
 ## Influences from Functional Programming 
 
