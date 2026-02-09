@@ -271,7 +271,95 @@ class Simulation
 - The constructor for `Simulation` calls the constructor of `Data` directly; if the constructor of `Data` changes (because we have changed something about our data representation) then the class `Simulation` must also be changed. 
 - The class `Data` may develop and contain functionality that is irrelevant to what `Simulation` needs. 
 
-Dependency injection is generally achieved by using an abstract class in place of a concrete type for a component of a class. The abstract class defines a interface that must be met by any class that you want to use, but does not enforce what exactly that class should be. This allows you to design a class which can be reused with different components which fulfil the same functionality depending on what you need it for. 
+Dependency injection breaks the coupling between these classes by contructing the component (`Data`) _separately_, and passing it into the constructor for the class of object that will hold it (`Simulation`). This means that if we change the way that the `Data` class is constructed, we don't have to make any changes to the `Simulation` class. 
+
+```cpp
+class Simulation
+{
+    Simulation(unique_ptr<Data> &inData)
+    {
+        data = std::move(inData);
+    }
+
+    void printData()
+    {
+        data->print();
+    }
+
+    private:
+        std::unique_ptr<Data> data;
+};
+```
+
+- Note that the `Simulation` class now does not call the constructor for the `data` object: the `Data` implementation can change completely as long as it still implements the `print` method, which is the only thing that we need from it in this example. The `Simulation` class is now _decoupled_ from any elements of the `Data` class that it does not directly need to know about and use. 
+
+We can also add a setter function using a similar appraoch. With this kind of structure we can create classes that allow components to be swapped out during the lifetime of the object, something that will be very important for the next pattern that we look at.
+
+```cpp
+class Simulation
+{
+    public:
+    Simulation(unique_ptr<Data> &inData)
+    {
+        data = std::move(inData);
+    }
+
+    void setData(unique_ptr<Data> &inData)
+    {
+        data = std::move(inData);
+    }
+
+    void printData()
+    {
+        data->print();
+    }
+
+    private:
+        std::unique_ptr<Data> data;
+};
+```
+- If we have two data sets `dataSet1` and `dataSet2` we can now change the data that the `Simulation` object looks at runtime without creating a new `Simulation` object. 
+
+Using setters to implement dependency injection should not lead you to neglect your constructors! It's generally best if you always **make sure that objects are constructed in a valid state**. In this example, we might consider any object where the `data` pointer is null to be invalid. In order to avoid a partially constructed object, we need to make sure the dependency injection is implemented in the constructor (and optionally the setter), and always checks for null pointers. 
+
+```cpp
+class Simulation
+{
+    public:
+    Simulation(unique_ptr<Data> &inData)
+    {
+        if(!inData)
+        {
+            throw std::runtime_error("Simulation error: data set pointer cannot be null.")
+        }
+        data = std::move(inData);
+    }
+
+    void setData(unique_ptr<Data> &inData)
+    {
+        if(!inData)
+        {
+            throw std::runtime_error("Simulation error: data set pointer cannot be null.")
+        }
+        data = std::move(inData);
+    }
+
+    void printData()
+    {
+        data->print();
+    }
+
+    private:
+        std::unique_ptr<Data> data;
+};
+```
+
+## Example: Strategy Pattern
+
+The _strategy pattern_ takes advantage of polymorphic behaviour to provide different solutions or representations for problems at runtime. 
+
+Often the best solution to use for a particular problem will depend on the details of that problem: some sorting algorithms are faster on shorter lists while other are faster on longer lists, or some integrators might be more accurate and efficient when integrating slowly changing functions but others work better for oscillating functions. If we have a class which needs to have a component which achieves a task like this, then rather than having multiple classes with different concrete implementations of these algorithms built in, we can have a single class with a pointer to an abstract base class e.g. a sorter, or an integrator. We can then have different sub-classes of our abstract class that implement the different solutions to our problem, and we can pass different solutions into our main class, or even change solutions throughout the runtime based on considerations that we can't know at compile time (e.g. the length of a list that needs to be sorted). Let's continue our example from dependency injection, but now let's add an abstract base class for the `Data`. 
+
 
 ```cpp
 class AbstractSimData
@@ -296,34 +384,13 @@ class Data : public AbstractSimData
     vector<int> data;
 };
 ```
-- `AbstractSimData` is an abstract class, because its function `print` is not implemented. It defines the interface that any data class that wants to be used with the `Simulation` class would need to implement.
+- `AbstractSimData` is an abstract class, because its function `print` is not implemented. It defines the interface that any data class that wants to be used with the `Simulation` class would need to implement. This interface should be kept to the minimum required.
 - `print` is _pure_ and _virtual_ which means that it will always be overridden by a derived class. This defines a "contract": a set of functionality that anything which inherits from this abstract class _must_ implement. We can use such abstract classes to define minimal functionality required by other classes: this is sometimes referred to as an "interface". 
     - Interfaces are a core language feature of some other languages like Java and C#, but are not explicitly implemented in C++. 
     - In C++ we generally implement interfaces using abstract classes containing only pure virtual functions and variables. 
 
-The trick with dependency injection is to then pass (a.k.a. "inject") the component you want to use to a constructor or setter function. This is done at runtime rather than compile time, and means that different instances of the class can be instantiated with different components based on run-time considerations. 
-```cpp
-class Simulation
-{
-    Simulation(unique_ptr<AbstractSimData> &inData)
-    {
-        data = std::move(inData);
-    }
+With this in place, we can define multiple classes which inherit from `AbstractSimData`, and which can then store data in different ways (e.g. maps instead of vectors and so on), or implement functions differently. 
 
-    void printData()
-    {
-        data->print();
-    }
-
-    private:
-        std::unique_ptr<AbstractSimData> data;
-};
-```
-
-- Now `Simulation` works with an abstract class `AbstractSimData`, which does not itself contain an implementation of `print`. It doesn't care _how_ it gets done, just that it _can_ be done.
-- Note that the `Simulation` class now does not call the constructor for the `data` object: the `Data` implementation can change completely as long as it still implements the `print` method, which is the only thing that we need from it in this example. The `Simulation` class is now _decoupled_ from any elements of the `Data` class that it does not directly need to know about and use. 
-
-We gain even more flexibility by using a setter function. With this kind of structure we can also create classes that allow components to be swapped out during the lifetime of the object, meaning that the functionality of the object can be changed during runtime. 
 ```cpp
 class Simulation
 {
@@ -347,16 +414,33 @@ class Simulation
         std::unique_ptr<AbstractSimData> data;
 };
 ```
-- If we have two data sets `dataSet1` and `dataSet2` we can now change the data that the `Simulation` object looks at runtime without creating a new `Simulation` object. 
-- `dataSet1` and `dataSet2` don't even need to be the same type, as long as they are both of a type which inherits from `AbstractSimData`!
 
-## Example: Strategy Pattern
-
-One way that we can make use of this kind of class structure is to be able to select different solutions for the same problem at runtime. Often the best solution to use for a particular problem will depend on the details of that problem: some sorting algorithms are faster on shorter lists while other are faster on longer lists, or some integrators might be more accurate and efficient when integrating slowly changing functions but others work better for oscillating functions. If we have a class which needs to have a component which achieves a task like sorting or integrating, then rather than having multiple versions of that class with different concrete implementations of these algorithms built in, we can have a class which contains an abstract sorter or integrator class. We can then have different sub-classes of our abstract class that implement the different solutions to our problem, and we can pass different solutions into our main class, or even change solutions throughout the runtime based on considerations that we can't know at compile time (e.g. the length of a list that needs to be sorted). This is commonly known as the _Strategy Pattern_ (a "pattern" is just a term for a general purpose solution which is commonly applied in programming). 
+- `Simulation` doesn't care _how_ the `data` component implements `print`, it only needs to know that it _can_. The abstract base class has captured everything that is required by the `Simulation` class. 
+- With the setter in place we can change the approach that we are taking whenever we need to. 
 
 ## Example: Factory Pattern 
 
-When dealing with abstract classes it is sometimes useful to be able to make objects of different sub-classes depending on runtime considerations. In this case, we can define another class or method, sometimes known as a "factory", which returns something of the base type. Let's say we have a system that allows a person to register with the University as either a `Student` or an `Employee`, both of which inherit from a generic `Person` class. Whether or not we create `Student` or `Employee` object will depend on the input that the person gives us, which we cannot know before run time. We can then create a class or function which returns a `Person` type, but which, depending on the information input, may create a `Student` or `Employee` object and return a pointer to that. 
+When dealing with abstract classes it is sometimes useful to be able to make objects of different sub-classes depending on runtime considerations. In this case, we can define another class or method, sometimes known as a "factory", which returns something of the base type. Common examples might be selecting an approach using a runtime flag, or changing approaches based on the size of the problem. 
+
+A factory can be implemented as a class, but often the simplest approach (in C++) is to just have a factory function like the one below. 
+
+```cpp
+std::unique_ptr<AbstractDataManager> DataManagerFactory(std::vector &v)
+{
+    if(v.size() < 1000)
+    {
+        return std::make_unique<ShortDataManager>(v);
+    }
+    else
+    {
+        return std::make_unique<LargeDataManager>(v);
+    }
+}
+```
+
+- `AbstractDataManager` is an abstract base class
+- `ShortDataManager` and `LargeDataManager` are two concrete classes which inherit from `AbstractDataManager`, and are optimised for dealing with data on different scales. 
+- The factory uses the size of the data being passed in to make a decision about the approach that is going to be taken. The size of the vector is only known at runtime. 
 
 ## Implementing Multiple Interfaces 
 
