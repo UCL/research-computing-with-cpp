@@ -1,0 +1,611 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Exceptions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 40 minutes</p>
+
+<h1 id="exceptions">Exceptions</h1>
+
+<p>Exceptions are used for error handling in C++ (and many other languages). The standard library provides a variety of exceptions that we can use straight away, although we can also write our own exceptions if we want additional functionality.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">&lt;stdexcept&gt;</code> header contains the following exception types:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">logic_error</code></li>
+  <li><code class="language-plaintext highlighter-rouge">invalid_argument</code></li>
+  <li><code class="language-plaintext highlighter-rouge">domain_error</code></li>
+  <li><code class="language-plaintext highlighter-rouge">length_error</code></li>
+  <li><code class="language-plaintext highlighter-rouge">out_of_range</code></li>
+  <li><code class="language-plaintext highlighter-rouge">runtime_error</code></li>
+  <li><code class="language-plaintext highlighter-rouge">range_error</code></li>
+  <li><code class="language-plaintext highlighter-rouge">overflow_error</code></li>
+  <li><code class="language-plaintext highlighter-rouge">underflow_error</code></li>
+</ul>
+
+<p><strong>All of these exception classes inherit from the class <code class="language-plaintext highlighter-rouge">std::exception</code>.</strong> Inheritance will play an important role in how we define, identify, and handle exceptions.</p>
+
+<p>You may notice these exceptions being thrown by a number of different methods that you use in C++! For example, if you try to access a <code class="language-plaintext highlighter-rouge">vector</code> using <code class="language-plaintext highlighter-rouge">.at(i)</code> outside of the range of the vector, an <code class="language-plaintext highlighter-rouge">out_of_range</code> exception will be thrown, which will halt program execution and be reported in the terminal output if you don’t handle it properly.</p>
+
+<p>When you look up a function in the C++ documentation, you can see what exceptions it can throw, and therefore what kinds of errors you may need to consider checking for. Some functions have “no throw” guarantees, which means that they cannot throw exceptions. Just because a function does not throw exceptions does not mean it is impossible for an error to occur: be sure to check if the function is using some other method of reporting and handling errors. For example, some code which is written in, or compatible with, C or FORTRAN will use the return value of the function or a mutable reference parameter to report whether the function execution was successful or not.</p>
+
+<h2 id="the-basic-idea-of-exceptions">The basic idea of Exceptions</h2>
+
+<p>An exception is a type of object which can be “thrown” when something happens that is not supposed to happen, but which has been anticipated by the programmer as a possibility. The exception is then “caught” in another part of the code which then handles the error. Uncaught exceptions will terminate the program execution (which may be the desired effect if there is no way to continue after an error).</p>
+
+<p>For example, if you write a function which requires the use of the first three elements of a vector, your function should check that the vector passed to it has at least three elements. One way of handling the case where it does not have enough elements is to throw an exception: this halts the execution of the function (thereby preventing any attempts to, for example, access elements that aren’t there), and returns control to the calling code. If the code which called the function has been set up to detect exceptions, then it can “catch” the exception and handle it appropriately. If the exception is not caught by the calling function, then that function halts as well and the exception propagates up the stack to that function’s caller, and so on until it is either caught or we reach the end of the call stack and the program terminates.</p>
+
+<p><strong>N.B.</strong> Exceptions should not be used a method of controlling program flow and should only be used to cover unusual cases that shouldn’t normally occur (hence “<em>exception</em>”). <strong>Do not use throw exceptions as an alternative way of returning a value from a function or as a way to exit a loop.</strong> These should always be handled using <code class="language-plaintext highlighter-rouge">return</code> statements (for function return) and <code class="language-plaintext highlighter-rouge">break</code> statements (for loop exit). Exception handling statements should be used to handle cases where normal execution of the program simply cannot continue, and in a typical run of the code the exception should not be thrown. Some good examples of where to use exceptions for error handling are: running out of space for a process that needs to allocate memory, file system input/output errors, runtime errors from users giving unexpected bad input. Using exceptions to control program flow other than error handling can be a problem for two reasons:</p>
+<ul>
+  <li>Your program will be difficult to read and understand, because it will look like you are doing error handling when you aren’t.</li>
+  <li>Exceptions incur quite a bit of overhead <em>when exceptions are thrown</em>, but otherwise do not usually impact performance to any significant degree. If you use exceptions to handle expected program branching you will throw many exceptions and incur a serious performance cost.</li>
+</ul>
+
+<p>We’ll take a look now at how to do this in practice, starting with catching exceptions thrown by functions that you use.</p>
+
+<h2 id="catching-exceptions">Catching Exceptions</h2>
+
+<p>We’ll start by looking at how to handle an error thrown by an existing function, such as a range error thrown by a vector. When such a function encounters an error and <em>throws</em> an exception, it needs to be <em>caught</em>.</p>
+
+<ul>
+  <li>We first need to identify the code that could throw the exception. We do this with the <code class="language-plaintext highlighter-rouge">try{...}</code> keyword.
+    <ul>
+      <li>This tells our compiler that we want to monitor the execution of this code block (inside the <code class="language-plaintext highlighter-rouge">{}</code>) for exceptions.</li>
+    </ul>
+  </li>
+  <li>We then need to intercept any exceptions which are thrown and respond to them. We do this with the <code class="language-plaintext highlighter-rouge">catch(){...}</code> keyword.</li>
+</ul>
+
+<p>Let’s take a look at an example of how to catch an exception thrown by a standard library function:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fibbonacciList</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
+
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fibbonacciList</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Problem accessing Fibbonacci list due to range: "</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Max index of list is "</span> <span class="o">&lt;&lt;</span> <span class="n">fibbonacciList</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Other error occurred accessing Fibbonacci list: "</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We get the exception definitions from <code class="language-plaintext highlighter-rouge">#include &lt;stdexcept&gt;</code>.</li>
+  <li>If we think a code block might throw an exception then we can place it inside a <code class="language-plaintext highlighter-rouge">try{ code block }</code> statement.
+    <ul>
+      <li>In this case we are accessing a vector, which may not be long enough.</li>
+    </ul>
+  </li>
+  <li>After a <code class="language-plaintext highlighter-rouge">try{}</code> block we need a <code class="language-plaintext highlighter-rouge">catch(exception_type e){ code block }</code> statement. Inside the curly braces of the catch statement we put the code that we want to execute if an exception of that type is raised.
+    <ul>
+      <li>Some catch blocks could, for example, make corrections to values, adopt some kind of default setup, or simply log detailed error messaging and terminate the program.</li>
+    </ul>
+  </li>
+  <li>Once the <code class="language-plaintext highlighter-rouge">catch</code> block has been executed, the program will continue as normal from after the <code class="language-plaintext highlighter-rouge">try</code>/<code class="language-plaintext highlighter-rouge">catch</code> blocks. (In this case, to <code class="language-plaintext highlighter-rouge">return 0;</code>) <strong>It does not go back to finish the <code class="language-plaintext highlighter-rouge">try</code> block which was interrupted, so anything inside that block that occurs after the exception is thrown will remain unexecuted.</strong> This is an important point to bear in mind for some potential errors that we will discuss later.</li>
+  <li>We can use <code class="language-plaintext highlighter-rouge">e.what()</code> to get the exception’s message, which should report some useful information about why the exception was raised.</li>
+  <li>We can have multiple <code class="language-plaintext highlighter-rouge">catch</code> statements after a single <code class="language-plaintext highlighter-rouge">try</code> statement to handle different kinds of exceptions which could be thrown from the same code, for example one block for <code class="language-plaintext highlighter-rouge">std::out_of_range</code>, and another for <code class="language-plaintext highlighter-rouge">std::overflow_error</code>.</li>
+  <li>All exceptions inherit from <code class="language-plaintext highlighter-rouge">std::exception</code>, which can be used from the <code class="language-plaintext highlighter-rouge">&lt;exception&gt;</code> header, so if you want a catch block to catch generic exceptions you can write <code class="language-plaintext highlighter-rouge">catch(std::exception e){}</code>.</li>
+  <li>If you want to catch anything that has been thrown and you don’t want to access any information in the exception itself you can also use <code class="language-plaintext highlighter-rouge">catch(...)</code>, but you will usually want to name your exception variable so that you can report information from it.</li>
+  <li><code class="language-plaintext highlighter-rouge">catch</code> clauses will be evaluated in order, so you should always list your <code class="language-plaintext highlighter-rouge">catch</code> statements from most specific to most general i.e. list <em>derived classes</em> before the <em>base classes</em> from which they inherit. For example, <code class="language-plaintext highlighter-rouge">std::out_of_range</code> is a sub-type of <code class="language-plaintext highlighter-rouge">std::exception</code> since the <code class="language-plaintext highlighter-rouge">out_of_range</code> class inherits from <code class="language-plaintext highlighter-rouge">exception</code>. This means that:
+    <ul>
+      <li>if <code class="language-plaintext highlighter-rouge">catch(std::exception e)</code> comes before <code class="language-plaintext highlighter-rouge">catch(std::out_of_range e)</code> then all <code class="language-plaintext highlighter-rouge">out_of_range</code> errors will be caught by the more general <code class="language-plaintext highlighter-rouge">exception</code> clause, and the specialised <code class="language-plaintext highlighter-rouge">out_of_range</code> error handling code will never run.</li>
+      <li>if <code class="language-plaintext highlighter-rouge">catch(std::out_of_range)</code> is placed first, then the <code class="language-plaintext highlighter-rouge">catch(std::exception e)</code> code will only run for exceptions which are not <code class="language-plaintext highlighter-rouge">out_of_range</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">cerr</code> is a special output stream for errors; we can use this if we want the error to be written to a different place than standard output (e.g. standard output to file and errors to terminal, or vice versa). We can also output exception information to <code class="language-plaintext highlighter-rouge">cout</code> though.</li>
+</ul>
+
+<p>We can see in this example that using <code class="language-plaintext highlighter-rouge">try</code> and <code class="language-plaintext highlighter-rouge">catch</code> blocks have significant advantages for someone reading our code:</p>
+
+<ul>
+  <li>It is immediately obvious which part of our code we are checking for errors.</li>
+  <li>It is immediately obvious what is error handling code, and what is normal execution, because error handling code is all contained inside the <code class="language-plaintext highlighter-rouge">catch</code> statements. This separation of normal and exceptional behaviour can make it easier to understand what the normal operation of the code actually is and therefore what the code should do most of the time.</li>
+</ul>
+
+<p>As mentioned above, exceptions that aren’t caught by the calling function can propagate up the call stack until they are caught (or reach the top and stop program execution). This is useful because not all errors are best handled by the function immediately above in the call stack. Consider an application that takes input from the user, and then performs many nested operations on it. At some point in this process, it may discover an issue that means that the input provided is not viable (which may not be checkable at the point of input), and throw an exception. This would most likely be handled by asking the user for a different input, which means that this is where we should place the <code class="language-plaintext highlighter-rouge">try ... catch</code> blocks. A simplified example of this kind of structure could look like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="nf">g</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"g(x) not defined for x &lt;= 0"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">h</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"h(x) not defined for x &lt; 0"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">p</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">12</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">f</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">h</span><span class="p">((</span><span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">)));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">complete</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter a number."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">complete</span><span class="p">)</span> 
+    <span class="p">{</span>
+      <span class="k">try</span> 
+      <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">complete</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="p">}</span> 
+      <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span> 
+      <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Please enter a different number."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>While this case would be trivial to check for at input, for many processes it may require actually running the code to find out if an input is acceptable or not (for example if <code class="language-plaintext highlighter-rouge">p(x) &lt;= 0</code> were not analytically tractable).</li>
+  <li>Note that the exception is in this case not handled by the code that directly calls the function which throws: the exception is thrown by <code class="language-plaintext highlighter-rouge">g</code> or <code class="language-plaintext highlighter-rouge">h</code>, which is called by <code class="language-plaintext highlighter-rouge">f</code>; <code class="language-plaintext highlighter-rouge">f</code> has no catching code so the exception propagates up another layer in the call stack to <code class="language-plaintext highlighter-rouge">main</code>. Here we finally catch and handle it by reporting the problem and asking the user for a new input.</li>
+</ul>
+
+<h2 id="throwing-exceptions">Throwing Exceptions</h2>
+
+<p>We can also throw exceptions from our own functions, which allows code which calls our functions to handle errors that might occur within our function code. For example, we might have a function which calculates the inner product of two vectors. In this case, the number of elements in both vectors must be the same for this to make sense! So we could write code like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="nf">InnerProduct</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">y</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">errorMessage</span> <span class="o">=</span> <span class="s">"Inner product vectors different sizes: "</span> <span class="o">+</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">+</span> <span class="s">" and "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">size</span><span class="p">());</span> 
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">range_error</span><span class="p">(</span><span class="n">errorMessage</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kt">double</span> <span class="n">product</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">product</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">product</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This will throw a <code class="language-plaintext highlighter-rouge">range_error</code> if the two vectors are not the same size. The code which calls this function can catch this exception using <code class="language-plaintext highlighter-rouge">catch(std::range_error e){}</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">5.99</span><span class="p">};</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">};</span>
+
+    <span class="kt">double</span> <span class="n">ab</span><span class="p">;</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">ab</span> <span class="o">=</span> <span class="n">InnerProduct</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">range_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Warning</strong> You can actually throw <em>any</em> type in C++, it doesn’t have to inherit from <code class="language-plaintext highlighter-rouge">exception</code>. The compiler will not complain if you throw, for example, an <code class="language-plaintext highlighter-rouge">int</code> or a <code class="language-plaintext highlighter-rouge">string</code>. To do so is bad practice, as these objects are not designed to be used to carry error information and codes which may call your functions will not be expecting them. This means calling code is unlikely to check for them, which will allow them to pass to the top level uncaught and halt execution. Restricting yourself to throwing classes which inherit from <code class="language-plaintext highlighter-rouge">exception</code> will make your code easier to understand for others, and compatible with other code bases. If you need values of other types to be reported with your exception then you can include them as member variables in you own exception class (see below).</p>
+
+<h2 id="defining-our-own-exceptions">Defining Our Own Exceptions</h2>
+
+<p>We’ve mentioned above that we can differentiate between different kinds of exceptions by checking for different exception classes, and then execute different error handling code accordingly. This is a very powerful feature of exceptions that we can extend further by defining our own exception classes to represent cases specific to our own applications. When we define our own exceptions, they should inherit from the <code class="language-plaintext highlighter-rouge">std::exception</code> class, or from another class which derives from <code class="language-plaintext highlighter-rouge">std::exception</code> like the standard library exceptions listed above. You should be aware though that if you inherit from a class, for example <code class="language-plaintext highlighter-rouge">runtime_error</code>, then your exception will be caught by any <code class="language-plaintext highlighter-rouge">catch</code> statements that catch exceptions of the base classes (<code class="language-plaintext highlighter-rouge">runtime_error</code> or <code class="language-plaintext highlighter-rouge">exception</code>).</p>
+
+<p>Exceptions that we define should be indicative of the kind of error that occur. Rather than trying to create a different exception for each function that can go wrong, create exception classes that represent kinds of problems, and these exceptions may be thrown by many functions. When creating new exception classes it is a good idea to think about what is useful for you to be able to differentiate between.</p>
+
+<ul>
+  <li>For example, an arithmetic overflow error is a useful class of errors which can tell us that our values have become too large to be handled.</li>
+  <li>We don’t want a separate arithmetic error class for every numerical function that we write that could go wrong!</li>
+</ul>
+
+<p>When we inherit from the <code class="language-plaintext highlighter-rouge">std::exception</code> class we inherit a virtual function called <code class="language-plaintext highlighter-rouge">what()</code>, which can be used to read or print out error messages associated with that exception.</p>
+
+<p>To override <code class="language-plaintext highlighter-rouge">what()</code> the type declaration is:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">what</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{...}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The return type is <code class="language-plaintext highlighter-rouge">const char *</code> i.e. a constant <code class="language-plaintext highlighter-rouge">char</code> pointer. This is a C-style array of characters, and is how strings are handled in C.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">const</code> after the function name enforces that no member variables can be changed inside the function body i.e. <code class="language-plaintext highlighter-rouge">what()</code> cannot change any of the exception’s data.
+    <ul>
+      <li>You can mark special variables to be modifiable even in <code class="language-plaintext highlighter-rouge">const</code> functions, by declaring them <code class="language-plaintext highlighter-rouge">mutable</code> e.g. <code class="language-plaintext highlighter-rouge">mutable int x</code>. Usually this is a practice that is best avoided as it makes your code more difficult to reason about.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Derived classes <code class="language-plaintext highlighter-rouge">runtime_error</code>, <code class="language-plaintext highlighter-rouge">logic_error</code>, and <code class="language-plaintext highlighter-rouge">failure</code> all contain constructors which take arguments of type <code class="language-plaintext highlighter-rouge">const string &amp;</code> (reference to a constant string), which sets the error message returned by <code class="language-plaintext highlighter-rouge">what()</code>. These can be useful if you want to be able to set the message without overriding the <code class="language-plaintext highlighter-rouge">what()</code> function.</p>
+
+<p>Bear in mind however that you can also add any functionality that would be useful for your exception class, such as additional member variables which store relevant data.</p>
+
+<p>Here’s an example of an exception class that overrides the <code class="language-plaintext highlighter-rouge">what()</code> method and also returns special data.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FunctionDomainException</span><span class="o">:</span> <span class="k">public</span> <span class="n">exception</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">FunctionDomainException</span><span class="p">(</span><span class="n">string</span> <span class="n">func_name</span><span class="p">,</span> <span class="kt">double</span> <span class="n">value</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s">"Function Domain error on function "</span> <span class="o">+</span> <span class="n">func_name</span> \
+                 <span class="o">+</span> <span class="s">". Input "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s">" invalid."</span><span class="p">;</span>
+        <span class="n">bad_input</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">what</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">message</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">bad_input</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The constructor takes a <code class="language-plaintext highlighter-rouge">string</code> (<code class="language-plaintext highlighter-rouge">func_name</code>) to report the name of the function and a <code class="language-plaintext highlighter-rouge">double</code> (<code class="language-plaintext highlighter-rouge">value</code>) to report the value that the function failed at.</li>
+  <li>It then constructs an error message based on this information and also stores <code class="language-plaintext highlighter-rouge">value</code> value as a member variable <code class="language-plaintext highlighter-rouge">bad_input</code>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">what()</code> method is overridden to print out the string that we’ve constructed.</li>
+  <li>If we catch this error we can also access <code class="language-plaintext highlighter-rouge">bad_input</code> as it is public, which may be useful for us to be able to manipulate in numerical code rather than just printing it out.</li>
+</ul>
+
+<h2 id="control-flow-and-memory-management">Control flow and memory management</h2>
+
+<p>We’ve discussed above that raising an exception will prematurely halt the execution of a function and return control to the calling function. It will also halt the execution of any calling functions until we find ourselves within a <code class="language-plaintext highlighter-rouge">try</code> block, at which point the <code class="language-plaintext highlighter-rouge">catch</code> code is executed. We should always be aware of what our program will not do if an exception is thrown.</p>
+
+<ul>
+  <li>If you place a try block around a function which may throw exceptions at multiple points (it may have multiple <code class="language-plaintext highlighter-rouge">throw</code> statements or make calls to a number of other functions which could themselves throw exceptions) and you are passing variables in by reference to be modified, you should be aware of the possible states that your data could be if the function is prematurely halted. Not all the changes that your function is intended to make on your data may have happened!</li>
+  <li>When we reach the catch block, the stack memory for any functions which threw exceptions and were halted is freed (since they are now out of scope). This means that stack variables are cleaned up, and destructors for any stack variables are called (including smart pointers, the destructors for which de-allocate the data to which they point). Be aware though that if there are <em>raw pointers</em> on the stack, the memory that they point to is not deleted (only the pointer itself is) and so if the memory that it points to is not a stack variable or also owned by a smart pointer a memory leak will occur. <strong>This is one of the reasons why we should not use raw pointers for memory ownership.</strong> If you do have an owning raw pointer in a function and you want to throw and exception, it is vital that you use <code class="language-plaintext highlighter-rouge">delete</code> to free the memory before throwing the exception; likewise you must be aware of any function calls that you make which could themselves throw an exception: these <em>must</em> be caught so that you can free the memory before returning control to the call stack.</li>
+</ul>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

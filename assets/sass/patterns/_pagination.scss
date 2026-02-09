@@ -1,0 +1,56 @@
+/* 
+* Pattern name: Pagination
+* Use: For highlighting where a user is within a sequence of related pages
+* Note: Modifiers indicate states (current = current page, active = clickable link, disabled = disabled link)
+-------------------------------------------------------------- */
+
+.pagination {
+	margin-bottom: .5em;
+	@include list-unstyled;
+	li {
+		text-align: center;
+		padding: 0.5em;
+		margin-right: .5em;
+		@include inline-block;
+		&:last-child {
+			margin-right: 0
+		}
+	}
+}
+
+.pagination__item {
+	min-width: 1.5em;
+	font-size: 14px;
+	background: darken(#f6f5f5, 5%);
+	transition: all .5s;
+	a {
+		color: #555555;
+
+		@include on-interaction {
+			text-decoration: none;
+		}
+	}
+}
+
+.pagination__item--current {
+	background: #4693ea;
+	border-color: darken(#4693ea, 10%);
+	color: white;
+}
+
+.pagination__item--active {
+	@include on-interaction {
+		background: #4693ea;
+		border-color: darken(#4693ea, 10%);
+		a {
+			color: white;
+		}
+	}
+}
+
+.pagination__item--disabled {
+	opacity: .25;
+	@include respond-max($screen-md) {
+		display: none !important;
+	}
+}

@@ -1,0 +1,68 @@
+/* 
+* Pattern name: Comment list
+* Use: Styling comments within list
+* Note: A lot of nasty nesting going on here - presumably classes are set by plugin (?)
+-------------------------------------------------------------- */
+
+.commentlist {
+	list-style: none;
+	margin: 0;
+}
+
+.commentlist li {
+	list-style: none;
+	margin-left: 0;
+	&.odd {
+		background: #f6f6f6;
+	}
+	&.even {
+		background: #fff;
+	}
+	&.parent {
+		border-left: 5px solid #111;
+	}
+	&.comment {
+		padding: 10px;
+		.reply {
+			font-size: 11px;
+		}
+		.vcard {
+			margin-bottom: 0;
+			.fn {
+				font-style: normal;
+			}
+		}
+		.avatar {
+			width: auto;
+			float: left;
+			margin: 0 1em 1em 0;
+		}
+		.comment-meta {
+			@include rem(font-size, $font-size-xs);
+			a {
+				color: #ccc;
+			}
+			p {
+				clear: left;
+			}
+		}
+		.children {
+			list-style: none;
+			margin: 10px 0 0;
+			.depth-2 {
+				border-left: 5px solid #555;
+				margin: 0 0 10px 10px;
+			}
+
+			.depth-3 {
+				border-left: 5px solid #999;
+				margin: 0 0 10px 10px;
+			}
+
+			.depth-4 {
+				border-left: 5px solid #bbb;
+				margin: 0 0 10px 10px;
+			}
+		}
+	}
+}

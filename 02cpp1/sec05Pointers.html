@@ -1,0 +1,733 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Pointers in C++</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 1 hour</p>
+
+<h1 id="pointers">Pointers</h1>
+
+<p>You’ll already have used references to refer to objects without copying them. This is very useful for passing objects to functions without copy overheads, or to functions which also change those objects in ways that we want to persist once we’ve left that function’s scope. There are, however, times where we cannot use references and must use pointers. Some limitations of references are:</p>
+
+<ul>
+  <li>References cannot be reassigned to refer to a new place in memory, they can only be assigned at initialisation.</li>
+  <li>You cannot have references of references.</li>
+  <li>References cannot be null.</li>
+  <li>You cannot create circular references e.g. an object <code class="language-plaintext highlighter-rouge">obj1</code> which has a reference to object <code class="language-plaintext highlighter-rouge">obj2</code>, which in turn has a reference to object <code class="language-plaintext highlighter-rouge">obj1</code>. This would require reassignment of references to construct.</li>
+  <li>Similarly you cannot have a class <code class="language-plaintext highlighter-rouge">A</code> which has a member of reference type <code class="language-plaintext highlighter-rouge">&amp;B</code>, and a class <code class="language-plaintext highlighter-rouge">B</code> which has a reference of type <code class="language-plaintext highlighter-rouge">&amp;A</code>.</li>
+  <li>You cannot store references in container types like <code class="language-plaintext highlighter-rouge">vector</code>, <code class="language-plaintext highlighter-rouge">array</code>, <code class="language-plaintext highlighter-rouge">set</code>, or <code class="language-plaintext highlighter-rouge">map</code>.</li>
+</ul>
+
+<p>In these cases, we use <em>pointers</em>. <strong>A pointer is variable which represents an address in memory</strong> where an object’s data is located (we say that it “points to” this object), or the special value <code class="language-plaintext highlighter-rouge">nullptr</code>. Pointers give us much more flexibility than references, especially when writing classes for objects that need to point to other data (either of the same class, like in graph representation where nodes point to other nodes, or of another class). In modern C++ (since C++11) we usually declare a pointer using a <em>smart pointer</em>, of which there are three different kinds: unique pointers, shared pointers, and weak pointers.</p>
+
+<p>Throughout the following sections, and whenever you are working with pointers, it is useful to bear in mind that the value of a pointer is a memory address. We can get the data at that memory address by <em>dereferencing</em> the pointer, but that is not the same as the pointer’s value.</p>
+
+<h2 id="background-the-stack-the-heap-and-variable-scope">Background: The Stack, the Heap, and Variable Scope</h2>
+
+<p>We will go into more detail on memory structures later on in the course when we discuss performance programming. It can however be easier to understand the usage of pointers in C++ if we understand the difference between two different kinds of memory: the <em>stack</em> and the <em>heap</em>.</p>
+
+<ul>
+  <li><strong>Stack</strong> memory is used to store all local variables and relevant information for any function calls which have yet to complete, and allows us to continue execution at the correct place in the program when we leave a function. Stack memory is faster than heap memory, but limited in size. The amount of stack memory available is not known to the program at compile time, as stack memory is reserved for the program at runtime by the operating system, but a few megabytes is quite typical. Using too much stack memory causes a <em>stack overflow</em> error, which will cause your program to crash. When variables on the stack go out of scope then their destructor is called and that part of the stack memory is freed and can be overwritten again.</li>
+  <li><strong>Heap</strong> memory is somewhat slower, but can make use of as much RAM as you have available, so large datasets tend to be declared on the heap. (Heap memory is still faster than reading/writing to hard disk.) Any memory allocated on the heap <em>must</em> be pointed to by something on the stack, otherwise it will be inaccessible to us. Heap memory must be freed by a stack object’s destructor, or manually.</li>
+</ul>
+
+<p>Data will end up on the stack or the heap depending on how it is declared, and the internal structure of the class itself.</p>
+
+<ul>
+  <li>When you declare a local variable, then it is stored on the stack e.g. <code class="language-plaintext highlighter-rouge">int x = 5;</code> will store an integer on the stack. Declaring any kind of variable this way stores that object on the stack.</li>
+  <li>Initialising a variable by declaring a pointer using e.g. <code class="language-plaintext highlighter-rouge">make_unique</code>, <code class="language-plaintext highlighter-rouge">make_shared</code>, or <code class="language-plaintext highlighter-rouge">new</code> will allocate memory on the heap. Note however that the variable which has been declared - the pointer - is on the <em>stack</em>, and the memory that it is pointing to is on the <em>heap</em>.</li>
+  <li>Many objects which are not simple types will also declare memory on the heap: <code class="language-plaintext highlighter-rouge">vector&lt;&gt;</code> is an example of such a class. We can use the code <code class="language-plaintext highlighter-rouge">vector&lt;int&gt; v = {1,2,3,4,5};</code> to declare a vector <code class="language-plaintext highlighter-rouge">v</code> on the stack. The vector itself is on the stack, and is deleted when <code class="language-plaintext highlighter-rouge">v</code> goes out of scope. The data stored in the vector - in this case, five integers - is not stored on the stack, but is actually stored on the heap. The vector <code class="language-plaintext highlighter-rouge">v</code> will contain a pointer to this heap memory, and uses this to retrieve your data when you call for it. The vector class will automatically free the memory it allocates on the heap when its destructor is called, so you don’t have to do that yourself.</li>
+  <li>Pointers do not have to point to heap memory, they can also point to stack memory if initialised with a reference to a stack variable, e.g. <code class="language-plaintext highlighter-rouge">int * x_ptr = &amp;x</code>. In general, you should think carefully about whether you want this behaviour; as we shall see later this can lead to memory problems if not handled carefully!</li>
+</ul>
+
+<h2 id="what-are-smart-pointers">What Are Smart Pointers?</h2>
+
+<p>Smart pointers are a special kind of pointer, introduced in C++11. Since then, they are typically used as the default pointers for most applications, as they automatically handle some memory management which would previously have to be done manually. The reason we have three different kinds of smart pointers is because they embody three different possible ideas about <em>memory ownership</em>. Understanding ownership is key to understanding the usage of smart pointers.</p>
+
+<p>When we talk about ownership of some memory or data, the question we are asking is what should have control over the lifetime of the data i.e. when the data should be allocated and freed. Smart pointers in C++ address three cases:</p>
+
+<ul>
+  <li>Unique Ownership: The lifetime of the data should be determined by the lifetime of a single variable. This is essentially how we treat stack variables: when the variable goes out of scope, the destructor is called and the memory is freed. <strong>Unique Pointers</strong> offer a similar model for memory that is allocated on the heap. When a non-null unique pointer goes out of scope, as well as being freed on the stack, its destructor frees the heap memory to which it points.</li>
+  <li>Shared Ownership: The lifetime of the data is determined by multiple other variables, and the data should remain as long as one of those variables is still in scope. This is represented using <strong>Shared Pointers</strong>. Only once all shared pointers pointing to a particular piece of data go out of scope, then the memory for that data is freed.</li>
+  <li>Non-Owning: Non-owning pointers should have no impact on the lifetime of the data. When the non-owning pointer goes out of scope they are removed from the stack but <strong>nothing happens to the data that it was pointing to</strong>. There are represented using <strong>Weak Pointers</strong> or <strong>raw pointers</strong>.</li>
+</ul>
+
+<h2 id="unique-pointers-stdunique_ptr">Unique Pointers <code class="language-plaintext highlighter-rouge">std::unique_ptr&lt;&gt;</code></h2>
+
+<p>A variable should be a <em>unique pointer</em> when that is the only variable that controls whether the resource should be destroyed or not. When a unique pointer goes out of scope, the object that it pointed to is deleted and the memory freed.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p_int</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p_int2</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p_int</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p_int2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Remember that pointers actually store memory addresses, not the values of the variables that they point to. So to get the value of the variable we need to “dereference” the pointer using the <code class="language-plaintext highlighter-rouge">*</code> operator. <code class="language-plaintext highlighter-rouge">p_int</code> refers to the smart pointer, but <code class="language-plaintext highlighter-rouge">*p_int</code> gives us the value of the integer that we are pointing to.</li>
+  <li>We can make assignments to <code class="language-plaintext highlighter-rouge">*p_int</code> which will update the value of the integer, but doesn’t change the memory location (so <code class="language-plaintext highlighter-rouge">*p_int</code> will change, but <code class="language-plaintext highlighter-rouge">p_int</code> won’t).</li>
+</ul>
+
+<p><strong>You also can’t make a copy of a unique pointer</strong>, as then there would be a conflict over which one should handle the destruction of the object when it goes out of scope. This means that when we want to pass a unique pointer to a function, we cannot pass it by value, because this would involve making a copy. We can, however, pass a unique pointer by reference.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">updatePtrValue</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">p</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p_int</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+    <span class="n">updatePtrValue</span><span class="p">(</span><span class="n">p_int</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p_int</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This would usually be the preferred way to pass unique pointers to a function. If, for some reason, you don’t want to pass by reference, then you will need to use <code class="language-plaintext highlighter-rouge">std::move</code>.</p>
+
+<p>Since we can’t have multiple unique pointers pointing to the same data, if we want to transfer the ownership of the data to a new unique pointer, we use <code class="language-plaintext highlighter-rouge">std::move</code> as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Be very careful if using <code class="language-plaintext highlighter-rouge">std::move</code> in this way. After this operation, <code class="language-plaintext highlighter-rouge">p1</code> will no longer point to valid memory, and will cause a segmentation fault if accessed (i.e. your program will crash). Make sure that no part of your program will attempt to access <code class="language-plaintext highlighter-rouge">p1</code> until it has been reassigned to new data.</strong></li>
+</ul>
+
+<p>This can also apply to functions if not passing a unique pointer by reference. This can lead to extremely dangerous code as we can see in this example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">updatePtrValue</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="n">p</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">updatePtrValue</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">p1</span><span class="p">));</span>
+    <span class="n">p2</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p1</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>In this code, the memory ownership is passed from <code class="language-plaintext highlighter-rouge">p1</code> to <code class="language-plaintext highlighter-rouge">p</code>, a unique pointer which is local to the function. In order to avoid the memory being deleted when we leave the function scope, we use <code class="language-plaintext highlighter-rouge">std::move</code> to move the ownership from <code class="language-plaintext highlighter-rouge">p</code> to <code class="language-plaintext highlighter-rouge">p2</code>. At that point, <code class="language-plaintext highlighter-rouge">p2</code> points to our useful memory, and <code class="language-plaintext highlighter-rouge">p1</code> is dangling. We use <code class="language-plaintext highlighter-rouge">swap</code> to move the memory back to <code class="language-plaintext highlighter-rouge">p1</code>, which leaves <code class="language-plaintext highlighter-rouge">p2</code> dangling. <strong>If we access <code class="language-plaintext highlighter-rouge">p2</code> this program will crash. Do not use <code class="language-plaintext highlighter-rouge">std::move</code> just to pass data around: only use it if you want a new variable to take control of the destruction of that data.</strong></li>
+  <li>A good example of using <code class="language-plaintext highlighter-rouge">std::move</code> would be if another object, perhaps with a broader scope than the existing pointer, needed to take ownership of that data as part of its class. Then if that object outlives the current scope, the data will be maintained for as long as that object lives. <strong>In this case we still need to be careful not to access dangling pointers created by <code class="language-plaintext highlighter-rouge">std::move</code></strong>.</li>
+  <li>We can test whether a unique pointer <code class="language-plaintext highlighter-rouge">p</code> points to valid memory using <code class="language-plaintext highlighter-rouge">if (p)</code>. When placed in this context <code class="language-plaintext highlighter-rouge">(p)</code> is implicitly converted to a boolean: <code class="language-plaintext highlighter-rouge">true</code> if <code class="language-plaintext highlighter-rouge">p</code> points to valid memory and <code class="language-plaintext highlighter-rouge">false</code> if not.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"empty"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The same considerations about using move semantics or references applies when adding unique pointers to containers such as vector. If you want the vector to be the new owner of the memory, then use <code class="language-plaintext highlighter-rouge">std::move</code>; otherwise you will have to use some kind of pointer to the unique pointer.</p>
+
+<h2 id="shared-pointers-stdshared_ptr">Shared Pointers <code class="language-plaintext highlighter-rouge">std::shared_ptr&lt;&gt;</code></h2>
+
+<p>Shared pointers can be used when we might want multiple references to a single object, and we don’t want that object to be destroyed until all of those references to it are gone. In other words, shared pointers model <em>shared ownership</em>, where each of the pointers has equal ownership over the object. For example, we might want to add our object to a number of lists, or have it as a member variable for other objects which may have a longer lifetime than the original pointer. In order to keep the object alive for as long as any other objects need it, we can declare it as a shared pointer:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sp_x</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sp_x2</span><span class="p">(</span><span class="n">sp_x</span><span class="p">);</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sp_x</code> and <code class="language-plaintext highlighter-rouge">sp_x2</code> both point to the same location in memory, which holds an int of value <code class="language-plaintext highlighter-rouge">12</code>.</li>
+  <li>We can change the value in memory by altering <code class="language-plaintext highlighter-rouge">*sp_x</code> or <code class="language-plaintext highlighter-rouge">*sp_x2</code>; note that since they point to the same memory, changing one affects the other.</li>
+  <li>The memory will not be freed until <em>both</em> <code class="language-plaintext highlighter-rouge">sp_x</code> and <code class="language-plaintext highlighter-rouge">sp_x2</code> go out of scope.</li>
+</ul>
+
+<p>Shared pointers keep a count of the number of shared pointers which point at the same piece of data. When a new shared pointer is created to point to the data, or an existing shared pointer is changed to point to the data, then the count is increased. If a shared pointer goes out of scope or is redirected towards other data, then the count is decreased. If the count reaches zero, then that data is deleted and the memory freed.</p>
+
+<p>Because shared pointers <em>share</em> ownership of an object, they can be copied, and they can be passed by value into functions or into containers such as <code class="language-plaintext highlighter-rouge">vector</code>. The move operations available to unique pointers are also available to shared pointers, if you want to reuse a shared pointer to point to something else.</p>
+
+<p><strong>N.B.</strong> Many programmers default to using shared pointers because they have fewer restrictions; try to only use them when they properly model the ownership of the data in question. Shared pointers incur overheads and can cause memory issues of their own if not properly managed, as we shall see below.</p>
+
+<h3 id="circular-references">Circular references</h3>
+
+<p>When we’re using shared pointers, we need to be very wary of circular references. Consider a simple class like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Person</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Person</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" created"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">Person</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" destroyed"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">SetFriend</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">otherPerson</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">bestFriend</span> <span class="o">=</span> <span class="n">otherPerson</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">bestFriend</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>In this class, a person can have one best friend, and they are kept track of using a shared pointer. This is because a person doesn’t have ownership of their friend - if one of them goes out of scope and is deleted, it shouldn’t cause the other one to be deleted!</p>
+
+<p>If we create a pair of <code class="language-plaintext highlighter-rouge">Person</code> objects, and use the <code class="language-plaintext highlighter-rouge">SetFriend</code> method to make each <code class="language-plaintext highlighter-rouge">Person</code> point to the other as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">Alice</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">));</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">Bob</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Bob"</span><span class="p">));</span>
+
+    <span class="n">Alice</span><span class="o">-&gt;</span><span class="n">SetFriend</span><span class="p">(</span><span class="n">Bob</span><span class="p">);</span>
+    <span class="n">Bob</span><span class="o">-&gt;</span><span class="n">SetFriend</span><span class="p">(</span><span class="n">Alice</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>we will end up creating a circular reference with shared pointers! Alice now has a shared pointer to Bob, and Bob has a shared pointer to Alice. We can see the problem with this by looking at the output of this program:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alice created
+Bob created
+</code></pre></div></div>
+
+<p>We can see that neither destructor is ever called, even though both pointers have gone out of scope.
+When Alice, for example, goes out of scope then Alice’s data stays live because Bob has a reference to her. This means that Alice’s shared pointer pointing to Bob still exists. Then if Bob goes out of scope next, then Bob can’t delete his own data because Alice’s shared pointer to Bob hasn’t been deleted. As a result they both still have a reference count of 1, and cannot be deleted. This causes a memory leak, since their data will remain allocated until the program is terminated and all memory is freed. This kind of behaviour should always be avoided.</p>
+
+<ul>
+  <li>This is an example of using shared pointers in a situation where it does not correctly model the ownership of the data. In this model a <code class="language-plaintext highlighter-rouge">Person</code> shouldn’t have control over the lifetime of another, since different <code class="language-plaintext highlighter-rouge">Person</code> objects should be allowed to be created or destroyed independently. One <code class="language-plaintext highlighter-rouge">Person</code> is not a part of, or owned, by another.</li>
+  <li>In order to model this concept properly we need to use <em>non-owning</em> pointers, that allow objects to point to one another without influencing their lifetime.</li>
+</ul>
+
+<h2 id="aside-using-make_unique--make_shared-or-new-in-older-c-versions-before-c17">Aside: Using <code class="language-plaintext highlighter-rouge">make_unique</code> / <code class="language-plaintext highlighter-rouge">make_shared</code> or <code class="language-plaintext highlighter-rouge">new</code> in older C++ versions (before C++17)</h2>
+
+<p>If you need to work on a project using C++11 or C++14, there can be some circumstances where the use of <code class="language-plaintext highlighter-rouge">new</code> when creating a smart pointer can be a problem. Consider the following example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">someFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">sp_x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Some function</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">riskyFunction</span><span class="p">()</span>
+<span class="p">{</span>
+ <span class="c1">// Something which can throw an exception (an error)</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+ <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">someFunction</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">24</span><span class="p">)),</span>
+                             <span class="n">riskyFunction</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>In the call to <code class="language-plaintext highlighter-rouge">someFunction</code> we do three things:
+    <ol>
+      <li>Make a new integer on the heap (allocates memory).</li>
+      <li>Constructs a unique pointer to that integer.</li>
+      <li>Calls the function <code class="language-plaintext highlighter-rouge">riskyFunction</code> to calculate some other int.</li>
+    </ol>
+  </li>
+  <li>The exact order of these things is not enforced by the C++ standard.</li>
+  <li>If the <code class="language-plaintext highlighter-rouge">riskyFunction</code> is called in between allocating the new int and creating the shared pointer to it, then if it throws an exception it will prevent the pointer to that memory being created and thus lead to memory allocated that cannot be accessed or deallocated i.e. a memory leak.</li>
+  <li>This can be fixed by using <code class="language-plaintext highlighter-rouge">std::make_shared&lt;int&gt;</code> instead.</li>
+</ul>
+
+<p><strong>The <code class="language-plaintext highlighter-rouge">make_unique</code> and <code class="language-plaintext highlighter-rouge">make_shared</code> methods are generally preferred to using <code class="language-plaintext highlighter-rouge">new</code> in older versions of C++ as they are safer.</strong></p>
+
+<p>In C++ 17 this potential leak doesn’t happen any more, because the evaluation order of arguments to functions has been fixed, and each argument must be fully evaluated in turn.</p>
+
+<h2 id="weak-pointers-stdweak_ptr">Weak Pointers <code class="language-plaintext highlighter-rouge">std::weak_ptr&lt;&gt;</code></h2>
+
+<p>Weak pointers are a special kind of smart pointer which can only point to memory owned by a shared pointer. You cannot use weak pointers to initialise new objects in memory, point to memory owned by unique pointers, or point to ordinary stack objects. Weak pointers do not contribute to the pointer count for the shared pointer, so they do not impact the lifetime of the object that they are pointing to. They can be used therefore to break the circular reference problem with shared pointers and model situations where there is no ownership relation.</p>
+
+<p>Because weak pointers do not own the memory to which they point, that memory can be freed (the object deleted) before the weak pointer is out of scope, leaving the weak pointer to point at invalid memory. You can check whether a weak pointer points to valid memory using <code class="language-plaintext highlighter-rouge">wpt.expired()</code>, which will return <code class="language-plaintext highlighter-rouge">true</code> if the memory is deleted and <code class="language-plaintext highlighter-rouge">false</code> otherwise.</p>
+
+<p>Accessing weak pointers is also different to accessing other kinds of pointers because they cannot be dereferenced directly.
+That means if we have a weak pointer <code class="language-plaintext highlighter-rouge">wpt</code> we can’t get the value using <code class="language-plaintext highlighter-rouge">*wpt</code> or call a member function using <code class="language-plaintext highlighter-rouge">wpt-&gt;function()</code>. Instead, we must create a new shared pointer to that memory using <code class="language-plaintext highlighter-rouge">spt_new = wpt.lock()</code>, and then access the data through <code class="language-plaintext highlighter-rouge">spt_new</code>. This also creates additional overheads for accessing weak pointers.</p>
+
+<p>If we modify our above example to use a <code class="language-plaintext highlighter-rouge">weak_ptr</code> for <code class="language-plaintext highlighter-rouge">bestFriend</code> instead of a <code class="language-plaintext highlighter-rouge">shared_ptr</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Person</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Person</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" created"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">Person</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" destroyed"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">SetFriend</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">otherPerson</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">bestFriend</span> <span class="o">=</span> <span class="n">otherPerson</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">bestFriend</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">Alice</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">));</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">Bob</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Bob"</span><span class="p">));</span>
+
+    <span class="n">Alice</span><span class="o">-&gt;</span><span class="n">SetFriend</span><span class="p">(</span><span class="n">Bob</span><span class="p">);</span>
+    <span class="n">Bob</span><span class="o">-&gt;</span><span class="n">SetFriend</span><span class="p">(</span><span class="n">Alice</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>then the circular dependency is broken and we get the output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alice created
+Bob created
+Bob Destroyed
+Alice Destroyed
+</code></pre></div></div>
+
+<p>showing that both destructors are now called and the memory freed.</p>
+
+<ul>
+  <li>Note that we can no longer declare <code class="language-plaintext highlighter-rouge">Alice</code> and <code class="language-plaintext highlighter-rouge">Bob</code> as ordinary stack variables of type <code class="language-plaintext highlighter-rouge">Person</code>, but have to declare them as <code class="language-plaintext highlighter-rouge">shared_ptr&lt;Person&gt;</code> in order to have a <code class="language-plaintext highlighter-rouge">weak_ptr</code> point to them. The use of <code class="language-plaintext highlighter-rouge">weak_ptr</code> can therefore impact how a class can be used.</li>
+</ul>
+
+<h2 id="memory-ownership">Memory Ownership</h2>
+
+<p>Smart pointers are designed to model the ownership of memory allocated on the heap. <strong>You should never create smart pointers which point to variables already declared on the stack.</strong> Objects declared on the stack are destroyed when the original variable goes out of scope, and it is not possible to transfer this ownership. Therefore, any smart pointer pointing to a stack object <em>cannot</em> properly model the ownership of the data. If the original variable goes out of scope first, then your pointers will be left dangling. If you pointer goes out of scope first, then your program will crash even if the original variable isn’t accessed again, because the smart pointer will not have the right to delete that data. If you need to point to stack data, you will need to use a <em>raw pointer</em>, which does not embody any ownership.</p>
+
+<h2 id="raw-pointers">Raw Pointers</h2>
+
+<p>You may have come across <em>raw pointers</em> before when using C++. These have existed in C++ for longer (indeed, they pre-date C++), and work slightly differently to smart pointers. The most important difference is that <strong>raw pointers don’t do any automatic memory management</strong>. This means that if you use a raw pointer to assign some memory, and you do not manually free that memory before the pointer goes out of scope, that memory will become inaccessible and will not be freed until your program terminates. This is called a memory leak, and can be extremely important when running large programs, where you risk running out of memory and therefore prematurely aborting your program execution.</p>
+
+<p><strong>Avoid using raw pointers for objects whose memory is not owned by some other resource</strong> (e.g. a stack variable, a container, or a smart pointer). Raw pointers can be used for “non-owning pointers”, which have no impact on the lifetime of the object that they point to, <strong>as long as you can be sure that they won’t point to invalid memory</strong>. This can be useful for graph like classes where objects can reference one another (including circular references) but do not influence the lifetime of each other, or for referencing objects in container classes like <code class="language-plaintext highlighter-rouge">vector</code>. Bear in mind however, that we can’t check if a raw pointer points to valid memory of not, so if the object that the raw pointer points to is deleted before the raw pointer, then accessing that pointer will cause undefined behaviour.</p>
+
+<ul>
+  <li>Okay for non-owning pointers</li>
+  <li>Raw pointers should be used when you need to point to an existing stack variable. <strong>Never point to an existing stack variable using smart pointers as their memory management will conflict.</strong></li>
+  <li>Faster memory access than weak pointers, although unique/shared pointers will match the speed of raw pointers if compiled with optimisation.</li>
+  <li>Lower memory management overheads.</li>
+  <li>Must manually use <code class="language-plaintext highlighter-rouge">new</code> and <code class="language-plaintext highlighter-rouge">delete</code> to manage memory allocation/deallocation: this is a frequent source of bugs.
+    <ul>
+      <li>If using pointers for arrays as in <code class="language-plaintext highlighter-rouge">int *array = new int[100]</code> then you must use the <code class="language-plaintext highlighter-rouge">delete[]</code> keyword to make sure that the whole array is freed.</li>
+    </ul>
+  </li>
+  <li>Can’t check if memory pointing to has already been freed; if you need to do this then you should use a combination of shared and weak pointers.</li>
+  <li><strong>Only use when you know they are safe and have specific performance considerations</strong></li>
+</ul>
+
+<h2 id="using-const-with-pointers">Using <code class="language-plaintext highlighter-rouge">const</code> with pointers</h2>
+
+<p>Remember that we declare variables to be read only using the <code class="language-plaintext highlighter-rouge">const</code> keyword, for example</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int const x = 5;
+</code></pre></div></div>
+
+<p>makes <code class="language-plaintext highlighter-rouge">x</code> a read only variable with the value <code class="language-plaintext highlighter-rouge">5</code>. We can retrieve and use the value of <code class="language-plaintext highlighter-rouge">x</code>, but we can’t update it. We can also write this</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const int x = 5;
+</code></pre></div></div>
+
+<p>which is exactly equivalent, but the <code class="language-plaintext highlighter-rouge">int const</code> form is preferred because it is more consistent with the pointer notation which we will look at next.</p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">const</code> with pointers allows us to declare one of two things (or both):</p>
+
+<ul>
+  <li><strong>The pointer points to a <code class="language-plaintext highlighter-rouge">const</code> type</strong>: we declare the data pointed to constant, and so this pointer cannot be used to update the value of held in the memory location to which it points. In other words, the memory pointed to is declared read-only, and we can deference the pointer to retrieve the data at that location, but we can’t update it. We can however change the memory address that the pointer points to, since the pointer itself is not constant (remember the pointer is actually a variable storing a memory address).
+    <ul>
+      <li>To do this with a smart pointer we need to place the <code class="language-plaintext highlighter-rouge">const</code> in the angle brackets, e.g. <code class="language-plaintext highlighter-rouge">shared_ptr&lt;const int&gt; readOnlySPtr</code> or <code class="language-plaintext highlighter-rouge">shared_ptr&lt;int const&gt; readOnlySPtr</code> which declares a shared pointer to a constant int. The <code class="language-plaintext highlighter-rouge">const</code> keyword here applies to the type of the data, <code class="language-plaintext highlighter-rouge">int</code>, so it is the data pointer to, not the pointer itself, which is being declared const.</li>
+      <li>To do this with a raw pointer use the <code class="language-plaintext highlighter-rouge">const</code> keyword <em>before</em> the <code class="language-plaintext highlighter-rouge">*</code> operator, e.g. <code class="language-plaintext highlighter-rouge">int const * readOnlyPtr</code> or <code class="language-plaintext highlighter-rouge">const int * readOnlyPtr</code>. This declares a (raw) pointer to a constant int.</li>
+      <li>A pointer to const data only prohibits the value in memory being changed <em>through that pointer</em>, but if the value can be changed another way (e.g. it is a stack variable or there is another pointer to it) then it could still be changed.</li>
+    </ul>
+  </li>
+  <li><strong>The pointer itself is const</strong>: the memory location pointed to is a constant. In this case, the value held in the memory can change, but the pointer must always point to the same place and we can’t redirect the pointer to look at another place in memory.
+    <ul>
+      <li>We declare a smart pointer like this by placing the <code class="language-plaintext highlighter-rouge">const</code> keyword outside of the angle brackets, e.g. <code class="language-plaintext highlighter-rouge">shared_ptr&lt;int&gt; const fixedAddressSPtr</code> or <code class="language-plaintext highlighter-rouge">const shared_ptr&lt;int&gt; fixedAddressSPtr</code>. The <code class="language-plaintext highlighter-rouge">const</code> keyword is applied to the type <code class="language-plaintext highlighter-rouge">shared_ptr&lt;int&gt;</code> so it is the pointer itself, not the data it points to, which is constant.</li>
+      <li>We declare a raw pointer in this way by placing the <code class="language-plaintext highlighter-rouge">const</code> keyword <em>after</em> the <code class="language-plaintext highlighter-rouge">*</code> operator, e.g. <code class="language-plaintext highlighter-rouge">int * const fixedAddressPtr</code>. In this case we are applying the <code class="language-plaintext highlighter-rouge">const</code> to the type <code class="language-plaintext highlighter-rouge">int *</code> i.e. the pointer type, so the pointer itself is constant.</li>
+    </ul>
+  </li>
+  <li>We can combine these to declare a <strong>constant pointer to constant data</strong> by using a <code class="language-plaintext highlighter-rouge">const</code> keyword <em>before and after</em> the <code class="language-plaintext highlighter-rouge">*</code> operator:
+    <ul>
+      <li>For smart pointers we can write <code class="language-plaintext highlighter-rouge">shared_ptr&lt;int const&gt; const readOnlyFixedPtr</code>.</li>
+      <li>For raw pointers we can write <code class="language-plaintext highlighter-rouge">int const * const readOnlyFixedPtr</code> or <code class="language-plaintext highlighter-rouge">const int * const readOnlyFixedPtr</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>In general, <code class="language-plaintext highlighter-rouge">const</code> binds with the type to its left, unless it is in the leftmost position in which case it will bind with the first type to the right.</strong> Therefore <code class="language-plaintext highlighter-rouge">int * const p</code> declares <code class="language-plaintext highlighter-rouge">p</code> to be a constant (<code class="language-plaintext highlighter-rouge">const</code>) pointer (<code class="language-plaintext highlighter-rouge">*</code>) to an integer (<code class="language-plaintext highlighter-rouge">int</code>), and <code class="language-plaintext highlighter-rouge">int const * p</code> and <code class="language-plaintext highlighter-rouge">const int * p</code> both declare <code class="language-plaintext highlighter-rouge">p</code> to be a pointer to a constant integer.</p>
+
+<p>Use of the <code class="language-plaintext highlighter-rouge">const</code> keyword is especially important when using pointers to pass arguments to functions. As we have seen in our discussion of pass by reference, passing a memory location to a function is efficient (as it prevents copying of data) but comes with risks of altering data which persist outside of the function scope. Just as in the case of passing by reference, declare the pointers read only using the <code class="language-plaintext highlighter-rouge">const</code> keyword in your function signature whenever you can (i.e. whenever the data is not intended to be updated in place). We can pass a non-<code class="language-plaintext highlighter-rouge">const</code> pointer into a function which accepts <code class="language-plaintext highlighter-rouge">const</code> pointers, but we cannot pass a <code class="language-plaintext highlighter-rouge">const</code> pointer into a function which accepts non-<code class="language-plaintext highlighter-rouge">const</code> pointers as the compiler can’t be sure that the function won’t try to modify the pointer, or the data it points to, in ways which are not allowed.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">addWithConstPointers</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">*</span> <span class="k">const</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="k">const</span> <span class="o">*</span> <span class="k">const</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="using-libraries-which-use-raw-pointers">Using libraries which use raw pointers</h2>
+
+<p>Some commonly used external libraries like LAPACK or GNU Science Library, which are C compatible, will require you to pass raw pointers to functions. In this case, you do not have to forego using smart pointers in your own code. A smart pointer is a wrapper for a raw pointer, and the raw pointer can be retrieved using <code class="language-plaintext highlighter-rouge">.get()</code> on a smart pointer. You can then pass this raw pointer to the library function.</p>
+
+<p>These functions will usually use C-style arrays, which are pointers declared and used in a function in the following way:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// N by N float matrix</span>
+<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="kt">float</span> <span class="o">*</span><span class="n">myFloatMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">float</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span><span class="p">]</span>
+<span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">myMethod</span><span class="p">(</span><span class="n">myFloatMatrix</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>To use a smart point we could write:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">myFloatMatrix</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">myMethod</span><span class="p">(</span><span class="n">myFloatMatrix</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+</code></pre></div></div>
+<p>In general we will not focus on libraries of this kind, but it is good to be aware of them as you may come across them in the future when working with academic software.</p>
+
+<h2 id="smart-pointers-performance-and-optimisation">Smart Pointers, Performance, and Optimisation</h2>
+
+<p>Smart pointers are more complex than raw pointers, and can incur some overheads. Shared pointers require some additional memory in order to perform the reference counting. The compiler can automatically optimise away almost all of the time overhead associated with shared or unique pointers, but without optimisation they can be significantly slower. We’ll discuss how to perform this kind of optimisation at compile time later on when we discuss programming for high performance.</p>
+
+<p>Accessing weak pointers will remain slow even with optimisation turned on; this is because of the <code class="language-plaintext highlighter-rouge">.lock()</code> operation, which has to make a copy of an existing shared pointer before it can be dereferenced. If accessing pointers is a bottleneck in your program (for example a graph traversal where nodes are linked by pointers), then you may want to consider replacing the weak (and therefore non-owning) pointers with raw pointers if you can ensure that they won’t attempt to dereference invalid memory.</p>
+
+<h2 id="memory-problems">Memory Problems</h2>
+
+<p>All kinds of pointers can cause some memory problems through improper handling. Whenever you use pointers, make sure that you’re careful, understand when your memory is being allocated and deallocated, test your functions thoroughly for memory access issues and use a profiler to check for memory leaks. We’ll discuss profiling memory usage using <code class="language-plaintext highlighter-rouge">valgrind</code> in a later lecture.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

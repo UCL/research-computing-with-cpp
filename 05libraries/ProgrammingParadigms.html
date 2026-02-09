@@ -1,0 +1,715 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Programming Paradigms</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="active"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="active"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 40 Minutes</p>
+
+<h1 id="programming-paradigms-in-c">Programming Paradigms in C++</h1>
+
+<p>C++ is an uncommonly flexible programming language, supporting a range of different approaches to programming. On the one hand, this makes it difficult to get a feel for what “typical” C++ code looks like, but on the other it offer flexibility in dealing with problems. As C++ has evolved, it has incorporated features that appeared in a variety of other languages, particularly with regard to memory safety and functional features.</p>
+
+<p>In this section we’ll talk about some programming paradigms, and the extent to which we can utilise them in C++.</p>
+
+<h2 id="imperative-programming">Imperative Programming</h2>
+
+<p>C++ is, first and foremost, an imperative programming language. Imperative programs are composed of <em>statements</em>, which when executed may change the program <em>state</em>. For example in the following program:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>The <strong>state</strong> is the value of the variables <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code>. Initially these are <code class="language-plaintext highlighter-rouge">5</code> and <code class="language-plaintext highlighter-rouge">3</code>. Let’s write this state as $[x = 5 ,\, y = 3]$.
+    <ul>
+      <li>In principle we have access to more state than this, since we could access e.g. the system clock and so on, but we can ignore that because it’s not used in this example. State can get very complicated to model when we start including external dependencies like clocks and I/O!</li>
+    </ul>
+  </li>
+  <li>The <strong>statement</strong> <code class="language-plaintext highlighter-rouge">x = x + 1</code> updates the state $[x = 5 ,\, y = 3 ] \rightarrow [x = 8 ,\, y = 3]$. It does this by first <em>reading</em> the values of <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code>, then <em>adding</em> them, and then <em>writing</em> the new value of <code class="language-plaintext highlighter-rouge">x</code> to memory.</li>
+  <li>Note that <code class="language-plaintext highlighter-rouge">x = x + y</code> is an <em>assignment</em>, not an <em>equation</em>. There is an implied time ordering: the left hand side is assigned the <em>result</em> of the execution of the right hand side, and thus the values of <code class="language-plaintext highlighter-rouge">x</code> on the left hand side (8) and right hand side (5) are different.</li>
+</ul>
+
+<p>By default in C++ variables are <em>mutable</em>, which means that their values can be changed. Imperative programming is usually centred around updating the values of mutable variables, i.e. updating the state.</p>
+
+<p>In imperative programming, statements may have <em>side effects</em>. For example if we call a function:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></div>
+<ul>
+  <li>We can see from the types here that <code class="language-plaintext highlighter-rouge">f(x)</code> must return an integer.</li>
+  <li>In addition to this however, it could modify the values of any part of the state to which it has access, including <code class="language-plaintext highlighter-rouge">x</code> (if it is passed by reference) or any global variables which are not protected.</li>
+</ul>
+
+<p>As C++ programmers it is not uncommon to use library code written in C. It is not uncommon for C functions to produce all their meaningful outputs as side-effects, and only return an <code class="language-plaintext highlighter-rouge">int</code> value indicating either success or error. For example a typical signature might be:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">MatrixInverse</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">Mat</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>This kind of function will usually return <code class="language-plaintext highlighter-rouge">0</code> for success, and other numbers for different kinds of errors.</li>
+  <li>The matrix <code class="language-plaintext highlighter-rouge">Mat</code> (in this case a array of <code class="language-plaintext highlighter-rouge">double</code> referenced by a pointer) will be updated in place, rather than being a return value.</li>
+</ul>
+
+<p>Side effects can make it difficult to reason about programs, because we must also model the state of the program. In general we can’t know if a function will change part of the state without looking into its code, which isn’t always available to us.</p>
+
+<h3 id="procedural-programming">Procedural Programming</h3>
+
+<p>Procedural programming is style of imperative programming where programs are broken up into procedure (i.e. function) calls. This is one approach to modularising code; C has no support for classes and object oriented programming, and so most C code is written procedurally. Although in C++ we have the option to write object oriented code, it’s not <em>necessary</em> to do so, and it can be worth thinking about when to use a <em>free function</em> (a function not bound to any class) instead.</p>
+
+<ul>
+  <li>Classes which do nothing but wrap a single function are often an unnecessary complication to the code.</li>
+  <li>Free functions do not require an object to be constructed to use, and so also save on pointless overhead if the object has no other purpose.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">static</code> functions in classes, which belong to the entire class rather than an individual object, are treated essentially as free functions and can be called without any object of that class being declared.</li>
+    </ul>
+  </li>
+  <li>If a function should exist independently of an object, then it may be best to write it as a free function.</li>
+  <li>Free functions can be called anywhere in the code which has access to the definition, and so can be a good way of code sharing. For example, multiple classes which are unrelated to each other can all call the same free function.</li>
+</ul>
+
+<h3 id="object-oriented-programming">Object Oriented Programming</h3>
+
+<p>Object oriented programming (OOP) is an approach to programming in which data and functionality are typically bundled together into <em>objects</em>. The core concept of OOP is that an object has a <em>public interface</em> through which all other parts of the program interact with it, and that no information about how the object works under the hood should be necessary for another object to interact with it. For example, you can implement an <a href="https://en.wikipedia.org/wiki/Associative_array">associative array</a> (a _dictionary in Python) as a binary search tree or a hash table, but that implementation choice should be entirely hidden behind the interface and should not affect any other part of the program. This abstraction through an interface provides the mechanism in various OOP languages by which different kinds of objects which implement the same interface can be swapped with one another (in C++, we do this through inheritance). This approach also allows us to protect the object’s data from interference by other parts of the program, allowing us to reason about the state of objects in our program more independently.</p>
+
+<p>Objects generally have a particular purpose, or are intended to reflect a concrete concept in a model. This kind of organisation, if well implemented, can make code easier to understand and more intuitive.</p>
+
+<ul>
+  <li>Classes should represent a single, clear idea. There’s a bit of a judgement call to be made here: we don’t want to define classes which have lots of unrelated behaviour or unrelated data elements, but it’s also possible to find yourself creating too many classes which each do so <em>little</em> that they don’t really represent a worthwhile concept on their own.
+    <ul>
+      <li>Some languages like Java require all code to be part of some class, and thus Java is a hotbed of this kind of design problem. Many OOP examples that you find which originate in Java involve declaring new classes which do very little, and these are sometimes translated directly into C++ examples. Particularly when reading about OOP design patterns, consider whether there are clearer and less wasteful ways to express them.</li>
+    </ul>
+  </li>
+  <li>Classes can be used to represent abstract data types which must fulfil specific properties (sometimes called “invariants”): for example, that a list is always sorted, a binary tree is always balanced, or that two variables are always related by some formula. Most OOP languages provide access specifiers, which can be combined with member functions, to protect data and enforce these rules.</li>
+  <li>Class members should normally be functions which are inextricable from the class itself, or which require privileged access to the class (access to private members).
+    <ul>
+      <li>For example, if one were to write a class to represent the abstract data type <code class="language-plaintext highlighter-rouge">Queue</code>, which is a first-in first-out list, then the class should represent the data held in the queue <em>and</em> the methods to add and remove elements from the queue. It is the responsibility of the class methods to ensure that the rules of the queue are respected: data must be removed from the queue in the same order that they are added.</li>
+      <li>If a function isn’t necessary for the use of some type, then it should be e.g. a free function which takes an argument of that type instead.</li>
+      <li>Any member functions that you add to a class increase the amount of code which could violate the class invariants, because they have free access to the member data.</li>
+    </ul>
+  </li>
+  <li>Inheritance is a way of expressing the type relationship that one type is a sub-type of another in many OOP languages.</li>
+  <li>Composition and aggregation (member variables and pointers) are ways of creating complex types from more basic component types.</li>
+  <li>The design of classes, and the use of inheritance, composition, and aggregation, should reflect the abstract model of your type as well as you can.</li>
+</ul>
+
+<p>Take a possible binary tree implementation as an example:</p>
+<ul>
+  <li>An very common alternative to using a null pointer to signal the end of a path in a tree is to divide nodes in trees into two kinds: branches and leaves.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">TreeNode</code> in a tree can be a <code class="language-plaintext highlighter-rouge">Branch</code> (a node which has children) or a <code class="language-plaintext highlighter-rouge">Leaf</code> (a node with no children). This can be expressed by the inheritance relations <code class="language-plaintext highlighter-rouge">class Branch : public TreeNode</code> and <code class="language-plaintext highlighter-rouge">class Leaf : public TreeNode</code>, because <code class="language-plaintext highlighter-rouge">Branch</code> and <code class="language-plaintext highlighter-rouge">Leaf</code> are both kinds of <code class="language-plaintext highlighter-rouge">TreeNode</code>.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">Branch</code> has a value of some type, pointers to its children (<code class="language-plaintext highlighter-rouge">TreeNode</code> pointer types which could be <code class="language-plaintext highlighter-rouge">Branch</code> or <code class="language-plaintext highlighter-rouge">Leaf</code>), and usually a pointer to its parent (<code class="language-plaintext highlighter-rouge">TreeNode</code> pointer). These relationships are composition (the value) and aggregation (pointers): a <code class="language-plaintext highlighter-rouge">Branch</code> is made of up of these components and can make use of them, but is not itself any of these things.</li>
+</ul>
+
+<p><img src="TreeInheritance.png" alt="image" /></p>
+
+<h2 id="influences-from-functional-programming">Influences from Functional Programming</h2>
+
+<p>Functional programming is an alternative approach to imperative programming. Although C++ is not a functional language in the sense that Haskell or ML are, it has taken some influence from functional programming in the last decade or so, and we can try to enforce some of the functional style in C++ by applying some conventions.</p>
+
+<p>Functional programming is a style in which programs are composed of functions <em>in the mathematical sense</em>. Crucially this means that:</p>
+<ul>
+  <li>A function’s output depends only on its arguments, <strong>not any external state</strong>.</li>
+  <li>A function produces only a return value, there are <strong>no side effects</strong>.</li>
+</ul>
+
+<p>In functional programming languages, variables are typically <em>immutable</em>, meaning they cannot be changed once their value has been assigned. This is closer to how we think of variables mathematically: if we solve an equation for $x$, the value of $x$ is not changing from line to line! It’s just a symbolic representation of a (possibly as yet unknown) value.</p>
+
+<blockquote>
+  <p>If you want to know more about functional programming, some good examples of functional languages are Haskell (purely functional), ML (functional first, but with some support for imperative programming), and F# (similar to ML but with additional support for OOP).</p>
+</blockquote>
+
+<p>Although C++ variables <em>are</em> mutable and do permit assignments by default, we can make immutable variables using the <code class="language-plaintext highlighter-rouge">const</code> keyword:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="c1">// x = x + 1;  Not allowed: this will cause a compiler error!</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<p>Using <code class="language-plaintext highlighter-rouge">const</code> is a good way to use the compiler to enforce safety properties any time that you know there is a variable that should not change its value. Leveraging the compiler to check correctness conditions in your code is a key aspect of developing good C++ code.</p>
+
+<p>Not only does <code class="language-plaintext highlighter-rouge">const</code> make our code safer, but it can also make it <em>faster</em>. Compilers are often able to make additional optimisations when they know that variables are constants.</p>
+
+<h3 id="pure-functions-and-const-correctness">Pure Functions and <code class="language-plaintext highlighter-rouge">const</code> Correctness</h3>
+
+<p>Pure functions mean functions with no side effects and no external state: they depend only on their arguments and their only output is their return value.</p>
+
+<p>Pure functions are useful in programming because they offer greater clarity; it is easier to reason about pure functions because they behave like mathematical functions.</p>
+
+<p>C++ is not really suited to pure functional programming, and we cannot stop a function from having access to global state or a member function from having access to the object’s state. We can however move towards purer functions by preventing them from making changes to the state.</p>
+
+<p>There are a few things that we can do to make our functions purer:</p>
+<ul>
+  <li>Pass variables by <code class="language-plaintext highlighter-rouge">const</code> reference, or by value. This way the original variables can’t be modified by the function.</li>
+  <li>If you want a member function in an object to be pure, then you should declare it <code class="language-plaintext highlighter-rouge">const</code>. A <code class="language-plaintext highlighter-rouge">const</code> member function cannot change the state of the object, i.e. all the member variables are treated as constants within the body of that function.</li>
+</ul>
+
+<p>You can declare a <code class="language-plaintext highlighter-rouge">const</code> member function by placing the keywords <code class="language-plaintext highlighter-rouge">const</code> after the function signature, as in the <code class="language-plaintext highlighter-rouge">Area</code> function in this <code class="language-plaintext highlighter-rouge">Circle</code> class:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Circle</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+<span class="n">Circle</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="kt">double</span> <span class="n">Area</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nl">private:</span>
+<span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">centre</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<p>A pure function can be declared as a <code class="language-plaintext highlighter-rouge">constexpr</code>. <code class="language-plaintext highlighter-rouge">constexpr</code> stands for “constant expression”, and it is an expression which can (in principle) be evaluated at compile-time. The simplest usages for this are to initialise constant variables with simple expressions, such as:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">7.0</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">7.0</span><span class="p">;</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">y</code> is calculated at runtime.</li>
+  <li><code class="language-plaintext highlighter-rouge">x</code> is calculated at compile-time and the resulting floating point number is inserted directly into the machine code. We don’t need to do the division every time we run the program!</li>
+  <li>Your compiler may be able to optimise the calculation of <code class="language-plaintext highlighter-rouge">y</code> for you, but there are cases that are less clear cut than this which your compiler might miss.</li>
+</ul>
+
+<p>A pure function can be a <code class="language-plaintext highlighter-rouge">constexpr</code> because it has no side effects and depends only on its inputs. It can be evaluated at compile time <em>if its arguments are known are compile time</em>. 
+Consider the following code snippet:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">constexpr</span> <span class="n">g</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// Calculated at runtime</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>   <span class="c1">// Calculated at runtime</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// Calculated at compile time</span>
+    <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>   <span class="c1">// Calculated at runtime</span>
+    <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>   <span class="c1">// Calculated at compile time</span>
+<span class="p">}</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<ul>
+  <li>The function <code class="language-plaintext highlighter-rouge">f</code> if not a declared a <code class="language-plaintext highlighter-rouge">constexpr</code> even though it is pure. This will generally need to be executed at runtime for both const and non-const arguments (unless your compiler is able to optimise it).</li>
+  <li>The function <code class="language-plaintext highlighter-rouge">g</code> is a <code class="language-plaintext highlighter-rouge">constexpr</code> and so can be calculated at runtime when its arguments are constant, i.e. for the cases <code class="language-plaintext highlighter-rouge">g(x)</code> and <code class="language-plaintext highlighter-rouge">g(5)</code> (since literals like <code class="language-plaintext highlighter-rouge">5</code> are compile time constants).
+    <ul>
+      <li>These lines are therefore equivalent to writing <code class="language-plaintext highlighter-rouge">int c = 128;</code> and <code class="language-plaintext highlighter-rouge">int e = 87;</code> respectively.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Using a <code class="language-plaintext highlighter-rouge">constexpr</code> can have a number of advantages:</p>
+<ul>
+  <li>Code like <code class="language-plaintext highlighter-rouge">int c = g(x)</code> is more expressive than <code class="language-plaintext highlighter-rouge">int c = 128</code> because it makes the relationships between variables explicit. We know that if <code class="language-plaintext highlighter-rouge">x</code> changes then <code class="language-plaintext highlighter-rouge">c</code> should change as well.</li>
+  <li>Now if we change <code class="language-plaintext highlighter-rouge">g</code> or <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">c</code> will be updated accordingly without us having to recalculate it and insert it into the code ourselves.</li>
+  <li>We still save on runtime costs for anything which can be known at compile time.</li>
+</ul>
+
+<p><strong>N.B.</strong> For simple examples like these your compiler will likely be able to optimise away these calculations at compile time if optimisations are turned on, because they are simple enough to be able to see that these variables don’t change and that these functions are pure. However the more complex your code gets, the less able the compiler is to catch these for you, so you should still mark these kinds of functions are <code class="language-plaintext highlighter-rouge">constexpr</code>. It pays to help your compiler out a bit!</p>
+
+<p>Writing pure functions has some drawbacks: for example it makes sense to update large matrices and vectors in place to save space and time. You will need to decide when and where to use pure functions, but <strong>you should always mark functions and arguments as <code class="language-plaintext highlighter-rouge">const</code>/<code class="language-plaintext highlighter-rouge">constexpr</code> where these are applicable</strong>. This will allow the compiler to enforce <code class="language-plaintext highlighter-rouge">const</code> correctness, optimise your machine code, and prevent compilation of any code that violates the conditions which you have asserted. This also means that a fellow C++ programmer (or yourself, in the future!) can tell by looking at the signature of a function in a library that the function will not alter the state. This is extremely useful information for a user to know and will allow them to program more efficiently without having to check up on implementations to look for side effects.</p>
+
+<h3 id="recursion">Recursion</h3>
+
+<p>A recursive function is a function which calls itself as part of its definition. In order to terminate, there needs to be some <em>base case</em> or condition which is met so that it stops calling itself. For example:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">constexpr</span> <span class="n">uint</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">uint</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<ul>
+  <li>The function will return 1 if <code class="language-plaintext highlighter-rouge">n</code> is zero; this is the base case.</li>
+  <li>Otherwise the function will return <code class="language-plaintext highlighter-rouge">n*factorial(n-1)</code>, which is the definition of a factorial.</li>
+  <li>Recursive functions can still be pure, and still be <code class="language-plaintext highlighter-rouge">constexpr</code>. We can calculate, for example, <code class="language-plaintext highlighter-rouge">factorial(10)</code> at compile time and save ourselves the runtime function calls.</li>
+  <li>Do note that this is just an illustrative example and there are more efficient ways to calculate factorials!</li>
+</ul>
+
+<p>Recursion is available in both functional and imperative programming languages, and has been a part of C++ since its inception, although in imperative styles it is more common to see loops doing the same job. (Some problems cannot be solved by loops however and <em>must</em> use recursion, although this is comparatively rare.)</p>
+
+<p>Recursion can lead to intuitive programs with a more direct translation of mathematical definitions. It can in particular help when writing <strong>divide and conquer</strong> algorithms, where problems can be solved in terms of the solutions to sub-problems.</p>
+
+<p>Do bear in mind though that there can be overheads associated with the function calls, and a deep recursion can open a lot of stack frames eating up stack memory. It can nevertheless sometimes be helpful to write an easy to understand recursive solution first, and then write a more optimised version <em>afterwards</em> once you have established that your solution works. Remember to use unit tests to check you haven’t broken correctness in the process!</p>
+
+<h3 id="higher-order-functions">Higher Order Functions</h3>
+
+<p>A major characteristic of functional programming is the use of <em>higher order functions</em>. These are functions which accept functions as arguments.</p>
+
+<p>In some programming languages functions are what are called “first class data”, in other words functions can be declared and passed around just like ordinary variables. Although C++ was not designed with this in mind, the <code class="language-plaintext highlighter-rouge">&lt;functional&gt;</code> header of the standard library provides us with some extremely useful functionality to program in this way.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">std::function&lt;&gt;</code> is a templated type which can represent a function with a given signature (input and output types). This can be a wrapper for an ordinary function, a lambda expression, or a callable object (a class with <code class="language-plaintext highlighter-rouge">operator()</code> overloaded). This makes it easy to pass functions as arguments to other functions.</li>
+  <li><code class="language-plaintext highlighter-rouge">std::bind</code> can be used to fix some of the arguments in a function to produce a new function of fewer arguments.</li>
+  <li>A key higher order function is typically called <em>map</em>. Map takes a function $f$, which takes an input of type $t_1$ and returns an output of type $t_2$, and produces a new function $f_\text{map}$ which takes a <strong>container of $t_1$ values</strong> and returns a container of $t_2$ values by applying $f(x)$ to each value $x$ in the container.</li>
+  <li>Function composition can be used to create new functions. This is particularly powerful when applied to e.g. <em>map</em> since it allows more complex operations to mapped to entire lists, trees, or other iterable structures.</li>
+</ul>
+
+<p>This kind of functional approach can be extremely powerful and expressive when creating flexible and abstract programs. It is important to note a few downsides however:</p>
+<ul>
+  <li>Functional programming constructs in C++ tend to incur overheads due to the large number of function calls and layers of wrappers which need to be processed. Compiling with optimisations turned on can help, but for performance critical code you may need to consider writing in a more traditional imperative way.</li>
+  <li>Programming with functional features can make debugging more difficult as programs can be very confusing to step through.</li>
+</ul>
+
+<h3 id="a-function-passing-example">A Function Passing Example</h3>
+
+<p>An integrator is a good example of a function which would take another function as input. We can use <code class="language-plaintext highlighter-rouge">std::function</code>:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">integrate</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x_0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x_1</span><span class="p">)</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<ul>
+  <li>This function takes a function <code class="language-plaintext highlighter-rouge">f</code> from <code class="language-plaintext highlighter-rouge">double</code> to <code class="language-plaintext highlighter-rouge">double</code>.
+    <ul>
+      <li>e.g. <code class="language-plaintext highlighter-rouge">double square(double x) {return x*x;}</code> would be an appropriate function to pass.</li>
+    </ul>
+  </li>
+  <li>It also takes an upper and lower limit to integrate between</li>
+  <li>It returns a double which should be $\approx \int_{x_0}^{x_1} f(x) \, dx$</li>
+  <li>This version can accept callable objects, lambda expressions, free functions, functions with bound parameters etc.</li>
+  <li>Integration methods inevitably have to call the function <code class="language-plaintext highlighter-rouge">f</code> many times, which may lead to unacceptable overheads.</li>
+</ul>
+
+<p>Or we can use a function pointer:</p>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">integrate</span><span class="p">(</span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">double</span><span class="p">),</span> <span class="kt">double</span> <span class="n">x_0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x_1</span><span class="p">)</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<ul>
+  <li>This version can take a free function of type <code class="language-plaintext highlighter-rouge">double f(double)</code>, but not general <code class="language-plaintext highlighter-rouge">&lt;functional&gt;</code> types: no using <code class="language-plaintext highlighter-rouge">std::bind</code> or callable objects or lambda expressions with environment variable capture. You can however use a lambda expression which has no capture (empty square brackets such as <code class="language-plaintext highlighter-rouge">[](double x){return x*x;}</code>).</li>
+  <li>This version will run faster but sacrifices some flexibility. For a method such as integration where the function is called in a hot loop it might be the best choice though in a performance critical context.</li>
+</ul>
+
+<p>We can partially explore this using some code which times the performance of three cases:</p>
+<ol>
+  <li>Using a function pointer method with a free function.</li>
+  <li>Using a function pointer method with a capture-free lambda.</li>
+  <li>Using an <code class="language-plaintext highlighter-rouge">std::function</code> method with a free function.</li>
+</ol>
+
+<blockquote>
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="nf">integrate_functional</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">,</span>
+                            <span class="k">const</span> <span class="kt">double</span> <span class="n">x_0</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">x_1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">delta_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_1</span> <span class="o">-</span> <span class="n">x_0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">tot</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_x</span><span class="p">;</span>
+        <span class="n">tot</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_x</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">tot</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">integrate_pointer</span><span class="p">(</span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">double</span><span class="p">),</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">x_0</span><span class="p">,</span>
+                         <span class="k">const</span> <span class="kt">double</span> <span class="n">x_1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">delta_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_1</span> <span class="o">-</span> <span class="n">x_0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">tot</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_x</span><span class="p">;</span>
+        <span class="n">tot</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_x</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">tot</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">quadratic</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">size_t</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1'000'000'000</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">t_1</span> <span class="o">=</span> <span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">v_ptr</span> <span class="o">=</span> <span class="n">integrate_pointer</span><span class="p">(</span><span class="n">quadratic</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">t_2</span> <span class="o">=</span> <span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Value pointer = "</span> <span class="o">&lt;&lt;</span> <span class="n">v_ptr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Time pointer = "</span> <span class="o">&lt;&lt;</span>
+        <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">chrono</span><span class="o">::</span><span class="n">microseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_2</span> <span class="o">-</span> <span class="n">t_1</span><span class="p">).</span><span class="n">count</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e-6</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">t_1</span> <span class="o">=</span> <span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">v_ptr_lam</span> <span class="o">=</span> <span class="n">integrate_pointer</span><span class="p">([](</span><span class="kt">double</span> <span class="n">x</span><span class="p">){</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+    <span class="n">t_2</span> <span class="o">=</span> <span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Value pointer lambda = "</span> <span class="o">&lt;&lt;</span> <span class="n">v_ptr_lam</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Time pointer lambda = "</span> <span class="o">&lt;&lt;</span>
+        <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">chrono</span><span class="o">::</span><span class="n">microseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_2</span> <span class="o">-</span> <span class="n">t_1</span><span class="p">).</span><span class="n">count</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e-6</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">t_1</span> <span class="o">=</span> <span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">v_fun</span> <span class="o">=</span> <span class="n">integrate_functional</span><span class="p">(</span><span class="n">quadratic</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+    <span class="n">t_2</span> <span class="o">=</span> <span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Value functional = "</span> <span class="o">&lt;&lt;</span> <span class="n">v_fun</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Time functional = "</span> <span class="o">&lt;&lt;</span>
+        <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">chrono</span><span class="o">::</span><span class="n">microseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_2</span> <span class="o">-</span> <span class="n">t_1</span><span class="p">).</span><span class="n">count</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e-6</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<p>The results with optimisation off and on:</p>
+
+<blockquote>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ g++ -o int integration.cpp 
+$ ./int
+Value pointer = 0.333333
+Time pointer = 8.67147
+Value pointer lambda = 0.333333
+Time pointer lambda = 10.5195
+Value functional = 0.333333
+Time functional = 11.7649
+
+$ g++ -o int integration.cpp -O3
+$ ./int
+Value pointer = 0.333333
+Time pointer = 0.8935
+Value pointer lambda = 0.333333
+Time pointer lambda = 0.883614
+Value functional = 0.333333
+Time functional = 2.19115
+</code></pre></div>  </div>
+</blockquote>
+
+<ul>
+  <li>We can see that with optimisations off a function pointer to a free function performs best, followed by a pointer to a capture-free lambda, and finally an <code class="language-plaintext highlighter-rouge">std::function</code> method.</li>
+  <li>With optimisations turned on the function pointer method produces almost identical timings with a free function or the lambda. The <code class="language-plaintext highlighter-rouge">std::function</code> approach, although considerably sped up from before, now lags behind at more than double the time of the other method.</li>
+  <li>This is just one example and <strong>should not be taken as universally indicative</strong>. You should try things out and time them for yourself, especially when developing performance critical code.</li>
+  <li>The function we are integrating is extremely simple, and therefore function call overheads will dominate in this example more than they usually would. When integrating a more complex function, the performance difference may be smaller.</li>
+  <li>Sometimes flexibility and intuitive code are more useful than speed! Always keep your priorities clearly in mind, and don’t assume you <em>always</em> need the fastest possible program just for the sake of it.</li>
+</ul>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

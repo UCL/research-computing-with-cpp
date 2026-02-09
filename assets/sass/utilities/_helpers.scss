@@ -1,0 +1,178 @@
+/* 
+* Utility name: Helpers
+* Use: Commonly used dlasses (and silent classes) that can be used within CSS or within HTML
+* Note: See http://csswizardry.com/2014/01/extending-silent-classes-in-sass/
+-------------------------------------------------------------- */
+
+/* Hide
+-------------------------------------------------------------- */
+
+%hidden, .hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
+%visually-hidden, .visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	&.focusable:active,
+	&.focusable:focus {
+		clip: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		width: auto;
+	}
+}
+
+/* Clear
+-------------------------------------------------------------- */
+
+%clear, .clear {
+	clear: both;
+}
+
+/* Clearfix 
+-------------------------------------------------------------- */
+
+%clearfix, .clearfix {
+	zoom: 1;
+	&:before, 
+	&:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+/* Floats
+-------------------------------------------------------------- */
+
+%pull-left, .pull-left {
+	float: left;
+}
+
+%pull-right, .pull-right {
+	float: right;
+}
+
+/* Add margin
+-------------------------------------------------------------- */
+
+%push-left, .push-left {
+    margin-left: $baseline;
+}
+
+%push-right, .push-right {
+    margin-right: $baseline;
+}
+
+%push-bottom, .push-bottom {
+    margin-bottom: $baseline;
+}
+
+%push-top, .push-top {
+    margin-top: $baseline;
+}
+
+/* Remove margin/padding
+-------------------------------------------------------------- */
+
+%zero, .zero {
+    margin: 0;
+}
+
+%zero-top, .zero-top {
+    margin-top: 0;
+}
+
+%zero-bottom, .zero-bottom {
+    margin-bottom: 0;
+}
+
+%zero-left, .zero-left {
+    margin-left: 0;
+}
+
+%zero-right, .zero-right {
+    margin-right: 0;
+}
+
+%zero-pad, .zero-pad {
+    padding: 0;
+}
+
+%zero-pad-top, .zero-pad-top {
+    padding-top: 0;
+}
+
+%zero-pad-bottom, .zero-pad-bottom {
+    padding-bottom: 0;
+}
+
+%zero-pad-left, .zero-pad-left  {
+    padding-left: 0;
+}
+
+%zero-pad-right, .zero-pad-right {
+    padding-right: 0;
+}
+
+/* Alignment
+-------------------------------------------------------------- */
+
+%text-left, .text-left {
+    text-align: left;
+}
+
+%text-right, .text-right {
+    text-align: right;
+}
+
+%text-center, .text-center {
+    text-align: center;
+}
+
+%text-justify, .text-justify {
+    text-align: justify;
+}
+
+%text-nowrap, .text-nowrap {
+    white-space: nowrap;
+}
+
+/* Transforms
+-------------------------------------------------------------- */
+
+%text-lowercase, .text-lowercase {
+    text-transform: lowercase;
+}
+
+%text-uppercase, .text-uppercase {
+    text-transform: uppercase;
+}
+
+%text-capitalize, .text-capitalize {
+    text-transform: capitalize;
+}
+
+%text-emphasise, .text-emphasise {
+	font-style: italic;
+}
+
+
+/* Responsiveness
+-------------------------------------------------------------- */
+
+%no-respond, .no-respond {
+	width: auto;
+}

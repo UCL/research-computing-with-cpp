@@ -1,0 +1,110 @@
+/* 
+* Pattern name: Header
+* Use: Wrapping masthead and branding areas
+* Note: Desktop and mobile headers are seperated due to how the UCL menu is moved off convas on mobile
+-------------------------------------------------------------- */
+
+.header {
+	position: relative;
+	z-index: $zindex-header;
+}
+
+.header--desktop {
+	@include gs-media(m, max) {
+		background-color: #5f5f5f;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		overflow-x: hidden;
+		transition: all, .5s;
+		transform: translateX(-100%);
+
+		// Use top position if browser does not support transform (better transition performance)
+		.no-csstransforms & {
+		    left: -100%;
+		}
+
+		.mobile-open & {
+			transition: all, .5s;
+			transform: translateX(0);
+
+			.no-csstransforms & {
+			    left: 0;
+			}
+		}
+
+		a {
+			color: $white;
+			padding: 0.5em 0;
+			display: block;
+			clear: both;
+			@include rem(font-size, $font-size-base);
+		}
+	}
+}
+
+.header--mobile {
+	display: none;
+	width: 100%;
+	padding: 20% 35px 0;
+	background-size: auto 100%;
+	background-position: 106% bottom;
+	background-image: url("#{$static-url}/images/ucl-logo.svg");
+	background-repeat: repeat-x;
+	position: relative;
+	left: -35px;
+	background-color: $primary-colour;
+	border-bottom: .5em solid $primary-colour;
+	@include gs-media(m, max) {
+		display: block;
+	}
+	&.no-svg {
+		background-image: url("#{$static-url}/images/ucl-logo-cropped-white.png");
+		background-repeat: no-repeat;
+		background-position: right bottom;
+		background-color: $black;
+		background-size: 90%;
+	}
+}
+
+.header__open {
+	@include gs-media(m, max) {
+		width: 25px;
+		top: 35%;
+		left: 35px;
+		position: absolute;
+		z-index: $zindex-mobile-menu;
+	}
+	> img {
+		margin-bottom: 0;
+	}
+}
+
+.header__link {
+	position: absolute;
+	height: 100%;
+	right: 10%;
+	width: 30%;
+	top: 0;
+}
+
+.header__close {
+	display: none;
+	@include gs-media(m, max) {
+		display: block;
+		position: absolute;
+		left: 5%;
+		top: 5px;
+		padding: 0;
+		z-index: $zindex-mobile-menu-back;
+		width: 50%;
+		img {
+			vertical-align: middle;
+			@include inline-block;
+			width: 30px;
+			position: relative;
+			margin: -5px -3px 0 -8px;
+		}
+	}
+}

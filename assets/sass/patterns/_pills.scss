@@ -1,0 +1,48 @@
+/* 
+* Pattern name: Pill
+* Use: For rounded inline label/tags
+* Note: Has scope for inline icons within a pill
+-------------------------------------------------------------- */
+
+.pills {
+	@extend %list-inline;
+	margin-bottom: 1em;
+	margin-left: 0;
+}
+
+.pills__item {
+	float: left;
+	padding: 0 1.5em;
+	background: #b5bd00;
+	color: white;
+	line-height: 2.5;
+	border-radius: 2em;
+	box-sizing: border-box;
+	font-size: 14px;
+	margin-bottom: .5em;
+	margin-right: .5em;
+
+	.icon {
+		margin-left: -24px;
+		font-size: 16px;
+		line-height: 1;
+	}
+
+	a {
+		color: white;
+		font-weight: bolder;
+	}
+	@include respond-max($screen-md) {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 20em;
+		margin-right: 0;
+	}
+}
+
+
+.pills__icon {
+	padding-left: 1em;
+	@include inline-block;
+}

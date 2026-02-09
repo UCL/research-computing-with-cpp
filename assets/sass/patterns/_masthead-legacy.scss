@@ -1,0 +1,278 @@
+/*
+Notes:
+1. Media queries: We're not using the standard gridset mq's as the masthead was built outside of the framework and as a consequence has different break points
+
+*/
+.masthead__search{
+	ul {
+		margin-left: 0;
+		margin-top: 0;
+		margin-top: 10px; 
+		&.profile-details{
+			li{
+				display: block;
+			}
+		}
+	}
+	li{
+		&.tt-suggestion {
+			display: block;
+			overflow: hidden;
+			margin: 0;
+			padding: 0.5em 2%;
+		}
+		a{
+			color: #fff !important;
+		}
+	}
+	form{
+		height: 30px;
+		width: 85%;
+		left: 0;
+		top: 0;
+		.fa{
+			float: left;
+			margin-right: 10px;
+			top: 3px;
+			position: relative;
+		}
+		ul{
+			&.profile-details{
+				margin: 0;
+			width: 100%;
+			}
+		}
+		h2{
+			margin-top: 0;
+			font-size: 18px !important;
+			@media screen and (max-width: 1200px){
+				height: 32px; 
+			}
+		}
+	}
+	.sprite,.AC-result .email:before, .AC-result .tel:before {
+		background-image: url("/indigo/images/search-sprite.png");
+		margin-left: 10px; 
+	}
+	.search {
+		left: 88%;
+		width: 12%;
+		border-radius: 4px;
+	}
+	.tt-dropdown-menu {
+		background-color: #fff;
+		border: 1px solid #aaa;
+		border-radius: 4px;
+		box-shadow: 2px 2px 2px rgba(51, 51, 51, 0.3);
+		left: 5%;
+		position: absolute;
+		top: 38px;
+		width: 90%;
+		z-index: 5050;
+		ul{
+			margin-bottom: 10px; 
+		}
+		li{
+			color: #333;
+			font-size: 12px;
+			list-style: none;
+			border-bottom: 1px solid #eee;
+			//height: 4.5em;
+			height: 64px;
+			max-height: 64px;
+			width: 96%;
+			text-align: left;
+			h3{
+				margin-top: 0;
+			}
+			p{
+				font-size: 12px;
+				//font-size: 0.8em;
+				line-height: 1.4;
+				margin-bottom: 0;
+				a{
+					text-decoration: none;
+					font-size: 12px;
+					//font-size: 1em;
+				}
+			}
+			a{
+				color: $global-search-blue !important;
+				display: block;
+				//font-size: 0.8em;
+				font-size: 12px;
+				font-weight: bold;
+				margin-bottom: 8px;
+			}
+		}
+		.no-results {
+			color: $global-search-blue !important;
+			display: block;
+			//font-size: 0.8em;
+			font-size: 12px;
+			font-weight: bold;
+			text-align: center;
+		}
+		@media (max-width: 1023px){
+			display: none !important;
+		}
+		@media (max-width: 1220px) {
+			.AC-result--directory{
+				img {
+					display: none !important;
+				}
+			} 
+		}
+	}
+	/*--- end .tt-dropdown-menu ---*/
+	.AC-result{
+		display: table-cell;
+		height: 100%;
+		margin-left: 5px;
+		padding: 0;
+		border-left: 1px solid #AAA;
+		width: 25%;
+		&:first-child{
+			margin-left: 0;
+			border-left: 1px solid transparent;
+		}
+		h2{
+			color: #000;
+			font-weight: bold;
+			font-size: 1em;
+			margin-bottom: 4px;
+			padding: 0.5em;
+		}
+		a{
+			color: $global-search-blue !important;
+			display: block;
+			font-size: 0.8em;
+			font-size: 12px;
+			font-weight: bold;
+			&.show-all{
+				text-align: center;
+				margin-bottom: 0.5em;
+			}
+		}
+		ul{
+			li{
+				&:hover {
+					background-color: #e6f1fc;
+					font-size: auto;
+					li{
+						&:hover {
+							background-color: transparent;
+						}
+					}
+				}
+				li{
+					height: auto;
+				}
+			}
+		}
+		img{
+			max-height: 60px;
+			max-width: 60px;
+		}
+		.email {
+			clear: left;
+			float: left;
+			padding-left: 30px;
+			line-height: 24px;
+			position: relative;
+			&:before {
+				content: '';
+				position: absolute;
+				left: -35px;
+				width: 18px;
+				height: 12px;
+				top: 6px;
+			}
+			a{
+				color: #4c98e5;
+				font-size: 0.8em;
+				font-size: 12px;
+			}
+		}
+		.tel {
+			//font-size: 0.8em;
+			font-size: 12px;
+			line-height: 20px;
+			padding-left: 30px;
+			position: relative;
+			&:before {
+				content: '';
+				position: absolute;
+				left: -35px;
+				width: 20px;
+				height: 18px;
+				top: 3px;
+				background-position: 0 -31px;
+			}
+			span{
+				font-weight: bold;
+				display: inline;
+			}
+			a{
+				display: inline;
+			}
+		}
+		.tel--external,.email {
+			position: relative;
+			left: 2em;
+		}
+
+	}
+	/*--- end .AC-result ---*/
+	.AC-results{
+		box-sizing: border-box;
+		display: table;
+		height: 100%;
+		padding: 16px 0;
+		table-layout: fixed;
+		width: 100%;
+	}
+	.AC-result--directory{
+		.AC-details__image{
+			display: table-cell;
+			padding-top: 5px;
+			img {
+				margin-right: 20px;
+				display: block;
+				padding-left: 16px;
+			}
+		}
+		img {
+			float: left;
+			position: relative;
+			top: 0.5em;
+		}
+		.AC-details{
+			display: block;
+			float: left;
+			width: 77%;
+			.profile-details{
+				li{
+					border-bottom: 0;
+					margin-bottom: 0;
+					padding-left: 0;
+					//font-size: 0.8em;
+					font-size: 12px;
+					a{
+						//font-size: 1em;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+	/*--- end .AC-result--directory ---*/
+	.twitter-typeahead{
+		width: 100%;
+	}
+	#query{
+		outline: 0;
+		border: none;
+	}
+}
+

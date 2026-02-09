@@ -1,0 +1,525 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Distributed Memory Model</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="the-distributed-memory-model-of-parallel-programming">The Distributed Memory Model of Parallel Programming</h1>
+
+<p>Last week we looked at the use of shared memory parallel programming. As a reminder, the shared memory model is used when each thread has access to the same memory space.</p>
+<ul>
+  <li>Shared memory means that all threads can rapidly access the full data set.</li>
+  <li>Can lead to awkward problems like data races.</li>
+  <li>Sometimes requires additional structures like mutexes to be introduced.
+    <ul>
+      <li>A mutex can refer to any solution which means that a variable can only be accessed by a single thread at a time. It is a contraction of “mutually exclusive”.</li>
+    </ul>
+  </li>
+  <li>The more concurrent threads we have operating on shared memory, the more pressure we put on resources which require access controls like mutexes, which can delay our program execution.</li>
+  <li>Shared memory is limited by the number of cores which can share on-chip RAM. This is generally not a very large number, even for high performance computing resources. The more cores we try to connect to a single piece of memory, the more latency there will be for at least some of these cores, and the more independent ports the memory banks will need to have.</li>
+</ul>
+
+<p>In the distributed memory model, we take the parallelisable part of our program and split it up into independent <em>processes</em>. These processes each have their own memory space which cannot be accessed directly by any other process. Processes are however allowed to communicate with one another by sending <em>messages</em>; these can be used to send data back and forth between processes where necessary. This message passing is vital for:</p>
+<ul>
+  <li>Initialising each process with the correct information.</li>
+  <li>Keeping processes synchronised where necessary (similar to how we used <code class="language-plaintext highlighter-rouge">barrier</code> in OpenMP).</li>
+  <li>Aggregating results from multiple processes into a complete solution.</li>
+</ul>
+
+<p>Distributed memory programming is incredibly broad and flexible, as we’ve only specified that there are processes with private memory and some kind of message passing. We’ve said nothing about what each of the processes <em>does</em> (they can all do entirely different things; not just different tasks but even entirely different programs), what those processes run <em>on</em> (you could have many nodes in a cluster or a series of completely different devices), or what medium they use to communicate (they can all be directly linked up or they could be communicated over channels like the internet). The distributed memory model can apply to anything from running a simple program with different initial conditions on a handful of nodes in a cluster to running a client-server application with many users on computers and mobile devices to a world-wide payment system involving many different potential individuals, institutions, devices, and software. It can even apply to separate processes running on the <em>same core</em> or on cores with shared memory, as long as the memory is partitioned in such a way that the processes cannot <em>access</em> the same memory. (Remember when you write programs you use <em>virtual memory addresses</em> which are mapped to a limited subset of memory as allocated by your OS; you generally have many processes running on the same core or set of cores with access to non-overlapping subsets of RAM.)</p>
+
+<p>For our purposes, we will focus on code written for a multi-node HPC cluster, such as <a href="https://www.rc.ucl.ac.uk/docs/Clusters/Myriad/">UCL’s Myriad cluster</a>, using the <a href="https://www.mpi-forum.org/">MPI (Message Passing Interface) standard</a>. We will, naturally, do our programming with C++, but it is worth noting that the MPI standard has been implemented for many languages including C, C#, Fortran, and Python. We will use the <a href="https://www.open-mpi.org/">Open MPI</a> implementation. We won’t be covering much programming in this section, but focussing on the models that we use and their implications.</p>
+
+<h2 id="aside-task-parallelism">Aside: Task Parallelism</h2>
+
+<p>It’s worth addressing the fact that different processes or threads don’t need to do identical work. If we need to calculate something of the form:</p>
+
+<p>$y = f(x) + g(x)$</p>
+
+<p>then we can assign the calculation of $f(x)$ and $g(x)$ to separate processes or threads to run concurrently. Then there needs to be some kind of synchronisation (using a barrier or message passing) to bring the results together when they’re both finished and calculate $y$.</p>
+
+<p>This kind of parallelism is called <em>task parallelism</em>, and can be extremely useful when optimising your code. This is particularly important when the calculations $f(x)$ and $g(x)$ are not themselves parallelisable (at least not to the extent which exhausts your resources). Then, rather than having resources standing idle, you can calculate them both at the same time. If however, $f(x)$ and $g(x)$ both parallelise when to use up all your resources with good scaling, then you will do just as well to calculate one of them after the other rather than calculating them both concurrently but twice as slowly.</p>
+
+<h2 id="basic-structure-of-an-hpc-cluster">Basic Structure of an HPC Cluster</h2>
+
+<p>The basic model that we need to know is as follows:</p>
+
+<ul>
+  <li>Clusters are composed of <em>nodes</em>.
+    <ul>
+      <li>Nodes can communicate with one another through the sending of messages.</li>
+      <li>The latency associated with message passing may vary depending on the specific structure and connectivity of the nodes. Nodes which are “far apart” in some sense have longer message latency. This factor is difficult to control for unless you are very familiar with your architecture and can control which processes end up on which node, so in general it is not something to worry too much about!</li>
+      <li>For now we will treat each node as being able to directly communicate with every other node. We can write programs with this assumption because messages can be passed between any two nodes regardless of exact network topology, so this detail is not important unless we are trying to optimise for message passing latency.</li>
+    </ul>
+  </li>
+  <li>Nodes can contain multiple <em>cores</em> with shared RAM.
+    <ul>
+      <li>Cores can run independent processes with separate memory spaces (partitioning the shared RAM).</li>
+      <li>Multiple cores can be utilised by a single process with multiple <em>threads</em> and a shared memory approach. In our case this would involve using MPI to spawn and control concurrent processes and using OpenMP to manage threading <em>within</em> a process!</li>
+    </ul>
+  </li>
+  <li>Threads with shared memory must run on cores within the same node, but processes (which have separate memory) can run on across any nodes or cores.</li>
+</ul>
+
+<p><img src="images/Simple_Cluster.jpg" alt="image" /></p>
+
+<p>This understanding of clusters is important for requesting resources appropriately on an HPC system, as we need to understand how our problem / solution can fit onto the resources that we have! However, the way that your processes interact can look quite different to the diagram of a cluster above, as separate processes can run inside a single node for example. In general we can gain a lot of understanding about distributed systems without thinking about the actual architecture itself, but focussing instead on the <em>processes</em> and the messages that they send.</p>
+
+<h2 id="processes-message-passing-and-synchronisation">Processes, Message Passing, and Synchronisation</h2>
+
+<p>In his <a href="https://amturing.acm.org/p558-lamport.pdf">1978 paper</a> on “logical clocks”, Leslie Lamport was inspired by special relativity to illustrate the concept of communicating processes using a kind of space-time diagram.</p>
+
+<ul>
+  <li>Processes are described as a sequence of events.</li>
+  <li>Sending a message is a kind of event.</li>
+  <li>Receiving a message is a kind of event.</li>
+</ul>
+
+<p><img src="images/Process_Diagram.jpg" alt="image" /></p>
+
+<p>In this diagram time runs from bottom to top (i.e. $p_0$ comes before $p_1$), each vertical line is a separate <em>process</em> ($P$, $Q$, and $R$), and each circle is an <em>event</em>. An arrow between two events is a message, in which the origin is the message send event and the destination is the message receive event.</p>
+
+<p>With this understanding, there is a <em>partial</em> ordering of events:</p>
+
+<ul>
+  <li>Events in the same process happen in sequence, so $a$ comes before $b$ if $a$ appears before $b$ in that sequence.</li>
+  <li>Messages must be received <em>after</em> they are sent, so $a$ comes before $b$ if $a$ is an event sending a message and $b$ is the event which receives that same message in a different process.</li>
+  <li>The ordering of events is transitive, so if $a$ happens before $b$ and $b$ happens before $c$, then we can say that $a$ happens before $c$.</li>
+</ul>
+
+<p>This ordering of events is only partial, because it does not necessarily allow us to compare all events in all processes to one another. In our example above:</p>
+
+<ul>
+  <li>$p_0$ comes before $p_1$, $p_2$ etc.</li>
+  <li>$p_0$ comes before $q_0$, and therefore before $q_1$, $q_1$ etc.</li>
+  <li>We cannot say whether $p_1$ comes before $q_1$ or vice versa. Likewise for $r_1$ and $q_1$ and various other pairings.</li>
+</ul>
+
+<p>This is a key property of distributed systems: in general we can’t say in what order <em>all</em> things occur across independent processes. Different processes all run independently and can run a different speeds, or have different amounts of work to do. (Lamport’s paper goes on to describe the limitations of synchronised physical clocks, and an algorithm for establishing a total ordering across events. This total ordering is non-unique, and the partial time ordering is the only ordering enforced by the actual mechanics of the system under study.)</p>
+
+<p>All this is perhaps a lengthy way of saying: <strong>if your processes need to be synchronised for some reason, you need to send messages to do it!</strong></p>
+
+<p>For example, let’s take our Game of Life simulation. At each time step we could partition the board and allow each process to advance its section of the board according to the rules of the game of life. In order to be able to advance the board, we actually need to send a bit of extra information too: the part of the board the process needs to advance, and the cells immediately around that part of the board (let’s call these “external cells”), since they will be used in determining the fate of the cells on the boundary of that section. Once we’ve advanced the simulation by one time step though, we can’t go any further: our external cells for each process have not been updated locally, but they get updated in some other process(es)! If we let our process go ahead with this out of date data, we will calculate a wrong result. We need to <strong>synchronise</strong> by broadcasting our boundary cells to the other processes that need them, and waiting for message from other processes which contain the updated external cells that we need.</p>
+
+<p>Let’s illustrate this game of life example using just two processes, $P$ and $Q$.</p>
+<ul>
+  <li>$P$ will send half of the board to $Q$, as well as the external cells that $Q$ needs to update its section.</li>
+  <li>$P$ and $Q$ update their sections in parallel.</li>
+  <li>$P$ and $Q$ exchange information before continuing on to the next update.</li>
+</ul>
+
+<p><img src="images/GOL_Processes.jpg" alt="image" /></p>
+
+<ul>
+  <li>Here we have one process which must initialise things, which will at the end of all the updates presumably also collect data from the other process to get the final state of the board: this is often the case, but it does not have to be! We could have initialised our processes totally independently and simply allowed them to communicate their boundary cells, with no individual process ever having a complete solution.</li>
+  <li>We cannot say which process will begin or complete its update first, or send its boundary cell data first. It does not matter! The processes are kept synchronised as much as is necessary by the message passing.</li>
+  <li>If one process is faster than the other or the message passing latency is high, then one or more process will stall while waiting to receive the data that it needs.</li>
+</ul>
+
+<h2 id="estimating-performance-in-message-passing">Estimating Performance in Message Passing</h2>
+
+<p>Message passing naturally incurs a performance overhead. Data communication channels between processes are generally speaking much slower than straight-forward reads to RAM. As such, when designing distributed systems we should bear in mind:</p>
+<ul>
+  <li>The frequency of message passing should be kept down where possible.</li>
+  <li>The size of messages should be kept down where possible.</li>
+  <li>In general, a smaller number of large messages is better than a large number of small messages <em>for a given amount of data</em>.
+    <ul>
+      <li>This is true in general of data movement, whether through message passing or memory reads to RAM or hard disks. Data movement generally involves a latency ($L$), which is a time overhead for every message regardless of size, and bandwidth ($B$), which is the amount of data that can be transferred in a given time.</li>
+    </ul>
+  </li>
+  <li>The time for $N$ bytes of data to be transferred in $k$ messages can be estimated using $t \approx N/B + kL$.
+    <ul>
+      <li>If you have to choose between sending a smaller amount of total data in a larger number of messages, or a larger amount of data using a smaller number of messages, then which you should pick will depend on which term in this expression becomes dominant!</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="common-models-of-communication-in-scientific-programming">Common Models of Communication in Scientific Programming</h2>
+
+<p>There are some patterns of communication that appear frequently in scientific programming, which often doesn’t require the extremely free form approach of more general asynchronous systems!</p>
+
+<h3 id="divide-process-and-aggregate-using-a-parent-process">Divide, Process, and Aggregate using a Parent process</h3>
+
+<p>A straight-forward way of handling many problems is to assign one process the “Parent” process. This is your main process which will initialise your other processes, divide work amongst them, and aggregate data from them. It may or may not do such tasks itself!</p>
+
+<p>To give the simplest example of how this kind of model can work, let’s look at it in the context of the merge-sort algorithm that we used in week 7. (Although sorting a list is not a very practical example as the communication overheads will probably be larger than the sorting time in practical cases, but we’ll ignore communication time for now!)</p>
+<ul>
+  <li>Merge sort calculates a sorted list by merging together sub-lists which have already been sorted.</li>
+  <li>So if we have $N$ child processes, the parent process can divide our list into $N$ chunks of (roughly) equal size, and ask each child to sort that list and send it back.</li>
+  <li>The Parent process can then merge all the sorted lists.</li>
+</ul>
+
+<p>We can visualise this as a flow chart like so:</p>
+
+<p><img src="images/Merge_Sort_Simple.jpg" alt="image" /></p>
+
+<p>In this case we could actually make things more efficient by allowing some pair-wise communication between child processes to merge sublists.</p>
+
+<p><img src="images/Merge_Sort_Pairwise.jpg" alt="image" /></p>
+
+<p>In this case instead of one thread merging all sub-lists, we can parallelise over them. As we merge lists pairwise, we will end up with an increasing number of processes idling.</p>
+
+<p>In these flow charts we have described what needs to be done but not necessarily which processes do it. We want our Parent process to divide the list up and broadcast it, and we want our parent process to end up with the sorted list at the end, but if we want to make the most of our resources we should probably have the parent process do some of the sorting work as well in this case. If we have 4 processes $P_{0…3}$, we could arrange our processes like so:</p>
+
+<p><img src="images/Merge_Sort_Processes.jpg" alt="image" /></p>
+
+<p>This kind of pattern of distributing work and aggregating results often happens in a loop, so that we have the division of a task followed by a central synchronisation, followed by a divided task again and so on.</p>
+
+<h3 id="communication-on-grids">Communication On Grids</h3>
+
+<p>Grids are a common feature in scientific programming, from lattices in solid state physics and grid methods for fluid simulations, to image processing techniques. Lots of data gets defined on grids, and the processing of this data is often dependent on the data immediately surrounding it in the grid. The game of life was a simple example of this very principle!</p>
+
+<p>The highly connected nature of grids gives raises an important question for distributed memory systems: what is the most efficient to divide up a grid so that we minimise our message passing? If we want to minimise the frequency and size of our messages between processes, then we need to minimise the number of cells along the boundary of the regions delogated to each process.</p>
+
+<p><img src="images/Unallocated_Grid.jpg" alt="image" /></p>
+
+<p>If we want to allocate this grid to four processes, how could we proceed? A simple approach would be to just split it into four vertical sections like so:</p>
+
+<p><img src="images/Vertical_Allocation_Grid.jpg" alt="image" /></p>
+
+<p>Here we’ve coloured the regions in four different colours to show the allocation to different processes. Any cells on the border of the coloured region will need to be broadcast to the neighbouring region(s).</p>
+<ul>
+  <li>The red and blue regions each broadcast and receive 8 cells to one other region.</li>
+  <li>The yellow and green regions broadcast and receive 16 cells each, split between two regions.</li>
+  <li>In total we need to send 48 out of 64 cells, and send 6 messages.</li>
+</ul>
+
+<p>We can divide up this region to reduce the number of cells on the boundary by dividing the grid into squares:</p>
+
+<p><img src="images/Square_Allocation_Grid.jpg" alt="image" /></p>
+
+<ul>
+  <li>In the simplest implementation each region needs to send 9 cells in three messages: for example the red region sends it bottom row to the yellow (4 cells), its right most column to the blue (4 cells), and its bottom left cell to the green (1 cell).</li>
+  <li>Doing it this way would result in sending 36 cells across 12 messages, so fewer cells but more messages.</li>
+  <li>We can do this using fewer messages however if we introduce some blocking i.e. we make some processes wait to receive data before sending data so that they can forward on shared data. This tends to lead to time idling though!</li>
+</ul>
+
+<p>Which solution and message passing pattern is most efficient may depend on your system and the message passing latency and bandwidth properties! If your message passing time is dominated by bandwidth, you should try to minimise the amount of data communicated (i.e. smallest number of boundary cells); if your message passing time is dominated by latency, you should try to minimise the number of messages that you send. For problems which have to communicate large amounts of data, the message passing time will likely be bandwidth dominated and so a smaller boundary is the preferable solution.</p>
+
+<h2 id="putting-things-together-performance-at-every-scale">Putting Things Together: Performance at Every Scale</h2>
+
+<p>Over the last few weeks we’ve looked at a few different ways of approaching performance programming in isolation, but it’s important to remember that we can (and should!) combine these principles where appropriate.</p>
+
+<h3 id="mixing-distributed-and-shared-memory-models">Mixing Distributed and Shared Memory Models</h3>
+
+<p>Distributed memory models have a lot of advantages in terms of simplifying memory management and allowing for much more complex systems involving different machines. However, data sharing in distributed systems is slow, which makes them very poorly suited to parallelising certain kinds of problems which involve substantial data sharing. There’d be no point in using a distributed system to transpose a matrix in parallel because passing the matrix components between processes would take longer than the memory reads to perform the transpose itself! But a matrix transpose <em>does</em> parallelise easily in a shared memory system, and if you do an out of place transpose there is no chance of writing to the same place in memory! Many of our basic list and matrix methods make more sense to perform with shared memory parallelism to avoid the messaging overheads.</p>
+
+<p>As an example of a complex problem which can take advantage of multiple levels of parallelism, let’s consider likelihood sampling, a very common need in scientific applications. We have some parameter space which defines our model (for example properties of the universe that we want to measure in physics, or parameters describing a disease in epidemiology) and we have a set of points in this space which represent models with different sets of values for these parameters, and we want to calculate the likelihood of each of these sets of parameters given the data that we have. This is how we <em>infer</em> model parameters from data. Calculating the likelihood will involve generating some observables from a model (i.e. calculating some function of these parameters), and doing some kind of multi-variate Gaussian (to compare to the data).</p>
+
+<ul>
+  <li>Each model evaluation and likelihood calculation is computationally expensive, but only needs a small amount of data to initialise (just the set of parameters)<sup id="fnref:data" role="doc-noteref"><a href="#fn:data" class="footnote" rel="footnote">1</a></sup>. This is a perfect example of something which can be allocated to separate processes in a distributed model! Each process is allocated one point in the parameter space and calculates the likelihood. There is no need for communication between processes to calculate the likelihood since they all work on independent points, and they only need to send a message to the parent process when they are done to report the calculated likelihood (again a very small amount of data).</li>
+  <li>The likelihood calculation itself will generally involve a lot of steps which need to be ordered (we tend to calculate a lot of functions which depend on the results of other functions etc. in scientific applications) and some linear algebera (for our multi-variate Gaussian we will need to handle the $x^T \Sigma^{-1} x$ term for our covariance matrix $\Sigma$, which itself may need to be generated for each point). This would mean a lot of communication and potential stalls if we were to try to parallelise these operations in a distributed way, but likely some good opportunities for threading when we need to deal with vectors, matrices, integrations and so on. So each process could also be multi-threaded on cores with shared memory.</li>
+</ul>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:data" role="doc-endnote">
+      <p>The observable data <em>does</em> need to be communicated to every process, <em>but only once</em> since it does not change. So for each new calculation we only need the new parameter set. <a href="#fnref:data" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,43 @@
+/* 
+* Pattern name: Flag
+* Use: Displaying content next to an image with the content vertically aligned to the middle of the image
+* Note: http://csswizardry.com/2013/05/the-flag-object/
+-------------------------------------------------------------- */
+
+.flag {
+	display: table;
+	width: auto;
+}
+
+.flag__aside, .flag__body {
+	display: table-cell;
+	vertical-align: middle;
+	.flag--top & {
+		vertical-align: top;
+	}
+	.flag--bottom & {
+		vertical-align: bottom;
+	}
+}
+
+.flag__aside {
+	padding-right: 1.5em;
+	> img {
+		display: block;
+		margin: 0;
+
+		.lt-ie9 & {
+			width: 100%;
+		}
+	}
+
+	.flag--rev & {
+		padding-right: 0;
+		padding-left: 1.5em;
+	}
+}
+
+.flag__body {
+	width: auto;
+	@include guttering;
+}

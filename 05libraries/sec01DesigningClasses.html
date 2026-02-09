@@ -1,0 +1,806 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Designing Classes and Code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="active"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="active"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 40 Minutes</p>
+
+<h1 id="designing-classes--code">Designing Classes &amp; Code</h1>
+
+<p>Classes in C++ are extremely flexible, and there are many different ways that we could design classes for different purposes. We’ve seen how we can use inheritance and composition to describe relationships between classes and objects, and how to control how information is accessed through access specifiers, but the ways in which we put these concepts to work can have a major impact on our code. These kinds of decisions rarely have a right and wrong answer, and there is a great deal of discussion in the C++ community over what constitutes good practice, but there are some techniques and principles that you will likely find yourself using repeatedly if you work with C++ in the future and are useful to learn about now.</p>
+
+<p>Good class design - and code design in general - is tailored towards the goals and priorities of a given project. In this course we will be focussing on programming for academic research, but in your career you may find yourself programming in many different contexts, and it is instructive to think about how differing priorities can lead to different design choices.</p>
+
+<h2 id="how-do-we-think-about-code-quality">How Do We Think About Code Quality?</h2>
+
+<p>Programming is not just about producing code that works or passes tests. If code is not also usable, it will not be used. If code is not also maintainable, it will become unusable. There are many aspects to code quality, the importance of which depends on the intended use of the code. A very dry list of code quality measures can be found in <a href="https://learning.oreilly.com/library/view/code-complete-second/0735619670/">Steve McConnell’s <em>Code Complete</em></a>:</p>
+
+<ul>
+  <li>External qualities
+    <ul>
+      <li>Correctness</li>
+      <li>Accuracy</li>
+      <li>Reliability</li>
+      <li>Robustness</li>
+      <li>Efficiency</li>
+      <li>Adaptability</li>
+      <li>Usability</li>
+    </ul>
+  </li>
+  <li>Internal qualities
+    <ul>
+      <li>Maintainability</li>
+      <li>Flexibility</li>
+      <li>Portability</li>
+      <li>Reusability</li>
+      <li>Readability</li>
+      <li>Testability</li>
+      <li>Understandability</li>
+    </ul>
+  </li>
+</ul>
+
+<p>McConnell splits the list into external qualities, which are important to the <em>user</em> of the code, and internal qualities, which are important to the programmers who contribute to the code. Let’s look at each of these in detail.</p>
+
+<h3 id="external-qualities"><strong>External Qualities</strong></h3>
+
+<p><strong>Correctness</strong></p>
+
+<p>Does the program do what it is meant to?</p>
+
+<p><strong>Accuracy</strong></p>
+
+<p>Are the results close enough to what I need?</p>
+
+<p><strong>Reliability</strong></p>
+
+<p>Are the results the same every time the program is run?</p>
+
+<p><strong>Robustness</strong></p>
+
+<p>Does the program handle unexpected inputs correctly?</p>
+
+<p><strong>Efficiency</strong></p>
+
+<p>Is the program fast enough?</p>
+
+<p><strong>Adaptability</strong></p>
+
+<p>Can I extend the program to do something similar but unintended?</p>
+
+<p><strong>Usability</strong></p>
+
+<p>Is the program easy to setup and use?</p>
+
+<h3 id="internal-qualities"><strong>Internal qualities</strong></h3>
+
+<p><strong>Maintainability</strong></p>
+
+<p>Are bugs easy to find and to fix?</p>
+
+<p><strong>Flexibility</strong></p>
+
+<p>Can I easily add new features to the code?</p>
+
+<p><strong>Portability</strong></p>
+
+<p>Am I able to run the program on many different architectures and operating systems?</p>
+
+<p><strong>Reusability</strong></p>
+
+<p>Can I use parts of the code in many different places?</p>
+
+<p><strong>Testability</strong></p>
+
+<p>Is the code written and designed in such a way that it’s easy to test?</p>
+
+<p><strong>Readability</strong></p>
+
+<p>How much time do I spend trying to read the code on a surface-level?</p>
+
+<p><strong>Understandability</strong></p>
+
+<p>How much time do I spend trying to understand the code?</p>
+
+<p>Some of these qualities are related; readability and understandability are very much entwined, as are correctness and accuracy. Being able to think about code from the perspectives of all these qualities gives you, as a programmer, a much better understanding of what it means to write good code. In saying that, codes designed for different purposes may have very different priorities when it comes to quality. For example, the software controlling a nuclear power station must be extremely correct, robust and reliable, but it may not need to be particularly portable, adaptable or even efficient. On the other hand, a game on you phone can prioritise usability and portability at the expense of some maintainability, robustness and even correctness (if it crashes or glitches, does it matter <em>that</em> much?).</p>
+
+<h2 id="some-guiding-principles">Some Guiding Principles</h2>
+
+<p>In general when programming we want our code to be <em>modular</em> in some way: we want our code to exist in independent chunks, each of which achieves a simple task, which can then be combined to perform more complex tasks. Writing functions is a good example of this, where each function generally calculates a single thing, but combining functions can process data in very complex ways. We can approach classes in a similar way, breaking structures into smaller classes which represent individual things and building more complex structures from these components through processes like composition or inheritance. This leads to more flexible representations that allow us to make efficient changes to our code.</p>
+
+<p>Below are some commonly recurring ideas in software design that you may want to consider. Bear in mind however, that there are no strict rules governing “good” or “bad” code design, and therefore no rule is applied 100% of the time. Make sure you always keep the goals of your code in mind when making choices about how to write it.</p>
+
+<h3 id="program-to-interfaces"><strong>Program To Interfaces</strong></h3>
+
+<p>We’ve seen when discussing inheritance that inferfaces can be created using abstract classes or templates. Interfaces are a key aspect of flexible, extensible class design, as they specify the expected functionality that a class will need without restricting the specific class. This means that if we program to an interface we can change the implementation of that component without changing any of the code for the parts of the program which use it, making updating our code much more efficient and flexible. This is generally a good property of programs that we should strive for when possible.</p>
+
+<p>Suppose, for example, that our program needs to load and display an image. There exists many different file formats for images, which all represent the images in different ways. In a bitmap image the colour values are stored for every pixel individually, and the image can be drawn by going through it pixel by pixel. A jpeg image on the other hand uses a special compression format that breaks the image into blocks (8 pixels by 8 pixels) and stores <em>fourier components</em> for those blocks. In order for the image to be reconstructed and displayed, we have to reconstruct each block by multiplying those fourier components by the basis functions. The functionality for the end user is the same either way: load an image, and display it. Code that the user writes shouldn’t have to care what the format of the image is in order to be able to use it, and this is where an interface becomes useful. If we have an <code class="language-plaintext highlighter-rouge">ImageDisplay</code> interface which promises a <code class="language-plaintext highlighter-rouge">load</code> and <code class="language-plaintext highlighter-rouge">display</code> function will be available, then we can write code which works with arbitrary objects which inherit from this class. We can then choose which implementation of the <code class="language-plaintext highlighter-rouge">ImageDisplay</code> interface to use based on the kind of file we are loading just at one single point (when the object is created), and the rest of the code is completely agnostic about that choice of implementation.</p>
+
+<p>Different object-oriented languages have different approach to implementing the concepts of interfaces. C++ has no explicit “interface” construct, but interfaces are usually implemented by abstract classes.</p>
+<ul>
+  <li>An interface is a guarantee that an object will implement a certain set of functionality.</li>
+  <li>The abstract class that defines an interface should not implement that functionality itself.</li>
+  <li>The functionality defined in an interface should be minimal to describe what is needed from objects of this kind.</li>
+</ul>
+
+<h3 id="kiss-keep-it-simple-stupid"><strong>KISS: Keep It Simple, Stupid</strong></h3>
+
+<p>The principle of <em>KISS</em> is straight-forward: try to keep your programs simple and understandable. Don’t obfuscate your code with complex structures that you don’t need or use, but keep things direct and make sure the structure of your code reflects the concepts that you are trying to model.</p>
+
+<h3 id="dry-dont-repeat-yourself"><strong>DRY: Don’t Repeat Yourself</strong></h3>
+
+<p>The basic principle here is to organise your code into re-usable blocks rather than rewriting the same functionality repeatedly. If you have some calculation that appears multiple times throughout your code, you can place that calculation inside a function which is called in different places to avoid repeating that logic.</p>
+
+<h2 id="raii-resource-acquisition-is-initialisation">RAII: Resource Acquisition Is Initialisation</h2>
+
+<p>The concept of RAII is of great importance in a language like C++ which allows you to manage memory manually. This pattern is designed to make your classes memory safe, and generally entails two key principles:</p>
+
+<ul>
+  <li>Memory allocated by your class should be allocated in the constructor.</li>
+  <li>Memory allocated by your class should be de-allocated in the destructor.</li>
+</ul>
+
+<p>If the constructor fails to allocate the resources required for the class, then it should throw an exception. Any resources already allocated by the class before reaching the exception should be deallocated.</p>
+
+<p>The goal is to guarantee the following:</p>
+
+<ul>
+  <li>Resources that are required by the object exist for the full lifetime of the object. This will prevent invalid memory access attempts.</li>
+  <li>Resources that are allocated by the object do not exist for longer than the object itself. This will prevent memory leaks.</li>
+</ul>
+
+<p>Since it’s good practice to use smart pointers for any pointers which actually own data (and therefore we should not need to manually make calls to <code class="language-plaintext highlighter-rouge">delete</code> in our destructor), the main times when we need to be concerned with RAII are in dealing with opening and reading or writing resources such as files. However, RAII can also be very useful for interfacing with C libraries which deal with raw pointers and which have specialised methods for creating and freeing them (rather than using <code class="language-plaintext highlighter-rouge">new</code> and <code class="language-plaintext highlighter-rouge">delete</code>); it can also often be easier to deal with C-style arrays rather than vectors when programming with MPI or interfacing to other devices like GPUs.</p>
+
+<p>RAII typically means wrapping these resources that you want to use in some class: rather than accessing a file directly in a function, which could be interrupted by an exception before it can close the file, wrap the file in a class which will automatically close the file in the destructor if the object goes out of scope. Then use that class in your function to access your file. If something goes wrong and an exception is thrown, your file will be closed when the stack unwinds and the file wrapper object is deleted.</p>
+
+<h3 id="raii-and-copying">RAII and Copying</h3>
+
+<p>Special care needs to be taken when objects that implement the RAII pattern are allowed to be copied. C++ will, where possible, implement a <em>default</em> <a href="https://en.cppreference.com/w/cpp/language/copy_constructor">copy constructor</a>, which allows the object to be copied, e.g.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MyObj</span> <span class="n">obj1</span><span class="p">;</span>
+<span class="n">MyObj</span> <span class="n">obj2</span> <span class="o">=</span> <span class="n">obj1</span><span class="p">;</span>  <span class="c1">// calls copy constructor to build obj2 by copying data from obj1</span>
+</code></pre></div></div>
+
+<p>The trouble with copies comes when we have classes which contain resources like raw pointers or file handles that need to be deleted or closed.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyObj</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">MyObj</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="o">~</span><span class="n">MyObj</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">delete</span> <span class="n">p</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="nl">private:</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>This class very responsibly places the allocation for the pointer in the constructor and the deallocation in the destructor, so creating a <code class="language-plaintext highlighter-rouge">MyObj</code> and letting it go out of scope will not cause any leaks.</li>
+</ul>
+
+<p>The problem with the raw pointer is that the default copy will simply copy the pointer across. This means that <strong>both</strong> <code class="language-plaintext highlighter-rouge">obj1</code> and <code class="language-plaintext highlighter-rouge">obj2</code> will contain a pointer <strong>to the same address</strong>, and consequenctly <strong>both destructors will attempt to free it</strong>. This is a double free error and will cause our program to crash! We have failed to properly model <em>ownership</em> of the resources in the case of the copy: we must always know which objects own what resources.</p>
+
+<p>When smart pointers are not appropriate, we can control this copy behaviour by overriding or disabling the copy constructor.</p>
+
+<h4 id="overriding-the-copy-constructor">Overriding the Copy Constructor</h4>
+
+<p>The copy constructor for a given type looks like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyObj</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="c1">// copy constructor</span>
+    <span class="n">MyObj</span><span class="p">(</span><span class="k">const</span> <span class="n">MyObj</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+
+<span class="p">...</span>
+</code></pre></div></div>
+<ul>
+  <li>It takes a (possibly <code class="language-plaintext highlighter-rouge">const</code>) <em>reference</em> to an object of the same class as its argument. It’s usually a good idea to make this a <code class="language-plaintext highlighter-rouge">const</code> reference since you probably don’t want your copy operation to be able to alter the original object!</li>
+  <li>It can take other parameters if you want <strong>but</strong> they must have default values supplied in the argument list. E.g. <code class="language-plaintext highlighter-rouge">MyObj(const MyObj &amp;other, int i=2){...}</code>.</li>
+</ul>
+
+<p>We can override this to make a deep copy by having the new object’s pointer point to a different memory location, and instead copy the <em>data</em> that the first object points to into the new location as well.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyObj</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="c1">// copy constructor</span>
+    <span class="n">MyObj</span><span class="p">(</span><span class="k">const</span> <span class="n">MyObj</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="o">*</span><span class="n">other</span><span class="p">.</span><span class="n">p</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>Note that this deep copy means that the data that these two objects point to is now independent: changing one won’t change the other because they are looking at different addresses.</p>
+
+<h4 id="disabling-the-copy-constructor">Disabling the Copy Constructor</h4>
+
+<p>We can prevent copying entirely by disabling the copy constructor.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyObj</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="c1">// copy constructor</span>
+    <span class="n">MyObj</span><span class="p">(</span><span class="k">const</span> <span class="n">MyObj</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+
+<span class="p">...</span>
+</code></pre></div></div>
+<p>This makes it a compilation error to try to copy the object, and therefore the our code <code class="language-plaintext highlighter-rouge">MyObj obj2 = obj1;</code> won’t compile at all.</p>
+
+<p>There are more approaches that one can take to this problem depending on exactly what ownership behaviour you want, just <strong>always remember to consider ownership when implementing classes with RAII</strong>.</p>
+
+<h2 id="decoupling-code-with-abstract-classes--dependency-injection">Decoupling Code with Abstract Classes &amp; Dependency Injection</h2>
+
+<p>Dependency injection is a commonly used technique to make a pair of classes which depend on one another <em>loosely coupled</em>, i.e. to make changes to one class as independent of the other class as possible.</p>
+
+<p>Consider for example the case where we have one class which contains an instance of another. In this case, a <code class="language-plaintext highlighter-rouge">Simulation</code> class which contains a simple <code class="language-plaintext highlighter-rouge">Data</code> class.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Data</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">x</span><span class="o">:</span> <span class="n">data</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Simulation</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Simulation</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">Data</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printData</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">data</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>The definition of class <code class="language-plaintext highlighter-rouge">Simulation</code> is dependent on the definition of class <code class="language-plaintext highlighter-rouge">Data</code>.</li>
+  <li>The constructor for <code class="language-plaintext highlighter-rouge">Simulation</code> calls the constructor of <code class="language-plaintext highlighter-rouge">Data</code> directly; if the constructor of <code class="language-plaintext highlighter-rouge">Data</code> changes (because we have changed something about our data representation) then the class <code class="language-plaintext highlighter-rouge">Simulation</code> must also be changed.</li>
+  <li>The class <code class="language-plaintext highlighter-rouge">Data</code> may develop and contain functionality that is irrelevant to what <code class="language-plaintext highlighter-rouge">Simulation</code> needs.</li>
+</ul>
+
+<p>Dependency injection breaks the coupling between these classes by contructing the component (<code class="language-plaintext highlighter-rouge">Data</code>) <em>separately</em>, and passing it into the constructor for the class of object that will hold it (<code class="language-plaintext highlighter-rouge">Simulation</code>). This means that if we change the way that the <code class="language-plaintext highlighter-rouge">Data</code> class is constructed, we don’t have to make any changes to the <code class="language-plaintext highlighter-rouge">Simulation</code> class.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Simulation</span>
+<span class="p">{</span>
+    <span class="n">Simulation</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printData</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">data</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Note that the <code class="language-plaintext highlighter-rouge">Simulation</code> class now does not call the constructor for the <code class="language-plaintext highlighter-rouge">data</code> object: the <code class="language-plaintext highlighter-rouge">Data</code> implementation can change completely as long as it still implements the <code class="language-plaintext highlighter-rouge">print</code> method, which is the only thing that we need from it in this example. The <code class="language-plaintext highlighter-rouge">Simulation</code> class is now <em>decoupled</em> from any elements of the <code class="language-plaintext highlighter-rouge">Data</code> class that it does not directly need to know about and use.</li>
+</ul>
+
+<p>We can also add a setter function using a similar appraoch. With this kind of structure we can create classes that allow components to be swapped out during the lifetime of the object, something that will be very important for the next pattern that we look at.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Simulation</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Simulation</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">setData</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printData</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">data</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>If we have two data sets <code class="language-plaintext highlighter-rouge">dataSet1</code> and <code class="language-plaintext highlighter-rouge">dataSet2</code> we can now change the data that the <code class="language-plaintext highlighter-rouge">Simulation</code> object looks at runtime without creating a new <code class="language-plaintext highlighter-rouge">Simulation</code> object.</li>
+</ul>
+
+<p>Using setters to implement dependency injection should not lead you to neglect your constructors! It’s generally best if you always <strong>make sure that objects are constructed in a valid state</strong>. In this example, we might consider any object where the <code class="language-plaintext highlighter-rouge">data</code> pointer is null to be invalid. In order to avoid a partially constructed object, we need to make sure the dependency injection is implemented in the constructor (and optionally the setter), and always checks for null pointers.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Simulation</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Simulation</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">inData</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"Simulation error: data set pointer cannot be null."</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">setData</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">inData</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"Simulation error: data set pointer cannot be null."</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printData</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">data</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="example-strategy-pattern">Example: Strategy Pattern</h2>
+
+<p>The <em>strategy pattern</em> takes advantage of polymorphic behaviour to provide different solutions or representations for problems at runtime.</p>
+
+<p>Often the best solution to use for a particular problem will depend on the details of that problem: some sorting algorithms are faster on shorter lists while other are faster on longer lists, or some integrators might be more accurate and efficient when integrating slowly changing functions but others work better for oscillating functions. If we have a class which needs to have a component which achieves a task like this, then rather than having multiple classes with different concrete implementations of these algorithms built in, we can have a single class with a pointer to an abstract base class e.g. a sorter, or an integrator. We can then have different sub-classes of our abstract class that implement the different solutions to our problem, and we can pass different solutions into our main class, or even change solutions throughout the runtime based on considerations that we can’t know at compile time (e.g. the length of a list that needs to be sorted). Let’s continue our example from dependency injection, but now let’s add an abstract base class for the <code class="language-plaintext highlighter-rouge">Data</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AbstractSimData</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Data</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AbstractSimData</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">x</span><span class="o">:</span> <span class="n">data</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AbstractSimData</code> is an abstract class, because its function <code class="language-plaintext highlighter-rouge">print</code> is not implemented. It defines the interface that any data class that wants to be used with the <code class="language-plaintext highlighter-rouge">Simulation</code> class would need to implement. This interface should be kept to the minimum required.</li>
+  <li><code class="language-plaintext highlighter-rouge">print</code> is <em>pure</em> and <em>virtual</em> which means that it will always be overridden by a derived class. This defines a “contract”: a set of functionality that anything which inherits from this abstract class <em>must</em> implement. We can use such abstract classes to define minimal functionality required by other classes: this is sometimes referred to as an “interface”.
+    <ul>
+      <li>Interfaces are a core language feature of some other languages like Java and C#, but are not explicitly implemented in C++.</li>
+      <li>In C++ we generally implement interfaces using abstract classes containing only pure virtual functions and variables.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>With this in place, we can define multiple classes which inherit from <code class="language-plaintext highlighter-rouge">AbstractSimData</code>, and which can then store data in different ways (e.g. maps instead of vectors and so on), or implement functions differently.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Simulation</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Simulation</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">AbstractSimData</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">setData</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">AbstractSimData</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">inData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">inData</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">printData</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">data</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">AbstractSimData</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Simulation</code> doesn’t care <em>how</em> the <code class="language-plaintext highlighter-rouge">data</code> component implements <code class="language-plaintext highlighter-rouge">print</code>, it only needs to know that it <em>can</em>. The abstract base class has captured everything that is required by the <code class="language-plaintext highlighter-rouge">Simulation</code> class.</li>
+  <li>With the setter in place we can change the approach that we are taking whenever we need to.</li>
+</ul>
+
+<h2 id="example-factory-pattern">Example: Factory Pattern</h2>
+
+<p>When dealing with abstract classes it is sometimes useful to be able to make objects of different sub-classes depending on runtime considerations. In this case, we can define another class or method, sometimes known as a “factory”, which returns something of the base type. Common examples might be selecting an approach using a runtime flag, or changing approaches based on the size of the problem.</p>
+
+<p>A factory can be implemented as a class, but often the simplest approach (in C++) is to just have a factory function like the one below.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">AbstractDataManager</span><span class="o">&gt;</span> <span class="n">DataManagerFactory</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">SmallDataManager</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">LargeDataManager</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AbstractDataManager</code> is an abstract base class</li>
+  <li><code class="language-plaintext highlighter-rouge">SmallDataManager</code> and <code class="language-plaintext highlighter-rouge">LargeDataManager</code> are two concrete classes which inherit from <code class="language-plaintext highlighter-rouge">AbstractDataManager</code>, and are optimised for dealing with data on different scales.</li>
+  <li>The factory uses the size of the data being passed in to make a decision about the approach that is going to be taken. The size of the vector is only known at runtime.</li>
+</ul>
+
+<h2 id="implementing-multiple-interfaces">Implementing Multiple Interfaces</h2>
+
+<p>When working with interfaces which define minimal behaviour, it is possible that useful objects will need to implement more than one set of behaviour. This is easy to do when the sets of behaviour are nested i.e. we can model it with a chain of inheritance. (An <code class="language-plaintext highlighter-rouge">Undergraduate</code> is a type of <code class="language-plaintext highlighter-rouge">Student</code> which is a type of <code class="language-plaintext highlighter-rouge">UniversityMember</code>.) Things can be slightly more complicated when an object implements two different functionalities which are independent of one another, for example a <code class="language-plaintext highlighter-rouge">StudentTeachingAssistant</code> is a <code class="language-plaintext highlighter-rouge">Student</code> and an <code class="language-plaintext highlighter-rouge">Employee</code>, but a <code class="language-plaintext highlighter-rouge">Student</code> is not a type of <code class="language-plaintext highlighter-rouge">Employee</code> (and vice versa).</p>
+
+<p>In this case we would need to implement two interfaces independently, which can be done using multiple inheritance. Multiple inheritance is a complex topic in C++ that goes beyond implementing multiple abstract interfaces, so you should think carefully about whether, and how, you use it. A good rule of thumb is to avoid it where you can (and limit inheritance to tree-like structures), and if you <em>do</em> need to use it then limit yourself to inheritance from abstract classes with no explicit implementation or data members.</p>
+
+<p>As an example, let’s say we have a computer system that models people in a university and it has two classes <code class="language-plaintext highlighter-rouge">Student</code> and <code class="language-plaintext highlighter-rouge">Employee</code> to represent roles which can be taken by people in the university. We’ll have some systems that process employees, and some that deal with students. There will likely be multiple types of students and employees, which we can fit seamlessly into these systems by having derived classes which inherit from <code class="language-plaintext highlighter-rouge">Student</code> or <code class="language-plaintext highlighter-rouge">Employee</code>. Now say we want a class to model a student teaching assistant - these are both students <em>and</em> employees, and should be able to function in parts of the system that deal with either. In this case we need a class that is recognisable as both a <code class="language-plaintext highlighter-rouge">Student</code> and an <code class="language-plaintext highlighter-rouge">Employee</code> in our program. We can do this by declaring multiple inheritance:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">StudentTA</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Student</span><span class="p">,</span> <span class="k">public</span> <span class="n">Employee</span> <span class="p">{};</span>
+</code></pre></div></div>
+<ul>
+  <li>We can declare a class to inherit from as many classes as we like</li>
+  <li>We need to declare <code class="language-plaintext highlighter-rouge">public</code>, <code class="language-plaintext highlighter-rouge">private</code>, or <code class="language-plaintext highlighter-rouge">protected</code> for each class we inherit from.</li>
+</ul>
+
+<p>There are some special problems that we need to look out for when working with multiple inheritance.</p>
+<ul>
+  <li>If more than one base class contains a member with the same name, then calling for that member from the derived class will be ambiguous and result in a compiler error. For example, if <code class="language-plaintext highlighter-rouge">Student</code> and <code class="language-plaintext highlighter-rouge">Employee</code> both have a <code class="language-plaintext highlighter-rouge">department</code> member variable (or function), calling <code class="language-plaintext highlighter-rouge">myTA.department</code> will be ambiguous unless it is overridden by the <code class="language-plaintext highlighter-rouge">StudentTA</code> class.
+    <ul>
+      <li>Remember that inherited classes contain copies of the base classes that they inherit from.</li>
+      <li>This means that if the variable <code class="language-plaintext highlighter-rouge">myTA</code> is of type <code class="language-plaintext highlighter-rouge">StudentTA</code> then it will actually have two different <code class="language-plaintext highlighter-rouge">department</code> variables: <code class="language-plaintext highlighter-rouge">Student::department</code> and <code class="language-plaintext highlighter-rouge">Employee::department</code>. These are independent of one another.</li>
+      <li>These can be explicitly accessed using e.g. <code class="language-plaintext highlighter-rouge">myTA.Student::department</code>. (Note that this can be done in derived classes in general, if you want to explicitly access the member of a base class even without multiple inheritance.)</li>
+      <li><strong>N.B.</strong> This is not a problem when working with interfaces since this can resolve the ambiguity. For example, if I have a function such as <code class="language-plaintext highlighter-rouge">calculatePayroll(Employee &amp;person)</code> which accesses the <code class="language-plaintext highlighter-rouge">department</code> variable, then because the person is being interpreted as being of type <code class="language-plaintext highlighter-rouge">Employee</code> in this context, calling <code class="language-plaintext highlighter-rouge">person.department</code> will unambiguously look for the department associated with the <code class="language-plaintext highlighter-rouge">Employee</code> class. This is because an object being treated as an <code class="language-plaintext highlighter-rouge">Employee</code> can only have access to the <code class="language-plaintext highlighter-rouge">Employee</code> members, and so can’t know about any members from the <code class="language-plaintext highlighter-rouge">Student</code> class.</li>
+      <li>Try not to duplicate functionality like <code class="language-plaintext highlighter-rouge">department</code> in multiple classes. If closely related classes implement the same functionality, it could be that this is better handled by a super-class from which they inherit e.g. <code class="language-plaintext highlighter-rouge">UniversityMember</code>.</li>
+    </ul>
+  </li>
+  <li>Special problems arise from the “Diamond Problem”: this is where a class inherits from two classes, which in turn both inherit from the same class. For example, if we have a <code class="language-plaintext highlighter-rouge">UniversityMember</code> class, and <code class="language-plaintext highlighter-rouge">Employee</code> and <code class="language-plaintext highlighter-rouge">Student</code> both inherit from <code class="language-plaintext highlighter-rouge">UniversityMember</code>, and then <code class="language-plaintext highlighter-rouge">StudentTA</code> inherits from both <code class="language-plaintext highlighter-rouge">Employee</code> and <code class="language-plaintext highlighter-rouge">Student</code>.
+    <ul>
+      <li>In this case our <code class="language-plaintext highlighter-rouge">StudentTA</code> object contains both <code class="language-plaintext highlighter-rouge">Employee</code> and <code class="language-plaintext highlighter-rouge">Student</code> objects.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Employee</code> object contains a <code class="language-plaintext highlighter-rouge">UniversityMember</code> object.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Student</code> object contains a <code class="language-plaintext highlighter-rouge">UniversityMember</code> object as well.</li>
+      <li>This means our <code class="language-plaintext highlighter-rouge">StudentTA</code> has two versions of all of the <code class="language-plaintext highlighter-rouge">UniversityMember</code> member variables and functions! These cannot be made unambiguous because they originate from the same class, and thus we can’t use the namespace to differentiate.</li>
+      <li>We can solve this using <em>virtual inheritance</em>. If <code class="language-plaintext highlighter-rouge">Employee</code> and <code class="language-plaintext highlighter-rouge">Student</code> both use virtual inheritance from person (<code class="language-plaintext highlighter-rouge">class Employee : virtual public UniversityMember</code>) then there will only ever be one copy of the base class.</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

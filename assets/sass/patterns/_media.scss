@@ -1,0 +1,45 @@
+/* 
+* Pattern name: Media
+* Use: For a content block aligned to an image
+* Note: http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+-------------------------------------------------------------- */
+
+.media {
+	@extend .clearfix;
+}
+
+.media__aside {
+	float: left;
+	margin-right: 1em;
+	min-height: 1px; // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
+	@include respond-min($screen-md) {
+		margin-right: 1.5em;
+	}
+
+	@include respond-max($screen-md) {
+		display: none;
+	}
+}
+
+.media__aside--constrain {
+	max-width: 7em;
+}
+
+.media__aside img,
+img.media__aside {
+	width: auto !important;
+	height: auto !important;
+}
+
+.media__body {
+	overflow: hidden;
+	margin: 0;
+	@include respond-max($screen-md) {
+		@include rem(font-size, $font-size-sm);
+	}
+}
+
+.media__body--wide {
+	@extend .media__body;
+	max-width: 60em;
+}

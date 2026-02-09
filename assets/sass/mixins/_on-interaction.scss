@@ -1,0 +1,13 @@
+/* 
+* Mixin name: On interaction
+* Use: Shorthand for most common interaction states
+* Note: N/A
+-------------------------------------------------------------- */
+
+@mixin on-interaction {
+	&:hover,
+	&:active,
+	&:focus {
+		@content;
+	}
+}

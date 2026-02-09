@@ -1,0 +1,244 @@
+/* 
+* Base name: Buttons
+* Note: N/A
+-------------------------------------------------------------- */
+
+
+.btn {
+	background-color: #666;
+	color: $white;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+	color: $white;
+	padding: .75em 1.5em;
+	text-align: left;
+	position: relative;
+	border: 1px solid rgba($black, 0.21);
+	text-shadow: 0 1px 0 rgba($black, 0.15);
+	line-height: 1;
+	-webkit-appearance: none;
+	&:active {
+		background-color: $active-button;
+	}
+	@include inline-block;
+	@include rem(font-size, $font-size-sm);
+	@include on-interaction {
+		background-color: $hover-button;
+		color: $white;
+		text-decoration: none;
+	}
+
+	.lt-ie9 & {
+		border: 0;
+	}
+}
+
+.btn--small {
+	padding: 8px 20px 8px 20px;
+	@include rem(font-size, $font-size-xs);
+}
+
+.btn--gradient.disabled {
+	border-bottom: 1px solid rgba($black, 0.21);
+	color: #999;
+	text-shadow: none;
+	&:hover,:focus {
+		@include gradient($disabled-hvr-btn-grad1, $disabled-hvr-btn-grad2);
+	}
+	&:active {
+		@include gradient($disabled-act-btn-grad1, $disabled-act-btn-grad2);
+	}
+	@include gradient($disabled-btn-grad1, $disabled-btn-grad2);
+}
+
+button {
+	background: $button-bg-col;
+	cursor: pointer;
+	padding: $button-padding;
+	color: $white;
+	border: 0;
+	border-radius: 0.4em;
+	&:hover,:focus {
+		background-color: $hover-button;
+		border: 0;
+	}
+	&:active {
+		background-color: $active-button;
+		border: 0;
+	}
+}
+
+/* Gradient Button's Colors
+-------------------------------------------------------------- */
+
+.btn--gradient.darkgreen {
+	@include gradient($darkgreen-b, $darkgreen);
+}
+
+.btn--gradient.midgreen {
+	@include gradient($midgreen-b, $midgreen);
+}
+
+.btn--gradient.brightgreen {
+	@include gradient($brightgreen-b, $brightgreen);
+}
+
+.btn--gradient.lightgreen {
+	@include gradient($lightgreen-b, $lightgreen);
+}
+
+.btn--gradient.yellow {
+	@include gradient($yellow-b, $yellow);
+}
+
+.btn--gradient.darkred {
+	@include gradient($darkred-b, $darkred);
+}
+
+.btn--gradient.midred {
+	@include gradient($midred-b, $midred);
+}
+
+.btn--gradient.brightred {
+	@include gradient($brightred-b, $brightred);
+}
+
+.btn--gradient.lightred {
+	@include gradient($lightred-b, $lightred);
+}
+
+.btn--gradient.orange {
+	@include gradient($orange-b, $orange);
+}
+
+.btn--gradient.darkpurple {
+	@include gradient($darkpurple-b, $darkpurple);
+}
+
+.btn--gradient.midpurple {
+	@include gradient($midpurple-b, $midpurple);
+}
+
+.btn--gradient.brightpink {
+	@include gradient($brightpink-b, $brightpink);
+}
+
+.btn--gradient.lightpurple {
+	@include gradient($lightpurple-b, $lightpurple);
+}
+
+.btn--gradient.warmgrey {
+	@include gradient($warmgrey-b, $warmgrey);
+}
+
+.btn--gradient.darkblue {
+	@include gradient($darkblue-b, $darkblue);
+}
+
+.btn--gradient.midblue {
+	@include gradient($midblue-b, $midblue);
+}
+
+.btn--gradient.brightblue {
+	@include gradient($brightblue-b, $brightblue);
+}
+
+.btn--gradient.lightblue {
+	@include gradient($lightblue-b, $lightblue);
+}
+
+.btn--gradient.stone {
+	@include gradient($stone-b, $stone);
+}
+
+.btn--gradient.darkbrown {
+	@include gradient($darkbrown-b, $darkbrown);
+}
+
+/* Gradient button background color on click
+-------------------------------------------------------------- */
+
+.btn--gradient.darkgreen:active {
+	background: $darkgreen;
+}
+
+.btn--gradient.midgreen:active {
+	background: $midgreen;
+}
+
+.btn--gradient.brightgreen:active {
+	background: $brightgreen;
+}
+
+.btn--gradient.lightgreen:active {
+	background: $lightgreen;
+}
+
+.btn--gradient.yellow:active {
+	background: $yellow;
+}
+
+.btn--gradient.darkred:active {
+	background: $darkred;
+}
+
+.btn--gradient.midred:active {
+	background: $midred;
+}
+
+.btn--gradient.brightred:active {
+	background: $brightred;
+}
+
+.btn--gradient.lightred:active {
+	background: $lightred;
+}
+
+.btn--gradient.orange:active {
+	background: $orange;
+}
+
+.btn--gradient.darkpurple:active {
+	background: $darkpurple;
+}
+
+.btn--gradient.midpurple:active {
+	background: $midpurple;
+}
+
+.btn--gradient.brightpink:active {
+	background: $brightpink;
+}
+
+.btn--gradient.lightpurple:active {
+	background: $lightpurple;
+}
+
+.btn--gradient.warmgrey:active {
+	background: $warmgrey;
+}
+
+.btn--gradient.darkblue:active {
+	background: $darkblue;
+}
+
+.btn--gradient.midblue:active {
+	background: $midblue;
+}
+
+.btn--gradient.brightblue:active {
+	background: $brightblue;
+}
+
+.btn--gradient.lightblue:active {
+	background: $lightblue;
+}
+
+.btn--gradient.stone:active {
+	background: $stone;
+}
+
+.btn--gradient.darkbrown:active {
+	background: $darkbrown;
+}

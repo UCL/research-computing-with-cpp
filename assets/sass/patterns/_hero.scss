@@ -1,0 +1,158 @@
+/* 
+* Pattern name: Hero
+* Use: Intro copy overlaying a feature image
+* Note: N/A
+-------------------------------------------------------------- */
+
+.hero {
+	@extend .clearfix;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	background-color: white;
+	background-size: cover;
+	background-position: right center;
+	position: relative;
+	@include alignment;
+	@include respond-max($screen-lg) { 
+		padding-top: 1.5em;
+		padding-bottom: 1.5em;
+		background-position: -9999px;
+		background-repeat: no-repeat;
+	}
+	@include respond-max($screen-xs) {
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+	.hero__body--background {
+		@include respond-max($screen-lg) {
+			padding: 0;
+		}
+	}
+}
+
+.hero--home {
+	padding-left: 35px;
+	padding-right: 35px;
+	margin-left: -35px;
+	margin-right: -35px;
+	padding-bottom: 10em;
+	border: 0;
+	background-image: url('/assets/images/hero-image-taught-desktop.jpg');
+	background-position: 90% center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	@include respond-max($screen-xxl) {
+		background-position: 80% center;
+	}
+	@include respond-max($screen-md) {
+		background-image: none;
+	}
+	@include respond-min-max($screen-md, $screen-xxl) {
+		padding-bottom: 14em;
+	}
+	@include respond-max($screen-md) {
+		padding-bottom: 1.5em;
+	}
+	.hero__body--background {
+		@include respond-min-max($screen-md, $screen-lg) {
+			padding: 1.5em;
+		}
+	}
+}
+
+.hero__content {}
+
+.hero__body {   
+	box-sizing: border-box;
+	> *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.hero__body--background {
+	@include respond-min($screen-md) {
+	  padding: 2em;
+	  background-color: rgba(white, 0.6);
+	}
+	@include respond-max($screen-md) {
+		padding: 0;
+	}
+
+	.lt-ie9 & {
+		background-image: url(#{$static-url}/images/hero-bg-ie.png);
+	}
+}
+
+.hero__title {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	@include respond-max($screen-md) {
+		font-size: 1.5em;
+	}
+}
+
+.hero__title--large {
+	@extend %as-h1;
+	@include respond-max($screen-xxl) {
+		font-size: 2.25em;
+	}
+	@include respond-max($screen-lg) {
+		font-size: 2em;
+	}
+	@include respond-max($screen-md) {
+		font-size: 1.5em;
+	}
+}
+
+.hero__blurb {
+	margin-top: 1em;
+	@include respond-max($screen-lg) {
+		display: none;
+	}
+}
+
+.hero__detail {
+	margin-top: .5em;
+	@include respond-max($screen-md) {
+		font-size: 1.25em;
+	} 
+}
+
+.hero__sub {
+	@include respond-max($screen-md) {
+		display: none;
+	} 
+}
+
+.hero__tags {
+	margin-top: 1em;
+}
+
+.hero__dropdown {
+	margin-bottom: 2em;
+	h2 {
+		margin-bottom: 16px;
+	}
+}
+
+.hero__dropdown__detail {
+	display: inline;
+	float: left;
+	padding: 6px 10px 6px 0;
+	@include rem(font-size, $font-size-sm);
+}
+	
+.hero__sidebar {
+	margin-bottom: 2em;
+	@include gs-span(t, 3);   
+	@include gs-span(dl, 5);   
+}
+
+.hero__sidebar--small {
+	@include respond-min($screen-xl) {
+		width: 20%;
+		float: right;
+		margin-left: 0;
+		margin-right: 0;        
+	}
+}

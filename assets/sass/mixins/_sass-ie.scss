@@ -1,0 +1,66 @@
+/* 
+* Name: SASS-IE
+* Use: Media query handling outside of Gridset
+* Notes: See http://jakearchibald.github.io/sass-ie/
+-------------------------------------------------------------- */
+
+$fix-mqs: false !default;
+
+@mixin respond-min($width) {
+	@if $fix-mqs {
+		@if $fix-mqs >= $width {
+			@content;
+		}
+	}
+	@else {
+		@media (min-width: #{$width}) {
+			@content;
+		}
+	}
+}
+
+@mixin respond-max($width) {
+	@if $fix-mqs {
+		@if $fix-mqs < $width {
+			@content;
+		}
+	}
+	@else {
+		@media (max-width: #{($width - 1)}) {
+			@content;
+		}
+	}
+}
+
+@mixin respond-min-max($min-width, $max-width) {
+	@if $fix-mqs {
+		@if $fix-mqs >= $min-width and $fix-mqs < $max-width {
+			@content;
+		}
+	}
+	@else {
+		@media (min-width: #{$min-width}) and (max-width: #{($max-width - 1)}) {
+			@content;
+		}
+	}
+}
+
+@mixin print() {
+	@media print {
+		@content
+	}
+}
+
+$lt-ie9: false !default;
+
+@mixin not-lt-ie9 {
+	@if $lt-ie9 == false {
+		@content;
+	}
+}
+
+@mixin lt-ie9 {
+	@if $lt-ie9 {
+		@content;
+	}
+}

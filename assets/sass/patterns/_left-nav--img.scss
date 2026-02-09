@@ -1,0 +1,17 @@
+.org-unit-logo {
+    display: none; // because of how the layouts are worked we have to hide it.
+}
+
+@include gs-media(t,min){
+  .org-unit-logo {
+    clear: both;
+    display: block;
+    float: left;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+
+  .org-unit-logo img {
+    max-width: 320px;
+  }
+}

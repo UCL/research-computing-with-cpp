@@ -1,0 +1,296 @@
+/* 
+* Base name: Typography
+* Note: N/A
+-------------------------------------------------------------- */
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	color: #333333;
+	background-color: #d9d9d1;
+	overflow-x: hidden;
+	line-height: $line-height;
+	hyphens: none;
+	-ms-hyphens: none;
+	word-wrap: break-word;
+	-webkit-text-size-adjust: none;
+	font-family: $font-san-serif;
+	@include rem(font-size, $font-size-base);
+}
+
+/* Vertical rhythym
+-------------------------------------------------------------- */
+
+p, ul, ol, dl, blockquote, hgroup, address, table, fieldset, figure, pre, img, .page-head, .media, .island, .islet, .pill, .responsive-container, .advert, .menu-block, .box, .input-group, .accordion, .video-wrap {
+	margin-bottom: 1.5em;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1, h2, h3 {
+	font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-family: $font-san-serif;
+	small {
+		font-size: 80%;
+		color: #6f6f6f;
+		line-height: 0;
+	}
+}
+
+h1, .as-h1, %as-h1 {
+	@include rem(font-size, $font-size-h1);
+	@include respond-max($screen-md) {
+		@include rem(font-size, $font-size-h2);
+	}
+}
+
+h2, .as-h2, %as-h2 {    
+	@include rem(font-size, $font-size-h2);
+	@include respond-max($screen-md) {
+		@include rem(font-size, $font-size-h3);
+	}
+}
+
+h3, .as-h3, %as-h3 { 
+	@include rem(font-size, $font-size-h3);
+	@include respond-max($screen-md) {
+		@include rem(font-size, $font-size-h4);
+	}
+}
+
+h4, .as-h4, %as-h4 {
+	@include rem(font-size, $font-size-h4);
+	text-transform: none;
+	letter-spacing: 0;
+	@include respond-max($screen-md) {
+		@include rem(font-size, $font-size-base);
+	}
+}
+
+h5, .as-h5, %as-h5 {
+	@include rem(font-size, $font-size-h5);
+	font-style: normal;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+h6, .as-h6, %as-h6 {
+	@include rem(font-size, $font-size-h6);
+	color: #999;
+	margin: 1em 0 0;
+}
+
+a {
+	color: $link-colour;
+	text-decoration: none;
+	@include on-interaction {
+		color: $link-colour;
+		text-decoration: underline;
+	}
+}
+
+/* Quotes
+-------------------------------------------------------------- */
+
+blockquote {
+	font-style: italic;
+	overflow: hidden;
+}
+
+// Emphasis & misc
+// -------------------------
+
+small,
+.small {
+	font-weight: 400;
+	@include rem(font-size, $font-size-xs);
+}
+
+strong,
+.strong {
+	font-weight: 600;
+}
+
+cite, .cite, em, dfn { 
+	font-style: italic;
+}
+
+
+/* Inline styles
+-------------------------------------------------------------- */
+
+.text-muted {
+	color: #999999;
+}
+
+.text-success {
+	color: #468847;
+}
+
+.text-error {
+	color: #b94a48;
+}
+
+.mod {
+	color: $lightgrey;
+	clear: both;
+	@include rem(font-size, $font-size-xs);
+}
+
+ins {
+	background-color: #F0F0F0;
+	color: $black;
+	text-decoration: none;
+	padding: 0 0.125em;
+}
+
+mark {
+	padding: 0 0.125em;
+}
+
+del {
+	color: #666;
+}
+
+time {
+	@extend %text-capitalize;
+}
+
+.standfirst {
+	font-size: 20px;
+	@include gs-media(m, max) {
+		font-size: 18px;
+	}
+}
+
+
+/* Lists
+-------------------------------------------------------------- */
+
+ol, ul {
+	margin-top: 0;
+	margin-left: 1.5em;
+	ul {
+		margin-top: 1em;
+		margin-left: 1em;
+	}
+}
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+.list-unstyled, %list-unstyled {
+	@include list-unstyled;
+}
+
+// Inline turns list items into inline-block
+.list-inline, %list-inline {
+	@extend %list-unstyled;
+	display: inline;
+	margin-left: 0;
+	> li {
+		margin-right: 10px;
+		@include inline-block;
+	}
+}
+
+.list-inline--divided {
+	li {
+		&:after {
+			content: "|";
+			margin-left: 10px;
+		}
+		&:last-child {
+			&:after {
+				content: "";
+				display: none;
+			}
+		}	
+	}
+}
+
+.list-divided {
+	li {
+		margin-bottom: 1em;
+		padding-bottom: 1em;
+		@include rem(margin-bottom, 1.4);
+		@include rem(padding-bottom, 1.4);
+		border-bottom: 1px solid #cccccc;
+		&:last-child {
+			border-bottom: 0;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.tabbed > div ul li, .box ul li {
+	margin-left: 1em;
+}
+
+/* Ordered lists
+-------------------------------------------------------------- */
+
+ol li {
+	list-style-type: decimal;
+	margin-bottom: 1em;
+	ol {
+		margin-top: 1em;
+	}
+	li {
+		margin-left: 1.5em;
+	}
+
+}
+
+/* Definition lists
+-------------------------------------------------------------- */
+
+dt {
+	font-weight: 700;
+}
+
+dd + dt {
+	margin-top: 10px;
+}
+
+.dl-inline {
+	@extend %clearfix;
+	dt {
+		min-width: 100px;
+	}
+	dt, dd {
+		float: left;
+		margin-top: 0;
+		@include rem(margin-right, .8);
+		@include rem(margin-bottom, .4);
+	}
+	dd + dt, dd + dd {
+		clear: left;
+	}
+	dd + dd {
+		float: none;
+	}
+	dt {
+		font-weight: bold;
+	}
+}
+
+
+/* Code styling
+-------------------------------------------------------------- */
+
+pre {
+	margin: 1.5em 0;
+	white-space: pre;
+}
+
+pre,code,tt {
+	font: 1em $font-code;
+}

@@ -1,0 +1,556 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>HelloWorld with CMake</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated reading time: 40 minutes</p>
+
+<h1 id="building-a-simple-c-project-with-cmake">Building a simple C++ project with CMake</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Having grasped the background and motivation for adopting the CMake build system generator, let us get our hands dirty and do a hands-on exercise in building a simple C++ project with CMake.
+This will be CMake’s equivalent of the classic hello world project, wherein we build an executable from C++ source code that prints … well, “Hello World!” (what else?) to the screen.</p>
+
+<p>We will perform this as the very first exercise during Week 1 of the class.</p>
+
+<h2 id="project-structure">Project Structure</h2>
+
+<p>To help focus on the new CMake-related aspects, we shall use a somewhat simplified version of the hierarchical project structure presented in the <a href="./sec03CMakeBackground.md">previous lesson</a>.</p>
+
+<p>For this exercise, the following project structure is given:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./CMakeHelloWorld
+├── LICENSE.txt
+├── README.md
+└── src
+    └── hello.cpp
+
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">hello.cpp</code> file inside the <code class="language-plaintext highlighter-rouge">src/</code> folder contains a simple C++ source code that prints “Hello World!” to the console.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>CMake processes user-provided configuration files that are named <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> (known as listfiles) in which we describe our build requirements at a high level.
+Our task is to create and populate one or more <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files that reflects our project’s modular/hierarchical organisation.
+The modern best practice is to always have a top-level <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file at the project root, with additional, separate nested/hierarchical <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files for each individual unit of logic/functionality i.e. resembling our project’s file organisation.</p>
+
+<p>Therefore, in this case, we shall use the following structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+CMakeHelloWorld/
+├── CMakeLists.txt
+├── LICENSE.txt
+├── README.md
+└── src
+    ├── CMakeLists.txt
+    └── hello.cpp
+
+</code></pre></div></div>
+
+<h3 id="populating-the-top-level-root-cmakeliststxt">Populating the top-level (root) <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code></h3>
+
+<h4 id="cmake_minimum_required"><code class="language-plaintext highlighter-rouge">cmake_minimum_required()</code></h4>
+
+<p><code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files are plain-text files written in the CMake-specific custom language syntax.
+For every project, the top most <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> must start by specifying a minimum CMake version using the <a href="https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html"><code class="language-plaintext highlighter-rouge">cmake_minimum_required()</code></a> command.
+Although upper, lower and mixed case commands are supported by CMake, the modern trend is to use lower case commands.
+Yet another thing to note is that, like C++ itself, <code class="language-plaintext highlighter-rouge">CMake</code> is whitespace-agnostic while processing <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files.</p>
+
+<p>Therefore, we start off with the following:</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.25<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Even the most recent versions of CMake installations can replicate the exact behaviour of older releases.
+In this example, the minimum <code class="language-plaintext highlighter-rouge">VERSION</code> is specified, and other options such as the maximum version the project is tested with have been omitted.</p>
+
+<p>Owing to its long development history and strong emphasis on retaining backward compatibility, most CMake commands have multiple variants and sometimes have an overwhelming array of options.
+Naturally, it is not feasible to cover every aspect of the language here.
+However, we shall skim just enough of the language here to address our needs, and developers typically acquire proficiency in the language gradually over the years.
+Therefore, we encourage you not to get disheartened by the slightly verbose documentation at the outset.</p>
+
+<p>The main caveat regarding CMake’s version used here is that the chosen minimum version should at least support C++17 language standards and compiler options.
+Recent versions of CMake have improved package detection, simplified dependency handling.
+While an older version suffices for this simple HelloWorld example, it does not hurt to use a CMake version as recent as possible.</p>
+
+<h4 id="project"><code class="language-plaintext highlighter-rouge">project()</code></h4>
+
+<p>Next, we use the <code class="language-plaintext highlighter-rouge">project()</code> command to set the project name.
+This is required with every project and should be called soon after <code class="language-plaintext highlighter-rouge">cmake_minimum_required()</code>.
+This command can also be used to specify other project level information such as the language or version number.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">project</span><span class="p">(</span>hello_world
+  VERSION 0.0.1
+  LANGUAGES CXX
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>The first (required) argument to this command is the project’s name.
+The name of the project can be any valid string.
+It does not have to be the same string as the name of the main executable program to be built (although it is conventional/convenient to use the same string for them).
+The VERSION field is optional, but is conventional to populate it.
+Next, we specify the programming languages that the project uses.
+The keyword for C++ projects is <code class="language-plaintext highlighter-rouge">CXX</code>.
+It is helpful to specify the list of languages used in the project, so that cmake does not spend time inspecting the system for the presence of the toolchains for every supported language (CUDA, fortran, C, Java etc).</p>
+
+<h4 id="setting-global-options-at-the-project-root-with-set">Setting global options at the project root with <code class="language-plaintext highlighter-rouge">set()</code></h4>
+
+<p>It was common practice to make liberal use of the <a href="https://cmake.org/cmake/help/latest/command/set.html"><code class="language-plaintext highlighter-rouge">set()</code></a> command to define various built-in, user-defined and environment variables at the top level <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>.
+This includes setting up the C++ language standard, compiler flags etc.
+While it can be useful to do so, CMake provides a much more fine-grained control to set options for each logical/modular unit in our project, and we have a slight preference towards this approach.</p>
+
+<p>Nevertheless, the top level <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file can be used to set various global conditions applicable to the whole project.
+When CMake configures a project, the build tree closely resembles the source tree hierarchy in the build tree.
+The path to the root of the build directory is available as the built-in variable <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html"><code class="language-plaintext highlighter-rouge">CMAKE_BINARY_DIR</code></a> whose value can be accessed within <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> by dereferencing it using the syntax <code class="language-plaintext highlighter-rouge">${VAR_NAME}</code>, in this case <code class="language-plaintext highlighter-rouge">${CMAKE_BINARY_DIR}</code>.
+However, a common practice for implementing a logical separation is to have CMake place the generated executables within a separate <code class="language-plaintext highlighter-rouge">bin/</code> subfolder at the root of the build directory.
+This can be achieved by setting the value of the <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_RUNTIME_OUTPUT_DIRECTORY.html"><code class="language-plaintext highlighter-rouge">CMAKE_RUNTIME_OUTPUT_DIRECTORY</code></a> as follows</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>CMAKE_RUNTIME_OUTPUT_DIRECTORY <span class="si">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="si">}</span>/bin<span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="parsing-nested-cmakeliststxt-within-the-src-directory">Parsing nested <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> within the <code class="language-plaintext highlighter-rouge">src/</code> directory</h4>
+
+<p>Until now, we have set certain high-level description of the project, but have not provided instructions on building the “hello_world” executable program from the source!
+This is intentional.
+The task of describing the build of each logical/modular project unit is delegated to nested/leaf <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> that reflects the project’s hierarchy.
+In this case, we wish to ‘hand-off’ control to <code class="language-plaintext highlighter-rouge">src/CMakeLists.txt</code> for building the <code class="language-plaintext highlighter-rouge">hello_world</code> executable.
+This is achieved by using the <a href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code class="language-plaintext highlighter-rouge">add_subdirectory()</code></a> command.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>src<span class="p">)</span>
+</code></pre></div></div>
+
+<p>In the above line, we instruct CMake to process the <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> located within the <code class="language-plaintext highlighter-rouge">src/</code> directory.
+These list files can be nested quite deeply, and at each depth level, we can have as many ‘sibling’ folders with one <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> per folder that describes the logical program unit to be built.</p>
+
+<p>After processing all nested list files, control returns to the top level <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>.
+Since the above line was the last in this file, the configuration process is completed.
+We now focus on the build details that is to be described in <code class="language-plaintext highlighter-rouge">src/CMakeLists.txt</code>.</p>
+
+<h3 id="contents-of-srccmakeliststxt">Contents of <code class="language-plaintext highlighter-rouge">src/CMakeLists.txt</code></h3>
+
+<p>Within this ‘leaf’ <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file, we describe how the <code class="language-plaintext highlighter-rouge">hello_world</code> executable is to be built.
+This is considered best practice, i.e. to have a <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> as close to the relevant source files for each modular functionality within the project.
+This file can see and use all the properties, variables, functions and macros defined at any <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> in its parent scope (in this case, all definitions from the top-level <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file are visible here i.e. they are in the ‘scope’ of this leaf file).</p>
+
+<h4 id="targets-and-usage-requirements">Targets and usage requirements</h4>
+
+<p>We like CMake to build for us an executable called ‘hello_world’.
+In this case, <code class="language-plaintext highlighter-rouge">hello_world</code> is a CMake ‘target’ (or a CMake ‘executable target’ to be precise).
+Targets (not variables) are the first-class citizens in modern CMake language.
+Hence, the relationships between various constituents (i.e. executables, source files, header files, internal libraries, other third-party code/files, system dependencies etc.) is to be described in a target-centric way within each <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file.</p>
+
+<p>The behaviour of targets, their features and their various properties can be set in three ways:</p>
+<ul>
+  <li>only on/for/affecting itself (using the PRIVATE keyword)</li>
+  <li>only on/for/affecting other targets that consume this current target (using the INTERFACE keyword)</li>
+  <li>on/for/affecting itself as well as other targets that consume this current target (using the PUBLIC keyword)</li>
+</ul>
+
+<p>We recognise that this is quite a confusing aspect for newcomers to CMake, but is one of the key things to understand how targets and their dependencies interact for a given build.
+The only way to get better comprehend this critical component is by practicing these ideas during the first few weeks of the course.</p>
+
+<p>The following matrix may help slightly, and we may choose to refer to this at times throughout the course:</p>
+
+<p>Keyword selection table (Who needs/uses a dependency?)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Other (consuming targets)</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Current target</strong></td>
+      <td><strong>YES</strong></td>
+      <td><strong>NO</strong></td>
+    </tr>
+    <tr>
+      <td><strong>YES</strong></td>
+      <td>PUBLIC</td>
+      <td>PRIVATE</td>
+    </tr>
+    <tr>
+      <td><strong>NO</strong></td>
+      <td>INTERFACE</td>
+      <td>N/A</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="the-add_executable-command">The <code class="language-plaintext highlighter-rouge">add_executable()</code> command</h4>
+
+<p>We use the <a href="https://cmake.org/cmake/help/latest/command/add_executable.html"><code class="language-plaintext highlighter-rouge">add_executable()</code></a> command to declare that we’d like CMake to build an executable program called ‘hello_world’ (executable target in CMake parlance).</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_executable</span><span class="p">(</span>hello_world<span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="the-target_sources-command">The <code class="language-plaintext highlighter-rouge">target_sources()</code> command</h4>
+
+<p>Next, we tell CMake that the executable target <code class="language-plaintext highlighter-rouge">hello_world</code> depends on one C++ source file, viz <code class="language-plaintext highlighter-rouge">hello.cpp</code>.
+This is done via the <a href="https://cmake.org/cmake/help/latest/command/target_sources.html"><code class="language-plaintext highlighter-rouge">target_sources()</code></a> command.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">target_sources</span><span class="p">(</span>hello_world PRIVATE hello.cpp<span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Referring to the usage requirements table, the keyword <code class="language-plaintext highlighter-rouge">PRIVATE</code> conveys to CMake that the file <code class="language-plaintext highlighter-rouge">hello.cpp</code> serves as a dependency only for the current target <code class="language-plaintext highlighter-rouge">hello_world</code>, and is not propagated to any other targets that depend on <code class="language-plaintext highlighter-rouge">hello_world</code>.
+This is not much relevant here, since the <code class="language-plaintext highlighter-rouge">hello_world</code> target is simply an executable program which does not depend on the file <code class="language-plaintext highlighter-rouge">hello.cpp</code> after it has been built (i.e. at run-time).
+In such circumstances, the keyword can be omitted.
+However, the usage requirement keywords become crucial (and sometimes mandatory) in describing more intricate dependency graphs involving various libraries as projects evolve in complexity over time.
+Hence, we strongly encourage students not to omit this keyword and think about the usage requirement for every target property/behaviour set in <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>.</p>
+
+<h4 id="setting-the-compile-time-properties-of-targets">Setting the compile time properties of targets</h4>
+
+<p>We wish to ensure that the <code class="language-plaintext highlighter-rouge">hello_world</code> target conforms to the C++17 standard.
+One way to achieve this in CMake is through the <a href="https://cmake.org/cmake/help/latest/command/target_compile_features.html"><code class="language-plaintext highlighter-rouge">target_compile_features()</code></a> command which can be used to set some pre-defined properties/behaviour/characteristics to follow for compiling targets.</p>
+
+<p>We add the following line:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">target_compile_features</span><span class="p">(</span>hello_world PUBLIC cxx_std_17<span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Here the keyword <code class="language-plaintext highlighter-rouge">cxx_std_17</code> keyword gently suggests CMake to invoke a C++17 compatible compiler if detected on the target system.
+One of PRIVATE or PUBLIC keyword is required here (the INTERFACE keyword does not directly apply to executable targets).
+We may use either here, but we chose PUBLIC to be compatible with recommended best practices for new projects.
+In the future, if we wish to split our project into a library the PUBLIC keyword will ensure that our library as well as any other executables or other libraries that depend on this shall acquire C++17 capabilities.</p>
+
+<h4 id="setting-individual-properties-on-targets">Setting individual properties on targets</h4>
+
+<p>While <code class="language-plaintext highlighter-rouge">target_compile_features()</code> allows us to select a list of high-level behaviour, an alternate is to set individual properties/flags on each target through some pre-defined CMake variables.
+This is achieved using the <a href="https://cmake.org/cmake/help/latest/command/set_target_properties.html"><code class="language-plaintext highlighter-rouge">set_target_properties()</code></a> command.</p>
+
+<p>While <code class="language-plaintext highlighter-rouge">target_compile_features(hello_world PUBLIC cxx_std_17)</code> encourages the use of C++17  standards, it does not enforce this.
+The built-in boolean <a href="https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD_REQUIRED.html"><code class="language-plaintext highlighter-rouge">CXX_STANDARD_REQUIRED</code></a> property can be set to <code class="language-plaintext highlighter-rouge">True/ON</code> to enforce this.
+Another useful thing to do to ensure wide platform and target portability of our project is to disable compiler extensions.
+Various C++ compilers take liberties to enable compiler-specific extensions by default unless explicitly directed not to do so.
+The built-in boolean property <a href="https://cmake.org/cmake/help/latest/prop_tgt/CXX_EXTENSIONS.html"><code class="language-plaintext highlighter-rouge">CXX_EXTENSIONS</code></a> can be set to <code class="language-plaintext highlighter-rouge">False/Off</code> to disable these compiler extensions.
+The <code class="language-plaintext highlighter-rouge">set_target_properties()</code> command allows us to set multiple properties on targets within a single invocation like so:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set_target_properties</span><span class="p">(</span>hello_world PROPERTIES CXX_STANDARD_REQUIRED ON CXX_EXTENSIONS OFF<span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>A starter template/scaffolding for the project has been provided with relevant prompts for filling in the required CMake commands in the two <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files.
+We shall perform this during the first class.
+We have now fully described our build, and are now ready to proceed to perform the build for our project, all whilst conforming to the desired C++ standard and implementing CMake best practices!
+The procedure to build and run the executable is described in the next lesson.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

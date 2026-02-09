@@ -1,0 +1,781 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Templates</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 45 Minutes</p>
+
+<h1 id="templates">Templates</h1>
+
+<p>Templates are a way of writing generic code which can be re-used with different types. This is similar to the polymorphism that we have seen previously through class inheritance, except that the typing for a template happens at compile time rather than runtime.</p>
+
+<p>Templates in C++ come in two main kinds:</p>
+
+<ul>
+  <li>Function Templates</li>
+  <li>Class Templates</li>
+</ul>
+
+<p>When a class or function template is used to instantiate an concrete class or function using a specific type, a new class or function definition is created for each type with which the template is instantiated. So unlike our inheritance based run-time polymorphism, where we have one function which can take multiple classes with overlapping definitions (defined by inheritance from a base class), now we use one piece of code to generate multiple separate functions (or classes), each of which accepts a different type. This is why the compiler must know all the types which are to be used in templated functions at compile time. This is sometimes known as “static polymorphism”.</p>
+
+<h2 id="using-templates-with-classes">Using Templates with Classes</h2>
+
+<p>You have already been using templates in this course: <code class="language-plaintext highlighter-rouge">vector&lt;&gt;</code> is an example of a <em>class template</em>. The <code class="language-plaintext highlighter-rouge">vector</code> class template is defined the type of the elements of the vector left as a template argument: you provide this argument in the angle brackets (<code class="language-plaintext highlighter-rouge">&lt;&gt;</code>) when you declare your vector object. This then tells the compiler what kind of data your vector will hold, so that it can properly handle it (allocating memory, iterating through elements, type checking for elements which are used in the code etc.).</p>
+
+<p><strong>N.B.</strong> A note on terminology:</p>
+<ul>
+  <li>A <strong>class template</strong> is not a class, it is a template which can be used to generate the definition of a class once the template arguments have been filled. For example, <code class="language-plaintext highlighter-rouge">vector&lt;&gt;</code> is a class template which can be used to generate vector classes which hold different types of data, but you cannot create a vector object with no type in the angle brackets.</li>
+  <li>A <strong>template class</strong> is a class that has been created from a template. For example <code class="language-plaintext highlighter-rouge">vector&lt;int&gt;</code> is a template class that has been generated from the <code class="language-plaintext highlighter-rouge">vector</code> class template by providing the type <code class="language-plaintext highlighter-rouge">int</code> as a template argument. <code class="language-plaintext highlighter-rouge">vector&lt;int&gt;</code> is an entirely separate class from <code class="language-plaintext highlighter-rouge">vector&lt;double&gt;</code>.</li>
+</ul>
+
+<p>The other containers in the standard library are also class templates, which require you to provide template arguments to instantiate concrete classes. Note that some may take more than one template argument, for example <code class="language-plaintext highlighter-rouge">map&lt;&gt;</code> takes two types: one for the keys and one for the values. Type for a map from strings to integers would be <code class="language-plaintext highlighter-rouge">map&lt;string, int&gt;</code>.</p>
+
+<p>We can define a class template using the following syntax:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">myClassTemplate</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">myClassTemplate</span><span class="p">(</span><span class="n">T</span> <span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">myMemberT</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="n">T</span> <span class="n">myMemberT</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">T</code> is the template parameter, and the <code class="language-plaintext highlighter-rouge">typename</code> keyword tells us that <code class="language-plaintext highlighter-rouge">T</code> must denote a type. (You can equivalently use the <code class="language-plaintext highlighter-rouge">class</code> keyword.)
+    <ul>
+      <li>Do note that you don’t need to call your template parameter <code class="language-plaintext highlighter-rouge">T</code>; like function parameters or other variables, it can have any name. It’s good to give it a more meaningful name if the type should represent something in particular, for example <code class="language-plaintext highlighter-rouge">matrixType</code> could be the name if your templated code deals with arbitrary types representing matrices. This is especially useful when using templates with multiple template parameters!</li>
+    </ul>
+  </li>
+  <li>We can then use <code class="language-plaintext highlighter-rouge">T</code> like any other type inside the body of the class definition.</li>
+  <li>Additional template parameters can appear in the angle brackets in a comma separated list e.g. <code class="language-plaintext highlighter-rouge">template&lt;typename T1, typename T2&gt;</code>. This is how e.g. <code class="language-plaintext highlighter-rouge">std::map</code> works.</li>
+</ul>
+
+<p><strong>Template parameters do not have to be <code class="language-plaintext highlighter-rouge">typename</code>, i.e. we are not limited to simply templating types.</strong> You can also have template parameters that are values such as an <code class="language-plaintext highlighter-rouge">int</code>, or a <code class="language-plaintext highlighter-rouge">bool</code>, or any other type. These can be used to define special versions of classes with separate implementations when provided with particular values. For example we might have <code class="language-plaintext highlighter-rouge">template&lt;int maxSize&gt;</code> to define different classes depending on the maximum size of data it will accept.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">std::array</code> is a good example of a class template which take both a type and a value: the type of the elements and the number of elements in the array.</li>
+  <li>Having values as template parameters means that they must be constants known at compile time.</li>
+  <li>Using template parameters which are values can allow you to leverage to type system to enforce correctness on your program. For example, if your program models objects in 3D space, then you will need a representation of a 3-vector. If you use <code class="language-plaintext highlighter-rouge">std::vector&lt;double&gt;</code> then these vectors could be any size, so you have to make sure manually that no vectors of other sizes can sneak into your program. If you use <code class="language-plaintext highlighter-rouge">std::array&lt;double, 3&gt;</code> to represent a 3-vector then the compile will enforce that all positions, velocities, and so on are 3 dimensional. (If you work in general relativity, then this can also help you define different types for 3-vectors (<code class="language-plaintext highlighter-rouge">std::array&lt;double, 3&gt;</code>) and 4-vectors (<code class="language-plaintext highlighter-rouge">std::array&lt;double, 4&gt;</code>)!)</li>
+</ul>
+
+<p><strong>N.B.</strong> Templates which have many parameters (types or values) can make type names quite long, so if there is something that you want to use frequently you may consider giving it an alias using the <code class="language-plaintext highlighter-rouge">using</code> syntax:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Vec3</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+<p>This can also make your type names more meaningful to people reading your code.</p>
+
+<h2 id="template-classes-and-inheritance">Template Classes and Inheritance</h2>
+
+<p>Consider a class template which takes one type as a template argument, such as <code class="language-plaintext highlighter-rouge">vector</code>. 
+Let us say we have two classes <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, where <code class="language-plaintext highlighter-rouge">B</code> is a sub-class of <code class="language-plaintext highlighter-rouge">A</code>. It is important to understand that the template classes <code class="language-plaintext highlighter-rouge">vector&lt;A&gt;</code> and <code class="language-plaintext highlighter-rouge">vector&lt;B&gt;</code> <strong>do not share the same relationship</strong> as <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> i.e. <code class="language-plaintext highlighter-rouge">vector&lt;B&gt;</code> is not a sub-class of (does not inherit from) <code class="language-plaintext highlighter-rouge">vector&lt;A&gt;</code>.</p>
+
+<h2 id="function-templates">Function Templates</h2>
+
+<p>As well as creating templates for classes we can also create templates for functions when we want to use the same code to describe the behaviour of a function taking a variety of different types. In fact, most class template definitions will also contain function templates, since member functions are likely to be dependent on template parameters.</p>
+
+<p>Function templates can have the same kinds of template parameters as class templates.</p>
+
+<p>The syntax for declaring function templates is essentially identical to declaring a class template:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="n">T</span> <span class="nf">templatedAdder</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>This function can only be created for a given type if the function body forms valid expressions when the type is substituted for <code class="language-plaintext highlighter-rouge">T</code>.
+    <ul>
+      <li>In this case the restriction is that the operators <code class="language-plaintext highlighter-rouge">=</code> and <code class="language-plaintext highlighter-rouge">+</code> must be defined for type <code class="language-plaintext highlighter-rouge">T</code>.</li>
+      <li>This applies to integers, double, strings etc. (see below on Operator Overloading for more information).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A common example of a templated function would be a function which acts on a container type but doesn’t need to access the data itself. Consider this example which take every other element of a vector:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">everyOther</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">v_in</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v_out</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v_in</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">v_out</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v_in</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>The exact details of the type <code class="language-plaintext highlighter-rouge">T</code> don’t matter in this case, since we never access the data of type <code class="language-plaintext highlighter-rouge">T</code> anyway. The only restriction on <code class="language-plaintext highlighter-rouge">T</code> is that it can be added to a vector.</li>
+  <li>A function can be generated for every kind of vector in this way.</li>
+</ul>
+
+<h3 id="using-auto-with-function-templates">Using <code class="language-plaintext highlighter-rouge">auto</code> with Function Templates</h3>
+
+<p>The keyword <code class="language-plaintext highlighter-rouge">auto</code> can be very useful in function templates. It can be used for variable declarations as well as the output type of a function template where the types will not be known until template substitution takes place. This is particularly useful when you are functions that template over callable objects. A trivial example would be:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">F</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">In</span><span class="p">&gt;</span>
+<span class="k">auto</span> <span class="nf">apply</span><span class="p">(</span><span class="n">F</span> <span class="n">f</span><span class="p">,</span> <span class="n">In</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here the template parameter <code class="language-plaintext highlighter-rouge">F</code> can stand in for something callable: a function, <code class="language-plaintext highlighter-rouge">std::function</code>, lambda-expression, or callable object. From this code we cannot immediately tell what type the result of applying the function to <code class="language-plaintext highlighter-rouge">x</code> will be, and therefore what the return type of this function is. Using <code class="language-plaintext highlighter-rouge">auto</code> allows us to write code like this while leaving it to the compiler to infer this type as well as it is able.</p>
+
+<p>In principle we could try to explicitly template over this additional unknown type, as in the code example below.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">F</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">In</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Out</span><span class="p">&gt;</span>
+<span class="n">Out</span> <span class="nf">apply2</span><span class="p">(</span><span class="n">F</span> <span class="n">f</span><span class="p">,</span> <span class="n">In</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Out</span> <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In this case the compiler will fail to infer the type of <code class="language-plaintext highlighter-rouge">Out</code>. The reason for this is that the compiler needs to be able to deduce all the template parameters <em>at the call site</em>. Now that we’ve introduced an additional parameter <code class="language-plaintext highlighter-rouge">Out</code>, we would be calling a function like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">apply2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>which would allow the compiler to deduce the types <code class="language-plaintext highlighter-rouge">F</code> and <code class="language-plaintext highlighter-rouge">In</code>, but gives no information about <code class="language-plaintext highlighter-rouge">Out</code> since it does not appear in the arguments. In order to make this version work, we need would need to supply the template parameter explicitly using <code class="language-plaintext highlighter-rouge">&lt;&gt;</code>.</p>
+
+<p>By contrast, when we use <code class="language-plaintext highlighter-rouge">auto</code> the compiler can determine at the call site the types of <code class="language-plaintext highlighter-rouge">F</code> and <code class="language-plaintext highlighter-rouge">In</code> from the arguments supplied, and can then immediately find or generate the appropriate <code class="language-plaintext highlighter-rouge">apply</code> function. The type of <code class="language-plaintext highlighter-rouge">y</code> and the output of the function are then determined with full information about the function rather than just with the limited information at the call site.</p>
+
+<h2 id="using-templates-with-overloaded-functions">Using Templates with Overloaded Functions</h2>
+
+<p>One very useful way to make use of templates is to exploit operator / function overloading. Operators or functions which are “overloaded” can operate on multiple types, for example:</p>
+<ul>
+  <li>The arithmetic operators <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">*</code>, and <code class="language-plaintext highlighter-rouge">/</code> are defined for a variety of types including <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">float</code>, and <code class="language-plaintext highlighter-rouge">double</code>. It’s often easy to write numerical functions which operate on generic numerical types using templates. The <code class="language-plaintext highlighter-rouge">templatedAdder</code> example above will work on any C++ type for which <code class="language-plaintext highlighter-rouge">+</code> is well defined.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">[]</code> operator can be used to access many kinds of data-structures including <code class="language-plaintext highlighter-rouge">vector</code>, <code class="language-plaintext highlighter-rouge">array</code>, <code class="language-plaintext highlighter-rouge">map</code>, and C-style arrays. We can therefore write functions which are agnostic about the precise kind of storage used, as long as the same code will work for all of the types that we are interested in.</li>
+  <li>The pointer dereferencing operator <code class="language-plaintext highlighter-rouge">*</code> works on unique, shared, and raw pointers, so we can write template code which can be used with any of these types if we don’t use functionality that is specific to one or the other of them.</li>
+</ul>
+
+<p>When we are designing classes we can overload operators ourselves. This can be very important when defining types that we want to be able to use within templated functions. Consider for example a fraction type:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Fraction</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="n">numerator</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">denominator</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">numerator</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">denominator</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>This class represents a rational number: a ratio of two integers.</li>
+  <li>This is an appropriate arithmetic type, so it would make sense for us to define operators like <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">*</code>, and <code class="language-plaintext highlighter-rouge">/</code> for the Fraction type.
+    <ul>
+      <li>This would allow us to pass it to templated functions that deal with generic arithmetic types.</li>
+      <li>This can therefore be more flexible and intuitive than defining member functions for these kinds of operations.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Let’s define the <code class="language-plaintext highlighter-rouge">*</code> (multiplication) operator. (The others can be defined similarly.) We can do this in one of two ways.</p>
+
+<p>A) As a member function:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Fraction</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="n">numerator</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">denominator</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="n">Fraction</span> <span class="k">operator</span><span class="o">*</span> <span class="p">(</span><span class="n">Fraction</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">numerator</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">denominator</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">numerator</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">denominator</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The member function <code class="language-plaintext highlighter-rouge">operator*</code> <em>can</em> be called like any other member function.
+    <ul>
+      <li>If you have two <code class="language-plaintext highlighter-rouge">Fraction</code> objects <code class="language-plaintext highlighter-rouge">f1</code> and <code class="language-plaintext highlighter-rouge">f2</code> you could calculate a new fraction <code class="language-plaintext highlighter-rouge">Fraction f3 = f1.operator*(f2);</code>.</li>
+    </ul>
+  </li>
+  <li>However this function also overloads the <code class="language-plaintext highlighter-rouge">*</code> infix operator.
+    <ul>
+      <li>So we can now write <code class="language-plaintext highlighter-rouge">Fraction f3 = f1 * f2;</code>.</li>
+    </ul>
+  </li>
+  <li>Note that because it is a member function, it has access to the private member variables <code class="language-plaintext highlighter-rouge">numerator</code> and <code class="language-plaintext highlighter-rouge">denominator</code>.</li>
+</ul>
+
+<p>B) Outside the class</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Fraction</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="n">numerator</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">denominator</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="kt">int</span> <span class="n">getNumerator</span><span class="p">(){</span> <span class="k">return</span> <span class="n">numerator</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">getDenominator</span><span class="p">(){</span> <span class="k">return</span> <span class="n">denominator</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">numerator</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">denominator</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">Fraction</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">Fraction</span> <span class="n">x</span><span class="p">,</span> <span class="n">Fraction</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numerator</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">getNumerator</span><span class="p">()</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">getNumerator</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">denominator</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">getDenominator</span><span class="p">()</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">getDenominator</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This version also overloads the <code class="language-plaintext highlighter-rouge">*</code> infix operator in the same way.</li>
+  <li>There is now no member version so we can’t call <code class="language-plaintext highlighter-rouge">f1.operator*(f2)</code>, but we can call the non-member function <code class="language-plaintext highlighter-rouge">operator*(f1, f2)</code>.</li>
+  <li>Note that we had to create <code class="language-plaintext highlighter-rouge">get</code> functions for the private member variables because <code class="language-plaintext highlighter-rouge">operator*</code> is not a member function in this case and so does not have access to private members.</li>
+</ul>
+
+<h2 id="using-class-members-with-templated-types">Using Class Members with Templated Types</h2>
+
+<p>Writing a templated function which takes type <code class="language-plaintext highlighter-rouge">T</code> implicitly defines an interface that must be met by <code class="language-plaintext highlighter-rouge">T</code>.</p>
+
+<ul>
+  <li>In the simple adding example we use the <code class="language-plaintext highlighter-rouge">+</code> operator on objects of type <code class="language-plaintext highlighter-rouge">T</code>: therefore <code class="language-plaintext highlighter-rouge">T</code> must implement this operator in order for the function to be successfully generated.</li>
+  <li>In our vector sampling example we only require that <code class="language-plaintext highlighter-rouge">vector&lt;T&gt;</code> is a valid type; this places very few restrictions on <code class="language-plaintext highlighter-rouge">T</code> (although there are some).</li>
+</ul>
+
+<p>The only restrictions on our templates is that the code is valid once the type substitution has been made. If we have a template parameter <code class="language-plaintext highlighter-rouge">T</code> then we can access member variables and functions of the class <code class="language-plaintext highlighter-rouge">T</code>, and this function will be able to be generated for any class which implements those properties. For example, let’s take this function:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="n">T</span><span class="o">&amp;</span> <span class="n">getTheBiggerOne</span><span class="p">(</span><span class="n">T</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">getArea</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">.</span><span class="n">getArea</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This function will return whichever of its two inputs has the larger area.</li>
+  <li>This is a valid template for any type which implements the member function <code class="language-plaintext highlighter-rouge">getArea()</code>.</li>
+  <li>Note we don’t specify the return type of <code class="language-plaintext highlighter-rouge">getArea()</code>; for this code to be valid it is only necessary that <code class="language-plaintext highlighter-rouge">&gt;=</code> is defined for the return type of <code class="language-plaintext highlighter-rouge">getArea()</code>.</li>
+</ul>
+
+<p>We can call this function using our <code class="language-plaintext highlighter-rouge">Shape</code> classes (<code class="language-plaintext highlighter-rouge">Shape</code>, <code class="language-plaintext highlighter-rouge">Circle</code>, <code class="language-plaintext highlighter-rouge">Square</code>) from last week, since they implement <code class="language-plaintext highlighter-rouge">getArea()</code>. But we could also implement a new class, like this one:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Country</span>
+<span class="p">{</span>
+    <span class="n">Country</span><span class="p">(</span><span class="n">string</span> <span class="n">n</span><span class="p">,</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">p</span><span class="p">)</span> <span class="o">:</span> <span class="n">name</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">area</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">population</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="kt">double</span> <span class="n">getName</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">area</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">getPopulation</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">population</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">area</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">population</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This class defines countries by their name, area, and population.</li>
+  <li>This class also fulfills all the conditions of <code class="language-plaintext highlighter-rouge">getTheBiggerOne</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">getArea()</code> is implemented.</li>
+      <li><code class="language-plaintext highlighter-rouge">&gt;=</code> is defined for <code class="language-plaintext highlighter-rouge">double</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>We can use <code class="language-plaintext highlighter-rouge">getTheBiggerOne</code> with our <code class="language-plaintext highlighter-rouge">Country</code> class just as well as our <code class="language-plaintext highlighter-rouge">Shape</code> class, even though they are not (and certainly should not be) related by any inheritance! Templates allow us to define generic code that is broader than inheritance based polymorphism, on the condition that the type can be determined at compile time in order to generate a statically typed function.</p>
+
+<ul>
+  <li>Class inheritance provides run-time polymorphism: I can define one function that takes a base class (e.g. <code class="language-plaintext highlighter-rouge">Shape</code>) and objects of that class or its derived classes can be passed to it. The compiler does not need to know at compile time whether the function will end up receiving <code class="language-plaintext highlighter-rouge">Shape</code> or <code class="language-plaintext highlighter-rouge">Circle</code> or <code class="language-plaintext highlighter-rouge">Square</code>.</li>
+  <li>Templates provide static polymorphism. I can define one function template that generates separate functions for each class. If I want to use my function with both <code class="language-plaintext highlighter-rouge">Shape</code> and <code class="language-plaintext highlighter-rouge">Country</code>, the compiler needs to know this at run time.
+    <ul>
+      <li>I can’t declare a single function or class (such as a container), which can take both <code class="language-plaintext highlighter-rouge">Shape</code> and <code class="language-plaintext highlighter-rouge">Country</code>. For example, I can’t put a <code class="language-plaintext highlighter-rouge">Shape</code> object in the same vector as a <code class="language-plaintext highlighter-rouge">Country</code> object, since it either needs to be a <code class="language-plaintext highlighter-rouge">vector&lt;Shape&gt;</code> or <code class="language-plaintext highlighter-rouge">vector&lt;Country&gt;</code>.</li>
+      <li>If I use the function with <code class="language-plaintext highlighter-rouge">Shape</code> and with <code class="language-plaintext highlighter-rouge">Country</code> in the same program, I will actually generate two functions: <code class="language-plaintext highlighter-rouge">Shape&amp; getTheBiggerOne(Shape&amp;, Shape&amp;)</code> and <code class="language-plaintext highlighter-rouge">Country&amp; getTheBiggerOne(Country&amp;, Country&amp;)</code>. These functions are separate because they have different signatures (parameter and return types).</li>
+    </ul>
+  </li>
+  <li>These two can be combined. For example, <code class="language-plaintext highlighter-rouge">getTheBiggerOne</code> is a template which could be instantiated with the type <code class="language-plaintext highlighter-rouge">Shape</code>. The resulting function, which takes and returns references to <code class="language-plaintext highlighter-rouge">Shape</code>, could be used with objects of type <code class="language-plaintext highlighter-rouge">Shape</code>, <code class="language-plaintext highlighter-rouge">Circle</code> or <code class="language-plaintext highlighter-rouge">Square</code> (run time polymorphism based on their inheritance tree) but not <code class="language-plaintext highlighter-rouge">Country</code> (this is not part of the same inheritance tree).</li>
+</ul>
+
+<h2 id="organising-and-compiling-code-with-templates">Organising and Compiling Code with Templates</h2>
+
+<p>Since templates create concrete classes and functions at compile time, the compiler needs to have access to the template definition and the argument(s) for which it needs to be instantiated together at compile time.</p>
+
+<p>Well organised C++ code typically organises code into declarations and implementations:</p>
+
+<ul>
+  <li>Declarations are contained in header files, usually ending in <code class="language-plaintext highlighter-rouge">.h</code> or <code class="language-plaintext highlighter-rouge">.hpp</code>. (Sometimes <code class="language-plaintext highlighter-rouge">.h</code> is used to distinguish header files intended for use with C and <code class="language-plaintext highlighter-rouge">.hpp</code> for header files which are only compatible with C++, but this is just a convention and not uniformly applied.) These are typically there to declare classes, and the variables and functions that they possess, and/or the variables and functions contained in a particular namespace. Function declarations just contain the name and signature (input types and return type) of the function, but not the actual code that it executes. When writing code which uses a class we usually just include the header file in our code to include the declaration: as long as we know the interface for the class we can compile code down to an object file which interfaces with that class. The final code can be created by <em>linking</em> with the class object file which defines the actual implementation that needs to be executed.</li>
+  <li>Implementations are contained in source files, usually ending in <code class="language-plaintext highlighter-rouge">.cpp</code> for C++ files. These contain the actual code which is executed by the functions declared in the header. (There may also be functions declared in the source file which aren’t in the header if they’re only locally needed and therefore don’t need to be included elsewhere.) This can then be compiled down to an object file for linking with other object files which interface with each other.</li>
+</ul>
+
+<p>We have to be a little careful when working with this model in the case of templates. We’ll explore this using a function template, although the considerations are the same for a class template as well. Let’s declare a function in a header file, and write two source files: one which implements the function in the header, and one which makes use of this function.</p>
+
+<p>First the declaration in <code class="language-plaintext highlighter-rouge">declaration.hpp</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef DECLARATION_HPP 
+#define DECLARATION_HPP
+</span>
+<span class="k">namespace</span> <span class="n">utilFunctions</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<ul>
+  <li>It’s usually a good idea to put functions and variables which are defined in a header but not part of a class inside a namespace, to avoid potential name clashes.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">#ifndef</code>, <code class="language-plaintext highlighter-rouge">#define</code> and <code class="language-plaintext highlighter-rouge">#endif</code> are pre-processor directives. This pattern is called an “include guard”: it means that the file’s contents will be ignored if it has already been included somewhere else in the same compilation unit, so that the contents are not declared twice (which would cause an error).
+    <ul>
+      <li>An alternative to these include guards which you will have seen already is <code class="language-plaintext highlighter-rouge">#pragma once</code>. This is a common pre-processor directive to only include a file once in a compilation unit, but it is not part of the ISO C++ standard and therefore may not be compatible with all platforms and compilers.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Then the implementation in <code class="language-plaintext highlighter-rouge">implementation.hpp</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"declaration.hpp"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We need to include <code class="language-plaintext highlighter-rouge">declaration.hpp</code> in order to have access to the namespace and function declaration.</li>
+</ul>
+
+<p>Finally we have another file which will want to use this function, which we’ll call <code class="language-plaintext highlighter-rouge">usage.cpp</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"declaration.hpp"</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">27</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This also needs to include <code class="language-plaintext highlighter-rouge">declaration.hpp</code> in order to access the function declaration.</li>
+  <li>Note that it does <strong>not</strong> need the function implementation: it only needs to know the name of the function and what types it accepts and returns to be able to compile.</li>
+</ul>
+
+<p>We can compile <code class="language-plaintext highlighter-rouge">implementation.cpp</code> and <code class="language-plaintext highlighter-rouge">usage.cpp</code> down to two separate object files and link them to produce a fully functional executable.</p>
+
+<p>This simple addition function could be made much more flexible by also operating on other numeric types, like <code class="language-plaintext highlighter-rouge">float</code> or <code class="language-plaintext highlighter-rouge">double</code> for which the addition operator is defined. In this case, rather than writing three separate functions out, all with essentially identical code, we could use a function template.</p>
+
+<p>Let’s update our declaration to use a template:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef DECLARATION_HPP 
+#define DECLARATION_HPP
+</span>
+<span class="k">namespace</span> <span class="n">utilFunctions</span>
+<span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="n">T</span> <span class="n">add</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<p>and our implementation:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"declaration.hpp"</span><span class="cp">
+</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="n">T</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If we try now to compile and link our executable we will find an error like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>undefined reference to <span class="sb">`</span>int utilFunctions::add&lt;int&gt;<span class="o">(</span>int, int<span class="o">)</span><span class="s1">'
+</span></code></pre></div></div>
+
+<ul>
+  <li>The compiler has been unable to implement a definition of the <code class="language-plaintext highlighter-rouge">add</code> function for the type <code class="language-plaintext highlighter-rouge">int</code>, so this definition does not exist for us to use.</li>
+  <li>This error shows up during linking. You can compile both object files like before, because both match the template declaration and therefore are valid, but neither one can define the specific implementation that we want so when linking it finds that the function isn’t defined anywhere.</li>
+  <li><code class="language-plaintext highlighter-rouge">implementation.cpp</code> cannot define the implementation when compiled down to an object because it has the function template but not the intended type, so it can’t come up with any concrete implementation.</li>
+  <li><code class="language-plaintext highlighter-rouge">usage.cpp</code> cannot define the implementation when compiled down to an object because it knows what type it should be used for, but it doesn’t have the templated implementation (this is in <code class="language-plaintext highlighter-rouge">implementation.cpp</code>, and we have only included <code class="language-plaintext highlighter-rouge">declaration.hpp</code>).</li>
+</ul>
+
+<p>There are two possible ways to approach this problem.</p>
+<ol>
+  <li>We can include the templated function implementation in the header file instead of a separate source file.
+    <ul>
+      <li>In this case the compiler can use the template to create the function for whatever type is called for in <code class="language-plaintext highlighter-rouge">usage.cpp</code>.</li>
+      <li>Concrete function is only created from the template if it is actually used.</li>
+      <li>This is flexible, but breaks the separation of declaration and implementation.</li>
+      <li>Can cause the size of the executable to increase because the definitions will be recreated in different compilation units.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef DECLARATION_HPP 
+#define DECLARATION_HPP
+</span>
+<span class="k">namespace</span> <span class="n">utilFunctions</span>
+<span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="n">T</span> <span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">T</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<ol>
+  <li>We can keep our header file with just the declaration, and tell the compiler which types to implement the function for in the source file (<code class="language-plaintext highlighter-rouge">implementation.cpp</code>).
+    <ul>
+      <li>In this case, <code class="language-plaintext highlighter-rouge">usage.cpp</code> will only be able to use <code class="language-plaintext highlighter-rouge">add</code> for the types which are explicitly instantiated in <code class="language-plaintext highlighter-rouge">implementation.cpp</code>.</li>
+      <li>This is less flexible as you need to anticipate any combination of template arguments that the function  will be used with, but keeps the declaration and the implementation separate.</li>
+      <li>Separate function implementations will be created for each set of types given, even if they are never used.</li>
+      <li>It can also be useful if you want the function to restrict usage to a sub-set of possible types.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"declaration.hpp"</span><span class="cp">
+</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="n">T</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="kt">int</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+<span class="k">template</span> <span class="kt">float</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="kt">float</span><span class="p">,</span> <span class="kt">float</span><span class="p">);</span>
+<span class="k">template</span> <span class="kt">double</span> <span class="n">utilFunctions</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">);</span>
+</code></pre></div></div>
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

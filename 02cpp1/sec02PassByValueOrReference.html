@@ -1,0 +1,682 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Pass by Value and Pass by Reference</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <p>Estimated Reading Time: 15 minutes</p>
+
+<h1 id="pass-by-value-and-pass-by-reference">Pass by Value and Pass by Reference</h1>
+
+<p>Variables are handles for data, which needs to be stored in memory somewhere so that it can be read and modified.</p>
+
+<p>In C++ we can find out the memory address of a given variable using the <code class="language-plaintext highlighter-rouge">&amp;</code> operator, as in the following code snippet:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" and has value "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// Increment the value of x by 1. </span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" and has value "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>Declaring <code class="language-plaintext highlighter-rouge">int x = 15</code> tells the compiler that we will need to store some data which is to be interpreted as an integer with an initial value of 15. The compiler then knows:
+    <ul>
+      <li>How much memory to allocate for the variable (for an <code class="language-plaintext highlighter-rouge">int</code> this is normally 4 bytes).</li>
+      <li>How the variable can be used in the remainder of the program (see the notes on types for more information).</li>
+      <li>To set the data at that memory location to be equal to <code class="language-plaintext highlighter-rouge">15</code> at this point in the program.</li>
+      <li>From now on, in this scope, <code class="language-plaintext highlighter-rouge">x</code> will refer to the value stored at this memory location, and changes to <code class="language-plaintext highlighter-rouge">x</code> will lead to changes to the data stored there.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">&amp;x</code> gives us the <em>address</em> in memory where the value for <code class="language-plaintext highlighter-rouge">x</code> is stored. An address is a unique (usually 8 byte) numeric value for each memory location where we can store data. Changes to the value of <code class="language-plaintext highlighter-rouge">x</code> do not change its address: <strong>the address of a variable cannot be changed</strong>.</li>
+  <li>The compiler will select an unoccupied memory address to store the variable in for you.</li>
+</ul>
+
+<p>The output of this program is</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x is stored at address 0x7ffe13999ed4 and has value 15
+x is stored at address 0x7ffe13999ed4 and has value 16
+</code></pre></div></div>
+<ul>
+  <li>The value of the address is given in <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a>, which is prefixed by <code class="language-plaintext highlighter-rouge">0x</code> when printed.</li>
+  <li>The address will be system dependent but note that the address does not change, but the value does.</li>
+</ul>
+
+<p>Given this, we might wonder what it means to “pass a variable to a function”. Does the function need the <em>value</em> that the variable represents, or the <em>location</em> where the variable is stored?</p>
+
+<p>There are broadly two approaches to giving functions access to variables from the calling scope:</p>
+<ol>
+  <li>The function has a <em>copy</em> of the variable’s <em>value</em> in a new variable, independent from the original. This means read/write operations to this variable in the function operate on a separate memory location which does not affect the original. Once we return from the function scope, the original variable is unchanged because the function did not have access to the memory location where it is stored.</li>
+  <li>The function has a <em>reference</em> to the variable, which is to say it is given the memory location where the variable is stored. Any read/write operations are made to this same location, and therefore when we leave the function scope any changes made to the variable inside the function will still remain.</li>
+</ol>
+
+<p>Programming languages vary in their approaches to passing variables, but C++ gives us the choice when we define a function to pass each variable in either way: the first is called <strong>pass by value</strong> and the second is <strong>pass by reference</strong>. This choice significantly alters both the behaviour and the performance of a function in ways that we shall detail in the following sections.</p>
+
+<h2 id="pass-by-value">Pass by Value</h2>
+
+<p>Pass by Value means that we copy the value of the variable we want to pass into the function, and the function works on this copy and leaves the original alone. Any changes that the function makes to the variable will not affect the value of that variable once you leave the function’s scope. In C++, passing by value is the default, so to pass by value you simply write the type and name of the variable in the function parameters in the usual way.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>This function can be safer, but is not time or memory efficient if variables are complex or large in size as the values need to be copied to new memory locations. You should only use pass by value for large pieces of data if you need an explicit copy made to work on and change locally in the function body but you cannot allow the function to change the original.</p>
+
+<p>We can see this call by value in action explicitly in the following code example by checking the address and values of variables:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"In add function, before adding."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"a is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"b is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"In add function, after adding."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"a is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"b is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Before add function."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"y is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"After add function."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"y is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"z is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">z</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">z</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Outputs:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Before add function.
+x is stored at address 0x7ffee8b8b32c with value 12
+y is stored at address 0x7ffee8b8b330 with value 9
+In add function, before adding.
+a is stored at address 0x7ffee8b8b30c with value 12
+b is stored at address 0x7ffee8b8b308 with value 9
+In add function, after adding.
+a is stored at address 0x7ffee8b8b30c with value 21
+b is stored at address 0x7ffee8b8b308 with value 9
+After add function.
+x is stored at address 0x7ffee8b8b32c with value 12
+y is stored at address 0x7ffee8b8b330 with value 9
+z is stored at address 0x7ffee8b8b334 with value 21
+</code></pre></div></div>
+<ul>
+  <li>Note that the variables <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> are passed to the <code class="language-plaintext highlighter-rouge">add</code> function to serve as arguments <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> respectively.</li>
+  <li>In the function we can see that <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> are variables which are stored a separate memory locations from <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code>. When we modify <code class="language-plaintext highlighter-rouge">a = a + b</code> the value stored for <code class="language-plaintext highlighter-rouge">a</code> changes, but <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> do not because their memory locations were untouched.</li>
+</ul>
+
+<h2 id="pass-by-reference">Pass by Reference</h2>
+
+<p>Pass by Reference means that we tell the function where the original variable has been stored in memory, and we allow the function to work directly with that original variable. This has two major consequences:</p>
+
+<ul>
+  <li>We only pass a memory address – usually 8 bytes in a 64-bit system – to the function, so there is no additional memory allocated to copy the object.</li>
+  <li>The original variable can be changed by the function, and so any changes that happen within the function are retained after we leave the function’s scope.</li>
+</ul>
+
+<p>We indicate that we want a reference to a variable using the <code class="language-plaintext highlighter-rouge">&amp;</code> symbol after the type of the argument in the function signature. The function below will take a reference to an integer and increment that integer by one. Because we have changed the value stored at that memory location, once we leave this function the variable that we passed to it will retain this increased value.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">increment</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>Even though we have passed <code class="language-plaintext highlighter-rouge">x</code> by reference, <code class="language-plaintext highlighter-rouge">x</code> is just an ordinary <code class="language-plaintext highlighter-rouge">int</code> variable; this is only telling the compiler to give the function access to the original memory address instead of copying it to a new one. So inside the function we can just use <code class="language-plaintext highlighter-rouge">x</code> as normal.
+    <ul>
+      <li>A reference just means an alias (i.e. a new name) for an existing variable, and therefore has the same type as the existing variable.</li>
+    </ul>
+  </li>
+  <li>It can be a bit confusing that the notation for a reference is the same as the address operator (<code class="language-plaintext highlighter-rouge">&amp;</code>). These two uses of <code class="language-plaintext highlighter-rouge">&amp;</code> come up in different contexts though:
+    <ul>
+      <li>When it is used in a type context, i.e. follows a typename, it means a <em>reference to a variable of that type</em>.</li>
+      <li>When it is used in an expression which evaluates to a value, e.g. <code class="language-plaintext highlighter-rouge">cout &lt;&lt; &amp;var &lt;&lt; endl</code>, then it is the address operator and it evaluates to the memory address of the variable to which it is affixed.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Passing by reference can save significant time and memory by avoiding making needless copies of variables</strong>, but at the cost of making variables potentially vulnerable to being changed by a function. This can make it harder for someone using the function to reason about the program, and what the value of the variables they pass in will be once the function has finished.</p>
+
+<p>We can once again illustrate this explicitly with addresses by re-using our example above, but changing the <code class="language-plaintext highlighter-rouge">add</code> function to take <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> by reference (<code class="language-plaintext highlighter-rouge">int &amp;a</code> and <code class="language-plaintext highlighter-rouge">int &amp;b</code>):</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"In add function, before adding."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"a is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"b is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"In add function, after adding."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"a is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"b is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Before add function."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"y is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"After add function."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"y is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"z is stored at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">z</span> <span class="o">&lt;&lt;</span> <span class="s">" with value "</span> <span class="o">&lt;&lt;</span> <span class="n">z</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Yielding:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Before add function.
+x is stored at address 0x7ffdd308656c with value 12
+y is stored at address 0x7ffdd3086570 with value 9
+In add function, before adding.
+a is stored at address 0x7ffdd308656c with value 12
+b is stored at address 0x7ffdd3086570 with value 9
+In add function, after adding.
+a is stored at address 0x7ffdd308656c with value 21
+b is stored at address 0x7ffdd3086570 with value 9
+After add function.
+x is stored at address 0x7ffdd308656c with value 21
+y is stored at address 0x7ffdd3086570 with value 9
+z is stored at address 0x7ffdd3086574 with value 21
+</code></pre></div></div>
+<ul>
+  <li>Note that now <code class="language-plaintext highlighter-rouge">a</code> has the same address as <code class="language-plaintext highlighter-rouge">x</code>, and <code class="language-plaintext highlighter-rouge">b</code> has the same address as <code class="language-plaintext highlighter-rouge">y</code>.</li>
+  <li>When <code class="language-plaintext highlighter-rouge">a</code> is updated, the value at its memory location is changed, so after the <code class="language-plaintext highlighter-rouge">add</code> function call we can see that the value of <code class="language-plaintext highlighter-rouge">x</code> has changed as well.</li>
+</ul>
+
+<h2 id="using-const-in-pass-by-reference">Using <code class="language-plaintext highlighter-rouge">const</code> in Pass By Reference</h2>
+
+<p>We can retain the performance advantages of pass by reference and <strong>still protect our variables from changes</strong> by passing a <code class="language-plaintext highlighter-rouge">const</code> reference.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">constRefExample</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The declaration <code class="language-plaintext highlighter-rouge">int const &amp;x</code> means that <code class="language-plaintext highlighter-rouge">x</code> is a reference (<code class="language-plaintext highlighter-rouge">&amp;</code>) to a constant (<code class="language-plaintext highlighter-rouge">const</code>) integer (<code class="language-plaintext highlighter-rouge">int</code>). This means that the integer value cannot be changed within this function, and so any attempt to change the value of <code class="language-plaintext highlighter-rouge">x</code> in the function will lead to a compiler error.</p>
+
+<p>Try writing a function where you pass an argument by const reference and try to modify it inside the function. Take note of what the compiler error looks like!</p>
+
+<h2 id="return-values">Return Values</h2>
+
+<p>When we use a <code class="language-plaintext highlighter-rouge">return</code> statement in a function, we are also passing by value, although a copy of the variable is not necessarily always made. As with inputs to a function, this can be a performance issue if large output data ends up being copied. There are however a few things to note about the efficiency of <code class="language-plaintext highlighter-rouge">return</code> statements:</p>
+
+<ul>
+  <li>Objects are copied using their <em>copy constructor</em>, a special function in their class definition which defines how to create a new object and copy the current object’s data. (In many cases this can be automatically created by the compiler.)</li>
+  <li>Some objects also have a <em>move constructor</em> defined, in which the data is not explicitly copied, but a new object takes control of the data. We’ll return to this idea when we talk about pointers later in the course. (The move constructor may also be automatically created by the compiler.)</li>
+  <li>Normally when an variable goes out of scope its memory is freed and can be reallocated to new variables. If we have a <em>local variable</em> in the function scope that we want to return, we can’t just give the address of the data (return by reference) because when the function returns the variable will go out of scope and that memory is freed.
+    <ul>
+      <li>Although return types can be references, e.g. <code class="language-plaintext highlighter-rouge">int&amp; someFunction()</code>, you have to be absolutely certain that the memory you are referencing will remain in scope. This could be e.g. a global variable, or a member of a class for an object which continues to exist. It should <em>never</em> be a variable created locally in that function scope. Don’t use reference return types unless you are really confident that you know what you are doing!</li>
+    </ul>
+  </li>
+  <li>For classes with a move constructor a local object can be returned without making a copy, since the compiler knows that the object is about to be destroyed as soon as the function returns, and can therefore have its data transferred instead. (This is why this optimisation can be used when returning a value but <em>not</em> when passing an object to a function by value: when passing an object to a function the original object will continue to exist.)</li>
+  <li><strong>The compiler will use a move constructor when available if the object is deemed large enough for the move to be more efficient than a copy, and a copy constructor when not.</strong> Therefore, you may find that returning values is more performant than you expect from the size of the data-structure.</li>
+</ul>
+
+<p>We can see this move or copy behaviour for return values in the following code example:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Obj</span>
+<span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">;</span>
+
+    <span class="n">Obj</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">,</span> <span class="kt">int</span> <span class="n">e</span><span class="p">,</span> <span class="kt">int</span> <span class="n">f</span><span class="p">,</span> <span class="kt">int</span> <span class="n">g</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">)</span> <span class="o">:</span> <span class="n">a</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">d</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="n">e</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">g</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">h</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="n">Obj</span> <span class="n">makeObj</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Obj</span> <span class="n">myObj</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"In makeObj, myObj is at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">myObj</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"myObj.a is at "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">myObj</span><span class="p">.</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"myObj.b is at "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">myObj</span><span class="p">.</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">myObj</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">makeInt</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"In makeInt, x is at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Obj</span> <span class="n">newObj</span> <span class="o">=</span> <span class="n">makeObj</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Outside the function, newObj is at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">newObj</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"newObj.a is at "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">newObj</span><span class="p">.</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"newObj.b is at "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">newObj</span><span class="p">.</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">makeInt</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Outside the function, y is at address "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Which yields the output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In makeObj, myObj is at address 0x7ffdb4b6e0c0
+myObj.a is at 0x7ffdb4b6e0c0
+myObj.b is at 0x7ffdb4b6e0c4
+Outside the function, newObj is at address 0x7ffdb4b6e0c0
+newObj.a is at 0x7ffdb4b6e0c0
+newObj.b is at 0x7ffdb4b6e0c4
+In makeInt, x is at address 0x7ffdb4b6e094
+Outside the function, y is at address 0x7ffdb4b6e0bc
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Obj</code> is a large data type which contains 8 <code class="language-plaintext highlighter-rouge">int</code> values. (You’ll see how to define these custom data types, called classes, in section 2.)</li>
+  <li>In <code class="language-plaintext highlighter-rouge">Obj</code> there is no explicit copy or move constructor, these are implicitly filled in by the compiler for simple types like this.</li>
+  <li>Because <code class="language-plaintext highlighter-rouge">Obj</code> is large, the <code class="language-plaintext highlighter-rouge">makeObj</code> function returns the object using <strong>move</strong>. We can see that <code class="language-plaintext highlighter-rouge">myObj</code> and <code class="language-plaintext highlighter-rouge">newObj</code> have the same address. The control of this memory is moved from <code class="language-plaintext highlighter-rouge">myObj</code> to <code class="language-plaintext highlighter-rouge">newObj</code>, so when <code class="language-plaintext highlighter-rouge">myObj</code> goes out of scope and is destroyed the memory remains active and under the control of the new variable.</li>
+  <li><code class="language-plaintext highlighter-rouge">makeInt</code> is identical in structure, but only returns a single <code class="language-plaintext highlighter-rouge">int</code>. There’s no move defined for <code class="language-plaintext highlighter-rouge">int</code> because it is already so small; we can see that <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> have different addresses. Some small objects will also be copied instead of moved.</li>
+</ul>
+
+<p><strong>Note that not all types can be moved, and not all types can be copied.</strong> In these cases, we can use references arguments as outputs.</p>
+
+<h2 id="mutable-references-as-outputs">Mutable References as Outputs</h2>
+
+<p>If a return statement has significant overheads, it may be avoided using references. Let’s assume we have a large data class <code class="language-plaintext highlighter-rouge">ImmovableData</code> with no move constructor.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ImmoveableData</span> <span class="nf">GenerateData</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ImmovableData</span> <span class="n">D</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Do some data generation</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">D</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ImmovableData</span> <span class="n">data</span> <span class="o">=</span> <span class="n">GenerateData</span><span class="p">(</span><span class="mi">100000</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>This code will create a large data-structure the function call, and then copy that structure when the function returns and place the result in the variable <code class="language-plaintext highlighter-rouge">data</code>. The original data-structure is then deleted.</li>
+</ul>
+
+<p>Instead of declaring a variable and setting it equal to the return value of a function, we can instead declare the variable in the calling scope, and then pass it into the function by reference.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">GenerateInPlace</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">ImmovableData</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//Do some data generation</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ImmovableData</span> <span class="n">data</span><span class="p">;</span>
+    <span class="n">makeListInPlace</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>In this case, only one data-structure is made. Its data is updated in the function, but it never has to be copied. Once we exit the function, the changes to <code class="language-plaintext highlighter-rouge">data</code> have persisted and we can use the values that we have assigned to it.</li>
+</ul>
+
+<h2 id="which-should-i-use">Which should I use?</h2>
+
+<ul>
+  <li>Passing small types like <code class="language-plaintext highlighter-rouge">int</code> or <code class="language-plaintext highlighter-rouge">float</code> by value is fine, as they are the same size as a reference.</li>
+  <li>Passing by value is also fine if you need a copy of the argument to work on in the function body without affecting its value outside the function.</li>
+  <li>Pass larger arguments (&gt; 8 bytes) by <code class="language-plaintext highlighter-rouge">const</code> reference if you can.</li>
+  <li>Pass by (non const) reference if you need to work on a variable in place i.e. the function should change the value of the argument itself.</li>
+  <li>Avoid <code class="language-plaintext highlighter-rouge">return</code> with large <em>immovable</em> data-structures for the same reason. These should be passed in and out by reference as function arguments.</li>
+</ul>
+
+<p><strong>Further things worth noting</strong>:</p>
+<ul>
+  <li>If passing by reference, you can only pass literals (values like numbers and strings which are not assigned to a variable) if using a <code class="language-plaintext highlighter-rouge">const</code> reference. Consider two function signatures <code class="language-plaintext highlighter-rouge">refAdd(int &amp;a, int &amp;b)</code> and <code class="language-plaintext highlighter-rouge">constRefAdd(const int &amp;a, const int &amp;b)</code>: we can call <code class="language-plaintext highlighter-rouge">constRefAdd(5, 12)</code> just fine, but if we call <code class="language-plaintext highlighter-rouge">refAdd(5, 12)</code> we will get an error.</li>
+  <li>Never use a <code class="language-plaintext highlighter-rouge">return</code> statement to return a reference (or a pointer) to a local variable e.g. <code class="language-plaintext highlighter-rouge">return &amp;x;</code> as the local variable will be destroyed when we leave the function scope. This will lead to a segmentation fault (memory error).</li>
+  <li>You can return by reference a variable which is not local to that function’s scope, for example a member function in a class may return a member variable of that class by reference, since when the function ends the object and its data will still exist. However, you must be sure that you will not keep the reference to the data for longer than the object’s lifetime; if the object passes out of scope and you continue to try to use the reference then you will have a memory error.</li>
+</ul>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

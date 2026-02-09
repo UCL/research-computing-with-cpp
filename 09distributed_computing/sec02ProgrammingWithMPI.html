@@ -1,0 +1,831 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>MPI Programming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="introductory-mpi">Introductory MPI</h1>
+
+<p>In this section we’ll take a bit of a look at what MPI allows us to do, and how this relates to the models we’ve just discussed.</p>
+
+<p>We’ll explore MPI by building a very simple MPI program, but also highlight some features of MPI that we don’t use directly. (We’ll explore more MPI in week 10!)</p>
+
+<p>We’ll look at just a handful of features:</p>
+<ul>
+  <li>How to initialise the MPI environment for a distributed program.</li>
+  <li>How to get the number of processes.</li>
+  <li>How to get the ID (“rank”) of current process.</li>
+  <li>How to send a message.</li>
+  <li>How to receive a message.</li>
+  <li>How to end the MPI environment.</li>
+</ul>
+
+<p>These basic features can handle most of the programming that we want to do in MPI!</p>
+
+<p>Feel free to follow along with the steps of building this program. Bear in mind that if you do so in inside inside the dev-container you will need to first go into <code class="language-plaintext highlighter-rouge">devcontainer.json</code> and comment out the line <code class="language-plaintext highlighter-rouge">"remoteUser": "root"</code>. This is because we shouldn’t run MPI from the root user! (Note that some users who are running a recent version of Ubuntu natively on their linux machine may not be able to use the dev-container properly if not as root, in which case you may need to install MPI locally in order to try the example.) Running MPI locally won’t allow you to see the performance benefit of the parallelism or catch all the problems that might occur, but you will be able to check that your basic program compiles and works in the way you might expect.</p>
+
+<h2 id="basic-structure-of-mpi-program">Basic Structure of MPI Program</h2>
+
+<p>To start with we need a <code class="language-plaintext highlighter-rouge">#include&lt;mpi.h&gt;</code> statement.</p>
+
+<p>We initialise the MPI environment using <code class="language-plaintext highlighter-rouge">MPI_Init(int *argc, char **argv)</code> and terminate it with <code class="language-plaintext highlighter-rouge">MPI_Finalize</code>.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Init</code> takes pointers to two variables; <code class="language-plaintext highlighter-rouge">int * argc</code> is an argument count and <code class="language-plaintext highlighter-rouge">char **v</code> is an array of argument values. This is similar to the traditional initialisation of <code class="language-plaintext highlighter-rouge">main</code> with command line arguments. If you don’t need to pass anything you can use <code class="language-plaintext highlighter-rouge">NULL</code> for both of these.</li>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Finalize</code> takes no arguments. It doesn’t actually kill the processes, but we can’t call any MPI functionality after this point e.g. to send messages. This should essentially be the last thing we do in an MPI program.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Okay, this program is not super interesting yet, but we should be able to compile it.</p>
+
+<h2 id="compiling-and-running-mpi">Compiling and Running MPI</h2>
+
+<p>We can compile by using the <code class="language-plaintext highlighter-rouge">mpic++</code> tool instead of <code class="language-plaintext highlighter-rouge">g++</code>. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpic++ -o simple_mpi mpi_example.cpp
+</code></pre></div></div>
+
+<p>To run an MPI executable we use the <code class="language-plaintext highlighter-rouge">mpirun</code> command with the option <code class="language-plaintext highlighter-rouge">-np</code> to set the number of processes, e.g.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun -np 4 ./simple_mpi
+</code></pre></div></div>
+
+<p>Of course our program can’t do anything yet so we need to add some stuff to get it to do something. Let’s just as a “Hello World” to it. (In general printing from lots of MPI processes is not a great idea but let’s put that aside for now.)</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mpic++ -o simple_mpi mpi_example.cpp 
+$ mpirun -np 4 ./simple_mpi
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+</code></pre></div></div>
+
+<p>Okay, so we have four processes inside the MPI region, and each of them greets us. Unfortunately, we don’t know yet which process is saying which hello. More importantly, if we can’t identify our processes inside our program, we can’t give specialised behaviour to processes (e.g. our Parent process model) or send and receive messages!</p>
+
+<h2 id="identifying-a-process">Identifying a Process</h2>
+
+<p>We can use the <code class="language-plaintext highlighter-rouge">MPI_Comm_rank</code> function to get the “rank” of our process. Rank doesn’t actually imply a ranking, i.e. it’s not hierarchical, it’s just an ID for each process.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Comm_rank(MPI_Comm comm, int *rank)</code> takes a communicator (<code class="language-plaintext highlighter-rouge">MPI_Comm</code>) type and a pointer to an int, and returns an int. It uses the pointer argument to store the rank, and the return integer to report any errors. The MPI environment may terminate your program if there is an error before this value gets returned (you can see more about MPI call return values in the <a href="https://www.open-mpi.org/doc/v4.0/man3/MPI_Comm_rank.3.php">Open MPI documentation</a> in the Error section of any function).</li>
+  <li>The communicator is a way of grouping processes which need to communicate with one another together. <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code> is a pre-defined variable which contains all processes. You can use <a href="https://www.open-mpi.org/doc/v4.1/man3/MPI_Comm_split.3.php">MPI_Comm_split</a> to create communicators for sub-groups. This can be useful when using MPI’s built in methods for broadcasting to all processes within a communicator, as this means you don’t have to do all the messages manually and the MPI broadcast strategy will likely be more efficient.
+    <ul>
+      <li>When broadcasting to a group of $N$ other processes it is not efficient to have one process send all $N$ messages sequentially. Instead, you can broadcast using a tree structure, where the origin process sends the message to 2 other processes, and those two can, in parallel, send the message to two further processes each and so on. This allows for overlap in message sending between processes and this kind of forwarding may need to happen anyway depending on the network topology. You can let MPI handle all this for you if you use appropriate communicators!</li>
+    </ul>
+  </li>
+  <li>A process can be part of multiple communicators (as all processes are part of MPI_COMM_WORLD then if you have any additional communicators then any processes part of those communicators must be contained in at least two) and may have different “rank” (ID) in each communicator. It’s important that you properly manage the identification of processes in each communicator if you want things to work!</li>
+</ul>
+
+<p>So let’s utilise our process ID in our little example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">process_id</span><span class="p">;</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">process_id</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World! Kind regards, Process %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">process_id</span><span class="p">);</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>We have replaced the call to <code class="language-plaintext highlighter-rouge">cout</code> with <code class="language-plaintext highlighter-rouge">printf</code>. This is because calls to <code class="language-plaintext highlighter-rouge">printf</code> are atomic and calls to <code class="language-plaintext highlighter-rouge">cout</code> are not. So if we use <code class="language-plaintext highlighter-rouge">cout</code> in principle our messages can get muddled when we use <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> to stream data to <code class="language-plaintext highlighter-rouge">cout</code>.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mpirun -np 4 ./simple_mpi
+Hello World! Kind regards, Process 1
+Hello World! Kind regards, Process 2
+Hello World! Kind regards, Process 3
+Hello World! Kind regards, Process 0
+</code></pre></div></div>
+
+<p>Great, we can identify each process! We’ll work towards a simple Parent process model for sorting a list, as in the earlier section. As we’ve noted this isn’t a very practical MPI example as it involves moving a lot of data to do very simple work, but it does illustrate how to use the MPI function calls nicely! We can now (arbitrarily) select Process 0 as our Parent process, which will handle splitting up and re-combining the list.</p>
+
+<p>In order to communicate it to the other processes though, we’ll need to know how many processes there are from <em>inside our program</em>, since we don’t want that kind of thing hard coded.</p>
+
+<h2 id="getting-the-total-number-of-processes">Getting the Total Number of Processes</h2>
+
+<p>We can get the total number of processes in a given communicator using <code class="language-plaintext highlighter-rouge">MPI_Comm_size</code>. This works basically exactly the same as <code class="language-plaintext highlighter-rouge">MPI_Comm_rank</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">process_id</span><span class="p">;</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">process_id</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">num_proc</span><span class="p">;</span>
+    <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World! Kind regards, Process %d of %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mpirun -np 4 ./simple_mpi
+Hello World! Kind regards, Process 1 of 4
+Hello World! Kind regards, Process 2 of 4
+Hello World! Kind regards, Process 3 of 4
+Hello World! Kind regards, Process 0 of 4
+</code></pre></div></div>
+
+<p>Now that we can do that we can divide up some work! Let’s say we have a list which ends up on Process 0 but not the other processes; in our simple example we’ll just generate a random list, but in practice this might be something like file input which need to be localised to single process. We can check how many processes we have an divide our list accordingly.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;random&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">process_id</span><span class="p">;</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">process_id</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">num_proc</span><span class="p">;</span>
+    <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">process_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">mt19937_64</span> <span class="n">rng</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">uniform_real_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">master_list</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">rng</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">listSize</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">num_proc</span><span class="p">;</span> <span class="c1">// We are using a multiple of four to avoid dealing with remainders!</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World! Kind regards, Process %d of %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So process 0 now has a random list, and we’ve calculate the size of sub-list that should go to each process. But how do we send the sub-list on to the right destination?</p>
+
+<h2 id="sending-messages-with-mpi">Sending Messages with MPI</h2>
+
+<p>We send a message using <a href="https://www.open-mpi.org/doc/v4.0/man3/MPI_Send.3.php">MPI_Send</a>. This one takes a lot of arguments!</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int MPI_Send(const void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">buf</code> is a pointer to the data buffer that you want to send. This could be a simple variable or an array.</li>
+      <li><code class="language-plaintext highlighter-rouge">count</code> is the number of elements in the buffer.</li>
+      <li><code class="language-plaintext highlighter-rouge">datatype</code> is the type of the elements in the buffer. You can find a translation from MPI datatypes to C++ datatypes <a href="https://www.mpi-forum.org/docs/mpi-2.1/mpi21-report-bw/node330.htm">here</a>.
+        <ul>
+          <li>Together <code class="language-plaintext highlighter-rouge">count</code> and <code class="language-plaintext highlighter-rouge">datatype</code> tell the environment how much data needs to be sent. Remember that as a pointer <code class="language-plaintext highlighter-rouge">buf</code> only points to an address in memory; this could be a variable or the start of an array. <code class="language-plaintext highlighter-rouge">buf</code> on its own has no information about how much data the thing you’re pointing to is made up of.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">destination</code> is the rank of the process you want to send the message to in the given communicator.</li>
+      <li><code class="language-plaintext highlighter-rouge">tag</code> is an integer identifier which can be used to distinguish between types of messages. This is useful for more complex programs where processes might have multiple things they could request from or send to one another.</li>
+      <li><code class="language-plaintext highlighter-rouge">comm</code> is the communicator that you are sending the message within.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Okay, so let’s try sending to our other processes. Our <code class="language-plaintext highlighter-rouge">comm</code> is just <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code>, our datatype is <code class="language-plaintext highlighter-rouge">MPI_DOUBLE</code>, our <code class="language-plaintext highlighter-rouge">count</code> is <code class="language-plaintext highlighter-rouge">listSize</code>, our <code class="language-plaintext highlighter-rouge">tag</code> is arbitrary (let’s just say <code class="language-plaintext highlighter-rouge">0</code>). The only thing to be careful of is <code class="language-plaintext highlighter-rouge">buf</code> and <code class="language-plaintext highlighter-rouge">destination</code>: for each destination process we’ll need to move <code class="language-plaintext highlighter-rouge">buf</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;random&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">process_id</span><span class="p">;</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">process_id</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">num_proc</span><span class="p">;</span>
+    <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">process_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">mt19937_64</span> <span class="n">rng</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">uniform_real_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">master_list</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">rng</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">listSize</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">num_proc</span><span class="p">;</span> <span class="c1">// We are using a multiple of four to avoid dealing with remainders!</span>
+
+        <span class="c1">// Send the list data in messages</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_proc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">double</span> <span class="o">*</span> <span class="n">buffer_start</span> <span class="o">=</span> <span class="n">master_list</span> <span class="o">+</span> <span class="n">listSize</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+            <span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer_start</span><span class="p">,</span>
+                     <span class="n">listSize</span><span class="p">,</span>
+                     <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                     <span class="n">i</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span>
+                     <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World! Kind regards, Process %d of %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now if we do this, we won’t be able to tell if anything’s happened. Crucially, our other processes can’t do anything with the information, because they haven’t received it yet! Let’s find out how to deal with our information on our other processes.</p>
+
+<h2 id="receiving-messages-with-mpi">Receiving Messages with MPI</h2>
+
+<p>We need to actively receive information using <a href="https://www.open-mpi.org/doc/v3.0/man3/MPI_Recv.3.php">MPI_Recv</a>. We essentially already know how to do this because the signature of this function is almost identical to <code class="language-plaintext highlighter-rouge">MPI_Send</code>.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status *status)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">destination</code> is replaced by <code class="language-plaintext highlighter-rouge">source</code>.</li>
+  <li>We have one extra parameter called <code class="language-plaintext highlighter-rouge">status</code>, of type <code class="language-plaintext highlighter-rouge">MPI_Status</code>. MPI_Status has some information about the source and tag of the message, which can be useful if we use special values of <code class="language-plaintext highlighter-rouge">source</code> and <code class="language-plaintext highlighter-rouge">tag</code>. If we don’t need the <code class="language-plaintext highlighter-rouge">status</code> (because we are listening out for a specific source and tag) then we can use the special value <code class="language-plaintext highlighter-rouge">MPI_STATUS_IGNORE</code>.</li>
+  <li>The values <code class="language-plaintext highlighter-rouge">MPI_ANY_SOURCE</code> and <code class="language-plaintext highlighter-rouge">MPI_ANY_TAG</code> allow us to listen for messages with any source and / or tag. Otherwise, this call will only catch a message which comes from the expected destination and with the correct tag.</li>
+  <li>We still need to know the count and the datatype to work out how much data is being copied over.</li>
+  <li><code class="language-plaintext highlighter-rouge">buf</code> now points to the data buffer we’ll be copying data <em>into</em> rather than from.</li>
+</ul>
+
+<p>Let’s receive our lists and print out the first element of the list we receive. To test this, we’ll replace our random numbers with a predictable number for now!</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;random&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">process_id</span><span class="p">;</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">process_id</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">num_proc</span><span class="p">;</span>
+    <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">process_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">mt19937_64</span> <span class="n">rng</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">uniform_real_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">master_list</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//dist(rng);</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">listSize</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">num_proc</span><span class="p">;</span> <span class="c1">// We are using a multiple of four to avoid dealing with remainders!</span>
+
+        <span class="c1">// Send the list data in messages</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_proc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">double</span> <span class="o">*</span> <span class="n">buffer_start</span> <span class="o">=</span> <span class="n">master_list</span> <span class="o">+</span> <span class="n">listSize</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+            <span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer_start</span><span class="p">,</span>
+                     <span class="n">listSize</span><span class="p">,</span>
+                     <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                     <span class="n">i</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span>
+                     <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">listSize</span> <span class="o">=</span> <span class="mi">256</span><span class="o">/</span><span class="n">num_proc</span><span class="p">;</span> <span class="c1">// Cheating a bit to avoid complicating the example by checking the size</span>
+        <span class="kt">double</span> <span class="n">sub_list</span><span class="p">[</span><span class="n">listSize</span><span class="p">];</span> <span class="c1">// Only needs to be big enough to hold our sub list </span>
+        <span class="n">MPI_Recv</span><span class="p">(</span><span class="n">sub_list</span><span class="p">,</span>
+                 <span class="n">listSize</span><span class="p">,</span>
+                 <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span>
+                 <span class="n">MPI_COMM_WORLD</span><span class="p">,</span>
+                 <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Process %d received a list starting with %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">sub_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun -np 4 ./simple_mpi
+Process 1 received a list starting with 64.000000
+Process 2 received a list starting with 128.000000
+Process 3 received a list starting with 192.000000
+</code></pre></div></div>
+
+<p>So we have now managed to successfully communicate our sublists to other processes! Now we just need to sort them and send them back, and the process 0 can merge them!</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;random&gt;</span><span class="c1"> </span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">// merge two lists which are stored next to one another in a buffer</span>
+<span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="o">*</span><span class="n">working_buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">size1</span><span class="o">+</span><span class="n">size2</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">count1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">count2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">start2</span> <span class="o">=</span> <span class="n">start1</span> <span class="o">+</span> <span class="n">size1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">((</span><span class="n">count1</span> <span class="o">&lt;</span> <span class="n">size1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">count2</span> <span class="o">&lt;</span> <span class="n">size2</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">start1</span> <span class="o">+</span> <span class="n">count1</span><span class="p">];</span>
+        <span class="kt">double</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">start2</span> <span class="o">+</span> <span class="n">count2</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span> <span class="o">&lt;</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">working_buffer</span><span class="p">[</span><span class="n">count1</span> <span class="o">+</span> <span class="n">count2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">;</span>
+            <span class="n">count1</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">working_buffer</span><span class="p">[</span><span class="n">count1</span> <span class="o">+</span> <span class="n">count2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x2</span><span class="p">;</span>
+            <span class="n">count2</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Fill buffer with whichever values remain</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">count1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">working_buffer</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">count2</span><span class="p">]</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">start1</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">count2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">working_buffer</span><span class="p">[</span><span class="n">count1</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">start2</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">size1</span><span class="o">+</span><span class="n">size2</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">working_buffer</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">working_buffer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">process_id</span><span class="p">;</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">process_id</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">num_proc</span><span class="p">;</span>
+    <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_proc</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">process_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">mt19937_64</span> <span class="n">rng</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">uniform_real_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">master_list</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">rng</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">listSize</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">num_proc</span><span class="p">;</span> <span class="c1">// We are using a multiple of four to avoid dealing with remainders!</span>
+
+        <span class="c1">// Send the list data in messages</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_proc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">double</span> <span class="o">*</span> <span class="n">buffer_start</span> <span class="o">=</span> <span class="n">master_list</span> <span class="o">+</span> <span class="n">listSize</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+            <span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer_start</span><span class="p">,</span>
+                     <span class="n">listSize</span><span class="p">,</span>
+                     <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                     <span class="n">i</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span>
+                     <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">master_list</span><span class="p">,</span> <span class="n">master_list</span> <span class="o">+</span> <span class="n">listSize</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_proc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">double</span> <span class="o">*</span> <span class="n">buffer_start</span> <span class="o">=</span> <span class="n">master_list</span> <span class="o">+</span> <span class="n">listSize</span><span class="o">*</span><span class="n">i</span><span class="p">;</span> <span class="c1">// copy received buffers back into master list</span>
+            <span class="c1">// we just need the sorted sublists, but we don't care which process is sending them so we'll take </span>
+            <span class="c1">// them in whichever order they come using MPI_ANY_SOURCE. The loop makes sure that receive enough</span>
+            <span class="c1">// messages. </span>
+            <span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer_start</span><span class="p">,</span>
+                     <span class="n">listSize</span><span class="p">,</span>
+                     <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                     <span class="n">MPI_ANY_SOURCE</span><span class="p">,</span>
+                     <span class="mi">1</span><span class="p">,</span>
+                     <span class="n">MPI_COMM_WORLD</span><span class="p">,</span>
+                     <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Merge all the lists</span>
+        <span class="c1">// Again we'll cheat this loop a bit by assuming that num_proc and N are both powers of two</span>
+        <span class="c1">// In real code we would have to deal with things like remainders properly but this example is already quite big!</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">num_proc</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">subListSize</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">i</span><span class="p">;</span> 
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">merge</span><span class="p">(</span><span class="n">master_list</span><span class="p">,</span> <span class="n">j</span><span class="o">*</span><span class="n">subListSize</span><span class="p">,</span> <span class="n">subListSize</span><span class="p">,</span> <span class="n">subListSize</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Sorted List: "</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"%f "</span><span class="p">,</span> <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">listSize</span> <span class="o">=</span> <span class="mi">256</span><span class="o">/</span><span class="n">num_proc</span><span class="p">;</span> <span class="c1">// Cheating a bit to avoid complicating the example by checking the size</span>
+        <span class="kt">double</span> <span class="n">sub_list</span><span class="p">[</span><span class="n">listSize</span><span class="p">];</span> <span class="c1">// Only needs to be big enough to hold our sub list </span>
+        <span class="n">MPI_Recv</span><span class="p">(</span><span class="n">sub_list</span><span class="p">,</span>
+                 <span class="n">listSize</span><span class="p">,</span>
+                 <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span>
+                 <span class="n">MPI_COMM_WORLD</span><span class="p">,</span>
+                 <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Process %d received a list starting with %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">sub_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        
+        <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">sub_list</span><span class="p">,</span> <span class="n">sub_list</span><span class="o">+</span><span class="n">listSize</span><span class="p">);</span>
+        
+        <span class="n">MPI_Send</span><span class="p">(</span><span class="n">sub_list</span><span class="p">,</span>
+                 <span class="n">listSize</span><span class="p">,</span> 
+                 <span class="n">MPI_DOUBLE</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span>
+                 <span class="mi">1</span><span class="p">,</span>
+                 <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>You don’t need to get too caught up in the details of things like the merge function, it’s just there so the example works! The important thing to to look at the two different kinds of logic that get executed for Process 0 and for other processes.</li>
+  <li>After performing the sort each of the other processes returns its sorted list in a message, which I’ve given the tag <code class="language-plaintext highlighter-rouge">1</code> to differentiate it although this was not necessary.</li>
+  <li>Process 0 will copy over the data from the other processes in whichever order they arrive, since it doesn’t matter for the merge process that they the data is copied back into the same place in the buffer, only that each sublist is sorted. This reduces the possibility of idling.</li>
+  <li>After process 0 has all the data, it can proceed to perform all the merges. This loop is simplified to assume that our number of processes and number of elements are powers of two so that everything fits neatly together, but normally this logic would be a bit more complicated.</li>
+  <li>How would you adapt to the case in the notes where processes communicate pairwise and merge the lists before they get to the parent process?</li>
+</ul>
+
+<p>My output is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mpic++ -o simple_mpi mpi_example.cpp 
+$ mpirun -np 4 ./simple_mpi
+Process 1 received a list starting with 0.086416
+Process 2 received a list starting with 0.832426
+Process 3 received a list starting with 0.901857
+Sorted List: 0.005706 0.022079 0.022079 0.026552 0.029033 0.029033 0.032402 0.032402 0.063318 0.073619 0.079142 ...
+</code></pre></div></div>
+
+<h2 id="summary">Summary</h2>
+
+<p>Through this example we have seen how to use the six most important methods that virtually all MPI programs must use:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Init</code></li>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Finalize</code></li>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Comm_rank</code></li>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Comm_size</code></li>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Send</code></li>
+  <li><code class="language-plaintext highlighter-rouge">MPI_Recv</code></li>
+</ul>
+
+<p>Using this handful of calls we can create highly complex systems, although there are many other useful calls like <a href="https://www.open-mpi.org/doc/v4.1/man3/MPI_Bcast.3.php">MPI_Bcast</a> which broadcasts a message to every process in a communicator and therefore simplifies the programming of some models.</p>
+
+<p>When we have processes performing different jobs we should refactor this behind function calls so as not to have a large, confusing branching <code class="language-plaintext highlighter-rouge">main</code> where it is difficult to tell what process you are in!</p>
+
+<p>MPI involves sending buffers of contiguous memory as messages, and we have used traditional C arrays to align with this interpretation. But we can send C++ datastructures if we need to. We can send an <code class="language-plaintext highlighter-rouge">std::vector v</code> by using the pointer to the first element <code class="language-plaintext highlighter-rouge">&amp;v[0]</code> as the buffer pointer. Be wary of sending vectors of objects though; sending generally store these as vectors of pointers and those pointers will not be valid in the memory space of another process! Likewise any objects that you send which contain pointers will not be valid any more either. In general, try to keep you messages short, and composed of a single, simple data type like <code class="language-plaintext highlighter-rouge">char</code>, <code class="language-plaintext highlighter-rouge">int</code>, or <code class="language-plaintext highlighter-rouge">double</code>.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

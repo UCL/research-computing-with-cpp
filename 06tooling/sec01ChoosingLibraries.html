@@ -1,0 +1,525 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Choosing Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h2 id="choosing-libraries">Choosing libraries</h2>
+
+<p>Choosing the right library for the job can be tricky. The right choice can supercharge your development, making it easy to write what you want. However, the wrong choice can set you back a significant amount of time and effort if you end up needing to change a library part-way into a project.</p>
+
+<p>Fundamentally there are two questions to ask that will decide if you <strong>can</strong> use a given library in your project, and a few more that will help you decide if you <strong>should</strong> use the library.</p>
+
+<p><strong>Can I use the library?</strong></p>
+
+<ul>
+  <li>Does it provide what I need?</li>
+  <li>Can I legally use it?</li>
+</ul>
+
+<p><strong>Should I use the library?</strong></p>
+
+<ul>
+  <li>Is the library stable?</li>
+  <li>Is the library fast enough for my needs?</li>
+  <li>Is the library consistently updated?</li>
+  <li>Who develops the library?</li>
+  <li>Is the library well-tested?</li>
+  <li>Is the library high-quality?</li>
+</ul>
+
+<p>For the latter questions, it’s not essential that you answer “yes” to every one, but you should have a good reason to still use the library after saying “no” to any. Choosing a <em>good</em> library can be a tricky business so let’s dive into each of these questions to understand how we can choose the best library for our needs.</p>
+
+<h3 id="features-does-it-provide-what-i-need">Features: Does it provide what I need?</h3>
+
+<p>This one should be easy but sometimes isn’t. Take a look at documentation, examples, tutorials, read what other developers have said about the library, and maybe take a look at the code itself. You should have an idea what kind of features the library has and how it can help you.</p>
+
+<h3 id="software-licenses-can-i-legally-use-it">Software licenses: Can I legally use it?</h3>
+
+<p><strong>CAVEAT</strong>: This is not legal advice. If in doubt, seek your own legal advice (e.g., <a href="https://www.ucl.ac.uk/library/ucl-copyright-advice" title="UCL Copyright advice">UCL Copyright advice</a>).</p>
+
+<p>A software license is a way to grant permissions for use and/or distribution to others. Putting your code on a public website does not grant permissions to anyone to use, copy, translate or distribute it as you still own the copyright of that work (even when it’s not stated that you own the copyright).</p>
+
+<p>Contrary to popular belief, distributed unlicensed software (not in the public domain) is fully copyright protected, and therefore legally unusable (as no usage rights at all are granted by a license) until it passes into public domain after the <a href="https://en.wikipedia.org/wiki/Copyright_term">copyright term</a> has expired. See <a href="https://en.wikipedia.org/w/index.php?oldid=999552724#Software_licenses_and_copyright_law">Wikipedia</a> for more.</p>
+
+<p>Remember: even if you aren’t distributing code yet, you need to understand the licenses of your dependencies.</p>
+
+<h4 id="third-party-licenses">Third party licenses</h4>
+
+<p>When you distribute your code, the licenses of any libraries you use takes effect. For example, a library with license:</p>
+
+<ul>
+  <li><a href="http://opensource.org/licenses/MIT">MIT</a> or <a href="http://opensource.org/licenses/BSD-3-Clause">BSD</a> are permissive. So you can do what you want with the resulting software you write, including sell it on.</li>
+  <li><a href="http://opensource.org/licenses/Apache-2.0">Apache</a> handles multiple contributors and patent rights, but is basically permissive.</li>
+</ul>
+
+<p>Some libraries can affect how you yourself must license your code:</p>
+
+<ul>
+  <li><a href="http://opensource.org/licenses/gpl-license">GPL</a> requires you to open-source your code, including changes to the library you imported, and your work is considered a “derivative work”, so must be shared.</li>
+  <li><a href="http://opensource.org/licenses/lgpl-license">LGPL</a> for libraries, but <a href="https://www.gnu.org/licenses/gpl-faq.en.html#LGPLStaticVsDynamic" title="Does the LGPL have different requirements for statically vs dynamically linked modules with a covered work?">use dynamic not static linkage</a>. If you use static linking its basically as per <a href="http://opensource.org/licenses/gpl-license">GPL</a>.</li>
+</ul>
+
+<p>However, there’s still some debate on <a href="https://lwn.net/Articles/548216/">GPL/LGPL and derivative works</a>. The only true test is in court.</p>
+
+<h4 id="choosing-a-license">Choosing a license</h4>
+
+<p>When you plan to distribute code:</p>
+
+<ul>
+  <li>Don’t write your own license, unless you use legal advice and you understand its consequences.</li>
+  <li>Check <a href="http://choosealicense.com/">GitHub’s advice</a>, and <a href="http://opensource.org/licenses">OSI</a> for choosing your own license.</li>
+  <li>Try to pick one of the standard ones for <a href="https://en.wikipedia.org/wiki/License_compatibility">compatibility</a>.</li>
+</ul>
+
+<p>For an in-depth understanding we recommend you read some works about licenses:</p>
+
+<ul>
+  <li><a href="https://www.worldcat.org/title/understanding-open-source-free-software-licensing-guide-to-navigating-licensing-issues-in-existing-new-software/oclc/314704943">Understanding Open Source and Free Software Licensing</a> (<a href="http://www.oreilly.com/openbook/osfreesoft/book/">web</a>, <a href="&quot;https://ucl-new-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=UCL_LMS_DS51341932510004761&amp;context=L&amp;vid=UCL_VU2&amp;lang=en_US&amp;search_scope=CSCOP_UCL&amp;adaptor=Local%20Search%20Engine&amp;tab=local&amp;query=any,contains,Understanding%20open%20source%20%26%20free%20software%20licensing&amp;offset=0&quot;">UCL</a>, <a href="https://people.debian.org/~dktrkranz/legal/Understanding%20Open%20Source%20and%20Free%20Software%20Licensing.pdf">pdf</a>),</li>
+  <li><a href="https://www.thepublicdomain.org/download/">The public domain</a></li>
+</ul>
+
+<p><strong>Note</strong>: Once a 3rd party has your code under a license agreement, their restrictions are determined by that version of the code.</p>
+
+<h3 id="stability-is-a-library-stable">Stability: Is a library stable?</h3>
+
+<p>Some libraries are so new their <em>public API</em> or <em>interface</em> is still subject to change. This is usually signalled by the project being in <em>alpha</em> or <em>beta</em> stages, either before an initial 1.0.0 release, or before a new major x.0.0 release. Some projects (like Python itself) ensure that all <em>minor</em> versions will not intentionally introduce breaking changes (i.e. you can use the same code moving from 3.10 to 3.11) but keep <em>breaking changes</em> to new major versions (i.e. moving from Python 2 to Python 3). If you haven’t come across this idea, read about <a href="https://www.geeksforgeeks.org/introduction-semantic-versioning/">semantic versioning</a>.</p>
+
+<p>When choosing a library to use with your own project, try to use a <em>stable</em> version, i.e. one with a stable interface.</p>
+
+<h3 id="efficiency-is-the-library-fast-enough">Efficiency: Is the library fast enough?</h3>
+
+<p>Good scientific libraries tend to be <em>well-optimised</em>, that is their algorithms and data structures have been designed in an attempt to get the maximise performance for the functionality that they want to provide. For performance-critical libraries (like many used in numerical computations) the library developers should include some details about the performance of the library in its documentation. This is where you should ideally look for information about the performance. Otherwise, try to find comparisons with other, similar libraries to understand the performance. Try to understand your own needs when looking at performance: optimisation can mean trade-offs between being fast, being memory efficient, or being flexible. (Recall that our highly flexible <code class="language-plaintext highlighter-rouge">std::function</code> integrator was slower than our more narrow function pointer version.)</p>
+
+<p>Many popular libraries have been researched, developed, and maintained over many years, with intense focus placed on the correctness and performance of their algorithms. As such, you are unlikely to beat a mature library’s performance with a like-for-like custom algorithm, but sometimes custom code can be faster due to a tradeoff between flexibility and performance. (Libraries, in order to be useful to large numbers of people, often provide fairly general methods, which can sometimes be improved upon using detailed knowledge of your precise problem.) If you have already used the library but think you might be able to beat a library’s performance:</p>
+
+<ol>
+  <li>test the performance of the library’s implementation</li>
+  <li>write some unit tests using the library’s implementation</li>
+  <li>write your custom implementation</li>
+  <li>modify the unit tests to test your implementation</li>
+  <li>test the performance of your custom code and compare to the library performance</li>
+</ol>
+
+<p>By testing correctness and performance on both the library and your custom code, you can understand whether it’s worth it to commit to either.</p>
+
+<h3 id="up-to-date-is-the-library-regularly-updated">Up-to-date: Is the library regularly updated?</h3>
+
+<p>Libraries that are not regularly maintained can “rot”, that is:</p>
+
+<ul>
+  <li>bugs don’t get fixed</li>
+  <li>bugs in dependencies don’t get fixed</li>
+  <li>new language features break the library</li>
+  <li>newer, safer language features don’t get introduced</li>
+  <li>advances in packaging make it more difficult to install</li>
+</ul>
+
+<p>In general, we want to avoid these issues, so consider these questions when deciding if the library is suitably up-to-date:</p>
+
+<ul>
+  <li>When was the last release?</li>
+  <li>Is there a sensible versioning scheme (e.g. <a href="http://www.semver.org/">semantic versioning</a>)?</li>
+  <li>Is a <a href="https://keepachangelog.com/en/1.0.0/">changelog</a> provided with each new release?</li>
+  <li>Is there a suitable release schedule?</li>
+  <li>Is the code developed in the open (e.g., on GitHub)?
+    <ul>
+      <li>How often are there commits?</li>
+    </ul>
+  </li>
+</ul>
+
+<p>You should develop your own intuition for what you consider “suitably up-to-date” but here are some heuristics:</p>
+
+<ul>
+  <li>If a library has been updated within the last year, it’s probably good.</li>
+  <li>If a library is very small, it probably doesn’t need many updates, so longer releases are fine.</li>
+  <li>If a library is very old and hasn’t been introducing new features (like some numerical libraries) and has been very well-used, there may simply be fewer bugs left to deal with, so a release over ten years ago is still probably okay (but might not be as well optimised on recent hardware).</li>
+</ul>
+
+<h3 id="ownership-who-develops-the-library">Ownership: Who develops the library?</h3>
+
+<p>Libraries must be developed by someone: if there is no community or company responsible for a library’s development, it is considered <em>abandoned</em> and should probably be avoided. Consider some of the following questions:</p>
+
+<ul>
+  <li>Is the library obviously developed by a person, community, company or other organisation?</li>
+  <li>If a company:
+    <ul>
+      <li>How easy is it to report bugs?</li>
+      <li>Is it still open source?</li>
+      <li>What happens if the company decides to make the library closed-source?</li>
+    </ul>
+  </li>
+  <li>If a person or community:
+    <ul>
+      <li>Is the library popular?</li>
+      <li>Are there many contributors to the project?</li>
+      <li>Are issues dealt with sensibly?</li>
+      <li>Is it easy to reach out to the developers?</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="correctness-is-the-library-well-tested">Correctness: Is the library well-tested?</h3>
+
+<ul>
+  <li>Are there many unit tests, do they run, do they pass?
+    <ul>
+      <li>Are they run automatically? <em>Continuous integration</em> is a good practice in which code is built and tested automatically when it is updated; this can be automated through e.g. github.</li>
+    </ul>
+  </li>
+  <li>Does the library depend on other libraries?</li>
+  <li>Are the build tools common?</li>
+</ul>
+
+<h3 id="quality-is-the-library-of-high-quality">Quality: Is the library of high quality?</h3>
+
+<p>Beyond the things we’ve already discussed, there are a few more minor points that signal whether a library is developed <em>well</em>. The lack of any of these things doesn’t mean a library is bad, it may just be more difficult to use or update. Consider:</p>
+
+<ul>
+  <li>Documentation: does it exist? is it good?</li>
+  <li>Number of ToDos: do they keep a track of bugs to fix and future features to implement?</li>
+  <li>Dependencies: does it offer a clear list of dependencies? Are they trusted?</li>
+  <li>Data Structures: is it clear how to import/export data or images to use later? Do you understand what you need to put in and what you will get out when you use the library’s functions? Do you know which functions have side effects (e.g. in place updates?) and what they are?</li>
+  <li>Clear API: can you write a convenient wrapper? Is it clear how to use the library’s features?</li>
+</ul>
+
+<h2 id="libraries-you-should-be-using">Libraries you should be using</h2>
+
+<p>While you should be asking yourself the above questions to understand how a library can help you, there are some groups of libraries you should consider first:</p>
+
+<ul>
+  <li>Standard library
+    <ul>
+      <li><em>very</em> well-tested</li>
+      <li><em>very</em> well-documented</li>
+      <li><em>very</em> well-used</li>
+      <li>constantly developed</li>
+      <li>all compiler vendors are required to provide it so there are no dependencies to install!</li>
+    </ul>
+  </li>
+  <li>Vendor-provided libraries - provided by Intel/Nvidia/AMD/etc
+    <ul>
+      <li>well-tested</li>
+      <li>(often) well-documented</li>
+      <li>usually best performance for a particular architecture</li>
+      <li>but not always open-source</li>
+    </ul>
+  </li>
+  <li>Well-known libraries - Boost, FFTW, Eigen, Vulkan, etc
+    <ul>
+      <li>well-tested</li>
+      <li>well-used</li>
+      <li>(often) well-documented</li>
+      <li>typically well optimised</li>
+      <li>strong communities</li>
+      <li>you may find that discussion with your particular research communities will help lead you to appropriate library choices</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

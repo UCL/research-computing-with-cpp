@@ -1,0 +1,83 @@
+/* 
+* Pattern name: Site content
+* Use: Structuring and alignment for main content 
+* Note: N/A
+-------------------------------------------------------------- */
+
+.site-content {
+	position: relative;
+	z-index: $zindex-content;
+}
+
+.site-content--split {
+	overflow: hidden;
+	@include gs-media(t, min) {
+		.site-content__section {
+			float: left;
+			margin-left: 2%;
+			margin-right: 2%;
+			width: 47%;
+			&:nth-child(odd) {
+				margin-right: 1%;
+			}
+			&:nth-child(even) {
+				margin-left: 1%;
+			}
+		}
+	}
+}
+
+.site-content__inner {
+	background-color: $content-bg-color;
+	padding: 2em 35px;
+	left: -35px;
+	position: relative;
+	@include guttering;
+	@include gs-span(dl, all);
+	@include gs-media(t, max) {
+		@include gs-span(t, all);
+	}
+	@include gs-media(m, max) {
+		@include gs-span(m, all);
+		padding-top: $baseline;
+	}
+}
+
+
+.site-content__body {
+	@include gs-span(dl, 2, 5);
+	@include gs-media(t, max) {
+		@include gs-span(t, 2, 3);
+	}
+
+	@include gs-media(m, max) {
+		@include gs-span(m, all);
+	}
+}
+
+.site-content__main, .site-content__sidebar {
+	@include guttering;
+}
+
+.site-content__main {
+	@include gs-span(dl, 2, 3, (2, 5));
+	@include gs-media(t, max) {
+		@include gs-span(t, all, (2, 3));
+	}
+
+	@include gs-media(m, max) {
+		@include gs-span(m, all);
+	}
+}
+
+.site-content__sidebar {
+	@include rem(font-size, $font-size-sm);
+	@include gs-span(dl, 5, 5, (2, 5));
+	@include gs-media(t, max) {
+		@include gs-span(t, all, (2, 3));
+	}
+
+	@include gs-media(m, max) {
+		@include gs-span(m, all);
+	}
+}

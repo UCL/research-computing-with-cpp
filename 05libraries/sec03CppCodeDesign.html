@@ -1,0 +1,465 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="https://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="https://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>C++ Code Design Summary</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!--link href="//cdn.ucl.ac.uk/skins/font-awesome/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="/research-computing-with-cpp/assets/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/assets/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" media="screen, projection" href="//cdn.ucl.ac.uk/skins/UCLDrupalIndigoSkin/default-theme/css/brightblue.min.css?sspcng">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/assets/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/assets/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/assets/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/assets/js/lib/jquery-1.9.1.min"
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/assets/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/assets/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, degrees, short courses, people and more" aria-label="Search UCL websites, degrees, short courses" class="search-form__input search-form__input--search tt-input" name="query" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+						</div>
+						<input type="submit" name="submit" value="Go" class="btn btn--primary search-form__input search-form__input--submit">
+
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/prospective-students" title="" class="masthead__link">Study</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/research" title="" class="masthead__link">Research</a>
+						</li>
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/engage" title="" class="masthead__link">Engage</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/about" title="" class="masthead__link">About</a>
+						</li>
+
+						<li class="masthead__item"><a href="//www.ucl.ac.uk/giving" title="" class="masthead__link give-link">Give</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">COMP0210: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="active"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/research-computing-with-cpp/01projects/">Introduction to C++</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/UsingTheTerminal.html">Terminal Commands Cheat Sheet</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec01IntroToCpp.html">Introduction to C++</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec02CppSyntax.html">C++ Syntax</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec03MultipleFiles.html">C++ Programs with Multiple Files</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01projects/sec05Git.html">Version control with Git</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Week 2: Custom Data Types and (a glimpse of) the Standard Library</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01Types.html">Types</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02PassByValueOrReference.html">Pass by Value and Pass by Reference</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03ObjectOrientedProgramming.html">Object Oriented Programming</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec04StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec05Pointers.html">Pointers in C++</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Week 3: Error Handling and C++ Projects</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01Exceptions.html">Exceptions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02ErrorHandling.html">Other Error Mechanisms</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04UnitTesting.html">Testing Software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec05SoftwareBuilds.html">Building research software</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec06CMakeBackground.html">CMake Background</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec07CMakeHelloWorld.html">HelloWorld with CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec08BuildHelloWorld.html">Building 'HelloWorld'</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Week 4: Polymorphism</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03Templates.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04VariadicTemplates.html">Variadic Templates</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Week 5: Code Design and Programming Paradigms</a><ul><li class="active"> <a href="/research-computing-with-cpp/05libraries/ProgrammingParadigms.html">Programming Paradigms</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01DesigningClasses.html">Designing Classes and Code</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03CppCodeDesign.html">C++ Code Design Summary</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/06tooling/">Week 6: Libraries and Tooling</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec00TimingAndTooling.html">Timing and Tooling</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec03LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec04InstallingLibraries.html">Installing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06tooling/sec05Summary.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07performance/">Week 7: Introduction to Performance</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/DataStructures.html">Data Structures</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec00Motivation.html">Why Optimise for Performance?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec01Complexity.html">Computational Complexity</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec02Memory.html">Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/07performance/sec03Optimisation.html">Compiler Optimisation</a> </li> </ul> </li><li class="active"> <a href="/research-computing-with-cpp/08openmp/">Week 8: Parallel Programming with OpenMP</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/01_parallel_programming.html">What is parallel programming?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/02_intro_openmp.html">An introduction to OpenMP</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/04_cache_performance.html">Cache Performance in Shared Memory</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/08openmp/05_summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/09distributed_computing/">Week 9: Distributed Memory Parallelism</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec01DistributedMemoryModels.html">Distributed Memory Model</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/09distributed_computing/sec02ProgrammingWithMPI.html">MPI Programming</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/10parallel_algorithms/">Week 10: Work Depth Models and Parallel Strategies</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/AsynchronousMPI.html">Asynchronous MPI Programs</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/10parallel_algorithms/WorkDepth.html">Work Depth Models and Parallel Strategy</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/assets/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/">UCL Home</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/arc">Advanced Research Computing</a></li>
+  
+    <li class="breadcrumb__item"><a href="https://www.ucl.ac.uk/advanced-research-computing/about-our-training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">COMP0210</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h1 id="c-code-design-summary">C++ Code Design Summary</h1>
+
+<p>This is the end of our coverage of basic C++ language features. In the coming weeks, we’ll explore different programming strategies, tools such as debuggers and profilers, and writing performant code using optimisations and parallel programming. Now is a good time to reflect on some of the features that we’ve learned about and how they fit together.</p>
+
+<h2 id="general-c-principles">General C++ Principles</h2>
+
+<ul>
+  <li>Separate function / class declarations and implementations into header (.h) and source (.cpp) files.</li>
+  <li>Use smart pointers for data-owning pointers: manual memory management should be minimised.</li>
+  <li>Check for standard implementations of functions before writing your own: things like sorting are already well covered!</li>
+  <li>The standard library offers performant containers such as <code class="language-plaintext highlighter-rouge">vector</code>, <code class="language-plaintext highlighter-rouge">array</code>, and <code class="language-plaintext highlighter-rouge">map</code>.</li>
+  <li>Make use of modern C++ features like range based loops, <code class="language-plaintext highlighter-rouge">auto</code> type inference, and anonymous functions where they make your code easier to understand or more flexible.
+    <ul>
+      <li>Be aware of possible performance issues with anonymous functions / <code class="language-plaintext highlighter-rouge">std::function</code> due to calling overheads.</li>
+      <li>Don’t use <code class="language-plaintext highlighter-rouge">auto</code> if it makes it difficult for people to understand what types you are using.</li>
+    </ul>
+  </li>
+  <li>Don’t import entire large namespaces like <code class="language-plaintext highlighter-rouge">std</code> as they risk name clashes.</li>
+  <li>Code should be modularised:
+    <ul>
+      <li>Functions should achieve a single task.</li>
+      <li>Classes should bundle together data and functionality necessary to represent a single concept.</li>
+      <li>Use unit-testing to test individual pieces of your program independently.</li>
+      <li>If you start repeating yourself in your code, try to refactor so that repeated segments are replaced with function calls.</li>
+    </ul>
+  </li>
+  <li>Make use of features like intefaces and templates for flexible and reusable code.</li>
+  <li>Programming solutions are not one size fits all: think carefully about your problem, the use case that you are developing for, and how you feel you can best serve your priorities and reflect the logical structure of your model in C++.</li>
+</ul>
+
+<h2 id="run-time-and-compile-time-polymorphism">Run-time and Compile-time Polymorphism</h2>
+
+<p>Now that we’ve met both inheritance based run-time polymorphism and generic programming through templates, it’s worth looking at the similarities and differences between the two.</p>
+<ul>
+  <li>Polymorphism allows for differences in behaviour to be decided at run-time.
+    <ul>
+      <li>Behavioural differences are encoded inside classes which are related by inheritance.</li>
+      <li>A single polymorphic function can operate on a base type and all its derived types. This is usually achieved by passing a pointer to the base type and calling virtual functions.</li>
+    </ul>
+  </li>
+  <li>Templates (and function overloading) allow for differences in behaviour to be decided at compile-time.
+    <ul>
+      <li>Behavioural differences are encoded into the external functions (or classes) which make use of the templated or overloaded type. The types which can be used aren’t generally related by inheritance, but merely need to fulfil the functionality demanded in the templated code.</li>
+      <li>Templates generate separate classes / functions for every different template parameter it is called with.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>There is a difference between a code which needs to have different behaviour with different objects not knowing ahead of time the exact type of that object (run-time polymorphism) and code which can be applied to different types in different parts of the program, but does not require those types to be substitutable at run-time (compile-time polymorphism e.g. templates and function overloading). For example, you may well use the (overloaded) <code class="language-plaintext highlighter-rouge">+</code> operator to add integers together, and to concatenate strings, but you are unlikely to process data which could be <em>either</em> an int or a string without knowing which it will be.</p>
+
+<h2 id="composition-and-inheritance">Composition and Inheritance</h2>
+
+<p>We’ve seen this week that we can use multiple inheritance to implement multiple interfaces, which can lead to difficulties like the diamond problem, as well as making our model increasingly complex. While we can in fact inherit from an arbitrary number of base classes, it risks collisions between class namespaces and general confusion over the purpose and nature of an object. Multiple inheritance should only be used when motivated by genuine substitution (an “is-a” relationships, one class is a sub-type of the other) and a meaningful polymorphic use case. If faced with a multiple inheritance use case, consider whether it should in fact be represented as a chain of inheritance, or whether the functionality should in fact be refactored into a composition instead.</p>
+
+<p>Inheritance is sometimes misused by C++ programmers to share functionality between classes where composition would be clearer and more effective. Composition representing functionality is particularly powerful when combined with templates as we can still write a single piece of code which can be re-used with many types.</p>
+
+<ul>
+  <li>Classes with overlapping functionality don’t necessarily need to be related by some base class.</li>
+  <li>Classes should only be related by inheritance <strong>if these classes should be interchangeable at some level</strong> (i.e. can be substituted into the same place) in your code. For example, if we need a container such as a <code class="language-plaintext highlighter-rouge">vector</code> to be able to store and iterate over a diverse set of objects which are related by a core set of properties defined in a base class.</li>
+  <li>Mere sharing of functionality can often be better represented by wrapping said functionality in a class and including it in your other classes by composition.
+    <ul>
+      <li>For example many classes will need to store data in a container such as a <code class="language-plaintext highlighter-rouge">vector</code>, but that does not mean they should inherit from the container class! They should have an instance of that container where they can store their data.</li>
+    </ul>
+  </li>
+  <li>Multiple inheritance is generally limited to implementing two distinct, usually abstract, interfaces. An example of multiple inheritance in the C++ standard library is <code class="language-plaintext highlighter-rouge">iostream</code> (input/output stream) inherits from <code class="language-plaintext highlighter-rouge">istream</code> (input stream) and <code class="language-plaintext highlighter-rouge">ostream</code> (output stream). (See <a href="https://cplusplus.com/reference/istream/iostream/"><code class="language-plaintext highlighter-rouge">iostream</code> documentation</a> and <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rh-mi-interface">C++ core guidelines on multiple inheritance</a>.)</li>
+  <li>Inheritance is good at defining what a class <em>is</em>, but you can use composition for things that your class <em>makes use of</em>.</li>
+</ul>
+
+<h2 id="undefined-behaviour">Undefined Behaviour</h2>
+
+<p>A quirk of the C++ programming language is that not all source code that compiles is actually a valid C++ program. <strong>Undefined behaviour</strong> refers to situations in C++ where the standard offers no guidance and a compiler can more or less do what it likes; as a result we as programmers may have little idea what will happen if such a program is run, and the results will vary from compiler to compiler, and system to system. This means if our program has undefined behaviour then even if we have thoroughly tested it on our own system, it may not be portable to anyone else’s.</p>
+
+<p>You can read more about undefined behaviour on e.g. <a href="https://en.cppreference.com/w/cpp/language/ub">cppreference</a>.</p>
+
+<p>Much undefined behaviour centres around memory access or modification, for example:</p>
+<ul>
+  <li>Reading values outside the bounds of an array.</li>
+  <li>Reading / modifying an variable with a pointer of a different type (also known as type aliasing).
+    <ul>
+      <li>There is a special exception for the type <code class="language-plaintext highlighter-rouge">char</code> or <code class="language-plaintext highlighter-rouge">std::byte</code> which allow us to observe any variable / object data as a sequence of bytes.</li>
+      <li>You can read about <a href="https://en.cppreference.com/w/cpp/language/reinterpret_cast#Type_aliasing">type aliasing here</a> which will also describe the concept of <em>similar types</em> which we will not get into in these notes!</li>
+    </ul>
+  </li>
+  <li>Modifying a <code class="language-plaintext highlighter-rouge">const</code> value through a non-const pointer.</li>
+  <li>There are many more causes of undefined behaviour, but note that many involve doing something to invalidate some aspect of the program’s definition: subverting the type system, undermining <code class="language-plaintext highlighter-rouge">const</code> declarations, accessing private members and so on. It’s usually not the case that you will <em>accidentally</em> cause undefined behaviour, but rather it is often because of attempts to use low-level access to memory to get around a high-level construct.</li>
+</ul>
+
+<p>Undefined behaviour is often the consequence of the meeting of C++’s lower level and higher level features in ways that are not valid. We will just give one simple example to illustrate why this kind of behaviour ends up being undefined: that of undermining <code class="language-plaintext highlighter-rouge">const</code>.</p>
+
+<p>Consider the following code: what will it do?</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="c1">// Pointer ptr is a non const pointer to non const data</span>
+    <span class="c1">// It is initialised to point to the same address as N is stored</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">ptr</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">N</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">N</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>The behaviour here is <strong>undefined</strong> since we have used an incompatible pointer type to read and modify the memory which contains the constant integer <code class="language-plaintext highlighter-rouge">N</code>.</p>
+
+<p>On my machine, the output is as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10
+11
+0x7fffd87014cc 0x7fffd87014cc
+</code></pre></div></div>
+<ul>
+  <li>From the third line we can see that the storage address for <code class="language-plaintext highlighter-rouge">N</code> is the same as that pointed to by <code class="language-plaintext highlighter-rouge">ptr</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">N</code> is reported as <code class="language-plaintext highlighter-rouge">10</code>, but <code class="language-plaintext highlighter-rouge">*ptr</code> is <code class="language-plaintext highlighter-rouge">11</code>, which appears inconsistent!</li>
+  <li>This is because my compiler has been told that <code class="language-plaintext highlighter-rouge">N</code> is a constant, and so in the line <code class="language-plaintext highlighter-rouge">std::cout &lt;&lt; N &lt;&lt; std::endl</code> the (time expensive) memory read is replaced by a hard-coded value <code class="language-plaintext highlighter-rouge">10</code>, which is more efficient and the compiler will assume is valid <em>because we told it so</em>.</li>
+  <li>When printing out the value that the pointer is pointing to however, the memory read is necessary so we get the value <code class="language-plaintext highlighter-rouge">11</code>, which is the value which is actually stored in RAM.</li>
+  <li>If we were to use <code class="language-plaintext highlighter-rouge">N</code> again later in the program, what value we would get would simply depend on whether the compiler optimised out the data read or not!</li>
+  <li>Other compilers may do different things under different circumstances - there are no guarantees!</li>
+</ul>
+
+<p>Part of the price we pay for having this low level memory access is that it is possible to access memory in ways that violate the conditions that we have already stated: we can also set a pointer to look at any given location in memory (that our program has access to), which means it can be set to read or even modify <code class="language-plaintext highlighter-rouge">const</code> values, <code class="language-plaintext highlighter-rouge">private</code> members, variables of other types and so on. But in order for the compiler to do its best job, it needs to be able to make assumptions about the behaviour of the program and integrity of data, as we’ve seen with the above <code class="language-plaintext highlighter-rouge">const</code> violation example.</p>
+
+<ul>
+  <li>Make good use of high level concepts like the type system, <code class="language-plaintext highlighter-rouge">const</code>, and access specifiers to make your program safer and more expressive. In almost all programming circumstances these things will allow the compiler to catch any violations of your model and prevent them from compiling.</li>
+  <li><strong>Don’t try to use low level memory access to get around safety features</strong>: in C++ <em>you have some responsibility to make use of the language properly</em>.</li>
+  <li>Undefined behaviour can be hard to catch because compilers will not necessarily catch or even issue a warning for undefined behaviour. (The above example for example will only issue a warning if compiled with the rather niche <code class="language-plaintext highlighter-rouge">-Werror=cast-qual</code> flag. Even the <code class="language-plaintext highlighter-rouge">-Wall</code>, “all warnings”, and <code class="language-plaintext highlighter-rouge">-Wextra</code> flags will not be enough to catch this one!)</li>
+  <li>Do learn about some of the causes of undefined behaviour.</li>
+</ul>
+
+<h2 id="useful-references">Useful References</h2>
+
+<h3 id="c-core-guidelines">C++ Core Guidelines</h3>
+
+<p>There are many differing opinions about what exactly constitutes “good practice” in C++, but a good place to start looking is generally the <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ core guidelines</a>.</p>
+
+<p>These guidelines are co-written by the original designer of C++ and are quite extensive, but you can select individual topics to explore when you are unsure of things.</p>
+
+<p>The following books are also useful, and available through UCL library services.</p>
+
+<h3 id="a-tour-of-c">A Tour of C++</h3>
+
+<p>The book <a href="https://www.stroustrup.com/tour2.html">A Tour of C++</a> by Bjarne Stroustrup (one of the designers of C++) is a good, practical introduction to the major features of C++. The second edition is up to C++17, and the third edition covers up to C++20. You can check towards the back of the book what features become available in which C++ standard, so you can make sure you stay compatible with your compiler!</p>
+
+<h3 id="effective-modern-c">Effective Modern C++</h3>
+
+<p>The book <a href="https://www.oreilly.com/library/view/effective-modern-c/9781491908419/">Effective Modern C++</a> is a good introduction to C++ up to the C++14 standard, and may be of help if you want to spend more time working on your C++ fundamentals. (Most, but by no means all, of the features that we have covered in this course are present in C++14.)</p>
+
+<h3 id="design-patterns">Design Patterns</h3>
+
+<p>The book <a href="https://www.oreilly.com/library/view/design-patterns-elements/0201633612/">Design Patterns</a> provides many examples of frequently occurring design solutions in object oriented programming that we have not covered in these notes. If you’re comfortable with the ideas we’ve covered in C++ and want to improve your object-oriented software engineering skills, this book may be helpful.</p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Information for</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/students">Current students</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/staff">Staff</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/enterprise/businesses">Business</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/giving">Donors</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+		<h2 class="as-h5">Visit</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Maps</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/lccos/library-culture-collections-and-open-science-lccos">Library, museums and collections</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/bloomsbury-theatre">Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/ucl-east">UCL East</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/maps">Tours and visits</a></li>
+
+				</ul>
+            </article>
+            <article class="block block--col-3">
+		<h2 class="as-h5">Connect with UCL</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="//www.ucl.ac.uk/work-at-ucl/search-ucl-jobs">Jobs</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/news/services-media">Media Relations</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/events">Events</a></li>
+					<li class="footer__item"><a href="//www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="//shop.ucl.ac.uk">UCL Shop</a></li>
+				</ul>
+
+      </article>
+<div class="clear"></div>
+<ul id="social" class="list-inline footer__list list-unstyled zero-bottom">
+  <li><a href="//twitter.com/ucl"><img class="zero-bottom" alt="Twitter" src="//cdn.ucl.ac.uk/img/twitter-x.png" height="35" width="35"></a></li>
+  <li><a href="//www.facebook.com/uclofficial"><img class="zero-bottom" alt="Facebook" src="//cdn.ucl.ac.uk/img/35x35xfacebook.png.pagespeed.ic.-VUStBF1gm.png" height="35" width="35"></a></li>
+  <li><a href="//www.youtube.com/ucltv"><img class="zero-bottom" alt="YouTube" src="//cdn.ucl.ac.uk/img/35x35xyoutube-icon-square.png.pagespeed.ic.GcRcZjQawu.png" height="35" width="35"></a></li>
+  <li><a href="//soundcloud.com/uclsound"><img class="zero-bottom" alt="SoundCloud" src="//cdn.ucl.ac.uk/img/35x35xsoundcloud.png.pagespeed.ic.BdtBaqtDmd.jpg" height="35" width="35"></a></li>
+  <li><a href="//www.flickr.com/photos/uclnews"><img class="zero-bottom" alt="Flickr" src="//cdn.ucl.ac.uk/img/35x35xflickr.png.pagespeed.ic.KdAnMQjbrP.png" height="35" width="35"></a></li>
+  <li><a href="//www.instagram.com/ucl/"><img class="zero-bottom" alt="Instagram" src="//cdn.ucl.ac.uk/img/35x35xinstagram-badge.png.pagespeed.ic.OPAzj9OMyV.png" height="35" width="35"></a></li>
+  <li><a href="//www.tiktok.com/@uclofficial"><img class="zero-bottom" alt="TikTok" src="//cdn.ucl.ac.uk/img/tiktok.png" height="35" width="35"></a></li>
+</ul>
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2026 UCL</li>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/disclaimer">Disclaimer</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/foi">Freedom of Information</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/accessibility">Accessibility</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/legal-services/privacy">Privacy and Cookies</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/commercial-procurement/modern-day-slavery-statement">Slavery statement</a>
+      </li>
+      <li class="small"><a href="//www.ucl.ac.uk/about/contact-us">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/assets/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/assets/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/assets/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

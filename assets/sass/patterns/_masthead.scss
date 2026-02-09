@@ -1,0 +1,132 @@
+/* 
+* Pattern name: Masthead
+* Use: Container of global navigation items and site search
+* Note: N/A
+-------------------------------------------------------------- */
+
+.masthead {
+	background-color: #444;
+	color: $white;
+	height: 45px;
+	@include rem(font-size, $font-size-xs);
+	@include gs-media(m, max) {
+		height: auto;
+		border-bottom: 1px solid #ccc;
+		a {
+			color: $white;
+		}
+		.wrapper {
+			background-color: #444;
+		}
+	}
+
+	img {
+		width: auto;
+	}
+	.give-link {
+	background-color: #f6be00; 
+	padding: 1.7em 1em;
+}
+
+}
+
+.masthead__search {
+	position: relative;
+	padding: 6px 0 3px 0;
+	box-sizing: border-box;
+	float: right;
+	width: 42%;
+	@include gs-media(m, max) {
+		float: none;
+		width: 90%; 
+		padding: 0;
+		margin-top: 3.5em;
+		height: 4em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	label {
+		margin-top: 9px;
+	}
+}
+
+.masthead__list {
+	float: left;
+	width: 56%;
+	font-size: 16px;
+	display: block;
+	margin-left: 0;
+	@include gs-media(m, max) {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		float: none;
+		margin-bottom: 1em;
+	}
+	@include respond-max($screen-lg) {
+		@include rem(font-size, $font-size-sm);
+	}
+}
+
+.masthead__item {
+	padding-right: 1em;
+	height: 45px;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	@include gs-media(m, max) {
+		display: block;
+		text-align: left;
+		margin-left: 5%;
+	}
+	@include respond-max($screen-lg) {
+		padding-right: .75em;
+	}
+	.lt-ie9 & {
+		margin-top: 8px;
+		@include inline-block;
+	}
+}
+
+.masthead__link {
+	font-weight: 400;
+	color: $white;
+	text-decoration: none;
+	@include on-interaction {
+		color: $white;
+	}
+}
+
+.masthead__link.give-link {
+	color: #000;
+}
+
+
+@media screen and (min-width:766px) and  (max-width: 1090px){
+
+.masthead   {
+	margin-left: -30px;
+	}
+.masthead_search {
+	width: 40%;
+}
+
+.masthead a  {
+	font-size: 90%;
+}
+
+.masthead  .give-link {
+	padding: 15px 5px;
+}
+
+}
+
+@media screen and (max-width: 767px)
+{
+.masthead .give-link {
+    width: 20%;
+    padding: .5em 1em .5em 1em;
+}
+}
+
+

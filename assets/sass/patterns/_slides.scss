@@ -1,0 +1,41 @@
+/* 
+* Pattern name: Slides
+* Use: For a carousel image slideshow
+* Note: N/A
+-------------------------------------------------------------- */
+
+.rslides {
+	position: relative;
+	list-style: none;
+	overflow: hidden;
+	width: 100%;
+	padding: 0;
+}
+
+.rslides__item {
+	-webkit-backface-visibility: hidden;
+	position: absolute;
+	display: none;
+	width: 100%;
+	left: 0;
+	top: 0;
+	margin: 0;
+	&:first-child {
+		position: relative;
+		display: block;
+		float: left;
+	}
+	&:before {
+		display: none;
+	}
+}
+
+
+.rslides__img {
+	display: block;
+	height: auto;
+	float: left;
+	width: 100%;
+	border: 0;
+	margin-bottom: 0;
+}

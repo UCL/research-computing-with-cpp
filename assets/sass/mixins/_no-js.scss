@@ -1,0 +1,35 @@
+// js/no-js mixin to easily create fallbacks
+
+/*
+    By default this mixin is to be used for creating .no-js .element fallbacks.
+
+    For example:
+
+      .selector {
+        @include js {
+          width: 303px;
+        }
+      }
+
+    Which gives:
+
+      .no-js .selector {
+        width: 303px;
+      }
+
+*/
+
+@mixin js($isthereJS: false) {
+  // .no-js selector
+  @if $isthereJS == false {
+    .no-js & {
+      @content;
+    }
+  }
+  // .js selector
+  @if $isthereJS != false {
+    .js & {
+      @content;
+    }
+  }
+}

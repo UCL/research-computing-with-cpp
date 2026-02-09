@@ -1,0 +1,13 @@
+/* 
+* Mixin name: Alignment
+* Use: Align content with horizontal padding
+* Note: N/A
+-------------------------------------------------------------- */
+
+@mixin alignment {
+	position: relative;
+	left: -35px;
+	padding-left: 35px;
+	padding-right: 35px;
+	width: 100%;
+}

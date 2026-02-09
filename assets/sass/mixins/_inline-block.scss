@@ -1,0 +1,13 @@
+/* 
+* Mixin name: Inline block
+* Use: Bullet proof inline block browser support
+* Note: N/A
+-------------------------------------------------------------- */ 
+
+@mixin inline-block {
+	display: -moz-inline-stack;
+	display: inline-block;
+	*vertical-align: auto;
+	zoom: 1;
+	*display: inline;
+}
