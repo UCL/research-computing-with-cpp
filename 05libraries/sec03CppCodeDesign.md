@@ -103,7 +103,7 @@ On my machine, the output is as follows:
 Part of the price we pay for having this low level memory access is that it is possible to access memory in ways that violate the conditions that we have already stated: we can also set a pointer to look at any given location in memory (that our program has access to), which means it can be set to read or even modify `const` values, `private` members, variables of other types and so on. But in order for the compiler to do its best job, it needs to be able to make assumptions about the behaviour of the program and integrity of data, as we've seen with the above `const` violation example. 
 
 - Make good use of high level concepts like the type system, `const`, and access specifiers to make your program safer and more expressive. In almost all programming circumstances these things will allow the compiler to catch any violations of your model and prevent them from compiling.
-- **Don't do daft things with low-level memory** to undermine that safety: in C++ _you have some responsibility to make use of the language properly_.
+- **Don't try to use low level memory access to get around safety features**: in C++ _you have some responsibility to make use of the language properly_.
 - Undefined behaviour can be hard to catch because compilers will not necessarily catch or even issue a warning for undefined behaviour. (The above example for example will only issue a warning if compiled with the rather niche `-Werror=cast-qual` flag. Even the `-Wall`, "all warnings", and `-Wextra` flags will not be enough to catch this one!)
 - Do learn about some of the causes of undefined behaviour. 
 
