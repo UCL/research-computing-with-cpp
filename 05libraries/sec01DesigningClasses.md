@@ -429,7 +429,7 @@ std::unique_ptr<AbstractDataManager> DataManagerFactory(std::vector &v)
 {
     if(v.size() < 1000)
     {
-        return std::make_unique<ShortDataManager>(v);
+        return std::make_unique<SmallDataManager>(v);
     }
     else
     {
@@ -439,7 +439,7 @@ std::unique_ptr<AbstractDataManager> DataManagerFactory(std::vector &v)
 ```
 
 - `AbstractDataManager` is an abstract base class
-- `ShortDataManager` and `LargeDataManager` are two concrete classes which inherit from `AbstractDataManager`, and are optimised for dealing with data on different scales. 
+- `SmallDataManager` and `LargeDataManager` are two concrete classes which inherit from `AbstractDataManager`, and are optimised for dealing with data on different scales. 
 - The factory uses the size of the data being passed in to make a decision about the approach that is going to be taken. The size of the vector is only known at runtime. 
 
 ## Implementing Multiple Interfaces 
