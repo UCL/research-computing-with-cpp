@@ -73,9 +73,13 @@ Objects generally have a particular purpose, or are intended to reflect a concre
 - Composition and aggregation (member variables and pointers) are ways of creating complex types from more basic component types.
 - The design of classes, and the use of inheritance, composition, and aggregation, should reflect the abstract model of your type as well as you can. 
 
-Take a binary tree as an example:
+Take a possible binary tree implementation as an example:
+- An very common alternative to using a null pointer to signal the end of a path in a tree is to divide nodes in trees into two kinds: branches and leaves. 
 - A `TreeNode` in a tree can be a `Branch` (a node which has children) or a `Leaf` (a node with no children). This can be expressed by the inheritance relations `class Branch : public TreeNode` and `class Leaf : public TreeNode`, because `Branch` and `Leaf` are both kinds of `TreeNode`.
 - A `Branch` has a value of some type, pointers to its children (`TreeNode` pointer types which could be `Branch` or `Leaf`), and usually a pointer to its parent (`TreeNode` pointer). These relationships are composition (the value) and aggregation (pointers): a `Branch` is made of up of these components and can make use of them, but is not itself any of these things. 
+
+
+![image](TreeInheritance.png)
 
 ## Influences from Functional Programming 
 
