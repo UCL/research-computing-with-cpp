@@ -85,11 +85,13 @@ A common example of a templated function would be a function which acts on a con
 template<typename T>
 vector<T> everyOther(vector<T> &v_in)
 {
-    vector<int> v_out;
+    vector<T> v_out;
     for(size_t i = 0; i < v_in.size(); i++)
     {
         if(i % 2 == 0) v_out.push_back(v_in[i]);
     }
+
+    return v_out
 }
 ```
 - The exact details of the type `T` don't matter in this case, since we never access the data of type `T` anyway. The only restriction on `T` is that it can be added to a vector.
