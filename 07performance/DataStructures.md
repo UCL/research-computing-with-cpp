@@ -48,13 +48,13 @@ Let's review how a vector is arranged in memory to understand the layout of our 
 
 ![image](img/BasicVector.png)
 
-When we have a vector of vectors, each element of the vector's data is itself a vector, which it pointing to a separate location in memory to store its own data. Below is a diagram of a $5 \times 4$ matrix (5 rows, 4 columns); the vector of vectors point to an allocation on the heap containing 5 vectors (one for each row), which themselves each points to a block of memory 4 ints wide. These blocks of memory can in principle be placed anywhere in memory.
+When we have a vector of vectors, each element of the vector's data is itself a vector, which is pointing to a separate location in memory to store its own data. Below is a diagram of a $5 \times 4$ matrix (5 rows, 4 columns); the vector of vectors point to an allocation on the heap containing 5 vectors (one for each row), which themselves each points to a block of memory 4 ints wide. These blocks of memory can in principle be placed anywhere in memory.
 
 ![image](img/VecOfVec.png)
 
-Each row is clearly contigous but the columns are not. For example, the first column of this matrix would be made up of the first element of each row, which are placed all over memory.
+Each row is clearly contigous but the columns are not. For example, the first column of this matrix would be made up of the first element of each row, which are placed independently throughout memory.
 
-The result of using a C-style 2D array (`int** Matrix`) is the same in terms of memory layout. 
+The result of using a C-style 2D array (`int** Matrix`) is the same in terms of memory layout, since a C-style 2D arrays is likewise an array of pointers to arrays. 
 
 #### Multi-Dimesional Arrays in a Contiguous Block
 
