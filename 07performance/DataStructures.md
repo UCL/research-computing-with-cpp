@@ -28,6 +28,56 @@ There is a corresponded operation for removing an element from the end of the li
 
 We also have `insert` and `erase` for inserting and removing elements. Removing elements will not require any reallocations, but it does require shifting any data to the right of the elements being deleted. Removing an element is therefore, on average, $O(n)$. Inserting an element works similarly, as it needs to shift any data to the right of the location being inserted into; an additional factor is that like `push_back` it may trigger a reallocation. Insertion is on average $O(n)$. 
 
+### Multi-Dimensional Arrays and Column Major vs Row Major ordering
+
+Mathematical objects such as matrices and tensors can be represented as multi-dimensional arrays. Multi-dimensional arrays can themselves be organised in different ways. 
+
+#### Multi-Dimesional Arrays as Arrays of Arrays
+
+One potential simple implementation of a 2D, $N \times M$ array (matrix) is:
+
+```
+std::vector<vector> Matrix(N, std::vector<double>(M, 0));
+```
+
+where the matix has been initialised to all zeroes.
+
+where $N$ is the number of rows and $M$ is the number of columns. In this implementation the _rows_ are contiguous in memory, since each row is stored as a vector of size $M$ (the number of columns). This is called **row major ordering**. If rows are contiguous, it means that columns necessarily cannot be contiguous in memory in this representation, and must be separated in heap memory by an arbitrary amount that is at least the size of a row. If you store columns contiguously instead of rows, then you have **column major ordering**. 
+
+Let's review how a vector looks in memory to understand how the memory is laid out. Remember that a vector stored on the stack makes a heap allocation to store its data, which means that under the hood a vector is using a pointer to keep track of the location of the actual data. Below is an example of a vector of ints (green) stored on the stack (blue), with an allocation (yellow) on the heap (red). 
+
+![image](img/BasicVector.png)
+
+When we have a vector of vectors, each element of the vector's data is itself a vector, which it pointing to a separate location in memory to store its own data. Below is a diagram of a $5 \times 4$ matrix (5 rows, 4 columns); the vector of vectors point to an allocation on the heap containing 5 vectors (one for each row), which themselves each points to a block of memory 4 ints wide. These blocks of memory can in principle be placed anywhere in memory.
+
+![image](img/VecOfVec.png)
+
+Each row is clearly contigous but the columns are not. For example, the first column of this matrix would be made up of the first element of each row, which are placed all over memory.
+
+The result of using a C-style 2D array (`int** Matrix`) is the same in terms of memory layout. 
+
+#### Multi-Dimesional Arrays in a Contiguous Block
+
+Instead of having all our rows (or columns) placed in independent locations in memory, we can also allocate a contiguous $N \times M$ block of memory to store all of the data that we need, like this:
+
+```
+std::vector<int> Matrix(N*M, 0);
+```
+
+where again we have initialised the matrix to all zeroes. 
+
+This represents a matrix as a single "flat" array, so its memory layout is just the same as a regular 1D array. You will find that **this is the more common approach in performant applications**; this layout reduces memory fragmentation, makes it easier to transfer matrix data as a single contiguous buffer, and allows us to get improved cache performance out of algorithms that iterate over all elements.
+
+The matrix must now be stored in one contiguous block, either row by row (row-major) or column by column (column major). The trick to using this kind of structure is to convert between 2D indices $(i,j)$ (where $0 \le i \lt N$ and $0 \le j \lt M$) to a single index $k$ (where $0 \le k \lt N\times M$). **N.B.** here we will use the matrix convention where indices $(i,j)$ refer to row $i$ and column $j$. 
+
+To understand how to do this, let's consider a row-major matrix. To find the element $(i,j)$, we are trying to find element $j$ of row $i$; this means that the we just need to find the start of row $i$ and then add $j$. Since the matrix is row-major, the start of row $i$ is at index $M \times i$ (the number of rows before it times the length of a row, which is the number of columns). Therefore our formula for **row major** indices is:
+
+$k_\text{row-major} = M \times i + j$,
+
+and likewise for indices in **column major** matrices:
+
+$k_\text{col-major} = N \times j + i$. 
+
 ## Linked Lists
 
 A _linked list_ is a representation of a list that is stored like a graph: each element of the list consists of its data and a pointer to the next element of the list. A linked list has no guarantees of being stored contiguously, so the only way to navigate the linked list is to follow the pointers from one node to the next; this is in contrast to random access arrays. A common extension of the linked list is the doubly-linked list, which has pointers to the next _and_ previous element in a list. 
