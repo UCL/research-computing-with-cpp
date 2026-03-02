@@ -44,7 +44,7 @@ where the matix has been initialised to all zeroes.
 
 where $N$ is the number of rows and $M$ is the number of columns. In this implementation the _rows_ are contiguous in memory, since each row is stored as a vector of size $M$ (the number of columns). This is called **row major ordering**. If rows are contiguous, it means that columns necessarily cannot be contiguous in memory in this representation, and must be separated in heap memory by an arbitrary amount that is at least the size of a row. If you store columns contiguously instead of rows, then you have **column major ordering**. 
 
-Let's review how a vector looks in memory to understand how the memory is laid out. Remember that a vector stored on the stack makes a heap allocation to store its data, which means that under the hood a vector is using a pointer to keep track of the location of the actual data. Below is an example of a vector of ints (green) stored on the stack (blue), with an allocation (yellow) on the heap (red). 
+Let's review how a vector is arranged in memory to understand the layout of our vector of vectors. Remember that a vector stored on the stack makes a heap allocation to store its data, which means that under the hood a vector is using a pointer to keep track of the location of the actual data. Below is an example of a vector of ints (green) stored on the stack (blue), with an allocation (yellow) on the heap (red). 
 
 ![image](img/BasicVector.png)
 
