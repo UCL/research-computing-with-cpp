@@ -319,7 +319,7 @@ Instead of declaring a variable and setting it equal to the return value of a fu
 ```cpp
 void GenerateInPlace(const int &a, ImmovableData &v)
 {
-    for(int i = 0; i < b; i++)
+    for(int i = 0; i < a; i++)
     {
         //Do some data generation
         ...
@@ -329,7 +329,7 @@ void GenerateInPlace(const int &a, ImmovableData &v)
 int main()
 {
     ImmovableData data;
-    makeListInPlace(100000, data);
+    GenerateInPlace(100000, data);
 
     return 0;
 }
