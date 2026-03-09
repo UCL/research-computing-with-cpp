@@ -30,7 +30,7 @@ As always with the memory system, things will be system dependent, but on a typi
 
   - This is extremely important as it means that even if the two cores never operate on the same values, if the values that they operate on are next to each other in memory and stored in the same cache line, then they will still invalidate one another's caches and cause lookups to have to be made.
 
-As a very simple example, let's look at a possible manual implementation of the reduction code shown in last week's class. I'll do this example with no compiler optimisations to prevent the compiler optimising away any memory read/write operations so we have full control! As a reminder, the basic code looks like this:
+As a very simple example, let's look at a possible manual implementation of the reduction code shown in this week's class. I'll do this example with no compiler optimisations to prevent the compiler optimising away any memory read/write operations so we have full control! As a reminder, the basic code looks like this:
 
 ```cpp
 #include <iostream>
