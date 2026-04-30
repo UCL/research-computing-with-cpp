@@ -1,0 +1,22 @@
+/* 
+* Pattern name: Vcard
+* Use: Share contact information between devices
+* Note: N/A
+-------------------------------------------------------------- */
+
+.vcard {
+	margin-bottom: 1em;
+	width: 100%;
+	@include inline-block;
+	@include list-unstyled;
+}
+
+.vcard__item {
+	margin-bottom: 0.5em;
+	display: block;
+	&.fn {
+		font-weight: bold;
+		font-size: 0.9375em;
+	}
+}
+

@@ -1,0 +1,111 @@
+/* UCL Colours
+-------------------------------------------------------------- */
+
+
+/* Indigo colour palette
+-------------------------------------------------------------- */
+
+$darkgreen: rgba(85,80,37,1);
+$midgreen: rgba(143,153,62,1);
+$brightgreen: rgba(181,189,0,1);
+$lightgreen: rgba(187,197,146,1);
+$yellow: rgba(246,190,0,1);
+$darkred: rgba(101,29,50,1);
+$midred: rgba(147,39,44,1);
+$brightred: rgba(213,0,0,1);
+$lightred: rgba(224,60,49,1);
+$orange: rgba(234,118,0,1);
+$darkpurple: rgba(75,56,76,1);
+$midpurple: rgba(80,7,120,1);
+$brightpink: rgba(172,20,90,1);
+$lightpurple: rgba(198,176,188,1);
+$warmgrey: rgba(140,130,121,1);
+$darkblue: rgba(0,61,76,1);
+$midblue: rgba(0,40,85,1);
+$brightblue: rgba(0,151,169,1);
+$lightblue: rgba(141,185,202,1);
+$stone: rgba(214,210,196,1);
+$darkbrown: rgba(78,54,41,1);
+
+
+/* Colour Variant - for gradients
+-------------------------------------------------------------- */
+
+$darkgreen-b: rgba(77,72,32,1);
+$midgreen-b: rgba(156,163,95,1);
+$brightgreen-b: rgba(201,209,15,1);
+$lightgreen-b: rgba(201,211,161,1);
+$yellow-b: rgba(255,208,48,1);
+$darkred-b: rgba(121,47,68,1);
+$midred-b: rgba(163,56,61,1);
+$brightred-b: rgba(226,17,17,1);
+$lightred-b: rgba(236,98,88,1);
+$orange-b: rgba(255,145,32,1);
+$darkpurple-b: rgba(84,62,85,1);
+$midpurple-b: rgba(100,19,145,1);
+$brightpink-b: rgba(192,29,104,1);
+$lightpurple-b: rgba(219,192,207,1);
+$warmgrey-b: rgba(156,145,136,1);
+$darkblue-b: rgba(7,68,83,1);
+$midblue-b: rgba(15,66,122,1);
+$brightblue-b: rgba(12,173,192,1);
+$lightblue-b: rgba(165,205,221,1);
+$stone-b: rgba(224,221,209,1);
+$darkbrown-b: rgba(95,68,54,1);
+
+
+/* Generic grayscale
+-------------------------------------------------------------- */
+$darkgrey: #444;
+$grey: #bbb;
+$lightgrey: #ccc;
+$black: #000000;
+$white: #ffffff;
+
+
+/* Colour by element
+-------------------------------------------------------------- */
+$content-bg-color: $white;
+$nav-horizontal-color: #333333;
+$rule-color: #ccc;
+$cat-blue: #027d9e;
+$cat-blue-hover: #4ca4ba;
+$cat-arrow-blue: #3096af;
+$cat-arrow-blue-hover: #70b9c8;
+
+$alert-red: #d50133;
+$alert-red-bg: #f5c7d2;
+
+$info-blue: #2992af;
+$info-blue-bg: #d1eaee;
+
+$fix-green: #767e31;
+$fix-green-bg: #e2e5d2;
+
+$link-colour: #034da1;
+
+$active-button: #505050;
+$hover-button: #615957;
+$button-bg-col: #40403e;
+
+$disabled-btn-grad1: #eee;
+$disabled-btn-grad2: #e0e0e0;
+$disabled-hvr-btn-grad1: #ededed;
+$disabled-hvr-btn-grad2: #eee;
+$disabled-act-btn-grad1: #e8e8e4;
+$disabled-act-btn-grad2: #cccccc;
+
+$global-search-blue: #4693ea;
+
+$cta-blue: $link-colour;
+$cta-navy: #002854;
+
+
+/* Project specific
+-------------------------------------------------------------- */
+$primary-colour: #ff5a5f;
+$secondary-colour: #007a87;
+$tertiary-colour: #333333;
+
+/*hover colour*/
+$hover-grey: #f0f0f0;

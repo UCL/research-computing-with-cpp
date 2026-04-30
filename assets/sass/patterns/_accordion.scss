@@ -1,0 +1,36 @@
+/* 
+* Pattern name: Accordion
+* Use: Hide/reveal mechanism for concatenating similar/related content
+* Note: N/A
+-------------------------------------------------------------- */
+
+.accordion {}
+
+.accordion__title, .accordion__description {
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	margin-top: 0;
+	&:last-of-type {
+		border-bottom: 1px solid #ccc;
+	}
+	a {
+		font-weight: bold;
+	}
+}
+
+.accordion__title {
+	a {
+		color: $black;
+		display: block;
+	}
+}
+
+.accordion__description {
+	border-top: 0;
+	overflow: hidden;
+	@include guttering;
+	&:last-of-type {
+		position: relative;
+		top: -1px;
+	}
+}

@@ -1,0 +1,178 @@
+/* 
+* Pattern name: Tabs
+* Use: Related tabular content
+* Note: N/A
+-------------------------------------------------------------- */
+
+// house keeping
+
+/* If boxsizing is needed then it must be scoped to tabs not affecting globally!
+*, *:before, *:after {
+  box-sizing: border-box;
+} */
+
+/*body {
+  padding: 1rem;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  color: #333;
+}*/
+.no-js .tabs__navigation {
+  ul {
+    border-bottom: 4px solid #8c8279;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 3px 5px;
+    vertical-align: bottom;
+  }
+    a {
+    color: #333;
+    display: block;
+    text-decoration: none;
+    &.active {
+      position: relative;
+      text-decoration: underline;
+      z-index: 5150;
+    }
+    &:hover{
+      background-color: $hover-grey;
+    }
+  }
+}
+
+.no-js {
+  .tabs__group {
+    margin-top: 1em;
+  }
+  .tabs__item {
+    margin-bottom: 8px;
+    padding: 1rem;
+    border: 1px solid #8c8279;
+    border-top: 2px solid #8c8279;
+  }
+}
+
+// tabs navigation default without JS
+.js .tabs__navigation {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: inline-block;
+    padding: 3pz 5px;
+    vertical-align: bottom;
+  }
+}
+.js .tabs__navigation {
+  li {
+    background-color: #fff;
+    display: inline-block;
+    padding: 0;
+    vertical-align: bottom;
+  }
+  a {
+    border: 2px solid #8c8279;
+    border-bottom: 0;
+    color: #333;
+    display: block;
+    padding: 4px 6px;   
+    text-decoration: none;
+    &.active {
+      font-weight: bold;
+      font-style: 15px;
+      position: relative;
+      z-index: 5150;
+    }
+    &:hover{
+      background-color: $hover-grey;
+    }
+  }
+}
+
+.js .tabs__navigation {
+    @include gs-media(m,max){
+    ul {
+      border-bottom: 0;
+      overflow: hidden;
+      position: relative;
+      &:before {
+        background-color: #fff;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsAgMAAABj6rKSAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAADFBMVEUAAAD///8AAAD////IZVEZAAAAAnRSTlMAAHaTzTgAAAABYktHRAH/Ai3eAAAACXBIWXMAAAsSAAALEgHS3X78AAAAG0lEQVQoz2NYhQAMtGAjg1AEoAkbGYz6iyw2AB4v6cHm3Lv8AAAAAElFTkSuQmCC');
+        content: '';
+        background-size: 100%;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 0;
+        top: 8px;
+        border: 3px solid white;
+        box-sizing: border-box;
+        right: 16px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      &.open {
+        a {
+          position: relative;
+          display: block;
+        }
+      }
+    }
+    li {
+      display: block;
+    }
+    a {
+
+      background: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      &.active {
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.js .tabs__navigation {
+  @include gs-media(t,min){
+    // li {
+    //   border-top-left-radius: 8px;
+    //   border-top-right-radius: 8px;
+    // }
+    a {
+      &.active {
+        background-color: #fff;
+        top: 1px;
+        padding-top:5px;
+        z-index: 5150;
+      }
+    }
+  }  
+}
+
+.js .tabs__group {
+  > .tabs__item {
+    display: none;
+    padding: 0 1rem;
+    border: 2px solid #8c8279;
+    border-top: 1px solid #8c8279;
+  }
+  > .active {
+    display: block;
+  }
+}
+
+.tab__content
+{
+    padding-top: 10px;
+}
+

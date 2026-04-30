@@ -1,0 +1,31 @@
+/* 
+* Pattern name: Input group
+* Use: Conjoin an input and a button form element
+* Note: N/A
+-------------------------------------------------------------- */
+
+.input-group {
+	display: table;
+	width: 100%;
+}
+
+.input-group__item {
+	display: table-cell;
+	width: 100%;
+	vertical-align: top;
+}
+
+.input-group__input {
+	@include rem(height, 3.8);
+	vertical-align: top;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.input-group__input--btn {
+	white-space: nowrap;
+	box-sizing: border-box;
+	line-height: normal;
+	vertical-align: top;
+}

@@ -1,0 +1,29 @@
+/* 
+* Pattern name: Tag
+* Use: Small block of overlayed text over an image
+* Note: Modifiers adjust positioning of tag (default: left)
+-------------------------------------------------------------- */
+
+.tag {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 5px 15px;
+	color: $white;
+	text-decoration: none;
+	background-color: #B5BD00;
+	z-index: $zindex-tag;
+	@include rem(font-size, $font-size-xs);
+}
+
+.tag--right {
+	left: auto;
+	right: 0;
+}
+
+.tag__heading {
+	color: white;
+	a, a:hover {
+		color: white;
+	}
+}

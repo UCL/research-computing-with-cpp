@@ -1,0 +1,23 @@
+/* 
+* Pattern name: Divider
+* Use: Displaying a bordered keyline either above or below an element
+* Note: Top and bottom modifiers alter margin
+-------------------------------------------------------------- */
+
+.divider {
+	border-color: #ddd;
+}
+
+.divider--top {
+	margin-top: $baseline;
+	padding-top: $baseline;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+.divider--bottom {
+	margin-bottom: $baseline;
+	padding-bottom: $baseline;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}

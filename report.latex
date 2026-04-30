@@ -1,0 +1,58 @@
+\documentclass{report}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{libertine}
+\usepackage{framed}
+\usepackage{lettrine} % Package to accentuate the first letter of the text
+\usepackage{fix-cm}	 % Custom font sizes - used for the initial letter in the document
+\usepackage{sectsty} % Enables custom section titles
+\usepackage{titling} % Allows custom title configuration
+\usepackage{picture}
+\usepackage{eso-pic}
+\usepackage{hyperref}
+\usepackage{titling} % Allows custom title configuration
+\usepackage{sectsty} % Enables custom section titles
+
+\renewenvironment{quote}{\begin{shadequote}}{\end{shadequote}}
+\definecolor{verypalegreen}{RGB}{252,255,250}
+\definecolor{uclmidgreen}{RGB}{130,141,55}
+
+\newcommand{\initial}[1]{ % Defines the command and style for the first letter
+\lettrine[lines=3,lhang=0.3,nindent=0em]{
+\color{DarkGreen}
+{\textsf{#1}}}{}}
+
+\sectionfont{\color{uclmidgreen} \usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
+\subsectionfont{\color{DarkSeaGreen} \usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
+
+\let\oldquote\quote
+\let\endoldquote\endquote
+\newcommand*\openquote{\makebox(25,-22){\scalebox{5}{\color{DarkGreen}``}}}
+\newcommand*\closequote{\makebox(25,-22){\scalebox{5}{\color{DarkGreen}''}}}
+
+\colorlet{shadecolor}{verypalegreen}
+
+\let\oldlongtable\longtable
+\def\longtable{\tiny \oldlongtable}
+
+\sectionfont{\color{uclmidgreen} \usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
+\subsectionfont{\color{DarkSeaGreen} \usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
+
+\newcommand{\HorRule}{\color{DarkSeaGreen} \rule{\linewidth}{1pt}} % Defines the gold horizontal rule around the title
+
+\author{James Hetherington and Matt Clarkson}
+
+\pretitle{
+\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{38}{38} \usefont{OT1}{phv}{b}{n} \color{uclmidgreen} \selectfont} % Horizontal rule before the title
+
+\posttitle{\par\end{flushleft}\begin{flushleft}\fontsize{35}{35} \usefont{OT1}{phv}{b}{n} \color{Black} \selectfont
+Building and maintaining readable, reliable and efficient scientific software.
+\end{flushleft}\vskip 0.5em} % Whitespace under the title and subtitle
+
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{uclmidgreen}} % Author font configuration
+
+\postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{Black} % Configuration for the institution name
+
+University College London% Your institution
+
+\par\end{flushleft}\HorRule} % Horizontal rule after the title

@@ -1,0 +1,58 @@
+/* 
+* Pattern name: Nav
+* Use: Styling lists used for navigation areas
+* Note: Modifiers define positioning of navigation
+-------------------------------------------------------------- */
+
+
+.nav {
+	ul { margin-left: 0; }
+}
+
+.nav--left {
+	li {
+		margin-bottom: 0.5em;
+		ul {
+			margin: 10px 5%;
+			@include rem(font-size, $font-size-sm);
+		}
+	}
+}
+
+.nav--top {
+	display: none;
+	width: 100%;
+	background-color: $content-bg-color;
+	padding-bottom: 1em;
+	padding-top: 1em;
+	overflow: hidden;
+	@include alignment;
+	ul {
+		li {
+			display: block;
+			float: left;
+			padding-right: 1em;
+			margin-right: 1em;
+			border-right: 1px solid $rule-color;
+			a {
+				text-decoration: none;
+				cursor: pointer;
+			}
+			&:last-child {
+				border-right: 0;
+			}
+		}
+	}
+}
+
+.nav--mobile {
+	display: none;
+	@include gs-media(m, max) {
+		display: block;
+		ul {
+			&:nth-child(n+2) {
+				padding-left: 1em;
+			}
+		}
+	}
+}

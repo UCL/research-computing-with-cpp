@@ -1,0 +1,36 @@
+/* 
+* Pattern name: Box
+* Use: Highlighted text area
+* Note: N/A
+-------------------------------------------------------------- */
+
+.box {
+	border-top: 5px solid #000;
+	background: #fafafa;
+	overflow: hidden;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	box-sizing: border-box;
+	box-shadow: 0 1px 0 0 rgba($black, 0.1);
+	position: relative;
+	@include gs-pad(dc, padinfull);
+	@include guttering;
+}
+
+.box--tagged {
+	padding-top: 2em;
+}
+
+.box--small {
+	margin-bottom: #{32 / 14 + "em"};
+	padding: #{20 / 14 + "em"};
+	@include rem(font-size, $font-size-sm);
+}
+
+.box--rounded {
+	border-radius: 4px;
+}
+
+.box--blank {
+	border-top: none;
+}

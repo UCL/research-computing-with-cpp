@@ -1,0 +1,21 @@
+/* 
+* Mixin name: List
+* Use: 
+* 		1. Remove bullets and indentation from a list
+* Note: N/A
+-------------------------------------------------------------- */
+
+/* 1
+-------------------------------------------------------------- */
+@mixin list-unstyled {
+	margin-left: 0;
+	padding-left: 0;
+	list-style: none;
+	li {
+		margin-left: 0;
+		list-style-type: none;
+		&:before {
+			background-color: transparent !important;
+		} 
+	}
+}

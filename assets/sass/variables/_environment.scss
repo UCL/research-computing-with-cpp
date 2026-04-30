@@ -1,0 +1,5 @@
+/* Development/Production environments
+-------------------------------------------------------------- */
+
+$is-local: false;
+$static-url: if($is-local, "", "//cdn.ucl.ac.uk/indigo");

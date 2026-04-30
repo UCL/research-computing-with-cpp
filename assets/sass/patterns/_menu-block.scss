@@ -1,0 +1,64 @@
+/* 
+* Pattern name: Menu Block
+* Use: Stacked navigation menu with basic styling
+* Note: N/A
+-------------------------------------------------------------- */
+
+
+.menu-block {
+	padding: 0;
+	border: 1px solid lighten(#ccc, 7.5%);
+	@include list-unstyled;
+}
+
+.menu-block--no-keyline {
+	border: 0;
+}
+
+.menu-block__list {
+	margin-bottom: 0;
+	margin-top: 0;
+	@include list-unstyled;
+}
+
+.menu-block__item {
+	position: relative;
+	padding: 0;
+	background-color: #EEE;
+	margin-bottom: 0;
+	line-height: 3;
+	border-bottom: 1px solid lighten(#ccc, 7.5%);
+	&:last-child {
+		border-bottom: 0;
+	}
+}
+
+.menu-block__item--heading {
+	@include on-interaction {
+		text-decoration: none;
+	};
+}
+
+.menu-block__link {
+	padding-left: 1em;
+	display: block;
+	color: #333333;
+	transition: all .5s;
+	padding-right: 2.5em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	@include on-interaction {
+		background-color: lighten(#ccc, 7.5%); 
+		transition: all .5s;
+		color: #333333;
+	};
+	&.is-current {
+		margin-bottom: -1px;
+		background-color: black;
+		color: white;
+	}
+	.is-active & {
+		border-left: .4em solid #333;
+	}
+}
