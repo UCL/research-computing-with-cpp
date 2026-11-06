@@ -57,11 +57,9 @@ Higher precision floating point numbers (like `double` as opposed to `float`) wi
 
 ## Containers
 
-Containers are important to most programming languages, and include things like lists, arrays, tuples, and so on. The commonly used containers, that we will use repeatedly throughout this course, are:
+Containers are important to most programming languages; almost all programmers will need to work on things like lists of data, or vectors and matrices. Some commonly used containers, that we will use repeatedly throughout this course, are:
 
-- List/Array like types:
-  - `std::array<T, N>`: a type for storing `N` elements of type `T`.
-  - `std::vector<T>`: a type for storing arbitrary numbers of elements of type `T`.
-- Associative arrays (dictionary types):
-  - `std::map<A, B>`: a type for storing key-value pairs where keys have type `A` and values have type `B`.
+- `std::array<T, N>`: a type for storing exactly `N` elements of type `T`.
+- `std::vector<T>`: a type for storing arbitrary numbers of elements of type `T`.
+- `std::map<A, B>`: a type for storing key-value pairs where keys have type `A` and values have type `B`.
 
