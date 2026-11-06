@@ -49,6 +49,22 @@ Inheritance is sometimes misused by C++ programmers to share functionality betwe
 - Multiple inheritance is generally limited to implementing two distinct, usually abstract, interfaces. An example of multiple inheritance in the C++ standard library is `iostream` (input/output stream) inherits from `istream` (input stream) and `ostream` (output stream). (See [`iostream` documentation](https://cplusplus.com/reference/istream/iostream/) and [C++ core guidelines on multiple inheritance](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rh-mi-interface).) 
 - Inheritance is good at defining what a class _is_, but you can use composition for things that your class _makes use of_. 
 
+## When To Start Optimising Code
+
+When faced with writing code that one knows needs to be efficient, it is common to try to optimise every piece of code they write as one goes along. This can lead to a very slow development process, as well as difficult to understand software! There are some key points to bear in mind when you are developing efficient code:
+
+- Optimisation often takes significant work: it is much slower to write a highly optimised implementation than a straight-forward one.
+- Optimised code is often unintuitive and therefore harder to understand for new users. This also makes maintenance harder, especially if it is not obvious what can and can't be changed without breaking the optimisation benefits! 
+- Highly optimised code may not be portable, as code may be optimised for specific platforms, architectures, or even individual machines.
+- KISS (Keep It Simple, Stupid) is a good principle for first drafts: focus on writing _correct_, understandable code first. 
+- Measure performance to find your bottlenecks: don't waste time optimising parts of your program that only make up a tiny fraction of your runtime (or memory). Chances are there are only one or two places where a substantial amount of your runtime is spent and which can be effectively optimised. **Profile your program and prioritise high-impact optimisations first.** 
+- Continue measuring performance to check that you are making an impact on your runtime / memory usage.
+- Monitor your optimised algorithms for **accuracy and precision**. Some algorithms may produce more reliable results than others, especially when using floating point arithmetic. A significant consideration with numerical algorithms is not just the time and space usage, but the numerical stability of the algorithm. 
+    - For example some methods use single (or even half) precision floating point numbers instead of doubles in order to get faster results. This sometimes happens in some statistical methods such as MCMC (Markov Chain Monte Carlo) where we want to be able to sample a random distribution and the additional precision doesn't have a strong impact on the overall statistical properties.
+    - Some methods use arbitrary precision integer arithmetic to handle very large values and do calculations without e.g. cancellation errors, even though this requires more time and memory. This is common in things like financial applications where all the sums really need to add up exactly! 
+
+**Optimisation is usually a trade off between different factors. You should always bear in mind your priorities when creating efficient software.** 
+
 ## Undefined Behaviour
 
 A quirk of the C++ programming language is that not all source code that compiles is actually a valid C++ program. **Undefined behaviour** refers to situations in C++ where the standard offers no guidance and a compiler can more or less do what it likes; as a result we as programmers may have little idea what will happen if such a program is run, and the results will vary from compiler to compiler, and system to system. This means if our program has undefined behaviour then even if we have thoroughly tested it on our own system, it may not be portable to anyone else's. 
