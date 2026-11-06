@@ -1,7 +1,5 @@
 ---
 title: "Introduction to C++"
-author:
-  - Krishnakumar Gopalakrishnan
 ---
 
 ## Course Outline
