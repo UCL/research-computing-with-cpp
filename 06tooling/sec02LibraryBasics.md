@@ -30,10 +30,7 @@ Though normally these steps are invoked by a single command, you can run them on
   g++ -o <executable> <output.o>
   ```
 
-Directly using the compiler without a build tool (e.g., [CMake][lesson-cmake]) will eventually become too difficult and cause a mess, so we use CMake for larger projects!
-
-
-You can find out more about preprocessor directives in [The C Preprocessor][CppAdv6] chapter on the [C++: Advanced Topics][CppAdv] course.
+Directly using the compiler without a build tool will eventually become too difficult and cause a mess, so we use CMake for larger projects!
 
 ### Including libraries
 
@@ -68,7 +65,7 @@ When you use a library, keep in mind the following questions:
 
 * Where is it? (do we need to set `-I` and `-L` when compiling?)
   - Depending on your compiler, there are some standard locations where it will look for [includes](https://gcc.gnu.org/onlinedocs/gcc-4.9.4/cpp/Search-Path.html) or libraries (using `/usr/lib...` or `/usr/local/lib...`), but other locations may need to be provided using `-I` or `-L` flags to let it know where to look.
-* Is it a [Header only][header-only-wiki]?
+* Is it a header only?
 * What about bugs? How do I upgrade? Do I need to build it myself?
 
 ### Compilation Issues
@@ -102,11 +99,3 @@ Here, we've just written a example `readJson` function that reads some JSON from
 
 Of course, wrappers are not free; they're more code to write, test, document and maintain, but they can help protect you from future changes to libraries.
     
-
-[CppAdv]: https://www.linkedin.com/learning/c-plus-plus-advanced-topics/
-[CppAdv6]: https://www.linkedin.com/learning/c-plus-plus-advanced-topics/about-the-preprocessor
-[lesson-cmake]: ../01projects/sec04CMakeHelloWorld.html
-[Cherno]: https://www.youtube.com/channel/UCQ-W1KE9EYfdxhL6S4twUNw
-[lesson-DynVsSt]: ./sec02LinkingLibraries.html
-[header-only-wiki]: https://en.wikipedia.org/wiki/Header-only
-[learncpp-static-dynamic]: http://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/
