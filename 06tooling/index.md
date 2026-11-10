@@ -6,8 +6,10 @@ This week we'll learn about some of the tools that we can use to improve our cod
 
 You should look over and install the following tools, and familiarise yourself a little with the timing statements available in C++. 
 
-1. [Timing](sec00TimingAndTooling.html)
-2. [Tooling](StyleSafetyTooling.html)
+1. [Introduction to Libraries](./sec02LibraryBasics.md)
+2. [Linking Libraries](./sec03LinkingLibraries.md)
+3. [Installing Libraries](./sec04InstallingLibraries.md)
+4. [Useful C++ Tools](StyleSafetyTooling.html)
 
 ## Why use Libraries?
 

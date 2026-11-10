@@ -6,13 +6,13 @@ Estimated Reading Time: 45 minutes
 
 # Compiler Optimisation and Compile-Time Evaluation
 
-Compilation is the translation of our high level code (in this case C++) into machine code that reflects the instruction set of the specific hardware for which it is compiled. This machine code can closely reflect the C++ code, implementing everything explicitly the way that it's written, or it can be quite different from the structure and form of the C++ code **as long as it produces an equivalent program***. The purpose of this restructuring is to provide optimisations, usually for speed. Modern compilers have a vast array of optimisations which can be applied to code as it is compiled to the extent that few people could write better optimised assembly code manually, a task that rapidly becomes infeasible and forbiddingly time consuming as projects become larger and more complex. 
+Compilation is the translation of our high level code (in this case C++) into machine code that reflects the instruction set of the specific hardware for which it is compiled. This machine code can closely reflect the C++ code, implementing everything explicitly the way that it's written, or it can be quite different from the structure and form of the C++ code **as long as it produces an equivalent program**[^semantic-equivalence]. The purpose of this restructuring is to provide optimisations, usually for speed. Modern compilers have a vast array of optimisations which can be applied to code as it is compiled to the extent that few people could write better optimised assembly code manually, a task that rapidly becomes infeasible and forbiddingly time consuming as projects become larger and more complex. 
 
-There is another benefit to automated compiler optimisation. Compilers, by necessity, do produce hardware specific output, as they must translate programs into the instruction set of a given processor. This means that even if we have written highly portable code which makes no hardware specific optimisations, we can still benefit from these optimisations if they can be done by the compiler when compiling our code for different targets! As we shall see below, some processors may have different features such as machine level instructions for vectorised arithmetic which can be implemented by the compiler without changing the C++ code, producing different optimised programs for different hardware from a single, generic C++ code.   
+There is another benefit to automated compiler optimisation. Compilers, by necessity, do produce hardware specific output, as they must translate programs into the instruction set for some given architecture. This means that even if we have written highly portable code which makes no hardware specific optimisations, we can still benefit from these optimisations if they can be done by the compiler when compiling our code for different targets! As we shall see below, some processors may have different features such as machine level instructions for vectorised arithmetic which can be implemented by the compiler without changing the C++ code, producing different optimised programs for different hardware from a single, generic C++ code.   
 
 As such, to get the best out of our C++ code we need to rely to some extent on automated optimisation by the compiler. This does not mean that we should not choose effective algorithms -- the compiler will not simply replace a slow sorting algorithm with a better one! -- but rather compiler optimisation should be used in conjunction with our own best practices for writing efficient software. 
 
-> *_What is considered an "equivalent program" is beyond the scope of this course, and falls under the field of programming language semantics (the study of the meaning of programs). For now you can take equivalence to mean that the results of two computations are the same whenever they provided with the same external inputs. Things like the CPU clock, and therefore timing information, would qualify as external inputs, and so changing the timing results of a computation doesn't change the meaning of the program._
+[^semantic-equivalence]: What is considered an "equivalent program" is beyond the scope of this course, and falls under the field of programming language semantics (the study of the meaning of programs). For now you can take equivalence to mean that the results of two computations are the same whenever they provided with the same external inputs. Things like the CPU clock, and therefore timing information, would qualify as external inputs, and so changing the timing results of a computation doesn't change the meaning of the program.
 
 ## Optimisation Trade Offs
 
@@ -27,113 +27,6 @@ Code with optimisations applied will generally run faster, but there are a numbe
 4. Standards Compliance.
     - Some optimisations are not compliant with floating point standards; in particular they may affect floating point computations by rearranging numerical expressions ("free re-associations"). Using these can jeopardise the accuracy of your programs. 
 
-## Constant Expressions and Compile-Time Evaluation
-
-We can tell the compiler to do some computations at compile-time instead of during run-time. Consider some simple code like this:
-
-```cpp
-int x = 5;
-int y = x*x + 12;
-int z = factorial(5);
-```
-
-The variables $y$ and $z$ are the result of simple, deterministic expressions that depend only on information that we have at compile time. An equivalent program could look like this:
-
-```cpp
-int x = 5;
-int y = 37;
-int z = 120;
-```
-
-This program clearly doesn't need to do any work at run-time in order to assign values to `y` and `z`, but we have lost the expressiveness of our original version (which makes the relationships between `x`, `y`, and `z` clear), and we would have to update `y` and `z` manually if we changed the initialisation of `x`. 
-
-**Constant expressions** provide us with a way of ensuring that we can write expressive code like the first example _and_ forcing the compiler to evaluate the expressions and replace them with their results at compile time. This is in particular useful for more complex functions that could be time-consuming and runtime and are less likely to be automatically optimised by the compiler. 
-
-### Constant Expression Syntax
-
-A variable or a function can be declared as a constant expression using `constexpr`. For example:
-
-```cpp
-constexpr int add(int a, int b)
-{
-    int c = a + b;
-    return c;
-}
-
-int main()
-{
-    constexpr int x = 5;                  
-    constexpr int y = add(x, 18);
-
-    return 0;
-}
-```
-
-The initialization of `x` is essentially equivalent to `const x = 5` in this case. There is an additional restriction on `constexpr` compared to `const` however, which is that the initialisation of a `const` variable can happen at runtime, and depend on the run-time state, whereas the initialisation of a `constexpr` variable must be able to be performed at compile time.  
-
-The use of `constexpr` for the function `add` enforces that this function can be evaluated on compile time and will not rely on any runtime information. This means that the variable assignment for `y` does not require runtime calculation, but the compiler will simplify `add(x, 18)` to `23` and simply assign the value to `y` without ever calling the function when the program is run.
-
-### Limitations of Constant Expressions
-
-Not all computations can be done at compile-time, and therefore there are a number of conditions that constant expressions must fulfil. The [complete list of conditions](https://en.cppreference.com/w/cpp/language/constexpr.html) is quite involved, but here are some key points to remember:
-
-- A `constexpr` function cannot contain `try` statements, since handling exceptions would require run-time state. 
-    - You can _write_ a `throw` statement in a `constexpr` function but if the `throw` statement is reached during the compile time evaluation you will get a compiler error. This is useful because it will warn you if there is an error case in a compile-time evaluation, and because you can also call `constexpr` functions at run-time as well which can then handle the exception. 
-- A `constexpr` function cannot include uninitialised variables (e.g. `int z;`).
-- A `constexpr` function cannot declare `static` variables, since they require maintaining a state between function calls. 
-- A `constexpr` function cannot call a non-`constexpr` function. This includes things like dynamic memory allocation with `new`. However since a `constexpr` function can call other `constexpr` functions, you can also write a _recursive_ `constexpr` function!
-- A `constexpr` function cannot declare a _non-literal_ type variable. [Literal types](https://en.cppreference.com/w/cpp/language/constant_expression.html#Literal_type) need to fulfil a variety of conditions, in essence they are simple types that can be worked with at compile time, so they must be able to be constructed using a `constexpr`, have trivial destructors (no custom destructor logic needs to be called), and not contain member variables of non-literal types. An example of a non-literal type is `std::vector` since it has non-trivial destruction logic (heap memory deallocation), but `std::array` _is_ a literal type since its size is known at compile time and so it can be stack-allocated and doesn't require any specialised destruction logic.
-- A `constexpr` variable must be a literal type, and must be initialised by a constant expression e.g. a call to a `constexpr` function with argument _known at compile time_ (e.g. an explicit number like `2.4` or a `const`/`constexpr` variable known at compile-time).
-
-If your function is a _pure function_ that doesn't involve exception handling, dynamic memory allocation/deallocation, or calls to non-`constexpr` functions, then you can probably turn it into a `constexpr` function. 
-
-**N.B. We are using C++17 on this course. The conditions for acceptable constant expressions vary across different C++ standards, so if you use a newer or older standard you may find some differences in what you are able to write and compile.**
-
-### Revisiting the Factorial Example
-
-Consider the following `constexpr` definition of `factorial`, where we have omitted `#include` statements and `std::` namespacing for brevity.
-
-```cpp
-constexpr int factorial(int x)
-{
-    if(x < 0)
-    {
-        throw domain_error("Value " + to_string(x) + " is not within the domain of factorial (x >= 0).");
-    }
-    else if(x == 0)
-    {
-        return 1;
-    }
-    else
-    {
-        return x*factorial(x-1);
-    }
-}
-```
-Notice that we are able to make use of branching logic with separate `return` statements and recursion in this definition.
-
-Now consider the following statements that could appear in main, and whether or not they will compile:
-
-```cpp
-int main()
-{
-    const int x = 5;                  
-    int y = 3;
-
-    constexpr int z = factorial(x);   // Compiles okay: x is const
-    constexpr int r = factorial(y);   // Doesn't compile: y is not const
-    constexpr int p = factorial(-3);  // Doesn't compile: throw is reached
-    int q = factorial(-3);            // Compiles okay: throws an exception at runtime
-
-    return 0;
-}
-```
-Notice that we can only initialise a `constexpr int` variable with a call to `factorial` if the **argument is `const` and the function evaluation does not `throw`**. If we initialise a non-`const` variable using `factorial` then it will be treated as a runtime expression and so these conditions don't apply. 
-
-### Other Uses of Constant Expressions
-
-Constant expressions are not just useful for run-time optimisation; they also allow use to write more expressive code anywhere where we need to know information at compile time, such as constant template arguments (e.g. the length of an `std::array`) and static memory allocation (e.g. `int x[...];`).
-
 ## Compiler Optimisation Flags
 
 The GNU compiler (gcc) has a [large number of optimisation options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html), but for the most part one uses a smaller set of flags which enable batches of these options. These batches are selected to give you control over some of the downsides of optimisation procedures discussed above.
@@ -146,6 +39,15 @@ The GNU compiler (gcc) has a [large number of optimisation options](https://gcc.
 - `-Ofast` performs aggressive optimisation on numerical code but sacrifices compliance with some standards, meaning that the result of your calculation can be affected. 
 
 There are others in the documentation linked above which I would recommend that you read. It also describes in detail the optimisations that are turned on at each level. 
+
+### Debugging and Testing
+
+As we have mentioned already, debugging optimised code can be substantially more difficult than debugging unoptimised code. Generally, optimised code should work in the same way as unoptimised code, and therefore:
+
+- Compile code without optimisations (or with `-Og`) for debugging and most development purposes other than profiling / benchmarking. 
+- Turn on appropriate optimisations when compiling for actual deployment. 
+- Run your unit tests on both unoptimised and optimised code.
+    - If you have tests which pass when unoptimised but fail when optimised, then the chances are you have a bug in your code causing [**undefined behaviour**](https://en.cppreference.com/w/cpp/language/ub). 
 
 ## Some Optimisation Examples
 
@@ -335,59 +237,134 @@ In general, you shouldn't worry too much about how optimised objects like these 
 
 ## Floating Point Arithmetic 
 
-Floating point arithmetic is how we typically deal with approximating the real numbers in code. Floating point numbers can in principle have any level of precision, but the most common are:
+As discussed in the notes on basic types, floating point arithmetic is imprecise in some important ways:
 
-- `float`: 32 bits (4 bytes)
-- `double`: 64 bits (8 bytes)
-- `long double`: Usually 80 or 128 bits depending on processor
-- `half`: 16 bits, not part of the C/C++ standard but often used on hardware like GPUs
+- it is not associative, so `a + (b + c)` $\neq$ `(a + b) + c`,
+- multiplication is not distributive over addition, so `a*(b + c)` $\neq$ `a*b + a*c`,
+- addition and subtraction operations can introduce substantial rounding errors under certain conditions, for example adding a very small number to a very large number.
 
-The data for floating point numbers are split into two parts, the mantissa and the exponent. It is comparable to scientific notation except that it usually uses powers of 2 instead of 10. 
-
-$n = m \times 2^e$
-
-where $m$ is the mantissa and $e$ is the exponent. The mantissa is usually represented so there is a radix point after the first significant (non zero) digit. In other words, the binary `001011` would represent the mantissa `1.011` (again, in base 2). The exponent is a signed integer. 
-
-The size of the data affects both the precision of the mantissa and the range of values for the exponent (and therefore how large and small the values represented can be). 
-
-- `float` has around 7 significant figures
-- `double` has around 16 significant figures
-
-Floating point computation **is not exact**. 
-
-- Adding values of very different sizes leads to significant loss of precision since values must be converted to have the same exponent to be added together. This means the difference in scale is pushed into the mantissa, which then loses precision due to leading `0` digits on the smaller number. In some cases the smaller number may be so small that the closest representable number with that exponent is `0` and so the addition is lost completely. 
-- Subtracting values which are close in size leads to cancellation of many digits and a result with far fewer significant digits and therefore lower precision. 
-- Identities from real arithmetic do not necessarily hold, in particular **addition and multiplication are not associative**, so $(a + b) + c \neq a + (b + c)$ in floating point! 
-- Handling these difficulties in numerical methods is a major field in and of itself. Many numerical algorithms are specially crafted to correct rounding errors in floating point arithmetic.  
-
-### Floating Point Precision
-
-Higher precision floating point numbers (like `double` as opposed to `float`) will give more accurate results when doing numerical work, but may also be slower to perform operations. Historically `double` operations have taken more time to compute than `float` operations, although this is no longer typically the case on modern CPUs. Nevertheless, if you are exploiting SIMD registers for maximal performance, fewer `double` values can fit in an available register and therefore fewer operations can be performed in a given amount of time. Some fast algorithms use single precision `float` or even half precision floating point numbers in areas where the results will not be significantly impacted by this. This is particularly common in areas like statistics and machine learning where the statistical variance is much larger than the precision of the floating point numbers. You must always bear in mind that the use of lower precision floating point types can lead to numerical instability from cancellation errors or division/multiplication by extreme values causing under or overflow. You should always have tests for robustness and precision to check that any compromises made to precision are acceptable. 
+This has significant consequences for the optimisation of floating point arithmetic.
 
 ### Optimisation of Floating Point Arithmetic
 
-Since floating point computation is not exact, many statements which are mathematically equivalent using real numbers are not equivalent in floating point. As mentioned above, compiler optimisations should not change the meaning of the code - the outcome of a calculation. Floating point operations therefore place limitations on the kinds of optimisations that can be applied, and if performance is a major consideration you should try to write out your floating point operations in the most efficient way possible to begin with. 
+Since floating point computation is not exact, many statements which are mathematically equivalent using real numbers are not equivalent in floating point. Remember that the core principle of automated optimisation is that it should not change the meaning of the code - the outcome of a calculation. Floating point operations therefore place limitations on the kinds of optimisations that can be applied, and if performance is a major consideration you should try to write out your floating point operations in the most efficient way possible to begin with. (Integer arithmetic can be rearranged by the compiler because it is exact.)
 
-Nevertheless, compilers can optimise numerical code for speed by rearranging arithmetic operations, even floating point operations. (Integer arithmetic can be rearranged by the compiler because it is exact.) While C++ optimisations are generally designed not to change the results of the calculations as written there are some, such as those enabled by `-ffast-math`, that allow for rearrangement of arithmetic according to the rules of _real numbers_. This allows for example the rearranging associations. This can be a powerful tool in some cases, not only allowing your numerical code to be rearranged into a more efficient format but also permitting the compiler to make the necessary reorderings of operations for vectorising floating point algorithms. There are however, significant drawbacks to using fast-math optimisations due to the way that it can change the meaning of your program.
+Nevertheless, compilers _can_ optimise numerical code for speed by rearranging arithmetic operations, even floating point operations. While C++ optimisations are generally designed not to change the results of the calculations as written there are some, such as those enabled by `-ffast-math`, that allow for rearrangement of arithmetic according to the rules of _real numbers_. This allows for example the rearranging associations. This can be a powerful tool in some cases, not only allowing your numerical code to be rearranged into a more efficient format but also permitting the compiler to make the necessary reorderings of operations for vectorising floating point algorithms. There are however, significant drawbacks to using `fast-math` optimisations due to the way that it can change the meaning of your program.
 
-Suppose we have a large number $N$ and two much smaller numbers $a$ and $b$ and we want to calculate $N + a + b$. We know from the way that floating point numbers work that adding small and large numbers leads to rounding errors, so the best order to add these number is $(a+b) + N$, to keep the precision of $(a+b)$ and maximise the size of the smaller number that we add to $N$. This is why re-associations in optimisation can cause a problem. Numerical algorithms with factors which compensate for rounding errors can have their error corrections optimised away by fast-math, because for _real_ numbers the error corrections would be zero and the compiler can identify them as redundant! 
+Suppose we have a large number $N$ and two much smaller numbers $a$ and $b$ and we want to calculate $N + a + b$. We know from the way that floating point numbers work that adding small and large numbers leads to rounding errors, so the best order to add these number is $(a+b) + N$, to keep the precision of $(a+b)$ and maximise the size of the smaller number that we add to $N$. This is why re-associations in optimisation can cause a problem. Many precise numerical algorithms have been designed to minimise or compensate for rounding errors, and these can have their error corrections optimised away by fast-math because for _real_ numbers the error corrections would all be zero!
 
-**Do not use fast math optimisations for code containing precise numerical methods unless you have very strictly tested it for sufficient accuracy.**
+**Do not use fast math optimisations for code containing precise numerical methods unless you have very strictly tested it for sufficient accuracy. The standard levels O1, O2, and O3 will not enable `fast-math`.**
 
-## Inspecting Optimised Code
+## Constant Expressions and Compile-Time Evaluation
 
-The process of optimisation, and the optimised executable at the end of it, can feel rather confusing and obscure given that we are not directly in control of it. Nevertheless, we still need to make sure that our debugging and testing of our programs is thorough, and there are ways to get a better understanding of what the compiler has done to our code if we're willing to look at a lower level!
+We can also tell the compiler to do some computations at compile-time instead of during run-time, saving us time when we run our code (possibly many times!) later. Consider some simple code like this:
 
-### Debugging and Testing
+```cpp
+int x = 5;
+int y = x*x + 12;
+int z = factorial(5);
+```
 
-As we have mentioned already, debugging optimised code can be substantially more difficult than debugging unoptimised code. Generally, optimised code should work in the same way as unoptimised code, and therefore:
+The variables $y$ and $z$ are the result of simple, deterministic expressions that depend only on information that we have at compile time. An equivalent program could look like this:
 
-- Compile code without optimisations (or with `-Og`) for debugging and most development purposes other than profiling / benchmarking. 
-- Turn on appropriate optimisations when compiling for actual deployment. 
-- Run your unit tests on both unoptimised and optimised code.
-    - If you have tests which pass when unoptimised but fail when optimised, then the chances are you have a bug in your code causing [**undefined behaviour**](https://en.cppreference.com/w/cpp/language/ub). 
+```cpp
+int x = 5;
+int y = 37;
+int z = 120;
+```
 
-### Optional: Dumping Executables and Inspecting Assembly Code
+This program clearly doesn't need to do any work at run-time in order to assign values to `y` and `z`, but we have lost the expressiveness of our original version (which makes the relationships between `x`, `y`, and `z` clear), and we would have to update `y` and `z` manually if we changed the initialisation of `x`. 
+
+**Constant expressions** provide us with a way of ensuring that we can write expressive code like the first example _and_ forcing the compiler to evaluate the expressions and replace them with their results at compile time. This is in particular useful for more complex functions that could be time-consuming and runtime and are less likely to be automatically optimised by the compiler. 
+
+### Constant Expression Syntax
+
+A variable or a function can be declared as a constant expression using `constexpr`. For example:
+
+```cpp
+constexpr int add(int a, int b)
+{
+    int c = a + b;
+    return c;
+}
+
+int main()
+{
+    constexpr int x = 5;                  
+    constexpr int y = add(x, 18);
+
+    return 0;
+}
+```
+
+The initialization of `x` is essentially equivalent to `const x = 5` in this case. There is an additional restriction on `constexpr` compared to `const` however, which is that the initialisation of a `const` variable can happen at runtime, and depend on the run-time state, since a `const` variable just means that its value cannot change after it has been declared. One the other hand, the initialisation of a `constexpr` variable must be able to be performed at compile time.  
+
+The use of `constexpr` for the function `add` enforces that this function can be evaluated on compile time and will not rely on any runtime information as long as the arguments are known at compile time. This means that the variable assignment for `y` can be evaluated at compile time; the compiler will simplify `add(x, 18)` to `23` and simply assign the value to `y` without ever calling the function when the program is run.
+
+### Limitations of Constant Expressions
+
+Not all computations can be done at compile-time, and therefore there are a number of conditions that constant expressions must fulfil. The [complete list of conditions](https://en.cppreference.com/w/cpp/language/constexpr.html) is quite involved, but here are some key points to remember:
+
+- A `constexpr` function cannot contain `try` statements, since handling exceptions would require run-time state. 
+    - You can _write_ a `throw` statement in a `constexpr` function but if the `throw` statement is reached during the compile time evaluation you will get a compiler error. This is useful because it will warn you if there is an error case in a compile-time evaluation, and because you can also call `constexpr` functions at run-time as well which can then handle the exception. 
+- A `constexpr` function cannot include uninitialised variables (e.g. `int z;`).
+- A `constexpr` function cannot declare `static` variables, since they require maintaining a state between function calls. 
+- A `constexpr` function cannot call a non-`constexpr` function. This includes things like dynamic memory allocation with `new`. However since a `constexpr` function can call other `constexpr` functions, you can also write a _recursive_ `constexpr` function!
+- A `constexpr` function cannot declare a _non-literal_ type variable. [Literal types](https://en.cppreference.com/w/cpp/language/constant_expression.html#Literal_type) need to fulfil a variety of conditions, in essence they are simple types that can be worked with at compile time, so they must be able to be constructed using a `constexpr`, have trivial destructors (no custom destructor logic needs to be called), and not contain member variables of non-literal types. An example of a non-literal type is `std::vector` since it has non-trivial destruction logic (heap memory deallocation), but `std::array` _is_ a literal type since its size is known at compile time and so it can be stack-allocated and doesn't require any specialised destruction logic.
+- A `constexpr` variable must be a literal type, and must be initialised by a constant expression e.g. a call to a `constexpr` function with argument _known at compile time_ (e.g. an explicit number like `2.4` or a `const`/`constexpr` variable known at compile-time).
+
+If your function is a _pure function_ that doesn't involve exception handling, dynamic memory allocation/deallocation, or calls to non-`constexpr` functions, then you can probably turn it into a `constexpr` function. 
+
+**N.B. We are using C++17 on this course in all examples, assignments, and exams. The conditions for acceptable constant expressions vary across different C++ standards, so if you use a newer or older standard you may find some differences in what you are able to write and compile.**
+
+### Revisiting the Factorial Example
+
+Consider the following `constexpr` definition of `factorial`, where we have omitted `#include` statements and `std::` namespacing for brevity.
+
+```cpp
+constexpr int factorial(int x)
+{
+    if(x < 0)
+    {
+        throw domain_error("Value " + to_string(x) + " is not within the domain of factorial (x >= 0).");
+    }
+    else if(x == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return x*factorial(x-1);
+    }
+}
+```
+Notice that we are able to make use of non trivial language features like branching logic with separate `return` statements and recursion in this definition: these do not conflict with any of our conditions on `constexpr`. 
+
+Now consider the following statements that could appear in main, and whether or not they will compile:
+
+```cpp
+int main()
+{
+    const int x = 5;                  
+    int y = 3;
+
+    constexpr int z = factorial(x);   // Compiles okay: x is const
+    constexpr int r = factorial(y);   // Doesn't compile: y is not const
+    constexpr int p = factorial(-3);  // Doesn't compile: throw is reached
+    int q = factorial(-3);            // Compiles okay: throws an exception at runtime
+
+    return 0;
+}
+```
+Notice that we can only initialise a `constexpr int` variable with a call to `factorial` if the **argument is `const` and the function evaluation does not `throw`**. If we initialise a non-`const` variable using `factorial` then it will be treated as a runtime expression and so these conditions don't apply. 
+
+### Other Uses of Constant Expressions
+
+Constant expressions are not just useful for run-time optimisation; they also allow use to write more expressive code anywhere where we need to know information at compile time, such as constant template arguments (e.g. the length of an `std::array`) and static memory allocation (e.g. `int x[...];`).
+
+## Optional: Inspecting Optimised Code at the Assembly Level
+
+The process of optimisation, and the optimised executable at the end of it, can feel rather confusing and obscure given that we are not directly in control of it. Nevertheless, there are ways to get a better understanding of what the compiler has done to our code if we're willing to look at a lower level!
 
 This course is certainly not about assembly or low level programming, but you can understand something about what optimising compilers are doing if you take a look at the end result of your compilation. This can be instructive when working with small examples to better understand what the compiler is doing to your code. 
 

@@ -46,11 +46,11 @@ where $N$ is the number of rows and $M$ is the number of columns. In this implem
 
 Let's review how a vector is arranged in memory to understand the layout of our vector of vectors. Remember that a vector stored on the stack makes a heap allocation to store its data, which means that under the hood a vector is using a pointer to keep track of the location of the actual data. Below is an example of a vector of ints (green) stored on the stack (blue), with an allocation (yellow) on the heap (red). 
 
-![image](img/BasicVector.png)
+![image](images/BasicVector.png)
 
 When we have a vector of vectors, each element of the vector's data is itself a vector, which is pointing to a separate location in memory to store its own data. Below is a diagram of a $5 \times 4$ matrix (5 rows, 4 columns); the vector of vectors point to an allocation on the heap containing 5 vectors (one for each row), which themselves each points to a block of memory 4 ints wide. These blocks of memory can in principle be placed anywhere in memory.
 
-![image](img/VecOfVec.png)
+![image](images/VecOfVec.png)
 
 Each row is clearly contigous but the columns are not. For example, the first column of this matrix would be made up of the first element of each row, which are placed independently throughout memory.
 
@@ -84,7 +84,7 @@ A _linked list_ is a representation of a list that is stored like a graph: each 
 
 The diagram shows a possible layout linked list nodes in memory. The red grid shows memory locations, blue cells are occupied by a linked list data element and the yellow cells are occupied by a linked list pointer; arrows show the location that each pointer stores. Note the list can be terminated with a null pointer.
 
-![image](img/LinkedListMemory.png)
+![image](images/LinkedListMemory.png)
 
 Accessing element $i$ of the list requires us to read and follow $i$ pointers, and the amount of work done to find elements increases linearly as the we get further into the list. The advantage of a linked list however is that we can add or remove elements more straightforwardly by simply modifying the relevant pointers. This is much simpler than removing or inserting elements in the middle of a random access array, which requires copying memory to keep all the elements correctly in order. 
 
@@ -107,7 +107,7 @@ A BST is therefore always _sorted_ w.r.t. keys. It is often used to implement _a
 
 The diagram below shows a BST; the first piece of data (in the blue cell) is the _key_, followed by value, the left child pointer, and the right child pointer. A null pointer can be used to represent a lack of left or right child. Note that the tree is sorted by the _key_ and is not sorted on _values_. 
 
-![image](img/BinarySearchTree.png)
+![image](images/BinarySearchTree.png)
 
 The complexity of many operations on BSTs is determined by the _height_ of the tree. The height of a tree (or subtree) is the maximum length of path that we can take from the top node until we reach a node with no children and can go no further. The diagram above shows a tree of height 3; the subtree starting at the node with $k=4$ has height 2. 
 
@@ -123,7 +123,7 @@ A _hash table_ is an alternative implementation for an associative array. It con
 
 The diagram below gives an example of a hash table for the same data as the BST above. In the ideal case all the keys would map to different indices in the table, but for illustration purposes we have shown a number of collisions. From each hash function on the left we get an index in the random access array, and then we can follow a pointer to all the data stored at that index.
 
-![image](img/HashTable.png)
+![image](images/HashTable.png)
 
 How quick it is to look up an element in this list will depend on the kind of structure used (for example, all of the above structures could be used!) but the key to a hash table's performance is that **collisions should be rare** so that the size of these lists remains small. If the number of colliding keys is bounded by a constant then the look-up/insertion in the list will constant time, and since the hash function and checking the random access array are also constant time, hash tables have $O(1)$ operations for insertion, look-up, and removal. Just because the complexity is $O(1)$ (under appropriate circumstances) doesn't necessarily mean that hash tables are faster than other methods though: there are overheads to think about as well, especially from the hash function! Often a BST will be faster for moderately sized data. Hash tables can also require allocating more memory than you need.
 

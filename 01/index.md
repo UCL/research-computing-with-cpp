@@ -1,8 +1,21 @@
 ---
 title: "Introduction to C++"
-author:
-  - Krishnakumar Gopalakrishnan
 ---
+
+## Course Outline
+
+This is a broad course that will touch on many different topics in order to give you a strong foundation from which to make informed choices in the context of software engineering. To do this, we will need to not only develop an understanding of the C++ programming language itself, but also begin to understand the architecture of our computer systems and the formal analysis of programming problems and their solutions. 
+
+1. Introduction to C++ and data representation.
+2. The standard library, classes, and pointers.
+3. The cmake build system, compiler optimisation, and testing.
+4. Polymorphism: inheritance and templates.
+5. Code structure, design patterns, and error mechanisms.
+6. Libraries and tools.
+7. Parallel models: shared memory (openMP) and distributed memory (MPI) parallelism.
+8. Performance programming, cache behaviour, and parallel scaling.
+9. Parallel programming strategies and asynchronous MPI.
+10. Algorithm analysis: serial complexity and PRAM work-depth.
 
 ## Contents
 
