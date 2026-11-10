@@ -33,6 +33,7 @@ You should understand:
   - $\mathbb{Z}$, the integers;
   - $\mathbb{R}$, the real numbers;
   - $\mathbb{B}$, the booleans $\mathbb{B} = \{\text{True}, \text{False}\}$.
+- Notation for the powerset of a set, $\mathcal{P}(A)$, the set of all subsets of the set $A$. This is useful for understanding functions that return collections of objects. For example, a function that takes an integer $n$ and returns all the elements of $A$ that are divisible by $n$ would be a function $f: \mathbb{N} \rightarrow \mathcal{P}(A)$ from the natural numbers to the powerset of $A$.
 
 You are not expected to have any further background in set theory or be able to write set theoretic proofs. 
 

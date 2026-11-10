@@ -103,7 +103,7 @@ def trapezium_integrate(x, f):
     assert(len(f) == n)
     tot = 0
     for i in range(0, n-1):
-        tot += (x[i+1] - x[i]) * (f[i+1]-f[i]) * 0.5
+        tot += (x[i+1] - x[i]) * (f[i+1] + f[i]) * 0.5
     return tot
 ```
 
@@ -119,7 +119,7 @@ double trapezium_integrate(std::vector<double> x, std::vector<double> f)
     double tot = 0;
     for(std::size_t i = 0; i < x.size(); i++)
     {
-        tot += (x[i+1] - x[i]) * (f[i+1] - f[i]) * 0.5;
+        tot += (x[i+1] - x[i]) * (f[i+1] + f[i]) * 0.5;
     }
     return tot;
 }
@@ -131,7 +131,7 @@ Sometimes when we have a discretised function we need to have a strategy for app
 
 Two of the most important interpolation schemes are:
 
-- Linear interpolation: each sampled point is joined to the next by a straight line and values are calculated using $f(x) \approx f(x_i) + (f(x_{i+1}) - f(x_i))(x - x_i)$ for $x_i \le x \le x_{i+1}$. 
+- Linear interpolation: each sampled point is joined to the next by a straight line and values are calculated using $f(x) \approx f(x_i) + (f(x_{i+1}) - f(x_i))\frac{x - x_i}{x_{i+1} - x_i}$ for $x_i \le x \le x_{i+1}$. 
 - Polynomial spline interpolation: segments of the function are approximated as polynomials (usually cubic) satisfying some constraints on the continuity of the function and its first derivative. 
 
 ## Discrete Functions as Associative Arrays (Maps/Dictionaries)
@@ -140,7 +140,7 @@ Although most functions in physical sciences are continuous functions over some 
 
 Discrete functions can be represented using an _associative array_; in C++ the standard library provides `std::map`, and you may have come across Python's `dictionary` type which does the same job. An associative array stores _key-value pairs_, allowing you to look up a value for a particular key. When used to represent a function, the _key_ is an element of the domain, and the _value_ is an element of the range. 
 
-Suppose we have a labelled graph, with a set of vertices $V$ and set of labels $L$. We may want to construct a function $f: L \rightarrow V$ that returns all the vertices with a given label. If our labels are strings, we can represent this function as an associative array (i.e. map or dictionary) from strings to integers (the ID of the vertex). We can see this clearly in the example code below in Python:
+Suppose we have a labelled graph, with a set of vertices $V$ and set of labels $L$. We may want to construct a function $f: L \rightarrow \mathcal{P}(V)$ that returns all the vertices with a given label. If our labels are strings, we can represent this function as an associative array (i.e. map or dictionary) from strings to integers (the ID of the vertex). We can see this clearly in the example code below in Python:
 
 ```python
 def ConstructLabelSubsetFunction(graph):
