@@ -65,7 +65,7 @@ class Colour
     int r;
     int g;
     int b;
-}
+};
 ```
 
 If we've defined a `Colour` class, we can add it to our `Circle` class:
