@@ -20,7 +20,7 @@ def square(x):
     return x*x
 ```
 
-But what if our function needs to be plotted? Or what if our function is not easily computable or expressed in our programming language? What if our function isn't an arithmetic function but a mapping between two finites sets of objects? Depending on the context, representing a function may require very different things from us, and so here we outline here a variety of common function representations that you should be aware of and examples of their applications. 
+But what if our function needs to be plotted? Or what if our function is not easily computable or expressed in our programming language? What if our function isn't an arithmetic function but a mapping between two finite sets of objects? Depending on the context, representing a function may require very different things from us, and so here we outline a variety of common function representations that you should be aware of and examples of their applications. 
 
 ## Computable Functions as C++ Functions / Callable Objects / Lambda Expressions
 
