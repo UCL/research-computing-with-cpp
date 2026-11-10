@@ -51,13 +51,14 @@ Inheritance is sometimes misused by C++ programmers to share functionality betwe
 
 ## When To Start Optimising Code
 
-When faced with writing code that one knows needs to be efficient, it is common to try to optimise every piece of code they write as one goes along. This can lead to a very slow development process, as well as difficult to understand software! There are some key points to bear in mind when you are developing efficient code:
+When faced with writing code that one knows needs to be efficient, it is common to try to optimise every piece of code written as one goes along. This can lead to a very slow development process, as well as difficult to understand software! There are some key points to bear in mind when you are developing efficient code:
 
 - Optimisation often takes significant work: it is much slower to write a highly optimised implementation than a straight-forward one.
 - Optimised code can become unintuitive and therefore harder to understand for other developers. This also makes maintenance harder, especially if it is not obvious what can and can't be changed without breaking the optimisation benefits! 
 - Highly optimised code may not be portable, as code may be optimised for specific platforms, architectures, or even individual machines.
 - KISS (Keep It Simple, Stupid) is a good principle for first drafts: focus on writing _correct_, understandable code first. 
-- Measure performance to find your bottlenecks: don't waste time optimising parts of your program that only make up a tiny fraction of your runtime (or memory). Chances are there are only one or two places where a substantial amount of your runtime is spent and which can be effectively optimised. **Profile your program and prioritise high-impact optimisations first.** 
+- Measure performance to find your bottlenecks: don't waste time optimising parts of your program that only make up a tiny fraction of your runtime (or memory). A substantial fraction of your runtime is often concentrated in a small part of the program which can be effectively optimised. **Profile your program and prioritise high-impact optimisations first.** 
+- Measurements should use representative inputs and problem sizes. Measure a build with compiler optimisation enabled: otherwise you may spend time fixing costs the compiler would already remove.
 - Continue measuring performance to check that you are making an impact on your runtime / memory usage.
 - Monitor your optimised algorithms for **accuracy and precision**. Some algorithms may produce more reliable results than others, especially when using floating point arithmetic. A significant consideration with numerical algorithms is not just the time and space usage, but the numerical stability of the algorithm. 
     - For example some methods use single (or even half) precision floating point numbers instead of doubles in order to get faster results. This sometimes happens in some statistical methods such as MCMC (Markov Chain Monte Carlo) where we want to be able to sample a random distribution and the additional precision doesn't have a strong impact on the overall statistical properties.

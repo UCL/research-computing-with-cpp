@@ -283,7 +283,7 @@ Return codes are common in programming languages like C which do not have except
 
 The return codes approach can also be useful in its own right in C++, when we don't want to interrupt the program flow in the same way, or when errors are common and the exception overhead starts to become high. High frequencies of exceptions can cause particular problems for multi-threaded programming (you can read about [an example here](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2544r0.html) if you are interested).
 
-In the return code approach, you define a function as returning an `int`, and the convention is to return `0` for a successful execution. Any other number encodes an error of some kind, and you can thus assign different meanings to different integers. Because we've used the return value to report success/failure, the meaningful output of the function is placed into a mutable argument (reference or pointer). This is one of the disadvantages of this approach, as it obsfuscates the logical structure of the function. 
+In a return-code approach, a function returns a value indicating whether it succeeded. One common convention uses an integer, with `0` indicating success and other values identifying different errors. The caller must check the result before continuing. If the function also needs to produce data, a common approach is to place that data in an output argument passed by reference or pointer. Always check the library's documentation, since conventions differ.
 
 Consider this example for getting the first element of a vector (which may be empty):
 ```cpp
@@ -292,7 +292,7 @@ Consider this example for getting the first element of a vector (which may be em
 
 using std::vector;
 
-int head(vector<int> v, int &x)
+int head(const vector<int>& v, int &x)
 {
     if(v.empty())
     {
@@ -309,7 +309,7 @@ int main()
 {
     vector<int> v{5, 9, 4, 3};
     int x;
-    if(!head(v, x))
+    if(head(v, x) != 0)
     {
         std::cout << "It was empty." << std::endl;
     }
@@ -350,11 +350,15 @@ using std::nullopt;
 
 optional<int> head(const vector<int> &v)
 {
-    return v.size() > 0 ? optional<int>(v[0]) : nullopt;
+    if (v.empty())
+    {
+        return nullopt;
+    }
+    return v[0];
 }
 
 
-// This function defines the << operator for streaming an std::option
+// This function defines the << operator for streaming an std::optional
 // to an output stream such as std::cout.  
 std::ostream& operator<<(std::ostream &os, optional<int> x)
 {
@@ -372,7 +376,7 @@ std::ostream& operator<<(std::ostream &os, optional<int> x)
 int main()
 {
     vector<int> v1{5,9,4,3};
-    optional<int> x = head(v);
+    optional<int> x = head(v1);
     
     vector<int> v2;
     optional<int> y = head(v2);
