@@ -61,5 +61,5 @@ Containers are important to most programming languages; almost all programmers w
 
 - `std::array<T, N>`: a type for storing exactly `N` elements of type `T`, with `N` known at compile time.
 - `std::vector<T>`: a type for storing arbitrary numbers of elements of type `T`.
-- `std::map<A, B>`: a type for storing key-value pairs where keys have type `A` and values have type `B`.
+- `std::map<A, B>`: a type for storing key-value pairs where keys are unique and have type `A` and values have type `B`.
 
