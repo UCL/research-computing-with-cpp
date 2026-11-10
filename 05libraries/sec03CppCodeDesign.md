@@ -61,7 +61,8 @@ When faced with writing code that one knows needs to be efficient, it is common 
 - Continue measuring performance to check that you are making an impact on your runtime / memory usage.
 - Monitor your optimised algorithms for **accuracy and precision**. Some algorithms may produce more reliable results than others, especially when using floating point arithmetic. A significant consideration with numerical algorithms is not just the time and space usage, but the numerical stability of the algorithm. 
     - For example some methods use single (or even half) precision floating point numbers instead of doubles in order to get faster results. This sometimes happens in some statistical methods such as MCMC (Markov Chain Monte Carlo) where we want to be able to sample a random distribution and the additional precision doesn't have a strong impact on the overall statistical properties.
-    - Some methods use arbitrary precision integer arithmetic to handle very large values and do calculations without e.g. cancellation errors, even though this requires more time and memory. This is common in things like financial applications where all the sums really need to add up exactly! 
+    - Sometimes the accuracy requirements justify using more time and memory. For example, a numerically sensitive calculation may require higher-precision arithmetic or a more stable algorithm. Increasing precision can help, but does not automatically make an unsuitable numerical method reliable.
+- Stop when the software meets its requirements, or when further improvements no longer justify the development and maintenance effort.
 
 **Optimisation is usually a trade off between different factors. You should always bear in mind your priorities when creating efficient software.** 
 
