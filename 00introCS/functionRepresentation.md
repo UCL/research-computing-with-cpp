@@ -82,7 +82,7 @@ A sampled function means storing a series of values for a function for different
 Discretising functions is an important tool in science in engineering, and has myriad applications:
 
 - capturing incoming signals from measurement equipment,
-- representing numerical solutions to functions with no analytic form,
+- representing numerical solutions to equations with no analytic form,
 - pre-computing functions which are expensive to compute,
 - calculating probability distributions by building up histograms of random events,
 - and many more!
