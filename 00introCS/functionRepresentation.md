@@ -49,7 +49,7 @@ The equivalent fragment in C++ would look like this:
 using std::vector;
 using std::function;
 
-vector<int> filter(vector<int> &list_in, function<bool(int)> f)
+vector<int> filter(const vector<int> &list_in, function<bool(int)> f)
 {
     vector<int> output;
     for (auto x : list_in)
