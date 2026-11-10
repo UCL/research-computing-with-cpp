@@ -8,7 +8,7 @@ In order to write effective scientific programs, you will need to be able to tra
 
 ## What is a data representation? 
 
-In order to represent something a computer we need to have a properly formalised idea of exactly what information need to be stored and how. Computers themselves have only sequences of zeros and ones to work with, and the computer itself doesn't know what it is you're trying to represent with it and can't make any decisions on its own about the correct thing to do with them. 
+In order to represent something on a computer we need to have a properly formalised idea of exactly what information needs to be stored and how. Computers themselves have only sequences of zeros and ones to work with, and the computer itself doesn't know what it is you're trying to represent with it and can't make any decisions on its own about the correct thing to do with them. 
 
 Later in this course we will look at the object-oriented approach of combining data and functionality together, but for now we will restrict ourselves to the more fundamental topic of data alone. 
 
@@ -65,7 +65,7 @@ class Colour
     int r;
     int g;
     int b;
-}
+};
 ```
 
 If we've defined a `Colour` class, we can add it to our `Circle` class:
@@ -78,7 +78,7 @@ class Circle
     double centre_y;
     double radius;
     Colour colour;
-}
+};
 ```
 
 This kind of nested data structure is very helpful in building up complex structures, and more more readable than giving the `Circle` class its own separate red, green, and blue member variables. 
