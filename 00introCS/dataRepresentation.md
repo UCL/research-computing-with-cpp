@@ -78,7 +78,7 @@ class Circle
     double centre_y;
     double radius;
     Colour colour;
-}
+};
 ```
 
 This kind of nested data structure is very helpful in building up complex structures, and more more readable than giving the `Circle` class its own separate red, green, and blue member variables. 
