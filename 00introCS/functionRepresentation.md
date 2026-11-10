@@ -24,7 +24,7 @@ But what if our function needs to be plotted? Or what if our function is not eas
 
 ## Computable Functions as C++ Functions / Callable Objects / Lambda Expressions
 
-Functions which have a clear analytic form to calculate the outputs from the inputs, and which don't need to be mutable (i.e. the function will not change), can be represented using ordinary functions in the language. Most modern programming languages, including both Python and C++, provide ways of passing functions around like data: in C++ we have _function pointers_, _lambda expressions_, and _callable objects_. The various ways of handling functions in C++ can all be wrapped in the standard library type `std::function`, which we'll cover in this course. 
+If we have an algorithm to calculate outputs from inputs, this can be represented directly as a function in the programming language. Most modern programming languages, including both Python and C++, provide ways of passing functions around like data: in C++ we have _function pointers_, _lambda expressions_, and _callable objects_. The various ways of handling functions in C++ can all be wrapped in the standard library type `std::function`, which we'll cover in this course. 
 
 As a concrete example, suppose we want to write a function called `filter` that takes a list of integers and an arbitrary function $f: \mathbb N \rightarrow \mathbb B$ and returns a new list of all the elements $x$ where $f(x) = \text{True}$. We need a way of modelling an arbitrary function $f$ from integers to bools, for example to find all the even elements of a list. In Python the implementation could look like this:
 
@@ -169,3 +169,7 @@ std::map<std::string, std::vector<int>> ConstructLabelSubsetFunction(LabelledGra
 ```
 
 Note that we have taken the implementation of the labelled graph data structure to be implicit; all we have required here is that we can get the number of vertices and the label of a given vertex. 
+
+You may notice that this example does have an algorithmic implementation: instead of constructing a map we could instead iterate over all of our vertices every time we want to find the set of vertices with a given label. If we need to query this function frequently, this approach is likely to be much less efficient than constructing our map once and then finding the result for each label easily. 
+
+Maps are also useful for constructing functions that have no clear algorithmic form, for example if we are constructing a mapping based on run time input or data files. 
