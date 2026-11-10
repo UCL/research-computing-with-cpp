@@ -73,7 +73,7 @@ int main()
 }
 ```
 
-Don't worry about the C++ syntax too much right now; the extra details will be explained as the course unfolds and is mostly there to support C++'s more rigorous programming style when it comes to types. It's more important to note that the structure is still the same: we have a lambda expression `is_even` which is a function that can be called that takes an integer and returns a boolen; it is passed to a function `filter` that takes a list of elements and an arbitrary function `f` and applies `f` to each element to determine which will be added to the output list. 
+Don't worry about the C++ syntax too much right now; the extra details will be explained as the course unfolds and is mostly there to support C++'s more rigorous programming style when it comes to types. It's more important to note that the structure is still the same: we have a lambda expression `is_even` which is a function that can be called that takes an integer and returns a Boolean; it is passed to a function `filter` that takes a list of elements and an arbitrary function `f` and applies `f` to each element to determine which will be added to the output list. 
 
 ## Sampled Functions as Lists/Vectors
 
