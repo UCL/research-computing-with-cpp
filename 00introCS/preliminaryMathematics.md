@@ -25,8 +25,8 @@ You should understand:
 - What function composition is, and the following notation that if $f: A \rightarrow B$ and $g: B \rightarrow C$, then $g \circ f: A \rightarrow C$ is a function where $(g \circ f)(x) = g(f(x))$. 
 - What a one-to-one function (a.k.a a bijection) is, and the notation $f^{-1}$ for the inverse.
 - Notation for numerical intervals:
-  - $[a, b]$ denotes the "open interval", the range $a \le x \le b$ (includes the end points);
-  - $(a, b)$ denotes the "closed interval", the range $a \lt x \lt b$ (excludes end points);
+  - $[a, b]$ denotes the "closed interval", the range $a \le x \le b$ (includes the end points);
+  - $(a, b)$ denotes the "open interval", the range $a \lt x \lt b$ (excludes end points);
   - $[a, b)$ denotes the "half-open interval", the range $a \le x \lt b$ (excludes one end point). 
 - Notation for, and meaning of, the following common sets:
   - $\mathbb{N}$, the natural numbers;
