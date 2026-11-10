@@ -54,7 +54,7 @@ Inheritance is sometimes misused by C++ programmers to share functionality betwe
 When faced with writing code that one knows needs to be efficient, it is common to try to optimise every piece of code they write as one goes along. This can lead to a very slow development process, as well as difficult to understand software! There are some key points to bear in mind when you are developing efficient code:
 
 - Optimisation often takes significant work: it is much slower to write a highly optimised implementation than a straight-forward one.
-- Optimised code is often unintuitive and therefore harder to understand for new users. This also makes maintenance harder, especially if it is not obvious what can and can't be changed without breaking the optimisation benefits! 
+- Optimised code can become unintuitive and therefore harder to understand for other developers. This also makes maintenance harder, especially if it is not obvious what can and can't be changed without breaking the optimisation benefits! 
 - Highly optimised code may not be portable, as code may be optimised for specific platforms, architectures, or even individual machines.
 - KISS (Keep It Simple, Stupid) is a good principle for first drafts: focus on writing _correct_, understandable code first. 
 - Measure performance to find your bottlenecks: don't waste time optimising parts of your program that only make up a tiny fraction of your runtime (or memory). Chances are there are only one or two places where a substantial amount of your runtime is spent and which can be effectively optimised. **Profile your program and prioritise high-impact optimisations first.** 
