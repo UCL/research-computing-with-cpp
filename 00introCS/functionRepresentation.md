@@ -162,14 +162,7 @@ std::map<std::string, std::vector<int>> ConstructLabelSubsetFunction(LabelledGra
     for(int i = 0; i < graph.num_vertices; i++)
     {
         std::string s = graph.get_label(i);
-        if(lsf.find(s) != lsf.end())
-        {
-            lsf[s].push_back(i);
-        }
-        else
-        {
-            lsf[s] = {i};
-        }
+        lsf[s].push_back(i);
     }
     return lsf;
 }
