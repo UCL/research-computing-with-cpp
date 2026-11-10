@@ -79,7 +79,7 @@ Don't worry about the C++ syntax too much right now; the extra details will be e
 
 A sampled function means storing a series of values for a function for different inputs; it's a way of _discretising_ a function i.e. turning a continuous function (or signal) into a finite set of discrete points. You will likely be familiar with sampled functions from plotting graphs. Most plotting routines for a function $f(x)$ take a list of $(x, f(x))$ pairs (or a list $[x_0, ..., x_{n-1}]$ and a list $[f(x_0), ..., f(x_{n-1})]$).
 
-Discretising functions is an important tool in science in engineering, and has myriad applications:
+Discretising functions is an important tool in science and engineering, and has myriad applications:
 
 - capturing incoming signals from measurement equipment,
 - representing numerical solutions to equations with no analytic form,
