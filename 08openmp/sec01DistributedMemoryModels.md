@@ -44,7 +44,7 @@ The basic model that we need to know is as follows:
     - Multiple cores can be utilised by a single process with multiple _threads_ and a shared memory approach. In our case this would involve using MPI to spawn and control concurrent processes and using OpenMP to manage threading _within_ a process!
 - Threads with shared memory must run on cores within the same node, but processes (which have separate memory) can run on across any nodes or cores.  
 
-![image](images/Simple_Cluster.jpg)
+![image](img/Simple_Cluster.jpg)
 
 This understanding of clusters is important for requesting resources appropriately on an HPC system, as we need to understand how our problem / solution can fit onto the resources that we have! However, the way that your processes interact can look quite different to the diagram of a cluster above, as separate processes can run inside a single node for example. In general we can gain a lot of understanding about distributed systems without thinking about the actual architecture itself, but focussing instead on the _processes_ and the messages that they send. 
 
@@ -56,7 +56,7 @@ In his [1978 paper](https://amturing.acm.org/p558-lamport.pdf) on "logical clock
 - Sending a message is a kind of event. 
 - Receiving a message is a kind of event. 
 
-![image](images/Process_Diagram.jpg)
+![image](img/Process_Diagram.jpg)
 
 In this diagram time runs from bottom to top (i.e. $p_0$ comes before $p_1$), each vertical line is a separate _process_ ($P$, $Q$, and $R$), and each circle is an _event_. An arrow between two events is a message, in which the origin is the message send event and the destination is the message receive event. 
 
@@ -89,85 +89,3 @@ Let's illustrate this game of life example using just two processes, $P$ and $Q$
 - We cannot say which process will begin or complete its update first, or send its boundary cell data first. It does not matter! The processes are kept synchronised as much as is necessary by the message passing. 
 - If one process is faster than the other or the message passing latency is high, then one or more process will stall while waiting to receive the data that it needs. 
 
-## Estimating Performance in Message Passing 
-
-Message passing naturally incurs a performance overhead. Data communication channels between processes are generally speaking much slower than straight-forward reads to RAM. As such, when designing distributed systems we should bear in mind:
-- The frequency of message passing should be kept down where possible. 
-- The size of messages should be kept down where possible. 
-- In general, a smaller number of large messages is better than a large number of small messages _for a given amount of data_. 
-    - This is true in general of data movement, whether through message passing or memory reads to RAM or hard disks. Data movement generally involves a latency ($L$), which is a time overhead for every message regardless of size, and bandwidth ($B$), which is the amount of data that can be transferred in a given time. 
-- The time for $N$ bytes of data to be transferred in $k$ messages can be estimated using $t \approx N/B + kL$. 
-    - If you have to choose between sending a smaller amount of total data in a larger number of messages, or a larger amount of data using a smaller number of messages, then which you should pick will depend on which term in this expression becomes dominant! 
-
-
-
-## Common Models of Communication in Scientific Programming 
-
-There are some patterns of communication that appear frequently in scientific programming, which often doesn't require the extremely free form approach of more general asynchronous systems!
-
-### Divide, Process, and Aggregate using a Parent process
-
-A straight-forward way of handling many problems is to assign one process the "Parent" process. This is your main process which will initialise your other processes, divide work amongst them, and aggregate data from them. It may or may not do such tasks itself! 
-
-To give the simplest example of how this kind of model can work, let's look at it in the context of the merge-sort algorithm that we used in week 7. (Although sorting a list is not a very practical example as the communication overheads will probably be larger than the sorting time in practical cases, but we'll ignore communication time for now!)
-- Merge sort calculates a sorted list by merging together sub-lists which have already been sorted. 
-- So if we have $N$ child processes, the parent process can divide our list into $N$ chunks of (roughly) equal size, and ask each child to sort that list and send it back. 
-- The Parent process can then merge all the sorted lists. 
-
-We can visualise this as a flow chart like so:
-
-![image](images/Merge_Sort_Simple.jpg)
-
-In this case we could actually make things more efficient by allowing some pair-wise communication between child processes to merge sublists. 
-
-![image](images/Merge_Sort_Pairwise.jpg)
-
-In this case instead of one thread merging all sub-lists, we can parallelise over them. As we merge lists pairwise, we will end up with an increasing number of processes idling. 
-
-In these flow charts we have described what needs to be done but not necessarily which processes do it. We want our Parent process to divide the list up and broadcast it, and we want our parent process to end up with the sorted list at the end, but if we want to make the most of our resources we should probably have the parent process do some of the sorting work as well in this case. If we have 4 processes $P_{0...3}$, we could arrange our processes like so:
-
-![image](images/Merge_Sort_Processes.jpg)
-
-This kind of pattern of distributing work and aggregating results often happens in a loop, so that we have the division of a task followed by a central synchronisation, followed by a divided task again and so on. 
-
-### Communication On Grids
-
-Grids are a common feature in scientific programming, from lattices in solid state physics and grid methods for fluid simulations, to image processing techniques. Lots of data gets defined on grids, and the processing of this data is often dependent on the data immediately surrounding it in the grid. The game of life was a simple example of this very principle! 
-
-The highly connected nature of grids gives raises an important question for distributed memory systems: what is the most efficient to divide up a grid so that we minimise our message passing? If we want to minimise the frequency and size of our messages between processes, then we need to minimise the number of cells along the boundary of the regions delogated to each process. 
-
-![image](images/Unallocated_Grid.jpg)
-
-If we want to allocate this grid to four processes, how could we proceed? A simple approach would be to just split it into four vertical sections like so:
-
-![image](images/Vertical_Allocation_Grid.jpg)
-
-Here we've coloured the regions in four different colours to show the allocation to different processes. Any cells on the border of the coloured region will need to be broadcast to the neighbouring region(s). 
-- The red and blue regions each broadcast and receive 8 cells to one other region. 
-- The yellow and green regions broadcast and receive 16 cells each, split between two regions.
-- In total we need to send 48 out of 64 cells, and send 6 messages. 
-
-We can divide up this region to reduce the number of cells on the boundary by dividing the grid into squares:
-
-![image](images/Square_Allocation_Grid.jpg)
-
-- In the simplest implementation each region needs to send 9 cells in three messages: for example the red region sends it bottom row to the yellow (4 cells), its right most column to the blue (4 cells), and its bottom left cell to the green (1 cell). 
-- Doing it this way would result in sending 36 cells across 12 messages, so fewer cells but more messages. 
-- We can do this using fewer messages however if we introduce some blocking i.e. we make some processes wait to receive data before sending data so that they can forward on shared data. This tends to lead to time idling though! 
-
-Which solution and message passing pattern is most efficient may depend on your system and the message passing latency and bandwidth properties! If your message passing time is dominated by bandwidth, you should try to minimise the amount of data communicated (i.e. smallest number of boundary cells); if your message passing time is dominated by latency, you should try to minimise the number of messages that you send. For problems which have to communicate large amounts of data, the message passing time will likely be bandwidth dominated and so a smaller boundary is the preferable solution. 
-
-## Putting Things Together: Performance at Every Scale 
-
-Over the last few weeks we've looked at a few different ways of approaching performance programming in isolation, but it's important to remember that we can (and should!) combine these principles where appropriate. 
-
-### Mixing Distributed and Shared Memory Models
-
-Distributed memory models have a lot of advantages in terms of simplifying memory management and allowing for much more complex systems involving different machines. However, data sharing in distributed systems is slow, which makes them very poorly suited to parallelising certain kinds of problems which involve substantial data sharing. There'd be no point in using a distributed system to transpose a matrix in parallel because passing the matrix components between processes would take longer than the memory reads to perform the transpose itself! But a matrix transpose _does_ parallelise easily in a shared memory system, and if you do an out of place transpose there is no chance of writing to the same place in memory! Many of our basic list and matrix methods make more sense to perform with shared memory parallelism to avoid the messaging overheads.
-
-As an example of a complex problem which can take advantage of multiple levels of parallelism, let's consider likelihood sampling, a very common need in scientific applications. We have some parameter space which defines our model (for example properties of the universe that we want to measure in physics, or parameters describing a disease in epidemiology) and we have a set of points in this space which represent models with different sets of values for these parameters, and we want to calculate the likelihood of each of these sets of parameters given the data that we have. This is how we _infer_ model parameters from data. Calculating the likelihood will involve generating some observables from a model (i.e. calculating some function of these parameters), and doing some kind of multi-variate Gaussian (to compare to the data). 
-
-- Each model evaluation and likelihood calculation is computationally expensive, but only needs a small amount of data to initialise (just the set of parameters)[^data]. This is a perfect example of something which can be allocated to separate processes in a distributed model! Each process is allocated one point in the parameter space and calculates the likelihood. There is no need for communication between processes to calculate the likelihood since they all work on independent points, and they only need to send a message to the parent process when they are done to report the calculated likelihood (again a very small amount of data). 
-- The likelihood calculation itself will generally involve a lot of steps which need to be ordered (we tend to calculate a lot of functions which depend on the results of other functions etc. in scientific applications) and some linear algebera (for our multi-variate Gaussian we will need to handle the $x^T \Sigma^{-1} x$ term for our covariance matrix $\Sigma$, which itself may need to be generated for each point). This would mean a lot of communication and potential stalls if we were to try to parallelise these operations in a distributed way, but likely some good opportunities for threading when we need to deal with vectors, matrices, integrations and so on. So each process could also be multi-threaded on cores with shared memory.
-
-[^data]: The observable data _does_ need to be communicated to every process, _but only once_ since it does not change. So for each new calculation we only need the new parameter set.

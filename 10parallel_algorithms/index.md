@@ -1,10 +1,11 @@
 ---
-title: "Week 10: Work Depth Models and Parallel Strategies"
+title: "Week 10: Algorithmic Analysis"
 ---
 
 ## Week 10: Overview 
 
-This week we'll take a deeper look at how we quantify how parallelisable algorithms are, and discuss some broad strategies for tacking parallel problems. These approaches apply to both shared and dsitributed memory systems. We'll also look at how to program with MPI for asynchronous computations - those in which the processes do not necessarily run in lock-step with one another. 
+This week we'll take a look at how we understand the scaling of serial and parallel algorithms from a theoretical point of view, by analysing the steps that they take. We'll also recap some common data structures and understand how their structure relates to performance in different circumstances.
 
-1. [Work Depth Models](WorkDepth.html)
-2. [Asynchronous MPI](AsynchronousMPI.html)
+1. [Complexity](sec01Complexity.html)
+2. [Work Depth Models](WorkDepth.html)
+3. [Program Analysis](ProgramAnalysis.html)

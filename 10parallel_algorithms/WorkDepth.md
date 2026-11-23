@@ -74,13 +74,17 @@ for(const auto &x : v)
 }
 ```
 - This has a **loop dependency**, where each iteration of the loop depends on the result of the previous. 
-- This is why `parallel for` doesn't work well. Instead we have a `reduce` pragma in openMP. Why is this?
+- This is why `parallel for` doesn't work well. Instead we have a `reduce` pragma in openMP. 
 
-The trick is that our binary operator is **associative**:
+If there is a loop dependency here, then why are we able to parallelise this loop using a reduction clause? 
+
+The trick is that our binary operator is (approximately) **associative**[^associativity].
 - This means we can change the order that we apply the operator.
 - We can't change the order of the elements in the list though; that's _commutativity_. 
 
-The loop dependency is a consequence of the way that the code was written, not the problem itself. With an associate operator, we can instead choose to do pairwise operations (e.g. summing a list by pairwise additions), as shown in the diagram below.
+[^associativity]: As we have already seen, floating point computation is **not** strictly associative for operations like `+` or `*`. This means that parallelising a sum or product of a list of floating point values can change the result of the sum, and you may even get slightly different results each time you run it depending on how the work is divided amongst threads at runtime. 
+
+The loop dependency is a consequence of the way that the code was written, not the problem itself. With an associative operator, we can instead choose to do pairwise operations (e.g. summing a list by pairwise additions), as shown in the diagram below.
 
 ![image](images/ReduceCircuit.png)
 
@@ -148,65 +152,3 @@ So we can substantially improve the depth (and therefore time) over a serial alg
 
 - As a result of the extra work done, having 2 processors tackle this job (using this approach) is unlikely to be very effective: the time you save doing things in parallel would be roughly cancelled out by all the duplicate work you're doing. 
 - With four processors we might expect to get a benefit of roughly a factor of 2 on a large list (so most of our time is spent doing parallel computations), because we'll be doing twice as much work with four times the processing power. 
-
-
-# Approaches to Parallel Algorithms
-
-## Divide and Conquer
-
-We've talked a little about divide and conquer algorithms in the past, for example in our discussion of _merge sort_ in week 7. These algorithms express the solution of a problem in terms of the results from some independent sub-problems. This naturally leads to a parallelised approach with a tree like structure. 
-
-- We can once again use recurrence relations and the Master Theorem from complexity theory to understand the depth of these algorithms. 
-
-## Pipelining 
-
-Pipelining is an approach to task based parallelism where we process a series of data as each piece of data arrives. 
-- Data is provided serially
-    - This could be from an input stream e.g. series of real-time measurements.
-    - Could be produced by some inherently serial computation that can't be paralallelised. 
-    - Even when reading from memory we can only read a small amount at a time, so sometimes pipelining can be an effective tactic to overlap the memory read/write overheads with the computation itself. 
-- We start processing each piece of data as it arrives.
-- We process data in parallel, but pieces of data will be at different stages of the computation. 
-    - The "pipeline" refers to the fact that the data is being pushed through a series of computations, with each piece of data following another rather than overlapping. 
-
-The simplest scenario is when the processing of different pieces of data are independent. In order to visualise the benefits of pipelining, it is better to use a different kind of diagram which takes time into account explicitly. 
-
-We'll split time into discrete units (for high performance applications this may be individual CPU clock cycles!); in the diagram below time runs along the horizontal direction with each unit of time being shown in the boxes at the top of the diagram. For this example we'll say that we **receive one piece of data in each unit of time**. 
-
-![image](images/Pipeline.png)
-
-- The coloured boxes represent computations which can be performed. Boxes that overlap in the vertical direction happen concurrently. 
-- `Get` represents retrieving data from our stream. Because data input is sequential these can't overlap with one another, but they _can_ overlap with data processing. 
-- Each piece of data read is fed through the series of functions $f$, $g$, $h$. These overlap in time for different data elements but with an offset. 
-
-The time to process a stream of $N$ pieces of data is:
-
-$T = t_0 + (N-1) \times I $  
-where:
-- $t_0$ is the time to process one piece of pieces of data. In our example, this is the time for `Get`, $f$, $g$, and $h$, which we can see from the diagram is 9 of our time units.
-- $I$ is the "initiation interval", which is the time delay between starting to process one piece of data and beginning on the next. In this example it is 1, which is the ideal, although there are times when data dependencies can force this to be larger than 1.
-
-We can see how to arrive at this formula because due to the overlap of our computations, after finishing processing the first piece of data ($t_0$), we only need to take another $I$ units of time for each additional piece of data ($N-1$ in total). 
-
-- Pipelines can be implemented using threads on multi-core CPUs.
-- Pipelines are a key form of data parallelism for devices such as ASICs and FPGAs. 
-- They are an extremely efficient way of moving from serial processes into parallel computations. 
-
-### Comparison with Batching 
-
-Another approach to processing data in parallel is to load as much data as you can parallelise over, and then process this data all at the same time instead of using the staggered approach of pipelining. You'd then end up with a workflow that looks like the one below:
-
-![image](images/Batch1.png)
-
-This is the kind of approach that is used for devices such as GPUs. 
-
-If you have enough parallel channels to process _all_ of your elements in parallel, then this gives the same total execution time as the perfect pipelining solution: just the time to load all data plus the time to process one element. 
-
-The difference between these approaches comes when you have more data than you have parallel channels.
-
-- Perfect pipelining only requires as many parallel channels as there can be data elements overlapping. If we look at our pipelining diagram above, our processing ($f$, $g$, and $h$) takes 9 units of time, and we get a new element every time unit, so we can only 9 data processes will overlap before the first channel is free to receive data again. This means _no matter how many data elements are in our stream_ we can achieve our best pipelining performance with just 9 parallel channels in this example. 
-    - This makes pipelines extremely powerful for optimising parallel performance with minimal resources, especially when dealing with very long or potentially indefinite streams. 
-- When batching, if there are not enough channel to process everything in one parallel batch, then we need to run multiple processing steps, which will add time. If we have $P$ parallel channels and $N$ data elements, we will have to take at least $\frac{N}{P} t_0$ steps to process our data.
-    - Depending on the device you use you may be able to keep the time down by reading the next batch of data while processing the current one.
-
-**One should note however that devices such as GPUs manage to be very fast by having both a very large number of parallel channels and very fast hardware. These kinds of considerations can be more important than pure parallelism which only analyses what can be done at the same time: always consider the time things would take in the real world!**

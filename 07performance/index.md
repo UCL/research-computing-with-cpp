@@ -1,12 +1,10 @@
 ---
-title: "Week 7: Introduction to Performance"
+title: "Week 7: Models of Parallel Programming"
 ---
 
 ## Week 7: Overview 
 
-This week we'll be introducing some concepts for producing high performance programming on a single CPU core, before moving on to parallel programming in the next three weeks. 
-
-Even though parallelism can help us improve our throughput, single core optimisation is still vital for producing good performance on ordinary machines or for maximising the work that each core can do in a parallel program. This week we'll talk about:
+This week we will introduce two important models of parallel programming common in high-performance scientific computing. These are _shared memory_ parallel programming, using OpenMP, and _distributed memory_ parallel programming via message passing, using OpenMPI. We will introduce the differences between these models, the basics of how to program them, and some common pit-falls of each. 
 
 1. [_Why_ and _when_ we should optimise](sec00Motivation.html)
 2. [Complexity and algorithm analysis](sec01Complexity.html) 

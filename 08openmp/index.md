@@ -1,12 +1,12 @@
 ---
-title: "Week 8: Parallel Programming with OpenMP"
+title: "Week 8: Performance Programming"
 ---
 
 ## Week 8: Overview
 
-This week we'll be focusing on speeding up our code by taking advantage of **parallelism**, i.e. splitting up a problem and giving different pieces to different processors. In these notes we'll introduce the following concepts:
+This week we'll focus on pushing for higher performance in our code. We'll look at how the time to run our code scales with problem size in theory and practice, how to exploit the cache for faster performance, and how the cache interacts with multi-threaded program execution. 
 
-- [What is parallel programming?](01_parallel_programming.html)
+- [Parallel Computing Paradigms](01_parallel_programming.html)
   - Why do we need parallel programming?
   - What are shared- and distributed-memory parallelism?
   - What are weak and strong scaling?
@@ -17,5 +17,5 @@ This week we'll be focusing on speeding up our code by taking advantage of **par
   - Thread control
   - Schedules
   - Parallelising nested loops
-- [Cache Performance in Shared Memory](04_cache_performance.html)
-- [Summary](05_summary.html)
+- [An Introduction to MPI](ProgrammingWithMPI.html)
+- [Performance Considerations](PerformanceInParallelPrograms.html)
